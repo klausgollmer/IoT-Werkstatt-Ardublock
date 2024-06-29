@@ -35,18 +35,30 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 		translator.addDefinitionCommand(Defaults);
 		
 
-		String PinMapping = ""
-		  	    + "// LoraWAN Copyright (c) 2015 Thomas Telkamp and Matthijs Kooijman\n"
-		  	    + "// (c) 2018 Terry Moore, MCCI\n"
-		  	    + "// https://github.com/mcci-catena/arduino-lmic\n"
-				+ "// -------- LoRa PinMapping FeatherWing Octopus\n"
-				+"const lmic_pinmap lmic_pins = { "
-				+" .nss = 2,                            // Connected to pin D\n"
-				+" .rxtx = LMIC_UNUSED_PIN,             // For placeholder only, Do not connected on RFM92/RFM95\n" 
-				+" .rst = LMIC_UNUSED_PIN,              // Needed on RFM92/RFM95? (probably not) D0/GPIO16 \n"
-				+" .dio = {15, 15, LMIC_UNUSED_PIN"
-				+ "       }"
-				+"};\n";
+		String PinMapping = "// LoraWAN Copyright (c) 2015 Thomas Telkamp and Matthijs Kooijman\n" + 
+				"// (c) 2018 Terry Moore, MCCI\n" + 
+				"// https://github.com/mcci-catena/arduino-lmic\n" + 
+				"// -------- LoRa PinMapping FeatherWing Octopus\n" + 
+				"\n" + 
+				"#if defined(ESP8266)\n" + 
+				" const lmic_pinmap lmic_pins = {  \n" + 
+				"  .nss = 2,                            // Connected to pin D\n" + 
+				"  .rxtx = LMIC_UNUSED_PIN,             // For placeholder only, Do not connected on RFM92/RFM95\n" + 
+				"  .rst = LMIC_UNUSED_PIN,              // Needed on RFM92/RFM95? (probably not) D0/GPIO16 \n" + 
+				"  .dio = {\n" + 
+				"    15, 15, LMIC_UNUSED_PIN         }\n" + 
+				"};\n" + 
+				"#else\n" + 
+				" const lmic_pinmap lmic_pins = {  \n" + 
+				"  .nss = 16,                            // Connected to pin D\n" + 
+				"  .rxtx = LMIC_UNUSED_PIN,             // For placeholder only, Do not connected on RFM92/RFM95\n" + 
+				"  .rst = LMIC_UNUSED_PIN,              // Needed on RFM92/RFM95? (probably not) D0/GPIO16 \n" + 
+				"  .dio = {\n" + 
+				"    5, 5, LMIC_UNUSED_PIN         }\n" + 
+				"};\n" + 
+				"#endif\n" + 
+				"";
+		  	    
 		
 		translator.addDefinitionCommand(PinMapping);
 		
@@ -137,61 +149,64 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 			translator.addDefinitionCommand(CRC);
 		
 		
-		
-		String LoadStore = "//--------------------------  Load/Store LoRa LMIC to RTC-Mem \n" + 
-				"void LoadLMICFromRTC() {\n" + 
-				"  lmic_t RTC_LMIC;\n" + 
-				"  uint32_t crcOfData;\n" + 
-				"  if (sizeof(lmic_t) <= 512) {\n" + 
-				"     ESP.rtcUserMemoryRead(1, (uint32_t*) &RTC_LMIC, sizeof(RTC_LMIC));\n" + 
-				"     ESP.rtcUserMemoryRead(0, (uint32_t*) &crcOfData, sizeof(crcOfData));\n" + 
-				"     uint32_t crcOfData_RTC = RTCcalculateCRC32((uint8_t*) &RTC_LMIC, sizeof(RTC_LMIC));\n" + 
-				"     if (crcOfData != crcOfData_RTC) {\n" + 
-				"       Serial.println(\"CRC32 in RTC memory doesn't match CRC32 of data. Data is probably invalid!\");\n" + 
-				"     } else {\n" + 
-				"       Serial.print(F(\"load LMIC from RTC, FrameCounter =  \"));\n" + 
-				"       LMIC = RTC_LMIC;\n" + 
-				"       Serial.println(LMIC.seqnoUp);"+
-				"     }  \n" + 
-				"  } else {\n" + 
-				"   Serial.println(F(\"sizelimit RTC-Mem, #define LMIC_ENABLE_long_messages in config.h\"));\n" + 
-				"  }\n" + 
-				"} \n" + 
-				" \n" + 
-				"void SaveLMICToRTC(int deepsleep_sec) {\n" + 
-				"  if (sizeof(lmic_t) <= 512) {\n" + 
-				"    Serial.println(F(\"Save LMIC to RTC and deepsleep\"));\n" + 
-				"    unsigned long now = millis();\n" + 
-				"    // EU Like Bands\n" + 
-				"#if defined(CFG_LMIC_EU_like)\n" + 
-				"   // Serial.println(F(\"Reset CFG_LMIC_EU_like band avail\"));\n" + 
-				"    for (int i = 0; i < MAX_BANDS; i++)\n" + 
-				"    {\n" + 
-				"      ostime_t correctedAvail = LMIC.bands[i].avail - ((now / 1000.0 + deepsleep_sec) * OSTICKS_PER_SEC);\n" + 
-				"      if (correctedAvail < 0)\n" + 
-				"      {\n" + 
-				"        correctedAvail = 0;\n" + 
-				"      }\n" + 
-				"      LMIC.bands[i].avail = correctedAvail;\n" + 
-				"    }\n" + 
-				"\n" + 
-				"    LMIC.globalDutyAvail = LMIC.globalDutyAvail - ((now / 1000.0 + deepsleep_sec) * OSTICKS_PER_SEC);\n" + 
-				"    if (LMIC.globalDutyAvail < 0)\n" + 
-				"    {\n" + 
-				"      LMIC.globalDutyAvail = 0;\n" + 
-				"    }\n" + 
-				"#else\n" + 
-				"    //Serial.println(F(\"No DutyCycle recalculation function!\"));\n" + 
-				"#endif\n" + 
-				"    // Write to RTC\n" + 
-				"    uint32_t crcOfData = RTCcalculateCRC32((uint8_t*) &LMIC, sizeof(LMIC));\n" + 
-				"    ESP.rtcUserMemoryWrite(1, (uint32_t*) &LMIC, sizeof(LMIC));\n" + 
-				"    ESP.rtcUserMemoryWrite(0, (uint32_t*) &crcOfData, sizeof(crcOfData));\n" + 
-				"  } \n" + 
-				"  else {\n" + 
-				"    Serial.println(F(\"sizelimit RTC-Mem, #define LMIC_ENABLE_long_messages in config.h\"));\n" + 
-				"  }\n" + 
-				"} ";
+			String LoadStore = "// ESP8266:  Load/Store LoRa LMIC to RTC-Mem \n" + 
+					"#if defined(ESP8266) \n" +
+ 				    "void LoadLMICFromRTC_ESP8266() {\n" + 
+					"  lmic_t RTC_LMIC;\n" + 
+					"  uint32_t crcOfData;\n" + 
+					"  if (sizeof(lmic_t) <= 512) {\n" + 
+					"     ESP.rtcUserMemoryRead(1, (uint32_t*) &RTC_LMIC, sizeof(RTC_LMIC));\n" + 
+					"     ESP.rtcUserMemoryRead(0, (uint32_t*) &crcOfData, sizeof(crcOfData));\n" + 
+					"     uint32_t crcOfData_RTC = RTCcalculateCRC32((uint8_t*) &RTC_LMIC, sizeof(RTC_LMIC));\n" + 
+					"     if (crcOfData != crcOfData_RTC) {\n" + 
+					"       Serial.println(\"CRC32 in RTC memory doesn't match CRC32 of data. Data is probably invalid!\");\n" + 
+					"     } else {\n" + 
+					"       Serial.print(F(\"load LMIC from RTC, FrameCounter =  \"));\n" + 
+					"       LMIC = RTC_LMIC;\n" + 
+					"       Serial.println(LMIC.seqnoUp);"+
+					"     }  \n" + 
+					"  } else {\n" + 
+					"   Serial.println(F(\"sizelimit RTC-Mem, #define LMIC_ENABLE_long_messages in config.h\"));\n" + 
+					"  }\n" + 
+					"} \n" + 
+					" \n" + 
+					"void SaveLMICToRTC_ESP8266(int deepsleep_sec) {\n" + 
+					"  #if defined(ESP32)\n return;\n #endif\n;" +
+					"  if (sizeof(lmic_t) <= 512) {\n" + 
+					"    Serial.println(F(\"Save LMIC to RTC and deepsleep\"));\n" + 
+					"    unsigned long now = millis();\n" + 
+					"    // EU Like Bands\n" + 
+					"#if defined(CFG_LMIC_EU_like)\n" + 
+					"   // Serial.println(F(\"Reset CFG_LMIC_EU_like band avail\"));\n" + 
+					"    for (int i = 0; i < MAX_BANDS; i++)\n" + 
+					"    {\n" + 
+					"      ostime_t correctedAvail = LMIC.bands[i].avail - ((now / 1000.0 + deepsleep_sec) * OSTICKS_PER_SEC);\n" + 
+					"      if (correctedAvail < 0)\n" + 
+					"      {\n" + 
+					"        correctedAvail = 0;\n" + 
+					"      }\n" + 
+					"      LMIC.bands[i].avail = correctedAvail;\n" + 
+					"    }\n" + 
+					"\n" + 
+					"    LMIC.globalDutyAvail = LMIC.globalDutyAvail - ((now / 1000.0 + deepsleep_sec) * OSTICKS_PER_SEC);\n" + 
+					"    if (LMIC.globalDutyAvail < 0)\n" + 
+					"    {\n" + 
+					"      LMIC.globalDutyAvail = 0;\n" + 
+					"    }\n" + 
+					"#else\n" + 
+					"    //Serial.println(F(\"No DutyCycle recalculation function!\"));\n" + 
+					"#endif\n" + 
+					"    // Write to RTC\n" + 
+					"    uint32_t crcOfData = RTCcalculateCRC32((uint8_t*) &LMIC, sizeof(LMIC));\n" + 
+					"    ESP.rtcUserMemoryWrite(1, (uint32_t*) &LMIC, sizeof(LMIC));\n" + 
+					"    ESP.rtcUserMemoryWrite(0, (uint32_t*) &crcOfData, sizeof(crcOfData));\n" + 
+					"  } \n" + 
+					"  else {\n" + 
+					"    Serial.println(F(\"sizelimit RTC-Mem, #define LMIC_ENABLE_long_messages in config.h\"));\n" + 
+					"  }\n" + 
+					"};\n" +
+					"#endif \n";
+
 		translator.addDefinitionCommand(LoadStore);
 		
 	
@@ -333,7 +348,7 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 	            + "  LMIC_setClockError(MAX_CLOCK_ERROR * 5 / 100); // timing difference esp clock\n"
 		        + "  if  (fromRTCMem) {"
 		        +" #ifdef LORA_DEEPSLEEP \n"
-		        +"     LoadLMICFromRTC(); // restart from deepsleep, get LMIC state from RTC \n"
+		        +"     LoadLMICFromRTC_ESP8266(); // restart from deepsleep, get LMIC state from RTC \n"
 		        + "#endif\n" 
 		        + "  } // continue runing state-maschine\n" + 
 		        "}\n" + 

@@ -106,9 +106,9 @@ public class SleepBlockDeep extends TranslatorBlock
 				  "  }\n";
 			
 			if (translator.isRTCVarProgram()) {
-  			    ret += "SaveLMICToRTC("+Delay_ms+"/1000); // Save LMIC-State \n ";
+  			    ret += "SaveLMICToRTC_ESP8266("+Delay_ms+"/1000); // Save LMIC-State \n ";
 		    } else {
-  			    ret += "SaveLMICToRTC("+Delay_ms+"/1000); // Save LMIC-State \n ";
+  			    ret += "SaveLMICToRTC_ESP8266("+Delay_ms+"/1000); // Save LMIC-State \n ";
 		    }
 		}
 		
