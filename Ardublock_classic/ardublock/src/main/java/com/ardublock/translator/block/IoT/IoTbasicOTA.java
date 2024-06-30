@@ -16,7 +16,7 @@ public class IoTbasicOTA  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
-		translator.addHeaderFile("ESPmDNS.h");
+//		translator.addHeaderFile("ESPmDNS.h");
 		translator.addHeaderFile("WiFiUdp.h");
 		translator.addHeaderFile("ArduinoOTA.h");
 		

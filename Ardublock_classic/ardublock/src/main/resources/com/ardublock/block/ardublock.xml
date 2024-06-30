@@ -6376,6 +6376,7 @@
   		      <BlockGenusMember>touch_rot</BlockGenusMember>	
   		      <BlockGenusMember>touch_press</BlockGenusMember>	
   		      <BlockGenusMember>Divider_OTA</BlockGenusMember>
+ 		      <BlockGenusMember>basicOTA</BlockGenusMember>
  		      
 				<!-- 
 			  <BlockGenusMember>LightSleep</BlockGenusMember>
@@ -6391,7 +6392,6 @@
 		      <BlockGenusMember>RTCtoEEPROM</BlockGenusMember>
 		      <BlockGenusMember>RTCfromEEPROM</BlockGenusMember>
  		      <BlockGenusMember>RTCCheck</BlockGenusMember>
- 		      <BlockGenusMember>basicOTA</BlockGenusMember>
  		      -->
 			</BlockDrawer>
 		</BlockDrawerSet>
