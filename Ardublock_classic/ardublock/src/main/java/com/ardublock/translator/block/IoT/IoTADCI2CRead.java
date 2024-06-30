@@ -50,7 +50,7 @@ public class IoTADCI2CRead extends TranslatorBlock
 	    translator.addSetupCommand("Serial.begin(115200);");
 	    
 	    Setup = "Wire.begin(); // ---- Initialisiere den I2C-Bus \n" 
-	                 + "#if defined(ESP8266) \n      if (Wire.status() != I2C_OK) Serial.println(\"Something wrong with I2C\"); \n #endif\n";
+	                 + "#if defined(ESP8266) \n      if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n #endif\n";
 	    translator.addSetupCommand(Setup);
 
 	    translator.addSetupCommand("I2C_adc_init("+adr+");");

@@ -59,7 +59,7 @@ public class IoTK30Get extends TranslatorBlock
    	translator.addDefinitionCommand(Def);
 	
     translator.addSetupCommand("Wire.begin(); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(\"Something wrong with I2C\"); \n  #endif \n");
+    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
    	
     

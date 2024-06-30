@@ -35,7 +35,7 @@ public class IoTGPSGetI2C extends TranslatorBlock
    
 	translator.addSetupCommand("Serial.begin(115200);");
 	translator.addSetupCommand("Wire.begin(); // ---- Initialisiere den I2C-Bus \n");
-	translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(\"Something wrong with I2C\"); \n  #endif \n");
+	translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 	 
 
     String Set = " // Adafruit GPS-Lib Written by Limor Fried/Ladyada for Adafruit Industries. BSD license\r\n" + 

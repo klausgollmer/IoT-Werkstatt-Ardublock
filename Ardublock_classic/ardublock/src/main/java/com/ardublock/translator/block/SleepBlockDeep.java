@@ -21,7 +21,7 @@ public class SleepBlockDeep extends TranslatorBlock
 			     +"}\n";
 	translator.addDefinitionCommand(extern);
 	translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
-	translator.addHeaderFile("#define LORA_DEEPSLEEP");
+	translator.addHeaderFile("#define USE_DEEPSLEEP");
 	
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	String Delay_ms = translatorBlock.toCode(); 
@@ -72,20 +72,7 @@ public class SleepBlockDeep extends TranslatorBlock
 	
 	}
 		
-	if	(false) { // wäre nötig für Zeitnachführung über RTC-Clock 
-		ret = "// ------  Save Structure to RTC-RAM\n"+
-			     "  RTCData.crc32  = RTCcalculateCRC32((uint8_t*) &RTCData.data[0], sizeof(RTCData.data));\n" +
-				 "// Ermittle voraussichtliche Uhrzeit nach dem planmäßigen Aufwachen\n"+
-			     "  timeval tv;\n"+
-			     "  gettimeofday(&tv, NULL);\n" + 
-			     "  uint32_t dt = (uint32_t)(("+Delay_ms+"+600UL+(tv.tv_usec/1000)))/1000UL;\n"+
-			     "  RTCData.time_t = (tv.tv_sec) + (uint32_t) (1.05 * (float)dt);// empirische Formel\n"+
-			     "  ESP.rtcUserMemoryWrite(0, (uint32_t*) &RTCData, sizeof(RTCData));\n"+
-				 "// ------- and do sleep\n";
-	} else { 
-   		ret = " ";
- 	}
-	 
+	
 
 	//translator.setDeepSleepProgram(true);
 	
@@ -96,7 +83,7 @@ public class SleepBlockDeep extends TranslatorBlock
 		
 		
 		if (translator.isLORAProgram()) {
-			
+			translator.addHeaderFile("#define LORA_DEEPSLEEP");
 			ret = "if (os_queryTimeCriticalJobs(ms2osticks("+Delay_ms+"))) { \n" + 
 				  "    Serial.println(\"busywaiting for criticalJobs\");\n" + 
 				  "    while (os_queryTimeCriticalJobs(ms2osticks("+Delay_ms+"))) { \n" + 

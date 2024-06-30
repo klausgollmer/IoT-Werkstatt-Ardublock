@@ -25,7 +25,7 @@ public class IoTLightBHGet extends TranslatorBlock
     
     String Setup;
     translator.addSetupCommand("Wire.begin(); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(\"Something wrong with I2C\"); \n  #endif \n");
+    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
     // Deklarationen hinzuf�gen
     String dec = " // BH1750 driver https://github.com/claws/BH1750 MIT-License Copyright (c) 2018 claws \n"
             + "BH1750 LightSensor;\n";

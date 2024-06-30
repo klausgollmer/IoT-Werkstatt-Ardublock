@@ -1036,6 +1036,19 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+        <BlockGenus name="variable_String_LoRaPayload" kind="data"
+			initlabel="bg.variable_String" editable-label="yes" is-label-value="yes"
+			color="204 0 102">
+			<description>
+				<text>
+					Payload
+				</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="plug" position-type="mirror" />
+			</BlockConnectors>
+		</BlockGenus>
 		
 		
 <!-- ******************** Communication *************** -->
@@ -5133,65 +5146,6 @@
 			
 		</BlockGenus>
 
-      
-
-
-        <BlockGenus name="TTN_getFct" kind="data" color="30 30 255"
-			initlabel="bg.TTN_getFct" editable-label="yes">
-			<description>
-				<text>
-					MAC Frame Counter TTN V3
-				</text>
-			</description>
-			<BlockConnectors>
-			   <BlockConnector connector-type="number" connector-kind="plug" />
-			</BlockConnectors>
-		</BlockGenus>
-
-        <BlockGenus name="TTN_setFct" kind="command" color= "30 30 255" 
-			initlabel="bg.TTN_setFct" editable-label="no" is-label-value="no">
-			<description>
-				<text>set TTN LMIC frame counter</text>
-			</description>
-			
-			<BlockConnectors>
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="FrameCnt">
-				</BlockConnector>
- 		    </BlockConnectors>
-		</BlockGenus>
-
-
-        <BlockGenus name="TTN_loadFct" kind="command" color="50 50 50"
-			initlabel="bg.TTN_loadFct" editable-label="no" is-label-value="no">
-			<description>
-				<text>load TTN LMIC frame counter</text>
-			</description>
-			
-			<BlockConnectors>
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="slot">
-					<DefaultArg genus-name="number" label="0" />
-				</BlockConnector>
- 		    </BlockConnectors>
-		</BlockGenus>
-
-        <BlockGenus name="TTN_storeFct" kind="command" color="50 50 50"
-			initlabel="bg.TTN_storeFct" editable-label="no" is-label-value="no">
-			<description>
-				<text>store TTN LMIC frame counter</text>
-			</description>
-			
-			<BlockConnectors>
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="slot">
-					<DefaultArg genus-name="number" label="0" />
-				</BlockConnector>
- 		    </BlockConnectors>
-		</BlockGenus>
-
-
-
 <!-- Time -->
 		<BlockGenus name="NTP" kind="command" color="30 30 255"
 			initlabel="bg.NTP" editable-label="no" is-label-value="no">
@@ -6102,13 +6056,6 @@
 		
 			</BlockDrawer>
 
-<!-- bd.input -->
-			<BlockDrawer button-color="44 165 226" name="bd.signal"
-				type="factory">
-	    		<BlockGenusMember>MEANsmooth</BlockGenusMember>
-				<BlockGenusMember>EMAsmooth</BlockGenusMember>
- 		        <BlockGenusMember>DosisIntegral</BlockGenusMember>
-			</BlockDrawer>
 
 
 
@@ -6183,12 +6130,8 @@
 			  <BlockGenusMember>TTN_RxCallback</BlockGenusMember>
 			  <BlockGenusMember>variable_number_LoRaPort</BlockGenusMember>
 			  <BlockGenusMember>variable_number_LoRaPayload</BlockGenusMember>
-			  <!-- 
-			  <BlockGenusMember>TTN_setFct</BlockGenusMember> 
-			  <BlockGenusMember>TTN_getFct</BlockGenusMember>
-			  <BlockGenusMember>TTN_loadFct</BlockGenusMember> 
-			  <BlockGenusMember>TTN_storeFct</BlockGenusMember> 
-			    -->
+			  <BlockGenusMember>variable_String_LoRaPayload</BlockGenusMember>
+			  
 			</BlockDrawer>
 
 			<!-- IoT.communication -->
@@ -6295,6 +6238,13 @@
 								
 			</BlockDrawer>
 
+<!-- bd.signal -->
+			<BlockDrawer button-color="44 165 226" name="bd.signal"
+				type="factory">
+	    		<BlockGenusMember>MEANsmooth</BlockGenusMember>
+				<BlockGenusMember>EMAsmooth</BlockGenusMember>
+ 		        <BlockGenusMember>DosisIntegral</BlockGenusMember>
+			</BlockDrawer>
 
 
 		<BlockDrawer button-color="165 42 42" name="bd.MED"

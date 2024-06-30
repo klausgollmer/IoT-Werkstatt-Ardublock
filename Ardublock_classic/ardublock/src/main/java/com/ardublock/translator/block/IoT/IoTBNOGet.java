@@ -28,7 +28,7 @@ public class IoTBNOGet extends TranslatorBlock
     // I2C-initialisieren
     translator.addSetupCommand("Serial.begin(115200);");
     translator.addSetupCommand("Wire.begin(); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(\"Something wrong with I2C\"); \n  #endif \n");
+    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
     translator.addSetupCommand("if (!boschBNE055.begin()) Serial.println(\"Kein BNO055 Lagesensor gefunden\");\n");
     translator.addSetupCommand("boschBNE055.setExtCrystalUse(true);\n");

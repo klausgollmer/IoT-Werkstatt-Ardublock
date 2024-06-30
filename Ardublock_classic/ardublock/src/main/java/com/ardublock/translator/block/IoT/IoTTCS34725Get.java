@@ -26,7 +26,7 @@ public class IoTTCS34725Get extends TranslatorBlock
     // I2C-initialisieren
     translator.addSetupCommand("Serial.begin(115200);");
     translator.addSetupCommand("Wire.begin(); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(\"Something wrong with I2C\"); \n  #endif \n");
+    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
     translator.addSetupCommand("if (!tcs.begin()) Serial.println(\"Kein TCS34725 RGB-Sensor gefunden\");\n");
     
@@ -103,7 +103,7 @@ public class IoTAPDS9960Get extends TranslatorBlock
     // I2C-initialisieren
     translator.addSetupCommand("Serial.begin(115200);");
     translator.addSetupCommand("Wire.begin(); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(\"Something wrong with I2C\"); \n  #endif \n");
+    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
     translator.addSetupCommand("if (!apds.init()) Serial.println(\"Kein ADPS Gesture-Sensor gefunden\");\n");
     translator.addSetupCommand("apds.enableLightSensor(false);// Gesture Sensor mit Licht und Abstandsmessung");

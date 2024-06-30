@@ -40,7 +40,7 @@ public class IoTNFCWrite extends TranslatorBlock
 	translator.addSetupCommand("Serial.begin(115200);");
     // I2C-initialisieren
 	translator.addSetupCommand("Wire.begin(); // ---- Initialisiere den I2C-Bus \n");
-	translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(\"Something wrong with I2C\"); \n  #endif \n");
+	translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 	 
 	String Setup = "Serial.println(\"Initialize NFC Reader\");\r\n" + 
 		           "nfcSeed.begin();  // ---- PN532 NFC-Reader\n";
@@ -58,7 +58,7 @@ public class IoTNFCWrite extends TranslatorBlock
         + "    if ((millis()-T) < 15) {                 // QnD Bugfix: zu schnell, wiederhole\n"
         + "      OK = 0;     \n"
         + "      Wire.begin();                          // I2C-Bus restart\n" 
-        + "      #if defined(ESP8266)\n if (Wire.status() != I2C_OK) Serial.println(\"Something wrong with I2C\"); \n #endif \n"
+        + "      #if defined(ESP8266)\n if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n #endif \n"
         + "      nfcSeed.begin();\n"
         + "    }\n"
         + "  }\n"

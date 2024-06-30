@@ -25,7 +25,7 @@ public class IoTBMEGet extends TranslatorBlock
     // I2C-initialisieren
     translator.addSetupCommand("Serial.begin(115200);");
     translator.addSetupCommand("Wire.begin(); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(\"Something wrong with I2C\"); \n  #endif \n");
+    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
     translator.addSetupCommand("boschBME280.settings.runMode = 3; // Normal Mode\n"
     		+ "boschBME280.settings.tempOverSample  = 4; \n"
@@ -34,7 +34,7 @@ public class IoTBMEGet extends TranslatorBlock
     		+ "boschBME280_ready = boschBME280.begin();");
 
     translator.addSetupCommand("if (boschBME280_ready == 0) {"+
-    		"while(1) {Serial.println(\"BME280 nicht vorhanden - der neue Octopus nutzt BME680, ggf. Puzzleteile tauschen\"); delay(500);}\n"+
+    		"while(1) {Serial.println(F(\"BME280 nicht vorhanden, ggf. Puzzleteile tauschen\")); delay(500);}\n"+
     		"}\n");
 
     

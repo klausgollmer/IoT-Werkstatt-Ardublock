@@ -24,9 +24,12 @@ public class IoTTTN_downlink  extends TranslatorBlock {
 	    		"long         LoRaWAN_ms_Wakeup  = 0; // ms at start message\n" + 
 	    		"long         LoRaWAN_ms_EmExit  = 0; // max. ms  \n"; 
 	    translator.addDefinitionCommand(vardef);
+	   
+	
 	    
 	    translator.addDefinitionCommand("int LoRaWAN_Rx_Payload = 0 ;");
 	    translator.addDefinitionCommand("int LoRaWAN_Rx_Port = 0 ;");
+	    translator.addDefinitionCommand("String LoRaWAN_Rx_Payload_Raw = \"\" ;");
 	    
 //		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    String ret;

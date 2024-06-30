@@ -5073,22 +5073,7 @@
  		    </BlockConnectors>
 		</BlockGenus>
 
-        <BlockGenus name="TTN_storeFct" kind="command" color="50 50 50"
-			initlabel="bg.TTN_storeFct" editable-label="no" is-label-value="no">
-			<description>
-				<text>store TTN LMIC frame counter</text>
-			</description>
-			
-			<BlockConnectors>
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="slot">
-					<DefaultArg genus-name="number" label="0" />
-				</BlockConnector>
- 		    </BlockConnectors>
-		</BlockGenus>
-
-
-
+     
 <!-- Time -->
 		<BlockGenus name="NTP" kind="command" color="30 30 255"
 			initlabel="bg.NTP" editable-label="no" is-label-value="no">
