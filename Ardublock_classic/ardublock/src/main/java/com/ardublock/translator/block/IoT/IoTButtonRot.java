@@ -38,7 +38,7 @@ public class IoTButtonRot extends TranslatorBlock
 				    "  #if defined(ESP8266) \r\n" + 
 				    "    wert = button_encoder.read();\r\n" + 
 				    "  #elif defined(ESP32)\r\n" + 
-				    "    wert = button_encoder.getCount();\r\n" + 
+				    "    wert = button_encoder.getCount()/2;\r\n" + 
 				    "  #endif\r\n" + 
 				    "  return wert;\r\n" + 
 				    "}\r\n" + 
