@@ -38,7 +38,7 @@ public class IoTDIYSpektro_BH  extends TranslatorBlock {
 
 		
 		translator.addSetupCommand("Serial.begin(115200);");
-		translator.addSetupCommand("Wire.begin(); // ---- Initialisiere den I2C-Bus \n");
+		translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
 	    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 		String Setup = "if (!LightSensor.begin(BH1750::ONE_TIME_HIGH_RES_MODE_2)) while(1) {Serial.println(\"missing BH1750\");delay(100);}\r\n";
 	    translator.addSetupCommand(Setup);

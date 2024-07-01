@@ -26,7 +26,7 @@ public class IoTBSECGet extends TranslatorBlock
     // Setupdeklaration
     // I2C-initialisieren
     translator.addSetupCommand("Serial.begin(115200);");
-    translator.addSetupCommand("Wire.begin(); // ---- Initialisiere den I2C-Bus \n");
+    translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
  
     
     String Setup = " iaqSensor.begin(BME68X_I2C_ADDR_LOW, Wire);\r\n" + 
