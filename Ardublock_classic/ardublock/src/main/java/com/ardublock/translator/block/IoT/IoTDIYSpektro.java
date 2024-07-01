@@ -28,7 +28,7 @@ public class IoTDIYSpektro  extends TranslatorBlock {
      	translator.addHeaderFile("Adafruit_NeoPixel.h");
 		translator.addHeaderFile("DIY_Spectrometer.h");
 
-	    translator.addDefinitionCommand("Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,18,NEO_GRBW + NEO_KHZ800);");
+	    translator.addDefinitionCommand("Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,GPIO_NEO,NEO_GRBW + NEO_KHZ800);");
 
 	    // Deklarationen hinzuf�gen
 	    String dec = " // Adafruit TSL2561, https://github.com/adafruit/Adafruit_TSL2561, Written by Kevin (KTOWN) Townsend for Adafruit Industries \n"

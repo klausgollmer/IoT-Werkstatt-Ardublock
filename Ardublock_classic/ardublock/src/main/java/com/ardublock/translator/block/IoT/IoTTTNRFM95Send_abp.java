@@ -44,23 +44,13 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 				"// https://github.com/mcci-catena/arduino-lmic\n" + 
 				"// -------- LoRa PinMapping FeatherWing Octopus\n" + 
 				"\n" + 
-				"#if defined(ESP8266)\n" + 
 				" const lmic_pinmap lmic_pins = {  \n" + 
-				"  .nss = 2,                            // Connected to pin D\n" + 
+				"  .nss = LMIC_NSS,                            // Connected to pin D\n" + 
 				"  .rxtx = LMIC_UNUSED_PIN,             // For placeholder only, Do not connected on RFM92/RFM95\n" + 
 				"  .rst = LMIC_UNUSED_PIN,              // Needed on RFM92/RFM95? (probably not) D0/GPIO16 \n" + 
 				"  .dio = {\n" + 
-				"    15, 15, LMIC_UNUSED_PIN         }\n" + 
+				"    LMIC_DIO, LMIC_DIO, LMIC_UNUSED_PIN         }\n" + 
 				"};\n" + 
-				"#else\n" + 
-				" const lmic_pinmap lmic_pins = {  \n" + 
-				"  .nss = 16,                            // Connected to pin D\n" + 
-				"  .rxtx = LMIC_UNUSED_PIN,             // For placeholder only, Do not connected on RFM92/RFM95\n" + 
-				"  .rst = LMIC_UNUSED_PIN,              // Needed on RFM92/RFM95? (probably not) D0/GPIO16 \n" + 
-				"  .dio = {\n" + 
-				"    5, 5, LMIC_UNUSED_PIN         }\n" + 
-				"};\n" + 
-				"#endif\n" + 
 				"";
 		
 		translator.addDefinitionCommand(PinMapping);

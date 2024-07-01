@@ -28,7 +28,7 @@ public class IoTDIYSpektro_BH  extends TranslatorBlock {
      	translator.addHeaderFile("Adafruit_NeoPixel.h");
 		translator.addHeaderFile("DIY_Spectrometer_BH.h");
 
-	    translator.addDefinitionCommand("Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,18,NEO_GRBW + NEO_KHZ800);");
+	    translator.addDefinitionCommand("Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,GPIO_NEO,NEO_GRBW + NEO_KHZ800);");
 
 	    // Deklarationen hinzuf�gen
 	    String dec = " // BH1750 driver https://github.com/claws/BH1750 MIT-License Copyright (c) 2018 claws \n"

@@ -58,10 +58,11 @@ public class IoTMessageServer  extends TranslatorBlock {
 				  "";
 		   translator.addDefinitionCommand(EncDef);
 		   EncDef ="#if defined(ESP32) \n "
-		   		+  "    ESP32Encoder::useInternalWeakPullResistors = puType::up;\n"
-		   		+  "    button_encoder.attachHalfQuad(13, 12); \n "
-		   		+  "    pinMode(14,INPUT_PULLUP); \n "
-		   		+  "#endif \n";
+			   		+  "    ESP32Encoder::useInternalWeakPullResistors = puType::up;\n"
+			   		+  "    button_encoder.attachHalfQuad(GPIO_ROTARY_B, GPIO_ROTARY_A); \n "
+			   		+  "    pinMode(GPIO_ROTARY_B,INPUT_PULLUP); \n "
+			   		+  "    pinMode(GPIO_ROTARY_A,INPUT_PULLUP); \n "
+			   		+  "#endif \n";
 		   translator.addSetupCommand(EncDef);
 		} 
 				
@@ -144,7 +145,7 @@ public class IoTMessageServer  extends TranslatorBlock {
 			+"  html = html +  \"<tr><td>\" + \"Temperatur    \" + \"</td> <td>\" + String(Tmess) + \"</td><td>\"+ \"Grad Celsius\"+\" </td></tr>\";\n"
 			+"  html = html +  \"<tr><td>\" + \"Luftdruck     \" + \"</td> <td>\" + String(pmess) + \"</td><td>\"+ \"hPa\"+\" </td></tr>\";\n"
 			+"  html = html +  \"<tr><td>\" + \"rel. Feuchte  \" + \"</td> <td>\" + String(hmess) + \"</td><td>\"+ \"%\"+\" </td></tr>\";\n"
-			+"  html = html +  \"<tr><td>\" + \"Analog Input  \" + \"</td> <td>\" + String(analogRead(A0)) + \"</td><td>\"+ \"-\"+\" </td></tr>\";\n"
+			+"  html = html +  \"<tr><td>\" + \"Analog Input  \" + \"</td> <td>\" + String(analogRead(PIN_AIN0)) + \"</td><td>\"+ \"-\"+\" </td></tr>\";\n"
 			+"  html = html +  \"<tr><td>\" + \"Drehknopf     \" + \"</td> <td>\" + String(encoderRead()) + \"</td><td>\"+ \"-\"+\" </td></tr>\";\n"
 			+"  html = html +  \"<tr><td>\" + \"Knopfdruck    \" + \"</td> <td>\" + String(digitalRead(PINBUTTON)==LOW) + \"</td><td>\"+ \"on/off\"+\" </td></tr>\";\n"
 

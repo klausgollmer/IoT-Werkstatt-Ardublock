@@ -28,7 +28,7 @@ public class IoTButtonRot extends TranslatorBlock
 
 		EncDef = "// Helper Rotary Encoder \n"
 				  + "#if defined(ESP8266) \n"
-				  + "Encoder button_encoder(14,12);\n"
+				  + "Encoder button_encoder(GPIO_ROTARY_B,GPIO_ROTARY_A);\n"
 			      + "#elif defined(ESP32) \n"
 			      +  "ESP32Encoder button_encoder; \n"
 			      + "#endif\n"
@@ -46,8 +46,9 @@ public class IoTButtonRot extends TranslatorBlock
 		translator.addDefinitionCommand(EncDef);
 	    EncDef ="#if defined(ESP32) \n "
 			   		+  "    ESP32Encoder::useInternalWeakPullResistors = puType::up;\n"
-			   		+  "    button_encoder.attachHalfQuad(13, 12); \n "
-			   		+  "    pinMode(14,INPUT_PULLUP); \n "
+			   		+  "    button_encoder.attachHalfQuad(GPIO_ROTARY_B, GPIO_ROTARY_A); \n "
+			   		+  "    pinMode(GPIO_ROTARY_B,INPUT_PULLUP); \n "
+			   		+  "    pinMode(GPIO_ROTARY_A,INPUT_PULLUP); \n "
 			   		+  "#endif \n";
 	    translator.addSetupCommand(EncDef);
 

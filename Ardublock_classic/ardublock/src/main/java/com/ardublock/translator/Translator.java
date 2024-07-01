@@ -90,7 +90,7 @@ public class Translator
 		//  addHeaderFile("ESP8266WiFi.h");
 			addDefinitionCommand ("#if defined(ESP8266)\n  #include <ESP8266WiFi.h> \n #endif\r\n");
 		}
-		
+		addHeaderFile("IoTBoards_Generic");
 		if (!headerFileSet.isEmpty())
 		{
 			for (String file:headerFileSet)

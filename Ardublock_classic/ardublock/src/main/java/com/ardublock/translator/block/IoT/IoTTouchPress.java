@@ -21,15 +21,6 @@ public class IoTTouchPress extends TranslatorBlock
 		 String EncDef = "// Touch Encoder \r\n" + 
 			  		"// Define Pins for Touch Sensors\r\n" +
 			  		"#if defined(ESP32) \n "+
-			  		"#define TOUCH_PIN_UP T7\r\n" + 
-			  		"#define TOUCH_PIN_DOWN T9\r\n" + 
-			  		"#define TOUCH_PIN_BUTTON T5\r\n" + 
-			  		"#define TOUCH_UP_THRESHOLD 12\r\n" + 
-			  		"#define TOUCH_DOWN_THRESHOLD 12\r\n" + 
-			  		"#define TOUCH_BUTTON_THRESHOLD 12\r\n" + 
-			  		"\r\n" + 
-			  		"// Definitionen für Software-Entprellen\r\n" + 
-			  		"const unsigned long TOUCH_DEBOUNCE_DELAY = 100; // Zeit in Millisekunden\r\n" + 
 			  		"\r\n" + 
 			  		"// Variablen für Software-Entprellen\r\n" + 
 			  		"volatile unsigned long lastDebounceTimeUp = 0;\r\n" + 

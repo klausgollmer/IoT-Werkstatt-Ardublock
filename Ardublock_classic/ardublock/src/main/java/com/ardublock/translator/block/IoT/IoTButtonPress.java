@@ -15,9 +15,9 @@ public class IoTButtonPress extends TranslatorBlock
 	
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-	    translator.addSetupCommand("pinMode(2,INPUT_PULLUP);// Button Press \n ");
+	    translator.addSetupCommand("pinMode(GPIO_ROTARY_BUTTON,INPUT_PULLUP);// Button Press \n ");
 
-		String ret = "digitalRead(2)==LOW";
+		String ret = "digitalRead(GPIO_ROTARY_BUTTON)==LOW";
 		
 
 		return codePrefix + ret + codeSuffix;
