@@ -49,8 +49,9 @@
 		
 		
 		<!-- ******************** Controls Menu *************** -->
-		<!-- BlockGenus name="program" kind="command" color="255 240 0"-->
-		<BlockGenus name="program" kind="command" color="236 172 0"
+		<!-- Octopus BlockGenus name="program" kind="command" color="56 87 35"-->
+		
+		<BlockGenus name="program" kind="command" color="236 172 0" 
 			initlabel="bg.program" is-starter="yes" is-terminator="yes"
 			label-unique="no">
 			<description>
@@ -77,7 +78,7 @@
 					<!-- FileLocation>com/ardublock/block/IoTkit/Werkstatt_100_o.gif</FileLocation-->
 					<FileLocation>com/ardublock/block/IoTkit/IoT2.jpg</FileLocation>
 					<!-- FileLocation>com/ardublock/block/IoTkit/Makey1.gif</FileLocation>-->
-					
+					<!-- FileLocation>com/ardublock/block/IoTkit/Octopus1.png</FileLocation>-->
 				</Image>
 			</Images>
 		</BlockGenus>

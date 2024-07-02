@@ -144,9 +144,9 @@ public class Context
 		// Get Target and select special Ardublock.xml
 		String Target = getArduinoTarget("portable\\preferences.txt");
 		if (Target != ARDUINO_TARGET_UNKNOWN)
-//temp		  this.setArduinoTargetString("_"+Target.toUpperCase());
+        this.setArduinoTargetString("_"+Target.toUpperCase());
 		
-		//this.setArduinoTargetString("");
+	
 		ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock"+arduinoTargetString+".xml";
 		System.out.println("Arduino Version: " + ARDUBLOCK_LANG_PATH);
 		
