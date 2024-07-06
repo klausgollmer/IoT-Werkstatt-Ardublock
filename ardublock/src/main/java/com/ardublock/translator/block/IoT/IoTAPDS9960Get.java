@@ -1,0 +1,100 @@
+package com.ardublock.translator.block.IoT;
+import com.ardublock.translator.Translator;
+import com.ardublock.translator.block.TranslatorBlock;
+import com.ardublock.translator.block.exception.SocketNullException;
+import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
+
+public class IoTAPDS9960Get extends TranslatorBlock
+{
+
+  public IoTAPDS9960Get (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+  {
+    super(blockId, translator, codePrefix, codeSuffix, label);
+  }
+
+  public String toCode() throws SocketNullException, SubroutineNotDeclaredException
+  {
+    String ret;
+        
+    
+    // Header hinzuf�gen
+    translator.addHeaderFile("Wire.h");
+    translator.addHeaderFile("Adafruit_APDS9960.h");
+    
+    
+    // Setupdeklaration
+    // I2C-initialisieren
+    translator.addSetupCommand("Serial.begin(115200);");
+    translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+ 
+    translator.addSetupCommand("if (!apds.begin()) Serial.println(\"Kein ADPS Gesture-Sensor gefunden\");\n");
+    translator.addSetupCommand("apds.setADCGain(APDS9960_AGAIN_64X);");
+ 
+    
+    // Deklarationen hinzuf�gen
+    translator.addDefinitionCommand("// https://github.com/adafruit/Adafruit_APDS9960 Copyright (c) 2012, Adafruit Industries");
+	translator.addDefinitionCommand("Adafruit_APDS9960 apds;");
+
+	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
+    String Sensor = translatorBlock.toCode();
+    
+    String Read = "int readAPDS9960(int chan) { // APDS9960 Gesture Sensor Einlesefunktion\r\n" + 
+    		"  uint16_t value = 0;\r\n" + 
+    		"  uint8_t dum;\r\n" + 
+    		"  uint16_t r, g, b, c;\r\n" + 
+    		"  if (chan >1) {    //wait for color data to be ready\r\n" + 
+    		"    apds.enableColor(true);\r\n" + 
+    		"    while(!apds.colorDataReady()){\r\n" + 
+    		"      delay(5);\r\n" + 
+    		"    }\r\n" + 
+    		"    apds.getColorData(&r, &g, &b, &c);\r\n" + 
+    		"  } else {\r\n" + 
+    		"    apds.enableColor(false);\r\n" + 
+    		"    if (chan == 0)\r\n" + 
+    		"      apds.enableGesture(true);\r\n" + 
+    		"    else \r\n" + 
+    		"      apds.enableGesture(false);\r\n" + 
+    		"\r\n" + 
+    		"    if (chan <= 1)\r\n" + 
+    		"      apds.enableProximity(true);\r\n" + 
+    		"    else \r\n" + 
+    		"      apds.enableProximity(false);\r\n" + 
+    		"   }\r\n" + 
+    		"  \r\n" + 
+    		"  switch (chan) {\r\n" + 
+    		"  case 0: // Gesture  \r\n" + 
+    		"    value = apds.readGesture();\r\n" + 
+    		"    break;\r\n" + 
+    		"  case 1: // Proxi\r\n" + 
+    		"    value=apds.readProximity();\r\n" + 
+    		"    break;\r\n" + 
+    		"  case 2: // AmbientLight\r\n" + 
+    		"    //value = c;\r\n" + 
+    		"    value = apds.calculateLux(r,g,b);\r\n" + 
+    		"    break;\r\n" + 
+    		"  case 3: // red\r\n" + 
+    		"    value = r;\r\n" + 
+    		"    break;\r\n" + 
+    		"  case 4: // green\r\n" + 
+    		"    value = g;     \r\n" + 
+    		"    break;\r\n" + 
+    		"  case 5: // blue\r\n" + 
+    		"    value = b;\r\n" + 
+    		"    break;\r\n" + 
+    		"  }\r\n" + 
+    		"  return value;\r\n" + 
+    		"}";
+
+    translator.addDefinitionCommand(Read);
+			     
+	
+    // Code von der Mainfunktion
+	ret = "readAPDS9960(" + Sensor + ")";
+   
+    return codePrefix + ret + codeSuffix;
+  }
+}
+
+
+
