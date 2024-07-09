@@ -58,6 +58,7 @@ public class Context
 	private boolean isInArduino = false;
 	private String arduinoVersionString = ARDUINO_VERSION_UNKNOWN;
 	private String arduinoTargetString = ARDUINO_TARGET_UNKNOWN;
+	private String arduinoCodeFileString = "";
 	private OsType osType; 
 
 	final public static String APP_NAME = "ArduBlock";
@@ -405,6 +406,16 @@ public class Context
 		this.arduinoTargetString = arduinoTargetString;
 	}
 
+	public String getArduinoCodeFileString() {
+		//System.out.println("get"+this.arduinoCodeFileString);
+		return this.arduinoCodeFileString;
+	}
+
+	public void setArduinoCodeFileString (String arduinoCodeFileString) {
+		//System.out.println("Set "+arduinoCodeFileString);
+		this.arduinoCodeFileString = arduinoCodeFileString;
+	}	
+	
 		
 	public OsType getOsType() {
 		return osType;

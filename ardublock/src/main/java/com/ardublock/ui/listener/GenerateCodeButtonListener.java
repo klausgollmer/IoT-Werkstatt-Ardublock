@@ -16,6 +16,7 @@ import com.ardublock.translator.block.exception.BlockException;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNameDuplicatedException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
+import com.ardublock.util.ArduinoIDE2;
 
 import edu.mit.blocks.codeblocks.Block;
 import edu.mit.blocks.renderable.RenderableBlock;
@@ -230,9 +231,18 @@ public class GenerateCodeButtonListener implements ActionListener
 				codeOut = formatter.format(codeOut);
 			}
 			
+			
 			if (!context.isInArduino())
 			{
 				System.out.println(codeOut);
+				  //String filePath = "E:\\IoTW2\\Sketchbook\\IoT-Werkstatt";
+				  //String fileName = "IoT-Werkstatt.ino";
+				  //String content = "This is the content of the file.";
+				  
+				  Context context = Context.getContext();
+				  String codeFile = context.getArduinoCodeFileString();
+			      ArduinoIDE2.writeFile(codeFile, codeOut);
+			    
 			}		
 			context.didGenerate(codeOut);
 		}

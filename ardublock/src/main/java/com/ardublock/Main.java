@@ -19,6 +19,22 @@ public class Main
 
 	public static void main(String args[]) throws SAXException, IOException, ParserConfigurationException
 	{
+	 Context context = Context.getContext();
+	 context.setArduinoCodeFileString("du44mdidum");
+	    
+		
+	   if (args.length > 0) {
+	     String parameter = args[0];
+	     System.out.println("Der übergebene Parameter ist: " + parameter);
+	    
+	     //Context context = Context.getContext();
+	     context.setArduinoCodeFileString(parameter);
+	     
+	   } else {
+	     System.out.println("Kein Parameter übergeben.");
+	   }
+		
+		
 		Main me = new Main();
 		me.startArdublock();
 	}
