@@ -1,6 +1,7 @@
 package com.ardublock.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -16,11 +17,16 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -34,7 +40,10 @@ import com.ardublock.ui.listener.SaveAsButtonListener;
 import com.ardublock.ui.listener.SaveButtonListener;
 
 import edu.mit.blocks.controller.WorkspaceController;
+import edu.mit.blocks.workspace.Page;
+import edu.mit.blocks.workspace.PageChangeEventManager;
 import edu.mit.blocks.workspace.Workspace;
+import javax.swing.BorderFactory;
 
 
 public class OpenblocksFrame extends JFrame
@@ -49,6 +58,11 @@ public class OpenblocksFrame extends JFrame
 	private FileFilter ffilter;
 	
 	private ResourceBundle uiMessageBundle;
+	
+	public JComboBox boardComboBox;
+	
+	
+	
 	
 	public void addListener(OpenblocksFrameListener ofl)
 	{
@@ -86,6 +100,29 @@ public class OpenblocksFrame extends JFrame
 		initOpenBlocks();
 	}
 	
+
+	public void changeBoardVersion()
+	{
+	
+		int optionValue = JOptionPane.showOptionDialog(this, uiMessageBundle.getString("message.question.newboard"), uiMessageBundle.getString("message.title.question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
+		if (optionValue == JOptionPane.NO_OPTION)
+		{
+			//- change combobox selection back to the current version.
+			boardComboBox.setSelectedItem((String)context.ArdublockVersion);
+			System.out.println("Setting combo box back to original: " + context.ArdublockVersion);
+			return;
+		}
+		else {
+			context.ArdublockVersion = (String) boardComboBox.getSelectedItem();
+			this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			context.resetWorksapce();
+			context.setWorkspaceChanged(false);
+			this.setTitle(this.makeFrameTitle());
+			this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+		}
+	}	
+	
 	private void initOpenBlocks()
 	{
 		final Context context = Context.getContext();
@@ -110,7 +147,14 @@ public class OpenblocksFrame extends JFrame
 		saveAsButton.addActionListener(new SaveAsButtonListener(this));
 		JButton openButton = new JButton(uiMessageBundle.getString("ardublock.ui.load"));
 		openButton.addActionListener(new OpenButtonListener(this));
-		JButton generateButton = new JButton(uiMessageBundle.getString("ardublock.ui.upload"));
+		String mess;
+		if (context.isInArduino()) {
+			mess = uiMessageBundle.getString("ardublock.ui.upload");
+		} else {
+			mess = uiMessageBundle.getString("ardublock.ui.generate");
+		}
+			
+		JButton generateButton = new JButton(mess);
 		generateButton.addActionListener(new GenerateCodeButtonListener(this, context));
 		JButton serialMonitorButton = new JButton(uiMessageBundle.getString("ardublock.ui.serialMonitor"));
 		serialMonitorButton.addActionListener(new ActionListener () {
@@ -125,7 +169,7 @@ public class OpenblocksFrame extends JFrame
 				System.out.println("size: " + size);
 				BufferedImage bi = new BufferedImage(7000, 7000, BufferedImage.TYPE_INT_RGB); //#kgp 2560 2560
 				Graphics2D g = (Graphics2D)bi.createGraphics();
-				double theScaleFactor = (300d/72d);  
+				double theScaleFactor = (600d/72d);  
 				g.scale(theScaleFactor,theScaleFactor);
 				
 				workspace.getBlockCanvas().getPageAt(0).getJComponent().paint(g);
@@ -145,14 +189,85 @@ public class OpenblocksFrame extends JFrame
 			}
 		});
 
-		buttons.add(newButton);
-		buttons.add(saveButton);
-		buttons.add(saveAsButton);
-		buttons.add(openButton);
-		buttons.add(generateButton);
-		buttons.add(serialMonitorButton);
+		String[] programList = {"Starter","Makey","Octopus"};
+		boardComboBox = new JComboBox<String>(programList);
+		boardComboBox.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				System.out.println("item state changed to: " + boardComboBox.getSelectedItem() + ".  Current Ardublock Version = " + context.ArdublockVersion);
+				//- ignore if selected program is same as the current one. 
+				if (context.ArdublockVersion == boardComboBox.getSelectedItem()) {
+					System.out.println("skipped");
+					return;
+				}
+				else {
+					changeBoardVersion();
+				}
+			}
+			
+		});
+		
+		
+		
+		JLabel zoomLabel = new JLabel("Zoom: ");
+		JButton zoomIn = new JButton("+");
+		zoomIn.addActionListener(new ActionListener () {
+			public void actionPerformed(ActionEvent e) {
+				double zoom = Page.getZoomLevel();
+				zoom += 0.05;
+				Page.setZoomLevel(zoom);
+				if (zoom > 2) zoom = 2;
+				workspace.setWorkspaceZoom(zoom);
+				PageChangeEventManager.notifyListeners();
+		        System.out.println("Zoom level: " + Page.getZoomLevel());
+			}
+		});
+		
+		JButton zoomOut = new JButton("-");
+		zoomOut.addActionListener(new ActionListener () {
+			public void actionPerformed(ActionEvent e) {
+				double zoom = Page.getZoomLevel();
+				zoom -= 0.05;
+				if (zoom < 0.02) zoom = 0.02;
+				Page.setZoomLevel(zoom);
+				workspace.setWorkspaceZoom(zoom);
+				PageChangeEventManager.notifyListeners();
+		        System.out.println("Zoom level: " + Page.getZoomLevel());
+			}
+		});
+		
+		
+		JPanel jp0 = new JPanel();
+		JPanel jp1 = new JPanel();
+		JPanel jp2 = new JPanel();
+		JPanel jp3 = new JPanel();
+		JPanel jp4 = new JPanel();
+		JPanel jp5 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		JPanel jp7 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel jp8 = new JPanel();
+		JPanel jp9 = new JPanel();
+
+		Border border = BorderFactory.createLineBorder(Color.black);
+		Border margin = new EmptyBorder(1,1,1,1);
+		JLabel abpLabel = new JLabel("Block:");
+		jp1.add(abpLabel);
+		jp1.add(newButton);
+		jp1.add(saveButton);
+		jp1.add(saveAsButton);
+		jp1.add(openButton);
+		jp1.setBorder(new CompoundBorder(border, margin));
+
+		jp0.add(boardComboBox);
+		if (context.isInArduino())
+   		     jp3.add(serialMonitorButton);
+
+
 
 		JPanel bottomPanel = new JPanel();
+		
+		
+		
 		JButton websiteButton = new JButton(uiMessageBundle.getString("ardublock.ui.website"));
 		websiteButton.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
@@ -168,12 +283,39 @@ public class OpenblocksFrame extends JFrame
 			    }
 			}
 		});
-		JLabel versionLabel = new JLabel("v " + uiMessageBundle.getString("ardublock.ui.version"));
-		
-		bottomPanel.add(saveImageButton);
-		bottomPanel.add(websiteButton);
-		bottomPanel.add(versionLabel);
+		JLabel versionLabel = new JLabel(uiMessageBundle.getString("ardublock.ui.version"));
+		JLabel inoLabel = new JLabel("Arduino: ");
+		JLabel inoFileLabel = new JLabel(context.getArduinoCodeFileString());
+	//	JLabel zoomLabel = new JLabel("Zoom:");
 
+		jp5.add(inoLabel);
+        jp5.add(jp3);
+		jp5.add(generateButton);
+		jp5.setBorder(new CompoundBorder(border, margin));
+
+		jp7.add(zoomLabel);
+		jp7.add(zoomIn);
+		jp7.add(zoomOut);
+		jp7.setBorder(new CompoundBorder(border, margin));
+
+		
+		buttons.add(jp0);
+		buttons.add(jp7);
+		buttons.add(jp8);
+		buttons.add(jp9);
+		buttons.add(jp1);
+		buttons.add(jp2);
+		buttons.add(jp3);
+		buttons.add(jp4);
+		buttons.add(jp5);
+
+			
+		
+		bottomPanel.add(versionLabel);
+	    bottomPanel.add(saveImageButton);
+		bottomPanel.add(websiteButton);
+		bottomPanel.add(inoFileLabel);
+		
 		
 		this.add(buttons, BorderLayout.NORTH);
 		this.add(bottomPanel, BorderLayout.SOUTH);

@@ -20,7 +20,7 @@ public class Main
 	public static void main(String args[]) throws SAXException, IOException, ParserConfigurationException
 	{
 	 Context context = Context.getContext();
-	 context.setArduinoCodeFileString("du44mdidum");
+	 context.setArduinoCodeFileString("");
 	    
 		
 	   if (args.length > 0) {
@@ -32,7 +32,8 @@ public class Main
 	     
 	   } else {
 	     System.out.println("Kein Parameter übergeben.");
-	   }
+	     context.setArduinoCodeFileString("E:\\IoTW_IDE2\\Sketchbook\\IoT-Werkstatt\\IoT-Werkstatt.ino");
+	 	   }
 		
 		
 		Main me = new Main();

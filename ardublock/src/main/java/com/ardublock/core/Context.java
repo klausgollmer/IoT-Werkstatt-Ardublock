@@ -40,6 +40,8 @@ import edu.mit.blocks.workspace.Workspace;
 
 public class Context
 {
+	
+	public String ArdublockVersion = "Starter"; // start mit subset for beginners
 	public final static String LANG_DTD_PATH = "/com/ardublock/block/lang_def.dtd";
 // 	public final static String ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
 	public static String ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
@@ -61,7 +63,7 @@ public class Context
 	private String arduinoCodeFileString = "";
 	private OsType osType; 
 
-	final public static String APP_NAME = "ArduBlock";
+	final public static String APP_NAME = "Make:Lab";
 	
 	private Editor editor;
 	
@@ -140,15 +142,22 @@ public class Context
 		workspaceController.setStyleList(list);
 		workspaceController.setLangDefDtd(this.getClass().getResourceAsStream(LANG_DTD_PATH));
 
-		
-		
-		// Get Target and select special Ardublock.xml
-		String Target = getArduinoTarget("portable\\preferences.txt");
-		if (Target != ARDUINO_TARGET_UNKNOWN)
-        this.setArduinoTargetString("_"+Target.toUpperCase());
-		
-	
-		ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock"+arduinoTargetString+".xml";
+		switch(ArdublockVersion) {
+		  case "All":
+			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
+		    break;
+		  case "Makey":
+			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock_ESP32.xml";
+		    break;
+		  case "Octopus":
+			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock_ESP8266.xml";
+		    break;
+		  case "Starter":
+			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock_UNO.xml";
+		    break;
+		  default:
+			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
+		}
 		System.out.println("Arduino Version: " + ARDUBLOCK_LANG_PATH);
 		
 		workspaceController.setLangDefStream(this.getClass().getResourceAsStream(ARDUBLOCK_LANG_PATH));
@@ -157,7 +166,7 @@ public class Context
 		loadDefaultArdublockProgram();
 		
 		saveFilePath = null;
-		saveFileName = "untitled";
+		saveFileName = "";
 		workspaceEmpty = true;
 		
 	}
