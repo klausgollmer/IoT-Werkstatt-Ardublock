@@ -108,7 +108,7 @@ public class Context
 		ofls = new HashSet<OpenblocksFrameListener>();
 		this.workspace = workspaceController.getWorkspace();
 		
-		isInArduino = false;
+		//isInArduino = false;
 		
 		osType = determineOsType();
 	}
@@ -158,7 +158,9 @@ public class Context
 		  default:
 			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
 		}
-		System.out.println("Arduino Version: " + ARDUBLOCK_LANG_PATH);
+		System.out.println("Version: " + ARDUBLOCK_LANG_PATH);
+	
+		
 		
 		workspaceController.setLangDefStream(this.getClass().getResourceAsStream(ARDUBLOCK_LANG_PATH));
 		workspaceController.loadFreshWorkspace();
@@ -392,6 +394,7 @@ public class Context
 	
 	
 	public boolean isInArduino() {
+		System.out.println(isInArduino);
 		return isInArduino;
 	}
 

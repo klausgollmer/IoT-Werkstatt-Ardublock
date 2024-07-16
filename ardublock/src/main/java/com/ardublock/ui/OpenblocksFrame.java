@@ -9,6 +9,8 @@ import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -98,7 +100,36 @@ public class OpenblocksFrame extends JFrame
 		fileChooser.addChoosableFileFilter(ffilter);
 		
 		initOpenBlocks();
+		
+
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	        // WindowListener to add a close confirmation dialog
+		this.addWindowListener(new WindowAdapter() {
+	            @Override
+	            public void windowClosing(WindowEvent e) {
+	            	Context context = Context.getContext();
+	            	if (context.isWorkspaceChanged()) {
+	  	                int confirm = JOptionPane.showOptionDialog(
+		                        null,
+		                        uiMessageBundle.getString("message.question.exit"),
+		                        uiMessageBundle.getString("message.title.question"), //"Exit Confirmation",
+		                        JOptionPane.YES_NO_OPTION,
+		                        JOptionPane.QUESTION_MESSAGE,
+		                        null,
+		                        null, 
+		                        null //"No"
+		                );
+		                if (confirm == JOptionPane.YES_OPTION) {
+		                	dispose(); // Close the window
+		                }
+	            	} else dispose(); // Close the window
+	            }
+	        });
+
 	}
+	
+	 
+	
 	
 
 	public void changeBoardVersion()
@@ -148,7 +179,9 @@ public class OpenblocksFrame extends JFrame
 		JButton openButton = new JButton(uiMessageBundle.getString("ardublock.ui.load"));
 		openButton.addActionListener(new OpenButtonListener(this));
 		String mess;
-		if (context.isInArduino()) {
+		
+		if (context.getArduinoCodeFileString()=="") {
+			System.out.println("in");
 			mess = uiMessageBundle.getString("ardublock.ui.upload");
 		} else {
 			mess = uiMessageBundle.getString("ardublock.ui.generate");
@@ -256,10 +289,10 @@ public class OpenblocksFrame extends JFrame
 		jp1.add(saveButton);
 		jp1.add(saveAsButton);
 		jp1.add(openButton);
-		jp1.setBorder(new CompoundBorder(border, margin));
+		//jp1.setBorder(new CompoundBorder(border, margin));
 
 		jp0.add(boardComboBox);
-		if (context.isInArduino())
+		if (context.getArduinoCodeFileString()=="")
    		     jp3.add(serialMonitorButton);
 
 
@@ -291,12 +324,12 @@ public class OpenblocksFrame extends JFrame
 		jp5.add(inoLabel);
         jp5.add(jp3);
 		jp5.add(generateButton);
-		jp5.setBorder(new CompoundBorder(border, margin));
+		//jp5.setBorder(new CompoundBorder(border, margin));
 
 		jp7.add(zoomLabel);
 		jp7.add(zoomIn);
 		jp7.add(zoomOut);
-		jp7.setBorder(new CompoundBorder(border, margin));
+		//jp7.setBorder(new CompoundBorder(border, margin));
 
 		
 		buttons.add(jp0);
