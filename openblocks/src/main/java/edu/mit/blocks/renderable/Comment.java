@@ -86,7 +86,7 @@ public class Comment extends JPanel {
     private int width = DEFAULT_WIDTH;
     private int height = DEFAULT_HEIGHT;
     private double zoom = 1.0;
-    private String fontname = "Monospaced";
+    private String fontname = "Arial"; //### font kommentar
     private Shape body, resize, textarea;
     private boolean pressed = false;
     private boolean active = false;

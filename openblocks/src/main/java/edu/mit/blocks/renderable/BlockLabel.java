@@ -39,12 +39,25 @@ public class BlockLabel implements MouseListener, MouseMotionListener, KeyListen
     public enum Type {
         NAME_LABEL, PAGE_LABEL, PORT_LABEL, DATA_LABEL
     }
+    
+    /*
     public final static Font blockFontSmall_Bold = new Font("Monospaced", Font.BOLD, 7);
     public final static Font blockFontMedium_Bold = new Font("Monospaced", Font.BOLD, 10);
     public final static Font blockFontLarge_Bold = new Font("Monospaced", Font.BOLD, 12);
     public final static Font blockFontSmall_Plain = new Font("Monospaced", Font.PLAIN, 7);
     public final static Font blockFontMedium_Plain = new Font("Monospaced", Font.PLAIN, 10);
     public final static Font blockFontLarge_Plain = new Font("Monospaced", Font.PLAIN, 12);
+    */
+    
+    //### kgo schrift der blöcke
+    public final static Font blockFontSmall_Bold = new Font("arial", Font.BOLD, 7);
+    public final static Font blockFontMedium_Bold = new Font("arial", Font.BOLD, 10);
+    public final static Font blockFontLarge_Bold = new Font("arial", Font.BOLD, 12);
+    public final static Font blockFontSmall_Plain = new Font("arial", Font.PLAIN, 7);
+    public final static Font blockFontMedium_Plain = new Font("arial", Font.PLAIN, 10);
+    public final static Font blockFontLarge_Plain = new Font("arial", Font.PLAIN, 12);
+    
+    
     private LabelWidget widget;
 
     /** These keys inputs are delegated back to renderable block */

@@ -382,7 +382,9 @@ public class FactoryManager implements WorkspaceWidget, ComponentListener, Works
      * 			 drawer to not already exist in BOTH static and dynamic set
      */
     public void addStaticDrawer(String name, Color color) {
+    	
         this.addStaticDrawer(name, staticCanvases.size(), color);
+        //#### legt die hintergundfarbe fest
     }
 
     /**

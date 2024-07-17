@@ -3,12 +3,14 @@ package edu.mit.blocks.workspace;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import edu.mit.blocks.renderable.RenderableBlock;
 import edu.mit.blocks.codeblocks.Block;
@@ -26,9 +28,10 @@ import edu.mit.blocks.codeblockutil.Canvas;
 class FactoryCanvas extends JPanel implements Canvas, SearchableContainer, RBParent, ComponentListener {
 
     private static final long serialVersionUID = 328149080291L;
-    private static final int BORDER_WIDTH = 10;
+    private static final int BORDER_WIDTH = 10; // Abstände zwischen den Blöcken im werkzeugkasten
     /** The highlight of this canvas */
     private Color highlight = null;
+    //### kgo highlight rahmen um die Werkzeugkästen
     /** The color of this canvas */
     private Color color;
 
@@ -40,9 +43,11 @@ class FactoryCanvas extends JPanel implements Canvas, SearchableContainer, RBPar
     FactoryCanvas(String name, Color color) {
         super();
         this.setBackground(Color.green);
-        this.setName(name);
-        this.setColor(color);
-        this.setLayout(null);
+     //   Font labelFont = UIManager.getFont("Label.font");
+     //   this.setFont(labelFont);
+        this.setName(name); //### kgo name werkzeugkasten
+        this.setColor(color); //### kgo farbe
+        this.setLayout(null); 
     }
 
     FactoryCanvas(String name) {
