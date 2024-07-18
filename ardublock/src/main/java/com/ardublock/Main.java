@@ -31,7 +31,7 @@ public class Main
 	  System.setProperty("sun.java2d.uiScale", "1.5");
 	  System.setProperty("swing.aatext", "true");
 	  System.setProperty("awt.useSystemAAFontSettings", "lcd");
-  	  
+	  
 	  FlatLightLaf.setup();
 	
 	     UIManager.put("Button.arc", 10);
@@ -40,10 +40,10 @@ public class Main
 	        UIManager.put("Component.innerFocusWidth", 1);
 
 	        // Set larger font size
-	        UIManager.put("defaultFont", new Font("Arial", Font.PLAIN, 10));
+	        UIManager.put("defaultFont", new Font("Arial", Font.PLAIN, 15));
 		
-	        UIManager.put("Button.font", new Font("Arial", Font.PLAIN, 17));
-	        UIManager.put("Label.font", new Font("Arial", Font.BOLD, 17));
+	        UIManager.put("Button.font", new Font("Arial", Font.PLAIN, 16));
+	        UIManager.put("Label.font", new Font("Arial", Font.BOLD, 16));
 	        UIManager.put("ComboBox.font", new Font("Arial", Font.PLAIN, 16));
 	        
 	        
