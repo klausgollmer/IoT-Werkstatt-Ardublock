@@ -43,7 +43,7 @@ public class Main
 	        UIManager.put("defaultFont", new Font("Arial", Font.PLAIN, 10));
 		
 	        UIManager.put("Button.font", new Font("Arial", Font.PLAIN, 17));
-	        UIManager.put("Label.font", new Font("Arial", Font.PLAIN, 18));
+	        UIManager.put("Label.font", new Font("Arial", Font.BOLD, 17));
 	        UIManager.put("ComboBox.font", new Font("Arial", Font.PLAIN, 16));
 	        
 	        

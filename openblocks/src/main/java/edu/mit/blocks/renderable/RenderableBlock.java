@@ -1414,8 +1414,8 @@ public class RenderableBlock extends JComponent implements SearchableElement,
 	 * @param height
 	 *            the current height of the buffered image
 	 */
-	private void repositionBlockImages(int width, int height) { //#kgo
-		int margin = 5; //#kgo abstand bild zu rand
+	private void repositionBlockImages(int width, int height) { 
+		int margin = 5; 
 		
 		// TODO need to take other images into acct if we enable multiple block
 		// images

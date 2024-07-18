@@ -253,7 +253,7 @@ public class OpenblocksFrame extends JFrame
 				if (zoom > 2) zoom = 2;
 				workspace.setWorkspaceZoom(zoom);
 				PageChangeEventManager.notifyListeners();
-		        System.out.println("Zoom level: " + Page.getZoomLevel());
+	//	        System.out.println("Zoom level: " + Page.getZoomLevel());
 			}
 		});
 		
@@ -266,7 +266,7 @@ public class OpenblocksFrame extends JFrame
 				Page.setZoomLevel(zoom);
 				workspace.setWorkspaceZoom(zoom);
 				PageChangeEventManager.notifyListeners();
-		        System.out.println("Zoom level: " + Page.getZoomLevel());
+//		        System.out.println("Zoom level: " + Page.getZoomLevel());
 			}
 		});
 		

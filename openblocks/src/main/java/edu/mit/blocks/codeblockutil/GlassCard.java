@@ -64,7 +64,7 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
         this.canvas = canvas;
         this.button = new GlassButton(canvas.getColor(), canvas.getColor().brighter().brighter().brighter(), canvas.getName());
         //this.button.setMaximumSize(new Dimension(0,10));
-        //this.button.setPreferredSize(new Dimension(0,10));
+        //this.button.setPreferredSize(new Dimension(0,30));
         this.scroll = new CGlassScrollPane(
                 canvas.getJComponent(),
                 ScrollPolicy.VERTICAL_BAR_AS_NEEDED,
@@ -150,9 +150,12 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
    
+            
+            //System.out.println(this.getHeight());
+            
             // Set up first layer
-            int buttonHeight = this.getHeight() - INSET * 2;
-            int buttonWidth = this.getWidth() - INSET * 2;
+            int buttonHeight = this.getHeight()+1 - (INSET) *2; // size me up #kgo
+            int buttonWidth = this.getWidth() - (INSET) * 2;
             int arc = buttonHeight;
 
             g2.setPaint(new GradientPaint(0, -buttonHeight, Color.darkGray, 0, buttonHeight, buttonColor, false));
@@ -165,7 +168,7 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
                 // Paint highlight layer if focused
                 if (this.focus) {
                     g2.setColor(Color.green);
-                    g2.setStroke(new BasicStroke(4)); // Set stroke thickness to 4
+                    g2.setStroke(new BasicStroke(3) 	 	); // Set stroke thickness to 3
                     g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
                     g2.setStroke(new BasicStroke(1)); // Reset stroke thickness to 1
          

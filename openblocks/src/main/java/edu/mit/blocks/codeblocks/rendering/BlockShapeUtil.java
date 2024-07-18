@@ -157,9 +157,9 @@ public class BlockShapeUtil {
         }
     }
 
-    static private final int BEVEL_CACHE_SIZE = 200;
+   // static private final int BEVEL_CACHE_SIZE = 200;
     
-    static private final LRUCache<BevelCacheKey, BufferedImage> bevelCache = new LRUCache<BevelCacheKey, BufferedImage>(BEVEL_CACHE_SIZE);
+ //   static private final LRUCache<BevelCacheKey, BufferedImage> bevelCache = new LRUCache<BevelCacheKey, BufferedImage>(BEVEL_CACHE_SIZE);
 	
     /**
      * Static method to return bufferedImage of a Beveled outline of a block
@@ -175,7 +175,7 @@ public class BlockShapeUtil {
         }
         //System.out.println("Not found cached bevel!");
         //generic light vector - "chosen to look good"
-       float[] light = ShapeBevel.getLightVector(-1, -2, 2); //Schatten Blöckchen ###kgo
+       float[] light = ShapeBevel.getLightVector(-1, -2, 2); 
            int bevelSize = 3;
         //create image
         img = GraphicsManager.gc.createCompatibleImage(width, height, Transparency.TRANSLUCENT);
@@ -194,39 +194,18 @@ public class BlockShapeUtil {
     
     // #kgo ohne schatten
     public static Image getBevelImage(int width, int height, Area s) {
-       // BevelCacheKey key = new BevelCacheKey(width, height, s);
-       // BufferedImage img = bevelCache.get(key);
-        //if (img != null) {
-        //    return img;
-        //}
-
-        
-        
-        // create image
-        //img = GraphicsManager.gc.createCompatibleImage(width, height, Transparency.TRANSLUCENT);
-        //Graphics2D g2 = (Graphics2D) img.getGraphics();
-        //g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
         BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = img.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        
-        
-        // Fill the area with the desired color
-        //g2.setColor(Color.GRAY); // Beispielhafte Füllfarbe, kann angepasst werden
-        //g2.fill(s);
-
+        g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
         // Zeichnen des Randes
-        //g2.setColor(Color.BLACK);
-        //g2.setStroke(new BasicStroke(1)); // Dünner Rand
-        //g2.draw(s);
-
-        // Kein Schatten oder Bevel-Effekt
-        // ShapeBevel.createShapeBevel(g2, s, 0.1, bevelSize, bevelSize, light); // Auskommentiert, um Schatten zu entfernen
-
-        //BevelCacheKey key2 = new BevelCacheKey(width, height, new Area(s));
-        //bevelCache.put(key2, img);
+        g2.setColor(Color.GRAY);
+        g2.setStroke(new BasicStroke(2));
+        g2.draw(s);
+        g2.dispose();
         return img;
     }
 
