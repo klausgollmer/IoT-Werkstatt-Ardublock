@@ -142,88 +142,41 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
         public GlassButton(Color buttonColor, Color selectedColor, String text) {
             super(buttonColor, selectedColor, text);
         }
-
+@Override
         public void paint(Graphics g) {
+     
+        	
             // Set up graphics and buffer
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            BufferedImage buffer = GraphicsManager.gc.createCompatibleImage(this.getWidth(), this.getHeight(), Transparency.TRANSLUCENT);
-            Graphics2D gb = buffer.createGraphics();
-            gb.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-            //### kgo werkzeugkasten einfarbig zeichnen
+   
             // Set up first layer
-            int buttonHeight =this.getHeight() - INSET * 2;
+            int buttonHeight = this.getHeight() - INSET * 2;
             int buttonWidth = this.getWidth() - INSET * 2;
             int arc = buttonHeight;
-/*
-            if (this.pressed || this.selected) {
-                g2.setPaint(new GradientPaint(0, -buttonHeight, Color.darkGray, 0, buttonHeight, canvas.getColor(), false));
-                g2.fillRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
-                g2.setColor(Color.darkGray);
-                g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
-            } else {
-                //paint highlightlayer
-                if (this.focus) {
-                    gb.setColor(Color.yellow);
-                    gb.setStroke(new BasicStroke(3));
-                    gb.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
-                    gb.setStroke(new BasicStroke(1));
-                }
-                // Paint the first layer
-                gb.setColor(canvas.getColor().darker());
-                gb.fillRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
-                gb.setColor(Color.darkGray);
-                gb.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
 
-                // set up paint data fields for second layer
-
-                int highlightHeight = buttonHeight * 2 / 3;
-                int highlightWidth = buttonWidth;
-                int highlightArc = highlightHeight;
-
-                // Paint the second layer
-                gb.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .8f));
-
-                gb.setColor(canvas.getColor());
-                gb.setClip(new RoundRectangle2D.Float(INSET, INSET, highlightWidth, highlightHeight, highlightArc, highlightArc));
-                gb.fillRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
-
-                // Blur
-                //ConvolveOp blurOp = new ConvolveOp(new Kernel(3, 3, BLUR));
-                //BufferedImage blurredImage = blurOp.filter(buffer, null);
-
-                // Draw button
-                //g2.drawImage(blurredImage, 1, 1, null);
-                g2.drawImage(buffer, 1, 1, null); // werkzeugkasten ohne farbverlauf #kgo
-            }
-            */
+            g2.setPaint(new GradientPaint(0, -buttonHeight, Color.darkGray, 0, buttonHeight, buttonColor, false));
             
             if (this.pressed || this.selected) {
-                g2.setPaint(new GradientPaint(0, -buttonHeight, Color.darkGray, 0, buttonHeight, canvas.getColor(), false));
                 g2.fillRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
                 g2.setColor(Color.darkGray);
                 g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
             } else {
                 // Paint highlight layer if focused
                 if (this.focus) {
-                    gb.setColor(Color.yellow);
-                    gb.setStroke(new BasicStroke(3)); // Set stroke thickness to 3
-                    gb.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
-                    gb.setStroke(new BasicStroke(1)); // Reset stroke thickness to 1
+                    g2.setColor(Color.green);
+                    g2.setStroke(new BasicStroke(4)); // Set stroke thickness to 4
+                    g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
+                    g2.setStroke(new BasicStroke(1)); // Reset stroke thickness to 1
+         
                 }
-
                 // Paint the main layer
-                gb.setColor(canvas.getColor());
-                gb.fillRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
-                gb.setColor(Color.darkGray);
-                gb.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
+                g2.setColor(buttonColor);
+                g2.fillRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
+                g2.setColor(Color.darkGray);
+                g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
 
-                // Draw button without blur
-                g2.drawImage(buffer, 1, 1, null);
             }
-            
-            
             
             
             // Draw the text (if any)
