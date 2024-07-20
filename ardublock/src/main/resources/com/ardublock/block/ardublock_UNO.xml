@@ -71,13 +71,14 @@
 			</Images>
 			-->
 			<Images>
-			   <Image block-location="west" image-editable="yes" >
+			   <Image block-location="west" image-editable="yes" width="65" height = "80">
 			
 					<!--FileLocation>com/ardublock/block/IoTkit/logoIoT2.gif</FileLocation-->
 					<!-- FileLocation>com/ardublock/block/IoTkit/ITgipfel_150.gif</FileLocation-->
 					<!-- FileLocation>com/ardublock/block/IoTkit/Werkstatt_100_o.gif</FileLocation-->
-					<FileLocation>com/ardublock/block/IoTkit/IoT2.jpg</FileLocation>
-					<!-- FileLocation>com/ardublock/block/IoTkit/Makey1.gif</FileLocation>-->
+					<!-- <FileLocation>com/ardublock/block/IoTkit/IoT2.jpg</FileLocation>-->
+					<FileLocation>com/ardublock/block/IoTkit/Makey_gross.jpg </FileLocation>
+					
 					<!-- FileLocation>com/ardublock/block/IoTkit/Octopus1.png</FileLocation>-->
 				</Image>
 			</Images>
