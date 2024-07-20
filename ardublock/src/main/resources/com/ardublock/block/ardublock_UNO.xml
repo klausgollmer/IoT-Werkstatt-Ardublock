@@ -63,23 +63,10 @@
 				<BlockConnector connector-type="cmd" connector-kind="socket"
 					label="bc.loop" />
 			</BlockConnectors>
-			<!-- 
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/logowhite.gif</FileLocation>
-				</Image>
-			</Images>
-			-->
+		
 			<Images>
 			   <Image block-location="west" image-editable="yes" width="65" height = "80">
-			
-					<!--FileLocation>com/ardublock/block/IoTkit/logoIoT2.gif</FileLocation-->
-					<!-- FileLocation>com/ardublock/block/IoTkit/ITgipfel_150.gif</FileLocation-->
-					<!-- FileLocation>com/ardublock/block/IoTkit/Werkstatt_100_o.gif</FileLocation-->
-					<!-- <FileLocation>com/ardublock/block/IoTkit/IoT2.jpg</FileLocation>-->
-					<FileLocation>com/ardublock/block/IoTkit/Makey_gross.jpg </FileLocation>
-					
-					<!-- FileLocation>com/ardublock/block/IoTkit/Octopus1.png</FileLocation>-->
+					<FileLocation>com/ardublock/block/IoTkit/Makeygross.jpg </FileLocation>
 				</Image>
 			</Images>
 		</BlockGenus>
