@@ -6062,8 +6062,6 @@
 				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
 				<BlockGenusMember>pin-read-digital</BlockGenusMember>
 				<BlockGenusMember>pin-read-analog</BlockGenusMember>
-				
-				<!-- 				
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBSEC</BlockGenusMember>
 				<BlockGenusMember>GetBME680offset</BlockGenusMember>
@@ -6072,7 +6070,7 @@
 				<BlockGenusMember>button_rot</BlockGenusMember>
 				<BlockGenusMember>glue_sn</BlockGenusMember>
 				<BlockGenusMember>glue_sb</BlockGenusMember>
-			 -->
+			 
 		
 			</BlockDrawer>
 
@@ -6086,16 +6084,137 @@
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>
 				<BlockGenusMember>pin-write-digital</BlockGenusMember>
 				<BlockGenusMember>Divider_LED</BlockGenusMember>
-				<!-- 
 				<BlockGenusMember>iot_neopixel_light</BlockGenusMember>
 				<BlockGenusMember>iot_neopixel</BlockGenusMember>
-				-->
+				
 	<!-- 			<BlockGenusMember>IoTmessage</BlockGenusMember> -->
 				
 			</BlockDrawer>
 	
-	
-	          <!-- bd.input, external -->
+			<BlockDrawer button-color="50 50 255" name="bd.WLAN_communication"
+				type="factory">
+				<!-- <BlockGenusMember>WiFiMan</BlockGenusMember>-->
+				<BlockGenusMember>Divider_WiFi</BlockGenusMember>
+				<BlockGenusMember>connectWLANAP</BlockGenusMember>
+				<BlockGenusMember>connectWLANAPTO</BlockGenusMember>
+				<BlockGenusMember>Divider_WiFiAP</BlockGenusMember>
+				<BlockGenusMember>buildWLANAP</BlockGenusMember>
+				<BlockGenusMember>Divider_DNS</BlockGenusMember>
+				<BlockGenusMember>mDNS</BlockGenusMember>
+				<!--BlockGenusMember>connectGPRS</BlockGenusMember-->
+				
+			</BlockDrawer>
+			
+			<BlockDrawer button-color="50 50 255" name="bd.HTTP_communication"
+				type="factory">
+				<BlockGenusMember>Divider_Server</BlockGenusMember>
+				<BlockGenusMember>ownMessageServer</BlockGenusMember>
+			    <BlockGenusMember>Divider_Thing</BlockGenusMember>
+			    <BlockGenusMember>sendThingspeak</BlockGenusMember>
+				<BlockGenusMember>askThingspeak</BlockGenusMember>
+				<BlockGenusMember>Divider_Energy</BlockGenusMember>
+  			    <BlockGenusMember>sendShelly</BlockGenusMember>
+			 	<BlockGenusMember>getShelly2</BlockGenusMember>
+			 	<BlockGenusMember>LEDShelly</BlockGenusMember>
+	 		    <BlockGenusMember>askSMARD</BlockGenusMember>
+	 		    <BlockGenusMember>EcoflowGet</BlockGenusMember>
+	 		    <BlockGenusMember>Divider_Sense</BlockGenusMember>
+				<BlockGenusMember>sendSensebox</BlockGenusMember>
+				<BlockGenusMember>sendLuftdaten</BlockGenusMember>
+				<BlockGenusMember>Divider_Smart</BlockGenusMember>
+			    <BlockGenusMember>sendIFTTT2</BlockGenusMember>
+                <BlockGenusMember>Divider_Generic</BlockGenusMember>
+			    <BlockGenusMember>sendHTTPSGet</BlockGenusMember>
+			    <BlockGenusMember>JSONGet</BlockGenusMember>
+	            <BlockGenusMember>Divider_Server</BlockGenusMember>
+		 	    <BlockGenusMember>ownMessageServer_CO2_V2</BlockGenusMember>
+			 	
+  			</BlockDrawer>
+			
+			<!-- IoT.communication -->
+			<BlockDrawer button-color="50 50 255" name="bd.MQTT_communication"
+				type="factory">
+				<BlockGenusMember>Divider_MQTT</BlockGenusMember>
+  			    <BlockGenusMember>mqttconnect</BlockGenusMember>
+  			    <BlockGenusMember>mqttpublish</BlockGenusMember>
+  			    <BlockGenusMember>mqttsubscribe</BlockGenusMember>
+				<BlockGenusMember>variable_String_Payload</BlockGenusMember> 
+				<BlockGenusMember>glue_ns</BlockGenusMember>
+			</BlockDrawer>
+
+            <!-- IoT.communication -->
+			<BlockDrawer button-color="50 50 255" name="bd.LORA_communication"
+				type="factory">
+			  <BlockGenusMember>Divider_LoRa</BlockGenusMember>
+			  <BlockGenusMember>sendTTN_RFM95_ota</BlockGenusMember>
+			  <BlockGenusMember>sendTTN_RFM95_abp</BlockGenusMember>
+  		      <BlockGenusMember>Divider</BlockGenusMember>
+ 
+			  <BlockGenusMember>TTN_RxCallback</BlockGenusMember>
+			  <BlockGenusMember>variable_number_LoRaPort</BlockGenusMember>
+			  <BlockGenusMember>variable_number_LoRaPayload</BlockGenusMember>
+			  <BlockGenusMember>variable_String_LoRaPayload</BlockGenusMember>
+			  
+			</BlockDrawer>
+
+			<!-- IoT.communication -->
+			<BlockDrawer button-color="50 50 255" name="bd.Blynk_communication"
+				type="factory">
+	 		    <BlockGenusMember>Divider_Blynk</BlockGenusMember>
+  			    <BlockGenusMember>connectBlynk</BlockGenusMember>
+  			    <BlockGenusMember>sendBlynk</BlockGenusMember>
+  			    <BlockGenusMember>readBlynk</BlockGenusMember>
+  			    <BlockGenusMember>payloadIntBlynk</BlockGenusMember>
+  			    <BlockGenusMember>payloadFloatBlynk</BlockGenusMember>
+  			    <BlockGenusMember>payloadStrBlynk</BlockGenusMember>
+			</BlockDrawer>
+
+			<!-- IoT.communication -->
+			<BlockDrawer button-color="50 50 255" name="bd.database"
+				type="factory">
+  			    <BlockGenusMember>Divider_ChatGPT</BlockGenusMember>
+  			    <BlockGenusMember>askGPT</BlockGenusMember>
+  			    <BlockGenusMember>Divider_KNN</BlockGenusMember>
+  			    <BlockGenusMember>sampleClass</BlockGenusMember>
+				<BlockGenusMember>detClass</BlockGenusMember>
+				<BlockGenusMember>Divider_Reg</BlockGenusMember>
+			    <BlockGenusMember>AIcaliRegModel</BlockGenusMember>
+			    <BlockGenusMember>AIselectRegModel</BlockGenusMember>
+			    <BlockGenusMember>AIcalcRegModel</BlockGenusMember>
+  			    <BlockGenusMember>Divider_EDGE</BlockGenusMember>
+ 			    <BlockGenusMember>createEDGE</BlockGenusMember>
+  			    <BlockGenusMember>sampleEDGE</BlockGenusMember>
+				<BlockGenusMember>sendEDGE</BlockGenusMember>
+				
+  			    <BlockGenusMember>createInfluxDB</BlockGenusMember>
+  			    <BlockGenusMember>sendInfluxDB</BlockGenusMember>
+  			    
+  			    
+			</BlockDrawer>
+
+
+
+	<!-- IoT.communication -->
+			<BlockDrawer button-color="50 50 255" name="bd.WLAN_NTP"
+				type="factory">
+			    <BlockGenusMember>Divider_Time</BlockGenusMember>
+				<BlockGenusMember>NTP</BlockGenusMember>
+				<BlockGenusMember>NTPctime</BlockGenusMember>
+				<BlockGenusMember>NTPunix</BlockGenusMember>
+			  <!-- -  <BlockGenusMember>scanSSIDWLAN</BlockGenusMember> -->
+			</BlockDrawer>
+
+
+			<!-- IoT.communication -->
+			<BlockDrawer button-color="50 50 255" name="bd.WLAN_privacy"
+				type="factory">
+				<BlockGenusMember>Divider_Privacy</BlockGenusMember>
+				<BlockGenusMember>snifferWLAN</BlockGenusMember>
+				<BlockGenusMember>packetsWLAN</BlockGenusMember>
+			  <!-- -  <BlockGenusMember>scanSSIDWLAN</BlockGenusMember> -->
+			</BlockDrawer>
+
+          <!-- bd.input, external -->
           <BlockDrawer button-color="44 165 226" name="bd.input_ext"
 				type="factory">
 
@@ -6177,7 +6296,32 @@
  		        
 			</BlockDrawer>
 
-		
+			<!-- MINT -->
+			<BlockDrawer button-color="165 42 42" name="bd.MINT"
+				type="factory">
+				<BlockGenusMember>Divider_Spektro</BlockGenusMember>
+				<BlockGenusMember>DIYSpectro</BlockGenusMember>
+				<BlockGenusMember>GetLightTSL</BlockGenusMember>
+				<BlockGenusMember>DIYSpectroBH</BlockGenusMember>
+				<BlockGenusMember>GetLightBH</BlockGenusMember>
+				
+				<BlockGenusMember>Divider_CO2</BlockGenusMember>
+				<BlockGenusMember>GetSCD30</BlockGenusMember>
+			    <BlockGenusMember>CalSCD30</BlockGenusMember>
+			    <BlockGenusMember>ToffsetSCD30</BlockGenusMember>
+		        <BlockGenusMember>GetMHZ19</BlockGenusMember>
+		        <BlockGenusMember>CalMHZ19</BlockGenusMember>
+		        <BlockGenusMember>absHum</BlockGenusMember>
+			 	<BlockGenusMember>iot_WS2812Ring_c</BlockGenusMember>
+			 	<BlockGenusMember>ownMessageServer_CO2</BlockGenusMember>
+
+				<BlockGenusMember>Divider_Balkon</BlockGenusMember>
+				<BlockGenusMember>initHM</BlockGenusMember>
+				<BlockGenusMember>getHM</BlockGenusMember>
+			</BlockDrawer>
+
+			<!-- vent -->
+			
 
  <BlockDrawer button-color="80 80 80" name="bd.ESP_irq"
 				type="factory">
@@ -6191,12 +6335,61 @@
 			  
 			</BlockDrawer>
 			
+			<!-- internal -->
+			<BlockDrawer button-color="50 50 50" name="bd.ESP_system"
+				type="factory">
+			  <BlockGenusMember>Divider_ESP8266</BlockGenusMember>
+			  <BlockGenusMember>LightSleep</BlockGenusMember>
+			  <BlockGenusMember>sleep</BlockGenusMember>
+		      <BlockGenusMember>readReset</BlockGenusMember>
+		      <BlockGenusMember>readVCC</BlockGenusMember>
+			  <BlockGenusMember>WiFiEnable</BlockGenusMember>
+			  <BlockGenusMember>Divider_OTA</BlockGenusMember>
+ 		      <BlockGenusMember>basicOTA</BlockGenusMember>
+			  
+		      <BlockGenusMember>Divider_RTC</BlockGenusMember>
+			  <BlockGenusMember>setRTCVarNum</BlockGenusMember>
+		      <BlockGenusMember>readRTCVarNum</BlockGenusMember>
+		      <BlockGenusMember>RTCtoRTCMem</BlockGenusMember>
+		      <BlockGenusMember>RTCfromRTCMem</BlockGenusMember>
+		      <BlockGenusMember>RTCtoEEPROM</BlockGenusMember>
+		      <BlockGenusMember>RTCfromEEPROM</BlockGenusMember>
+ 		      <BlockGenusMember>RTCCheck</BlockGenusMember>
+			</BlockDrawer>
 
+            <BlockDrawer button-color="80 80 80" name="bd.ESP32_system"
+				type="factory">
+			 
+			  <BlockGenusMember>Divider_ESP32</BlockGenusMember>
+			  <BlockGenusMember>sleep32</BlockGenusMember>
+  		      <BlockGenusMember>LightSleep32</BlockGenusMember>	
+  		      <BlockGenusMember>readReset32</BlockGenusMember>	
+  		      <BlockGenusMember>touch_rot</BlockGenusMember>	
+  		      <BlockGenusMember>touch_press</BlockGenusMember>	
+  		      <BlockGenusMember>Divider_OTA</BlockGenusMember>
+ 		      <BlockGenusMember>basicOTA</BlockGenusMember>
+ 		      
+				<!-- 
+			  <BlockGenusMember>LightSleep</BlockGenusMember>
+			  <BlockGenusMember>sleep</BlockGenusMember>
+		      <BlockGenusMember>readReset</BlockGenusMember>
+		      <BlockGenusMember>readVCC</BlockGenusMember>
+			  <BlockGenusMember>WiFiEnable</BlockGenusMember>
+		      <BlockGenusMember>Divider</BlockGenusMember>
+			  <BlockGenusMember>setRTCVarNum</BlockGenusMember>
+		      <BlockGenusMember>readRTCVarNum</BlockGenusMember>
+		      <BlockGenusMember>RTCtoRTCMem</BlockGenusMember>
+		      <BlockGenusMember>RTCfromRTCMem</BlockGenusMember>
+		      <BlockGenusMember>RTCtoEEPROM</BlockGenusMember>
+		      <BlockGenusMember>RTCfromEEPROM</BlockGenusMember>
+ 		      <BlockGenusMember>RTCCheck</BlockGenusMember>
+ 		      -->
+			</BlockDrawer>
 		</BlockDrawerSet>
 	</BlockDrawerSets>
 
 	<Pages drawer-with-page="yes">
-		<Page page-name="Main" page-width="400" page-color="128 128 128" />
+		<Page page-name="Main" page-width="4000" page-color="20 109 112" />
 	</Pages>
 
 	<TrashCan>
