@@ -167,7 +167,7 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
             } else {
                 // Paint highlight layer if focused
                 if (this.focus) {
-                    g2.setColor(Color.green);
+                    g2.setColor(Color.yellow);
                     g2.setStroke(new BasicStroke(3) 	 	); // Set stroke thickness to 3
                     g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
                     g2.setStroke(new BasicStroke(1)); // Reset stroke thickness to 1
