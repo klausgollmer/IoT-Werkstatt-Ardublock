@@ -51,7 +51,7 @@
 		<!-- ******************** Controls Menu *************** -->
 		<!-- Octopus BlockGenus name="program" kind="command" color="56 87 35"-->
 		
-		<BlockGenus name="program" kind="command" color="236 172 0" 
+		<BlockGenus name="program" kind="command" color="208 165 50" 
 			initlabel="bg.program" is-starter="yes" is-terminator="yes"
 			label-unique="no">
 			<description>
@@ -929,7 +929,7 @@
 		</BlockGenus>
 
 		<BlockGenus name="setter_variable_number" kind="command"
-			color="255 0 0" initlabel="bg.setter_variable_number">
+			color="255 77 55" initlabel="bg.setter_variable_number">
 			<description>
 				<text>set integer variable</text>
 			</description>
@@ -947,7 +947,7 @@
 
 
 		<BlockGenus name="setter_variable_number_double" kind="command"
-			color="255 0 0" initlabel="bg.setter_variable_number">
+			color="255 77 55" initlabel="bg.setter_variable_number">
 			<description>
 				<text>set integer variable</text>
 			</description>
@@ -965,7 +965,7 @@
 
 		
 		<BlockGenus name="setter_variable_digital" kind="command"
-			color="255 0 0" initlabel="bg.setter_variable_digital">
+			color="255 77 55" initlabel="bg.setter_variable_digital">
 			<description>
 				<text>write digital to pin</text>
 			</description>
@@ -987,7 +987,7 @@
 		
 
 		<BlockGenus name="setter_variable_String" kind="command"
-			color="255 0 0" initlabel="bg.setter_variable_String">
+			color="255 77 55" initlabel="bg.setter_variable_String">
 			<description>
 				<text>set String variable</text>
 			</description>
@@ -1018,7 +1018,7 @@
 		</BlockGenus>
 		
 		<BlockGenus name="variable_String_Payload" kind="data"
-			initlabel="bg.variable_String" editable-label="yes" is-label-value="yes"
+			initlabel="bg.variable_String" editable-label="no" is-label-value="yes"
 			color="204 0 102">
 			<description>
 				<text>
@@ -1033,7 +1033,7 @@
 
 
      <BlockGenus name="setArrayVarNum" kind="command"
-			color="255 0 0" initlabel="bg.setArrayVar">
+			color="255 77 55" initlabel="bg.setArrayVar">
 			<description>
 				<text>Array</text>
 			</description>
@@ -1068,7 +1068,7 @@
 
 
         <BlockGenus name="variable_number_LoRaPayload" kind="data"
-			initlabel="bg.variable_number" editable-label="yes" is-label-value="yes"
+			initlabel="bg.variable_number" editable-label="no" is-label-value="yes"
 			color="204 0 102">
 			<description>
 				<text>
@@ -1083,7 +1083,7 @@
 		
 
         <BlockGenus name="variable_number_LoRaPort" kind="data"
-			initlabel="bg.variable_number" editable-label="yes" is-label-value="yes"
+			initlabel="bg.variable_number" editable-label="no" is-label-value="yes"
 			color="204 0 102">
 			<description>
 				<text>
@@ -1097,7 +1097,7 @@
 		</BlockGenus>
 		
         <BlockGenus name="variable_String_LoRaPayload" kind="data"
-			initlabel="bg.variable_String" editable-label="yes" is-label-value="yes"
+			initlabel="bg.variable_String" editable-label="no" is-label-value="yes"
 			color="204 0 102">
 			<description>
 				<text>
@@ -5379,7 +5379,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
- <BlockGenus name="LightSleep32" kind="command" color="80 80 80"
+ <BlockGenus name="LightSleep32" kind="command" color="50 50 50"
 			initlabel="bg.LightSleep32">
 			<description>
 				<text>program deep sleep in x milliseconds</text>
@@ -5409,7 +5409,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
-		<BlockGenus name="sleep32" kind="command" color="80 80 80"
+		<BlockGenus name="sleep32" kind="command" color="50 50 50"
 			initlabel="bg.sleep32">
 			<description>
 				<text>program deep sleep in x milliseconds</text>
@@ -5424,8 +5424,8 @@
 		
 		
 		
-		<BlockGenus name="readVCC" kind="data"
-			color="50 50 50" initlabel="bg.readVCC">
+		<BlockGenus name="readVCC" kind="data" color="50 50 50" 
+		   initlabel="bg.readVCC">
 			<description>
 				<text>ADC</text>
 			</description>
@@ -5444,7 +5444,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
-		<BlockGenus name="readReset32" kind="data" color="80 80 80" initlabel="bg.readReset32">
+		<BlockGenus name="readReset32" kind="data" color="50 50 50" initlabel="bg.readReset32">
 			<description>
 				<text>Reset-Reason</text>
 			</description>
@@ -5465,7 +5465,7 @@
 		</BlockGenus>
 
 
-        <BlockGenus name="basicOTA" kind="command" color="50 50 50"
+        <BlockGenus name="basicOTA" kind="command" color="80 80 80"
 			initlabel="bg.basicOTA" editable-label="no" is-label-value="no">
 			<description>
 				<text>OTA</text>
@@ -5550,7 +5550,7 @@
 
 <!-- irq -->
 
-  <BlockGenus name="irqAttach" kind="command" color="30 30 255"
+  <BlockGenus name="irqAttach" kind="command" color="80 80 80"
 			initlabel="bg.irqAttach" editable-label="no" is-label-value="no">
 			<description>
 				<text>attach irq</text>
@@ -5588,7 +5588,7 @@
         </BlockGenus>
 
 
-       <BlockGenus name="irqDetach" kind="command" color="30 30 255"
+       <BlockGenus name="irqDetach" kind="command" color="80 80 80"
 			initlabel="bg.irqDetach" editable-label="no" is-label-value="no">
 			<description>
 				<text>detach irq</text>
@@ -5601,7 +5601,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-       <BlockGenus name="irqEnable" kind="command" color="30 30 255"
+       <BlockGenus name="irqEnable" kind="command" color="80 80 80"
 			initlabel="bg.irqEnable" editable-label="no" is-label-value="no">
 			<description>
 				<text>enable irq</text>
@@ -5615,7 +5615,7 @@
 		</BlockGenus>
 
 
-           <BlockGenus name="timerAttach" kind="command" color="30 30 255"
+           <BlockGenus name="timerAttach" kind="command" color="80 80 80"
 			initlabel="bg.timerAttach" editable-label="no" is-label-value="no">
 			<description>
 				<text>attach irq</text>
@@ -5635,7 +5635,7 @@
 		</BlockGenus>
 
 
-        <BlockGenus name="timerDetach" kind="command" color="30 30 255"
+        <BlockGenus name="timerDetach" kind="command" color="80 80 80"
 			initlabel="bg.timerDetach" editable-label="no" is-label-value="no">
 			<description>
 				<text>detach timer</text>
@@ -5936,7 +5936,7 @@
 			
 
 			<!-- bd.control -->
-			<BlockDrawer button-color="255 215 0" name="bd.control"
+			<BlockDrawer button-color="233 244 124" name="bd.control"
 				type="factory">
 			
   			    <BlockGenusMember>Divider_Loop</BlockGenusMember>
@@ -5964,7 +5964,7 @@
 			</BlockDrawer>
 
             <!-- bd.logic -->
-			<BlockDrawer button-color="255 20 147" name="bd.logic"
+			<BlockDrawer button-color="235 133 172" name="bd.logic"
 				type="factory">
 			    <BlockGenusMember>Divider_Test</BlockGenusMember>
 				<BlockGenusMember>greater</BlockGenusMember>
@@ -5985,7 +5985,7 @@
 			</BlockDrawer>
 
 			<!-- bd.operators -->
-			<BlockDrawer button-color="160 32 240" name="bd.operators"
+			<BlockDrawer button-color="158 77 139" name="bd.operators"
 				type="factory">
 				<BlockGenusMember>Divider_Math</BlockGenusMember>
 				<BlockGenusMember>addition</BlockGenusMember>
@@ -6005,7 +6005,7 @@
 
 
 			<!-- bd.number -->
-			<BlockDrawer button-color="255 0 0" name="bd.number"
+			<BlockDrawer button-color="255 77 55" name="bd.number"
 				type="factory">
 				<BlockGenusMember>Divider_Bool</BlockGenusMember>
 				<BlockGenusMember>setter_variable_digital</BlockGenusMember>
@@ -6056,7 +6056,7 @@
 
 	
 			<!-- bd.input -->
-			<BlockDrawer button-color="44 165 226" name="bd.input"
+			<BlockDrawer button-color="122 150 200" name="bd.input"
 				type="factory">
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
@@ -6078,7 +6078,7 @@
 
 
 	<!-- bd.output -->
-			<BlockDrawer button-color="74 108 212" name="bd.output"
+			<BlockDrawer button-color="122 150 200" name="bd.output"
 				type="factory">
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>
@@ -6091,7 +6091,7 @@
 				
 			</BlockDrawer>
 	
-			<BlockDrawer button-color="50 50 255" name="bd.WLAN_communication"
+			<BlockDrawer button-color="37 79 140" name="bd.WLAN_communication"
 				type="factory">
 				<!-- <BlockGenusMember>WiFiMan</BlockGenusMember>-->
 				<BlockGenusMember>Divider_WiFi</BlockGenusMember>
@@ -6105,7 +6105,7 @@
 				
 			</BlockDrawer>
 			
-			<BlockDrawer button-color="50 50 255" name="bd.HTTP_communication"
+			<BlockDrawer button-color="37 79 140" name="bd.HTTP_communication"
 				type="factory">
 				<BlockGenusMember>Divider_Server</BlockGenusMember>
 				<BlockGenusMember>ownMessageServer</BlockGenusMember>
@@ -6132,7 +6132,7 @@
   			</BlockDrawer>
 			
 			<!-- IoT.communication -->
-			<BlockDrawer button-color="50 50 255" name="bd.MQTT_communication"
+			<BlockDrawer button-color="37 79 140" name="bd.MQTT_communication"
 				type="factory">
 				<BlockGenusMember>Divider_MQTT</BlockGenusMember>
   			    <BlockGenusMember>mqttconnect</BlockGenusMember>
@@ -6143,7 +6143,7 @@
 			</BlockDrawer>
 
             <!-- IoT.communication -->
-			<BlockDrawer button-color="50 50 255" name="bd.LORA_communication"
+			<BlockDrawer button-color="37 79 140" name="bd.LORA_communication"
 				type="factory">
 			  <BlockGenusMember>Divider_LoRa</BlockGenusMember>
 			  <BlockGenusMember>sendTTN_RFM95_ota</BlockGenusMember>
@@ -6158,7 +6158,7 @@
 			</BlockDrawer>
 
 			<!-- IoT.communication -->
-			<BlockDrawer button-color="50 50 255" name="bd.Blynk_communication"
+			<BlockDrawer button-color="37 79 140" name="bd.Blynk_communication"
 				type="factory">
 	 		    <BlockGenusMember>Divider_Blynk</BlockGenusMember>
   			    <BlockGenusMember>connectBlynk</BlockGenusMember>
@@ -6170,7 +6170,7 @@
 			</BlockDrawer>
 
 			<!-- IoT.communication -->
-			<BlockDrawer button-color="50 50 255" name="bd.database"
+			<BlockDrawer button-color="37 79 140" name="bd.database"
 				type="factory">
   			    <BlockGenusMember>Divider_ChatGPT</BlockGenusMember>
   			    <BlockGenusMember>askGPT</BlockGenusMember>
@@ -6195,7 +6195,7 @@
 
 
 	<!-- IoT.communication -->
-			<BlockDrawer button-color="50 50 255" name="bd.WLAN_NTP"
+			<BlockDrawer button-color="37 79 140" name="bd.WLAN_NTP"
 				type="factory">
 			    <BlockGenusMember>Divider_Time</BlockGenusMember>
 				<BlockGenusMember>NTP</BlockGenusMember>
@@ -6206,7 +6206,7 @@
 
 
 			<!-- IoT.communication -->
-			<BlockDrawer button-color="50 50 255" name="bd.WLAN_privacy"
+			<BlockDrawer button-color="37 79 140" name="bd.WLAN_privacy"
 				type="factory">
 				<BlockGenusMember>Divider_Privacy</BlockGenusMember>
 				<BlockGenusMember>snifferWLAN</BlockGenusMember>
@@ -6215,7 +6215,7 @@
 			</BlockDrawer>
 
           <!-- bd.input, external -->
-          <BlockDrawer button-color="44 165 226" name="bd.input_ext"
+          <BlockDrawer button-color="122 150 200" name="bd.input_ext"
 				type="factory">
 
 				<BlockGenusMember>Divider_Display</BlockGenusMember>
@@ -6286,7 +6286,7 @@
 			</BlockDrawer>
 
 <!-- bd.signal -->
-			<BlockDrawer button-color="44 165 226" name="bd.signal"
+			<BlockDrawer button-color="122 150 200" name="bd.signal"
 				type="factory">
 				<BlockGenusMember>Divider_Signal</BlockGenusMember>
 	    		<BlockGenusMember>MEANsmooth</BlockGenusMember>
@@ -6389,7 +6389,7 @@
 	</BlockDrawerSets>
 
 	<Pages drawer-with-page="yes">
-		<Page page-name="Main" page-width="4000" page-color="20 109 112" />
+		<Page page-name="Main" page-width="4000" page-color="128 128 128" />
 	</Pages>
 
 	<TrashCan>
