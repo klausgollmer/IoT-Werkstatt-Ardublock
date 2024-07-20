@@ -26,25 +26,36 @@ public class Main
 	public static void main(String args[]) throws SAXException, IOException, ParserConfigurationException
 	{
 
-	
-	  // Set system properties for high DPI scaling
-	  System.setProperty("sun.java2d.uiScale", "1.5");
-	  System.setProperty("swing.aatext", "true");
-	  System.setProperty("awt.useSystemAAFontSettings", "lcd");
+	 GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+     GraphicsDevice gd = ge.getDefaultScreenDevice();
+     Dimension screenSize = new Dimension(gd.getDisplayMode().getWidth(), gd.getDisplayMode().getHeight());
+     
+     if (screenSize.width > 3000)
+    	 System.setProperty("sun.java2d.uiScale", "3");
+     else if (screenSize.width > 2000)
+		 System.setProperty("sun.java2d.uiScale", "2");
+	 else if (screenSize.width > 1200)
+		     System.setProperty("sun.java2d.uiScale", "1.5");
+	 else    System.setProperty("sun.java2d.uiScale", "1");
+
+	 
+	 // Set system properties for high DPI scaling
+	 System.setProperty("swing.aatext", "true");
+	 System.setProperty("awt.useSystemAAFontSettings", "lcd");
 	  
-	  FlatLightLaf.setup();
+	 FlatLightLaf.setup();
 	
-	     UIManager.put("Button.arc", 10);
-	        UIManager.put("Button.margin", new Insets(1, 3, 3, 3));
-	        UIManager.put("Component.focusWidth", 1);
-	        UIManager.put("Component.innerFocusWidth", 1);
+	 UIManager.put("Button.arc", 10);
+	 UIManager.put("Button.margin", new Insets(1, 3, 3, 3));
+	 UIManager.put("Component.focusWidth", 1);
+	 UIManager.put("Component.innerFocusWidth", 1);
 
 	        // Set larger font size
-	        UIManager.put("defaultFont", new Font("Arial", Font.PLAIN, 15));
+	 UIManager.put("defaultFont", new Font("Arial", Font.PLAIN, 15));
 		
-	        UIManager.put("Button.font", new Font("Arial", Font.PLAIN, 16));
-	        UIManager.put("Label.font", new Font("Arial", Font.BOLD, 16));
-	        UIManager.put("ComboBox.font", new Font("Arial", Font.PLAIN, 16));
+	 UIManager.put("Button.font", new Font("Arial", Font.PLAIN, 16));
+	 UIManager.put("Label.font", new Font("Arial", Font.BOLD, 16));
+	 UIManager.put("ComboBox.font", new Font("Arial", Font.PLAIN, 16));
 	        
 	        
 	        
@@ -56,14 +67,14 @@ public class Main
 		
 	   if (args.length > 0) {
 	     String parameter = args[0];
-	     System.out.println("Der übergebene Parameter ist: " + parameter);
+	  //   System.out.println("Der übergebene Parameter ist: " + parameter);
 	    
 	     //Context context = Context.getContext();
 	     context.setArduinoCodeFileString(parameter);
 	     context.setInArduino(false);
 	     
 	   } else {
-	     System.out.println("Kein Parameter übergeben.");
+	  //   System.out.println("Kein Parameter übergeben.");
 	  //   context.setArduinoCodeFileString("E:\\IoTW_IDE2\\Sketchbook\\IoT-Werkstatt\\IoT-Werkstatt.ino");
 	     context.setArduinoCodeFileString("E:\\IoTW_IDE2\\Sketchbook\\IoT-Werkstatt\\IoT-Werkstatt.ino");
 	     context.setInArduino(true);

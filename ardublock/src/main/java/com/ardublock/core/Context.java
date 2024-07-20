@@ -394,7 +394,7 @@ public class Context
 	
 	
 	public boolean isInArduino() {
-		System.out.println(isInArduino);
+	//	System.out.println(isInArduino);
 		return isInArduino;
 	}
 
