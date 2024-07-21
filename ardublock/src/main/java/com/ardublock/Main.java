@@ -73,7 +73,7 @@ public class Main
 		
 	   if (args.length > 0) {
 	     String parameter = args[0];
-	  //   System.out.println("Der übergebene Parameter ist: " + parameter);
+	     System.out.println("Der übergebene Parameter ist: " + parameter);
 	    
 	     //Context context = Context.getContext();
 	     context.setArduinoCodeFileString(parameter);
@@ -81,12 +81,11 @@ public class Main
 	     
 	   } else {
 	  //   System.out.println("Kein Parameter übergeben.");
-	  //   context.setArduinoCodeFileString("E:\\IoTW_IDE2\\Sketchbook\\IoT-Werkstatt\\IoT-Werkstatt.ino");
-	     context.setArduinoCodeFileString("E:\\IoTW_IDE2\\Sketchbook\\IoT-Werkstatt\\IoT-Werkstatt.ino");
+	 //   context.setArduinoCodeFileString("E:\\IoTW_IDE2\\Sketchbook\\IoT-Werkstatt\\IoT-Werkstatt.ino");
+	     context.setArduinoCodeFileString("nix");
 	     context.setInArduino(true);
 	   }
-		
-		
+				
 		Main me = new Main();
 		me.startArdublock();
 	}
