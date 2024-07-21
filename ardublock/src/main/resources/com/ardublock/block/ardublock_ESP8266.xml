@@ -188,7 +188,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.variable">
-					<DefaultArg genus-name="local_variable_number" label="variable name" />
+					<DefaultArg genus-name="local_variable_number" label="count" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.from">
@@ -5969,7 +5969,7 @@
 				type="factory">
 			
   			    <BlockGenusMember>Divider_Loop</BlockGenusMember>
-  			    <BlockGenusMember>repeat_times</BlockGenusMember>
+  			    <!-- BlockGenusMember>repeat_times</BlockGenusMember-->
   			    <BlockGenusMember>repeat2</BlockGenusMember>
   			    <BlockGenusMember>while</BlockGenusMember>
   			    <BlockGenusMember>Divider_Case</BlockGenusMember>
