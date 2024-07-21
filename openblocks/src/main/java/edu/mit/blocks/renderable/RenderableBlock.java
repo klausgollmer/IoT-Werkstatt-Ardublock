@@ -52,6 +52,7 @@ import edu.mit.blocks.workspace.ContextMenu;
 import edu.mit.blocks.workspace.FactoryManager;
 import edu.mit.blocks.workspace.ISupportMemento;
 import edu.mit.blocks.workspace.MiniMap;
+import edu.mit.blocks.workspace.Page;
 import edu.mit.blocks.workspace.RBParent;
 import edu.mit.blocks.workspace.SearchableElement;
 import edu.mit.blocks.workspace.Workspace;
@@ -1610,7 +1611,7 @@ public class RenderableBlock extends JComponent implements SearchableElement,
     {
     	Block oriBlock = rb.getBlock();
     	oriBlock.getSockets();
-    	
+ //   	System.out.println("clone me");
     	Point oriLocation =rb.getLocation();
     	
     	Block newBlock = new Block(workspace, rb.getGenus(), rb.blockLabel.getText());
@@ -1670,6 +1671,11 @@ public class RenderableBlock extends JComponent implements SearchableElement,
     	newRb.moveConnectedBlocks();
     	parent.addBlock(newRb);
     	newRb.linkedDefArgsBefore = true;
+    	
+		double zoom = Page.getZoomLevel(); //#kgo zoom
+		workspace.setWorkspaceZoom(zoom);
+
+    	
     	return newRb;
     }
 

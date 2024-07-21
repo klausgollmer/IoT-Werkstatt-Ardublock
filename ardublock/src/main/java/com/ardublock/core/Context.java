@@ -41,7 +41,8 @@ import edu.mit.blocks.workspace.Workspace;
 public class Context
 {
 	
-	public String ArdublockVersion = "Starter"; // start mit subset for beginners
+	//public String ArdublockVersion = "Starter"; // start mit subset for beginners
+	public String ArdublockVersion = "Makey"; // start mit subset for beginners
 	public final static String LANG_DTD_PATH = "/com/ardublock/block/lang_def.dtd";
 // 	public final static String ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
 	public static String ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
@@ -63,7 +64,7 @@ public class Context
 	private String arduinoCodeFileString = "";
 	private OsType osType; 
 
-	final public static String APP_NAME = "Make:Lab";
+	final public static String APP_NAME = "Makey:Lab";
 	
 	private Editor editor;
 	

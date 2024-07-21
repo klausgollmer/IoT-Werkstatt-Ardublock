@@ -85,7 +85,7 @@ public class IoTHerukoSend  extends TranslatorBlock {
 	    translatorBlock = this.getTranslatorBlockAtSocket(4);
 	    if (translatorBlock!=null)
   	       wert +="\n   +\"&alarm=\"+String("+ translatorBlock.toCode()+")";
-//	       wert +="\n   +\"&alarm=\"+String(\"FALSE\")";
+//	       wert +="\n   +\"&alarm=\"+String(\"false\")";
 	    translatorBlock = this.getTranslatorBlockAtSocket(5);
 	    if (translatorBlock!=null)
   	       wert +="\n   +\"&SPO2=\"+String("+ translatorBlock.toCode()+")";

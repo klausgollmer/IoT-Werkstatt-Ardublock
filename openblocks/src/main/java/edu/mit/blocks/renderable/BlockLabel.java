@@ -49,14 +49,14 @@ public class BlockLabel implements MouseListener, MouseMotionListener, KeyListen
     public final static Font blockFontLarge_Plain = new Font("Monospaced", Font.PLAIN, 12);
     */
     
-    //### kgo schrift der blöcke
+    //###kgo schrift der Blöcke
     public final static Font blockFontSmall_Bold = new Font("arial", Font.BOLD, 7);
     public final static Font blockFontMedium_Bold = new Font("arial", Font.BOLD, 10);
     public final static Font blockFontLarge_Bold = new Font("arial", Font.BOLD, 12);
     public final static Font blockFontSmall_Plain = new Font("arial", Font.PLAIN, 7);
     public final static Font blockFontMedium_Plain = new Font("arial", Font.PLAIN, 10);
     public final static Font blockFontLarge_Plain = new Font("arial", Font.PLAIN, 12);
-    
+     	
     
     private LabelWidget widget;
 

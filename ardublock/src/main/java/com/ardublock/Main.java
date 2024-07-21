@@ -30,13 +30,19 @@ public class Main
      GraphicsDevice gd = ge.getDefaultScreenDevice();
      Dimension screenSize = new Dimension(gd.getDisplayMode().getWidth(), gd.getDisplayMode().getHeight());
      
-     if (screenSize.width > 3000)
+     if (screenSize.width > 3000) {
     	 System.setProperty("sun.java2d.uiScale", "3");
-     else if (screenSize.width > 2000)
+         System.out.println("uiScale 3");
+     } else if (screenSize.width > 2000) {
 		 System.setProperty("sun.java2d.uiScale", "2");
-	 else if (screenSize.width > 1200)
+         System.out.println("uiScale 2");
+     } else if (screenSize.width > 1200) {
 		     System.setProperty("sun.java2d.uiScale", "1.5");
-	 else    System.setProperty("sun.java2d.uiScale", "1");
+  	         System.out.println("uiScale 1.5");
+     } else {
+    	 System.setProperty("sun.java2d.uiScale", "1");
+         System.out.println("uiScale 1");
+     }
 
 	 
 	 // Set system properties for high DPI scaling

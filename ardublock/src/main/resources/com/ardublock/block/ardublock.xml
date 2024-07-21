@@ -5610,7 +5610,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="boolean"
 					connector-kind="socket" label="Enable">
-					<DefaultArg genus-name="true" label="TRUE" />
+					<DefaultArg genus-name="true" label="true" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>

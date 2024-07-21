@@ -65,7 +65,7 @@
 					connector-kind="plug" position-type="mirror"></BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-		<BlockGenus name="true" kind="data" initlabel="TRUE" color="208 10 16">
+		<BlockGenus name="true" kind="data" initlabel="true" color="208 10 16">
 			<description>
 				<text>
 					Reports the boolean true.
@@ -77,7 +77,7 @@
 					position-type="mirror"></BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-		<BlockGenus name="false" kind="data" initlabel="FALSE"
+		<BlockGenus name="false" kind="data" initlabel="false"
 			color="208 10 16">
 			<description>
 				<text>

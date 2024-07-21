@@ -193,6 +193,7 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
                 float x = (float) ((this.getWidth() / 2) - (textBounds.getWidth() / 2));
                 float y = (float) ((this.getHeight() / 2) + (textBounds.getHeight() / 2)) - metrics.getDescent();
 
+                /* #kgo Schatten Schrift Werkzeugkasten */
                 g.setColor(Color.black);
                 for (int i = 0; i < shadowPositionArray.length; i++) {
                     int dx = shadowPositionArray[i][0];
@@ -200,6 +201,8 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
                     g2.setColor(new Color(0.5f, 0.5f, 0.5f, shadowColorArray[i]));
                     g2.drawString(text, x + (int) ((dx) * offsetSize), y + (int) ((dy) * offsetSize));
                 }
+                /* Schattenende */
+                                
                 if (canvas.getHighlight() != null) {
                     g.setColor(canvas.getHighlight());
                 } else {

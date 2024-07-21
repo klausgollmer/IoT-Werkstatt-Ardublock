@@ -66,7 +66,7 @@
 		
 			<Images>
 			   <Image block-location="west" image-editable="yes" width="65" height = "80">
-					<FileLocation>com/ardublock/block/IoTkit/Makeygross.jpg </FileLocation>
+					<FileLocation>com/ardublock/block/IoTkit/Makeygross.png</FileLocation>
 				</Image>
 			</Images>
 		</BlockGenus>
@@ -1238,11 +1238,6 @@
 				<BlockConnector connector-type="boolean"
 					connector-kind="plug" />
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/DigitalIO.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 		
 		<BlockGenus name="pin-mode-pullup" kind="command" color="44 165 226"
@@ -1260,20 +1255,8 @@
 					<DefaultArg genus-name="true" label="true" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/DigitalIO.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 		
-
-
-		
-
-
-
-
         <BlockGenus name="button_press" kind="data"
 			color="44 165 226" initlabel="bg.button_press">
 			<description>
@@ -1283,12 +1266,6 @@
  			     <BlockConnector connector-type="boolean"
 					connector-kind="plug" position-type="mirror" />
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/Knopf.jpg</FileLocation>
-				</Image>
-			</Images>
-		
 		</BlockGenus>
 
 		<BlockGenus name="button_rot" kind="data" color="44 165 226"
@@ -1316,11 +1293,6 @@
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/Knopf.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
         <BlockGenus name="touch_press" kind="data" color="44 165 226" 
@@ -1337,11 +1309,6 @@
  			  <BlockConnector connector-type="boolean"
 					connector-kind="plug" />
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/Knopf.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -1358,11 +1325,6 @@
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/AnalogIO.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 <!--  BME280 Daten -->
@@ -1374,11 +1336,6 @@
                     <DefaultArg genus-name="BMEVectorTemp" label="Temperatur"/>
                 </BlockConnector>
      		</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Bosch.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 <!--  BME280 Daten -->
@@ -1432,11 +1389,6 @@
                     <DefaultArg genus-name="BME680VectorTemp" label="Temperatur"/>
                 </BlockConnector>	
         	</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Bosch.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 		<BlockGenus name="GetBME680offset" kind="data" color="44 165 226"
@@ -1511,11 +1463,6 @@
                     <DefaultArg genus-name="BSECVectorTemp" label="Temperatur"/>
                 </BlockConnector>	
         	</BlockConnectors>
-        	<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Bosch.jpg</FileLocation>
-			   </Image>
-			</Images>
 		</BlockGenus>
 
        <BlockGenus name="BSECVectorTemp" kind="data" color="255 0 0" initlabel="bg.BSECVectorTemp" editable-label="no" is-label-value="no" >
@@ -5597,7 +5544,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="boolean"
 					connector-kind="socket" label="Enable">
-					<DefaultArg genus-name="true" label="TRUE" />
+					<DefaultArg genus-name="true" label="true" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
