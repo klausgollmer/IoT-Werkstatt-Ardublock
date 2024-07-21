@@ -231,6 +231,7 @@ public class GenerateCodeButtonListener implements ActionListener
 				codeOut = formatter.format(codeOut);
 			}
 			
+			System.out.println(codeOut);
 			
 			if (!context.isInArduino())
 			{

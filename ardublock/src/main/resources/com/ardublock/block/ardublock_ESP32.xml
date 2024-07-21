@@ -155,7 +155,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.variable">
-					<DefaultArg genus-name="variable_number" label="variable name" />
+					<DefaultArg genus-name="local_variable_number" label="variable name" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.repeat_times">
@@ -165,6 +165,34 @@
 					connector-kind="socket" />
 			</BlockConnectors>
 		</BlockGenus>
+
+		<BlockGenus name="repeat2" kind="command" color="255 221 0"
+			initlabel="bg.repeat2">
+			<description>
+				<text>repeat</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.variable">
+					<DefaultArg genus-name="local_variable_number" label="variable name" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.from">
+					<DefaultArg genus-name="number" label="1" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.to">
+					<DefaultArg genus-name="number" label="5" />
+				</BlockConnector>
+				<BlockConnector label="bc.commands" connector-type="cmd"
+					connector-kind="socket" />
+			</BlockConnectors>
+		</BlockGenus>
+
+
+
+
+
 		
 		<BlockGenus name="while" kind="command" initlabel="bg.while"
 			color="255 221 0">
@@ -881,7 +909,7 @@
 			
 			<description>
 				<text>
-					local Analog Var
+					local integer
 				</text>
 			</description>
 			<BlockConnectors>
@@ -5889,7 +5917,7 @@
 			
   			    <BlockGenusMember>Divider_Loop</BlockGenusMember>
   			    <BlockGenusMember>repeat_times</BlockGenusMember>
-  			    <BlockGenusMember>repeat</BlockGenusMember>
+  			    <BlockGenusMember>repeat2</BlockGenusMember>
   			    <BlockGenusMember>while</BlockGenusMember>
   			    <BlockGenusMember>Divider_Case</BlockGenusMember>
 				<BlockGenusMember>if</BlockGenusMember>

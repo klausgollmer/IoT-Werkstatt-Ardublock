@@ -7,12 +7,12 @@ import com.ardublock.translator.block.exception.BlockException;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class RepeatBlock extends TranslatorBlock
+public class RepeatBlock2 extends TranslatorBlock
 {
 
 	private static ResourceBundle uiMessageBundle = ResourceBundle.getBundle("com/ardublock/block/ardublock");
 	
-	public RepeatBlock(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	public RepeatBlock2(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator);
 	}
@@ -30,25 +30,19 @@ public class RepeatBlock extends TranslatorBlock
    			translator.addLocalNumberVariable(label, internalVariableName);
    			varNameDeclaration = "int ";
         }
-		
-		
-		
-		
-		
-		/*
-		if (!(teste instanceof VariableNumberBlock || teste instanceof VariableNumberUnsignedLongBlock || teste instanceof VariableNumberDoubleBlock)) {
-			throw new BlockException(blockId, uiMessageBundle.getString("ardublock.error_msg.number_var_slot"));
-		}
-		*/
 		varName=teste.toCode();
-	
-		String ret = "for (" + varNameDeclaration+varName + "= 1; " + varName + "<= ( ";
-		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
-		ret = ret + translatorBlock.toCode();
+		teste = this.getRequiredTranslatorBlockAtSocket(1);
+	    String From = teste.toCode();
+	    teste = this.getRequiredTranslatorBlockAtSocket(2);
+	    String To = teste.toCode();
+      		
+		
+		String ret = "for (" + varNameDeclaration+varName + "="+From+";" + varName + "<= ( ";
+		ret = ret + To;
 		ret = ret + " ); " + varName + "="+ varName + "+1)\n{\n";
 		
 		
-		translatorBlock = getTranslatorBlockAtSocket(2);
+		TranslatorBlock translatorBlock = getTranslatorBlockAtSocket(3);
 		while (translatorBlock != null)
 		{
 			ret = ret + translatorBlock.toCode();
