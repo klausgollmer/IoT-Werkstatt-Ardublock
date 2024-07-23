@@ -63,8 +63,8 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
         this.explorer = ex;
         this.canvas = canvas;
         this.button = new GlassButton(canvas.getColor(), canvas.getColor().brighter().brighter().brighter(), canvas.getName());
-        //this.button.setMaximumSize(new Dimension(0,10));
-        //this.button.setPreferredSize(new Dimension(0,30));
+//        this.button.setMaximumSize(new Dimension(0,50));
+//        this.button.setPreferredSize(new Dimension(0,50));
         this.scroll = new CGlassScrollPane(
                 canvas.getJComponent(),
                 ScrollPolicy.VERTICAL_BAR_AS_NEEDED,
@@ -150,7 +150,6 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
    
-            
             //System.out.println(this.getHeight());
             
             // Set up first layer
@@ -158,12 +157,13 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
             int buttonWidth = this.getWidth() - (INSET) * 2;
             int arc = buttonHeight;
 
+            //#zeichnet den animierten Farbverlauf bei der Auswahl 
             g2.setPaint(new GradientPaint(0, -buttonHeight, Color.darkGray, 0, buttonHeight, buttonColor, false));
             
             if (this.pressed || this.selected) {
                 g2.fillRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
-                g2.setColor(Color.darkGray);
-                g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
+//                g2.setColor(Color.darkGray);
+//                g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
             } else {
                 // Paint highlight layer if focused
                 if (this.focus) {
@@ -176,8 +176,8 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
                 // Paint the main layer
                 g2.setColor(buttonColor);
                 g2.fillRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
-                g2.setColor(Color.darkGray);
-                g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
+// #kgo kein rand g2.setColor(Color.darkGray);
+//                g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
 
             }
             
