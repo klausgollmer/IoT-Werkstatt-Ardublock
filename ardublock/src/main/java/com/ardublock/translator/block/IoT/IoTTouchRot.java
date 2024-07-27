@@ -59,12 +59,12 @@ public class IoTTouchRot extends TranslatorBlock
 	    translator.addDefinitionCommand(EncDef);
 
 	    EncDef ="#if defined(ESP32) \n "
-			   		+  "// Configure Touch Pins as Input\r\n" + 
+			   	+   "// Configure Touch Pins as Input\r\n" +
+	    		    " touch_counter_rot=0;\n"+
 			   		" touchAttachInterrupt(TOUCH_PIN_UP, ISR_touchCounterUp, TOUCH_UP_THRESHOLD);\r\n" + 
 			   		" touchAttachInterrupt(TOUCH_PIN_DOWN, ISR_touchCounterDown, TOUCH_DOWN_THRESHOLD);\r\n" + 
 			   		"#endif \n";
 	    translator.addSetupCommand(EncDef);
-
 		ret = "touch_counter_rot";
 		
 

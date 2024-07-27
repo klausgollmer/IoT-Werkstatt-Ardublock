@@ -1610,6 +1610,159 @@
 		</BlockGenus>
 				
 			
+    <BlockGenus name="OLED_Print" kind="command" color="44 165 226"
+			initlabel="bg.OLED_Print" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="text">
+					<DefaultArg genus-name="message" label="xx.xx" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="x">
+		  		    <DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="y">
+					<DefaultArg genus-name="number" label="45" />
+				</BlockConnector>
+
+			</BlockConnectors>
+			<Images>
+			    <Image>
+			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+    
+    
+     <BlockGenus name="OLED_PrintTerminal" kind="command" color="44 165 226"
+			initlabel="bg.OLED_PrintTerminal" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="text">
+					<DefaultArg genus-name="message" label="xx.xx" />
+				</BlockConnector>
+				<BlockConnector connector-type="boolean"
+					connector-kind="socket" label="bc.ln">
+					<DefaultArg genus-name="true" label="true" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+    
+    
+    
+			
+    <BlockGenus name="OLED_Clear" kind="command" color="44 165 226"
+			initlabel="bg.OLED_Clear" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+			</BlockConnectors>
+			<Images>
+			    <Image>
+			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+    
+    			
+    <BlockGenus name="OLED_Display" kind="command" color="44 165 226"
+			initlabel="bg.OLED_Display" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+			</BlockConnectors>
+			<Images>
+			    <Image>
+			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+    
+			
+    <BlockGenus name="OLED_Font" kind="command" color="44 165 226"
+			initlabel="bg.OLED" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+  			    <BlockConnector connector-type="string"
+					connector-kind="socket" label="font">
+					<DefaultArg genus-name="OLED_FontMono" label="Mono"/>
+				</BlockConnector>
+			
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="type">
+					<DefaultArg genus-name="OLED_FontTypeBold" label="Bold"/>
+				</BlockConnector>
+				
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="size">
+					<DefaultArg genus-name="OLED_FontSize12" label="12pt"/>
+				</BlockConnector>
+				
+				
+			</BlockConnectors>
+			<Images>
+			    <Image>
+			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+    
+    
+   
+        <BlockGenus name="OLED_FontTypeBold" kind="data" color="255 0 0" initlabel="bg.OLED_FontTypeBold" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+    
+        <BlockGenus name="OLED_FontTypeOblique" kind="data" color="255 0 0" initlabel="bg.OLED_FontTypeOblique" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+        <BlockGenus name="OLED_FontTypePlain" kind="data" color="255 0 0" initlabel="bg.OLED_FontTypePlain" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+    
+      <BlockGenus name="OLED_FontMono" kind="data" color="255 0 0" initlabel="bg.OLED_FontMono" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+        <BlockGenus name="OLED_FontSans" kind="data" color="255 0 0" initlabel="bg.OLED_FontSans" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+    
+        <BlockGenus name="OLED_FontSize9" kind="data" color="255 0 0" initlabel="bg.OLED_FontSize9" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+    
+        <BlockGenus name="OLED_FontSize12" kind="data" color="255 0 0" initlabel="bg.OLED_FontSize12" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+        <BlockGenus name="OLED_FontSize18" kind="data" color="255 0 0" initlabel="bg.OLED_FontSize18" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+        <BlockGenus name="OLED_FontSize24" kind="data" color="255 0 0" initlabel="bg.OLED_FontSize24" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+
+    
+			
     <BlockGenus name="OLED" kind="command" color="44 165 226"
 			initlabel="bg.OLED" editable-label="no" is-label-value="no">
 			<BlockConnectors>
@@ -1655,6 +1808,9 @@
 			</Images>
 		</BlockGenus>
     
+
+
+
 
 
 	
@@ -5683,6 +5839,25 @@
 			<FamilyMember>hompageOhneSensor</FamilyMember>
 		</BlockFamily>
 		
+		<BlockFamily>
+			<FamilyMember>OLED_FontMono</FamilyMember>
+			<FamilyMember>OLED_FontSans</FamilyMember>
+		</BlockFamily>
+		
+		<BlockFamily>
+			<FamilyMember>OLED_FontTypeBold</FamilyMember>
+			<FamilyMember>OLED_FontTypeOblique</FamilyMember>
+			<FamilyMember>OLED_FontTypePlain</FamilyMember>
+		</BlockFamily>
+
+		<BlockFamily>
+			<FamilyMember>OLED_FontSize9</FamilyMember>
+			<FamilyMember>OLED_FontSize12</FamilyMember>
+			<FamilyMember>OLED_FontSize18</FamilyMember>
+			<FamilyMember>OLED_FontSize24</FamilyMember>
+		</BlockFamily>
+
+
 		
 		<BlockFamily>
 			<FamilyMember>BMEVectorTemp</FamilyMember>
@@ -6016,6 +6191,7 @@
 			
 			
 				<BlockGenusMember>Divider_Print</BlockGenusMember>
+				<BlockGenusMember>OLED_PrintTerminal</BlockGenusMember>
 				<BlockGenusMember>serial_print_num</BlockGenusMember>
 				<BlockGenusMember>serial_print</BlockGenusMember>
 				<BlockGenusMember>serial_readString</BlockGenusMember>
@@ -6056,6 +6232,13 @@
 	<!-- bd.output -->
 			<BlockDrawer button-color="122 150 200" name="bd.output"
 				type="factory">
+				
+			
+				<BlockGenusMember>OLED_Clear</BlockGenusMember>
+				<BlockGenusMember>OLED_Print</BlockGenusMember>
+				<BlockGenusMember>OLED_Display</BlockGenusMember>
+				<BlockGenusMember>OLED_Font</BlockGenusMember>
+				
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>
 				<BlockGenusMember>pin-write-digital</BlockGenusMember>

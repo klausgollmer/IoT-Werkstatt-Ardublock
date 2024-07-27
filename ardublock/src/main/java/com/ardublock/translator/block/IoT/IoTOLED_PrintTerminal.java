@@ -5,9 +5,9 @@ import com.ardublock.translator.block.TranslatorBlock;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class IoTOLED  extends TranslatorBlock {
+public class IoTOLED_PrintTerminal  extends TranslatorBlock {
 
-	public IoTOLED (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	public IoTOLED_PrintTerminal (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
@@ -19,36 +19,10 @@ public class IoTOLED  extends TranslatorBlock {
 	//	translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
 		translator.addHeaderFile("Adafruit_GFX.h");
 		translator.addHeaderFile("Adafruit_SH110X.h");
+			
 		translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
 		
 		
-		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
-		String x = translatorBlock.toCode();
-		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
-		String y = translatorBlock.toCode();
-		translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
-		String r = translatorBlock.toCode();
-		translatorBlock = this.getRequiredTranslatorBlockAtSocket(3);
-		String c = translatorBlock.toCode();
-		translatorBlock = this.getTranslatorBlockAtSocket(4);
-		
-		String w = translatorBlock.toCode();
-		translatorBlock = this.getTranslatorBlockAtSocket(5);
-
-		String f="NULL";
-	    if (translatorBlock!=null) {
-			f = translatorBlock.toCode();
-			f=f.substring(1, f.length() - 1);
-			translator.addHeaderFile("Fonts/"+f+".h");
-			f="&"+f;
-	    }	    	
-		
-		
-		translatorBlock = this.getRequiredTranslatorBlockAtSocket(6);
-		String t = translatorBlock.toCode();
-
-		
-	
 		String Def="//OLED https://www.adafruit.com/product/4650 Adafruit Author:ladyada kick\n" + 
 		           "#define SCREEN_WIDTH 128 // OLED display width, in pixels\n"
 		         + "#define SCREEN_HEIGHT 64 // OLED display height, in pixels\n"
@@ -56,6 +30,29 @@ public class IoTOLED  extends TranslatorBlock {
 				   "\n" + 
 				   "GFXcanvas1 canvas(SCREEN_HEIGHT,SCREEN_WIDTH);";
 		translator.addDefinitionCommand(Def);
+		
+		
+		Def = "// defines for OLED Terminal Mode \n"
+			+ "// defines for OLED Terminal Mode \n"
+			+ "#define MAX_LINES 8 // Anzahl der Zeilen, die auf dem Display angezeigt werden können\n"
+			+ "#define LINE_HEIGHT 8 // Höhe jeder Textzeile in Pixeln\n"
+			+ "#define CHAR_WIDTH 6 // Breite eines Zeichens bei Textgröße 1\n"
+			+ "#define MAX_CHARS_PER_LINE (SCREEN_WIDTH / CHAR_WIDTH) // Maximale Zeichen pro Zeile\n"
+			+ "\n"
+			+ "String textBuffer[MAX_LINES]; // Puffer für die Textzeilen\n"
+			+ "int currentLine = 0; // Aktuelle Zeile im Puffer";	
+		translator.addDefinitionCommand(Def);
+		
+	
+		
+		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
+		String t = translatorBlock.toCode();
+		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
+		String LF = translatorBlock.toCode();
+		
+	
+	
+		
 
 		String LogoBitmap ="// Logo IoT-Werkstatt\n"
 				+ "const unsigned char logoBitmap [] PROGMEM = {\n" + 
@@ -223,39 +220,84 @@ public class IoTOLED  extends TranslatorBlock {
 				"  //printOLED(0,40,1,false,NULL,ipadr);\n" + 
 				"  //delay( 1000 );";
 		
-		
-		
-		String code="void printOLED(uint16_t x, uint16_t y, uint8_t r, uint16_t c, uint16_t w, const GFXfont *f, String t) {\n" + 
-				"  if (c==true) canvas.fillScreen(SH110X_BLACK);\n" + 
-				"  canvas.setFont(f);\n" + 
-				"  canvas.setTextColor(SH110X_WHITE);\n" + 
-				"  canvas.setRotation(r);\n" + 
-				"  canvas.setCursor(x,y);\n" + 
-				"  canvas.print(t);\n" + 
-				"  myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), 64, 128, SH110X_WHITE, SH110X_BLACK);\n" + 
-				"  if (w==true) myOLEDdisplay.display();\n" + 
-				"}";
-		translator.addDefinitionCommand(code);
-	
-		
-		
-		
-		
 		   // I2C-initialisieren
 		translator.addSetupCommand("Serial.begin(115200);");
-	   
 		translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
 		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
-		 
-        // OLED initialisieren	    
+       
+		   // OLED initialisieren	    
 	    String Setup = "delay(250); // wait for the OLED to power up\n"
 	    	          +"myOLEDdisplay.begin(0x3C, true); // Address 0x3C default\n";
 	    translator.addSetupCommand(Setup);
-	      		
-	  
-	    translator.addSetupCommand(LogoDisplay);
 	    
-		String ret  = "printOLED("+x+","+y+","+r+","+c+","+w+","+f+","+t+");\n";		
+		
+//	    translator.addSetupCommand(LogoDisplay);
+	    
+	    Setup =   "myOLEDdisplay.setRotation(0);\n"
+	    		+ "myOLEDdisplay.setTextSize(1);\n"
+	    		+ "myOLEDdisplay.setTextColor(SH110X_WHITE);\n"
+	    		+ "myOLEDdisplay.setCursor(0,0);\n"
+	    		+ "myOLEDdisplay.clearDisplay();\n"
+	    		+ "canvas.setRotation(1);\n";
+	    translator.addSetupCommand(Setup);
+
+	    Setup =   "for (int i = 0; i < MAX_LINES; i++) {\n"
+	    		+ "    textBuffer[i] = \"\";\n"
+	    		+ "}\n";
+	    translator.addSetupCommand(Setup);
+
+	    
+	    String Terminal = "// \n"
+	    		+ "// Terminal-Emulation für OLED Display \n"
+	    		+ "void printToTerminal(String text, bool LF) {\n"
+	    		+ " while (text.length() > 0) {\n"
+	    		+ "    String Line = textBuffer[currentLine];\n"
+	    		+ "    int possibleLen = MAX_CHARS_PER_LINE - Line.length();\n"
+	    		+ "    int textLen = text.length();\n"
+	    		+ "    if (possibleLen >= 1) {\n"
+	    		+ "      textBuffer[currentLine] += text.substring(0, possibleLen);\n"
+	    		+ "      text = text.substring(possibleLen, textLen);\n"
+	    		+ "    }\n"
+	    		+ "    if (text.length() > 0) { // add new Line\n"
+	    		+ "      if (currentLine < MAX_LINES - 1) {\n"
+	    		+ "        currentLine++;\n"
+	    		+ "        textBuffer[currentLine] = \"\";\n"
+	    		+ "      } else {\n"
+	    		+ "        // Wenn der Puffer voll ist, verschiebe alle Zeilen um eine nach oben\n"
+	    		+ "        for (int i = 0; i < MAX_LINES - 1; i++) {\n"
+	    		+ "          textBuffer[i] = textBuffer[i + 1];\n"
+	    		+ "        }\n"
+	    		+ "        textBuffer[MAX_LINES - 1] = \"\";\n"
+	    		+ "      }\n"
+	    		+ "    }\n"
+	    		+ "  }\n"
+	    		+ "\n"
+	    		+ "\n"
+	    		+ "  if (LF) { // add CR Line\n"
+	    		+ "    if (currentLine < MAX_LINES-1) {\n"
+	    		+ "       currentLine++;\n"
+	    		+ "       textBuffer[currentLine] = \"\";\n"
+	    		+ "    } else {\n"
+	    		+ "       // Wenn der Puffer voll ist, verschiebe alle Zeilen um eine nach oben\n"
+	    		+ "      for (int i = 0; i < MAX_LINES - 1; i++) {\n"
+	    		+ "        textBuffer[i] = textBuffer[i + 1];\n"
+	    		+ "      }\n"
+	    		+ "      textBuffer[MAX_LINES - 1] = \"\";\n"
+	    		+ "    }\n"
+	    		+ "  }\n"
+	    		+ "\n"
+	    		+ "  // Aktualisiere das Display\n"
+	    		+ "  myOLEDdisplay.setRotation(1);\n"
+	    		+ "  myOLEDdisplay.setFont();\n"
+	    		+ "  myOLEDdisplay.clearDisplay();\n"
+	    		+ "  for (int i = 0; i <= currentLine; i++) {\n"
+	    		+ "    myOLEDdisplay.setCursor(0, i * LINE_HEIGHT);\n"
+	    		+ "    myOLEDdisplay.print(textBuffer[i]);\n"
+	    		+ "  }\n"
+	    		+ "  myOLEDdisplay.display();\n"
+	    		+ "}";
+	    translator.addDefinitionCommand(Terminal);
+	    String ret = "printToTerminal("+t+","+LF+");\n";
 		return codePrefix + ret + codeSuffix;
 		
 	}
