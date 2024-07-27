@@ -228,23 +228,7 @@ public class Context
         RenderableBlock renderableBlock = factoryRenderableBlock.createNewInstance();
         renderableBlock.setLocation(100, 100);
         page.addBlock(renderableBlock);
-        
-       /*/ #kgo Baustelle
-        ImageIcon imageIcon = new ImageIcon("E:\\img.png");
-        JLabel imageLabel = new JLabel(imageIcon);
-page.addBlock(imageLabel);
-        // Position des Bildes (unten rechts)
-        int imageWidth = imageIcon.getIconWidth();
-        int imageHeight = imageIcon.getIconHeight();
-        Dimension frameSize = page.JComponent.getSize();
-        int x = frameSize.width - imageWidth - 20; // 20 Pixel Abstand vom rechten Rand
-        int y = frameSize.height - imageHeight - 40; // 40 Pixel Abstand vom unteren Rand (Berücksichtigen Sie die Titelleiste)
-
-        imageLabel.setBounds(x, y, imageWidth, imageHeight);
-        page.pageJComponent.setIcon(imageIcon);
-        */
-        
-        
+      
         
         
 	}

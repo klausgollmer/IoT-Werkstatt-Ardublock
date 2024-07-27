@@ -66,7 +66,7 @@
 		
 			<Images>
 			   <Image block-location="west" image-editable="yes" width="65" height = "80">
-					<FileLocation>com/ardublock/block/IoTkit/Makeygross.png</FileLocation>
+					<FileLocation>com/ardublock/block/IoTkit/IconMakeyIoTW.png</FileLocation>
 				</Image>
 			</Images>
 		</BlockGenus>

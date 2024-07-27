@@ -7,6 +7,7 @@ import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -26,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -86,6 +88,38 @@ public class OpenblocksFrame extends JFrame
 	{
 		context = Context.getContext();
 		this.setTitle(makeFrameTitle());
+		
+		
+		//
+		 Image img = null;
+		  // Lade das Bild von einem relativen Pfad
+	        String relativePath = "/com/ardublock/block/IoTkit/IconMakey.png";  // Der Pfad innerhalb des Ressourcenverzeichnisses
+	      
+	        try {
+	            URL imgURL = getClass().getResource(relativePath);
+	            if (imgURL != null) {
+	                BufferedImage originalImage = ImageIO.read(imgURL);
+	                // Skaliere das Bild in hoher Qualität
+	                img = originalImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH);
+	            } else {
+	                System.out.println("Bild nicht gefunden: " + relativePath);
+	            }
+	        } catch (IOException e) {
+	            System.out.println("Das Bild konnte nicht geladen werden: " + e.getMessage());
+	        }
+	
+		  
+		  if (img != null) {
+	           // Image img = imgIcon.getImage();
+
+	            // Setze das Bild als Fenstersymbol
+	            setIconImage(img);
+	        } else {
+	            System.out.println("Das Bild konnte nicht geladen werden.");
+	        }
+		
+		//
+		
 		this.setSize(new Dimension(1024, 760));
 		this.setLayout(new BorderLayout());
 		//put the frame to the center of screen
