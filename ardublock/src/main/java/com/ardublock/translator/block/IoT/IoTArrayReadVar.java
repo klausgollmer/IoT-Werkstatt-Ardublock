@@ -20,28 +20,36 @@ public class IoTArrayReadVar  extends TranslatorBlock {
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		translator.addSetupCommand("Serial.begin(115200);");
-		String ArrayStruct ="//--------------------------------  DatenArray \n" 
-				  + "// Felddimension ALEN, nur die ersten 15 Daten in diesem Feld werden auf der LED Matrix angezeigt \n"
-	    		  + "#define ALEN 100 \n"
-	    		  + "float ArrayData[ALEN];\n";
+		String ArrayStruct ="//--------------------------------  IoTDataArray for timeseries \n"
+				+ "// Dimension IOTARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
+				+ "#define IOTARRAYLEN 64 \n"
+				+ "#if defined(ESP32) && defined(USE_DEEPSLEEP)\n"
+				+ "  RTC_DATA_ATTR float   IoTArrayData[IOTARRAYLEN];\n"
+				+ "  RTC_DATA_ATTR uint8_t IoTArrayDataIndex     = 0;\n"
+				+ "  RTC_DATA_ATTR uint8_t IoTArrayDataInitDone  = 0;\n"
+				+ "#else\n"
+				+ "  float   IoTArrayData[IOTARRAYLEN];\n"
+				+ "  uint8_t IoTArrayDataIndex     = 0;\n"
+				+ "  uint8_t IoTArrayDataInitDone  = 0;\n"
+				+ "#endif\n"
+				+ "";
 		translator.addDefinitionCommand(ArrayStruct);
-		String Vali = "// Array hat ALEN Einträge - Check Index zur Laufzeit \n" + 
-				"int CheckIndex(float input) {\n" + 
+
+		String Vali = "// Array hat IOTARRAYLEN Einträge - Check Index zur Laufzeit \n" + 
+				"int IoTArrayCheckIndex(float input) {\n" + 
 				"  int index = 0;\n" + 
-				"  if ((round(input) < 0) || (round(input) > (ALEN-1))) {\n" + 
-				"    Serial.println(\"Array index fehler\");\n" + 
+				"  if ((round(input) < 0) || (round(input) > (IOTARRAYLEN-1))) {\n" + 
+				"    Serial.println(\"IoTArrayData index fehler\");\n" + 
 				"    Serial.println(String(\"index \") + String(input) + String(\" not valid\"));\n" + 
 				"  } else index = round(input);\n" + 
 				"  return(index);  \n" + 
 				"}\n"; 
 		translator.addDefinitionCommand(Vali);
 		
-		
 		String slot;
 		TranslatorBlock tb = this.getRequiredTranslatorBlockAtSocket(0);
 		slot = tb.toCode();	
-		String Code = "ArrayData[CheckIndex("+slot+")]";
+		String Code = "IoTArrayData[IoTArrayCheckIndex("+slot+")]";
 	    return codePrefix + Code + codeSuffix;
         }
 }

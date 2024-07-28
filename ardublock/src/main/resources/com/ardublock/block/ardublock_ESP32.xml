@@ -775,6 +775,22 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+		<BlockGenus name="round" kind="function" color="160 32 240"
+			initlabel="bg.round">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="plug" />
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="">
+				</BlockConnector>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.decimals">
+					<DefaultArg genus-name="number" label="1" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+
 		<BlockGenus name="pow" kind="function" color="160 32 240"
 			initlabel="bg.pow">
 			<BlockConnectors>
@@ -1699,6 +1715,36 @@
 			</Images>
 		</BlockGenus>
     
+        <BlockGenus name="OLED_DispArray" kind="command" color="44 165 226"
+			initlabel="bg.OLED_DispArray" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+			
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="value">
+				</BlockConnector>
+			
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="text">
+					<DefaultArg genus-name="message" label="my data" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="min">
+		  		    <DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="max">
+					<DefaultArg genus-name="number" label="45" />
+				</BlockConnector>
+
+			</BlockConnectors>
+			<Images>
+			    <Image>
+			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+
+
     
      <BlockGenus name="OLED_PrintTerminal" kind="command" color="44 165 226"
 			initlabel="bg.OLED_PrintTerminal" editable-label="no" is-label-value="no">
@@ -3306,6 +3352,10 @@
 				<text>display Array via charlieplex matrix</text>
 			</description>
 			<BlockConnectors>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="value">
+				</BlockConnector>
+			
 			   <BlockConnector connector-type="number"
 					connector-kind="socket" label="min">
 					<DefaultArg genus-name="number" label="0.0" />
@@ -6210,6 +6260,7 @@
 				<BlockGenusMember>division</BlockGenusMember>
 				<BlockGenusMember>modulo</BlockGenusMember>
 				<BlockGenusMember>abs</BlockGenusMember>
+				<BlockGenusMember>round</BlockGenusMember>
 				<BlockGenusMember>pow</BlockGenusMember>
 				<BlockGenusMember>sqrt</BlockGenusMember>
 				<BlockGenusMember>sin</BlockGenusMember>
@@ -6303,6 +6354,7 @@
 				<BlockGenusMember>OLED_Print</BlockGenusMember>
 				<BlockGenusMember>OLED_Display</BlockGenusMember>
 				<BlockGenusMember>OLED_Font</BlockGenusMember>
+				<BlockGenusMember>OLED_DispArray</BlockGenusMember>
 				
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>
