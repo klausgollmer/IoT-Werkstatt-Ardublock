@@ -1739,7 +1739,7 @@
 			</BlockConnectors>
 			<Images>
 			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
+			    <FileLocation>com/ardublock/block/IoTkit/OLED_Array.png</FileLocation>
 				</Image>
 			</Images>
 		</BlockGenus>
@@ -6343,13 +6343,14 @@
 			</BlockDrawer>
 
 
-
-
 	<!-- bd.output -->
 			<BlockDrawer button-color="122 150 200" name="bd.output"
 				type="factory">
+				<BlockGenusMember>Divider_LED</BlockGenusMember>
+				<BlockGenusMember>iot_neopixel_light</BlockGenusMember>
+				<BlockGenusMember>iot_neopixel</BlockGenusMember>
 				
-			
+				<BlockGenusMember>Divider_Display</BlockGenusMember>
 				<BlockGenusMember>OLED_Clear</BlockGenusMember>
 				<BlockGenusMember>OLED_Print</BlockGenusMember>
 				<BlockGenusMember>OLED_Display</BlockGenusMember>
@@ -6359,9 +6360,6 @@
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>
 				<BlockGenusMember>pin-write-digital</BlockGenusMember>
-				<BlockGenusMember>Divider_LED</BlockGenusMember>
-				<BlockGenusMember>iot_neopixel_light</BlockGenusMember>
-				<BlockGenusMember>iot_neopixel</BlockGenusMember>
 				
 	<!-- 			<BlockGenusMember>IoTmessage</BlockGenusMember> -->
 				

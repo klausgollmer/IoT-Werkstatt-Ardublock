@@ -77,7 +77,7 @@ public class IoTOLED_DispArray  extends TranslatorBlock {
 	    String Display = "//------------------ OLED: Display first Values of IoTDataArray\n"
 	    		+ "void OLEDDisplayIoTArrayData(float actValue, String IoTDataName, float minVal, float maxVal) {\n"
 	    		+ "  if (!isnan(actValue)) { // add value\n"
-	    		+ "    if (IoTArrayDataIndex  >= (IOTARRAYLEN - 1) ) { // shift left\n"
+	    		+ "    if (IoTArrayDataIndex  > (IOTARRAYLEN - 1) ) { // shift left\n"
 	    		+ "      for (uint8_t i = 1; i < IOTARRAYLEN; i++) {\n"
 	    		+ "        IoTArrayData[i-1] = IoTArrayData[i]; \n"
 	    		+ "      } \n"
