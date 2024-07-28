@@ -27,11 +27,13 @@ public class IoTTouchPress extends TranslatorBlock
 			  		"volatile unsigned long lastDebounceTimeDown = 0;\r\n" + 
 			  		"// Define Counter Variable\r\n" + 
 			  		"volatile int touch_counter_rot = 0;\r\n" + 
+			  		"volatile int touch_counter_rot_min = -100;\r\n" + 
+			  		"volatile int touch_counter_rot_max = 100;\r\n" + 
 			  		"\r\n" + 
 			  		"void IRAM_ATTR ISR_touchCounterUp() {\r\n" + 
 			  		"  // Entprellen für T7\r\n" + 
-			  		"  if ((millis() - lastDebounceTimeUp) > TOUCH_DEBOUNCE_DELAY) {\r\n" + 
-			  		"    touch_counter_rot++;\r\n" + 
+			  		"  if ((millis() - lastDebounceTimeUp) > TOUCH_DEBOUNCE_DELAY) {\r\n" +
+			  		"    touch_counter_rot = (touch_counter_rot < touch_counter_rot_max) ? (touch_counter_rot + 1) : touch_counter_rot_max;\r\n"+
 			  		"    lastDebounceTimeUp = millis();\r\n" + 
 			  		"  }\r\n" + 
 			  		"}\r\n" + 
@@ -39,7 +41,7 @@ public class IoTTouchPress extends TranslatorBlock
 			  		"void IRAM_ATTR ISR_touchCounterDown() {\r\n" + 
 			  		"  // Entprellen für T9\r\n" + 
 			  		"  if ((millis() - lastDebounceTimeDown) > TOUCH_DEBOUNCE_DELAY) {\r\n" + 
-			  		"    touch_counter_rot--;\r\n" + 
+			  		"    touch_counter_rot = (touch_counter_rot > touch_counter_rot_min) ? (touch_counter_rot - 1) : touch_counter_rot_min;\r\n"+
 			  		"    lastDebounceTimeDown = millis();\r\n" + 
 			  		"  }\r\n" + 
 			  		"}\r\n" + 

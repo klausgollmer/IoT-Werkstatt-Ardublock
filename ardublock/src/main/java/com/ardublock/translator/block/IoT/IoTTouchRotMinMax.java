@@ -4,19 +4,24 @@ import com.ardublock.translator.block.TranslatorBlock;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class IoTTouchRot extends TranslatorBlock
+public class IoTTouchRotMinMax extends TranslatorBlock
 {
 
-  public IoTTouchRot (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+  public IoTTouchRotMinMax (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
   {
     super(blockId, translator, codePrefix, codeSuffix, label);
   }
 
-  public String toCode() throws SocketNullException, SubroutineNotDeclaredException
-  {
-	  String ret;
-      
-	  
+	
+	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
+	{
+		 String ret;
+		 TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
+		 String min = translatorBlock.toCode();
+		 translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
+		 String max = translatorBlock.toCode();
+ 
+		  
 		 String EncDef = "// Touch Encoder \r\n" + 
 			  		"// Define Pins for Touch Sensors\r\n" +
 			  		"#if defined(ESP32) \n "+
@@ -57,19 +62,15 @@ public class IoTTouchRot extends TranslatorBlock
 			  		"  return wert;\r\n" + 
 			  		"}\n "+ 
 			  		"#endif\n";
-		
-	    translator.addDefinitionCommand(EncDef);
+				      
 
-	    EncDef ="#if defined(ESP32) \n "
-			   	+   "// Configure Touch Pins as Input\r\n" +
-	    		    " touch_counter_rot=0;\n"+
-			   		" touchAttachInterrupt(TOUCH_PIN_UP, ISR_touchCounterUp, TOUCH_UP_THRESHOLD);\r\n" + 
-			   		" touchAttachInterrupt(TOUCH_PIN_DOWN, ISR_touchCounterDown, TOUCH_DOWN_THRESHOLD);\r\n" + 
-			   		"#endif \n";
-	    translator.addSetupCommand(EncDef);
-		ret = "touch_counter_rot";
-		
+		    translator.addDefinitionCommand(EncDef);
 
+		    ret        ="#if defined(ESP32) \n "
+				   	+   "// Configure upper/lower bounds touch\r\n" +
+		    		    " touch_counter_rot_min="+min+";\n"+
+		    		    " touch_counter_rot_max="+max+";\n"+
+		    		    "#endif \n";
 		return codePrefix + ret + codeSuffix;
-  }
+	}
 }

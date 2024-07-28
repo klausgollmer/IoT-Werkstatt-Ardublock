@@ -267,6 +267,61 @@
 					connector-type="cmd" />
 			</BlockConnectors>
 		</BlockGenus>
+
+	<BlockGenus name="switchcase" kind="command" initlabel="bg.ifelse"
+			color="255 221 0">
+			<description>
+				<text>
+					Does the first set of commands if the condition specified is
+					true, otherwise it will do the second set of commands.
+				</text>
+				<arg-description n="1" name="test">
+					The condition being	tested.
+				</arg-description>
+
+				<arg-description n="2" name="then">
+					The set of instructions	that is done when the condition is true.
+				</arg-description>
+
+				<arg-description n="3" name="else">
+					The set of instructions	that is done when the condition is false.
+				</arg-description>
+			</description>
+			<BlockConnectors>
+				<BlockConnector label="switch" connector-kind="socket" connector-type="number" />
+				
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="case ">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="cmd" />
+				
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="case ">
+					<DefaultArg genus-name="number" label="1" />
+				</BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="cmd" />
+	
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="case ">
+					<DefaultArg genus-name="number" label="2" />
+				</BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="cmd" />			
+				
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="case ">
+					<DefaultArg genus-name="number" label="3" />
+				</BlockConnector>
+				<BlockConnector label="" connector-kind="socket" connector-type="cmd" />			
+				
+				
+				<BlockConnector label="default" connector-kind="socket" connector-type="cmd" />			
+			</BlockConnectors>
+		</BlockGenus>
+
+
+
+
 		
 		<BlockGenus name="delay" kind="command" color="255 221 0"
 			initlabel="bg.delay">
@@ -1325,6 +1380,20 @@
 			</Images>
 		</BlockGenus>
 
+	    <BlockGenus name="touch_rot_minmax" kind="command" color="44 165 226"
+			initlabel="bg.touch_rot_minmax">
+			<BlockConnectors>
+			  <BlockConnector connector-type="number"
+					connector-kind="socket" label="min">
+					<DefaultArg genus-name="number" label="-100" />
+			  </BlockConnector>
+			  <BlockConnector connector-type="number"
+					connector-kind="socket" label="max">
+					<DefaultArg genus-name="number" label="100" />
+			  </BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
 	    <BlockGenus name="touch_rot" kind="data" color="44 165 226"
 			initlabel="bg.touch_rot">
 			<description>
@@ -1338,10 +1407,6 @@
 
         <BlockGenus name="touch_press" kind="data" color="44 165 226" 
             initlabel="bg.touch_press">
-			<description>
-				<text>read digital pin</text>
-			</description>
-			
 			<BlockConnectors>
   			  <BlockConnector connector-type="number"
 					connector-kind="socket" label="Pin">
@@ -6089,6 +6154,8 @@
 			<!-- bd.control -->
 			<BlockDrawer button-color="233 244 124" name="bd.control"
 				type="factory">
+			    <BlockGenusMember>Divider_Wait</BlockGenusMember>
+				<BlockGenusMember>delay</BlockGenusMember>
 			
   			    <BlockGenusMember>Divider_Loop</BlockGenusMember>
   			    <!-- BlockGenusMember>repeat_times</BlockGenusMember-->
@@ -6097,10 +6164,8 @@
   			    <BlockGenusMember>Divider_Case</BlockGenusMember>
 				<BlockGenusMember>if</BlockGenusMember>
 				<BlockGenusMember>ifelse</BlockGenusMember>
+				<BlockGenusMember>switchcase</BlockGenusMember>
 				
-  			    <BlockGenusMember>Divider_Wait</BlockGenusMember>
-				<BlockGenusMember>delay</BlockGenusMember>
-
   			    <BlockGenusMember>Divider_UP</BlockGenusMember>
 				<BlockGenusMember>subroutine</BlockGenusMember>
 				<BlockGenusMember>subroutine-ref</BlockGenusMember>
@@ -6525,6 +6590,7 @@
   		      <BlockGenusMember>readReset32</BlockGenusMember>	
   		      <BlockGenusMember>touch_rot</BlockGenusMember>	
   		      <BlockGenusMember>touch_press</BlockGenusMember>	
+  		      <BlockGenusMember>touch_rot_minmax</BlockGenusMember>	
   		      <BlockGenusMember>Divider_OTA</BlockGenusMember>
  		      <BlockGenusMember>basicOTA</BlockGenusMember>
  		      
