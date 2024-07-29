@@ -191,8 +191,8 @@ public class Translator
 		}
 		
 		 if (isSCD30Program()) {
-			 setupFunction.append("Wire.setClock(100000L);            // 100 kHz SCD30 \n");
-			 setupFunction.append("Wire.setClockStretchLimit(200000L);// CO2-SCD30\n");
+			 String esp8266 = "#if defined(ESP8266) \n Wire.setClock(100000L); Wire.setClockStretchLimit(200000L);\n #endif\n";
+			 setupFunction.append(esp8266);
 		 }
 		
 		 
@@ -617,14 +617,15 @@ public class Translator
 			{
 				if (block.getGenusName().equals("subroutine"))
 				{
-					String functionName = block.getBlockLabel().trim();
+					String functionName = block.getBlockLabel().trim()+"_gen";
+				System.out.println(block.getBlockLabel().trim());
 					this.addFunctionName(block.getBlockID(), functionName);
 					subroutineBlockSet.add(renderableBlock);
 				}			
 				
 				if (block.getGenusName().equals("TTN_RxCallback"))
 				{
-					String functionName = block.getBlockLabel().trim();
+					String functionName = block.getBlockLabel().trim()+"_gen";
 					this.addFunctionName(block.getBlockID(), functionName);
 					subroutineBlockSet.add(renderableBlock);
 				}			

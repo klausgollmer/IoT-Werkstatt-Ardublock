@@ -70,13 +70,15 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
         this.timer = new EnlargerTimer();
         this.listeners = new ArrayList<ExplorerListener>();
         retardedPane = new JPanel();
+        Color myColor = new Color(210, 210, 210); 
         //#kgo der untere Abschnitt unter den Werkzeugkästen
-        retardedPane.setBackground(Color.GRAY);
-        //#kgo buttonPane ist Hintergrund der Werkzeugkästen
-        // buttonPane.setBackground(Color.black);
-
+        retardedPane.setBackground(myColor);
+        
         buttonPane = new JPanel();
-        buttonPane.setBackground(Color.GRAY);
+        //buttonPane.setBackground(Color.GRAY);
+      //#kgo buttonPane ist Hintergrund der Werkzeugkästen
+        buttonPane.setBackground(myColor);
+
         // Stapelt die Werkzeugkästen
         buttonPane.setLayout(new GridLayout(0, 1));
         canvasPane = new CanvasPane();

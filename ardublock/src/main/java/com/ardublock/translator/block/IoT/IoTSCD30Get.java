@@ -34,6 +34,7 @@ public class IoTSCD30Get extends TranslatorBlock
     
     translator.addSetupCommand("airSensorSCD30.setAutoSelfCalibration(false); // Sensirion no auto calibration\n");  
     translator.addSetupCommand("airSensorSCD30.setMeasurementInterval(2);     // CO2-Messung alle 2 s\n");  
+    translator.addSetupCommand("airSensorSCD30.useStaleData(true);            // do not wait for fresh data\n");
     // Deklarationen hinzuf�gen
     
    	translator.addDefinitionCommand("//Reading CO2, humidity and temperature from the SCD30 By: Nathan Seidle SparkFun Electronics \n");
@@ -41,13 +42,27 @@ public class IoTSCD30Get extends TranslatorBlock
    	
 	translator.addDefinitionCommand("SCD30 airSensorSCD30; // Objekt SDC30 Umweltsensor");
 	
+	String read = "float readSensirionSCD30(int n){\r\n"
+   			+ "  float value = NAN;\r\n"
+   			+ "  switch(n) {\r\n"
+   			+ "    case 1: value = airSensorSCD30.getCO2();\r\n"
+   			+ "    break;\r\n"
+   			+ "    case 2: value = airSensorSCD30.getTemperature();\r\n"
+   			+ "    break;\r\n"
+   			+ "    case 3: value = airSensorSCD30.getHumidity();\r\n"
+   			+ "    break;\r\n"
+   			+ "  }\r\n"
+   			+ "  return value;\r\n"
+   			+ "}";
+   	translator.addDefinitionCommand(read);
+    
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
     String code = translatorBlock.toCode();
+    
+    
           
     // Code von der Mainfunktion
-	ret = code;
-	
-   
-    return codePrefix + ret + codeSuffix;
+	ret = "readSensirionSCD30("+code+")";
+	return codePrefix + ret + codeSuffix;	
   }
 }

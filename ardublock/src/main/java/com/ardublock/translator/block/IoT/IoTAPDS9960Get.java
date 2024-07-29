@@ -30,7 +30,9 @@ public class IoTAPDS9960Get extends TranslatorBlock
  
     translator.addSetupCommand("if (!apds.begin()) Serial.println(\"Kein ADPS Gesture-Sensor gefunden\");\n");
     translator.addSetupCommand("apds.setADCGain(APDS9960_AGAIN_64X);");
- 
+    translator.addSetupCommand("apds.setProxGain(APDS9960_PGAIN_8X);");
+    translator.addSetupCommand("apds.setLED( APDS9960_LEDDRIVE_100MA,APDS9960_LEDBOOST_300PCNT");
+    
     
     // Deklarationen hinzuf�gen
     translator.addDefinitionCommand("// https://github.com/adafruit/Adafruit_APDS9960 Copyright (c) 2012, Adafruit Industries");

@@ -167,7 +167,7 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
             } else {
                 // Paint highlight layer if focused
                 if (this.focus) {
-                    g2.setColor(Color.yellow);
+                    g2.setColor(Color.black); // yellow);
                     g2.setStroke(new BasicStroke(3) 	 	); // Set stroke thickness to 3
                     g2.drawRoundRect(INSET, INSET, buttonWidth, buttonHeight, arc, arc);
                     g2.setStroke(new BasicStroke(1)); // Reset stroke thickness to 1
@@ -210,12 +210,14 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
                 }
                 g2.drawString(text, x, y);
             }
+            
             if (canvas.getHighlight() != null) {
                 g2.setStroke(new BasicStroke(3));
                 g2.setColor(canvas.getHighlight());
                 g2.drawRoundRect(INSET + 1, INSET + 1, buttonWidth - 2, buttonHeight - 2, arc, arc);
                 g2.setStroke(new BasicStroke(1));
             }
+            
         }
     }
 }

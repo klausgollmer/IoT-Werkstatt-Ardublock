@@ -86,7 +86,7 @@ public class GenerateCodeButtonListener implements ActionListener
 				// orginal: if (block.getGenusName().equals("subroutine"))
 				if (block.getGenusName().equals("subroutine") || block.getGenusName().equals("sub_return") || block.getGenusName().equals("TTN_RxCallback") )	//Check if subroutine with return				
 				{
-					String functionName = block.getBlockLabel().trim();
+					String functionName = block.getBlockLabel().trim()+"_gen";
 					try
 					{
 						translator.addFunctionName(block.getBlockID(), functionName);

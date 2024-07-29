@@ -202,8 +202,9 @@ public class BlockShapeUtil {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
         // Zeichnen des Randes
-        g2.setColor(Color.GRAY);
-        g2.setStroke(new BasicStroke(2));
+        Color myColor = new Color(158, 158, 158); 
+        g2.setColor(myColor);
+        g2.setStroke(new BasicStroke(1));
         g2.draw(s);
         g2.dispose();
         return img;

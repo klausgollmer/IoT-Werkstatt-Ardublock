@@ -15,7 +15,8 @@ public class SubReturnBlock extends TranslatorBlock
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		String subroutineName = label.trim();
+		//String subroutineName = label.trim();
+		String subroutineName = label.trim()+"_gen";
 		String ret;
 		ret = "int " + subroutineName + "()\n{\n";
 		translator.clearLocalNumberVariable();

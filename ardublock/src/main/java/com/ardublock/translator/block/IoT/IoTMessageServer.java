@@ -29,33 +29,57 @@ public class IoTMessageServer  extends TranslatorBlock {
  	      translator.addHeaderFile("SparkFunBME280.h");
    	      translator.addHeaderFile("Adafruit_BME680.h");
 		  translator.addHeaderFile("Wire.h");
-		  String EncDef = "#if defined(ESP8266) \n"
-				      + "// Autor Paul Stoffregen, http://www.pjrc.com/teensy/td_libs_Encoder.html\n"
-				      + " #include <Encoder.h> \n"
-				      + "#elif defined(ESP32) \n"
-				      + "// Autor: Kevin Harrington, https://www.arduino.cc/reference/en/libraries/esp32encoder\n"
-				      + " #include <ESP32Encoder.h>;\n"
-				      + "#endif\n";
-   		  translator.addDefinitionCommand(EncDef);
-		  EncDef = "// Helper Rotary Encoder \n"
-				  + "#if defined(ESP8266) \n"
-				  + "Encoder button_encoder(14,12);\n"
-				  + "#define PINBUTTON 2\n"
+		  String EncDef =   "#if defined(ESP8266) \n"
+			      + "// Autor Paul Stoffregen, http://www.pjrc.com/teensy/td_libs_Encoder.html\n"
+			      + " #include <Encoder.h> \n"
 			      + "#elif defined(ESP32) \n"
-			      +  "ESP32Encoder button_encoder; \n"
-				  + "#define PINBUTTON 14\n"
+			      + "// Autor: Kevin Harrington, https://www.arduino.cc/reference/en/libraries/esp32encoder\n"
+			      + " #include <ESP32Encoder.h>;\n"
 			      + "#endif\n"
-				  + " \n" 
-                + "int encoderRead() {\r\n" + 
-				    "  int wert = 0;\r\n" + 
-				    "  #if defined(ESP8266) \r\n" + 
-				    "    wert = button_encoder.read();\r\n" + 
-				    "  #elif defined(ESP32)\r\n" + 
-				    "    wert = button_encoder.getCount();\r\n" + 
-				    "  #endif\r\n" + 
-				    "  return wert;\r\n" + 
-				    "}\r\n" + 
-				  "";
+			      + "// encoder max range\n"
+			      + "int encoder_counter_rot_min = -100;\n"
+			      + "int encoder_counter_rot_max = 100;\n"
+			      + "";
+	translator.addDefinitionCommand(EncDef);
+
+	EncDef = "// Helper rotary encoder\n"
+	        + "#if defined(ESP8266) \n"
+			+ "Encoder button_encoder(GPIO_ROTARY_B,GPIO_ROTARY_A);\n"
+		    + "#elif defined(ESP32) \n"
+		    +  "ESP32Encoder button_encoder; \n"
+		    + "#endif\n"
+			+ " \n"
+			+ "int encoderRead() {\r\n"
+			+ "  int wert = 0;\r\n"
+			+ "#if defined(ESP8266) \r\n"
+			+ "  wert = button_encoder.read();\r\n"
+			+ "  if (wert > encoder_counter_rot_max) {\r\n"
+			+ "     button_encoder.write(encoder_counter_rot_max);\r\n"
+			+ "     wert = encoder_counter_rot_max;\r\n"
+			+ "  }\r\n"
+			+ "  if (wert < encoder_counter_rot_min) {\r\n"
+			+ "     button_encoder.write(encoder_counter_rot_min);\r\n"
+			+ "     wert = encoder_counter_rot_min;\r\n"
+			+ "  }\r\n"
+			+ "#elif defined(ESP32)\r\n"
+			+ "  wert = button_encoder.getCount()/2;\r\n"
+			+ "  if (wert > encoder_counter_rot_max) {\r\n"
+			+ "     button_encoder.setCount(encoder_counter_rot_max * 2);\r\n"
+			+ "     wert = encoder_counter_rot_max;\r\n"
+			+ "  }\r\n"
+			+ "  if (wert < encoder_counter_rot_min) {\r\n"
+			+ "     button_encoder.setCount(encoder_counter_rot_min * 2);\r\n"
+			+ "     wert = encoder_counter_rot_min;\r\n"
+			+ "  }\r\n"
+			+ "#endif\r\n"
+			+ "  return wert;\r\n"
+			+ "}";
+	translator.addDefinitionCommand(EncDef);
+
+		 
+   		  
+   		  
+   		  
 		   translator.addDefinitionCommand(EncDef);
 		   EncDef ="#if defined(ESP32) \n "
 			   		+  "    ESP32Encoder::useInternalWeakPullResistors = puType::up;\n"

@@ -1396,6 +1396,21 @@
 			</Images>
 		</BlockGenus>
 
+	    <BlockGenus name="button_rot_minmax" kind="command" color="44 165 226"
+			initlabel="bg.button_rot_minmax">
+			<BlockConnectors>
+			  <BlockConnector connector-type="number"
+					connector-kind="socket" label="min">
+					<DefaultArg genus-name="number" label="-100" />
+			  </BlockConnector>
+			  <BlockConnector connector-type="number"
+					connector-kind="socket" label="max">
+					<DefaultArg genus-name="number" label="100" />
+			  </BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+
 	    <BlockGenus name="touch_rot_minmax" kind="command" color="44 165 226"
 			initlabel="bg.touch_rot_minmax">
 			<BlockConnectors>
@@ -1409,6 +1424,9 @@
 			  </BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+
+
+
 
 	    <BlockGenus name="touch_rot" kind="data" color="44 165 226"
 			initlabel="bg.touch_rot">
@@ -2565,6 +2583,40 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
+        	
+    <!--  SCD4x Daten -->
+		<BlockGenus name="GetSCD40" kind="data" color="44 165 226"
+			initlabel="bg.GetSCD40" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector label="bc.SCD30Vector" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="SCD30VectorCO2" label="CO2"/>
+                </BlockConnector>	
+			</BlockConnectors>
+			<Images>
+			    <Image>
+					<FileLocation>com/ardublock/block/IoTkit/scd40kgo.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+    
+        	
+   		<BlockGenus name="CalSCD40" kind="command" color="44 165 226"
+			initlabel="bg.CalSCD40" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="Altitude">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+			</BlockConnectors>
+			<Images>
+			    <Image>
+					<FileLocation>com/ardublock/block/IoTkit/scd40kgo.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+        	
+        	
         	
 	<!--  SCD30 Daten -->
 		<BlockGenus name="GetSCD30" kind="data" color="44 165 226"
@@ -5390,7 +5442,7 @@
 
 	    <BlockGenus name="TTN_RxCallback" kind="command" color="30 30 255"
 			initlabel="bg.TTN_RxCallback" is-starter="yes" is-terminator="yes"
-			label-unique="yes" editable-label="yes">
+			label-unique="yes" editable-label="no">
 			<description>
 				<text>subroutine</text>
 			</description>
@@ -6336,6 +6388,7 @@
 				<BlockGenusMember>Divider_Encoder</BlockGenusMember>
 				<BlockGenusMember>button_press</BlockGenusMember>
 				<BlockGenusMember>button_rot</BlockGenusMember>
+			    <BlockGenusMember>button_rot_minmax</BlockGenusMember>	
 				<BlockGenusMember>glue_sn</BlockGenusMember>
 				<BlockGenusMember>glue_sb</BlockGenusMember>
 			 
@@ -6509,6 +6562,9 @@
 			    <BlockGenusMember>CalSCD30</BlockGenusMember>
 		        <BlockGenusMember>GetMHZ19</BlockGenusMember>
 		        <BlockGenusMember>CalMHZ19</BlockGenusMember>
+		        <BlockGenusMember>GetSCD30</BlockGenusMember>
+			    <BlockGenusMember>CalSCD30</BlockGenusMember>
+		        
 		        <BlockGenusMember>GetK30</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
@@ -6580,7 +6636,9 @@
 				<BlockGenusMember>GetLightBH</BlockGenusMember>
 				
 				<BlockGenusMember>Divider_CO2</BlockGenusMember>
-				<BlockGenusMember>GetSCD30</BlockGenusMember>
+				<BlockGenusMember>GetSCD40</BlockGenusMember>
+			    <BlockGenusMember>CalSCD40</BlockGenusMember>
+			    <BlockGenusMember>GetSCD30</BlockGenusMember>
 			    <BlockGenusMember>CalSCD30</BlockGenusMember>
 			    <BlockGenusMember>ToffsetSCD30</BlockGenusMember>
 		        <BlockGenusMember>GetMHZ19</BlockGenusMember>
@@ -6664,7 +6722,7 @@
 	</BlockDrawerSets>
 
 	<Pages drawer-with-page="yes">
-		<Page page-name="Main" page-width="4000" page-color="148 148 148" />
+		<Page page-name="Main" page-width="4000" page-color="210 210 210" />
 	</Pages>
 
 	<TrashCan>
