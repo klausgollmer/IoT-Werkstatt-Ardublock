@@ -65,7 +65,7 @@
 			</BlockConnectors>
 		
 			<Images>
-			   <Image block-location="west" image-editable="yes" width="65" height = "80">
+			   <Image block-location="north" image-editable="no" width="65" height = "80">
 					<FileLocation>com/ardublock/block/IoTkit/IconMakeyIoTW.png</FileLocation>
 				</Image>
 			</Images>
@@ -5042,7 +5042,7 @@
 	
 			</BlockConnectors>
 			<Images>
-			    <Image>
+			    <Image block-location="north">
 			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -6664,7 +6664,7 @@
 	</BlockDrawerSets>
 
 	<Pages drawer-with-page="yes">
-		<Page page-name="Main" page-width="4000" page-color="128 128 128" />
+		<Page page-name="Main" page-width="4000" page-color="148 148 148" />
 	</Pages>
 
 	<TrashCan>

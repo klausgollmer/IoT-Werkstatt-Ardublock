@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -234,12 +235,14 @@ public class OpenblocksFrame extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				Dimension size = workspace.getCanvasSize();
 				System.out.println("size: " + size);
-				BufferedImage bi = new BufferedImage(7000, 7000, BufferedImage.TYPE_INT_RGB); //#kgp 2560 2560
+				BufferedImage bi = new BufferedImage(7000,7000, BufferedImage.TYPE_INT_RGB); //#kgo 2560 2560
 				Graphics2D g = (Graphics2D)bi.createGraphics();
-				double theScaleFactor = (600d/72d);  
+		
+				g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+				double theScaleFactor = (300d/72d);  //#kgo memory problem in ide
 				g.scale(theScaleFactor,theScaleFactor);
-				
 				workspace.getBlockCanvas().getPageAt(0).getJComponent().paint(g);
+		
 				try{
 					final JFileChooser fc = new JFileChooser();
 					fc.setSelectedFile(new File("ardublock.png"));
