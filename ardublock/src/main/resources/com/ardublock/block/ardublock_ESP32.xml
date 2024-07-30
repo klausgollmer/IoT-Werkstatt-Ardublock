@@ -65,7 +65,7 @@
 			</BlockConnectors>
 		
 			<Images>
-			   <Image block-location="north" image-editable="no" width="65" height = "80">
+			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
 					<FileLocation>com/ardublock/block/IoTkit/IconMakeyIoTW.png</FileLocation>
 				</Image>
 			</Images>
@@ -5000,7 +5000,7 @@
 				
 			</BlockConnectors>
   			<Images>
-			    <Image>
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5024,7 +5024,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 			<Images>
-			    <Image>
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5066,7 +5066,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 		    <Images>
-			    <Image>
+			    <Image block-location="northwest">
 					<FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5094,7 +5094,7 @@
 	
 			</BlockConnectors>
 			<Images>
-			    <Image block-location="north">
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5140,7 +5140,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 			<Images>
-			    <Image>
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5156,7 +5156,7 @@
                 </BlockConnector>	
 			</BlockConnectors>
 			<Images>
-			    <Image>
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
 				</Image>
 			</Images>	
@@ -5210,7 +5210,7 @@
 				
 			</BlockConnectors>
 			<Images>
-			    <Image>
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5227,7 +5227,7 @@
 				
 			</BlockConnectors>
 			<Images>
-			    <Image>
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
 				</Image>
 			</Images>
