@@ -4,10 +4,10 @@ import com.ardublock.translator.block.TranslatorBlock;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class IoTAPDS9960Get extends TranslatorBlock
+public class IoTAPDS9960Cal extends TranslatorBlock
 {
 
-  public IoTAPDS9960Get (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+  public IoTAPDS9960Cal (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
   {
     super(blockId, translator, codePrefix, codeSuffix, label);
   }
@@ -41,13 +41,14 @@ public class IoTAPDS9960Get extends TranslatorBlock
     		+ "float APDS9960_calibrate_g = 1.0;\r\n"
     		+ "float APDS9960_calibrate_b = 1.0;\r\n";
 	translator.addDefinitionCommand(Def);
-
-	
-	
-	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
-    String Sensor = translatorBlock.toCode();
     
-    String Read = "// https://github.com/adafruit/Adafruit_APDS9960 Copyright (c) 2012, Adafruit Industries\r\n"
+	
+	
+	
+	//TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
+    //String Sensor = translatorBlock.toCode();
+    
+	String Read = "// https://github.com/adafruit/Adafruit_APDS9960 Copyright (c) 2012, Adafruit Industries\r\n"
     		+ "int readAPDS9960(int chan) { // APDS9960 Gesture Sensor Einlesefunktion\r\n"
     		+ "  uint16_t value = 0;\r\n"
     		+ "  uint8_t dum;\r\n"
@@ -95,12 +96,52 @@ public class IoTAPDS9960Get extends TranslatorBlock
     		+ "  }\r\n"
     		+ "  return value;\r\n"
     		+ "}";
-
-    translator.addDefinitionCommand(Read);
+            translator.addDefinitionCommand(Read);
 			     
+    
+    Read = "void calibrateAPDS9960(){\r\n"
+    		+ "  uint16_t r=0,g=0,b=0,c,sum;\r\n"
+    		+ "  float rs=0.,gs=0.,bs=0.;\r\n"
+    		+ "  #define MEAN_N 64 \r\n"
+    		+ "  Serial.println(\"Calibrate APDS9960 RGB Sensor\");\r\n"
+    		+ "  apds.enableColor(true);\r\n"
+    		+ "  // mean values\r\n"
+    		+ "  for (int i = 1; i<=MEAN_N;i++) {\r\n"
+    		+ "    while(!apds.colorDataReady()){\r\n"
+    		+ "      delay(5);\r\n"
+    		+ "    }\r\n"
+    		+ "    apds.getColorData(&r, &g, &b, &c);\r\n"
+    		+ "    rs+=r; gs+=g; bs+=b;\r\n"
+    		+ "  }  \r\n"
+    		+ "  rs = rs/MEAN_N;gs = gs/MEAN_N; bs = bs/MEAN_N;\r\n"
+    		+ "  if ((rs+gs+bs) < (3*128)) {\r\n"
+    		+ "    Serial.println(\"values to small, increase RGB AGAIN to 64\");\r\n"
+    		+ "    apds.setADCGain(APDS9960_AGAIN_64X);\r\n"
+    		+ "  } else if ((rs+gs+bs) > (3*4000)) {\r\n"
+    		+ "      Serial.println(\"values to big, reduce RGB AGAIN to 16\");\r\n"
+    		+ "      apds.setADCGain(APDS9960_AGAIN_16X);\r\n"
+    		+ "  }\r\n"
+    		+ "  // Measure again \r\n"
+    		+ "  rs=0.,gs=0.,bs=0.;\r\n"
+    		+ "  // mean values\r\n"
+    		+ "  for (int i = 1; i<=MEAN_N;i++) {\r\n"
+    		+ "    while(!apds.colorDataReady()){\r\n"
+    		+ "      delay(5);\r\n"
+    		+ "    }\r\n"
+    		+ "    apds.getColorData(&r, &g, &b, &c);\r\n"
+    		+ "    rs+=r; gs+=g; bs+=b;\r\n"
+    		+ "  }  \r\n"
+    		+ "  rs = rs/MEAN_N;gs = gs/MEAN_N; bs = bs/MEAN_N;\r\n"
+    		+ "  APDS9960_calibrate_r = 4096./rs;\r\n"
+    		+ "  APDS9960_calibrate_g = 4096./gs;\r\n"
+    		+ "  APDS9960_calibrate_b = 4096./bs;\r\n"
+    		+ "}";
+    	    translator.addDefinitionCommand(Read);
+    
+    
 	
     // Code von der Mainfunktion
-	ret = "readAPDS9960(" + Sensor + ")";
+	ret = "calibrateAPDS9960();\n";
    
     return codePrefix + ret + codeSuffix;
   }

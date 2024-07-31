@@ -1959,6 +1959,17 @@
 			</Images>
 			
 		</BlockGenus>
+		
+		<BlockGenus name="ADPS9960Cal" kind="command" color="44 165 226"
+			initlabel="bg.ADPS9960Cal" editable-label="no" is-label-value="no">
+			<Images>
+			    <Image>
+					<FileLocation>com/ardublock/block/IoTkit/gesture.jpg</FileLocation>
+				</Image>
+			</Images>
+			
+		</BlockGenus>
+		
 
        <BlockGenus name="ADPS9960Gest" kind="data" color="255 0 0" initlabel="bg.ADPS9960Gest" editable-label="no" is-label-value="no" >
           <BlockConnectors>
@@ -6569,6 +6580,7 @@
 
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
+				<BlockGenusMember>ADPS9960Cal</BlockGenusMember>
 				<BlockGenusMember>TCS34725Get</BlockGenusMember>
 				<BlockGenusMember>GetLightTSLnew</BlockGenusMember>
 				<BlockGenusMember>GetLightBH</BlockGenusMember>
