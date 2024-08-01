@@ -1067,7 +1067,7 @@
 
 
         <BlockGenus name="variable_number_LoRaPayload" kind="data"
-			initlabel="bg.variable_number" editable-label="yes" is-label-value="yes"
+			initlabel="bg.variable_number" editable-label="no" is-label-value="yes"
 			color="204 0 102">
 			<description>
 				<text>
@@ -1082,7 +1082,7 @@
 		
 
         <BlockGenus name="variable_number_LoRaPort" kind="data"
-			initlabel="bg.variable_number" editable-label="yes" is-label-value="yes"
+			initlabel="bg.variable_number" editable-label="no" is-label-value="yes"
 			color="204 0 102">
 			<description>
 				<text>
@@ -1096,7 +1096,7 @@
 		</BlockGenus>
 		
         <BlockGenus name="variable_String_LoRaPayload" kind="data"
-			initlabel="bg.variable_String" editable-label="yes" is-label-value="yes"
+			initlabel="bg.variable_String" editable-label="no" is-label-value="yes"
 			color="204 0 102">
 			<description>
 				<text>
@@ -4603,8 +4603,8 @@
 		</BlockGenus>
 
 
-       <BlockGenus name="payloadIntBlynk" kind="data" color="255 0 0"
-			initlabel="bg.payloadIntBlynk" editable-label="yes">
+       <BlockGenus name="payloadIntBlynk" kind="data" color="204 0 102"
+			initlabel="bg.payloadIntBlynk" editable-label="no">
 			<description>
 				<text> Blynk payload </text>
 			</description>
@@ -4613,8 +4613,8 @@
 			</BlockConnectors>
 		</BlockGenus>
         
-       <BlockGenus name="payloadFloatBlynk" kind="data" color="255 0 0"
-			initlabel="bg.payloadFloatBlynk" editable-label="yes">
+       <BlockGenus name="payloadFloatBlynk" kind="data" color="204 0 102"
+			initlabel="bg.payloadFloatBlynk" editable-label="no">
 			<description>
 				<text> Blynk payload </text>
 			</description>
@@ -4623,8 +4623,8 @@
 			</BlockConnectors>
 		</BlockGenus>
         
-       <BlockGenus name="payloadStrBlynk" kind="data" color="255 0 0"
-			initlabel="bg.payloadStrBlynk" editable-label="yes">
+       <BlockGenus name="payloadStrBlynk" kind="data" color="204 0 102"
+			initlabel="bg.payloadStrBlynk" editable-label="no">
 			<description>
 				<text> Blynk payload </text>
 			</description>

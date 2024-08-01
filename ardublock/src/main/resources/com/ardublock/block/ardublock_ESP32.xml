@@ -65,7 +65,7 @@
 			</BlockConnectors>
 		
 			<Images>
-			   <Image block-location="north" image-editable="no" width="65" height = "80">
+			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
 					<FileLocation>com/ardublock/block/IoTkit/IconMakeyIoTW.png</FileLocation>
 				</Image>
 			</Images>
@@ -121,6 +121,7 @@
         <BlockGenus name="Divider_KNN" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Reg" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_EDGE" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+        <BlockGenus name="Divider_INFLUX" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 
         <BlockGenus name="Divider_CO2" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Spektro" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -1372,11 +1373,6 @@
  			     <BlockConnector connector-type="boolean"
 					connector-kind="plug" position-type="mirror" />
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/Knopf.jpg</FileLocation>
-				</Image>
-			</Images>
 		
 		</BlockGenus>
 
@@ -1389,11 +1385,6 @@
 				<BlockConnector connector-type="number"
 					connector-kind="plug" position-type="mirror" />
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/Knopf.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 	    <BlockGenus name="button_rot_minmax" kind="command" color="44 165 226"
@@ -1476,11 +1467,6 @@
                     <DefaultArg genus-name="BMEVectorTemp" label="Temperatur"/>
                 </BlockConnector>
      		</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Bosch.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 <!--  BME280 Daten -->
@@ -1497,11 +1483,6 @@
                 </BlockConnector>
                 
      		</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/BME280.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -1667,7 +1648,7 @@
 
 
         <BlockGenus name="Feather7Seg" kind="command"
-			color="44 165 226" initlabel="bg.7Seg">
+			color="74 108 212" initlabel="bg.7Seg">
 			<description>
 				<text>write Payload</text>
 			</description>
@@ -1677,15 +1658,10 @@
 					<DefaultArg genus-name="number" label="88.88" />
 				</BlockConnector>
 		    </BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/7seg.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus> 
 
 
-    <BlockGenus name="LCDGroveRGB" kind="command" color="44 165 226"
+    <BlockGenus name="LCDGroveRGB" kind="command" color="74 108 212"
 			initlabel="bg.LCDGroveRGB" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
@@ -1701,15 +1677,10 @@
 					<DefaultArg genus-name="message" label="message" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/LCDGroveRGB.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 				
 			
-    <BlockGenus name="OLED_Print" kind="command" color="44 165 226"
+    <BlockGenus name="OLED_Print" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Print" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
@@ -1726,14 +1697,9 @@
 				</BlockConnector>
 
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
     
-        <BlockGenus name="OLED_DispArray" kind="command" color="44 165 226"
+        <BlockGenus name="OLED_DispArray" kind="command" color="74 108 212"
 			initlabel="bg.OLED_DispArray" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 			
@@ -1755,16 +1721,11 @@
 				</BlockConnector>
 
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/OLED_Array.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
     
-     <BlockGenus name="OLED_PrintTerminal" kind="command" color="44 165 226"
+     <BlockGenus name="OLED_PrintTerminal" kind="command" color="74 108 212"
 			initlabel="bg.OLED_PrintTerminal" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
@@ -1781,31 +1742,21 @@
     
     
 			
-    <BlockGenus name="OLED_Clear" kind="command" color="44 165 226"
+    <BlockGenus name="OLED_Clear" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Clear" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
     
     			
-    <BlockGenus name="OLED_Display" kind="command" color="44 165 226"
+    <BlockGenus name="OLED_Display" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Display" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
     
 			
-    <BlockGenus name="OLED_Font" kind="command" color="44 165 226"
+    <BlockGenus name="OLED_Font" kind="command" color="74 108 212"
 			initlabel="bg.OLED" editable-label="no" is-label-value="no">
 			<BlockConnectors>
   			    <BlockConnector connector-type="string"
@@ -1825,11 +1776,6 @@
 				
 				
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
     
     
@@ -1930,11 +1876,6 @@
 				</BlockConnector>
 
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/OLED.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
     
 
@@ -1952,21 +1893,11 @@
                     <DefaultArg genus-name="ADPS9960Gest" label="Gesten"/>	
                 </BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/gesture.jpg</FileLocation>
-				</Image>
-			</Images>
 			
 		</BlockGenus>
 		
 		<BlockGenus name="ADPS9960Cal" kind="command" color="44 165 226"
 			initlabel="bg.ADPS9960Cal" editable-label="no" is-label-value="no">
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/gesture.jpg</FileLocation>
-				</Image>
-			</Images>
 			
 		</BlockGenus>
 		
@@ -2017,11 +1948,6 @@
                    <DefaultArg genus-name="TCS34725Red" label="Red"/>	
                 </BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/TCS34725.png</FileLocation>
-				</Image>
-			</Images>
 			
 		</BlockGenus>
 
@@ -2062,11 +1988,6 @@
 					<DefaultArg genus-name="text" label="16V_400mA" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/INA219.png</FileLocation>
-				</Image>
-			</Images>
 			
 		</BlockGenus>
 
@@ -2103,11 +2024,6 @@
                     <DefaultArg genus-name="BNODimX" label="X-Achse"/>	
                 </BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Boschgg.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
         <BlockGenus name="BNOVectorAcc" kind="data" color="255 0 0" initlabel="bg.BNOVectorAcc" editable-label="no" is-label-value="no" >
@@ -2153,21 +2069,6 @@
           </BlockConnectors>
         </BlockGenus>
 
-<!-- 
-       <BlockGenus name="GetNFC" kind="data" color="44 165 226"
-			initlabel="bg.GetNFC" editable-label="no" is-label-value="no">
-			<BlockConnectors>
-				<BlockConnector connector-type="number"
-					connector-kind="plug" position-type="mirror" />
-			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/nfc.jpg</FileLocation>
-				</Image>
-			</Images>
-			
-		</BlockGenus>
-	-->	
 		<BlockGenus name="NFCRead" kind="data" color="44 165 226"
 			initlabel="bg.NFCRead" editable-label="no" is-label-value="no">
 			<BlockConnectors>
@@ -2177,11 +2078,6 @@
                     <DefaultArg genus-name="NFCVectorHash" label="ID Hash"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/nfc.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
         <BlockGenus name="NFCVectorHash" kind="data" color="255 0 0" initlabel="bg.NFCVectorHash" editable-label="no" is-label-value="no" >
@@ -2213,11 +2109,6 @@
 					<DefaultArg genus-name="NFCmessage" label="123" />
 				</BlockConnector>
 		    </BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/nfc.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus> 
 		
        <BlockGenus name="NFCmessage" kind="data" color="255 0 0"
@@ -2243,11 +2134,6 @@
                     <DefaultArg genus-name="BNODimX" label="X-Achse"/>	
                 </BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/MMA.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 	    <BlockGenus name="glue_nb" kind="data" color="165 42 42"
@@ -2273,11 +2159,6 @@
                     <DefaultArg genus-name="MGasVectNH3" label="NH3 (ppm)"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/MultiGas.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
         <BlockGenus name="MGasVectNH3" kind="data" color="255 0 0" initlabel="bg.MGasVectNH3" editable-label="no" is-label-value="no" >
@@ -2379,11 +2260,6 @@
                     <DefaultArg genus-name="number" label="0"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Maxbotix.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -2396,11 +2272,6 @@
                     <DefaultArg genus-name="DustHoneyVect25" label="PM 2.5 (µg/m3)"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Honey.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -2415,11 +2286,6 @@
                     <DefaultArg genus-name="DustHoneyVect25" label="PM 2.5 (µg/m3)"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/feingrove.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -2449,11 +2315,6 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/BH1750.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 	
 	
@@ -2465,11 +2326,6 @@
                     <DefaultArg genus-name="LightTSLVectLux" label="Beleuchtung (lux)"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/TSL2561.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 		<BlockGenus name="GetLightTSLnew" kind="data" color="44 165 226"
@@ -2484,11 +2340,6 @@
                 </BlockConnector>	
                 
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    	<FileLocation>com/ardublock/block/IoTkit/TSL2561.png</FileLocation>
-			    </Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -2540,11 +2391,6 @@
                     <DefaultArg genus-name="GPSVectorUpdate" label="SatUpdateFix"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/GPS.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 		<BlockGenus name="GetGPSI2C" kind="data" color="44 165 226"
@@ -2560,11 +2406,6 @@
 				</BlockConnector>
                 	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/GPSI2C.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -2604,11 +2445,6 @@
                     <DefaultArg genus-name="SCD30VectorCO2" label="CO2"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/scd40kgo.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
     
         	
@@ -2620,11 +2456,6 @@
 					<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/scd40kgo.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
         	
         	
@@ -2638,11 +2469,6 @@
                     <DefaultArg genus-name="SCD30VectorCO2" label="CO2"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/scd30kgo.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
         <BlockGenus name="SCD30VectorTemp" kind="data" color="255 0 0" initlabel="bg.SCD30VectorTemp" editable-label="no" is-label-value="no" >
@@ -2672,11 +2498,6 @@
 					<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/scd30kgo.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 	<!--  SCD30 Temperatur Offest -->
@@ -2688,11 +2509,6 @@
 					<DefaultArg genus-name="number" label="0.0" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/scd30kgo.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -2702,11 +2518,6 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/K30.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 	
 
@@ -2724,11 +2535,6 @@
 					<DefaultArg genus-name="text" label="4,5" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/MHZ19.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 	
 	 <BlockGenus name="MHZ19VectorTemp" kind="data" color="255 0 0" initlabel="bg.SCD30VectorTemp" editable-label="no" is-label-value="no" >
@@ -2752,11 +2558,6 @@
 					<DefaultArg genus-name="text" label="4,5" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/MHZ19.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -2773,11 +2574,6 @@
 				</BlockConnector>
                 
    		</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/dum.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 	<!--  DosisIntegral -->
@@ -2793,11 +2589,6 @@
 				</BlockConnector>
                 
    		</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/dum.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -2817,11 +2608,6 @@
 				</BlockConnector>
                
    		</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/dum.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -2840,12 +2626,6 @@
 				<BlockConnector connector-type="boolean"
 					connector-kind="plug" />
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/sx1509.jpg</FileLocation>
-				</Image>
-			</Images>
-			
 		</BlockGenus>
 
   	   <BlockGenus name="SX1509_write" kind="command" color="74 108 212"
@@ -2863,12 +2643,6 @@
 					<DefaultArg genus-name="digital-high" label="HIGH" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/sx1509.jpg</FileLocation>
-				</Image>
-			</Images>
-			
 		</BlockGenus>
 
 
@@ -2910,12 +2684,6 @@
 				<BlockConnector connector-type="boolean"
 					connector-kind="plug" />
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/mpr121.png</FileLocation>
-				</Image>
-			</Images>
-			
 		</BlockGenus>
 	
 		<BlockGenus name="pin-read-analog121" kind="data" color="44 165 226"
@@ -2966,12 +2734,6 @@
 					<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/motorwing.jpg</FileLocation>
-				</Image>
-			</Images>
-			
 		</BlockGenus>
 	
    	    <BlockGenus name="feather_stepmotor" kind="command" color="74 108 212"
@@ -2993,12 +2755,6 @@
 					<DefaultArg genus-name="number" label="10" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/motorwing.jpg</FileLocation>
-				</Image>
-			</Images>
-			
 		</BlockGenus>
 
    	    <BlockGenus name="arduino_stepmotor" kind="command" color="74 108 212"
@@ -3072,11 +2828,6 @@
 				
 				
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/NeoPixel.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus> 
 
         <BlockGenus name="iot_WS2812Ring" kind="command"
@@ -3115,11 +2866,6 @@
 					<DefaultArg genus-name="text" label="NEO_GRB + NEO_KHZ800" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/WS2812RingT.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus> 
 
     <BlockGenus name="iot_WS2812Ring_c" kind="command"
@@ -3168,11 +2914,6 @@
 				
 				
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/WS2812RingT.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus> 
 
 
@@ -3194,11 +2935,6 @@
 					<DefaultArg genus-name="digital-high" label="HIGH" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/DigitalIO.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 		<BlockGenus name="pin-write-analog" kind="command" color="74 108 212"
@@ -3216,11 +2952,6 @@
 					<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/AnalogIO.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 	    <BlockGenus name="pin-write-digitalLED" kind="command" color="74 108 212"
@@ -3238,11 +2969,6 @@
 					<DefaultArg genus-name="digital-high" label="HIGH" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/LED.gif</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 	
 	
@@ -3272,11 +2998,6 @@
 					<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/NeoPixel.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus> 
 		
 		
@@ -3295,11 +3016,6 @@
 	            <DefaultArg genus-name="NEOVectorRed" label="Rot"/>
 	        </BlockConnector>	
 		</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/NeoPixel.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus> 
 		
 		
@@ -3363,7 +3079,7 @@
 
  
        <BlockGenus name="iot_neowing" kind="command"
-			color="44 165 226" initlabel="bg.iot_neowing">
+			color="74 108 212" initlabel="bg.iot_neowing">
 			<description>
 				<text>NeoPixelWing</text>
 			</description>
@@ -3381,11 +3097,6 @@
 					<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-				<Image>
-					<FileLocation>com/ardublock/block/IoTkit/NeoWing.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus> 
  
  
@@ -3400,12 +3111,6 @@
 					<DefaultArg genus-name="IoTmessage" label="Hallo IoT" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/matrix.jpg</FileLocation>
-				</Image>
-			</Images>
-
 		</BlockGenus>
 
 
@@ -3428,12 +3133,6 @@
 					<DefaultArg genus-name="number" label="100.0" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/matrix.jpg</FileLocation>
-				</Image>
-			</Images>
-
 		</BlockGenus>
 
 
@@ -3473,11 +3172,6 @@
 					<DefaultArg genus-name="passwort" label="IoTWerkstatt" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/wifi.gif</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 		
 		<BlockGenus name="WiFiMan" kind="command" color="30 30 255"
@@ -4014,11 +3708,6 @@
 					connector-kind="socket" label="bc.thing8">
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Thingspeak.gif</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -4175,11 +3864,6 @@
 -->
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Thingspeak.gif</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
         <BlockGenus name="sendBoschSpex" kind="command" color="30 30 255"
@@ -4212,11 +3896,6 @@
 					connector-kind="socket" label="IAQ">
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Thingspeak.gif</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -4352,13 +4031,6 @@
 				
 				<BlockConnector connector-type="string" connector-kind="plug" />
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/ecoflow.jpg</FileLocation>
-				</Image>
-			</Images>
-			
-			
 		</BlockGenus>
 
         <BlockGenus name="JSONGet" kind="data" color="30 30 255"
@@ -4396,11 +4068,6 @@
 	            </BlockConnector>	
 			</BlockConnectors>
 			
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/shelly_small.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -4420,11 +4087,6 @@
 				</BlockConnector>
 			</BlockConnectors>
 			
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/shelly_small.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
         	
         	
@@ -4445,11 +4107,6 @@
                     <DefaultArg genus-name="ShellyVectorPower" label="Power [W]"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/shelly_small.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 	<!--  Shelly -->
@@ -4470,11 +4127,6 @@
                     <DefaultArg genus-name="ShellyVectorPower" label="Power [W]"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/shelly_small.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -4786,12 +4438,6 @@
 					
 				</BlockConnector>
 				</BlockConnectors>
-				
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/PersonSensor.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 		
 		<BlockGenus name="storePS" kind="command" color="30 30 255"
@@ -4847,11 +4493,6 @@
 				
 				</BlockConnectors>
 				
-			<Images>
-			    <Image>
-			    	<FileLocation>com/ardublock/block/IoTkit/VL53s.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 		
 		
@@ -4914,8 +4555,8 @@
 		</BlockGenus>
 
 
-       <BlockGenus name="payloadIntBlynk" kind="data" color="255 0 0"
-			initlabel="bg.payloadIntBlynk" editable-label="yes">
+       <BlockGenus name="payloadIntBlynk" kind="data" color="204 0 102"
+			initlabel="bg.payloadIntBlynk" editable-label="no">
 			<description>
 				<text> Blynk payload </text>
 			</description>
@@ -4924,8 +4565,8 @@
 			</BlockConnectors>
 		</BlockGenus>
         
-       <BlockGenus name="payloadFloatBlynk" kind="data" color="255 0 0"
-			initlabel="bg.payloadFloatBlynk" editable-label="yes">
+       <BlockGenus name="payloadFloatBlynk" kind="data" color="204 0 102"
+			initlabel="bg.payloadFloatBlynk" editable-label="no">
 			<description>
 				<text> Blynk payload </text>
 			</description>
@@ -4934,8 +4575,8 @@
 			</BlockConnectors>
 		</BlockGenus>
         
-       <BlockGenus name="payloadStrBlynk" kind="data" color="255 0 0"
-			initlabel="bg.payloadStrBlynk" editable-label="yes">
+       <BlockGenus name="payloadStrBlynk" kind="data" color="204 0 102"
+			initlabel="bg.payloadStrBlynk" editable-label="no">
 			<description>
 				<text> Blynk payload </text>
 			</description>
@@ -5011,7 +4652,7 @@
 				
 			</BlockConnectors>
   			<Images>
-			    <Image>
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5035,7 +4676,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 			<Images>
-			    <Image>
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5077,7 +4718,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 		    <Images>
-			    <Image>
+			    <Image block-location="northwest">
 					<FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5105,7 +4746,7 @@
 	
 			</BlockConnectors>
 			<Images>
-			    <Image block-location="north">
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5123,9 +4764,6 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
-
-   
-
 
          <BlockGenus name="detClass" kind="data" color="30 30 255"
 			initlabel="bg.detClass" editable-label="no" is-label-value="no">
@@ -5151,7 +4789,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 			<Images>
-			    <Image>
+			    <Image block-location="northwest">
 			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
 				</Image>
 			</Images>
@@ -5166,11 +4804,6 @@
                     <DefaultArg genus-name="AIDatatypCal" label="calibration"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
-				</Image>
-			</Images>	
 		</BlockGenus>
         
          <BlockGenus name="AIModeltypAuto" kind="data" color="255 0 0" initlabel="bg.AIModeltypAuto" editable-label="no" is-label-value="no" >
@@ -5198,9 +4831,6 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>        
-        
-     
-        
      
         <BlockGenus name="AIcalcRegModel" kind="data" color="30 30 255"
 			initlabel="bg.AIcalcRegModel" editable-label="no" is-label-value="no">
@@ -5220,12 +4850,6 @@
                 </BlockConnector>	
 				
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
-				</Image>
-			</Images>
-			
 		</BlockGenus>
         
         
@@ -5237,11 +4861,6 @@
                 </BlockConnector>	
 				
 			</BlockConnectors>
-			<Images>
-			    <Image>
-			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
-				</Image>
-			</Images>
 			
 		</BlockGenus>
      
@@ -5320,11 +4939,6 @@
 				 </BlockConnector>
 				
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/TTN.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
         <BlockGenus name="TTN_DEVEUI" kind="data" color="255 0 0"
@@ -5408,11 +5022,6 @@
 					connector-kind="socket" label="bc.thing6">
 				 </BlockConnector>
 				</BlockConnectors>
-				<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/TTN.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
         <BlockGenus name="TTN_DEVADD" kind="data" color="255 0 0"
@@ -5461,12 +5070,6 @@
 				<BlockConnector label="bc.commands" connector-type="cmd"
 					connector-kind="socket" />
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/TTN.png</FileLocation>
-				</Image>
-			</Images>
-			
 		</BlockGenus>
 
 <!-- Time -->
@@ -5488,7 +5091,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
-		  <BlockGenus name="NTPctime" kind="data" color="255 0 0"
+		  <BlockGenus name="NTPctime" kind="data" color="204 0 102"
 			initlabel="bg.NTPctime" editable-label="no">
 			<description>
 				<text>
@@ -5500,7 +5103,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
-		  <BlockGenus name="NTPunix" kind="data" color="255 0 0"
+		  <BlockGenus name="NTPunix" kind="data" color="204 0 102"
 			initlabel="bg.NTPunix" editable-label="no">
 			<description>
 				<text>
@@ -5520,11 +5123,6 @@
                     <DefaultArg genus-name="DIYSpectroVectOctiW" label="Weiss Octopus"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/tsle.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 	<BlockGenus name="DIYSpectroBH" kind="command" color="44 165 226"
@@ -5534,11 +5132,6 @@
                     <DefaultArg genus-name="DIYSpectroVectOctiW" label="Weiss Octopus"/>
                 </BlockConnector>	
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/tsle.jpg</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 
 
@@ -5582,11 +5175,6 @@
 				</BlockConnector>
 			</BlockConnectors>
 			
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Hoymiles.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
         	
 	<!--  Hoymiles -->
@@ -5606,11 +5194,6 @@
 				
 				</BlockConnectors>
 				
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/Hoymiles.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
         
         <BlockGenus name="HMVect300" kind="data" color="255 0 0" initlabel="HMVect300" editable-label="no" is-label-value="no" >
@@ -5662,11 +5245,6 @@
 				</BlockConnector>
                 
    		</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/dum.png</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
 		
 		
@@ -6390,16 +5968,22 @@
 			<BlockDrawer button-color="122 150 200" name="bd.input"
 				type="factory">
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
-				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
-				<BlockGenusMember>pin-read-digital</BlockGenusMember>
 				<BlockGenusMember>pin-read-analog</BlockGenusMember>
+				<BlockGenusMember>pin-read-digital</BlockGenusMember>
+				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBSEC</BlockGenusMember>
 				<BlockGenusMember>GetBME680offset</BlockGenusMember>
+				<BlockGenusMember>Divider_Light</BlockGenusMember>
+				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
+				<BlockGenusMember>ADPS9960Cal</BlockGenusMember>
 				<BlockGenusMember>Divider_Encoder</BlockGenusMember>
 				<BlockGenusMember>button_press</BlockGenusMember>
 				<BlockGenusMember>button_rot</BlockGenusMember>
 			    <BlockGenusMember>button_rot_minmax</BlockGenusMember>	
+			    <BlockGenusMember>touch_rot</BlockGenusMember>	
+  		        <BlockGenusMember>touch_press</BlockGenusMember>	
+  		        <BlockGenusMember>touch_rot_minmax</BlockGenusMember>	
 				<BlockGenusMember>glue_sn</BlockGenusMember>
 				<BlockGenusMember>glue_sb</BlockGenusMember>
 			 
@@ -6413,6 +5997,10 @@
 				<BlockGenusMember>Divider_LED</BlockGenusMember>
 				<BlockGenusMember>iot_neopixel_light</BlockGenusMember>
 				<BlockGenusMember>iot_neopixel</BlockGenusMember>
+			
+				<BlockGenusMember>Divider_Expand</BlockGenusMember>
+				<BlockGenusMember>pin-write-analog</BlockGenusMember>
+				<BlockGenusMember>pin-write-digital</BlockGenusMember>
 				
 				<BlockGenusMember>Divider_Display</BlockGenusMember>
 				<BlockGenusMember>OLED_Clear</BlockGenusMember>
@@ -6421,9 +6009,7 @@
 				<BlockGenusMember>OLED_Font</BlockGenusMember>
 				<BlockGenusMember>OLED_DispArray</BlockGenusMember>
 				
-				<BlockGenusMember>Divider_Expand</BlockGenusMember>
-				<BlockGenusMember>pin-write-analog</BlockGenusMember>
-				<BlockGenusMember>pin-write-digital</BlockGenusMember>
+			
 				
 	<!-- 			<BlockGenusMember>IoTmessage</BlockGenusMember> -->
 				
@@ -6523,11 +6109,9 @@
  			    <BlockGenusMember>createEDGE</BlockGenusMember>
   			    <BlockGenusMember>sampleEDGE</BlockGenusMember>
 				<BlockGenusMember>sendEDGE</BlockGenusMember>
-				
+			    <BlockGenusMember>Divider_INFLUX</BlockGenusMember>
   			    <BlockGenusMember>createInfluxDB</BlockGenusMember>
   			    <BlockGenusMember>sendInfluxDB</BlockGenusMember>
-  			    
-  			    
 			</BlockDrawer>
 
 
@@ -6558,12 +6142,11 @@
 
 				<BlockGenusMember>Divider_Display</BlockGenusMember>
 				<BlockGenusMember>Feather7Seg</BlockGenusMember>
- 				<BlockGenusMember>iot_neowing</BlockGenusMember>
- 				<BlockGenusMember>LCDGroveRGB</BlockGenusMember>
- 				<BlockGenusMember>OLED</BlockGenusMember>
-				<BlockGenusMember>iot_matrixwing</BlockGenusMember>
+ 				<BlockGenusMember>iot_matrixwing</BlockGenusMember>
 				<BlockGenusMember>matrixArrayDisplay</BlockGenusMember>
-
+                <BlockGenusMember>iot_neowing</BlockGenusMember>
+ 				<BlockGenusMember>LCDGroveRGB</BlockGenusMember>
+ 				
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBME_Adr</BlockGenusMember>
 				<BlockGenusMember>GetMGas</BlockGenusMember>
@@ -6573,8 +6156,8 @@
 			    <BlockGenusMember>CalSCD30</BlockGenusMember>
 		        <BlockGenusMember>GetMHZ19</BlockGenusMember>
 		        <BlockGenusMember>CalMHZ19</BlockGenusMember>
-		        <BlockGenusMember>GetSCD30</BlockGenusMember>
-			    <BlockGenusMember>CalSCD30</BlockGenusMember>
+		        <BlockGenusMember>GetSCD40</BlockGenusMember>
+			    <BlockGenusMember>CalSCD40</BlockGenusMember>
 		        
 		        <BlockGenusMember>GetK30</BlockGenusMember>
 
@@ -6708,9 +6291,6 @@
 			  <BlockGenusMember>sleep32</BlockGenusMember>
   		      <BlockGenusMember>LightSleep32</BlockGenusMember>	
   		      <BlockGenusMember>readReset32</BlockGenusMember>	
-  		      <BlockGenusMember>touch_rot</BlockGenusMember>	
-  		      <BlockGenusMember>touch_press</BlockGenusMember>	
-  		      <BlockGenusMember>touch_rot_minmax</BlockGenusMember>	
   		      <BlockGenusMember>Divider_OTA</BlockGenusMember>
  		      <BlockGenusMember>basicOTA</BlockGenusMember>
  		      

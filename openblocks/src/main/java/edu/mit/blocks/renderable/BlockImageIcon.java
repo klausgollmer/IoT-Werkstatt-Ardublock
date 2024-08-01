@@ -56,7 +56,7 @@ public class BlockImageIcon extends JLabel {
         setSize(new Dimension(blockImageIcon.getIconWidth(), blockImageIcon.getIconHeight()));
         setMinimumSize(new Dimension(blockImageIcon.getIconWidth(), blockImageIcon.getIconHeight()));
         this.blockImageIcon = blockImageIcon;
-        this.location = ImageLocation.WEST;
+        this.location = location;
 
         this.isEditable = isEditable;
         this.wrapText = wrapText;

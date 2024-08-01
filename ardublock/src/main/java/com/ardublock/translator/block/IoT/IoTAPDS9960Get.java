@@ -47,12 +47,12 @@ public class IoTAPDS9960Get extends TranslatorBlock
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
     String Sensor = translatorBlock.toCode();
     
-    String Read = "// https://github.com/adafruit/Adafruit_APDS9960 Copyright (c) 2012, Adafruit Industries\r\n"
-    		+ "int readAPDS9960(int chan) { // APDS9960 Gesture Sensor Einlesefunktion\r\n"
+    String Read = "int readAPDS9960(int chan) { // APDS9960 Gesture Sensor Einlesefunktion\r\n"
     		+ "  uint16_t value = 0;\r\n"
     		+ "  uint8_t dum;\r\n"
     		+ "  uint16_t r, g, b, c;\r\n"
     		+ "  if (chan >1) {    //wait for color data to be ready\r\n"
+    		+ "    apds.enableGesture(false);\r\n"
     		+ "    apds.enableColor(true);\r\n"
     		+ "    while(!apds.colorDataReady()){\r\n"
     		+ "      delay(5);\r\n"
@@ -71,7 +71,6 @@ public class IoTAPDS9960Get extends TranslatorBlock
     		+ "    else \r\n"
     		+ "      apds.enableProximity(false);\r\n"
     		+ "  }\r\n"
-    		+ "\r\n"
     		+ "  switch (chan) {\r\n"
     		+ "  case 0: // Gesture  \r\n"
     		+ "    value = apds.readGesture();\r\n"
@@ -81,6 +80,7 @@ public class IoTAPDS9960Get extends TranslatorBlock
     		+ "    break;\r\n"
     		+ "  case 2: // AmbientLight\r\n"
     		+ "    //value = c;\r\n"
+    		+ "    Serial.print(\"readLux\");\r\n"
     		+ "    value = apds.calculateLux(r,g,b);\r\n"
     		+ "    break;\r\n"
     		+ "  case 3: // red\r\n"
