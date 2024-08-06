@@ -34,7 +34,7 @@ public class IoTBNOGet extends TranslatorBlock
     translator.addSetupCommand("boschBNE055.setExtCrystalUse(true);\n");
     
     // Deklarationen hinzuf�gen
-    translator.addDefinitionCommand("// Adafruit BMO-Library https://github.com/adafruit/Adafruit_BNO055");
+    translator.addDefinitionCommand("// Adafruit BNO-Library https://github.com/adafruit/Adafruit_BNO055");
 	translator.addDefinitionCommand("Adafruit_BNO055 boschBNE055=Adafruit_BNO055();");
 
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
