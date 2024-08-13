@@ -3173,6 +3173,26 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+
+  		<BlockGenus name="connectWLANShelly" kind="command" color="30 30 255"
+			initlabel="bg.connectWLANShelly" editable-label="no" is-label-value="no">
+			<description>
+				<text>connect to WLAN</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.ssid">
+<!-- 					<DefaultArg genus-name="ssid" label="FRITZ!Box Gastzugang" />-->
+ 					<DefaultArg genus-name="ssid" label="ShellyPlusPlugS-D4D4DAEDE65C" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.pass">
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+
+
 		
 		<BlockGenus name="WiFiMan" kind="command" color="30 30 255"
 			initlabel="bg.connectWLANAP" editable-label="no" is-label-value="no">
@@ -3681,7 +3701,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.apikey">
-					<DefaultArg genus-name="apikey" label="mein API-Key" />
+					<DefaultArg genus-name="apikey" label="FI6I8Q36AZ0VYKVW" />
 				</BlockConnector>
 			    <BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.thing1">
@@ -6020,6 +6040,9 @@
 				<!-- <BlockGenusMember>WiFiMan</BlockGenusMember>-->
 				<BlockGenusMember>Divider_WiFi</BlockGenusMember>
 				<BlockGenusMember>connectWLANAP</BlockGenusMember>
+				<BlockGenusMember>connectWLANShelly</BlockGenusMember>
+	
+				
 				<BlockGenusMember>connectWLANAPTO</BlockGenusMember>
 				<BlockGenusMember>Divider_WiFiAP</BlockGenusMember>
 				<BlockGenusMember>buildWLANAP</BlockGenusMember>
@@ -6043,6 +6066,81 @@
 		 	    <BlockGenusMember>ownMessageServer_CO2_V2</BlockGenusMember>
 			 	
   			</BlockDrawer>
+								
+								          <!-- bd.input, external -->
+          <BlockDrawer button-color="122 150 200" name="bd.input_ext"
+				type="factory">
+
+				<BlockGenusMember>Divider_Display</BlockGenusMember>
+				<BlockGenusMember>Feather7Seg</BlockGenusMember>
+ 				<BlockGenusMember>iot_matrixwing</BlockGenusMember>
+				<BlockGenusMember>matrixArrayDisplay</BlockGenusMember>
+                <BlockGenusMember>iot_neowing</BlockGenusMember>
+ 				<BlockGenusMember>LCDGroveRGB</BlockGenusMember>
+ 				
+				<BlockGenusMember>Divider_Environment</BlockGenusMember>
+				<BlockGenusMember>GetBME_Adr</BlockGenusMember>
+				<BlockGenusMember>GetMGas</BlockGenusMember>
+				<BlockGenusMember>GetDustHoney</BlockGenusMember>
+				<BlockGenusMember>GetDustHM330</BlockGenusMember>
+			    <BlockGenusMember>GetSCD30</BlockGenusMember>
+			    <BlockGenusMember>CalSCD30</BlockGenusMember>
+		        <BlockGenusMember>GetMHZ19</BlockGenusMember>
+		        <BlockGenusMember>CalMHZ19</BlockGenusMember>
+		        <BlockGenusMember>GetSCD40</BlockGenusMember>
+			    <BlockGenusMember>CalSCD40</BlockGenusMember>
+		        
+		        <BlockGenusMember>GetK30</BlockGenusMember>
+
+				<BlockGenusMember>Divider_Light</BlockGenusMember>
+				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
+				<BlockGenusMember>ADPS9960Cal</BlockGenusMember>
+				<BlockGenusMember>TCS34725Get</BlockGenusMember>
+				<BlockGenusMember>GetLightTSLnew</BlockGenusMember>
+				<BlockGenusMember>GetLightBH</BlockGenusMember>
+
+				<BlockGenusMember>Divider_Distance</BlockGenusMember>
+	            <BlockGenusMember>GetMaxbotix</BlockGenusMember>
+				<BlockGenusMember>readVL53</BlockGenusMember>
+				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
+				<BlockGenusMember>LIDAR_TFmini_read</BlockGenusMember>
+
+				<BlockGenusMember>Divider_Expand</BlockGenusMember>
+				<BlockGenusMember>SX1509_read</BlockGenusMember>
+				<BlockGenusMember>SX1509_write</BlockGenusMember>		
+				<BlockGenusMember>pin-read-analog121</BlockGenusMember>
+				<BlockGenusMember>INA219Get</BlockGenusMember>
+				<BlockGenusMember>MPR121_read</BlockGenusMember>
+
+				<BlockGenusMember>Divider_GPS</BlockGenusMember>
+			    <BlockGenusMember>GetGPS</BlockGenusMember>
+			    <BlockGenusMember>GetGPSI2C</BlockGenusMember>
+
+                <BlockGenusMember>Divider_NFC</BlockGenusMember>
+				<BlockGenusMember>NFCRead</BlockGenusMember>
+				<BlockGenusMember>NFCWrite</BlockGenusMember>
+
+				<BlockGenusMember>Divider_Motor</BlockGenusMember>
+				<BlockGenusMember>pin-write-servo</BlockGenusMember>
+				<BlockGenusMember>feather_motor</BlockGenusMember>
+				<BlockGenusMember>feather_stepmotor</BlockGenusMember>
+				<BlockGenusMember>arduino_stepmotor</BlockGenusMember>
+
+				<BlockGenusMember>Divider_LED</BlockGenusMember>
+			 	<BlockGenusMember>iot_WS2812</BlockGenusMember>
+			 	<BlockGenusMember>iot_WS2812Ring_c</BlockGenusMember>
+
+ 				<BlockGenusMember>Divider_Div</BlockGenusMember>
+				<BlockGenusMember>GetMMA7660</BlockGenusMember>
+				<BlockGenusMember>GetBNO</BlockGenusMember>
+				<BlockGenusMember>SD_print</BlockGenusMember>		
+			 	<BlockGenusMember>readPS</BlockGenusMember>
+			 	<BlockGenusMember>calPS</BlockGenusMember>
+			 	<BlockGenusMember>storePS</BlockGenusMember>
+				
+								
+			</BlockDrawer>
+								
 								
 					
 				</BlockDrawerSet>
