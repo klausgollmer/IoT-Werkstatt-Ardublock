@@ -34,7 +34,7 @@ public class IoTGSMConnect  extends TranslatorBlock {
 		translator.addDefinitionCommand("#define GSM_APN  "+apn+"");
 		translator.addDefinitionCommand("#define GSM_USER "+user+"");
 		translator.addDefinitionCommand("#define GSM_PASS "+pass+"");
-		translator.addDefinitionCommand("SoftwareSerial SerialAT(12, 14); // serielle Schnittstelle Modem per Software RX, TX");
+		translator.addDefinitionCommand("SoftwareSerial SerialAT(12, 14); // Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup\n");
 		translator.addDefinitionCommand("TinyGsm modem(SerialAT);         // Objekt GSM-Modem");
 	
 			    

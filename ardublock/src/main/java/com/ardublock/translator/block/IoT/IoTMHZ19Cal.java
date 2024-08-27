@@ -23,7 +23,7 @@ public class IoTMHZ19Cal extends TranslatorBlock
     TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
     String pins = translatorBlock.toCode();
     pins = pins.substring(1, pins.length()-1);
-    translator.addDefinitionCommand("SoftwareSerial MHZSerial("+pins+", false); // TX,RX\n");
+    translator.addDefinitionCommand("SoftwareSerial MHZSerial("+pins+", false); // Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup \n");
 
     
     

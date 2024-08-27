@@ -25,8 +25,8 @@ public class IoTLIDARread extends TranslatorBlock
     translator.addSetupCommand(Setup);
 
     
-    // Deklarationen hinzuf�gen
-    translator.addDefinitionCommand("SoftwareSerial swSer(14, 12, false); // 14 -> TX, 12 -> RX\n");
+    // Deklarationen hinzuf�ge
+    translator.addDefinitionCommand("SoftwareSerial swSer(14, 12, false); //Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup, 14 -> TX, 12 -> RX\n");
    	
     
     String read = "// LIDAR TFmini http://www.benewake.com/en/tfmini.html \n"

@@ -2251,7 +2251,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="number" label="5"/>
+                    <DefaultArg genus-name="number" label="22"/>
                 </BlockConnector>	
 				<BlockConnector label="max Val" connector-type="number" connector-kind="socket" position-type="single">
                     <DefaultArg genus-name="number" label="5000"/>

@@ -28,7 +28,7 @@ public class IoTGPSGet extends TranslatorBlock
 
     
     String Def = "const int GPS_RxPin = "+RxPin+";\n"
-    		   + "SoftwareSerial ssGPS(GPS_RxPin, 100); // RXPin, TX not used \n";
+    		   + "SoftwareSerial ssGPS(GPS_RxPin, 100); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup \n";
     translator.addDefinitionCommand(Def);
     
     translator.addSetupCommand("Serial.begin(115200);");    

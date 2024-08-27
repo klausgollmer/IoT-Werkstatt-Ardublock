@@ -30,7 +30,8 @@ public class IoTMaxbotixGet extends TranslatorBlock
     
     // Header hinzuf�gen
     translator.addHeaderFile("SoftwareSerial.h");
-
+    translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
+    
     // Setupdeklaration
     // I2C-initialisieren
     String Setup = " swSerMaxBot.begin(9600,SWSERIAL_8N1); // Maxbotix ultrasonic \n";
@@ -40,39 +41,49 @@ public class IoTMaxbotixGet extends TranslatorBlock
     				"Serial.println(\"Side effect: set sleep GPIO"+sleep+" to OUTPUT HIGH (Maxbotix sensor)\");";
     translator.addSetupCommand(Setup);
     
-    String wakeup = "/* ------------------------------------- light sleep, do not change a running system\n" + 
-			" *  https://kevinstadler.github.io/notes/esp8266-deep-sleep-light-sleep-arduino/\n" + 
-			"*/\n" + 
-			"void fpm_wakup_cb_func(void) { // used for light sleep\n" + 
-			"  Serial.println(\"wakeup lightsleep\"); Serial.flush();\n" + 
-			"}\n" + 
-			"void lightsleep(long ms) {\n" + 
-			"    // Wifi off\n" + 
-			"  wifi_station_disconnect();\n" + 
-			"  wifi_set_opmode(NULL_MODE); \n" + 
-			"  \n" + 
-			"  Serial.flush(); // no serial output in pipe\n" + 
-			"  // for timer-based light sleep to work, the os timers need to be disconnected\n" + 
-			"  extern os_timer_t *timer_list; timer_list = nullptr;\n" + 
-			"  // enable light sleep\n" + 
-			"  wifi_fpm_set_sleep_type(LIGHT_SLEEP_T);\n" + 
-			"  wifi_fpm_open();\n" + 
-			"  wifi_fpm_set_wakeup_cb(fpm_wakup_cb_func);\n" + 
-			"  // sleep for ms\n" + 
-			"  long sleepTimeMilliSeconds = ms;\n" + 
-			"  wifi_fpm_do_sleep(sleepTimeMilliSeconds * 1000);\n" + 
-			"  // timed light sleep is only entered when the sleep command is\n" + 
-			"  // followed by a delay() that is at least 1ms longer than the sleep\n" + 
-			"  delay(sleepTimeMilliSeconds + 1);\n" + 
-			"  // code will continue here after the time-out \n" + 
-			"}\n" + 
-			"";
+    String wakeup = "#if defined(ESP8266)\r\n"
+    		+ "/* ------------------------------------- light sleep, do not change a running system\r\n"
+    		+ " *  https://kevinstadler.github.io/notes/esp8266-deep-sleep-light-sleep-arduino/\r\n"
+    		+ " */\r\n"
+    		+ "void fpm_wakup_cb_func(void) { // used for light sleep\r\n"
+    		+ "  Serial.println(\"wakeup lightsleep\"); \r\n"
+    		+ "  Serial.flush();\r\n"
+    		+ "}\r\n"
+    		+ "void MaxBotixLightsleep(long ms) {\r\n"
+    		+ "  // Wifi off\r\n"
+    		+ "  wifi_station_disconnect();\r\n"
+    		+ "  wifi_set_opmode(NULL_MODE); \r\n"
+    		+ "\r\n"
+    		+ "  Serial.flush(); // no serial output in pipe\r\n"
+    		+ "  // for timer-based light sleep to work, the os timers need to be disconnected\r\n"
+    		+ "  extern os_timer_t *timer_list; \r\n"
+    		+ "  timer_list = nullptr;\r\n"
+    		+ "  // enable light sleep\r\n"
+    		+ "  wifi_fpm_set_sleep_type(LIGHT_SLEEP_T);\r\n"
+    		+ "  wifi_fpm_open();\r\n"
+    		+ "  wifi_fpm_set_wakeup_cb(fpm_wakup_cb_func);\r\n"
+    		+ "  // sleep for ms\r\n"
+    		+ "  long sleepTimeMilliSeconds = ms;\r\n"
+    		+ "  wifi_fpm_do_sleep(sleepTimeMilliSeconds * 1000);\r\n"
+    		+ "  // timed light sleep is only entered when the sleep command is\r\n"
+    		+ "  // followed by a delay() that is at least 1ms longer than the sleep\r\n"
+    		+ "  delay(sleepTimeMilliSeconds + 1);\r\n"
+    		+ "  // code will continue here after the time-out \r\n"
+    		+ "}\r\n"
+    		+ "#elif defined(ESP32) \r\n"
+    		+ "  //------- Light SLEEP ESP 32 ---------------------------- \\n\"\r\n"
+    		+ "void MaxBotixLightsleep(long ms) {\r\n"
+    		+ "  Serial.flush();\r\n"
+    		+ "  esp_sleep_enable_timer_wakeup(ms*1000ULL);\r\n"
+    		+ "  esp_light_sleep_start(); \r\n"
+    		+ "}\r\n"
+    		+ "#endif";
 	translator.addDefinitionCommand(wakeup);
     
     
   
     // Deklarationen hinzuf�gen
-    translator.addDefinitionCommand("SoftwareSerial swSerMaxBot("+rxpin+", 100,true); // RXPin, TX not used");   		   	
+	translator.addDefinitionCommand("SoftwareSerial swSerMaxBot("+rxpin+", 100,true); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup");   		   	
     
     String read = "int readMaxBotRaw(){ // ----------------------- Maxbotix serial protocol\r\n" + 
     		"  int reading = -1;\r\n" + 
@@ -99,21 +110,21 @@ public class IoTMaxbotixGet extends TranslatorBlock
     		"   \r\n" + 
     		"  if (sleep_gpio >= 0) {\r\n" + 
     		"    digitalWrite(sleep_gpio, LOW);\r\n" + 
-    		"    lightsleep(10050); // power up the sensor\r\n" + 
+    		"    MaxBotixLightsleep(10050); // power up the sensor\r\n" + 
     		"  }\r\n" + 
     		"\r\n" + 
     		"  int v1     = maxLevel;\r\n" + 
     		"  while (((v1 >= maxLevel) || (v1 <= minLevel)) && (tryout > 0)) {  // out of range \r\n" + 
     		"    v1 = readMaxBotRaw();\r\n" + 
     		"    tryout--;\r\n" + 
-    		"    if (sleep_gpio >= 0) lightsleep(435);  \r\n" + 
+    		"    if (sleep_gpio >= 0) MaxBotixLightsleep(435);  \r\n" + 
     		"  }\r\n" + 
     		"\r\n" + 
     		"  int v2     = maxLevel;\r\n" + 
     		"  while (((v2 >= maxLevel) || (v2 <= minLevel)) && (tryout > 0)) {  // out of range \r\n" + 
     		"    v2 = readMaxBotRaw();\r\n" + 
     		"    tryout--;\r\n" + 
-    		"    if (sleep_gpio >= 0) lightsleep(435);  \r\n" + 
+    		"    if (sleep_gpio >= 0) MaxBotixLightsleep(435);  \r\n" + 
     		"  }\r\n" + 
     		"\r\n" + 
     		"  int v3     = maxLevel;\r\n" + 
