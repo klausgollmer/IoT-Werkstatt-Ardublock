@@ -107,6 +107,7 @@
 		<BlockGenus name="Divider_DNS" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Server" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Thing" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+        <BlockGenus name="Divider_Thingsboard" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Sense" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Energy" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Smart" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -3919,6 +3920,43 @@
 		</BlockGenus>
 
 
+        <BlockGenus name="sendThingsboard" kind="command" color="30 30 255"
+			initlabel="bg.sendThingsboard" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.host">
+					<DefaultArg genus-name="host" label="thingsboard:8080" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Access Token">
+					<DefaultArg genus-name="apikey" label="your Access Token" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Name">
+					<DefaultArg genus-name="text" label="Key (field) 1" />
+				</BlockConnector>
+			    <BlockConnector connector-type="string"
+					connector-kind="socket" label="Data">
+					<DefaultArg genus-name="glue_sn" label="Value" />
+				</BlockConnector>
+				
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Name">
+				</BlockConnector>
+			    <BlockConnector connector-type="string"
+					connector-kind="socket" label="Data">
+				</BlockConnector>
+				
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Name">
+				</BlockConnector>
+			    <BlockConnector connector-type="string"
+					connector-kind="socket" label="Data">
+				</BlockConnector>
+				
+				
+			</BlockConnectors>
+		</BlockGenus>
 
 
 
@@ -4003,24 +4041,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-        <BlockGenus name="sendHTTPSGet" kind="data" color="30 30 255"
-			initlabel="bg.sendHTTPSGet" editable-label="no" is-label-value="no">
-			<description>
-				<text>REST Get</text>
-			</description>
-			<BlockConnectors>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.host">
-					<DefaultArg genus-name="host" label="Server IP" />
-				</BlockConnector>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.URI">
-					<DefaultArg genus-name="URI" label="Server GET " />
-				</BlockConnector>
-				<BlockConnector connector-type="string" connector-kind="plug" />
-			</BlockConnectors>
-		</BlockGenus>
-		
+        
 		<BlockGenus name="EcoflowGet" kind="data" color="30 30 255"
 			initlabel="bg.EcoflowGet" editable-label="no" is-label-value="no">
 			<description>
@@ -6057,6 +6078,8 @@
 			    <BlockGenusMember>Divider_Thing</BlockGenusMember>
 			    <BlockGenusMember>sendThingspeak</BlockGenusMember>
 				<BlockGenusMember>askThingspeak</BlockGenusMember>
+				<BlockGenusMember>Divider_Thingsboard</BlockGenusMember>
+			    <BlockGenusMember>sendThingsboard</BlockGenusMember>
 				<BlockGenusMember>Divider_Energy</BlockGenusMember>
   			    <BlockGenusMember>sendShelly</BlockGenusMember>
 			 	<BlockGenusMember>getShelly2</BlockGenusMember>
