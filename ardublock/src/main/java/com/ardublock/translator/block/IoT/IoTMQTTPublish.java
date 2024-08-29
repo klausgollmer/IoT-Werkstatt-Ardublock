@@ -26,7 +26,7 @@ public class IoTMQTTPublish  extends TranslatorBlock {
 	    payload = translatorBlock.toCode();
         
 	    String ret = "mqttreconnect();\n   {String pay=String("+payload+");\n mqttclient.publish("+topic+",pay.c_str());\n"+
-	                 "Serial.print(\"\\nmqtt publish: \"); Serial.print(pay);};\n"; 
+	                 "Serial.print(\"mqtt publish on topic: \"); Serial.print(String("+topic+")+String(\" data: \"));Serial.println(pay);};\n"; 
         return codePrefix + ret + codeSuffix;
 	 	}
 }

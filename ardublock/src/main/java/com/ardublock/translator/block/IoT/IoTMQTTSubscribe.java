@@ -18,9 +18,15 @@ public class IoTMQTTSubscribe  extends TranslatorBlock {
 		
 		translator.setMQTTProgram(true);
 		
-		String topic;
+		String topic,QoS="0";
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    topic = translatorBlock.toCode();
+	    
+	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
+	    QoS = translatorBlock.toCode();
+	    
+	    
+	    
         String call_topic = topic.replace('.','_');
 	    //translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 	    //payload = translatorBlock.toCode();
@@ -37,10 +43,10 @@ public class IoTMQTTSubscribe  extends TranslatorBlock {
 
 	    String ret;
 		ret = "void "+myfun+"(byte* pay, unsigned int len){ // ---------- my callbackfunction mqtt\n";
-		translatorBlock = getTranslatorBlockAtSocket(1);
+		translatorBlock = getTranslatorBlockAtSocket(2);
 		ret = ret + "  String payload = String((char*)pay); // payload als String interpretieren\n"
                   + "  MQTT_Rx_Payload=payload.substring(0,len);    // mit Länge von len Zeichen\n"
-			 +"  Serial.println(\"\\n in callback payload:\" + MQTT_Rx_Payload +\"len:\"+String(len));\n"; 	
+ 			      + "  Serial.println(String(\"callback on topic: \")+ String("+topic+"));\n"; 	
 				
 		while (translatorBlock != null)
 		{
@@ -58,6 +64,8 @@ public class IoTMQTTSubscribe  extends TranslatorBlock {
 				+ "mqtt_sub_count++; // add new element \n"
 				+ "if (mqtt_sub_count < MAX_MQTT_SUB) { \n"
                 + "  mqtt_sub[mqtt_sub_count-1].topic = " + topic +";\n"
+                + "  mqtt_sub[mqtt_sub_count-1].QoS = " + QoS +";\n"
+
              //   + "  mqtt_sub[mqtt_sub_count-1].payload = " + payload +";\n"
                 + "  mqtt_sub[mqtt_sub_count-1].fun = "+myfun+"; //callback function\n"
 		       

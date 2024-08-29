@@ -4402,6 +4402,11 @@
 					connector-kind="socket" label="bc.mqtttopic">
 					<DefaultArg genus-name="mqtttopic" label="inTopic" />
 				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="QoS">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+	
 <!-- 
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.mqttpayload">
