@@ -4353,7 +4353,6 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-
         <BlockGenus name="mqttpublish" kind="command" color="30 30 255"
 			initlabel="bg.mqttpublish" editable-label="no" is-label-value="no">
 			<description>
@@ -4368,8 +4367,16 @@
 					connector-kind="socket" label="bc.IoTmessage">
 					<DefaultArg genus-name="IoTmessage" label="Hallo IoTHackathon" />
 				</BlockConnector>
+				<BlockConnector connector-type="boolean"
+					connector-kind="socket" label="Retained">
+					<DefaultArg genus-name="true" label="true" />
+				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+
+
+
+
 
        <BlockGenus name="mqtttopic" kind="data" color="255 0 0"
 			initlabel="bg.mqtttopic" editable-label="yes">

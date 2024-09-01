@@ -18,14 +18,17 @@ public class IoTMQTTPublish  extends TranslatorBlock {
 		translator.addHeaderFile("PubSubClient.h");
 		translator.addSetupCommand("Serial.begin(115200);");
 		
-		String topic,payload;
+		String topic,payload,retrained;
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    topic = translatorBlock.toCode();
 
 	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 	    payload = translatorBlock.toCode();
+
+	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
+	    retrained = translatorBlock.toCode();
         
-	    String ret = "mqttreconnect();\n   {String pay=String("+payload+");\n mqttclient.publish("+topic+",pay.c_str());\n"+
+	    String ret = "mqttreconnect();\n   {String pay=String("+payload+");\n mqttclient.publish("+topic+",pay.c_str(),"+retrained+");\n"+
 	                 "Serial.print(\"mqtt publish on topic: \"); Serial.print(String("+topic+")+String(\" data: \"));Serial.println(pay);};\n"; 
         return codePrefix + ret + codeSuffix;
 	 	}
