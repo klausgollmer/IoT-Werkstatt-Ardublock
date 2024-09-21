@@ -3905,7 +3905,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.host">
-					<DefaultArg genus-name="host" label="thingsboard:8080" />
+					<DefaultArg genus-name="host" label="http://thingsboard:8080" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Access Token">
@@ -3913,7 +3913,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Name">
-					<DefaultArg genus-name="text" label="Key (field) 1" />
+					<DefaultArg genus-name="text" label="Key(field)" />
 				</BlockConnector>
 			    <BlockConnector connector-type="string"
 					connector-kind="socket" label="Data">
@@ -3933,10 +3933,38 @@
 			    <BlockConnector connector-type="string"
 					connector-kind="socket" label="Data">
 				</BlockConnector>
-				
-				
+								
 			</BlockConnectors>
 		</BlockGenus>
+
+
+     <BlockGenus name="askThingsboard" kind="data" color="30 30 255"
+			initlabel="bg.askThingsboard" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="host">
+					<DefaultArg genus-name="host" label="http://thingsboard:8080" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="device">
+					<DefaultArg genus-name="text" label="my device-ID" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="key">
+					<DefaultArg genus-name="text" label="Key(field)" />
+				</BlockConnector>
+				
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="JWT">
+					<DefaultArg genus-name="apikey" label="my JWT" />
+				</BlockConnector>
+				
+				<BlockConnector connector-type="string" connector-kind="plug" />
+			</BlockConnectors>
+		</BlockGenus>
+
+
+
 
         <BlockGenus name="sendSensebox" kind="command" color="30 30 255"
 			initlabel="bg.sendSensebox" editable-label="no" is-label-value="no">
@@ -4085,6 +4113,31 @@
 				<BlockConnector connector-type="string" connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
+
+       <BlockGenus name="requestJWT" kind="data" color="30 30 255"
+			initlabel="bg.requestJWT" editable-label="no" is-label-value="no">
+			<description>
+				<text>request JWT</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="host">
+					<DefaultArg genus-name="host" label="http://thingsboard:8080" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="user">
+					<DefaultArg genus-name="text" label="tenant@thingsboard.org" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="pass">
+					<DefaultArg genus-name="apikey" label="my password" />
+				</BlockConnector>
+				
+				<BlockConnector connector-type="string" connector-kind="plug" />
+			</BlockConnectors>
+		</BlockGenus>
+
+
 
 
 <BlockGenus name="LEDShelly" kind="command" color="30 30 255"
@@ -6087,6 +6140,8 @@
 				<BlockGenusMember>askThingspeak</BlockGenusMember>
 				<BlockGenusMember>Divider_Thingsboard</BlockGenusMember>
 			    <BlockGenusMember>sendThingsboard</BlockGenusMember>
+			    <BlockGenusMember>askThingsboard</BlockGenusMember>
+			    <BlockGenusMember>requestJWT</BlockGenusMember>
 				<BlockGenusMember>Divider_Energy</BlockGenusMember>
   			    <BlockGenusMember>sendShelly</BlockGenusMember>
 			 	<BlockGenusMember>getShelly2</BlockGenusMember>
@@ -6099,9 +6154,10 @@
 				<BlockGenusMember>Divider_Smart</BlockGenusMember>
 			    <BlockGenusMember>sendIFTTT2</BlockGenusMember>
                 <BlockGenusMember>Divider_Generic</BlockGenusMember>
+			    <BlockGenusMember>requestJWT</BlockGenusMember>
 			    <BlockGenusMember>sendHTTPSGet</BlockGenusMember>
 			    <BlockGenusMember>JSONGet</BlockGenusMember>
-	            <BlockGenusMember>Divider_Server</BlockGenusMember>
+			    <BlockGenusMember>Divider_Server</BlockGenusMember>
 		 	    <BlockGenusMember>ownMessageServer_CO2_V2</BlockGenusMember>
 			 	
   			</BlockDrawer>
