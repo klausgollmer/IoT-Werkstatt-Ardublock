@@ -38,7 +38,7 @@ public class IoTWS2812Ring_clock  extends TranslatorBlock {
 				"  WSpixels.show(); // Anzeige\n" + 
 				"}\n" + 
 				"";
-   	      	    
+
    	    String setup=  "WSpixels.begin();//-------------- Initialisierung Neopixel\n"+
                        "WSpixels.show();  \n";
 
@@ -66,6 +66,13 @@ public class IoTWS2812Ring_clock  extends TranslatorBlock {
 			translatorBlock = this.getRequiredTranslatorBlockAtSocket(7);
 			type = translatorBlock.toCode();
 			type = type.substring(1, type.length()-1);
+			String Dis="/* Adafruit WS2801 Lib\n"
+					 + "https://github.com/adafruit/Adafruit-WS2801-Library"
+					 + "Adafruit invests time and resources providing this open source code, please support Adafruit and open-source hardware by purchasing products from Adafruit!\n"
+					 + "Written by Limor Fried/Ladyada for Adafruit Industries.\n"
+					 + "BSD license, all text above must be included in any redistribution*/\n";
+
+			translator.addDefinitionCommand(Dis);
 	   	    translator.addDefinitionCommand("Adafruit_NeoPixel WSpixels = Adafruit_NeoPixel(("+size+"<24)?"+size+":24,"+GPIO+","+type+");");
 
 //	   	    translator.addDefinitionCommand("Adafruit_NeoPixel WSpixels = Adafruit_NeoPixel("+size+","+GPIO+","+type+");");

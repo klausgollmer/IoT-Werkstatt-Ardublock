@@ -38,6 +38,14 @@ public class IoTPScal  extends TranslatorBlock {
 	    		"#define PS_MAXWAITCAL 10 \n" + 
 	    		"\n");
 	    
+	    
+	    String Dis="/* Personal Sensor \n"
+				 + "Copyright (c) Useful Sensors\r\n"
+				 + "Disclaimer see https://github.com/usefulsensors/person_sensor_arduino \n"
+				 + "*/\n";
+	   	translator.addDefinitionCommand(Dis);
+	    
+	    
 	    String Code = "// Person Sensor, useful sensors https://github.com/usefulsensors/person_sensor_docs\n" + 
 	    		"// Author pete@usefulsensors.com \n" + 
 	    		"//\n" + 

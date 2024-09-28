@@ -30,7 +30,13 @@ public class IoTMQTTConnect  extends TranslatorBlock {
 	    
 	    translatorBlock = this.getTranslatorBlockAtSocket(3);
 	    if (translatorBlock!=null) pass = translatorBlock.toCode();
-    
+
+	    
+	    
+	    String Dis = "/* PubSubClient MQTT \n"
+   	    		   + "Copyright (c) 2008-2020 Nicholas O'Leary\r\n"
+	    		   + "MIT License, for Disclaimer see end of file */";
+	    translator.addDefinitionCommand(Dis);
 	 
 	    String def;
 	    if (translator.isGPRSProgram()) {

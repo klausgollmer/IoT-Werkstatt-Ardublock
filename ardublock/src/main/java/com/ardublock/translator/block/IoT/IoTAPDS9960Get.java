@@ -33,6 +33,19 @@ public class IoTAPDS9960Get extends TranslatorBlock
     translator.addSetupCommand("apds.setProxGain(APDS9960_PGAIN_8X);");
     translator.addSetupCommand("apds.setLED( APDS9960_LEDDRIVE_100MA,APDS9960_LEDBOOST_300PCNT);");
     
+    String Dis="/***************************************************************************\r\n"
+    		+ "  This is a library for the APDS9960 digital proximity, ambient light, RGB, and gesture sensor\r\n"
+    		+ "  This sketch puts the sensor in color mode and reads the RGB and clear values.\r\n"
+    		+ "  Designed specifically to work with the Adafruit APDS9960 breakout\r\n"
+    		+ "  ----> http://www.adafruit.com/products/3595\r\n"
+    		+ "  These sensors use I2C to communicate. The device's I2C address is 0x39\r\n"
+    		+ "  Adafruit invests time and resources providing this open source code,\r\n"
+    		+ "  please support Adafruit andopen-source hardware by purchasing products\r\n"
+    		+ "  from Adafruit!\r\n"
+    		+ "  Written by Dean Miller for Adafruit Industries.\r\n"
+    		+ "  BSD license, all text above must be included in any redistribution\r\n"
+    		+ " ***************************************************************************/\n";
+	translator.addDefinitionCommand(Dis);
     
     // Deklarationen hinzuf�gen
     String Def = "// https://github.com/adafruit/Adafruit_APDS9960 Copyright (c) 2012, Adafruit Industries\");\r\n"

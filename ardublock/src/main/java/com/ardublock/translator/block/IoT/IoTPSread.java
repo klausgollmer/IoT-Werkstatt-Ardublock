@@ -34,6 +34,14 @@ public class IoTPSread  extends TranslatorBlock {
 	    
 	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
 	    print = translatorBlock.toCode();
+
+	    String Dis="/* Personal Sensor \n"
+				 + "Copyright (c) Useful Sensors\r\n"
+				 + "Disclaimer see https://github.com/usefulsensors/person_sensor_arduino \n"
+				 + "*/\n";
+	   	translator.addDefinitionCommand(Dis);
+	
+	    
 	    
 	    translator.addDefinitionCommand("int PS_next_unused_id = 1;\n" + 
 	    		"#define PS_MAXWAITCAL 10 \n" + 

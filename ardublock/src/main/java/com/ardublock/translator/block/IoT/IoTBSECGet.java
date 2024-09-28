@@ -28,6 +28,7 @@ public class IoTBSECGet extends TranslatorBlock
     translator.addSetupCommand("Serial.begin(115200);");
     translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
  
+   
     
     String Setup = " iaqSensor.begin(BME68X_I2C_ADDR_LOW, Wire);\r\n" + 
     		"  String output = \"\\nBSEC library version \" + String(iaqSensor.version.major) + \".\" + String(iaqSensor.version.minor) + \".\" + String(iaqSensor.version.major_bugfix) + \".\" + String(iaqSensor.version.minor_bugfix);\r\n" + 

@@ -23,6 +23,7 @@ public class IoTArrayMatrixPrint  extends TranslatorBlock {
 		translator.addDefinitionCommand("volatile int matrixausgabe_index = 0;// aktuelle Position in Matrix\n");
 		translator.addDefinitionCommand("volatile int matrixausgabe_wait  = 0;// warte bis Anzeige durchgelaufen ist\n");
 
+		
 		String ArrayStruct ="//--------------------------------  IoTDataArray for timeseries \n"
 				+ "// Dimension IOTARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
 				+ "#define IOTARRAYLEN 64 \n"
@@ -44,6 +45,11 @@ public class IoTArrayMatrixPrint  extends TranslatorBlock {
 		translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
 		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 
+	
+		String Dis="/* Charlieplex Matrix \n"
+				 + "Copyright (c) 2020 Ladyada for Adafruit Industries\r\n"
+				 + "MIT License, for Disclaimer see end of file */\n";
+		translator.addDefinitionCommand(Dis);
 		
 		String TickerDef="//--------------------------------------- Charlieplex Matrix\n"
 				  + "Adafruit_IS31FL3731_Wing matrix = Adafruit_IS31FL3731_Wing();\n";

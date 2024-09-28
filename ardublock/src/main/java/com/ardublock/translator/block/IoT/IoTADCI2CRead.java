@@ -21,8 +21,9 @@ public class IoTADCI2CRead extends TranslatorBlock
 		
 		 // Header hinzuf�gen
 	    translator.addHeaderFile("Wire.h");
-	    
+
 	    String Setup = "// **************  Grove I2C-ADC Expander  *********************************\n"+
+	    		"// Copyright (c) 2013 Seeed Technology Inc.\r\n"+
 	    		"void I2C_adc_init(int adr) { \n"+
 	            "   Wire.beginTransmission(adr);   // Initialisiere Wire - Transfer\n"+
 	            "   Wire.write(0x02);              // Configuration Register\n"+

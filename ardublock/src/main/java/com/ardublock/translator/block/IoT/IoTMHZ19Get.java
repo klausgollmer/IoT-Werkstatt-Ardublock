@@ -21,13 +21,14 @@ public class IoTMHZ19Get extends TranslatorBlock
     translator.addHeaderFile("MHZ19.h");
     translator.addHeaderFile("SoftwareSerial.h");
  //   translator.addDefinitionCommand("SoftwareSerial MHZSerial(4, 5, false); // 4 -> TX, 5 -> RX\n");
-   	
+    
     String Setup = "MHZSerial.begin(9600);         // MHZ19 CO2-Sensor 9600 Baud\n"+
                    "myMHZ19.begin(MHZSerial);\n" +
     		       "myMHZ19.autoCalibration(false);// keine Autokalibrierung\n";
     translator.addSetupCommand(Setup);
     
-    
+    String Dis = "// MHZ Gas Sensor, WifWaf, GNU LESSER GENERAL PUBLIC LICENSE\n";
+   	translator.addDefinitionCommand(Dis);
    	translator.addDefinitionCommand("//Reading CO2, temperature from the MHZ19 By: Jonathan Dempsey\n");
    	translator.addDefinitionCommand("//https://github.com/WifWaf/MH-Z19\n");
    	

@@ -24,6 +24,13 @@ public class IoTSCD4xGet extends TranslatorBlock
     // Setupdeklaration
     // I2C-initialisieren
 
+    String Dis="/* Sparkfun Sensirion SCD 40 \n"
+			 + "Copyright (c) 2020 SparkFun Electronics\r\n"
+			 + "MIT Disclaimer see https://github.com/sparkfun/SparkFun_SCD4x_Arduino_Library \n"
+			 + "*/\n";
+ 	translator.addDefinitionCommand(Dis);
+    
+    
 	translator.addDefinitionCommand("//By: SparkFun Electronics, https://github.com/sparkfun/SparkFun_SCD4x_Arduino_Library\n");
 	translator.addDefinitionCommand("SCD4x airSensorSCD40; // Objekt SDC40 Umweltsensor");
     

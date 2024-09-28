@@ -33,6 +33,20 @@ public class IoTBlynkConnect  extends TranslatorBlock {
 	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
 	    TOKEN = translatorBlock.toCode();
 	    
+	    String Dis="/*************************************************************\n"
+	    		+ "  Blynk is a platform with iOS and Android apps to control\n"
+	    		+ "  ESP32, Arduino, Raspberry Pi and the likes over the Internet.\n"
+	    		+ "  You can easily build mobile and web interfaces for any\n"
+	    		+ "  projects by simply dragging and dropping widgets.\n"
+	    		+ "    Downloads, docs, tutorials: https://www.blynk.io\n"
+	    		+ "    Sketch generator:           https://examples.blynk.cc\n"
+	    		+ "    Blynk community:            https://community.blynk.cc\n"
+	    		+ "    Follow us:                  https://www.fb.com/blynkapp\n"
+	    		+ "                                https://twitter.com/blynk_app\n"
+	    		+ "  Blynk library is licensed under MIT license\n"
+	    		+ "  This example code is in public domain.\n"
+	    		+ "*************************************************************/\n";
+		translator.addDefinitionCommand(Dis);
 	    String def = "#define BLYNK_TEMPLATE_ID "+ID+"\n" + 
 	    		     "#define BLYNK_TEMPLATE_NAME "+NAME+"\n" + 
 	    		     "#define BLYNK_AUTH_TOKEN "+TOKEN+"\n" + 

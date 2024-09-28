@@ -35,6 +35,11 @@ public class IoTDustHM330Get extends TranslatorBlock
 
     
     // Deklarationen hinzuf�gen
+	String Dis="/* Seeedstudio HM330x PM Sensor"
+			 + "https://github.com/Seeed-Studio/Seeed_PM2_5_sensor_HM3301"
+			 + "Copyright (c) 2018 Seeed Technology Co., Ltd.\n"
+			 + "MIT License, for Disclaimer see end of file */\n";
+    translator.addDefinitionCommand(Dis);
     translator.addDefinitionCommand("HM330X HM330sensor; // www.seeed.cc, Author: downey\n");
     translator.addDefinitionCommand("int HM330sensor_ready=0; // for init after deep-sleep\n");
     

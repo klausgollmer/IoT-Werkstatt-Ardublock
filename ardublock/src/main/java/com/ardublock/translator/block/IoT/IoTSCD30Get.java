@@ -37,7 +37,14 @@ public class IoTSCD30Get extends TranslatorBlock
     translator.addSetupCommand("airSensorSCD30.useStaleData(true);            // do not wait for fresh data\n");
     // Deklarationen hinzuf�gen
     
-   	translator.addDefinitionCommand("//Reading CO2, humidity and temperature from the SCD30 By: Nathan Seidle SparkFun Electronics \n");
+    
+    String Dis="/* Sparkfun Sensirion SCD 30 \n"
+			 + "Copyright (c) 2020 SparkFun Electronics\r\n"
+			 + "MIT Disclaimer see https://github.com/sparkfun/SparkFun_SCD30_Arduino_Library?tab=License-1-ov-file#readme \n"
+			 + "*/\n";
+  	translator.addDefinitionCommand(Dis);
+
+  	translator.addDefinitionCommand("//Reading CO2, humidity and temperature from the SCD30 By: Nathan Seidle SparkFun Electronics \n");
    	translator.addDefinitionCommand("//https://github.com/sparkfun/SparkFun_SCD30_Arduino_Library\n");
    	
 	translator.addDefinitionCommand("SCD30 airSensorSCD30; // Objekt SDC30 Umweltsensor");

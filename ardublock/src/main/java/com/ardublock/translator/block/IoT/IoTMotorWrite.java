@@ -25,6 +25,13 @@ public class IoTMotorWrite extends TranslatorBlock
 		 // Header hinzuf�gen
 	    translator.addHeaderFile("Wire.h");
 	    translator.addHeaderFile("Adafruit_MotorShield.h");
+	    
+		String Dis="/* Adafruit Motor Shield \n"
+				 + "Copyright (c) 2012 Adafruit Industries\r\n"
+				 + "BSD License, Disclaimer see github \n"
+				 + "https://github.com/adafruit/Adafruit_Motor_Shield_V2_Library?tab=License-1-ov-file#readme */\n";
+	    translator.addDefinitionCommand(Dis);
+	    
 	    translator.addDefinitionCommand("// Feather Adafruit Motor Shield v2 http:\\www.adafruit.com/products/1438");
 	   	translator.addDefinitionCommand("Adafruit_MotorShield AFMS = Adafruit_MotorShield(); // Treiber-Objekt");
 	   	translator.addDefinitionCommand("Adafruit_DCMotor *myMotor1 = AFMS.getMotor(1); // Motor 1-Objekt");

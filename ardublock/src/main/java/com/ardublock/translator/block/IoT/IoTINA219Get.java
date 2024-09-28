@@ -41,11 +41,13 @@ public class IoTINA219Get extends TranslatorBlock
     }	    	
 
     // Deklarationen hinzuf�gen
-    translator.addDefinitionCommand("//https://learn.adafruit.com/adafruit-ina219-current-sensor-breakout Copyright (c), Adafruit Industries");
-	translator.addDefinitionCommand("Adafruit_INA219 ina219;\n");
+    String Dis="/* Adafruit ina219 Lib\n"
+  			 + "Copyright (c) 2012 Adafruit Industries\r\n"
+  			 + "BSD License, Disclaimer see github */\n";
+  	translator.addDefinitionCommand(Dis);
+  	translator.addDefinitionCommand("//https://learn.adafruit.com/adafruit-ina219-current-sensor-breakout Copyright (c), Adafruit Industries");
+    translator.addDefinitionCommand("Adafruit_INA219 ina219;\n");
 
-	
-    
     String Read = "float readINA219(int chan) { // INA219 Load- and current Sensor\r\n" + 
     	    		"  float wert = NAN;\r\n" + 
     	    		"  switch (chan) {\r\n" + 

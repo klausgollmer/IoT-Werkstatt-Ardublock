@@ -45,6 +45,11 @@ public class IoTMatrixPrint  extends TranslatorBlock {
 				"func_ptr WebServerHousekeeping = yield;\n";
 		translator.addDefinitionCommand(webserverDef);
 
+		String Dis="/* Charlieplex Matrix \n"
+				 + "Copyright (c) 2020 Ladyada for Adafruit Industries\r\n"
+				 + "MIT License, for Disclaimer see end of file */\n";
+		translator.addDefinitionCommand(Dis);
+		
 		String TickerDef="//--------------------------------------- Charlieplex Matrix\n"
 				  + "Adafruit_IS31FL3731_Wing matrix = Adafruit_IS31FL3731_Wing();\n";
 		translator.addDefinitionCommand(TickerDef);

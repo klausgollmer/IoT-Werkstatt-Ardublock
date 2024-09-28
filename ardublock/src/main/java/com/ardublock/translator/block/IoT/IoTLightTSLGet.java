@@ -28,10 +28,16 @@ public class IoTLightTSLGet extends TranslatorBlock
     translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
     translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
     // Deklarationen hinzuf�gen
+    
+    String Dis="/* Adafruit Lib for TSL2561 Light Sensor"
+			 + "Copyright Adafruit \r\n"
+			 + "Adafruit invests time and resources providing this open source code.\n "
+			 + "Please support Adafruit and open-source hardware by purchasing products from Adafruit!*/\n";
+    translator.addDefinitionCommand(Dis);
+    
     String dec = " // Adafruit TSL2561, https://github.com/adafruit/Adafruit_TSL2561, Written by Kevin (KTOWN) Townsend for Adafruit Industries \n"
               + "Adafruit_TSL2561_Unified tsl = Adafruit_TSL2561_Unified(0x39, 12345);\n";
 
-    
     translator.addDefinitionCommand(dec);
 
     

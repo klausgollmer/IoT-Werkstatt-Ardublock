@@ -28,7 +28,7 @@ public class IoTGSMConnect  extends TranslatorBlock {
 	    
 	    
 	    
-	    translator.addDefinitionCommand("// TinyGSM Library https://github.com/vshymanskyy/TinyGSM");
+	    translator.addDefinitionCommand("// TinyGSM Library https://github.com/vshymanskyy/TinyGSM   GNU LESSER GENERAL PUBLIC LICENSE");
 	    translator.addDefinitionCommand("#define TINY_GSM_MODEM_SIM800");
 	    translator.addDefinitionCommand("#include <TinyGsmClient.h>");
 		translator.addDefinitionCommand("#define GSM_APN  "+apn+"");

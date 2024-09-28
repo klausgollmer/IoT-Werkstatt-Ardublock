@@ -23,6 +23,12 @@ public class IoTMPR121Read extends TranslatorBlock
 	    translator.addHeaderFile("Adafruit_MPR121.h");
 	    translator.addHeaderFile("Wire.h");
 
+	    
+		String Dis="/* Adafruit MPR121 Touch Sensor \n"
+				 + "Copyright (c) Adafruit Industries\r\n"
+				 + "Disclaimer see https://github.com/adafruit/Adafruit_MPR121*/\n";
+	   	translator.addDefinitionCommand(Dis);
+	    
 	   	translator.addDefinitionCommand("// MPR121 Breakout written by Limor Fried/Ladyada for Adafruit Industries https://www.adafruit.com/products/\r\n");
 	   	translator.addDefinitionCommand("Adafruit_MPR121 cap1 = Adafruit_MPR121();");
 

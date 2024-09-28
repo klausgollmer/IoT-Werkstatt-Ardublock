@@ -34,6 +34,12 @@ public class IoTVL53read extends TranslatorBlock
     // I2C-initialisieren
     translator.addSetupCommand(Setup);
 
+	String Dis="/* VL5310x Distance ToF Pololu Lib\n"
+		     + "Copyright (c) 2017-2022 Pololu Corporation\n"
+			 + "Disclaimer see https://github.com/pololu/vl53l0x-arduino?tab=License-1-ov-file#readme \n"
+			 + "*/";
+    translator.addDefinitionCommand(Dis);
+
     
     // Deklarationen hinzuf�gen
     translator.addDefinitionCommand("// https://github.com/pololu/vl53l0x-arduino by kevin (pololu) \n"

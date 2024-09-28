@@ -30,9 +30,13 @@ public class IoTTCS34725Get extends TranslatorBlock
  
     translator.addSetupCommand("if (!tcs.begin()) Serial.println(\"Kein TCS34725 RGB-Sensor gefunden\");\n");
     
+    String Dis="/* Adafruit TCS34725 Color Sensor\n"
+			 + "Copyright (c) 2012 Adafruit Industries\r\n"
+			 + "BSD, Disclaimer see https://github.com/adafruit/Adafruit_TCS34725?tab=License-1-ov-file#readme \n"
+			 + "*/\n";
+  	translator.addDefinitionCommand(Dis);
     
     // Deklarationen hinzuf�gen
-    translator.addDefinitionCommand("// https://github.com/adafruit/Adafruit_TCS34725 Copyright (c) 2012, Adafruit Industries");
 	translator.addDefinitionCommand("Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X);\r\n");
 
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);

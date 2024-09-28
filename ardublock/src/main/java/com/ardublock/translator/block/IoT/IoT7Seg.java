@@ -22,6 +22,25 @@ public class IoT7Seg extends TranslatorBlock
 	translator.addHeaderFile("Adafruit_GFX.h");
     translator.addHeaderFile("Adafruit_LEDBackpack.h");
     // Deklarationen hinzuf�gen
+    
+    String Dis = "/*************************************************** \r\n"
+    		+ "  This is a library for our I2C LED Backpacks\r\n"
+    		+ "  Designed specifically to work with the Adafruit LED 7-Segment backpacks \r\n"
+    		+ "  ----> http://www.adafruit.com/products/881\r\n"
+    		+ "  ----> http://www.adafruit.com/products/880\r\n"
+    		+ "  ----> http://www.adafruit.com/products/879\r\n"
+    		+ "  ----> http://www.adafruit.com/products/878\r\n"
+    		+ "  These displays use I2C to communicate, 2 pins are required to \r\n"
+    		+ "  interface. There are multiple selectable I2C addresses. For backpacks\r\n"
+    		+ "  with 2 Address Select pins: 0x70, 0x71, 0x72 or 0x73. For backpacks\r\n"
+    		+ "  with 3 Address Select pins: 0x70 thru 0x77\r\n"
+    		+ "  Adafruit invests time and resources providing this open source code, \r\n"
+    		+ "  please support Adafruit and open-source hardware by purchasing \r\n"
+    		+ "  products from Adafruit!\r\n"
+    		+ "  Written by Limor Fried/Ladyada for Adafruit Industries.  \r\n"
+    		+ "  BSD license, all text above must be included in any redistribution\r\n"
+    		+ " ****************************************************/";
+    translator.addDefinitionCommand(Dis);
     translator.addDefinitionCommand("// Adafruit Feather 7 Segment https://learn.adafruit.com/adafruit-7-segment-led-featherwings/overview");
  	translator.addDefinitionCommand("Adafruit_7segment matrix7Seg = Adafruit_7segment(); // 7Segment Feather");
  	    

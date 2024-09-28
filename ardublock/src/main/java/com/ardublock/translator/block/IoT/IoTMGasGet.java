@@ -32,6 +32,9 @@ public class IoTMGasGet extends TranslatorBlock
     
     // Deklarationen hinzuf�gen
     	
+    String Dis = "// Seeed Multigas Sensor, GNU GENERAL PUBLIC LICENSE";
+	translator.addDefinitionCommand(Dis);
+    
    	translator.addDefinitionCommand("// Jacky Zhang, qi.zhang@seeed.cc, https://github.com/Seeed-Studio/Mutichannel_Gas_Sensor");
    	translator.addDefinitionCommand("MutichannelGasSensor multigas; // Grove Muligas Sensor ");
    	

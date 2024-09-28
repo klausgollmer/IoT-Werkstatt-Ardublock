@@ -38,6 +38,14 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 		    +"void os_getDevKey (u1_t* buf) { }";
 		translator.addDefinitionCommand(Defaults);
 		
+		String Dis="/* LoRaWAN LMIC Lib\n"
+				     + "Copyright (C) 2014-2016 IBM Corporation\n"
+					 + "Copyright (c) 2015 Thomas Telkamp and Matthijs Kooijman\r\n"
+					 + "Copyright (c) 2016-2021 MCCI Corporation\n"
+					 + "MIT, Disclaimer see https://github.com/mcci-catena/arduino-lmic?tab=MIT-1-ov-file#readme \n"
+					 + "*/\n";
+		translator.addDefinitionCommand(Dis);
+		
 
 		String PinMapping = "// LoraWAN Copyright (c) 2015 Thomas Telkamp and Matthijs Kooijman\n" + 
 				"// (c) 2018 Terry Moore, MCCI\n" + 

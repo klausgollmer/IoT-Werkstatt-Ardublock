@@ -21,8 +21,19 @@ public class IoTBME680Get extends TranslatorBlock
     // Header hinzuf�gen
     translator.addHeaderFile("Adafruit_BME680.h");
     translator.addHeaderFile("Wire.h");
-
-	translator.addDefinitionCommand("// BME680 Lib written by Limor Fried & Kevin Townsend for Adafruit Industries, http://www.adafruit.com/products/3660");
+    String Dis ="/***************************************************************************\r\n"
+    		+ "  This is a library for the BME680 gas, humidity, temperature & pressure sensor\r\n"
+    		+ "  Designed specifically to work with the Adafruit BME680 Breakout\r\n"
+    		+ "  ----> http://www.adafruit.com/products/3660\r\n"
+    		+ "  These sensors use I2C or SPI to communicate, 2 or 4 pins are required\r\n"
+    		+ "  to interface.\r\n"
+    		+ "  Adafruit invests time and resources providing this open source code,\r\n"
+    		+ "  please support Adafruit and open-source hardware by purchasing products\r\n"
+    		+ "  from Adafruit!\r\n"
+    		+ "  Written by Limor Fried & Kevin Townsend for Adafruit Industries.\r\n"
+    		+ "  BSD license, all text above must be included in any redistribution\r\n"
+    		+ " ***************************************************************************/\r\n";
+	translator.addDefinitionCommand(Dis);
 	translator.addDefinitionCommand("Adafruit_BME680 boschBME680; // Objekt Bosch Umweltsensor");
     translator.addDefinitionCommand("int boschBME680_ready = 0;\n");
     

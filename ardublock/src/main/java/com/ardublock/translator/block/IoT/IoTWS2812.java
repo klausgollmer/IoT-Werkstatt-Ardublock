@@ -17,7 +17,7 @@ public class IoTWS2812  extends TranslatorBlock {
 		{
 		translator.addHeaderFile("Adafruit_NeoPixel.h");
   	    
-   	    String setup=  "WSpixels.begin();//-------------- Initialisierung Neopixel\n"+
+	    String setup=  "WSpixels.begin();//-------------- Initialisierung Neopixel\n"+
                        "WSpixels.show();  \n";
 
    	    translator.addSetupCommand(setup);
@@ -44,7 +44,13 @@ public class IoTWS2812  extends TranslatorBlock {
 			type = type.substring(1, type.length()-1);
 
 //	   	    translator.addDefinitionCommand("Adafruit_NeoPixel WSpixels = Adafruit_NeoPixel("+size+","+GPIO+","+type+");");
-	   	    translator.addDefinitionCommand("Adafruit_NeoPixel WSpixels = Adafruit_NeoPixel(("+size+"<24)?"+size+":24,"+GPIO+","+type+");");
+			String Dis="/* Adafruit WS2801 Lib\n"
+					 + "https://github.com/adafruit/Adafruit-WS2801-Library"
+					 + "Adafruit invests time and resources providing this open source code, please support Adafruit and open-source hardware by purchasing products from Adafruit!\n"
+					 + "Written by Limor Fried/Ladyada for Adafruit Industries.\n"
+					 + "BSD license, all text above must be included in any redistribution*/\n";
+			translator.addDefinitionCommand(Dis);
+			translator.addDefinitionCommand("Adafruit_NeoPixel WSpixels = Adafruit_NeoPixel(("+size+"<24)?"+size+":24,"+GPIO+","+type+");");
 
 			
 	

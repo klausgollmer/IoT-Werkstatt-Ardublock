@@ -21,6 +21,15 @@ public class IoTOLED_Display  extends TranslatorBlock {
 		translator.addHeaderFile("Adafruit_SH110X.h");
 		translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
 		
+		String Dis="/* Adafruit SH110x OLED  / GFX \n"
+				 + "Copyright (c) Adafruit Industries\r\n"
+				 + "BSD, Disclaimer see https://github.com/adafruit/Adafruit_SH110x?tab=License-1-ov-file#readme \n"
+				 + "https://github.com/adafruit/Adafruit-GFX-Library?tab=License-1-ov-file#readme  \n"
+				 + "*/\n";
+	   	translator.addDefinitionCommand(Dis);
+	    
+		
+		
 		String Def="//OLED https://www.adafruit.com/product/4650 Adafruit Author:ladyada kick\n" + 
 		           "#define SCREEN_WIDTH 128 // OLED display width, in pixels\n"
 		         + "#define SCREEN_HEIGHT 64 // OLED display height, in pixels\n"

@@ -17,6 +17,10 @@ public class IoTNeopixelColorLight  extends TranslatorBlock {
 		{
 			
 		translator.addHeaderFile("Adafruit_NeoPixel.h");
+	  	String Dis ="// Neopixel, (c) Adafruit, GNU LESSER GENERAL PUBLIC LICENSE\n"
+				+   "// https://github.com/adafruit/Adafruit_NeoPixel?tab=LGPL-3.0-1-ov-file\n";
+	    translator.addDefinitionCommand(Dis);
+		
    	    translator.addDefinitionCommand("Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,GPIO_NEO,NEO_GRBW + NEO_KHZ800);");
 		
    	      	    

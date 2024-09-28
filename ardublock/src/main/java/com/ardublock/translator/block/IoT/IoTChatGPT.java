@@ -36,9 +36,12 @@ public class IoTChatGPT  extends TranslatorBlock {
 		translator.addSetupCommand("Serial.begin(115200);");
 		
 		
-		String Def;
-		Def ="//ChatGPT Client For ESP8266, Author: Eric Nam, https://github.com/0015/ChatGPT_Client_For_Arduino\n"
- 		   + "BearSSL::WiFiClientSecure GPT_client;\n" + 
+		String Def,Dis;
+		Dis=    "// ChatGPT Client For ESP8266, Author: Eric Nam, https://github.com/0015/ChatGPT_Client_For_Arduino\n"
+			   +"// Copyright (c) 2023 Eric\r\n"
+			   +"// MIT License, for Disclaimer see end of file \n";
+		translator.addDefinitionCommand(Dis);
+		Def ="BearSSL::WiFiClientSecure GPT_client;\n" + 
 		  	 "ChatGPT<BearSSL::WiFiClientSecure> chat_gpt(&GPT_client, \"v1\", "+api+");\n";  
 		translator.addDefinitionCommand(Def);
 	

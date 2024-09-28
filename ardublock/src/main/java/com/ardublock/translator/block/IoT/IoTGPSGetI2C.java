@@ -28,6 +28,11 @@ public class IoTGPSGetI2C extends TranslatorBlock
 
 	translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
     String print = translatorBlock.toCode();
+	String Dis="/* Adafruit GPS"
+			 + "Software License Agreement (BSD License)\r\n"
+			 + "Copyright (c) 2012, Adafruit Industries\r\n"
+			 + "All rights reserved https://github.com/adafruit/Adafruit_GPS?tab=License-1-ov-file#readme";
+	    translator.addDefinitionCommand(Dis); 
 
     
     String Def = "Adafruit_GPS GPS(&Wire);\n";
@@ -36,7 +41,6 @@ public class IoTGPSGetI2C extends TranslatorBlock
 	translator.addSetupCommand("Serial.begin(115200);");
 	translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
 	translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
-	 
 
     String Set = " // Adafruit GPS-Lib Written by Limor Fried/Ladyada for Adafruit Industries. BSD license\r\n" + 
     		"  // https://github.com/adafruit/Adafruit_GPS\r\n" + 

@@ -17,6 +17,11 @@ public class IoTNeopixelWingColor  extends TranslatorBlock {
 		{
 			
 		translator.addHeaderFile("Adafruit_NeoPixel.h");
+		
+	  	String Dis ="// Neopixel, (c) Adafruit, GNU LESSER GENERAL PUBLIC LICENSE\n"
+				+   "// https://github.com/adafruit/Adafruit_NeoPixel?tab=LGPL-3.0-1-ov-file\n";
+	    translator.addDefinitionCommand(Dis);
+
 		String Cmd = "// -----------------------  NeoPixelWing-Farbansteuerung\n"
 				+ "Adafruit_NeoPixel neoWing = Adafruit_NeoPixel(32,GPIO_NEOWING,NEO_GRB + NEO_KHZ800);\n"
 			   	+"void neoWingColor(uint8_t r,uint8_t g,uint8_t b) {\n"

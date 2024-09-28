@@ -24,7 +24,10 @@ public class IoTcreateInfluxDB  extends TranslatorBlock {
 	    host = translatorBlock.toCode();
 		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 	    dbname = translatorBlock.toCode();
-	
+		String Dis="/* https://github.com/tobiasschuerg/InfluxDB-Client-for-Arduino/blob/master/\n"
+				 + "Copyright (c) 2018-2020 Tobias Schürg, InfluxData\n"
+				 + "MIT License, for Disclaimer see end of file */\n";
+  	    translator.addDefinitionCommand(Dis);
 		translator.addDefinitionCommand("Influxdb influx("+host+"); //https://github.com/tobiasschuerg/InfluxDB-Client-for-Arduino");
 	    translator.addSetupCommand("influx.setDb("+dbname+");");
 

@@ -50,6 +50,18 @@ public class IoTBMEGet_Adr2 extends TranslatorBlock
     
     // Deklarationen hinzuf�gen
     	
+    String Dis="/*\r\n"
+    		+ "  Get basic environmental readings from the BME280\r\n"
+    		+ "  By: Nathan Seidle\r\n"
+    		+ "  SparkFun Electronics\r\n"
+    		+ "  Date: March 9th, 2018\r\n"
+    		+ "  License: This code is public domain but you buy me a beer if you use this and we meet someday (Beerware license).\r\n"
+    		+ "  Feel like supporting our work? Buy a board from SparkFun!\r\n"
+    		+ "  https://www.sparkfun.com/products/14348 - Qwiic Combo Board\r\n"
+    		+ "  https://www.sparkfun.com/products/13676 - BME280 Breakout Board\r\n"
+    		+ "*/\r\n";
+   	translator.addDefinitionCommand(Dis);
+    
    	translator.addDefinitionCommand("// Marshall Tylor@sparkfun  https://github.com/sparkfun/SparkFun_BME280_Arduino_Library");
 	translator.addDefinitionCommand("BME280 boschBME280; // Objekt Bosch Umweltsensor");
 	translator.addDefinitionCommand("int boschBME280_ready = 0; // Objekt Bosch Umweltsensor");

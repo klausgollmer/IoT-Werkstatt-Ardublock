@@ -31,9 +31,10 @@ public class IoTMMAGet extends TranslatorBlock
     translator.addSetupCommand("seeedMMA.init();\n");
     
     // Deklarationen hinzuf�gen
-
+    
     translator.addDefinitionCommand("// Grove - 3-Axis Digital Accelerometer(±1.5g) seeedstudio.com, Frankie.Chu");
     translator.addDefinitionCommand("// https://github.com/Seeed-Studio/Accelerometer_MMA7660");
+    translator.addDefinitionCommand("// MIT License, for Disclaimer see end of file ");
 	translator.addDefinitionCommand("MMA7660 seeedMMA;");
 
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);

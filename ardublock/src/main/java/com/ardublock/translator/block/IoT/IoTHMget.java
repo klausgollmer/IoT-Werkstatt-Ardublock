@@ -29,7 +29,7 @@ public class IoTHMget  extends TranslatorBlock {
 	    
 	    String DTUGET ="float readMyHM(int i, int mitprint) { "
 				+ " // https://github.com/hm-soft/Hoymiles-DTU-Simulation \n" +
-				"   // hm-soft\n "+
+				"   // hm-soft,  GNU GENERAL PUBLIC LICENSE\n "+
 				"   uint8_t wr = aktWR;\n" + 
 				"   float val = NAN;\n" + 
 				"   checkRF24isWorking();\n" + 

@@ -18,8 +18,25 @@ public class IoTLCDGroveRGB  extends TranslatorBlock {
 
 		translator.addHeaderFile("Wire.h");
 		translator.addHeaderFile("rgb_lcd.h");
-		String Def="//LCD RGB, 2013 Copyright (c) Seeed Technology Inc.   Author:Loovee\n" + 
-				   "rgb_lcd lcd;\n";
+		
+		String Dis = "/*  Grove - Serial LCD RGB Backlight\n"
+		+ "    2013 Copyright (c) Seeed Technology Inc.  All right reserved.\n"
+		+ "    Author:Loovee 2013-9-18\n"
+		+ "    This library is free software; you can redistribute it and/or\n"
+		+ "    modify it under the terms of the GNU Lesser General Public\n"
+		+ "    License as published by the Free Software Foundation; either\n"
+		+ "    version 2.1 of the License, or (at your option) any later version.\n"
+		+ "    This library is distributed in the hope that it will be useful,\n"
+		+ "    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+		+ "    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n"
+		+ "    Lesser General Public License for more details.\n"
+		+ "    You should have received a copy of the GNU Lesser General Public\n"
+		+ "    License along with this library; if not, write to the Free Software\n"
+		+ "    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA\n"
+		+ "*/\n"
+		+ "";
+		translator.addDefinitionCommand(Dis);
+		String Def="rgb_lcd lcd;\n";
 		translator.addDefinitionCommand(Def);
 	
 		   // I2C-initialisieren
