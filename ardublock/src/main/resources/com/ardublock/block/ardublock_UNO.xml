@@ -6187,7 +6187,7 @@
 				<BlockGenusMember>MPR121_read</BlockGenusMember>
 
 				<BlockGenusMember>Divider_GPS</BlockGenusMember>
-			    <BlockGenusMember>GetGPS</BlockGenusMember>
+			    <!--BlockGenusMember>GetGPS</BlockGenusMember-->
 			    <BlockGenusMember>GetGPSI2C</BlockGenusMember>
 
                 <BlockGenusMember>Divider_NFC</BlockGenusMember>

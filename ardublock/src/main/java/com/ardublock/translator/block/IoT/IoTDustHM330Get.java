@@ -47,7 +47,7 @@ public class IoTDustHM330Get extends TranslatorBlock
         "int readFeinstaubHM330(int chan) {\r\n" + 
         "  int myvalue = -1;\r\n" + 
         "  int i=1;\r\n" + 
-        "  u8  data[30];\r\n" + 
+        "  uint8_t  data[30];\r\n" + 
         "  if(!HM330sensor_ready) {\r\n" + 
         "    HM330sensor_ready = !HM330sensor.init(); \r\n" + 
         "    delay(1000); \r\n" + 
@@ -59,13 +59,13 @@ public class IoTDustHM330Get extends TranslatorBlock
         "        Serial.println(\"HM330X read result failed!!!\");\r\n" + 
         "    } else {\r\n" + 
         "     // Test Checksum\r\n" + 
-        "       u8 sum=0;\r\n" + 
+        "       uint8_t sum=0;\r\n" + 
         "       for(int i=0;i<28;i++){\r\n" + 
         "        sum+=data[i];\r\n" + 
         "       }\r\n" + 
         "       if(sum!=data[28]) Serial.println(\"wrong checkSum!!!!\");\r\n" + 
         "       else {\r\n" + 
-        "         myvalue = (u16)data[i*2]<<8|data[i*2+1];\r\n" + 
+        "         myvalue = (uint16_t)data[i*2]<<8|data[i*2+1];\r\n" + 
         "       }\r\n" + 
         "  }\r\n" + 
         "  return myvalue;\r\n" + 

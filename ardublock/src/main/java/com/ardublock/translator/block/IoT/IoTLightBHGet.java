@@ -43,7 +43,7 @@ public class IoTLightBHGet extends TranslatorBlock
 
    	      
     // Code von der Mainfunktion
-	ret = "LightSensor.readLightLevel(true)";
+	ret = "LightSensor.readLightLevel()";
 	
    
     return codePrefix + ret + codeSuffix;

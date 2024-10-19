@@ -18,8 +18,9 @@ public class IoTMGasGet extends TranslatorBlock
         
    
     // Header hinzuf�gen
-    translator.addHeaderFile("MutichannelGasSensor.h");
+   
     translator.addHeaderFile("Wire.h");
+    translator.addHeaderFile("MutichannelGasSensor.h");
     translator.addSetupCommand("Serial.begin(115200);");
     // Setupdeklaration
     // I2C-initialisieren

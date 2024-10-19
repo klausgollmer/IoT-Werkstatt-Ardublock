@@ -21,12 +21,12 @@ public class IoTLIDARread extends TranslatorBlock
 
     // Setupdeklaration
     // I2C-initialisieren
-    String Setup = "swSer.begin(19200);         // LIDAR ToF, TFmini Abstandssensor\n";
+    String Setup = "swSerLIDAR.begin(19200);         // LIDAR ToF, TFmini Abstandssensor\n";
     translator.addSetupCommand(Setup);
 
     
     // Deklarationen hinzuf�ge
-    translator.addDefinitionCommand("SoftwareSerial swSer(14, 12, false); //Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup, 14 -> TX, 12 -> RX\n");
+    translator.addDefinitionCommand("SoftwareSerial swSerLIDAR(14, 12, false); //Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup, 14 -> TX, 12 -> RX\n");
    	
     
     String read = "// LIDAR TFmini http://www.benewake.com/en/tfmini.html \n"
@@ -37,15 +37,15 @@ public class IoTLIDARread extends TranslatorBlock
     +"  unsigned int t1, t2;\n"
     +"  char message[20];\n"
 
-    +"   swSer.flush(); // alte Zeichen löschen, auf zwei Nachrichten warte\n"
-    +"    while ((swSer.available() < 18) && (Tout > 0)) { // warte bis Message da\n"
+    +"   swSerLIDAR.flush(); // alte Zeichen löschen, auf zwei Nachrichten warte\n"
+    +"    while ((swSerLIDAR.available() < 18) && (Tout > 0)) { // warte bis Message da\n"
     +"    delay(1);\n"
     +"    Tout--;\n"
     +"  }\n"
     +"  if (Tout <= 0) return -1;     // Timeout, kein Sensor\n"
 
    +"     for (int i=0;i<18;i++){ //         // Nachricht einlesen\n"
-   +"         message[i] = swSer.read();\n"
+   +"         message[i] = swSerLIDAR.read();\n"
    +"     }\n"
 
    +"      int start = -1; //         // Header suchen\n"

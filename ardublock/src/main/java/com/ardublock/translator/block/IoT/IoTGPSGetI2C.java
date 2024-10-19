@@ -31,7 +31,7 @@ public class IoTGPSGetI2C extends TranslatorBlock
 	String Dis="/* Adafruit GPS"
 			 + "Software License Agreement (BSD License)\r\n"
 			 + "Copyright (c) 2012, Adafruit Industries\r\n"
-			 + "All rights reserved https://github.com/adafruit/Adafruit_GPS?tab=License-1-ov-file#readme";
+			 + "All rights reserved https://github.com/adafruit/Adafruit_GPS?tab=License-1-ov-file#readme */\n";
 	    translator.addDefinitionCommand(Dis); 
 
     

@@ -24,8 +24,8 @@ public class IoTSX1509Write extends TranslatorBlock
 
 	    
 		 // Header hinzuf�gen
-	    translator.addHeaderFile("SparkFunSX1509.h");
 	    translator.addHeaderFile("Wire.h");
+	    translator.addHeaderFile("SparkFunSX1509.h");
 
 	   	translator.addDefinitionCommand("// SparkFun SX1509 I/O Expander https://github.com/sparkfun/SparkFun_SX1509_Arduino_Library\r\n");
 	   	translator.addDefinitionCommand("SX1509 io;");
