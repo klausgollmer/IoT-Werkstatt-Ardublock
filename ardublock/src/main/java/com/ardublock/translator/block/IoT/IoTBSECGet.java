@@ -67,7 +67,7 @@ public class IoTBSECGet extends TranslatorBlock
 			            + "Bsec iaqSensor;     // Create an object of the class Bsec \n"
                         + "Ticker Bsec_Ticker; // schedule cyclic update via Ticker \n"
 			            + "const uint8_t bsec_config_iaq[] = {\r\n" + 
-			              "#include \"config/generic_33v_3s_28d_2d_iaq_50_200/bsec_iaq.txt\"\r\n" + 
+			              "#include \"config/generic_33v_3s_4d/bsec_iaq.txt\"\r\n" + 
 			              "};\r\n" + 
 			            "";
    	translator.addDefinitionCommand(Disclaimer);
