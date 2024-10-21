@@ -171,7 +171,7 @@ public class IoTMessageServer  extends TranslatorBlock {
 			+"  html = html +  \"<tr><td>\" + \"rel. Feuchte  \" + \"</td> <td>\" + String(hmess) + \"</td><td>\"+ \"%\"+\" </td></tr>\";\n"
 			+"  html = html +  \"<tr><td>\" + \"Analog Input  \" + \"</td> <td>\" + String(analogRead(PIN_AIN0)) + \"</td><td>\"+ \"-\"+\" </td></tr>\";\n"
 			+"  html = html +  \"<tr><td>\" + \"Drehknopf     \" + \"</td> <td>\" + String(encoderRead()) + \"</td><td>\"+ \"-\"+\" </td></tr>\";\n"
-			+"  html = html +  \"<tr><td>\" + \"Knopfdruck    \" + \"</td> <td>\" + String(digitalRead(PINBUTTON)==LOW) + \"</td><td>\"+ \"on/off\"+\" </td></tr>\";\n"
+			+"  html = html +  \"<tr><td>\" + \"Knopfdruck    \" + \"</td> <td>\" + String(digitalRead(GPIO_ROTARY_BUTTON)==LOW) + \"</td><td>\"+ \"on/off\"+\" </td></tr>\";\n"
 
 			+"  html=html+\"</table>\";\n"
 			+"  return html;\n"
