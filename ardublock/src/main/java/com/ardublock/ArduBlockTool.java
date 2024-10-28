@@ -39,6 +39,8 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 			context.setArduinoVersionString(arduinoVersion);
 			context.setEditor(editor);
 			System.out.println("Arduino Version: " + arduinoVersion);
+		
+			
 		}
 	}
 
@@ -95,6 +97,9 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 		}
 		ArduBlockTool.editor.handleExport(false);
 	}
+	
+
+	
 	
 	private String getArduinoVersion()
 	{

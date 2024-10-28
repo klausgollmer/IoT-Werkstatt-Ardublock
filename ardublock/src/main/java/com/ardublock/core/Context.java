@@ -146,6 +146,21 @@ public class Context
 		workspaceController.setStyleList(list);
 		workspaceController.setLangDefDtd(this.getClass().getResourceAsStream(LANG_DTD_PATH));
 
+		String workingDir = System.getProperty("user.dir");
+		arduinoTargetString = getArduinoTarget(workingDir+"/portable/preferences.txt");
+		System.out.println("target Version: " + arduinoTargetString);
+
+		switch(arduinoTargetString) {
+		    case "ESP32":
+		    	ArdublockVersion = "Makey";
+		    break;
+		    case "ESP8266":
+		    	ArdublockVersion = "Octopus";
+		    break;
+		}
+
+		
+		
 		switch(ArdublockVersion) {
 		  case "All":
 			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
@@ -274,6 +289,7 @@ public class Context
 	
 	private String getArduinoTarget(String filepath) {
         File configFile = new File(filepath);
+     //   System.out.println("target file: " +configFile);
         if (configFile.exists()) {
             InputStream is = null;
             BufferedReader reader = null;

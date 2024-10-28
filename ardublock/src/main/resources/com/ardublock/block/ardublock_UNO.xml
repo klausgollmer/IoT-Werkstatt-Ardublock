@@ -1581,21 +1581,22 @@
 			initlabel="bg.GetBSEC" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
-				<BlockConnector label="bc.BMEVector" connector-type="number" connector-kind="socket" position-type="single">
+				<BlockConnector label="" connector-type="number" connector-kind="socket" position-type="single">
                     <DefaultArg genus-name="BSECVectorTemp" label="Temperatur"/>
                 </BlockConnector>	
+        	</BlockConnectors>
+		</BlockGenus>
+		
+		<BlockGenus name="DebugBSEC" kind="command" color="44 165 226"
+			initlabel="bg.DebugBSEC" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="boolean"
+					connector-kind="socket" label="print">
+					<DefaultArg genus-name="true" label="true" />
+				</BlockConnector>
         	</BlockConnectors>
 		</BlockGenus>
 
-	<BlockGenus name="GetBSEC2" kind="data" color="44 165 226"
-			initlabel="bg.GetBSEC2" editable-label="no" is-label-value="no">
-			<BlockConnectors>
-				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
-				<BlockConnector label="bc.BMEVector" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="BSECVectorTemp" label="Temperatur"/>
-                </BlockConnector>	
-        	</BlockConnectors>
-		</BlockGenus>
 
 
        <BlockGenus name="BSECVectorTemp" kind="data" color="255 0 0" initlabel="bg.BSECVectorTemp" editable-label="no" is-label-value="no" >
@@ -6074,7 +6075,7 @@
 				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBSEC</BlockGenusMember>
-				<BlockGenusMember>GetBSEC2</BlockGenusMember>
+				<BlockGenusMember>DebugBSEC</BlockGenusMember>
 				<BlockGenusMember>GetBME680offset</BlockGenusMember>
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>

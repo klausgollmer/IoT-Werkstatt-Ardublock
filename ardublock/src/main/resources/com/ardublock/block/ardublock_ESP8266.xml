@@ -65,7 +65,7 @@
 			</BlockConnectors>
 		
 			<Images>
-			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
+			   <Image block-location="northwest" image-editable="no" width="65" height = "60">
 					<FileLocation>com/ardublock/block/IoTkit/IconOctopus1.png</FileLocation>
 				</Image>
 			</Images>
@@ -1581,9 +1581,19 @@
 			initlabel="bg.GetBSEC" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
-				<BlockConnector label="bc.BMEVector" connector-type="number" connector-kind="socket" position-type="single">
+				<BlockConnector label="" connector-type="number" connector-kind="socket" position-type="single">
                     <DefaultArg genus-name="BSECVectorTemp" label="Temperatur"/>
                 </BlockConnector>	
+        	</BlockConnectors>
+		</BlockGenus>
+		
+		<BlockGenus name="DebugBSEC" kind="command" color="44 165 226"
+			initlabel="bg.DebugBSEC" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="boolean"
+					connector-kind="socket" label="print">
+					<DefaultArg genus-name="true" label="true" />
+				</BlockConnector>
         	</BlockConnectors>
 		</BlockGenus>
 
@@ -6075,6 +6085,7 @@
 				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBSEC</BlockGenusMember>
+				<BlockGenusMember>DebugBSEC</BlockGenusMember>
 				<BlockGenusMember>GetBME680offset</BlockGenusMember>
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
