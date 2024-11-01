@@ -40,11 +40,13 @@ import edu.mit.blocks.renderable.RenderableBlock;
 import edu.mit.blocks.workspace.FactoryManager;
 import edu.mit.blocks.workspace.Page;
 import edu.mit.blocks.workspace.Workspace;
+import java.io.FileWriter;
 
 public class Context
 {
 	
 	public String ArdublockVersion = "Starter"; // start mit subset for beginners
+	public final static String ARDUBLOCK_VERSION_UNKNOWN = "Starter";
 	//public String ArdublockVersion = "Makey"; // start mit subset for beginners
 	public final static String LANG_DTD_PATH = "/com/ardublock/block/lang_def.dtd";
 // 	public final static String ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
@@ -119,7 +121,68 @@ public class Context
 	
 	
 	
+	public void writeVersion() {
+		String workingDir = System.getProperty("user.dir");
+		String filePath = workingDir+"\\portable\\sketchbook\\tools\\ArduBlockTool\\tool\\ardublock-Makey-Lab.txt";
+		String text = "version="+ArdublockVersion;
+        try (FileWriter writer = new FileWriter(filePath)) {
+            writer.write(text);
+        	System.out.println("gespeichert wurde: " + text);
 
+        } catch (IOException e) {
+           // System.err.println("Fehler beim Schreiben in die Datei: " + e.getMessage());
+        }
+    }
+	
+	
+	private String getVersion() {
+		String workingDir = System.getProperty("user.dir");
+		String filepath = workingDir+"\\portable\\sketchbook\\tools\\ArduBlockTool\\tool\\ardublock-Makey-Lab.txt";
+        File configFile = new File(filepath);
+        
+        
+        if (configFile.exists()) {
+            InputStream is = null;
+            BufferedReader reader = null;
+            try {
+                is = new FileInputStream(configFile);
+                reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    line = line.trim();
+                    if (line.startsWith("version")) {
+                        String[] parts = line.split("=");
+                        if (parts.length > 1) {
+                            return parts[1].trim();
+                        }
+                    }
+                }
+                return Context.ARDUBLOCK_VERSION_UNKNOWN;
+
+            } catch (FileNotFoundException e) {
+                return Context.ARDUBLOCK_VERSION_UNKNOWN;
+            } catch (UnsupportedEncodingException e) {
+                return Context.ARDUBLOCK_VERSION_UNKNOWN;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return Context.ARDUBLOCK_VERSION_UNKNOWN;
+            } finally {
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                    if (is != null) {
+                        is.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            return Context.ARDUBLOCK_VERSION_UNKNOWN;
+        }
+    }
 	
 	
 	
@@ -148,7 +211,7 @@ public class Context
 
 		String workingDir = System.getProperty("user.dir");
 		arduinoTargetString = getArduinoTarget(workingDir+"/portable/preferences.txt");
-		System.out.println("target Version: " + arduinoTargetString);
+		System.out.println("target: " + arduinoTargetString);
 
 		switch(arduinoTargetString) {
 		    case "ESP32":
@@ -158,8 +221,12 @@ public class Context
 		    	ArdublockVersion = "Octopus";
 		    break;
 		}
-
 		
+        if (getArduinoVersionString() != ARDUINO_VERSION_UNKNOWN) {
+    		ArdublockVersion=getVersion();
+        }
+		System.out.println("saved Ardublock Version: " + ArdublockVersion);
+
 		
 		switch(ArdublockVersion) {
 		  case "All":

@@ -48,6 +48,9 @@
 		<BlockGenus name="dummy" kind="command" initlabel="" color="0 0 0" />
 		
 		
+		
+	
+		
 		<!-- ******************** Controls Menu *************** -->
 		<!-- Octopus BlockGenus name="program" kind="command" color="56 87 35"-->
 		
@@ -59,7 +62,8 @@
 			</description>
 			<BlockConnectors>
 				<BlockConnector connector-type="cmd" connector-kind="socket"
-					label="bc.setup" />
+					label="bc.setup"/>
+					
 				<BlockConnector connector-type="cmd" connector-kind="socket"
 					label="bc.loop" />
 			</BlockConnectors>
@@ -148,6 +152,7 @@
 					connector-kind="socket" />
 			</BlockConnectors>
 		</BlockGenus>
+
 
 		<BlockGenus name="repeat" kind="command" color="255 221 0"
 			initlabel="bg.repeat">

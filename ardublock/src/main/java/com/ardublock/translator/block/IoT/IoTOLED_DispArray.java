@@ -20,15 +20,17 @@ public class IoTOLED_DispArray  extends TranslatorBlock {
 		translator.addHeaderFile("Adafruit_GFX.h");
 		translator.addHeaderFile("Adafruit_SH110X.h");
 		
-		String Def="//OLED https://www.adafruit.com/product/4650 Adafruit Author:ladyada kick\n" + 
-		           "#define SCREEN_WIDTH 128 // OLED display width, in pixels\n"
-		         + "#define SCREEN_HEIGHT 64 // OLED display height, in pixels\n"
-				 + "Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(SCREEN_HEIGHT, SCREEN_WIDTH, &Wire);\n" + 
-				   "\n" + 
-				   "GFXcanvas1 canvas(SCREEN_HEIGHT,SCREEN_WIDTH);";
+		String Dis="/* Adafruit SH110x OLED  / GFX \n"
+				 + "Copyright (c) Adafruit Industries\r\n"
+				 + "BSD, Disclaimer see https://github.com/adafruit/Adafruit_SH110x?tab=License-1-ov-file#readme \n"
+				 + "https://github.com/adafruit/Adafruit-GFX-Library?tab=License-1-ov-file#readme  \n"
+				 + "*/\n";
+	   	translator.addDefinitionCommand(Dis);
+	   	String Def="extern Adafruit_SH1107 myOLEDdisplay;"
+				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
+				 + "#define LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
-		
-
+	
 		String ArrayStruct ="//--------------------------------  IoTDataArray for timeseries \n"
 				+ "// Dimension IOTARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
 				+ "#define IOTARRAYLEN 64 \n"
@@ -44,27 +46,8 @@ public class IoTOLED_DispArray  extends TranslatorBlock {
 				+ "";
 		translator.addDefinitionCommand(ArrayStruct);
 		
-		   // I2C-initialisieren
-			translator.addSetupCommand("Serial.begin(115200);");
-			translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
-			translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
-	           // OLED initialisieren	    
-		    String Setup = "delay(250); // wait for the OLED to power up\n"
-		    	          +"myOLEDdisplay.begin(0x3C, true); // Address 0x3C default\n";
-		    translator.addSetupCommand(Setup);
-		    
-//		    translator.addSetupCommand(LogoDisplay);
-		    
-		    Setup =   "myOLEDdisplay.setRotation(0);\n"
-		    		+ "myOLEDdisplay.setTextSize(1);\n"
-		    		+ "myOLEDdisplay.setTextColor(SH110X_WHITE);\n"
-		    		+ "myOLEDdisplay.setCursor(0,0);\n"
-		    		+ "myOLEDdisplay.clearDisplay();\n"
-		    		+ "canvas.setRotation(1);\n";
-		    translator.addSetupCommand(Setup);
-
-	    
-	    Setup = "if (!IoTArrayDataInitDone) {\n"
+		  	    
+	    String Setup = "if (!IoTArrayDataInitDone) {\n"
 	    		+ "  IoTArrayDataInitDone = 1;\n"
 	    		+ "  for (uint8_t i=0; i<IOTARRAYLEN; i++) {\n"
 	    		+ "    IoTArrayData[i] = NAN;\n"
@@ -87,7 +70,7 @@ public class IoTOLED_DispArray  extends TranslatorBlock {
 	    		+ "    IoTArrayDataIndex++; \n"
 	    		+ "  }\n"
 	    		+ "  //myOLEDdisplay.clearDisplay();\n"
-	    		+ "  myOLEDdisplay.setRotation(0);\n"
+	    		+ "  //myOLEDdisplay.setRotation(0);\n"
 	    		+ "  canvas.fillScreen(SH110X_BLACK);\n"
 	    		+ "  // Draw the title\n"
 	    		+ "  canvas.setTextSize(1);\n"
@@ -120,7 +103,7 @@ public class IoTOLED_DispArray  extends TranslatorBlock {
 	    		+ "    prevY = y;\n"
 	    		+ "  }\n"
 	    		+ "\n"
-	    		+ "  myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), 64, 128, SH110X_WHITE, SH110X_BLACK);\n"
+	    		+ "  myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), SCREEN_WIDTH, SCREEN_HEIGHT, SH110X_WHITE, SH110X_BLACK);\n"
 	    		+ "  myOLEDdisplay.display();\n"
 	    		+ "}";
 		translator.addDefinitionCommand(Display);

@@ -28,28 +28,12 @@ public class IoTOLED_Clear  extends TranslatorBlock {
 				 + "https://github.com/adafruit/Adafruit-GFX-Library?tab=License-1-ov-file#readme  \n"
 				 + "*/\n";
 	   	translator.addDefinitionCommand(Dis);
-	    
-		String Def="//OLED https://www.adafruit.com/product/4650 Adafruit Author:ladyada kick\n" + 
-		           "#define SCREEN_WIDTH 128 // OLED display width, in pixels\n"
-		         + "#define SCREEN_HEIGHT 64 // OLED display height, in pixels\n"
-				 + "Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(SCREEN_HEIGHT, SCREEN_WIDTH, &Wire);\n" + 
-				   "\n" + 
-				   "GFXcanvas1 canvas(SCREEN_HEIGHT,SCREEN_WIDTH);";
+	   	String Def="extern Adafruit_SH1107 myOLEDdisplay;"
+				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
+				 + "#define LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
 		
-		
-		   // I2C-initialisieren
-		translator.addSetupCommand("Serial.begin(115200);");
-		translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
-		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
-		 
-		   // OLED initialisieren	    
-	    String Setup = "delay(250); // wait for the OLED to power up\n"
-	    	          +"myOLEDdisplay.begin(0x3C, true); // Address 0x3C default\n";
-	    translator.addSetupCommand(Setup);
-	    
 	     String ret="// Clear Canvas \n"	+ 
-	            "myOLEDdisplay.setRotation(0);\n" +
 	            "canvas.fillScreen(SH110X_BLACK);\n";
 		return codePrefix + ret + codeSuffix;
 	}

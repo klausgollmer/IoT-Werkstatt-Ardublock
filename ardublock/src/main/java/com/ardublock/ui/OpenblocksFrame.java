@@ -169,8 +169,13 @@ public class OpenblocksFrame extends JFrame
 
 	public void changeBoardVersion()
 	{
-	
-		int optionValue = JOptionPane.showOptionDialog(this, uiMessageBundle.getString("message.question.newboard"), uiMessageBundle.getString("message.title.question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
+		int optionValue;
+		if 	(  context.isWorkspaceChanged()) {
+			optionValue = JOptionPane.showOptionDialog(this, uiMessageBundle.getString("message.question.newboard"), uiMessageBundle.getString("message.title.question"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
+		} else {
+			optionValue = JOptionPane.YES_OPTION;
+		}
+		
 		if (optionValue == JOptionPane.NO_OPTION)
 		{
 			//- change combobox selection back to the current version.
@@ -181,11 +186,12 @@ public class OpenblocksFrame extends JFrame
 		else {
 			context.ArdublockVersion = (String) boardComboBox.getSelectedItem();
 			this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		    context.writeVersion();
 			context.resetWorksapce();
 			context.setWorkspaceChanged(false);
 			this.setTitle(this.makeFrameTitle());
 			this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
+          
 		}
 	}	
 	
@@ -261,6 +267,7 @@ public class OpenblocksFrame extends JFrame
 
 		String[] programList = {"Starter","Makey","Octopus"};
 		boardComboBox = new JComboBox<String>(programList);
+		boardComboBox.setSelectedItem((String)context.ArdublockVersion);
 		boardComboBox.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

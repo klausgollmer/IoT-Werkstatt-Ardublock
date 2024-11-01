@@ -20,36 +20,21 @@ public class IoTOLED_Display  extends TranslatorBlock {
 		translator.addHeaderFile("Adafruit_GFX.h");
 		translator.addHeaderFile("Adafruit_SH110X.h");
 		translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
-		
 		String Dis="/* Adafruit SH110x OLED  / GFX \n"
 				 + "Copyright (c) Adafruit Industries\r\n"
 				 + "BSD, Disclaimer see https://github.com/adafruit/Adafruit_SH110x?tab=License-1-ov-file#readme \n"
 				 + "https://github.com/adafruit/Adafruit-GFX-Library?tab=License-1-ov-file#readme  \n"
 				 + "*/\n";
 	   	translator.addDefinitionCommand(Dis);
-	    
-		
-		
-		String Def="//OLED https://www.adafruit.com/product/4650 Adafruit Author:ladyada kick\n" + 
-		           "#define SCREEN_WIDTH 128 // OLED display width, in pixels\n"
-		         + "#define SCREEN_HEIGHT 64 // OLED display height, in pixels\n"
-				 + "Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(SCREEN_HEIGHT, SCREEN_WIDTH, &Wire);\n" + 
-				   "\n" + 
-				   "GFXcanvas1 canvas(SCREEN_HEIGHT,SCREEN_WIDTH);";
+	
+	   	String Def="extern Adafruit_SH1107 myOLEDdisplay;"
+				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
+				 + "#define LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
+	
 		
-		   // I2C-initialisieren
-		translator.addSetupCommand("Serial.begin(115200);");
-		translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
-		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
-		 
-		   // OLED initialisieren	    
-	    String Setup = "delay(250); // wait for the OLED to power up\n"
-	    	          +"myOLEDdisplay.begin(0x3C, true); // Address 0x3C default\n";
-	    translator.addSetupCommand(Setup);
-	    
-	     String ret="// Display Canvas \n"	+ 
-	            "myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), 64, 128, SH110X_WHITE, SH110X_BLACK);\n" + 
+		 String ret="// Display Canvas \n"	+ 
+	            "myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), SCREEN_WIDTH, SCREEN_HEIGHT, SH110X_WHITE, SH110X_BLACK);\n" + 
 			    "myOLEDdisplay.display();\n"; 
 		return codePrefix + ret + codeSuffix;
 	}

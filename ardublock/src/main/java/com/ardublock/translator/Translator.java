@@ -24,6 +24,7 @@ import edu.mit.blocks.renderable.RenderableBlock;
 import edu.mit.blocks.workspace.Workspace;
 
 
+
 public class Translator
 {
 	//private static final String variablePrefix = "_ABVAR_";
@@ -91,6 +92,12 @@ public class Translator
 			addDefinitionCommand ("#if defined(ESP8266)\n  #include <ESP8266WiFi.h> \n #endif\r\n");
 		}
 		addHeaderFile("IoTBoards_Generic.h");
+		addHeaderFile("Wire.h");
+		addDefinitionCommand("extern void initOLED(int);");
+	
+    
+		
+		
 		if (!headerFileSet.isEmpty())
 		{
 			for (String file:headerFileSet)
@@ -132,10 +139,21 @@ public class Translator
 	
 	public String generateSetupFunction()
 	{
+        
+		
+		
 		StringBuilder setupFunction = new StringBuilder();
 //		setupFunction.append("void setup()\n{\n");
 		setupFunction.append("void setup(){ // Einmalige Initialisierung\n");
 		
+		
+	    setupFunction.append("Serial.begin(115200);");
+		setupFunction.append("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+		setupFunction.append("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+	    
+		setupFunction.append("#ifndef LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n #else \n initOLED(2000);\n #endif\n");
+		
+		//setupFunction.append("initOLED(); // init OLED (and Logo)\n");
  	    if (false) { //isRTCVarProgram()) {
  	    	
             String util = "// Lese gespeicherte Daten aus RTC-Memory\n"
@@ -199,6 +217,8 @@ public class Translator
 		
 		
 		setupFunction.append("}\n\n");
+		
+		
 		
 		return setupFunction.toString();
 	}

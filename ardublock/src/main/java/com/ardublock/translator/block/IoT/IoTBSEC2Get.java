@@ -68,7 +68,7 @@ public class IoTBSEC2Get extends TranslatorBlock
     		+ "  iaqSensor.debug = 0;";
     translator.addSetupCommand(Setup);
     translator.addSetupCommand(" Bsec_Ticker.attach_ms(3000, iaqSensor_Housekeeping);\r\n");
-
+    translator.addSetupCommand(" Serial.println(\"start BSEC2, waiting for initialization ...\"); delay(3500);");
     
     // Deklarationen hinzuf�gen
     	
@@ -76,7 +76,7 @@ public class IoTBSEC2Get extends TranslatorBlock
 			            + "Bosch BSEC2 Lib, https://github.com/boschsensortec/Bosch-BSEC2-Library/tree/master\n"
 		            	+ "The BSEC2 software is only available for download or use after accepting the software license agreement.\n"
 			            + "By using this library, you have agreed to the terms of the license agreement: \n"
-                        + "https://www.bosch-sensortec.com/media/boschsensortec/downloads/software/bme688_development_software/2023_04/license_terms_bme688_bme680_bsec.pdf*/ \n"
+                        + "https://www.bosch-sensortec.com/media/boschsensortec/downloads/software/bme688_development_software/2023_04/license_terms_bme688_bme680_bsec.pdf */\n"
 			            + "Bsec2 envSensor;     // Create an object of the class Bsec \n"
                         + "Ticker Bsec_Ticker; // schedule cyclic update via Ticker \n";
 			 translator.addDefinitionCommand(Disclaimer);

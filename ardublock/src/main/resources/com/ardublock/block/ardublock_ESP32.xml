@@ -6377,7 +6377,7 @@
 			  
 			</BlockDrawer>
 			
-			<!-- internal -->
+			<!-- internal 
 			<BlockDrawer button-color="50 50 50" name="bd.ESP_system"
 				type="factory">
 			  <BlockGenusMember>Divider_ESP8266</BlockGenusMember>
@@ -6398,6 +6398,7 @@
 		      <BlockGenusMember>RTCfromEEPROM</BlockGenusMember>
  		      <BlockGenusMember>RTCCheck</BlockGenusMember>
 			</BlockDrawer>
+-->
 
             <BlockDrawer button-color="80 80 80" name="bd.ESP32_system"
 				type="factory">
