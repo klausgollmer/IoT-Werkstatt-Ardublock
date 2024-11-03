@@ -18,7 +18,7 @@ public class IoTBlynkSend  extends TranslatorBlock {
 		
 
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
-		translator.addHeaderFile("BlynkMultiClient.h");
+		//translator.addHeaderFile("BlynkMultiClient.h");
 		translator.addSetupCommand("Serial.begin(115200);");
 		
 			
@@ -30,7 +30,7 @@ public class IoTBlynkSend  extends TranslatorBlock {
 	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
         wert = translatorBlock.toCode();
 	   
-        ret = "Blynk.virtualWrite("+pin+","+wert+");// Wert an Blynk-Server übermitteln\n"+
+        ret = "Blynk.virtualWrite(V"+pin+","+wert+");// Wert an Blynk-Server übermitteln\n"+
               "Blynk.run();// Blynk Housekeeping\n";
          
 

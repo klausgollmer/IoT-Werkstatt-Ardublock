@@ -19,7 +19,7 @@ public class IoTBlynkConnect  extends TranslatorBlock {
 		translator.setBlynkProgram(true);
 
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
-		translator.addHeaderFile("BlynkMultiClient.h");
+		//translator.addHeaderFile("BlynkMultiClient.h");
 
 		translator.addSetupCommand("Serial.begin(115200);");
 		
@@ -49,7 +49,8 @@ public class IoTBlynkConnect  extends TranslatorBlock {
 		translator.addDefinitionCommand(Dis);
 	    String def = "#define BLYNK_TEMPLATE_ID "+ID+"\n" + 
 	    		     "#define BLYNK_TEMPLATE_NAME "+NAME+"\n" + 
-	    		     "#define BLYNK_AUTH_TOKEN "+TOKEN+"\n" + 
+	    		     "#define BLYNK_AUTH_TOKEN "+TOKEN+"\n" +
+	    		     "#include <BlynkMultiClient.h>\n" + 
 	    		     "static WiFiClient blynkWiFiClient;\n"+
 	    		     "/* Comment this out to disable prints and save space */\n" + 
 	    		     "#define BLYNK_PRINT Serial"; 	    
