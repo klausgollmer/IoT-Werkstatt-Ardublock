@@ -37,7 +37,7 @@ public class IoTLightBHGet extends TranslatorBlock
             + "BH1750 LightSensor;\n";
     translator.addDefinitionCommand(dec);
     
-	Setup = "if (!LightSensor.begin(BH1750::ONE_TIME_HIGH_RES_MODE_2)) while(1) {Serial.println(\"missing BH1750\");delay(100);}\r\n";
+	Setup = "if (!LightSensor.begin()) while(1) {Serial.println(\"missing BH1750\");delay(100);}\r\n";
 
     translator.addSetupCommand(Setup);
 
