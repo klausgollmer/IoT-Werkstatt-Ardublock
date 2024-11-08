@@ -4,7 +4,7 @@
 
   - [Geting Startet](#start)
   - [Documentation](#documentation)
-  - [External Resources](#External Resources)
+  - [External Resources](#ExternalResources)
 
 ### Start
 [Getting Started](https://www.umwelt-campus.de/iot-werkstatt/tutorials/schnellstart-octopus-anschliessen-und-einrichten)
@@ -13,7 +13,7 @@
 
 You can use the [IoT-Werkstatt Website](https://www.umwelt-campus.de/forschung/projekte/iot-werkstatt) to get all information about this project.
 
-### External Resources
+### ExternalResources
 
 **The IoT<sup>2</sup>Werkstatt (Internet of Things and Thinking Workshop) provides an Ardublock-based tool for education and training **.
 In addition to our IoT<sup>2</sup>\ extension, the ZIP file with the complete programming environment - ready to use - also contains a collection of various external libraries and tools, which are listed below. 
