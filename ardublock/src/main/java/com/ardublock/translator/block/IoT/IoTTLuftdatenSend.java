@@ -41,7 +41,7 @@ public class IoTTLuftdatenSend  extends TranslatorBlock {
 			"     http.addHeader(\"X-PIN\",Xpin); //  \n" + 
 			"     http.addHeader(\"X-Sensor\",sensor_id);\n" + 
 			"     http.addHeader(\"Content-Type\", \"application/json\"); //\n" + 
-			"     Serial.println(\"luftdaten.info: sent data to sensor with sensor id = \" + sensor_id);\n" + 
+			"     Serial.println(\"sensor.community: sent data to sensor with sensor id = \" + sensor_id);\n" + 
 			"     Serial.println(data);\n" + 
 			"     int httpCode = http.POST(data); //Send the request\n" + 
 			"     String payload = http.getString(); //Get the response payload\n" + 
@@ -69,7 +69,7 @@ public class IoTTLuftdatenSend  extends TranslatorBlock {
 	 	
 	    
 	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
-	     JsonCode +=  "//--------------   Send Data to luftdaten.info \n"+
+	     JsonCode +=  "//--------------   Send Data to sensor.community \n"+
 	    		" String data = \"{\\\"sensordatavalues\\\":[{\";\n" + 
 	    		" data += \"\\\"value_type\\\":\\\"temperature\\\",\\\"value\\\":\\\"\";\n" + 
 	    		" data += String("+translatorBlock.toCode()+");\n" ; 
@@ -86,7 +86,7 @@ public class IoTTLuftdatenSend  extends TranslatorBlock {
           JsonCode += 
                 "  data += \"\\\"},{\";\n" + 
           		"  data += \"\\\"value_type\\\":\\\"pressure\\\",\\\"value\\\":\\\"\";\n" + 
-        		"  data += String("+translatorBlock.toCode()+");\n" ; 
+        		"  data += String("+translatorBlock.toCode()+"*100.0);\n" ; 
             	
 	    JsonCode+="  data += \"\\\"}]}\";\n";	    	
 	    JsonCode += "sendLuftdaten("+host+",ChipID,\"11\",data);// Post BME280 to Luftdaten.info\n";

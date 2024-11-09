@@ -4009,7 +4009,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.host">
-					<DefaultArg genus-name="host" label="api.luftdaten.info" />
+					<DefaultArg genus-name="host" label="api.sensor.community" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Sensor ID">
