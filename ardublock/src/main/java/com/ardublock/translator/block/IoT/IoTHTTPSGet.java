@@ -66,7 +66,7 @@ public class IoTHTTPSGet  extends TranslatorBlock {
 				"  int ok = 0;\n" + 
 				"  String message = host+cmd;\n" + 
 				"  WiFiClient client;\n" + 
-				"  #if defined(ESP8266)\n ESP8266HTTPClient http;\n#elif defined(ESP32) \n HTTPClient http;\n#endif\n" + 
+				"  #if defined(ESP8266)\n HTTPClient http;\n#elif defined(ESP32) \n HTTPClient http;\n#endif\n" + 
 				"  //Serial.println(message);\n" + 
 				"  if (http.begin(client, message)){  // HTTP\n" + 
 				"    // start connection and send HTTP header\n" + 

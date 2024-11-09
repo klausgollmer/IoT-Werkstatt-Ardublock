@@ -23,7 +23,7 @@ public class IoTNTPServer  extends TranslatorBlock {
 		
 		translator.addSetupCommand("Serial.begin(115200);");
 
-		
+		/*
 		String help = "// ----------  NTP-Zeitservice\n" + 
 				"int NTPtimeset=0;\n" + 
 				"void NTPtime_is_set(void) { // Callback Zeitsync\n" + 
@@ -31,8 +31,9 @@ public class IoTNTPServer  extends TranslatorBlock {
 				"  Serial.println(\"NTP-Time set\");\n" + 
 				"}\n";
 	   translator.addDefinitionCommand(help);
+	   */
 		
-	   help ="// Umwandlung Unix-time in Textausgabe\n" + 
+	   String help ="// Umwandlung Unix-time in Textausgabe\n" + 
 				"String NTPtime(){\n" + 
 				"  timeval tv;\n" + 
 				"  gettimeofday(&tv, NULL); \n" + 
@@ -43,8 +44,23 @@ public class IoTNTPServer  extends TranslatorBlock {
 				"  return txt;\n" + 
 				"}\n" + 
 				"";
-	   translator.addDefinitionCommand(help);
-		
+	    translator.addDefinitionCommand(help);
+		help = "bool getTimeFromNTP() {\n"
+				+ "  // Warte, bis die Zeit von NTP synchronisiert wurde\n"
+				+ "  int tout = 50; // Timeout von 5 Sekunden (50 x 100 ms)\n"
+				+ "  struct tm timeinfo;\n"
+				+ "  while (tout > 0) {\n"
+				+ "    if (getLocalTime(&timeinfo)) {\n"
+				+ "      Serial.println(\"NTP-Time erfolgreich synchronisiert!\");\n"
+				+ "      return true;  // Zeit wurde erfolgreich synchronisiert\n"
+				+ "    }\n"
+				+ "    delay(100);\n"
+				+ "    tout--;\n"
+				+ "  }\n"
+				+ "  Serial.println(\"Fehler: Zeit konnte nicht synchronisiert werden.\");\n"
+				+ "  return false; // Timeout erreicht, Synchronisation fehlgeschlagen\n"
+				+ "}";
+	    translator.addDefinitionCommand(help);
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    String URL = translatorBlock.toCode();
 
@@ -60,6 +76,21 @@ public class IoTNTPServer  extends TranslatorBlock {
 	    String ret = "//------------ NTP Network-Time-Protocoll, Service starten \n"+
 	    	" Serial.println(\"sync with NTP-pool ...\");\n"+
          	" configTime(0,0,"+URL+",\"pool.ntp.org\");\n"+ 
+            " setenv(\"TZ\",\""+TS+"\",1);\n" + 
+            " tzset();\n" +
+            " // Warte auf erfolgreiche Synchronisation\n"
+            + " if (getTimeFromNTP()) {\n"
+            + "    Serial.println(\"Zeit synchronisiert und bereit.\");\n"
+            + " } else {\n"
+            + "    Serial.println(\"Zeit konnte nicht synchronisiert werden.\");\n"
+            + " }\n"
+    		+ " Serial.println(NTPtime());\n";
+
+	    /*
+	     *
+	     *	    String ret = "//------------ NTP Network-Time-Protocoll, Service starten \n"+
+	    	" Serial.println(\"sync with NTP-pool ...\");\n"+
+         	" configTime(0,0,"+URL+",\"pool.ntp.org\");\n"+ 
 //    		" settimeofday_cb(NTPtime_is_set);\n" + 
             " setenv(\"TZ\",\""+TS+"\",1);\n" + 
             " tzset();\n" + 
@@ -69,6 +100,9 @@ public class IoTNTPServer  extends TranslatorBlock {
     		" if (tout <=0) Serial.println(\"Sorry, no NTP-service available\");\n" + 
     		" Serial.println(NTPtime());\n";
 
+	     */
+	    
+	    
 		translator.setRTCNTPProgram(true);
 
 	  
