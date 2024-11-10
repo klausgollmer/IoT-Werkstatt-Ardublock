@@ -4062,7 +4062,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-        <BlockGenus name="sendHTTPSGet" kind="data" color="30 30 255"
+           <BlockGenus name="sendHTTPSGet" kind="data" color="30 30 255"
 			initlabel="bg.sendHTTPSGet" editable-label="no" is-label-value="no">
 			<description>
 				<text>REST Get</text>
@@ -4070,12 +4070,17 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.host">
-					<DefaultArg genus-name="host" label="Server IP" />
+					<DefaultArg genus-name="host" label="https://jsonplaceholder.typicode.com" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.URI">
-					<DefaultArg genus-name="URI" label="Server GET " />
+					<DefaultArg genus-name="URI" label="/posts/1" />
 				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Fingerprint">
+					<DefaultArg genus-name="text" label="10:90:C3:4F:56:F7:78:A8:76:CE:9C:3E:9C:9D:83:DD:F7:FC:DE:D2" />
+				</BlockConnector>
+				
 				<BlockConnector connector-type="string" connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
@@ -4994,7 +4999,7 @@
 				
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="model">
-					<DefaultArg genus-name="text" label="gpt-3.5-turbo-0301" />
+					<DefaultArg genus-name="text" label="gpt-3.5-turbo" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="promt">

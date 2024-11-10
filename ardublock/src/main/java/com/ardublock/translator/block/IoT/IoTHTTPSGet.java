@@ -12,52 +12,69 @@ public class IoTHTTPSGet  extends TranslatorBlock {
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
 	
+	
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
+		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
-		translator.addHeaderFile("WiFiClientSecureBearSSL.h");
-		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
+		translator.addHeaderFile("WiFiClientSecure.h");
 		translator.addSetupCommand("Serial.begin(115200);");
 		
 	
-		String httpGET ="//--------------------------------------- https-GET\n" + 
-				 "int httpsGET(String host, String cmd, String &antwort, const uint8_t fingerprint[] ) {\n" + 
-				 "  int ok = 0;\n" + 
-				 "  std::unique_ptr<BearSSL::WiFiClientSecure>client(new BearSSL::WiFiClientSecure);\n" + 
-				 "  String message = host+cmd;\n" + 
-				 "  if (sizeof(fingerprint) > 4) { // Validiere SHA-1 Fingerprint\n" + 
-				 "     client->setFingerprint(fingerprint);\n" + 
-				 "  } else { // keine Validierung, Achtung Sicherheitslücke\n" + 
-				 "     client->setInsecure();\n" + 
-				 "  }\n" + 
-				 "  HTTPClient https;\n" + 
-				 "  // Serial.println(message);\n" + 
-				 "  if (https.begin(*client, message)){  // HTTPS\n" + 
-				 "    // start connection and send HTTP header\n" + 
-				 "    int httpCode = https.GET();\n" + 
-				 "    // httpCode will be negative on error\n" + 
-				 "    if (httpCode > 0) {\n" + 
-				 "      // HTTP header has been send and Server response header has been handled\n" + 
-				 "      String payload = https.getString();\n" + 
-				 "      antwort = payload;\n" + 
-				 "      // Serial.println(payload);\n" + 
-				 "      // file found at server\n" + 
-				 "      if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {\n" + 
-				 "        ok = 1;\n" + 
-				 "      }\n" + 
-				 "    } \n" + 
-				 "    else {\n" + 
-				 "      Serial.printf(\"[HTTPS] GET... failed, error: %s\\n\", https.errorToString(httpCode).c_str());\n" + 
-				 "    }\n" + 
-				 "    https.end();\n" + 
-				 "  } \n" + 
-				 "  else {\n" + 
-				 "    Serial.printf(\"[HTTPS] Unable to connect\\n\");\n" + 
-				 "  }\n" + 
-				 "  return ok;\n" + 
-				 "}";
+		String httpGET ="//--------------------------------------- https-GET\n"
+				+ "int httpsGET(String host, String cmd, String &antwort, const char* fingerprint) {\n"
+				+ "  int ok = 0;\n"
+				+ "  WiFiClientSecure client;\n"
+				+ "  String message = host+cmd;\n"
+				+ "  const char* host_cstr = host.c_str();\n"
+				+ "\n"
+				+ "#if defined(ESP8266)  \n"
+				+ "  if (strlen(fingerprint) > 1) {  \n"
+				+ "     client.setFingerprint(fingerprint);\n"
+				+ "     Serial.println(\"check certificate\");\n"
+				+ "\n"
+				+ "  } else { \n"
+				+ "     client.setInsecure();\n"
+				+ "  }\n"
+				+ "#else\n"
+				+ "  if (strlen(fingerprint) > 1) {\n"
+				+ "    //if (client.verify(fingerprint, host_cstr)) {\n"
+				+ "    //  Serial.println(\"certificate matches\");\n"
+				+ "    //} else {\n"
+				+ "    //  Serial.println(\"certificate doesn't match\");\n"
+				+ "    //}\n"
+				+ "     Serial.println(\"sorry, ESP32 lib not check SHA-1 certificate\");\n"
+				+ "  } else {\n"
+				+ "     client.setInsecure();\n"
+				+ "  }\n"
+				+ "#endif\n"
+				+ "  HTTPClient https;\n"
+				+ "  // Serial.println(message);\n"
+				+ "  if (https.begin(client, message)){  // HTTPS\n"
+				+ "    // start connection and send HTTP header\n"
+				+ "    int httpCode = https.GET();\n"
+				+ "    // httpCode will be negative on error\n"
+				+ "    if (httpCode > 0) {\n"
+				+ "      // HTTP header has been send and Server response header has been handled\n"
+				+ "      String payload = https.getString();\n"
+				+ "      antwort = payload;\n"
+				+ "      // Serial.println(payload);\n"
+				+ "      // file found at server\n"
+				+ "      if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {\n"
+				+ "        ok = 1;\n"
+				+ "      }\n"
+				+ "    } \n"
+				+ "    else {\n"
+				+ "      Serial.printf(\"[HTTPS] GET... failed, error: %s\\n\", https.errorToString(httpCode).c_str());\n"
+				+ "    }\n"
+				+ "    https.end();\n"
+				+ "  } \n"
+				+ "  else {\n"
+				+ "    Serial.printf(\"[HTTPS] Unable to connect\\n\");\n"
+				+ "  }\n"
+				+ "  return ok;\n"
+				+ "}";
 		translator.addDefinitionCommand(httpGET);
 		
 		
@@ -94,13 +111,8 @@ public class IoTHTTPSGet  extends TranslatorBlock {
 				"}\n" + 
 				"";
 		translator.addDefinitionCommand(httpGET);
-
-		
-
 				
-	    String httpRESTGET = "String http_s_GET(String host, String cmd) { // REST - Interface GET\n" + 
-	    		"  const uint8_t fingerprint[1] ={\n" + 
-	    		"    0x00  }; // SA-1 fingerprint, option\n" + 
+	    String httpRESTGET = "String http_s_GET(String host, String cmd,const char* fingerprint) { // REST - Interface GET\n" + 
 	    		"  String json= \" \";\n" + 
 	    		"  String myhost=host;\n" + 
 	    		"  myhost.toUpperCase();\n" + 
@@ -115,16 +127,22 @@ public class IoTHTTPSGet  extends TranslatorBlock {
 	    		"";
 	    translator.addDefinitionCommand(httpRESTGET);
 		
-		String host,cmd,ret;
+		String host,cmd,ret,finger = "\" \"";
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    host = translatorBlock.toCode();
 	    
 	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 	    cmd = translatorBlock.toCode();
 	    
-	    ret = "http_s_GET("+host+","+cmd+")";
+	    translatorBlock = this.getTranslatorBlockAtSocket(2);
+	    if (translatorBlock!=null) {
+			  finger = translatorBlock.toCode();
+	    }	    	
+		
+	    
+	    
+	    ret = "http_s_GET("+host+","+cmd+","+finger+")";
 
         return codePrefix + ret + codeSuffix;
 	 	}
 }
-

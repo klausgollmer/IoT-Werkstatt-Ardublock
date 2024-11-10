@@ -57,8 +57,8 @@ public class IoTMQTTSubscribe  extends TranslatorBlock {
 		translator.addDefinitionCommand(ret);
 		
 		translator.addHeaderFile("PubSubClient.h");
-		translator.addSetupCommand("Serial.begin(115200);");
-		translator.addSetupCommand("mqttclient.setCallback(mqttcallback);\n");    	
+		//translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("mqttclient.setCallback(mqttcallback);\n");    	
 		
 		String setup = "//--------- prepare mqtt subscription \n"
 				+ "mqtt_sub_count++; // add new element \n"
