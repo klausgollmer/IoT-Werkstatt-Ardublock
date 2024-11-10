@@ -5028,8 +5028,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.TTN_APPEUI">
-<!-- 					<DefaultArg genus-name="ssid" label="api.thingspeak.com" /> -->
-					<DefaultArg genus-name="TTN_APPEUI" label="70B3D50000000000 (8 Byte)" />
+					<DefaultArg genus-name="TTN_APPEUI" label="0000000000000000" />
 				</BlockConnector>
 		  	    <BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.TTN_APPKEY">
