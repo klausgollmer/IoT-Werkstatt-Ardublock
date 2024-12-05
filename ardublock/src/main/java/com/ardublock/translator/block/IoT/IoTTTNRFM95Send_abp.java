@@ -51,15 +51,30 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 				"// (c) 2018 Terry Moore, MCCI\n" + 
 				"// https://github.com/mcci-catena/arduino-lmic\n" + 
 				"// -------- LoRa PinMapping FeatherWing Octopus\n" + 
-				"\n" + 
-				" const lmic_pinmap lmic_pins = {  \n" + 
-				"  .nss = LMIC_NSS,                            // Connected to pin D\n" + 
-				"  .rxtx = LMIC_UNUSED_PIN,             // For placeholder only, Do not connected on RFM92/RFM95\n" + 
-				"  .rst = LMIC_UNUSED_PIN,              // Needed on RFM92/RFM95? (probably not) D0/GPIO16 \n" + 
-				"  .dio = {\n" + 
-				"    LMIC_DIO, LMIC_DIO, LMIC_UNUSED_PIN         }\n" + 
-				"};\n" + 
-				"";
+				"\n"  
+				+ "#if defined(BOARD_TTGO_V1)\r\n"
+				+ " #define SCK     5    // GPIO5  -- SX1278's SCK\r\n"
+				+ " #define MISO    19   // GPIO19 -- SX1278's MISO\r\n"
+				+ " #define MOSI    27   // GPIO27 -- SX1278's MOSI\r\n"
+				+ " #define SS      18   // GPIO18 -- SX1278's CS\r\n"
+				+ " #define RST     23   // GPIO14 -- SX1278's RESET\r\n"
+				+ " #define DI0     26   // GPIO26 -- SX1278's IRQ(Interrupt Request)\r\n"
+				+ "const lmic_pinmap lmic_pins = {\r\n"
+				+ "    .nss = SS, \r\n"
+				+ "    .rxtx = LMIC_UNUSED_PIN,\r\n"
+				+ "    .rst = RST,\r\n"
+				+ "    .dio = {/*dio0*/ DI0, /*dio1*/ 33, /*dio2*/ 32}\r\n"
+				+ "};\r\n"
+				+ "#else\r\n"
+				+ "const lmic_pinmap lmic_pins = {  \r\n"
+				+ "  .nss = LMIC_NSS,                            // Connected to pin D\r\n"
+				+ "  .rxtx = LMIC_UNUSED_PIN,             // For placeholder only, Do not connected on RFM92/RFM95\r\n"
+				+ "  .rst = LMIC_UNUSED_PIN,              // Needed on RFM92/RFM95? (probably not) D0/GPIO16 \r\n"
+				+ "  .dio = {\r\n"
+				+ "    LMIC_DIO, LMIC_DIO, LMIC_UNUSED_PIN           }\r\n"
+				+ "};\r\n"
+				+ "#endif"; 
+		
 		
 		translator.addDefinitionCommand(PinMapping);
 		
@@ -369,6 +384,9 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 		
 		String init = "// -- initialize LoraWAN LMIC structure\n"
 				+ "void LoRaWAN_Start(int fromRTCMem) { // using ABP-Communication \n" 	
+				+ "  #if defined(BOARD_TTGO_V1)\r\n"
+				+ "   SPI.begin(SCK,MISO,MOSI,SS);\r\n"
+				+ "  #endif"
 				+ "  os_init();             // LMIC LoraWAN\n"
 				+ "  LMIC_reset();          // Reset the MAC state \n"
 			    + "  // Set static session parameters. Instead of dynamically establishing a session\n"
