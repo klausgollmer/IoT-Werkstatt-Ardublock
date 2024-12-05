@@ -82,7 +82,8 @@
 		<BlockGenus name="Divider_Motor" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Div" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_NFC" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
-		<BlockGenus name="Divider_Bool" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+        <BlockGenus name="Divider_Weight" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+     	<BlockGenus name="Divider_Bool" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Num" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_String" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Time" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -2571,6 +2572,54 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+
+	<!--  HX711 Weight -->
+		<BlockGenus name="GetHX711" kind="data" color="44 165 226"
+			initlabel="bg.GetHX711" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+	            <BlockConnector connector-type="string"
+					connector-kind="socket" label="DT,CLK">
+					<DefaultArg genus-name="text" label="12,14" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+		<BlockGenus name="CalHX711" kind="command" color="44 165 226"
+			initlabel="bg.CalHX711" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+	            <BlockConnector connector-type="number"
+					connector-kind="socket" label="weight in unit">
+					<DefaultArg genus-name="number" label="100.0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+		<BlockGenus name="TaraHX711" kind="command" color="44 165 226"
+			initlabel="bg.TaraHX711" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+			</BlockConnectors>
+		</BlockGenus>
+		
+		
+		<BlockGenus name="SetScaleHX711" kind="command" color="44 165 226"
+			initlabel="bg.SetScaleHX711" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+	            <BlockConnector connector-type="number"
+					connector-kind="socket" label="scale">
+					<DefaultArg genus-name="number" label="100.0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+		<BlockGenus name="GetScaleHX711" kind="data" color="44 165 226"
+			initlabel="bg.GetScaleHX711" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+			</BlockConnectors>
+		</BlockGenus>
+
+
 
 
 	<!--  DosisIntegral -->
@@ -6292,6 +6341,13 @@
 				<BlockGenusMember>readVL53</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
 				<BlockGenusMember>LIDAR_TFmini_read</BlockGenusMember>
+
+                <BlockGenusMember>Divider_Weight</BlockGenusMember>
+				<BlockGenusMember>GetHX711</BlockGenusMember>
+				<BlockGenusMember>TaraHX711</BlockGenusMember>
+				<BlockGenusMember>CalHX711</BlockGenusMember>
+				<BlockGenusMember>GetScaleHX711</BlockGenusMember>
+				<BlockGenusMember>SetScaleHX711</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>SX1509_read</BlockGenusMember>
