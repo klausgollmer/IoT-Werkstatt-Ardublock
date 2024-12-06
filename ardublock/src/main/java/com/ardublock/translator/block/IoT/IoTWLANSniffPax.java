@@ -16,7 +16,8 @@ public class IoTWLANSniffPax  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 	    translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
-		translator.addHeaderFile("WiFi_Sniffer.h");
+	    translator.addHeaderFile("#if defined(ESP32) \n #include <esp_WiFi.h>\n#endif\n");		
+			translator.addHeaderFile("IoTSniffer.h");
 		
 		translator.addSetupCommand("Serial.begin(115200);");
 		translator.addSetupCommand("WiFi.mode(WIFI_STA); // Pax-counter");
@@ -61,26 +62,48 @@ public class IoTWLANSniffPax  extends TranslatorBlock {
 	    
 	    
 	    
-	    String Funct = "//------------ WiFi-Sniffer,  This software is based on the work of Andreas Spiess, https://github.com/SensorsIot/Wi-Fi-Sniffer-as-a-Human-detector"+
-	                   "//                            and Ray Burnette: https://www.hackster.io/rayburne/esp8266-mini-sniff-f6b93a \n" + 
-	    		"int WiFiPaxCounter(int MinRSSI,  int timeout, int8 mychannel,String myMAC,int mydisplay) {\n" + 
-	    		"  int mycount=0;\n" + 
-	    		"  int randMAC=0;\n" +
-	    		"  int ChanMin = 1, ChanMax =13; // europe channel 1-13, Japan 1-14\n" + 
-	    		"  if (mychannel > 0) {ChanMax = mychannel; ChanMin = mychannel;};\n" + 
-	    		"  if (mychannel < 0) {randMAC = mychannel;};\n" + 
-	    		"  wifi_set_promiscuous_rx_cb(promisc_cb);   // Set up promiscuous callback\n" + 
-	    		"  Sniff_channel = ChanMin;\n" + 
-	    		"  wifi_set_channel(Sniff_channel);\n" + 
-	    		"  wifi_promiscuous_enable(true);\n" + 
-	    		"  for (Sniff_channel = ChanMin; Sniff_channel <= ChanMax; Sniff_channel++) {\n" + 
-	    		"    wifi_set_channel(Sniff_channel);\n" + 
-	    		"    delay(300);            // 300 ms per channel\n" + 
-	    		"  }\n" + 
-	    		"  wifi_promiscuous_enable(false);\n" + 
-	    		"  mycount = SnifferCountDevices(MinRSSI,timeout,myMAC,randMAC,mydisplay); // Anzeige/zaehlen der Clients \n" + 
-	    		"  return mycount;\n" + 
-	    		"}\n";
+	    String Funct = "//------------ WiFi-Sniffer,  This software is based on the work of Andreas Spiess, https://github.com/SensorsIot/Wi-Fi-Sniffer-as-a-Human-detector//                            and Ray Burnette: https://www.hackster.io/rayburne/esp8266-mini-sniff-f6b93a \n"
+	    		+ "int WiFiPaxCounter(int MinRSSI,  int timeout, int8_t mychannel,String myMAC,int mydisplay) {\n"
+	    		+ "  int mycount=0;\n"
+	    		+ "  int randMAC=0;\n"
+	    		+ "  int ChanMin = 1, ChanMax =13; // europe channel 1-13, Japan 1-14\n"
+	    		+ "  if (mychannel > 0) {\n"
+	    		+ "    ChanMax = mychannel; \n"
+	    		+ "    ChanMin = mychannel;\n"
+	    		+ "  };\n"
+	    		+ "  if (mychannel < 0) {\n"
+	    		+ "    randMAC = mychannel;\n"
+	    		+ "  };\n"
+	    		+ "  #if defined(ESP8266)\n"
+	    		+ "    wifi_set_promiscuous_rx_cb(promisc_cb);   // Set up promiscuous callback\n"
+	    		+ "    Sniff_channel = ChanMin;\n"
+	    		+ "    wifi_set_channel(Sniff_channel);\n"
+	    		+ "    wifi_promiscuous_enable(true);\n"
+	    		+ "    for (Sniff_channel = ChanMin; Sniff_channel <= ChanMax; Sniff_channel++) {\n"
+	    		+ "      wifi_set_channel(Sniff_channel);\n"
+	    		+ "      delay(300);            // 300 ms per channel\n"
+	    		+ "    }\n"
+	    		+ "    wifi_promiscuous_enable(false);\n"
+	    		+ "  #endif\n"
+	    		+ "  #if defined(ESP32)\n"
+	    		+ "    //wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();\n"
+	    		+ "    //esp_wifi_init(&cfg);\n"
+	    		+ "    //esp_wifi_set_mode(WIFI_MODE_NULL);           // Kein AP oder Client-Modus\n"
+	    		+ "    //esp_wifi_start();\n"
+	    		+ "    esp_wifi_set_promiscuous(true);              // Promiscuous-Modus aktivieren\n"
+	    		+ "    esp_wifi_set_promiscuous_rx_cb(&promisc_cb); // Callback setzen\n"
+	    		+ "    Sniff_channel = ChanMin;\n"
+	    		+ "    esp_wifi_set_channel(Sniff_channel, WIFI_SECOND_CHAN_NONE);\n"
+	    		+ "    esp_wifi_set_promiscuous(true);              // Promiscuous-Modus aktivieren\n"
+	    		+ "    for (Sniff_channel = ChanMin; Sniff_channel <= ChanMax; Sniff_channel++) {\n"
+	    		+ "      esp_wifi_set_channel(Sniff_channel, WIFI_SECOND_CHAN_NONE);\n"
+	    		+ "      delay(300);            // 300 ms per channel\n"
+	    		+ "    }\n"
+	    		+ "    esp_wifi_set_promiscuous(false); // Promiscuous-Modus deaktivieren\n"
+	    		+ "  #endif\n"
+	    		+ "  mycount = SnifferCountDevices(MinRSSI,timeout,myMAC,randMAC,mydisplay); // Anzeige/zaehlen der Clients \n"
+	    		+ "  return mycount;\n"
+	    		+ "}";
 
 	    translator.addDefinitionCommand(Funct);
         

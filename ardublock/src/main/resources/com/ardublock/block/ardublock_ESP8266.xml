@@ -1674,7 +1674,7 @@
 	 	    <BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.7Seg">
-					<DefaultArg genus-name="number" label="88.88" />
+				<!-- DefaultArg genus-name="number" label="88.88" /-->	
 				</BlockConnector>
 		    </BlockConnectors>
 		</BlockGenus> 
