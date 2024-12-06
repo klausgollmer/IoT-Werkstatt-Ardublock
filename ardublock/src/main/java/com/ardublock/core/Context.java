@@ -69,7 +69,7 @@ public class Context
 	private String arduinoCodeFileString = "";
 	private OsType osType; 
 
-	final public static String APP_NAME = "Makey:Lab";
+	final public static String APP_NAME = "IoT-Werkstatt Makey:Lab";
 	
 	private Editor editor;
 	

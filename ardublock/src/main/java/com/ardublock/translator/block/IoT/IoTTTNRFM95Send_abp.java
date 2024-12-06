@@ -386,7 +386,7 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 				+ "void LoRaWAN_Start(int fromRTCMem) { // using ABP-Communication \n" 	
 				+ "  #if defined(BOARD_TTGO_V1)\r\n"
 				+ "   SPI.begin(SCK,MISO,MOSI,SS);\r\n"
-				+ "  #endif"
+				+ "  #endif\n"
 				+ "  os_init();             // LMIC LoraWAN\n"
 				+ "  LMIC_reset();          // Reset the MAC state \n"
 			    + "  // Set static session parameters. Instead of dynamically establishing a session\n"

@@ -383,7 +383,7 @@ public class IoTTTNRFM95Send_ota  extends TranslatorBlock {
 				+ "void LoRaWAN_Start(int fromRTCMem) { // using OTA-Communication \n" 	
 				+ "  #if defined(BOARD_TTGO_V1)\r\n"
 				+ "     SPI.begin(SCK,MISO,MOSI,SS);\r\n"
-				+ "  #endif "
+				+ "  #endif\n"
 				+ "  os_init();             // LMIC LoraWAN\n"
 				+ "  LMIC_reset();          // Reset the MAC state \n"
 		        + "  LMIC_setClockError(MAX_CLOCK_ERROR * 5 / 100); // timing difference esp clock\n"
