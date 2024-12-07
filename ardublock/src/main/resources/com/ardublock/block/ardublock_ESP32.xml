@@ -2274,7 +2274,48 @@
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
+		
+		<BlockGenus name="GetMaxbotix2" kind="data" color="44 165 226"
+			initlabel="bg.GetMaxbotix2" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="5"/>
+                </BlockConnector>	
+			</BlockConnectors>
+		</BlockGenus>
+		
 
+<!--  China DFRobot Ultraschall Sensor -->
+		<BlockGenus name="GetDFRobotUS" kind="data" color="44 165 226"
+			initlabel="bg.GetDFRobotUS" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="22"/>
+                </BlockConnector>	
+			</BlockConnectors>
+		</BlockGenus>
+
+     <BlockGenus name="medianfilter" kind="data" color="44 165 226"
+			initlabel="bg.medianfilter" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="Value">
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="minValue">
+					<DefaultArg genus-name="number" label="0.0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="maxValue">
+					<DefaultArg genus-name="number" label="5000.0" />
+				</BlockConnector>
+				<BlockConnector connector-type="cmd" connector-kind="socket"
+					label="pause" />
+			</BlockConnectors>
+		</BlockGenus>
 
 	<!--  Honeywell Feinstaub Sensor -->
 		<BlockGenus name="GetDustHoney" kind="data" color="44 165 226"
@@ -6338,6 +6379,7 @@
 
 				<BlockGenusMember>Divider_Distance</BlockGenusMember>
 	            <BlockGenusMember>GetMaxbotix</BlockGenusMember>
+                <BlockGenusMember>GetDFRobotUS</BlockGenusMember>
 				<BlockGenusMember>readVL53</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
 				<BlockGenusMember>LIDAR_TFmini_read</BlockGenusMember>
@@ -6392,7 +6434,9 @@
 	    		<BlockGenusMember>MEANsmooth</BlockGenusMember>
 				<BlockGenusMember>EMAsmooth</BlockGenusMember>
  		        <BlockGenusMember>DosisIntegral</BlockGenusMember>
+ 		        <BlockGenusMember>medianfilter</BlockGenusMember>
  		        <BlockGenusMember>absHum</BlockGenusMember>
+ 		        
  		        
 			</BlockDrawer>
 
