@@ -39,9 +39,9 @@ public class IoTMedianfilter extends TranslatorBlock
     
     // Header hinzuf�gen
     translator.addHeaderFile("SoftwareSerial.h");
-    translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
   
-    String MedianCode = "float findMedian(float v1, float v2, float v3) { // return median\r\n"
+    String MedianCode = "// ---------------------- simple median filter with 3 values \n"
+    		+ "float findMedian(float v1, float v2, float v3) { \r\n"
     		+ "    if ((v1 <= v2 && v2 <= v3) || (v3 <= v2 && v2 <= v1)) return v2;\r\n"
     		+ "    if ((v2 <= v3 && v3 <= v1) || (v1 <= v3 && v3 <= v2)) return v3;\r\n"
     		+ "    return v1;\r\n"
@@ -49,20 +49,23 @@ public class IoTMedianfilter extends TranslatorBlock
     		+ "";
     translator.addDefinitionCommand(MedianCode);		
 	
-    String FilterCode = "float readMedian_"+myfun+"(float minValue, float maxValue, int maxCount) { \n"
+    String FilterCode = "// ---------------------- medianfilter with sample and retry, eliminate outlayer \n"
+    		+ "float readMedian_"+myfun+"(float minValue, float maxValue, int maxCount) { \n"
     		+ "  float data[3] = {maxValue,maxValue,maxValue};\r\n"
-    		+ "  float median;\r\n"
     		+ "  int tryout;\r\n"
-    		+ "  for (int i=0;i<=2;i++) {\r\n"
+    		+ "  for (int i=0;i<=2;i++) { // calculate median of 3 measurements, each maxCount retry\r\n"
     		+ "    tryout = maxCount;\r\n"
+    		+"     if (i>0) { \n"
+    		+ "    // pause between each measurement \r\n"
+    		+             Pause +"\n"
+    		+ "    }\n"
+      		+ "    // now take a sample (maxCount retry) \r\n"
     		+ "    while ((isnan(data[i]) || (data[i] >= maxValue) || (data[i] <= minValue)) && (tryout > 0)) {  // test out of range \r\n"
-      		+ "    // pause between measurements \r\n"
-    		+ Pause +"\n" 
     		+ "      data[i]="+code+";\r\n"
     		+ "      tryout--;\r\n"
     		+ "    }\r\n"
     		+ "  }\r\n"
-    		+ "  return findMedian(data[0],data[1],data[2]);\r\n"
+    		+ "  return findMedian(data[0],data[1],data[2]); // return the median\r\n"
     		+ "}";
     translator.addDefinitionCommand(FilterCode);				
     

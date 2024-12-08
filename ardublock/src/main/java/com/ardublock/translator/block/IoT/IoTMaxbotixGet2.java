@@ -31,26 +31,27 @@ public class IoTMaxbotixGet2 extends TranslatorBlock
     
   
     // Deklarationen hinzuf�gen
-	translator.addDefinitionCommand("SoftwareSerial swSerMaxBot("+rxpin+", 100,true); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup");   		   	
+	translator.addDefinitionCommand("SoftwareSerial swSerMaxBot("+rxpin+", -1,true); // RXPin, TX not used, inverse logic, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup");   		   	
     
-    String read = "float readMaxbotUS(){ // ----------------------- Maxbotix serial protocol\r\n" + 
-    		"  float reading = NAN;\r\n" + 
-    		"  int tout = 250;\r\n" + 
-    		"  while (swSerMaxBot.available() > 0) swSerMaxBot.read(); // skip old data\r\n" + 
-    		"  while ((tout > 0) && isnan(reading)) {\r\n" + 
-    		"    if (swSerMaxBot.available()) {\r\n" + 
-    		"      if (swSerMaxBot.read() == 'R') { // Start Message\r\n" + 
-    		"        reading =swSerMaxBot.parseInt();\r\n" + 
-    		"      }\r\n" + 
-    		"    } \r\n" + 
-    		"    else {\r\n" + 
-    		"      tout--;\r\n" + 
-    		"      delay(1);\r\n" + 
-    		"    }\r\n" + 
-    		"  }\r\n" + 
-    		"  return reading;\r\n" + 
-    		"}\r\n" + 
-    		"";
+    String read = "float readMaxbotUS(){ // ----------------------- Ultrasound Distance Measurement Maxbotix serial protocol\r\n"
+    		+ "  float reading = NAN;\r\n"
+    		+ "  int tout = 250;\r\n"
+    		+ "  while (swSerMaxBot.available() > 0) {swSerMaxBot.read();} // skip old data\r\n"
+    		+ "  \r\n"
+    		+ "  while ((tout > 0) && isnan(reading)) {\r\n"
+    		+ "    if (swSerMaxBot.available()) {\r\n"
+    		+ "      if (swSerMaxBot.read() == 'R') { // Start Message\r\n"
+    		+ "        reading =swSerMaxBot.parseInt();\r\n"
+    		+ "        //Serial.print(reading);\r\n"
+    		+ "      }\r\n"
+    		+ "    } else {\r\n"
+    		+ "      tout--;\r\n"
+    		+ "      //Serial.print('.');\r\n"
+    		+ "      delay(2);\r\n"
+    		+ "    }\r\n"
+    		+ "  }\r\n"
+    		+ "  return reading;\r\n"
+    		+ "}";
     translator.addDefinitionCommand(read);		
 	
 	

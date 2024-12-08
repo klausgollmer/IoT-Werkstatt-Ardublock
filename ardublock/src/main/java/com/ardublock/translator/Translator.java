@@ -150,7 +150,7 @@ public class Translator
 		addSetupCommand("Serial.begin(115200);");
 		addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
 		addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
-		addSetupCommand("#ifndef LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n #else \n initOLED(2000);\n #endif\n");
+		addSetupCommand("   #ifndef LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n    #else \n initOLED(2000);\n    #endif\n");
 		
 		/* #kgo das hat zur Folge, dass die Befehle unter Umständen oppelt auftauchen (z.B. Serial.Begin)
 	    setupFunction.append("Serial.begin(115200);");

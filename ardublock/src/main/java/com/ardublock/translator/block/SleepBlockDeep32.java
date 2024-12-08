@@ -30,8 +30,9 @@ public class SleepBlockDeep32 extends TranslatorBlock
     	translator.addHeaderFile("#ifdef ESP32 \n RTC_DATA_ATTR lmic_t RTC_LMIC;\n #endif\n");
     	ret += "SaveLMICToRTC_ESP32("+Delay_ms+"/1000);\n" ;
 	}
-	ret += "Serial.println(\"Going to sleep now\");\n"  
+	ret += "Serial.println(\"Going to deep sleep now\");\n"  
    		+  "Serial.flush();\n"
+   		+  "Serial.end();\n"
         +  "esp_sleep_enable_timer_wakeup("+Delay_ms+" * 1000ULL);\n"
    	    +  "esp_deep_sleep_start();";
     	return ret;

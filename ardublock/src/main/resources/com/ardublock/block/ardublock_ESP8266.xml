@@ -2280,17 +2280,16 @@
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
-
-	<BlockGenus name="GetMaxbotix2" kind="data" color="44 165 226"
+		
+  	    <BlockGenus name="GetMaxbotix2" kind="data" color="44 165 226"
 			initlabel="bg.GetMaxbotix2" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="number" label="5"/>
+                    <DefaultArg genus-name="number" label="22"/>
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
-
 
 <!--  China DFRobot Ultraschall Sensor -->
 		<BlockGenus name="GetDFRobotUS" kind="data" color="44 165 226"
@@ -5540,22 +5539,21 @@
 
 		<BlockGenus name="readReset" kind="data"
 			color="50 50 50" initlabel="bg.readReset">
-			<description>
-				<text>Reset-Reason</text>
-			</description>
 			<BlockConnectors>
    			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 			</BlockConnectors>
 		</BlockGenus>
 		
 		<BlockGenus name="readReset32" kind="data" color="50 50 50" initlabel="bg.readReset32">
-			<description>
-				<text>Reset-Reason</text>
-			</description>
 			<BlockConnectors>
    			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+   			   	<BlockConnector connector-type="number"
+					connector-kind="socket" label="cpu">
+				<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+	
 		
 
         <BlockGenus name="WiFiEnable" kind="command" color="50 50 50"
@@ -6391,7 +6389,7 @@
 				<BlockGenusMember>GetLightBH</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Distance</BlockGenusMember>
-	            <BlockGenusMember>GetMaxbotix</BlockGenusMember>
+	            <BlockGenusMember>GetMaxbotix2</BlockGenusMember>
 	            <BlockGenusMember>GetDFRobotUS</BlockGenusMember>
 				<BlockGenusMember>readVL53</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
