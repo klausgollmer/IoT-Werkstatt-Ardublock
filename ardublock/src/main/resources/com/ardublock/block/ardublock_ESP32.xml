@@ -5545,6 +5545,22 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+		
+		
+        <BlockGenus name="Frequency32" kind="command" color="50 50 50"
+			initlabel="bg.Frequency32">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="f [MHz]">
+					<DefaultArg genus-name="number" label="80" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
+		
+		
+		
+		
 		<BlockGenus name="sleep32" kind="command" color="50 50 50"
 			initlabel="bg.sleep32">
 			<description>
@@ -6562,6 +6578,7 @@
 			  <BlockGenusMember>Divider_ESP32</BlockGenusMember>
 			  <BlockGenusMember>sleep32</BlockGenusMember>
   		      <BlockGenusMember>LightSleep32</BlockGenusMember>	
+  		      <BlockGenusMember>Frequency32</BlockGenusMember>	
   		      <BlockGenusMember>readReset32</BlockGenusMember>	
   		      <BlockGenusMember>Divider_OTA</BlockGenusMember>
  		      <BlockGenusMember>basicOTA</BlockGenusMember>

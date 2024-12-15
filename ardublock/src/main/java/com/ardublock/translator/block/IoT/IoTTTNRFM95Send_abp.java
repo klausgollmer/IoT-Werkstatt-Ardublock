@@ -14,7 +14,7 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 	
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
-	{
+	{	translator.addHeaderFile("arduino_lmic_hal_boards.h");
 		translator.addHeaderFile("lmic.h");
 		translator.addHeaderFile("hal/hal.h");
 		translator.addHeaderFile("#define LORA_TX_INTERVAL 10");
@@ -73,7 +73,15 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 				+ "  .dio = {\r\n"
 				+ "    LMIC_DIO, LMIC_DIO, LMIC_UNUSED_PIN           }\r\n"
 				+ "};\r\n"
-				+ "#endif"; 
+				+ "#endif\n"
+				+ "#if defined(XIAO_ESP32S3)\n"
+				+ "const Arduino_LMIC::HalConfiguration_t myConfig;\r\n"
+				+ "const lmic_pinmap *pPinMap = Arduino_LMIC::GetPinmap_XIAO_S3_WIO_SX1262();"
+				+ "#endif\n"; 
+
+		
+				translator.addDefinitionCommand(PinMapping);
+				
 		
 		
 		translator.addDefinitionCommand(PinMapping);
@@ -387,7 +395,11 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 				+ "  #if defined(BOARD_TTGO_V1)\r\n"
 				+ "   SPI.begin(SCK,MISO,MOSI,SS);\r\n"
 				+ "  #endif\n"
+				+ "#if defined(XIAO_ESP32S3)\n"
+				+ "  os_init_ex(pPinMap);\n"
+				+ "#else\n"
 				+ "  os_init();             // LMIC LoraWAN\n"
+				+ "#endif\n "
 				+ "  LMIC_reset();          // Reset the MAC state \n"
 			    + "  // Set static session parameters. Instead of dynamically establishing a session\n"
 				+ "  // by joining the network, precomputed session parameters are be provided.\n"
@@ -474,44 +486,58 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 	    		+ "int port = " + port + ";\n"
 	    		+ "static uint8_t mydata["+ count + "];\n"
 	       		+ wert +
-		          "int Retry = 3, tout = 5000,  ok=-1;\n" + 
-		          "while (Retry > 0) {\n" + 
-		          " // Check if there is not a current TX/RX job running, wait until finished\n" + 
-		          "   if (!((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING))) {\n" + 
-		          "     //LoRaWAN_Tx_Ready = 0;\n" + 
-		          "     ok = LMIC_setTxData2(port, mydata, sizeof(mydata), 0);     // Sende  \n" + 
-		          "     if (ok!=0) {\n" + 
-		          "       Serial.println(F(\"------------------------  setTxData: \"));Serial.print(ok);\n" + 
-		          "     } else {\n" + 
-		          "       Serial.println(F(\"Packet queued \"));\n" + 
-		          "       while (LMIC.opmode & OP_TXDATA) { //(!LoRaWAN_Tx_Ready) {            \n" + 
-		          "         yield();\n" + 
-		          "         os_runloop_once();\n" + 
-		          "       }      \n" + 
-		          "       Serial.println(F(\"Packet send \"));\n" + 
-		          "       Retry = 0;\n" + 
-		          "    }\n" + 
-		          "  }\n" + 
-		          "  if (ok!=0) {\n" + 
-		          "    Retry=Retry-1;\n" + 
-		          "    Serial.println(F(\"Retry after timeout\"));\n" + 
-		          "    long m = millis();\n" + 
-		          "    while ((millis()-m) < tout) {\n" + 
-		          "     yield();\n" + 
-		          "     os_runloop_once();\n" + 
-		          "    }\n" + 
-		          "   }\n" + 
-		          "  } \n" + 
-		          "\n" + 
-		          "  if ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING)) {\n" + 
-		          "    Serial.print(F(\"some MAC-TXRX activ, mode = \"));Serial.println(LMIC.opmode,HEX);\n" + 
-		          "    while ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING)) {\n" + 
-		          "      yield();\n" + 
-		          "      os_runloop_once();\n" + 
-		          "    }\n" + 
-		          "  }\n" + 
-		          "  Serial.println(F(\"Tx Job finished\"));\n" + 
-		          " } // Block \n";
+		          " int Retry = 2, tout = 30000,  err=1;\r\n"
+		          + "    while (Retry > 0) {\r\n"
+		          + "      // Check if there is not a current TX/RX job running, wait until finished\r\n"
+		          + "      if (!((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING))) {\r\n"
+		          + "        //LoRaWAN_Tx_Ready = 0;\r\n"
+		          + "        err = LMIC_setTxData2(port, mydata, sizeof(mydata), 0);     // Sende  \r\n"
+		          + "        if (err==1) {\r\n"
+		          + "          Serial.println(F(\"------------------------  setTxData: error\"));\r\n"
+		          + "        } else { // err = 0, packet queued\r\n"
+		          + "          Serial.println(F(\"Packet queued: \"));\r\n"
+		          + "          long m = millis();\r\n"
+		          + "          while (LMIC.opmode & OP_TXDATA) { //(!LoRaWAN_Tx_Ready) {            \r\n"
+		          + "            yield();\r\n"
+		          + "            os_runloop_once();\r\n"
+		          + "            if ((millis()- m) > tout ) {\r\n"
+		          + "              Serial.print(F(\"timeout abort\"));\r\n"
+		          + "              err = 1;\r\n"
+		          + "              break;\r\n"
+		          + "            }\r\n"
+		          + "          }      \r\n"
+		          + "          if (err == 0) {\r\n"
+		          + "            Serial.print(F(\" packet send \"));\r\n"
+		          + "            Retry = 0;\r\n"
+		          + "          }\r\n"
+		          + "        }\r\n"
+		          + "      }\r\n"
+		          + "      if (err) { \r\n"
+		          + "        Retry=Retry-1;\r\n"
+		          + "        Serial.print(F(\", retry \"));\r\n"
+		          + "        long m = millis();\r\n"
+		          + "        while ((millis()-m) < tout) {\r\n"
+		          + "          yield();\r\n"
+		          + "          os_runloop_once();\r\n"
+		          + "        }\r\n"
+		          + "      }\r\n"
+		          + "    } \r\n"
+		          + "    \r\n"
+		          + "    if ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING)) {\r\n"
+		          + "      Serial.print(F(\"some MAC-TXRX activ, mode = \"));\r\n"
+		          + "      Serial.println(LMIC.opmode,HEX);\r\n"
+		          + "      long m = millis();\r\n"
+		          + "      while ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING)) {\r\n"
+		          + "        yield();\r\n"
+		          + "        os_runloop_once();\r\n"
+		          + "        if  ((millis()- m) > tout ) {\r\n"
+		          + "              Serial.println(F(\"abort communication, lost job\"));\r\n"
+		          + "              break;\r\n"
+		          + "        }\r\n"
+		          + "      }\r\n"
+		          + "    }\r\n"
+		          + "    Serial.println(F(\"Tx finished\"));"
+		          + " } // Block \n";
 	    
 		translator.setLORAProgram(true);
     	    
