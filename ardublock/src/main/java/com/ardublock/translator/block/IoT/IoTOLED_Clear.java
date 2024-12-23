@@ -32,6 +32,11 @@ public class IoTOLED_Clear  extends TranslatorBlock {
 				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
 				 + "#define LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
+
+		String Setup = "#ifndef BOARD_MAKEY \n initOLED(0);\n #endif\n";
+		translator.addSetupCommand(Setup);
+		
+		
 		
 	     String ret="// Clear Canvas \n"	+ 
 	            "canvas.fillScreen(SH110X_BLACK);\n";

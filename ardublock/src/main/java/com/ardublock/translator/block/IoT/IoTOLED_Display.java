@@ -31,7 +31,16 @@ public class IoTOLED_Display  extends TranslatorBlock {
 				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
 				 + "#define LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
-	
+
+		// I2C-initialisieren
+		translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+		
+		String Setup = "#ifndef BOARD_MAKEY \n initOLED(0);\n #endif\n";
+		translator.addSetupCommand(Setup);
+
+		
+		
 		
 		 String ret="// Display Canvas \n"	+ 
 	            "myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), SCREEN_WIDTH, SCREEN_HEIGHT, SH110X_WHITE, SH110X_BLACK);\n" + 

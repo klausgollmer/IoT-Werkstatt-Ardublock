@@ -51,8 +51,15 @@ public class IoTOLED_PrintTerminal  extends TranslatorBlock {
 		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 		String LF = translatorBlock.toCode();
 		
+		// I2C-initialisieren
+		translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+				
+		String Setup = "#ifndef BOARD_MAKEY \n initOLED(0);\n #endif\n";
+		translator.addSetupCommand(Setup);
+
 		    
-	    String Setup =   "myOLEDdisplay.setRotation(0);\n"
+	    Setup =   "myOLEDdisplay.setRotation(0);\n"
 	    		+ "myOLEDdisplay.setTextSize(1);\n"
 	    		+ "myOLEDdisplay.setTextColor(SH110X_WHITE);\n"
 	    		+ "myOLEDdisplay.setCursor(0,0);\n"
@@ -65,6 +72,7 @@ public class IoTOLED_PrintTerminal  extends TranslatorBlock {
 	    		+ "}\n";
 	    translator.addSetupCommand(Setup);
 
+	    
 	    
 	    String Terminal = "// \n"
 	    		+ "// Terminal-Emulation für OLED Display \n"
