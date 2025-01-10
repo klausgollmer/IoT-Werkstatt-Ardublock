@@ -21,7 +21,7 @@ public class IoTResetReason32 extends TranslatorBlock
     
    // Code von der Mainfunktion
 	translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
-    translator.setWiFiProgram(true);
+    //translator.setWiFiProgram(true);
     
     TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
     String cpu = translatorBlock.toCode();

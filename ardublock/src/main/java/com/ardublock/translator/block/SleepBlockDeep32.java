@@ -19,7 +19,7 @@ public class SleepBlockDeep32 extends TranslatorBlock
 	
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	String Delay_ms = translatorBlock.toCode();
-	translator.setWiFiProgram(true);
+	//translator.setWiFiProgram(true);
 	translator.setDeepSleepProgram(true);
 	translator.addHeaderFile("#define USE_DEEPSLEEP");
 	translator.addHeaderFile("rom/rtc.h");

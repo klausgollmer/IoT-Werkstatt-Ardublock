@@ -89,7 +89,7 @@ public class Translator
 		
 		if (!isWiFiProgram()) {
 		//  addHeaderFile("ESP8266WiFi.h");
-			addDefinitionCommand ("#if defined(ESP8266)\n  #include <ESP8266WiFi.h> \n #endif\r\n");
+			addDefinitionCommand ("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");
 		}
 		addHeaderFile("IoTBoards_Generic.h");
 		addHeaderFile("Wire.h");
@@ -143,8 +143,15 @@ public class Translator
 		
 		
 		StringBuilder setupFunction = new StringBuilder();
-//		setupFunction.append("void setup()\n{\n");
-		setupFunction.append("void setup(){ // Einmalige Initialisierung\n");
+		setupFunction.append("void setup()\n{ //Einmalige Initialisierung \n");
+		
+		
+		
+		if (!isWiFiProgram()) {
+			   setupFunction.append("#if defined(ESP8266) \n WiFi.forceSleepBegin(); \n #endif \n");
+			   setupFunction.append("#if defined(ESP32) \n  WiFi.mode(WIFI_OFF); \n #endif \n");
+		}
+		
 		setupFunction.append("#if defined(BOARD_MAKEY)\n #ifndef LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n    #else \n initOLED(2000);\n    #endif\n #endif\n");
 		setupFunction.append("Serial.begin(115200);");
 		
@@ -191,9 +198,7 @@ public class Translator
  			setupFunction.append(util);
  	    }
  		
- 		if (!isWiFiProgram()) {
-		   setupFunction.append("#if defined(ESP8266) \n WiFi.forceSleepBegin(); \n #endif \n");
-		}
+ 		
 		
 		if (!inputPinSet.isEmpty())
 		{

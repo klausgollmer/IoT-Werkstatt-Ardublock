@@ -19,7 +19,7 @@ public class SleepBlockLight32 extends TranslatorBlock
 	
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	String Delay_ms = translatorBlock.toCode();
-	translator.setWiFiProgram(true);
+	//translator.setWiFiProgram(true);
 
 	String ret = "//------- Light SLEEP ---------------------------- \n"
 		+ "Serial.flush();"

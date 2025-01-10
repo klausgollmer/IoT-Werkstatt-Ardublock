@@ -19,20 +19,42 @@ public class IoTDFRobotUSGet extends TranslatorBlock
     TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
     String rxpin = translatorBlock.toCode();
 
-    // Header hinzuf�gen
-    translator.addHeaderFile("SoftwareSerial.h");
-    translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
+    boolean use_uart = true;
+    translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
+    String UART = translatorBlock.toCode();
+    if ((UART.contains("3")))
+	    use_uart = false;
     
-    // Setupdeklaration
-    // I2C-initialisieren
-    String Setup = " swSerUS.begin(9600,SWSERIAL_8N1); // ultrasonic \n";
+    
+    
+    String Setup,Def; 
+    if (use_uart) {
+       translator.addHeaderFile("HardwareSerial.h");
+       translator.addHeaderFile("driver/uart.h");
+       Setup ="#if defined(ESP32)\n"
+       		+ " swSerUS.begin(9600, SERIAL_8N1,"+rxpin+", -1); // UART kein TX\r\n"
+       		+ "#else \n"
+            + " swSerUS.begin(9600,SWSERIAL_8N1); // Maxbotix ultrasonic \n"
+       	    + "#endif \n";   
+       Def =   "#if defined(ESP32) \n"
+       		+  " HardwareSerial swSerUS("+UART+"); // Hardware UART \n"
+       		+ "#else \n"
+            + "  SoftwareSerial swSerUS("+rxpin+", -1); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup\n"   		   	
+       	    + "#endif \n";   
+       
+    } else {
+       translator.addHeaderFile("SoftwareSerial.h");
+       Setup = "swSerUS.begin(9600,SWSERIAL_8N1); // Maxbotix ultrasonic \n";
+       Def =   "SoftwareSerial swSerUS("+rxpin+", -1); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup\n";   		   	
+    }
+    
     translator.addSetupCommand(Setup);
+   	translator.addDefinitionCommand(Def);   
     
-    // Deklarationen hinzuf�gen
-	translator.addDefinitionCommand("SoftwareSerial swSerUS("+rxpin+", -1); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup");   		   	
+    
     
     String read = "//------------------------------- Ultrasound Distance Measurement DFRobot, UART protocol \n"
-    		+ "float readDFRobotUS(int maxLevel){\r\n"
+    		+ "float readDFRobotUS_"+rxpin+"(int maxLevel){\r\n"
     		+ "  unsigned char data[3]; // buffer\r\n"
     		+ "  float distance = NAN;\r\n"
     		+ "  int tout=100,checksum=0;\r\n"
@@ -73,7 +95,7 @@ public class IoTDFRobotUSGet extends TranslatorBlock
 	
 	
     // Code von der Mainfunktion
-	ret = "readDFRobotUS(7500)";
+	ret = "readDFRobotUS_"+rxpin+"(7500)";
     return codePrefix + ret + codeSuffix;
   }
 }

@@ -2276,16 +2276,40 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-	    <BlockGenus name="GetMaxbotix2" kind="data" color="44 165 226"
+		<BlockGenus name="GetMaxbotix2" kind="data" color="44 165 226"
 			initlabel="bg.GetMaxbotix2" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="number" label="22"/>
+                    <DefaultArg genus-name="number" label="16"/>
                 </BlockConnector>	
+                <BlockConnector connector-type="number"
+				    connector-kind="socket" label="serial">
+					<DefaultArg genus-name="UART_SW" label="SW Serial" />
+				</BlockConnector>
+                
+                
 			</BlockConnectors>
-		</BlockGenus>
-
+       </BlockGenus>
+		
+  	   <BlockGenus name="UART_SW" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
+  	   <BlockGenus name="UART_1" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+  	   <BlockGenus name="UART_2" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
+		
 
 <!--  China DFRobot Ultraschall Sensor -->
 		<BlockGenus name="GetDFRobotUS" kind="data" color="44 165 226"
@@ -2293,10 +2317,15 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="number" label="22"/>
+                    <DefaultArg genus-name="number" label="16"/>
                 </BlockConnector>	
-			</BlockConnectors>
+                <BlockConnector connector-type="number"
+				    connector-kind="socket" label="serial">
+					<DefaultArg genus-name="UART_SW" label="SW Serial" />
+				</BlockConnector>
+        	</BlockConnectors>
 		</BlockGenus>
+
 
 
        <BlockGenus name="medianfilter" kind="data" color="44 165 226"
@@ -5751,6 +5780,15 @@
 			<FamilyMember>true</FamilyMember>
 			<FamilyMember>false</FamilyMember>
 		</BlockFamily>
+		
+		<BlockFamily>
+			<FamilyMember>UART_SW</FamilyMember>
+			<FamilyMember>UART_1</FamilyMember>
+			<FamilyMember>UART_2</FamilyMember>
+		</BlockFamily>
+		
+		
+		
 		<BlockFamily>
 			<FamilyMember>addition</FamilyMember>
 			<FamilyMember>subtraction</FamilyMember>

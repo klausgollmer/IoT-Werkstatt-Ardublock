@@ -2280,10 +2280,34 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="number" label="22"/>
+                    <DefaultArg genus-name="number" label="16"/>
                 </BlockConnector>	
+                <BlockConnector connector-type="number"
+				    connector-kind="socket" label="serial">
+					<DefaultArg genus-name="UART_SW" label="SW Serial" />
+				</BlockConnector>
+                
+                
 			</BlockConnectors>
-		</BlockGenus>
+       </BlockGenus>
+		
+  	   <BlockGenus name="UART_SW" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
+  	   <BlockGenus name="UART_1" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+  	   <BlockGenus name="UART_2" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
 		
 
 <!--  China DFRobot Ultraschall Sensor -->
@@ -2292,9 +2316,13 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="number" label="22"/>
+                    <DefaultArg genus-name="number" label="16"/>
                 </BlockConnector>	
-			</BlockConnectors>
+                <BlockConnector connector-type="number"
+				    connector-kind="socket" label="serial">
+					<DefaultArg genus-name="UART_SW" label="SW Serial" />
+				</BlockConnector>
+        	</BlockConnectors>
 		</BlockGenus>
 
      <BlockGenus name="medianfilter" kind="data" color="44 165 226"
@@ -5558,6 +5586,20 @@
 		</BlockGenus>
 		
 		
+		 <BlockGenus name="RTC_GPIO32" kind="command" color="50 50 50"
+			initlabel="bg.RTC_GPIO32">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="RTC GPIO">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="boolean"
+					connector-kind="socket" label="level">
+					<DefaultArg genus-name="digital-high" label="LOW" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
 		
 		
 		
@@ -5820,6 +5862,17 @@
 			<FamilyMember>true</FamilyMember>
 			<FamilyMember>false</FamilyMember>
 		</BlockFamily>
+		
+		<BlockFamily>
+			<FamilyMember>UART_SW</FamilyMember>
+			<FamilyMember>UART_1</FamilyMember>
+			<FamilyMember>UART_2</FamilyMember>
+		</BlockFamily>
+		
+		
+		
+		
+		
 		<BlockFamily>
 			<FamilyMember>addition</FamilyMember>
 			<FamilyMember>subtraction</FamilyMember>
@@ -6182,6 +6235,8 @@
 				<BlockGenusMember>variable_digital</BlockGenusMember>
 				<BlockGenusMember>digital-high</BlockGenusMember>
 				<BlockGenusMember>digital-low</BlockGenusMember>
+	
+		<BlockGenusMember>UART_SW</BlockGenusMember>
 	
 				<BlockGenusMember>Divider_Num</BlockGenusMember>
 				<BlockGenusMember>setter_variable_number</BlockGenusMember>				
@@ -6578,6 +6633,7 @@
 			  <BlockGenusMember>Divider_ESP32</BlockGenusMember>
 			  <BlockGenusMember>sleep32</BlockGenusMember>
   		      <BlockGenusMember>LightSleep32</BlockGenusMember>	
+		      <BlockGenusMember>RTC_GPIO32</BlockGenusMember>	
   		      <BlockGenusMember>Frequency32</BlockGenusMember>	
   		      <BlockGenusMember>readReset32</BlockGenusMember>	
   		      <BlockGenusMember>Divider_OTA</BlockGenusMember>

@@ -19,21 +19,45 @@ public class IoTMaxbotixGet2 extends TranslatorBlock
     TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
     String rxpin = translatorBlock.toCode();
 
-    // Header hinzuf�gen
-    translator.addHeaderFile("SoftwareSerial.h");
-    translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
+    boolean use_uart = true;
+    translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
+    String UART = translatorBlock.toCode();
+    if ((UART.contains("3")))
+	    use_uart = false;
     
-    // Setupdeklaration
-    // I2C-initialisieren
-    String Setup = " swSerMaxBot.begin(9600,SWSERIAL_8N1); // Maxbotix ultrasonic \n";
+    
+	//System.out.println("UART:" + UART+"---");
+    
+	//System.out.println("flagUART: " + use_uart);
+
+    
+    
+    String Setup,Def; 
+    if (use_uart) {
+       translator.addHeaderFile("HardwareSerial.h");
+       translator.addHeaderFile("driver/uart.h");
+       Setup ="#if defined(ESP32)\n"
+       		+ " swSerMaxBot.begin(9600, SERIAL_8N1,"+rxpin+", -1); // UART kein TX\r\n"
+       		+ " uart_set_line_inverse(UART_NUM_"+UART+", UART_SIGNAL_RXD_INV); //RX-Pegelinvertierung aktivieren\n"
+       		+ "#else \n"
+            + " swSerMaxBot.begin(9600,SWSERIAL_8N1); // Maxbotix ultrasonic \n"
+       	    + "#endif \n";   
+       Def =   "#if defined(ESP32) \n"
+       		+  " HardwareSerial swSerMaxBot("+UART+"); // Hardware UART \n"
+       		+ "#else \n"
+            + " SoftwareSerial swSerMaxBot("+rxpin+", -1,true); // RXPin, TX not used, inverse logic, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup\n"   		   	
+       	    + "#endif \n";   
+       
+    } else {
+       translator.addHeaderFile("SoftwareSerial.h");
+       Setup = "swSerMaxBot.begin(9600,SWSERIAL_8N1); // Maxbotix ultrasonic \n";
+       Def =   "SoftwareSerial swSerMaxBot("+rxpin+", -1,true); // RXPin, TX not used, inverse logic, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup\n";   		   	
+    }
+    	
     translator.addSetupCommand(Setup);
-    translator.addSetupCommand(Setup);
+	translator.addDefinitionCommand(Def);   		   	
     
-  
-    // Deklarationen hinzuf�gen
-	translator.addDefinitionCommand("SoftwareSerial swSerMaxBot("+rxpin+", -1,true); // RXPin, TX not used, inverse logic, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup");   		   	
-    
-    String read = "float readMaxbotUS(){ // ----------------------- Ultrasound Distance Measurement Maxbotix serial protocol\r\n"
+    String read = "float readMaxbotUS_"+rxpin+"(){ // ----------------------- Ultrasound Distance Measurement Maxbotix serial protocol\r\n"
     		+ "  float reading = NAN;\r\n"
     		+ "  int tout = 250;\r\n"
     		+ "  while (swSerMaxBot.available() > 0) {swSerMaxBot.read();} // skip old data\r\n"
@@ -56,7 +80,7 @@ public class IoTMaxbotixGet2 extends TranslatorBlock
 	
 	
     // Code von der Mainfunktion
-	ret = "readMaxbotUS()";
+	ret = "readMaxbotUS_"+rxpin+"()";
     return codePrefix + ret + codeSuffix;
   }
 }
