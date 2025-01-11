@@ -419,6 +419,24 @@ String PinMapping = "// LoraWAN Copyright (c) 2015 Thomas Telkamp and Matthijs K
 		        "";
 		
 			translator.addDefinitionCommand(init);
+			String schedule = "// LoRaLMIC: Wait for RX-Window in light sleep\r\n"
+					+ "ostime_t get_next_deadline() {\r\n"
+					+ "    // Zugriff auf den nächsten geplanten Job\r\n"
+					+ "    if (LMIC.osjob.deadline > os_getTime()) {\r\n"
+					+ "        return LMIC.osjob.deadline; // Rückgabe der nächsten Deadline\r\n"
+					+ "    }\r\n"
+					+ "    return 0; // Keine Deadline vorhanden\r\n"
+					+ "}\r\n"
+					+ "void os_runloop_once_sleep(){\r\n"
+					+ "  os_runloop_once();\r\n"
+					+ "  if (get_next_deadline() > 10) {\r\n"
+					+ "     esp_sleep_enable_timer_wakeup(get_next_deadline()-1);\r\n"
+					+ "     esp_light_sleep_start();\r\n"
+					+ "  }\r\n"
+					+ "}";
+			translator.addDefinitionCommand(schedule);
+			
+			
             String setup = "  LoRaWAN_Start(true); // Prepare LMIC-Engine\n";
 			translator.addSetupCommand(setup);
 			
@@ -482,7 +500,7 @@ String PinMapping = "// LoraWAN Copyright (c) 2015 Thomas Telkamp and Matthijs K
 		          + "          long m = millis();\r\n"
 		          + "          while (LMIC.opmode & OP_TXDATA) { //(!LoRaWAN_Tx_Ready) {            \r\n"
 		          + "            yield();\r\n"
-		          + "            os_runloop_once();\r\n"
+		          + "            os_runloop_once_sleep();\r\n"
 		          + "            if ((millis()- m) > tout ) {\r\n"
 		          + "              Serial.print(F(\"timeout abort\"));\r\n"
 		          + "              err = 1;\r\n"
@@ -501,7 +519,7 @@ String PinMapping = "// LoraWAN Copyright (c) 2015 Thomas Telkamp and Matthijs K
 		          + "        long m = millis();\r\n"
 		          + "        while ((millis()-m) < tout) {\r\n"
 		          + "          yield();\r\n"
-		          + "          os_runloop_once();\r\n"
+		          + "          os_runloop_once_sleep();\r\n"
 		          + "        }\r\n"
 		          + "      }\r\n"
 		          + "    } \r\n"
@@ -512,7 +530,7 @@ String PinMapping = "// LoraWAN Copyright (c) 2015 Thomas Telkamp and Matthijs K
 		          + "      long m = millis();\r\n"
 		          + "      while ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING)) {\r\n"
 		          + "        yield();\r\n"
-		          + "        os_runloop_once();\r\n"
+		          + "        os_runloop_once_sleep();\r\n"
 		          + "        if  ((millis()- m) > tout ) {\r\n"
 		          + "              Serial.println(F(\"abort communication, lost job\"));\r\n"
 		          + "              break;\r\n"
