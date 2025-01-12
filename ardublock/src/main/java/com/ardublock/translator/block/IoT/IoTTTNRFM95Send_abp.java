@@ -17,20 +17,9 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 	{	translator.addHeaderFile("arduino_lmic_hal_boards.h");
 		translator.addHeaderFile("lmic.h");
 		translator.addHeaderFile("hal/hal.h");
-		translator.addHeaderFile("#define LORA_TX_INTERVAL 10");
-		translator.addSetupCommand("Serial.begin(115200);");
+		translator.addHeaderFile("IoTW_LMIC.h");
+	//	translator.addHeaderFile("#define LORA_TX_INTERVAL 10");
 		translator.setLORAProgram(true);   
-		
-		String vardef = "volatile int LoRaWAN_Tx_Ready   = 0; // Flag for Tx Send \n" + 
-	    		"long         LoRaWAN_ms_Wakeup  = 0; // ms at start message\n" + 
-	    		"long         LoRaWAN_ms_EmExit  = 0; // max. ms  \n"; 
-	    translator.addDefinitionCommand(vardef);
-	    
-	 	    
-	    translator.addDefinitionCommand("int LoRaWAN_Rx_Payload = 0 ;");
-	    translator.addDefinitionCommand("int LoRaWAN_Rx_Port = 0 ;");
-	    translator.addDefinitionCommand("String LoRaWAN_Rx_Payload_Raw = \"\" ;");
-	    
 		
 		String Defaults=""
 			+"void os_getArtEui (u1_t* buf) { }"
@@ -47,10 +36,7 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 		translator.addDefinitionCommand(Dis);
 		
 
-		String PinMapping = "// LoraWAN Copyright (c) 2015 Thomas Telkamp and Matthijs Kooijman\n" + 
-				"// (c) 2018 Terry Moore, MCCI\n" + 
-				"// https://github.com/mcci-catena/arduino-lmic\n" + 
-				"// -------- LoRa PinMapping FeatherWing Octopus\n" + 
+		String PinMapping = "// -------- LoRa PinMapping \n" + 
 				"\n"  
 				+ "#if defined(BOARD_TTGO_V1)\r\n"
 				+ " #define SCK     5    // GPIO5  -- SX1278's SCK\r\n"
@@ -63,7 +49,7 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 				+ "    .nss = SS, \r\n"
 				+ "    .rxtx = LMIC_UNUSED_PIN,\r\n"
 				+ "    .rst = RST,\r\n"
-				+ "    .dio = {/*dio0*/ DI0, /*dio1*/ 33, /*dio2*/ 32}\r\n"
+				+ "    .dio = {DI0, 33,  32}\r\n"
 				+ "};\r\n"
 				+ "#else\r\n"
 				+ "const lmic_pinmap lmic_pins = {  \r\n"
@@ -78,7 +64,6 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 				+ "const Arduino_LMIC::HalConfiguration_t myConfig;\r\n"
 				+ "const lmic_pinmap *pPinMap = Arduino_LMIC::GetPinmap_XIAO_S3_WIO_SX1262();"
 				+ "#endif\n"; 
-
 		
 				translator.addDefinitionCommand(PinMapping);
 				
@@ -149,249 +134,8 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
    	    	+  "0x" + ascii.charAt(31)+ascii.charAt(32) + "};\n";
 	    translator.addDefinitionCommand(Hex);
 	    
-	    
-	   
-		
-		String CRC = "// Berechne CRC-Prüfsumme für RTC-RAM \n"
-				+   "uint32_t RTCcalculateCRC32(const uint8_t *data, size_t length) {\n" + 
-					"  uint32_t crc = 0xffffffff;\n" + 
-					"  while (length--) {\n" + 
-					"    uint8_t c = *data++;\n" + 
-					"    for (uint32_t i = 0x80; i > 0; i >>= 1) {\n" + 
-					"      bool bit = crc & 0x80000000;\n" + 
-					"      if (c & i) {\n" + 
-					"        bit = !bit;\n" + 
-					"      }\n" + 
-					"      crc <<= 1;\n" + 
-					"      if (bit) {\n" + 
-					"        crc ^= 0x04c11db7;\n" + 
-					"      }\n" + 
-					"    }\n" + 
-					"  }\n" + 
-					"  return crc;\n" + 
-					"}";
-			translator.addDefinitionCommand(CRC);
-		
-		
-			String LoadStore = "// ESP8266:  Load/Store LoRa LMIC to RTC-Mem \n" + 
-					"#if defined(ESP8266) && defined(USE_DEEPSLEEP) \n" +
- 				    "void LoadLMICFromRTC_ESP8266() {\n" + 
-					"  lmic_t RTC_LMIC;\n" + 
-					"  uint32_t crcOfData;\n" + 
-					"  if (sizeof(lmic_t) <= 512) {\n" + 
-					"     ESP.rtcUserMemoryRead(1, (uint32_t*) &RTC_LMIC, sizeof(RTC_LMIC));\n" + 
-					"     ESP.rtcUserMemoryRead(0, (uint32_t*) &crcOfData, sizeof(crcOfData));\n" + 
-					"     uint32_t crcOfData_RTC = RTCcalculateCRC32((uint8_t*) &RTC_LMIC, sizeof(RTC_LMIC));\n" + 
-					"     if (crcOfData != crcOfData_RTC) {\n" + 
-					"       Serial.println(\"CRC32 in RTC memory doesn't match CRC32 of data. Data is probably invalid!\");\n" + 
-					"     } else {\n" + 
-					"       Serial.print(F(\"load LMIC from RTC, FrameCounter =  \"));\n" + 
-					"       LMIC = RTC_LMIC;\n" + 
-					"       Serial.println(LMIC.seqnoUp);"+
-					"     }  \n" + 
-					"  } else {\n" + 
-					"   Serial.println(F(\"sizelimit RTC-Mem, #define LMIC_ENABLE_long_messages in config.h\"));\n" + 
-					"  };\n" + 
-					"}; \n" + 
-					" \n" + 
-					"void SaveLMICToRTC_ESP8266(int deepsleep_sec) {\n" + 
-					"  if (sizeof(lmic_t) <= 512) {\n" + 
-					"    Serial.println(F(\"Save LMIC to RTC and deepsleep\"));\n" + 
-					"    unsigned long now = millis();\n" + 
-					"    // EU Like Bands\n" + 
-					"#if defined(CFG_LMIC_EU_like)\n" + 
-					"   // Serial.println(F(\"Reset CFG_LMIC_EU_like band avail\"));\n" + 
-					"    for (int i = 0; i < MAX_BANDS; i++)\n" + 
-					"    {\n" + 
-					"      ostime_t correctedAvail = LMIC.bands[i].avail - ((now / 1000.0 + deepsleep_sec) * OSTICKS_PER_SEC);\n" + 
-					"      if (correctedAvail < 0)\n" + 
-					"      {\n" + 
-					"        correctedAvail = 0;\n" + 
-					"      }\n" + 
-					"      LMIC.bands[i].avail = correctedAvail;\n" + 
-					"    }\n" + 
-					"\n" + 
-					"    LMIC.globalDutyAvail = LMIC.globalDutyAvail - ((now / 1000.0 + deepsleep_sec) * OSTICKS_PER_SEC);\n" + 
-					"    if (LMIC.globalDutyAvail < 0)\n" + 
-					"    {\n" + 
-					"      LMIC.globalDutyAvail = 0;\n" + 
-					"    }\n" + 
-					"#else\n" + 
-					"    //Serial.println(F(\"No DutyCycle recalculation function!\"));\n" + 
-					"#endif\n" + 
-					"    // Write to RTC\n" + 
-					"    uint32_t crcOfData = RTCcalculateCRC32((uint8_t*) &LMIC, sizeof(LMIC));\n" + 
-					"    ESP.rtcUserMemoryWrite(1, (uint32_t*) &LMIC, sizeof(LMIC));\n" + 
-					"    ESP.rtcUserMemoryWrite(0, (uint32_t*) &crcOfData, sizeof(crcOfData));\n" + 
-					"  } \n" + 
-					"  else {\n" + 
-					"    Serial.println(F(\"sizelimit RTC-Mem, #define LMIC_ENABLE_long_messages in config.h\"));\n" + 
-					"  }\n" + 
-					"};\n"+
-					"#endif \n";
-            translator.addDefinitionCommand(LoadStore);
-       
-			LoadStore = "// ESP32 Load/Store LoRa LMIC to RTC-Mem \n" + 
-					"#if defined(ESP32) && defined(USE_DEEPSLEEP) \n" +
-					"void LoadLMICFromRTC_ESP32() {\n" + 
-					"  if ((RTC_LMIC.seqnoUp != 0)) {\n" + 
-					"     Serial.print(F(\"load LMIC from RTC, Frame = \"));\n" + 
-					"     Serial.println(RTC_LMIC.seqnoUp);\n" + 
-					"     LMIC = RTC_LMIC;\n" + 
-					"  } else {\n" + 
-					"     Serial.print(F(\"no valid LMIC Data, start from scratch \"));\n" + 
-					"  };  \n" + 
-					"}; \n" + 
-					" \n" + 
-					" \n" + 
-					"void SaveLMICToRTC_ESP32(int deepsleep_sec) {\n" + 
-					"    Serial.println(F(\"Save LMIC to RTC and deepsleep\"));\n" + 
-					"    unsigned long now = millis();\n" + 
-					"    // EU Like Bands\n" + 
-					"#if defined(CFG_LMIC_EU_like)\n" + 
-					"   // Serial.println(F(\"Reset CFG_LMIC_EU_like band avail\"));\n" + 
-					"    for (int i = 0; i < MAX_BANDS; i++)\n" + 
-					"    {\n" + 
-					"      ostime_t correctedAvail = LMIC.bands[i].avail - ((now / 1000.0 + deepsleep_sec) * OSTICKS_PER_SEC);\n" + 
-					"      if (correctedAvail < 0)\n" + 
-					"      {\n" + 
-					"        correctedAvail = 0;\n" + 
-					"      }\n" + 
-					"      LMIC.bands[i].avail = correctedAvail;\n" + 
-					"    }\n" + 
-					"\n" + 
-					"    LMIC.globalDutyAvail = LMIC.globalDutyAvail - ((now / 1000.0 + deepsleep_sec) * OSTICKS_PER_SEC);\n" + 
-					"    if (LMIC.globalDutyAvail < 0)\n" + 
-					"    {\n" + 
-					"      LMIC.globalDutyAvail = 0;\n" + 
-					"    }\n" + 
-					"#else\n" + 
-					"    //Serial.println(F(\"No DutyCycle recalculation function!\"));\n" + 
-					"#endif\n" + 
-					"    // Write to RTC\n" + 
-					"    RTC_LMIC = LMIC;\n" + 
-					"  }; \n" + 
-				//	"};\n"+
-					"#endif \n";
-
-		    translator.addDefinitionCommand(LoadStore);
-		
-		
-	
-		    String Event = "void onEvent (ev_t ev) {\n" + 
-					"    Serial.print(os_getTime());\n" + 
-					"    Serial.print(\": \");\n" + 
-					"    switch(ev) {\n" + 
-					"        case EV_SCAN_TIMEOUT:\n" + 
-					"            Serial.println(F(\"EV_SCAN_TIMEOUT\"));\n" + 
-					"            break;\n" + 
-					"        case EV_BEACON_FOUND:\n" + 
-					"            Serial.println(F(\"EV_BEACON_FOUND\"));\n" + 
-					"            break;\n" + 
-					"        case EV_BEACON_MISSED:\n" + 
-					"            Serial.println(F(\"EV_BEACON_MISSED\"));\n" + 
-					"            break;\n" + 
-					"        case EV_BEACON_TRACKED:\n" + 
-					"            Serial.println(F(\"EV_BEACON_TRACKED\"));\n" + 
-					"            break;\n" + 
-					"        case EV_JOINING:\n" + 
-					"            Serial.println(F(\"EV_JOINING\"));\n" + 
-					"            break;\n" + 
-					"        case EV_JOINED:\n" + 
-					"            Serial.println(F(\"EV_JOINED\"));\n" + 
-					"            LoRaWAN_Tx_Ready =  !(LMIC.opmode & OP_TXDATA); // otherwise joined without TX blocks queue\n" + 
-					"            break;\n" + 
-					"        /*\n" + 
-					"        || This event is defined but not used in the code. No\n" + 
-					"        || point in wasting codespace on it.\n" + 
-					"        ||\n" + 
-					"        || case EV_RFU1:\n" + 
-					"        ||     Serial.println(F(\"EV_RFU1\"));\n" + 
-					"        ||     break;\n" + 
-					"        */\n" + 
-					"        case EV_JOIN_FAILED:\n" + 
-					"            Serial.println(F(\"EV_JOIN_FAILED\"));\n" + 
-					"            break;\n" + 
-					"        case EV_REJOIN_FAILED:\n" + 
-					"            Serial.println(F(\"EV_REJOIN_FAILED\"));\n" + 
-					"            break;\n" + 
-					"        case EV_TXCOMPLETE:\n" + 
-					"            Serial.println(F(\"EV_TXCOMPLETE (includes waiting for RX windows)\"));\n" + 
-					"            if (LMIC.txrxFlags & TXRX_ACK)\n" + 
-					"              Serial.println(F(\"Received ack\"));\n" + 
-					"            if (LMIC.dataLen) {\n" + 
-					"              Serial.println(F(\"Received \"));\n" + 
-					"              Serial.println(LMIC.dataLen);\n" + 
-					"              Serial.println(F(\" bytes of payload\"));\n" + 
-					"              LoRaWAN_Rx_Payload = 0; // Payload IoT-Werkstatt\n" +
-					"              LoRaWAN_Rx_Payload_Raw = \"\"; // Payload IoT-Werkstatt\n" +
-					"              LoRaWAN_Rx_Port    = LMIC.frame[LMIC.dataBeg-1];"+
-					"              String Zeichen = \"\";"+
-					"              for (int i = 0;i<LMIC.dataLen;i++) { \n" + 
-					"                Serial.println(LMIC.frame[i+ LMIC.dataBeg],HEX);\n" + 
-					"                LoRaWAN_Rx_Payload = 256*LoRaWAN_Rx_Payload+LMIC.frame[i+ LMIC.dataBeg];\n" + 
-					"                Zeichen = String(LMIC.frame[i+ LMIC.dataBeg],HEX);\n"+
-					"                if (Zeichen.length() == 1) Zeichen = \"0\"+Zeichen;\n"+
-					"                LoRaWAN_Rx_Payload_Raw += Zeichen;\n" + 
-					"              }\n" +
-					"              #ifdef LORA_DOWNLINK_ENABLE \n"+
-					"               LoRaWAN_DownlinkCallback();\n"+
-					"              #endif \n"+
-					"            }\n" + 
-					"            LoRaWAN_Tx_Ready =  !(LMIC.opmode & OP_TXDATA);\n"+
-					"            // Schedule next transmission\n" + 
-					"            // os_setTimedCallback(&sendjob, os_getTime()+sec2osticks(TX_INTERVAL), do_send);\n" + 
-					"            break;\n" + 
-					"        case EV_LOST_TSYNC:\n" + 
-					"            Serial.println(F(\"EV_LOST_TSYNC\"));\n" + 
-					"            break;\n" + 
-					"        case EV_RESET:\n" + 
-					"            Serial.println(F(\"EV_RESET\"));\n" + 
-					"            break;\n" + 
-					"        case EV_RXCOMPLETE:\n" + 
-					"            // data received in ping slot\n" + 
-					"            Serial.println(F(\"EV_RXCOMPLETE\"));\n" + 
-					"            break;\n" + 
-					"        case EV_LINK_DEAD:\n" + 
-					"            Serial.println(F(\"EV_LINK_DEAD\"));\n" + 
-					"            break;\n" + 
-					"        case EV_LINK_ALIVE:\n" + 
-					"            Serial.println(F(\"EV_LINK_ALIVE\"));\n" + 
-					"            break;\n" + 
-					"        /*\n" + 
-					"        || This event is defined but not used in the code. No\n" + 
-					"        || point in wasting codespace on it.\n" + 
-					"        ||\n" + 
-					"        || case EV_SCAN_FOUND:\n" + 
-					"        ||    Serial.println(F(\"EV_SCAN_FOUND\"));\n" + 
-					"        ||    break;\n" + 
-					"        */\n" + 
-					"        case EV_TXSTART:\n" + 
-					"            Serial.println(F(\"EV_TXSTART\"));\n" + 
-					"            break;\n" + 
-					"        case EV_TXCANCELED:\n" + 
-					"            Serial.println(F(\"EV_TXCANCELED\"));\n" + 
-					"            break;\n" + 
-					"        case EV_RXSTART:\n" + 
-					"            /* do not print anything -- it wrecks timing */\n" + 
-					"            break;\n" + 
-					"        case EV_JOIN_TXCOMPLETE:\n" + 
-					"            Serial.println(F(\"EV_JOIN_TXCOMPLETE: no JoinAccept\"));\n" + 
-					"            break;\n" + 
-					"        default:\n" + 
-					"            Serial.print(F(\"Unknown event: \"));\n" + 
-					"            Serial.println((unsigned) ev);\n" + 
-					"            break;\n" + 
-					"    }\n" + 
-					"}";
-			
-
-
-	
-		translator.addDefinitionCommand(Event);
-		
-		String init = "// -- initialize LoraWAN LMIC structure\n"
-				+ "void LoRaWAN_Start(int fromRTCMem) { // using ABP-Communication \n" 	
+	    String init = "// -- initialize LoraWAN LMIC structure\n"
+				+ "void LoRaWAN_Start_ABP(int fromRTCMem) { // using ABP-Communication \n" 	
 				+ "  #if defined(BOARD_TTGO_V1)\r\n"
 				+ "   SPI.begin(SCK,MISO,MOSI,SS);\r\n"
 				+ "  #endif\n"
@@ -439,26 +183,8 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 		
 			translator.addDefinitionCommand(init);
 			
-			String schedule = "// LoRaLMIC: Wait for RX-Window in light sleep\r\n"
-					+ "ostime_t get_next_deadline() {\r\n"
-					+ "    // Zugriff auf den nächsten geplanten Job\r\n"
-					+ "    if (LMIC.osjob.deadline > os_getTime()) {\r\n"
-					+ "        return LMIC.osjob.deadline; // Rückgabe der nächsten Deadline\r\n"
-					+ "    }\r\n"
-					+ "    return 0; // Keine Deadline vorhanden\r\n"
-					+ "}\r\n"
-					+ "void os_runloop_once_sleep(){\r\n"
-					+ "  os_runloop_once();\r\n"
-					+ "  if (get_next_deadline() > 10) {\r\n"
-					+ "     esp_sleep_enable_timer_wakeup(get_next_deadline()-1);\r\n"
-					+ "     esp_light_sleep_start();\r\n"
-					+ "  }\r\n"
-					+ "}";
-			translator.addDefinitionCommand(schedule);
 			
-			
-			
-            String setup = "  LoRaWAN_Start(true); // Prepare LMIC-Engine\n";
+            String setup = "  LoRaWAN_Start_ABP(true); // Prepare LMIC-Engine\n";
 			translator.addSetupCommand(setup);
 		
 		
@@ -503,6 +229,34 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 	    }
 
 	    ret = "\n{ //Block------------------------------ send data to network\n"
+	    		+ "int port = " + port + ";\n"
+	    		+ "static uint8_t mydata["+ count + "];\n"
+	       		+ wert 
+		        + "  LoRaWAN_Event_No_Join = 0;\r\n"
+		        + "  LoRaWAN_Event_TxComplete = 0;\r\n"
+		        + "  // Check if there is not a current TX/RX job running, wait until finished\r\n"
+		        + "  if (!((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_JOINING))) {\r\n"
+		        + "    if (LMIC_setTxData2(port, mydata, sizeof(mydata), 0)) {\r\n"
+		        + "        Serial.println(F(\"------------------------  setTxData: error\"));\r\n"
+		        + "    }\r\n"
+		        + "  }\r\n"
+		        + "  uint32_t tout = millis()+30000; // harter Timeout\r\n"
+		        + "  while ( millis() < tout && !LoRaWAN_Event_No_Join && !LoRaWAN_Event_TxComplete) {\r\n"
+		        + "     yield();\r\n"
+		        + "     os_runloop_once_sleep();\r\n"
+		        + "  }\r\n"
+		        + "  Serial.println(F(\"Tx finished\")); "
+		        + "} // Block \n";
+	    
+		translator.setLORAProgram(true);
+    	    
+        return codePrefix + ret + codeSuffix;
+	 	}
+}
+
+
+
+/* vor lightsleep ota ret = "\n{ //Block------------------------------ send data to network\n"
 	    		+ "int port = " + port + ";\n"
 	    		+ "static uint8_t mydata["+ count + "];\n"
 	       		+ wert +
@@ -558,10 +312,5 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 		          + "    }\r\n"
 		          + "    Serial.println(F(\"Tx finished\"));"
 		          + " } // Block \n";
-	    
-		translator.setLORAProgram(true);
-    	    
-        return codePrefix + ret + codeSuffix;
-	 	}
-}
+*/
 

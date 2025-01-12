@@ -23,11 +23,12 @@ public class SleepBlockDeep32 extends TranslatorBlock
 	translator.setDeepSleepProgram(true);
 	translator.addHeaderFile("#define USE_DEEPSLEEP");
 	translator.addHeaderFile("rom/rtc.h");
+	translator.addHeaderFile("IoTW_LMIC.h");
 	
 	String ret = "//------- deep SLEEP ----------------------------\n";
     if (translator.isLORAProgram()) {
     	translator.addHeaderFile("#define LORA_DEEPSLEEP");
-    	translator.addHeaderFile("#ifdef ESP32 \n RTC_DATA_ATTR lmic_t RTC_LMIC;\n #endif\n");
+//    	translator.addHeaderFile("#ifdef ESP32 \n RTC_DATA_ATTR lmic_t RTC_LMIC;\n #endif\n");
     	ret += "SaveLMICToRTC_ESP32("+Delay_ms+"/1000);\n" ;
 	}
 	ret += "Serial.println(\"Going to deep sleep now\");\n"  

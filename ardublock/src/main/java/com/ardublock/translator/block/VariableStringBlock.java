@@ -15,11 +15,13 @@ public class VariableStringBlock extends TranslatorBlock
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		String internalVariableName = translator.getNumberVariable(label);
+	   // System.out.println("Variable_StringBlock: " + label);
 		if (internalVariableName == null)
 		{
 			internalVariableName = translator.buildVariableName(label);
 			translator.addNumberVariable(label, internalVariableName);
-			translator.addDefinitionCommand("char " + internalVariableName + "[64] = \"\";");
+			translator.addDefinitionCommand("String " + internalVariableName + " = \"\" ;");
+		//	translator.addDefinitionCommand("String " + internalVariableName + "[64] = \"\";");
 //			translator.addSetupCommand(internalVariableName + " = 0;");
 		}
 		return codePrefix + internalVariableName + codeSuffix;
