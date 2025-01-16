@@ -19,7 +19,8 @@ public class IoTAIRegModelCalculate  extends TranslatorBlock {
 	//	translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
 		translator.addHeaderFile("IoTW_Edge_Impulse.h");
 		translator.addHeaderFile("curveFitting.h");
-		
+	
+		/*
 		String EI_Def ="// ---- EDGE AI data \n" + 
 				"int     EI_NumSens=0,EI_Index=0;\n" + 
 				"float   EI_Datenfeld[EI_MAXPOINTS][EI_MAXSENSOR]; \n" +
@@ -28,8 +29,9 @@ public class IoTAIRegModelCalculate  extends TranslatorBlock {
 				"String  EI_unitOfSensor[EI_MAXSENSOR];\n" + 
 				"";
 			translator.addDefinitionCommand(EI_Def);
-			
-		EI_Def ="// ---- EDGE AI regression model data \n" + 
+*/
+		
+		String EI_Def ="// ---- EDGE AI regression model data \n" + 
 		"double  AI_RegPara [AI_MAXMODEL][AI_MAXMODELPARA];\n" + 
 		"int     AI_RegPara_valid[AI_MAXMODEL];"+
 		"int     AI_RegParaBestModeltyp;\n" + 

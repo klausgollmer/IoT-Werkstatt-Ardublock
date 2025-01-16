@@ -5,9 +5,9 @@ import com.ardublock.translator.block.TranslatorBlock;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class IoTEDGEcreate  extends TranslatorBlock {
+public class IoTEDGE_IMPULSEcreate  extends TranslatorBlock {
 
-	public IoTEDGEcreate (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	public IoTEDGE_IMPULSEcreate (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
@@ -18,7 +18,8 @@ public class IoTEDGEcreate  extends TranslatorBlock {
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
 		translator.addHeaderFile("IoTW_Edge_Impulse.h");
-		
+
+/*
 		String EI_Def ="// ---- EDGE AI data \n" + 
 				"int     EI_NumSens=0,EI_Index=0;\n" + 
 				"float   EI_Datenfeld[EI_MAXPOINTS][EI_MAXSENSOR]; \n" +
@@ -27,8 +28,7 @@ public class IoTEDGEcreate  extends TranslatorBlock {
 				"String  EI_unitOfSensor[EI_MAXSENSOR];\n" + 
 				"";
 			translator.addDefinitionCommand(EI_Def);
-		translator.addSetupCommand("Serial.begin(115200);");
-
+*/
 		
 		String s,s1,u1,s2,u2,s3,u3,s4,u4;
 		int pos;

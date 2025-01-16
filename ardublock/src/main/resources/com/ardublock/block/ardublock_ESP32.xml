@@ -4960,6 +4960,25 @@
 			
 		</BlockGenus>
 
+        <BlockGenus name="classifyEDGE" kind="data" color="30 30 255"
+			initlabel="bg.classifyEDGE" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+			    <BlockConnector connector-type="number"	connector-kind="plug" />
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="reject">
+				</BlockConnector>
+			</BlockConnectors>
+			<Images>
+			    <Image block-location="northwest">
+			    <FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
+				</Image>
+			</Images>
+			
+		</BlockGenus>
+
+
+
+
         <BlockGenus name="sendEDGE" kind="command" color="30 30 255"
 			initlabel="bg.sendEDGE" editable-label="no" is-label-value="no">
 			<BlockConnectors>
@@ -6432,6 +6451,7 @@
  			    <BlockGenusMember>createEDGE</BlockGenusMember>
   			    <BlockGenusMember>sampleEDGE</BlockGenusMember>
 				<BlockGenusMember>sendEDGE</BlockGenusMember>
+				<BlockGenusMember>classifyEDGE</BlockGenusMember>
 			    <BlockGenusMember>Divider_INFLUX</BlockGenusMember>
   			    <BlockGenusMember>createInfluxDB</BlockGenusMember>
   			    <BlockGenusMember>sendInfluxDB</BlockGenusMember>
