@@ -23,8 +23,8 @@ public class IoTNOWShowMAC extends TranslatorBlock
     translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
     translator.setWiFiProgram(true);
     
-    TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
-    String cpu = translatorBlock.toCode();
+   // TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
+   // String cpu = translatorBlock.toCode();
 
     
     String Code = "// ESP-Now, Einführung unter https://wolles-elektronikkiste.de/esp-now\r\n"

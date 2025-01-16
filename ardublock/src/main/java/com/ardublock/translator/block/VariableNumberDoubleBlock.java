@@ -19,12 +19,12 @@ public class VariableNumberDoubleBlock extends TranslatorBlock
       translator.addNumberVariable(label, internalVariableName);
 // irq      translator.addDefinitionCommand("float " + internalVariableName + " = 0.0 ;");
 //      translator.addDefinitionCommand("volatile float " + internalVariableName + " = 0.0 ;");
-    String TypeDef="volatile float " + internalVariableName + " = 0;\n";
+    String TypeDef="volatile float " + internalVariableName + " = 0;";
 		
 		TypeDef ="#if defined(ESP32) && defined(USE_DEEPSLEEP)\n" + 
 				 "  RTC_DATA_ATTR " + TypeDef +"// store during sleep\n"+
 				 "#else \n"+
-				 "  " + TypeDef +
+				 "  " + TypeDef + "\n"+
 				 "#endif\n";
 			
 		translator.addDefinitionCommand(TypeDef);

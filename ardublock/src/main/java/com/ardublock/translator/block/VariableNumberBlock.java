@@ -23,12 +23,12 @@ public class VariableNumberBlock extends TranslatorBlock
 			  } else { 
    			  translator.addNumberVariable(label, internalVariableName);
 					
-			  String TypeDef="volatile int " + internalVariableName + " = 0;\n";
+			  String TypeDef="volatile int " + internalVariableName + " = 0;";
 						
 			  TypeDef ="#if defined(ESP32) && defined(USE_DEEPSLEEP)\n" + 
 				   	 "  RTC_DATA_ATTR " + TypeDef +"// store during sleep\n"+
 					 "#else \n"+
-					 "  " + TypeDef +
+					 "  " + TypeDef + "\n" +
   					 "#endif\n";
 				
 			  translator.addDefinitionCommand(TypeDef);

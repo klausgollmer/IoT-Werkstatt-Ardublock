@@ -18,12 +18,12 @@ public class VariableDigitalBlock extends TranslatorBlock
 			internalVariableName = translator.buildVariableName(label);
 			translator.addBooleanVariable(label, internalVariableName);
 //			translator.addDefinitionCommand("bool " + internalVariableName + "= false ;");
-			String TypeDef="volatile bool " + internalVariableName + " = false;\n";
+			String TypeDef="volatile bool " + internalVariableName + " = false;";
 			
 			TypeDef ="#if defined(ESP32) && defined(USE_DEEPSLEEP)\n" + 
 					 "  RTC_DATA_ATTR " + TypeDef +" // store during sleep\n"+
 					 "#else \n"+
-					 "  " + TypeDef +
+					 "  " + TypeDef + "\n"+
   					 "#endif\n";
 				
 			translator.addDefinitionCommand(TypeDef);
