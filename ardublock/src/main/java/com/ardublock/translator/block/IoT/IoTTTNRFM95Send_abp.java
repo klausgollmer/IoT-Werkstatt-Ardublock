@@ -35,7 +35,7 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 					 + "*/\n";
 		translator.addDefinitionCommand(Dis);
 		
-
+/*
 		String PinMapping = "// -------- LoRa PinMapping \n" + 
 				"\n"  
 				+ "#if defined(BOARD_TTGO_V1)\r\n"
@@ -64,7 +64,31 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 				+ "const Arduino_LMIC::HalConfiguration_t myConfig;\r\n"
 				+ "const lmic_pinmap *pPinMap = Arduino_LMIC::GetPinmap_XIAO_S3_WIO_SX1262();"
 				+ "#endif\n"; 
+	*/
 		
+		String PinMapping = "// -------- LoRa PinMapping \r\n"
+				+ "#if defined(BOARD_TTGO_V1)\r\n"
+				+ "const lmic_pinmap lmic_pins = {\r\n"
+				+ "  .nss = LORA_CS, \r\n"
+				+ "  .rxtx = LMIC_UNUSED_PIN,\r\n"
+				+ "  .rst = LORA_RST,\r\n"
+				+ "  .dio = {\r\n"
+				+ "    LORA_IRQ, 33,  LMIC_UNUSED_PIN }\r\n"
+				+ "};\r\n"
+				+ "#else\r\n"
+				+ "const lmic_pinmap lmic_pins = {  \r\n"
+				+ "  .nss = LMIC_NSS,                            // Connected to pin D\r\n"
+				+ "  .rxtx = LMIC_UNUSED_PIN,             // For placeholder only, Do not connected on RFM92/RFM95\r\n"
+				+ "  .rst = LMIC_UNUSED_PIN,              // Needed on RFM92/RFM95? (probably not) D0/GPIO16 \r\n"
+				+ "  .dio = {\r\n"
+				+ "    LMIC_DIO, LMIC_DIO, LMIC_UNUSED_PIN             }\r\n"
+				+ "};\r\n"
+				+ "#endif\r\n"
+				+ "#if defined(XIAO_ESP32S3)\r\n"
+				+ "const Arduino_LMIC::HalConfiguration_t myConfig;\r\n"
+				+ "const lmic_pinmap *pPinMap = Arduino_LMIC::GetPinmap_XIAO_S3_WIO_SX1262();\r\n"
+				+ "#endif\r\n";
+				
 				translator.addDefinitionCommand(PinMapping);
 				
 		
@@ -136,9 +160,9 @@ public class IoTTTNRFM95Send_abp  extends TranslatorBlock {
 	    
 	    String init = "// -- initialize LoraWAN LMIC structure\n"
 				+ "void LoRaWAN_Start_ABP(int fromRTCMem) { // using ABP-Communication \n" 	
-				+ "  #if defined(BOARD_TTGO_V1)\r\n"
-				+ "   SPI.begin(SCK,MISO,MOSI,SS);\r\n"
-				+ "  #endif\n"
+				+ "  //#if defined(BOARD_TTGO_V1)\r\n"
+				+ "  // SPI.begin(SCK,MISO,MOSI,SS);\r\n"
+				+ "  //#endif\n"
 				+ "#if defined(XIAO_ESP32S3)\n"
 				+ "  os_init_ex(pPinMap);\n"
 				+ "#else\n"
