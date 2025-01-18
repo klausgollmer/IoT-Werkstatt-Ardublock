@@ -38,7 +38,7 @@ public class IoTGSMConnect  extends TranslatorBlock {
 		translator.addDefinitionCommand("TinyGsm modem(SerialAT);         // Objekt GSM-Modem");
 	
 			    
-	    translator.addSetupCommand("Serial.begin(115200);");
+	    //translator.addSetupCommand("Serial.begin(115200);");
 		translator.addSetupCommand("SerialAT.begin(19200);");
 		
 		String checkGSM ="//--------------------------------------- Ueberpruefe Mobilfunknetz \n"

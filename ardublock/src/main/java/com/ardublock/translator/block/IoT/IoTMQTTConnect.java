@@ -16,7 +16,7 @@ public class IoTMQTTConnect  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		translator.addHeaderFile("PubSubClient.h");
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		
 		String broker,clientname,user="\"\"",pass="\"\"";
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);

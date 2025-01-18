@@ -17,7 +17,7 @@ public class IoTBoschSpexSend  extends TranslatorBlock {
 	{
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		
 	
 		String Send ="//-------------------------Bosch Spexor ------ HTTP-POST\n" + 

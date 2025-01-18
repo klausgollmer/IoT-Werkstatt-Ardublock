@@ -17,7 +17,7 @@ public class PinModeIoT extends TranslatorBlock
 		/**
 		 * DO NOT add tab in code any more, we'll use arduino to format code, or the code will duplicated. 
 		 */
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		String ret="", pin;
 //		TranslatorBlock translatorBlock = this.getTranslatorBlockAtSocket(0, "Serial.print(", ");\n");
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);

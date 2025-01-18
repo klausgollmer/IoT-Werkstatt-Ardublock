@@ -25,8 +25,8 @@ public class IoTBSEC2Get extends TranslatorBlock
     
     // Setupdeklaration
     // I2C-initialisieren
-    translator.addSetupCommand("Serial.begin(115200);");
-    translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+    //translator.addSetupCommand("Serial.begin(115200);");
+    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
  
    
     

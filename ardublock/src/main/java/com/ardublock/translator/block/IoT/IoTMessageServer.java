@@ -44,7 +44,7 @@ public class IoTMessageServer  extends TranslatorBlock {
 
 	EncDef = "// Helper rotary encoder\n"
 	        + "#if defined(ESP8266) \n"
-			+ "Encoder button_encoder(GPIO_ROTARY_B,GPIO_ROTARY_A);\n"
+			+ "Encoder button_encoder(IOTW_GPIO_ROTARY_B,IOTW_GPIO_ROTARY_A);\n"
 		    + "#elif defined(ESP32) \n"
 		    +  "ESP32Encoder button_encoder; \n"
 		    + "#endif\n"
@@ -83,22 +83,22 @@ public class IoTMessageServer  extends TranslatorBlock {
 		   translator.addDefinitionCommand(EncDef);
 		   EncDef ="#if defined(ESP32) \n "
 			   		+  "    ESP32Encoder::useInternalWeakPullResistors = puType::up;\n"
-			   		+  "    button_encoder.attachHalfQuad(GPIO_ROTARY_B, GPIO_ROTARY_A); \n "
-			   		+  "    pinMode(GPIO_ROTARY_B,INPUT_PULLUP); \n "
-			   		+  "    pinMode(GPIO_ROTARY_A,INPUT_PULLUP); \n "
+			   		+  "    button_encoder.attachHalfQuad(IOTW_GPIO_ROTARY_B, IOTW_GPIO_ROTARY_A); \n "
+			   		+  "    pinMode(IOTW_GPIO_ROTARY_B,INPUT_PULLUP); \n "
+			   		+  "    pinMode(IOTW_GPIO_ROTARY_A,INPUT_PULLUP); \n "
 			   		+  "#endif \n";
 		   translator.addSetupCommand(EncDef);
 		} 
 				
   	    
 		
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 	
 		translator.addSetupCommand("//------------ HTML-Server initialisieren");
 		translator.addSetupCommand("server.on(\"/\", serverHomepage);");
 		
 		if (!Sensorik.equals("false")) {	 	    
-			translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+			translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
 			translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 			 
 			translator.addSetupCommand("boschBME280.settings.runMode = 3; // Normal Mode\n"
@@ -169,9 +169,9 @@ public class IoTMessageServer  extends TranslatorBlock {
 			+"  html = html +  \"<tr><td>\" + \"Temperatur    \" + \"</td> <td>\" + String(Tmess) + \"</td><td>\"+ \"Grad Celsius\"+\" </td></tr>\";\n"
 			+"  html = html +  \"<tr><td>\" + \"Luftdruck     \" + \"</td> <td>\" + String(pmess) + \"</td><td>\"+ \"hPa\"+\" </td></tr>\";\n"
 			+"  html = html +  \"<tr><td>\" + \"rel. Feuchte  \" + \"</td> <td>\" + String(hmess) + \"</td><td>\"+ \"%\"+\" </td></tr>\";\n"
-			+"  html = html +  \"<tr><td>\" + \"Analog Input  \" + \"</td> <td>\" + String(analogRead(PIN_AIN0)) + \"</td><td>\"+ \"-\"+\" </td></tr>\";\n"
+			+"  html = html +  \"<tr><td>\" + \"Analog Input  \" + \"</td> <td>\" + String(analogRead(IOTW_GPIO_A0)) + \"</td><td>\"+ \"-\"+\" </td></tr>\";\n"
 			+"  html = html +  \"<tr><td>\" + \"Drehknopf     \" + \"</td> <td>\" + String(encoderRead()) + \"</td><td>\"+ \"-\"+\" </td></tr>\";\n"
-			+"  html = html +  \"<tr><td>\" + \"Knopfdruck    \" + \"</td> <td>\" + String(digitalRead(GPIO_ROTARY_BUTTON)==LOW) + \"</td><td>\"+ \"on/off\"+\" </td></tr>\";\n"
+			+"  html = html +  \"<tr><td>\" + \"Knopfdruck    \" + \"</td> <td>\" + String(digitalRead(IOTW_GPIO_ROTARY_BUTTON)==LOW) + \"</td><td>\"+ \"on/off\"+\" </td></tr>\";\n"
 
 			+"  html=html+\"</table>\";\n"
 			+"  return html;\n"

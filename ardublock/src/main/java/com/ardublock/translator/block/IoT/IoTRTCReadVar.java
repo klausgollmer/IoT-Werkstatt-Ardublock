@@ -20,7 +20,7 @@ public class IoTRTCReadVar  extends TranslatorBlock {
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		  String RTCStruct ="//--------------------------------  RTC - Memory \n" 
 				  + "// Daten in dieser Structur werden im gespeichert und überleben Reset und deep-sleep \n"
 				  + "struct {\n" + 

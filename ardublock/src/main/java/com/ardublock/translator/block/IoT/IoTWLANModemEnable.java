@@ -16,7 +16,7 @@ public class IoTWLANModemEnable  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 				
 		String mode;
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);

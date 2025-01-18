@@ -152,18 +152,18 @@ public class Translator
 			   setupFunction.append("#if defined(ESP32) \n  WiFi.mode(WIFI_OFF); \n #endif \n");
 		}
 		
-		setupFunction.append("#if defined(BOARD_MAKEY)\n #ifndef LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n    #else \n initOLED(2000);\n    #endif\n #endif\n");
+		setupFunction.append("#if defined(IOTW_BOARD_MAKEY)\n #ifndef LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n    #else \n initOLED(2000);\n    #endif\n #endif\n");
 		setupFunction.append("Serial.begin(115200);");
 		
 		
 		//addSetupCommand("Serial.begin(115200);");
-		//addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+		//addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
 		//addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
-//		addSetupCommand("#if defined(BOARD_MAKEY)\n #ifndef LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n    #else \n initOLED(2000);\n    #endif\n #endif\n");
+//		addSetupCommand("#if defined(IOTW_BOARD_MAKEY)\n #ifndef LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n    #else \n initOLED(2000);\n    #endif\n #endif\n");
 			
 		/* #kgo das hat zur Folge, dass die Befehle unter Umständen oppelt auftauchen (z.B. Serial.Begin)
 	    setupFunction.append("Serial.begin(115200);");
-		setupFunction.append("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+		setupFunction.append("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
 		setupFunction.append("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 	    
 		setupFunction.append("#ifndef LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n #else \n initOLED(2000);\n #endif\n");

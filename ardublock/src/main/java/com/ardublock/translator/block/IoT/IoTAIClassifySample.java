@@ -20,7 +20,7 @@ public class IoTAIClassifySample  extends TranslatorBlock {
 		translator.addHeaderFile("IoTW_Edge_Impulse.h");
 		
 		
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 
 		String v1,v2,v3,v4;
 		

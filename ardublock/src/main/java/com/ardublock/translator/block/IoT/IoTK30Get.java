@@ -58,7 +58,7 @@ public class IoTK30Get extends TranslatorBlock
    	translator.addDefinitionCommand("//Reading CO2 from the K30\n");
    	translator.addDefinitionCommand(Def);
 	
-    translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
     translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
    	

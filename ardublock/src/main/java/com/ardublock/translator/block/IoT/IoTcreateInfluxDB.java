@@ -17,7 +17,7 @@ public class IoTcreateInfluxDB  extends TranslatorBlock {
 	{
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
 		translator.addHeaderFile("InfluxDb.h");
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		
 		String host, dbname;
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);

@@ -21,7 +21,7 @@ public class IoTTimerDetach  extends TranslatorBlock {
 	    timer = translatorBlock.toCode();
 	    String timer_name = "mytimer"+timer;
 				
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 	
         return codePrefix + timer_name+".detach();" + codeSuffix;
 	 	}

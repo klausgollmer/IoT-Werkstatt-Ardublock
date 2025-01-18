@@ -22,7 +22,7 @@ public class IoTShellyMeter  extends TranslatorBlock {
 		String webserverDef = "typedef void (*func_ptr)(void);\n" + 
 				"func_ptr WebServerHousekeeping = yield;\n";
 		translator.addDefinitionCommand(webserverDef);
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 				
 		String httpGET ="//--------------------------------------- http-GET with wifi-Client\n" + 
 				"int httpClientGET(String host, String cmd, String &antwort) {\n" + 

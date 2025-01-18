@@ -67,7 +67,7 @@ public class IoTEDGE_IMPULSEsample  extends TranslatorBlock {
 				"";
 			translator.addDefinitionCommand(EI_Def);
 		
-		//translator.addSetupCommand("Serial.begin(115200);");
+		////translator.addSetupCommand("Serial.begin(115200);");
 
 
 	

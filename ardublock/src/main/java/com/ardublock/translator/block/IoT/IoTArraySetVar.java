@@ -20,7 +20,7 @@ public class IoTArraySetVar  extends TranslatorBlock {
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		String ArrayStruct ="//--------------------------------  IoTDataArray for timeseries \n"
 				+ "// Dimension IOTARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
 				+ "#define IOTARRAYLEN 64 \n"

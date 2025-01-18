@@ -33,7 +33,7 @@ public class IoTChatGPT  extends TranslatorBlock {
 		translator.addHeaderFile("ArduinoJson.h");
 		translator.addHeaderFile("WiFiClientSecure.h");
 		translator.addHeaderFile("ChatGPT.hpp");
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		
 		
 		String Def,Dis;

@@ -20,7 +20,7 @@ public class IoTIrqDetach  extends TranslatorBlock {
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    pin = translatorBlock.toCode();
 				
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 	
         return codePrefix + "detachInterrupt(digitalPinToInterrupt("+pin+"));" + codeSuffix;
 	 	}

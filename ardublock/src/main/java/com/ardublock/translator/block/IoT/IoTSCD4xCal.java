@@ -25,9 +25,9 @@ public class IoTSCD4xCal extends TranslatorBlock
 
 	translator.addDefinitionCommand("//By: SparkFun Electronics, https://github.com/sparkfun/SparkFun_SCD4x_Arduino_Library\n");
 	translator.addDefinitionCommand("SCD4x airSensorSCD40; // Objekt SDC40 Umweltsensor");
-	translator.addSetupCommand("Serial.begin(115200);");
+	//translator.addSetupCommand("Serial.begin(115200);");
 	  
-    translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
     translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
     //translator.setSCD30Program(true);
     

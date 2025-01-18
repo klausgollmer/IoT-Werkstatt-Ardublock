@@ -30,7 +30,7 @@ public class IoTServoWrite extends TranslatorBlock
 	    
 	    // Setupdeklaration
 	    // I2C-initialisieren
-	    translator.addSetupCommand("Serial.begin(115200);");
+	    //translator.addSetupCommand("Serial.begin(115200);");
 	    
 	    String Setup = "myservo_"+pin+".attach("+pin+"); // Servo mit Pin verknüpfen" ;
 	    translator.addSetupCommand(Setup);

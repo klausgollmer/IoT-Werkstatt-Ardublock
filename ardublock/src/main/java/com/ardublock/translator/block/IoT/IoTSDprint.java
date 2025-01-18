@@ -45,7 +45,7 @@ public class IoTSDprint extends TranslatorBlock
 	    
 	    // Setupdeklaration
 	    // I2C-initialisieren
-	    translator.addSetupCommand("Serial.begin(115200);");
+	    //translator.addSetupCommand("Serial.begin(115200);");
 	    
 	    String initial = " if (!SD.begin(chipSelect)) {\r\n" + 
 	    		"    Serial.println(\"initialization failed. Things to check:\");\r\n" + 

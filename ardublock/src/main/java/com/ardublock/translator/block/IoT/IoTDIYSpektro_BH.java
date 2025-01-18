@@ -32,7 +32,7 @@ public class IoTDIYSpektro_BH  extends TranslatorBlock {
 				+   "// https://github.com/adafruit/Adafruit_NeoPixel?tab=LGPL-3.0-1-ov-file\n";
 	    translator.addDefinitionCommand(Dis);
 	
-	    translator.addDefinitionCommand("Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,GPIO_NEO,NEO_GRBW + NEO_KHZ800);");
+	    translator.addDefinitionCommand("Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,IOTW_GPIO_NEO,NEO_GRBW + NEO_KHZ800);");
 
 	    // Deklarationen hinzuf�gen
 	    String dec = " // BH1750 driver https://github.com/claws/BH1750 MIT-License Copyright (c) 2018 claws \n"
@@ -41,8 +41,8 @@ public class IoTDIYSpektro_BH  extends TranslatorBlock {
 	    translator.addDefinitionCommand(dec);
 
 		
-		translator.addSetupCommand("Serial.begin(115200);");
-		translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+		//translator.addSetupCommand("Serial.begin(115200);");
+		translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
 	    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 		String Setup = "if (!LightSensor.begin() while(1) {Serial.println(\"missing BH1750\");delay(100);}\r\n";
 	    translator.addSetupCommand(Setup);

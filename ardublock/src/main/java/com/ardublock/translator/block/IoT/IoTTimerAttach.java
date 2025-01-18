@@ -44,7 +44,7 @@ public class IoTTimerAttach  extends TranslatorBlock {
 		translator.addDefinitionCommand("Ticker "+ timer_name + ";  // ---- my timer \n");
 		
 		
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 	
         return codePrefix + timer_name+".attach_ms("+ms+","+isr_name+");" + codeSuffix;
 	 	}

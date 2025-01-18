@@ -15,7 +15,7 @@ public class IoTIrqEnable  extends TranslatorBlock {
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		translator.setIRQProgram(true);
 		//translator.addHeaderFile("#define USE_IRQ");
 		

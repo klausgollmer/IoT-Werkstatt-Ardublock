@@ -37,7 +37,7 @@ public class IoTAIRegModelCalculate  extends TranslatorBlock {
 		"int     AI_RegParaBestModeltyp;\n" + 
 		"";
 		translator.addDefinitionCommand(EI_Def);
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 
 		
         String fun = "// --------- AI Regession Model \n" + 

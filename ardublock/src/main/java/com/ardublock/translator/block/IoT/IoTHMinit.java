@@ -24,7 +24,7 @@ public class IoTHMinit  extends TranslatorBlock {
 	    ser = translatorBlock.toCode();
 		ser = ser.substring(1, ser.length() - 1);	
 
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		String DTUDef = "#define HMxxx \"HM"+type+".h\"\n" + 
 				"#define WR1_NAME \"HM-"+type+"\"\n" + 
 				"#define WR1_MEASUREDEF hm"+type+"_measureDef\n" + 

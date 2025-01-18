@@ -20,7 +20,7 @@ public class IoTRTCtoRTCMem  extends TranslatorBlock {
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-        translator.addSetupCommand("Serial.begin(115200);");
+        //translator.addSetupCommand("Serial.begin(115200);");
 		
         String extern="extern \"C\" {  // zur Nutzung der speziellen ESP-Befehle wie Deep Sleep\n"
 			     + "   #include \"user_interface.h\"\n"

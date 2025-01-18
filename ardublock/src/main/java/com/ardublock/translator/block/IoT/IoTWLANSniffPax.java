@@ -19,7 +19,7 @@ public class IoTWLANSniffPax  extends TranslatorBlock {
 	    translator.addHeaderFile("#if defined(ESP32) \n #include <esp_WiFi.h>\n#endif\n");		
 			translator.addHeaderFile("IoTSniffer.h");
 		
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		translator.addSetupCommand("WiFi.mode(WIFI_STA); // Pax-counter");
 		translator.addDefinitionCommand("unsigned int Sniff_channel = 1;");
 		translator.setWiFiProgram(true);

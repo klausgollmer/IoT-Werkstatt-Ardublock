@@ -37,7 +37,7 @@ public class IoTIrqAttach  extends TranslatorBlock {
 		ret = ret + "}\n\n";
 		translator.addDefinitionCommand(ret);
 		
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 	
         return codePrefix + "attachInterrupt(digitalPinToInterrupt("+pin+"),"+isr_name+","+mode+");" + codeSuffix;
 	 	}

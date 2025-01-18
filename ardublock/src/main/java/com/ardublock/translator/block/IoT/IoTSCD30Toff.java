@@ -23,7 +23,7 @@ public class IoTSCD30Toff extends TranslatorBlock
     // Setupdeklaration
     // I2C-initialisieren
    
-    translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
     translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
     translator.setSCD30Program(true);;
     
@@ -37,7 +37,7 @@ public class IoTSCD30Toff extends TranslatorBlock
    	translator.addDefinitionCommand("//Reading CO2, humidity and temperature from the SCD30 By: Nathan Seidle SparkFun Electronics \n");
    	translator.addDefinitionCommand("//https://github.com/sparkfun/SparkFun_SCD30_Arduino_Library\n");
 	translator.addDefinitionCommand("SCD30 airSensorSCD30; // Objekt SDC30 Umweltsensor");
-	translator.addSetupCommand("Serial.begin(115200);");
+	//translator.addSetupCommand("Serial.begin(115200);");
 
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
     String code = translatorBlock.toCode();

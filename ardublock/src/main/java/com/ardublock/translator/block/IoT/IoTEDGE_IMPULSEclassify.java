@@ -82,7 +82,7 @@ public class IoTEDGE_IMPULSEclassify  extends TranslatorBlock {
 				+ "}";
 		translator.addDefinitionCommand(fun);
 
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 
 		String rej = " INFINITY";
 	   	

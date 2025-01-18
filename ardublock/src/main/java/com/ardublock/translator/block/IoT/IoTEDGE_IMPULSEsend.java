@@ -27,7 +27,7 @@ public class IoTEDGE_IMPULSEsend  extends TranslatorBlock {
 				"String  EI_unitOfSensor[EI_MAXSENSOR];\n" + 
 				"";
 			translator.addDefinitionCommand(EI_Def);
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 */
 		
 		String host,api,file,device,ts,type;

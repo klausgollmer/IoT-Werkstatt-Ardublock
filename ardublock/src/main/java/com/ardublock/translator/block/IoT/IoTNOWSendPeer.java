@@ -36,7 +36,7 @@ public class IoTNOWSendPeer extends TranslatorBlock
     String MACname = "peerMAC_"+ext;
     translator.addDefinitionCommand("uint8_t "+MACname+"[] = {"+MAC+"};\n");
     
-    translator.addSetupCommand("Serial.begin(115200);");
+    //translator.addSetupCommand("Serial.begin(115200);");
     
     String Setup = "// ESP-NOW initialisieren\r\n"
     		+ "WiFi.mode(WIFI_STA);\r\n"

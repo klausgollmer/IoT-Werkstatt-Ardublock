@@ -279,7 +279,7 @@ public class IoTMessageServer_CO2_V2  extends TranslatorBlock {
 				"//----------------------- SensorPlot WebInterface Module 1/3 END -----------------------//\n" + 
 				"";
 				
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		String WebServerSetup = "//---------------------- SensorPlot WebInterface Module 2/3 START ----------------------//\n" + 
 				"  configWebInterface();\n" + 
                 "  webInterface.interfaceConfig(WebInterfaceTitel, \"Passwort\", \"Kalibrieren\");\n" + 

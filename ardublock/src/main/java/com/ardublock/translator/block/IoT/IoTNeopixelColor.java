@@ -21,7 +21,7 @@ public class IoTNeopixelColor  extends TranslatorBlock {
 	    translator.addDefinitionCommand(Dis);
 		
 		translator.addHeaderFile("Adafruit_NeoPixel.h");
-   	    translator.addDefinitionCommand("Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,GPIO_NEO,NEO_GRBW + NEO_KHZ800);");
+   	    translator.addDefinitionCommand("Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,IOTW_GPIO_NEO,NEO_GRBW + NEO_KHZ800);");
 		
    	      	    
    	    String setup=  "pixels.begin();//-------------- Initialisierung Neopixel\n"

@@ -32,7 +32,7 @@ public class IoTTouchPress extends TranslatorBlock
 			  		"\r\n" + 
 			  		"void IRAM_ATTR ISR_touchCounterUp() {\r\n" + 
 			  		"  // Entprellen für T7\r\n" + 
-			  		"  if ((millis() - lastDebounceTimeUp) > TOUCH_DEBOUNCE_DELAY) {\r\n" +
+			  		"  if ((millis() - lastDebounceTimeUp) > IOTW_TOUCH_DEBOUNCE_DELAY) {\r\n" +
 			  		"    touch_counter_rot = (touch_counter_rot < touch_counter_rot_max) ? (touch_counter_rot + 1) : touch_counter_rot_max;\r\n"+
 			  		"    lastDebounceTimeUp = millis();\r\n" + 
 			  		"  }\r\n" + 
@@ -40,7 +40,7 @@ public class IoTTouchPress extends TranslatorBlock
 			  		"\r\n" + 
 			  		"void IRAM_ATTR ISR_touchCounterDown() {\r\n" + 
 			  		"  // Entprellen für T9\r\n" + 
-			  		"  if ((millis() - lastDebounceTimeDown) > TOUCH_DEBOUNCE_DELAY) {\r\n" + 
+			  		"  if ((millis() - lastDebounceTimeDown) > IOTW_TOUCH_DEBOUNCE_DELAY) {\r\n" + 
 			  		"    touch_counter_rot = (touch_counter_rot > touch_counter_rot_min) ? (touch_counter_rot - 1) : touch_counter_rot_min;\r\n"+
 			  		"    lastDebounceTimeDown = millis();\r\n" + 
 			  		"  }\r\n" + 
@@ -50,9 +50,9 @@ public class IoTTouchPress extends TranslatorBlock
 			  		"bool touchReadState(int pin) {\r\n" + 
 			  		"  bool wert=0;\r\n" + 
 			  		"  switch(pin) {\r\n" + 
-			  		"    case 1: wert = (touchRead(TOUCH_PIN_UP)<TOUCH_UP_THRESHOLD);break;\r\n" + 
-			  		"    case 2: wert = (touchRead(TOUCH_PIN_DOWN)<TOUCH_DOWN_THRESHOLD);break;\r\n" + 
-			  		"    case 3: wert = (touchRead(TOUCH_PIN_BUTTON)<TOUCH_BUTTON_THRESHOLD); break;\r\n" + 
+			  		"    case 1: wert = (touchRead(IOTW_TOUCH_PIN_UP)<IOTW_TOUCH_UP_THRESHOLD);break;\r\n" + 
+			  		"    case 2: wert = (touchRead(IOTW_TOUCH_PIN_DOWN)<IOTW_TOUCH_DOWN_THRESHOLD);break;\r\n" + 
+			  		"    case 3: wert = (touchRead(IOTW_TOUCH_PIN_BUTTON)<IOTW_TOUCH_BUTTON_THRESHOLD); break;\r\n" + 
 			  		"    default: Serial.println(\"touch button 1-3\\n\"); break;\r\n" + 
 			  		"  }\r\n" + 
 			  		"  return wert;\r\n" + 
@@ -65,8 +65,8 @@ public class IoTTouchPress extends TranslatorBlock
 		    EncDef ="#if defined(ESP32) \n "
 				   	+   "// Configure Touch Pins as Input\r\n" +
 		    		    " touch_counter_rot=0;\n"+
-				   		" touchAttachInterrupt(TOUCH_PIN_UP, ISR_touchCounterUp, TOUCH_UP_THRESHOLD);\r\n" + 
-				   		" touchAttachInterrupt(TOUCH_PIN_DOWN, ISR_touchCounterDown, TOUCH_DOWN_THRESHOLD);\r\n" + 
+				   		" touchAttachInterrupt(IOTW_TOUCH_PIN_UP, ISR_touchCounterUp, IOTW_TOUCH_UP_THRESHOLD);\r\n" + 
+				   		" touchAttachInterrupt(IOTW_TOUCH_PIN_DOWN, ISR_touchCounterDown, IOTW_TOUCH_DOWN_THRESHOLD);\r\n" + 
 				   		"#endif \n";
 		    translator.addSetupCommand(EncDef);
 		    

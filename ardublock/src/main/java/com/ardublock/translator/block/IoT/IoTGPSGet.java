@@ -31,7 +31,7 @@ public class IoTGPSGet extends TranslatorBlock
     		   + "SoftwareSerial ssGPS(GPS_RxPin, 100); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup \n";
     translator.addDefinitionCommand(Def);
     
-    translator.addSetupCommand("Serial.begin(115200);");    
+    //translator.addSetupCommand("Serial.begin(115200);");    
     translator.addSetupCommand("if (GPS_RxPin == 3) pinMode(3, FUNCTION_3); // swap UART-RX-Pin to normal GPIO \n"
                             +  "delay(100);\n"  		
     	                    +  "ssGPS.begin(9600);// software serial GPS\n");

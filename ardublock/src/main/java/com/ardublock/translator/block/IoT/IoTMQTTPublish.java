@@ -16,7 +16,7 @@ public class IoTMQTTPublish  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		translator.addHeaderFile("PubSubClient.h");
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		
 		String topic,payload,retrained;
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);

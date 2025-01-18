@@ -21,7 +21,7 @@ public class IoTNTPServer  extends TranslatorBlock {
 		//	translator.addHeaderFile("coredecls.h");
  	    //	translator.addHeaderFile("TZ.h");
 		
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 
 		/*
 		String help = "// ----------  NTP-Zeitservice\n" + 

@@ -45,9 +45,9 @@ public class IoT7Seg extends TranslatorBlock
  	translator.addDefinitionCommand("Adafruit_7segment matrix7Seg = Adafruit_7segment(); // 7Segment Feather");
  	    
     // Setupdeklaration
-	translator.addSetupCommand("Serial.begin(115200);");
+	//translator.addSetupCommand("Serial.begin(115200);");
     // I2C-initialisieren
-	translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+	translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
 	translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 	 
     

@@ -19,7 +19,7 @@ public class IoTEcoflowGet  extends TranslatorBlock {
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
 		translator.addHeaderFile("WiFiClientSecureBearSSL.h");
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		
 	
 		 String httpRESTGET = "//--------------------------------------- https-GET Ecoflow\n" + 

@@ -33,7 +33,7 @@ public class IoTOLED_Clear  extends TranslatorBlock {
 				 + "#define LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
 
-		String Setup = "#ifndef BOARD_MAKEY \n initOLED(0);\n #endif\n";
+		String Setup = "#ifndef IOTW_BOARD_MAKEY \n initOLED(0);\n #endif\n";
 		translator.addSetupCommand(Setup);
 		
 		

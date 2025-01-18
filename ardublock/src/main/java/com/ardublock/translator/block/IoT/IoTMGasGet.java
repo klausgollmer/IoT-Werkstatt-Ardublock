@@ -21,10 +21,10 @@ public class IoTMGasGet extends TranslatorBlock
    
     translator.addHeaderFile("Wire.h");
     translator.addHeaderFile("MutichannelGasSensor.h");
-    translator.addSetupCommand("Serial.begin(115200);");
+    //translator.addSetupCommand("Serial.begin(115200);");
     // Setupdeklaration
     // I2C-initialisieren
-    translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
     translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
     translator.addSetupCommand("multigas.begin(); // Grove Multigas, I2C Address 0x04\n"

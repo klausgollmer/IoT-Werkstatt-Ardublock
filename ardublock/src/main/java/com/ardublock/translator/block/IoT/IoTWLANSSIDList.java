@@ -17,7 +17,7 @@ public class IoTWLANSSIDList  extends TranslatorBlock {
 	{
 		translator.addHeaderFile("WiFi_SSIDListner.h");
 		
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		translator.addSetupCommand("SSIDListner(); // from https://github.com/kalanda/esp8266-sniffer");
 		translator.setWiFiProgram(true);
 			    

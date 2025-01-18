@@ -52,10 +52,10 @@ public class IoTOLED_PrintTerminal  extends TranslatorBlock {
 		String LF = translatorBlock.toCode();
 		
 		// I2C-initialisieren
-		translator.addSetupCommand("Wire.begin(GPIO_I2C_SDA, GPIO_I2C_SCL); // ---- Initialisiere den I2C-Bus \n");
+		translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
 		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 				
-		String Setup = "#ifndef BOARD_MAKEY \n initOLED(0);\n #endif\n";
+		String Setup = "#ifndef IOTW_BOARD_MAKEY \n initOLED(0);\n #endif\n";
 		translator.addSetupCommand(Setup);
 
 		    

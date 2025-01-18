@@ -19,7 +19,7 @@ public class IoTBlynkSend  extends TranslatorBlock {
 
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
 		//translator.addHeaderFile("BlynkMultiClient.h");
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 		
 			
 		String pin,wert,ret;

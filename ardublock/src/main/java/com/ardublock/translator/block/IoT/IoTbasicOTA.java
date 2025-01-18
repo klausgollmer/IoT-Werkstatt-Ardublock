@@ -20,7 +20,7 @@ public class IoTbasicOTA  extends TranslatorBlock {
 		translator.addHeaderFile("WiFiUdp.h");
 		translator.addHeaderFile("ArduinoOTA.h");
 		
-		translator.addSetupCommand("Serial.begin(115200);");
+		//translator.addSetupCommand("Serial.begin(115200);");
 			
 		String name;
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
