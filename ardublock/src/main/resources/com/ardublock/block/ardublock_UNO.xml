@@ -3777,6 +3777,8 @@
 		</BlockGenus>
 
 
+    
+    
         <BlockGenus name="sendThingspeak" kind="command" color="30 30 255"
 			initlabel="bg.sendThingspeak" editable-label="no" is-label-value="no">
 			<description>
@@ -4862,6 +4864,25 @@
 			
 		</BlockGenus>
 
+    <BlockGenus name="classifyEDGE" kind="data" color="30 30 255"
+			initlabel="bg.classifyEDGE" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+			    <BlockConnector connector-type="number"	connector-kind="plug" />
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="reject">
+				</BlockConnector>
+			</BlockConnectors>
+			<Images>
+			    <Image block-location="northwest">
+			    <FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
+				</Image>
+			</Images>
+			
+		</BlockGenus>
+
+
+
+
         <BlockGenus name="sendEDGE" kind="command" color="30 30 255"
 			initlabel="bg.sendEDGE" editable-label="no" is-label-value="no">
 			<BlockConnectors>
@@ -5327,7 +5348,13 @@
         </BlockGenus>
 
 
-     
+ <!-- 
+        <BlockGenus name="DIYSpectroVectD1RGB" kind="data" color="255 0 0" initlabel="bg.DIYSpectroVectD1RGB" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+ -->
 
         <BlockGenus name="DIYSpectroVectD1W" kind="data" color="255 0 0" initlabel="bg.DIYSpectroVectD1W" editable-label="no" is-label-value="no" >
           <BlockConnectors>
@@ -5483,6 +5510,37 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+		
+		
+		      <BlockGenus name="Frequency32" kind="command" color="50 50 50"
+			initlabel="bg.Frequency32">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="f [MHz]">
+					<DefaultArg genus-name="number" label="80" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
+		
+		 <BlockGenus name="RTC_GPIO32" kind="command" color="50 50 50"
+			initlabel="bg.RTC_GPIO32">
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="RTC GPIO">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="boolean"
+					connector-kind="socket" label="level">
+					<DefaultArg genus-name="digital-high" label="LOW" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
+		
+	
+		
+		
 		
 		
 		
@@ -5987,6 +6045,7 @@
 			<FamilyMember>DIYSpectroVectOctiW</FamilyMember>
  			<FamilyMember>DIYSpectroVectOctiRGB</FamilyMember>
      		<FamilyMember>DIYSpectroVectD1W</FamilyMember>
+<!-- 			<FamilyMember>DIYSpectroVectD1RGB</FamilyMember> -->
 		</BlockFamily>
 		
 		<BlockFamily>

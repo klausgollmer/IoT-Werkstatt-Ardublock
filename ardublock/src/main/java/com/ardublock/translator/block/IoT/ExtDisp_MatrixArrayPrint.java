@@ -27,7 +27,7 @@ public class ExtDisp_MatrixArrayPrint  extends TranslatorBlock {
 		String ArrayStruct ="//--------------------------------  IoTDataArray for timeseries \n"
 				+ "// Dimension IOTARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
 				+ "#define IOTARRAYLEN 64 \n"
-				+ "#if defined(ESP32) && defined(USE_DEEPSLEEP)\n"
+				+ "#if defined(ESP32) && defined(IOTW_USE_DEEPSLEEP)\n"
 				+ "  RTC_DATA_ATTR float   IoTArrayData[IOTARRAYLEN];\n"
 				+ "  RTC_DATA_ATTR uint8_t IoTArrayDataIndex     = 0;\n"
 				+ "  RTC_DATA_ATTR uint8_t IoTArrayDataInitDone  = 0;\n"

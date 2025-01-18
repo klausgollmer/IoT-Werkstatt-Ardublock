@@ -1,13 +1,16 @@
-package com.ardublock.translator.block;
+package com.ardublock.translator.block.IoT;
 
 import com.ardublock.translator.Translator;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
+import com.ardublock.translator.block.TranslatorBlock;
 
-public class Frequency32 extends TranslatorBlock
+
+
+public class System32_Frequency32 extends TranslatorBlock
 {
 
-	public Frequency32(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	public System32_Frequency32(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator);
 	}
@@ -21,7 +24,8 @@ public class Frequency32 extends TranslatorBlock
 	String speed = translatorBlock.toCode();
 	String ret = "//------- Change CPU Speed ---------------------------- \n"
 			+ "#if defined(ESP8266)\n"
-			+ "  system_update_cpu_freq("+speed+");\n"
+			+ " // system_update_cpu_freq("+speed+");\n"
+			+ "    Serial.print(F(\"sorry frequency change 32 only\"));\n"
 			+ "#endif\n"
 			+ "\n"
 			+ "#if defined(ESP32)\n"

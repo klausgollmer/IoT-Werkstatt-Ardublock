@@ -57,7 +57,7 @@ public class MQTT_Connect  extends TranslatorBlock {
 			    +   "   int    QoS;          // Quality of Service\n"      
 			    +   "   mqtthandle fun;      // callback function \n"
 			    +   " }subscribe_type; \n"
-	            +   "subscribe_type mqtt_sub[MAX_MQTT_SUB];\n"
+	            +   "subscribe_type mqtt_sub[IOTW_MAX_MQTT_SUB];\n"
 			    +   "int mqtt_sub_count=0;\n"; 
 	        
 		translator.addDefinitionCommand(def);		

@@ -28,13 +28,13 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
 	   	translator.addDefinitionCommand(Dis);
 	   	String Def="extern Adafruit_SH1107 myOLEDdisplay;"
 				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
-				 + "#define LOGO_WAIT";
+				 + "#define IOTW_LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
 	
 		String ArrayStruct ="//--------------------------------  IoTDataArray for timeseries \n"
 				+ "// Dimension IOTARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
 				+ "#define IOTARRAYLEN 64 \n"
-				+ "#if defined(ESP32) && defined(USE_DEEPSLEEP)\n"
+				+ "#if defined(ESP32) && defined(IOTW_USE_DEEPSLEEP)\n"
 				+ "  RTC_DATA_ATTR float   IoTArrayData[IOTARRAYLEN];\n"
 				+ "  RTC_DATA_ATTR uint8_t IoTArrayDataIndex     = 0;\n"
 				+ "  RTC_DATA_ATTR uint8_t IoTArrayDataInitDone  = 0;\n"

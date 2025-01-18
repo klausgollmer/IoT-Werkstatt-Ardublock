@@ -30,7 +30,7 @@ public class ExtDisp_OLED_Clear  extends TranslatorBlock {
 	   	translator.addDefinitionCommand(Dis);
 	   	String Def="extern Adafruit_SH1107 myOLEDdisplay;"
 				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
-				 + "#define LOGO_WAIT";
+				 + "#define IOTW_LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
 
 		String Setup = "#ifndef IOTW_BOARD_MAKEY \n initOLED(0);\n #endif\n";

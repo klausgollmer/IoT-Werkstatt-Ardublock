@@ -28,6 +28,7 @@ public class System32_ResetReason32 extends TranslatorBlock
 
     
     String Reason = "int resetReason(int cpu) {\r\n" + 
+            "#ifdef ESP32\n"+
     		"  Serial.print(\"CPU0 reset reason: \");\r\n" + 
     		"  Serial.println(rtc_get_reset_reason(0));\r\n" + 
     		"  Serial.print(\"CPU1 reset reason: \");\r\n" + 
@@ -51,7 +52,10 @@ public class System32_ResetReason32 extends TranslatorBlock
     		+ "    case 16 : Serial.println (\"RTCWDT_RTC_RESET\");break;      /**<16, RTC Watch dog reset digital core and rtc module*/\r\n"
     		+ "    default : Serial.println (\"NO_MEAN\");\r\n"
     		+ "  }\r\n"
-    		+ "return rtc_get_reset_reason(cpu);\r\n" + 
+    		+ "return rtc_get_reset_reason(cpu);\r\n" +
+    		"#else\n"+
+    		"  Serial.print(F(\"sorry, reset Reason ESP32 only \"));\r\n" + 
+    	    "#endif\n"	+	
     		"}";
     translator.addDefinitionCommand(Reason);
 	ret = "resetReason("+cpu+")"; 

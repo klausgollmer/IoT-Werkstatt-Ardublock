@@ -1,27 +1,31 @@
-package com.ardublock.translator.block;
+package com.ardublock.translator.block.IoT;
+
+import java.util.ResourceBundle;
 
 import com.ardublock.translator.Translator;
+import com.ardublock.translator.block.TranslatorBlock;
+import com.ardublock.translator.block.VariableDigitalBlock;
+import com.ardublock.translator.block.VariablePolyBlock;
+import com.ardublock.translator.block.exception.BlockException;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class SleepBlockDeep extends TranslatorBlock
-{
-
-	public SleepBlockDeep(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+public class System8266_SleepBlockDeep  extends TranslatorBlock {
+	private static ResourceBundle uiMessageBundle = ResourceBundle.getBundle("com/ardublock/block/ardublock");
+	public System8266_SleepBlockDeep (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
-		super(blockId, translator);
+		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
-
+	
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		
-	String extern="extern \"C\" {  // zur Nutzung der speziellen ESP-Befehle wie Deep Sleep\n"
+		String extern="extern \"C\" {  // zur Nutzung der speziellen ESP-Befehle wie Deep Sleep\n"
 			     + "   #include \"user_interface.h\"\n"
 			     +"}\n";
 	translator.addDefinitionCommand(extern);
 	translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
-	translator.addHeaderFile("#define USE_DEEPSLEEP");
+	translator.addHeaderFile("#define IOTW_USE_DEEPSLEEP");
 	
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	String Delay_ms = translatorBlock.toCode(); 
@@ -83,7 +87,7 @@ public class SleepBlockDeep extends TranslatorBlock
 		
 		
 		if (translator.isLORAProgram()) {
-			translator.addHeaderFile("#define LORA_DEEPSLEEP");
+			translator.addHeaderFile("#define IOTW_LORA_DEEPSLEEP");
 			ret = "if (os_queryTimeCriticalJobs(ms2osticks("+Delay_ms+"))) { \n" + 
 				  "    Serial.println(\"busywaiting for criticalJobs\");\n" + 
 				  "    while (os_queryTimeCriticalJobs(ms2osticks("+Delay_ms+"))) { \n" + 
@@ -93,9 +97,9 @@ public class SleepBlockDeep extends TranslatorBlock
 				  "  }\n";
 			
 			if (translator.isRTCVarProgram()) {
-  			    ret += "SaveLMICToRTC_ESP8266("+Delay_ms+"/1000); // Save LMIC-State \n ";
+ 			    ret += "SaveLMICToRTC_ESP8266("+Delay_ms+"/1000); // Save LMIC-State \n ";
 		    } else {
-  			    ret += "SaveLMICToRTC_ESP8266("+Delay_ms+"/1000); // Save LMIC-State \n ";
+ 			    ret += "SaveLMICToRTC_ESP8266("+Delay_ms+"/1000); // Save LMIC-State \n ";
 		    }
 		}
 		
@@ -114,8 +118,6 @@ public class SleepBlockDeep extends TranslatorBlock
 		}			
 		
 		return ret;
-	}
-	}
-
-
+ 	}
+}
 

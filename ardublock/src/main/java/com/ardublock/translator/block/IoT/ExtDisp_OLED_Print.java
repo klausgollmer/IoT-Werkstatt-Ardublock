@@ -33,7 +33,7 @@ public class ExtDisp_OLED_Print  extends TranslatorBlock {
 		
 	   	String Def="extern Adafruit_SH1107 myOLEDdisplay;"
 				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
-				 + "#define LOGO_WAIT";
+				 + "#define IOTW_LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
 	
 		

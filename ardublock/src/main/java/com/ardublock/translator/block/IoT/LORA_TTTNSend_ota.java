@@ -138,7 +138,7 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 				+ "  LMIC_reset();          // Reset the MAC state \n"
 		        + "  LMIC_setClockError(MAX_CLOCK_ERROR * 5 / 100); // timing difference esp clock\n"
 		        + "  if  (fromRTCMem) {"
-		        +" #ifdef LORA_DEEPSLEEP \n"
+		        +" #ifdef IOTW_LORA_DEEPSLEEP \n"
 		        +"   #ifdef ESP32 \n"
 		        +"     LoadLMICFromRTC_ESP32(); // restart from deepsleep, get LMIC state from RTC \n"
 		        +"   #elif ESP8266 \n"

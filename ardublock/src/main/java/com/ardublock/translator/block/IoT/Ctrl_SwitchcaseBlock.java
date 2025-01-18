@@ -1,16 +1,22 @@
-package com.ardublock.translator.block;
+package com.ardublock.translator.block.IoT;
+
+import java.util.ResourceBundle;
 
 import com.ardublock.translator.Translator;
+import com.ardublock.translator.block.TranslatorBlock;
+import com.ardublock.translator.block.VariableDigitalBlock;
+import com.ardublock.translator.block.VariablePolyBlock;
+import com.ardublock.translator.block.exception.BlockException;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class SwitchcaseBlock extends TranslatorBlock
-{
-	public SwitchcaseBlock(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+public class Ctrl_SwitchcaseBlock  extends TranslatorBlock {
+	private static ResourceBundle uiMessageBundle = ResourceBundle.getBundle("com/ardublock/block/ardublock");
+	public Ctrl_SwitchcaseBlock (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
-		super(blockId, translator);
+		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
-
+	
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
@@ -83,6 +89,6 @@ public class SwitchcaseBlock extends TranslatorBlock
 		
 		ret = ret + "}\n";
 		return ret;
-	}
-
+ 	}
 }
+

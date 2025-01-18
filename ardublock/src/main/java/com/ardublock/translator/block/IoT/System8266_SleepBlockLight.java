@@ -1,22 +1,26 @@
-package com.ardublock.translator.block;
+package com.ardublock.translator.block.IoT;
+
+import java.util.ResourceBundle;
 
 import com.ardublock.translator.Translator;
+import com.ardublock.translator.block.TranslatorBlock;
+import com.ardublock.translator.block.VariableDigitalBlock;
+import com.ardublock.translator.block.VariablePolyBlock;
+import com.ardublock.translator.block.exception.BlockException;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class SleepBlockLight extends TranslatorBlock
-{
-
-	public SleepBlockLight(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+public class System8266_SleepBlockLight  extends TranslatorBlock {
+	private static ResourceBundle uiMessageBundle = ResourceBundle.getBundle("com/ardublock/block/ardublock");
+	public System8266_SleepBlockLight (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
-		super(blockId, translator);
+		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
-
+	
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		
-	String extern="extern \"C\" {  // zur Nutzung der speziellen ESP-Befehle wie Deep Sleep\n"
+		String extern="extern \"C\" {  // zur Nutzung der speziellen ESP-Befehle wie Deep Sleep\n"
 			     + "   #include \"user_interface.h\"\n"
 			     +"}\n";
 	translator.addDefinitionCommand(extern);
@@ -53,10 +57,9 @@ public class SleepBlockLight extends TranslatorBlock
 	
 	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	String Delay_ms = translatorBlock.toCode(); 
-    
+   
 	String ret ="lightsleep("+Delay_ms+");";
-    return ret;
-	}
-
+   return ret;
+ 	}
 }
 

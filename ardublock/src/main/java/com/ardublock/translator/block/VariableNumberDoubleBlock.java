@@ -21,7 +21,7 @@ public class VariableNumberDoubleBlock extends TranslatorBlock
 //      translator.addDefinitionCommand("volatile float " + internalVariableName + " = 0.0 ;");
     String TypeDef="volatile float " + internalVariableName + " = 0;";
 		
-		TypeDef ="#if defined(ESP32) && defined(USE_DEEPSLEEP)\n" + 
+		TypeDef ="#if defined(ESP32) && defined(IOTW_USE_DEEPSLEEP)\n" + 
 				 "  RTC_DATA_ATTR " + TypeDef +"// store during sleep\n"+
 				 "#else \n"+
 				 "  " + TypeDef + "\n"+

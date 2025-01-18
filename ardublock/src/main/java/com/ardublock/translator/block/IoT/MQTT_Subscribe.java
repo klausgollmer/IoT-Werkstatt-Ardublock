@@ -62,7 +62,7 @@ public class MQTT_Subscribe  extends TranslatorBlock {
 		
 		String setup = "//--------- prepare mqtt subscription \n"
 				+ "mqtt_sub_count++; // add new element \n"
-				+ "if (mqtt_sub_count < MAX_MQTT_SUB) { \n"
+				+ "if (mqtt_sub_count < IOTW_MAX_MQTT_SUB) { \n"
                 + "  mqtt_sub[mqtt_sub_count-1].topic = " + topic +";\n"
                 + "  mqtt_sub[mqtt_sub_count-1].QoS = " + QoS +";\n"
 

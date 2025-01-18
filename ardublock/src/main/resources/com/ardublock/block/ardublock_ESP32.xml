@@ -3752,7 +3752,8 @@
 		</BlockGenus>
 
 
-        <BlockGenus name="sendThingspeak" kind="command" color="30 30 255"
+   
+       <BlockGenus name="sendThingspeak" kind="command" color="30 30 255"
 			initlabel="bg.sendThingspeak" editable-label="no" is-label-value="no">
 			<description>
 				<text>connect to WLAN</text>
@@ -5398,6 +5399,14 @@
           </BlockConnectors>
         </BlockGenus>
 
+<!-- 
+        <BlockGenus name="DIYSpectroVectD1RGB" kind="data" color="255 0 0" initlabel="bg.DIYSpectroVectD1RGB" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+ -->
+ 
         <BlockGenus name="DIYSpectroVectD1W" kind="data" color="255 0 0" initlabel="bg.DIYSpectroVectD1W" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
@@ -5566,8 +5575,6 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-		
-		
 		
 		
 		<BlockGenus name="sleep32" kind="command" color="50 50 50"
@@ -6087,6 +6094,7 @@
 			<FamilyMember>DIYSpectroVectOctiW</FamilyMember>
  			<FamilyMember>DIYSpectroVectOctiRGB</FamilyMember>
      		<FamilyMember>DIYSpectroVectD1W</FamilyMember>
+<!-- 			<FamilyMember>DIYSpectroVectD1RGB</FamilyMember> -->
 		</BlockFamily>
 		
 		<BlockFamily>

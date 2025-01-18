@@ -1,13 +1,14 @@
-package com.ardublock.translator.block;
+package com.ardublock.translator.block.IoT;
 
 import com.ardublock.translator.Translator;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
+import com.ardublock.translator.block.TranslatorBlock;
 
-public class RTCGPIO32 extends TranslatorBlock
+public class System32_RTCGPIO32 extends TranslatorBlock
 {
 
-	public RTCGPIO32(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	public System32_RTCGPIO32(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator);
 	}
