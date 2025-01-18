@@ -3752,51 +3752,6 @@
 		</BlockGenus>
 
 
-        <BlockGenus name="askYahoo" kind="data" color="30 30 255"
-			initlabel="bg.askYahoo" editable-label="no" is-label-value="no">
-			<description>
-				<text>retrieve info from yahoo</text>
-			</description>
-			
-			
-			<BlockConnectors>
-			    <BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.yahooWhat">
-					<DefaultArg genus-name="yahooWhat" label="speed" />
-				</BlockConnector>
-				
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.yahooWoei">
-					<DefaultArg genus-name="yahooWoei" label="690631" />
-				</BlockConnector>
-			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
-			</BlockConnectors>
-		</BlockGenus>
-
-
-        <BlockGenus name="yahooWoei" kind="data" color="255 0 0"
-			initlabel="bg.yahooWoei" editable-label="yes">
-			<description>
-				<text>
-					Geolocation yahoo
-				</text>
-			</description>
-			<BlockConnectors>
-			<BlockConnector connector-type="string"	connector-kind="plug" />
-			</BlockConnectors>
-		</BlockGenus>
-		
-		
-		 <BlockGenus name="yahooWhat" kind="data" color="255 0 0"
-			initlabel="bg.yahooWhat" editable-label="yes">
-			<description>
-				<text>retreive info</text>
-			</description>
-			<BlockConnectors>
-				<BlockConnector connector-type="string" connector-kind="plug" />
-			</BlockConnectors>
-			
-		</BlockGenus>
         <BlockGenus name="sendThingspeak" kind="command" color="30 30 255"
 			initlabel="bg.sendThingspeak" editable-label="no" is-label-value="no">
 			<description>
@@ -5443,13 +5398,6 @@
           </BlockConnectors>
         </BlockGenus>
 
-
-        <BlockGenus name="DIYSpectroVectD1RGB" kind="data" color="255 0 0" initlabel="bg.DIYSpectroVectD1RGB" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-
         <BlockGenus name="DIYSpectroVectD1W" kind="data" color="255 0 0" initlabel="bg.DIYSpectroVectD1W" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
@@ -6139,7 +6087,6 @@
 			<FamilyMember>DIYSpectroVectOctiW</FamilyMember>
  			<FamilyMember>DIYSpectroVectOctiRGB</FamilyMember>
      		<FamilyMember>DIYSpectroVectD1W</FamilyMember>
-<!-- 			<FamilyMember>DIYSpectroVectD1RGB</FamilyMember> -->
 		</BlockFamily>
 		
 		<BlockFamily>
