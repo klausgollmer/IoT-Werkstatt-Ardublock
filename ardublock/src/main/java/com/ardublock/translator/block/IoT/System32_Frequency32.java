@@ -25,7 +25,7 @@ public class System32_Frequency32 extends TranslatorBlock
 	String ret = "//------- Change CPU Speed ---------------------------- \n"
 			+ "#if defined(ESP8266)\n"
 			+ " // system_update_cpu_freq("+speed+");\n"
-			+ "    Serial.print(F(\"sorry frequency change 32 only\"));\n"
+			+ "    Serial.print(F(\"frequency ESP32 only\"));\n"
 			+ "#endif\n"
 			+ "\n"
 			+ "#if defined(ESP32)\n"

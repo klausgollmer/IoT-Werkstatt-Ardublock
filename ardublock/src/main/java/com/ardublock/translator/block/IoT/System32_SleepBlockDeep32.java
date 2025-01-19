@@ -25,7 +25,7 @@ public class System32_SleepBlockDeep32  extends TranslatorBlock {
 		//translator.setWiFiProgram(true);
 		translator.setDeepSleepProgram(true);
 		translator.addHeaderFile("#define IOTW_USE_DEEPSLEEP");
-		translator.addHeaderFile("rom/rtc.h");
+		translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
 		
 		
 		String ret = "//------- deep SLEEP ----------------------------\n";
@@ -35,12 +35,13 @@ public class System32_SleepBlockDeep32  extends TranslatorBlock {
 	    	translator.addHeaderFile("IoTW_LMIC.h");
 	    	ret += "SaveLMICToRTC_ESP32("+Delay_ms+"/1000);\n" ;
 		}
-		ret += "Serial.println(\"Going to deep sleep now\");\n"  
+		ret += "Serial.println(F(\"deep sleep now\"));\n"  
 	   		+  "Serial.flush();\n"
 	   		+  "Serial.end();\n"
 	        +  "esp_sleep_enable_timer_wakeup("+Delay_ms+" * 1000ULL);\n"
-	   	    +  "esp_deep_sleep_start();";
-	    	return ret;
+	   	    +  "esp_deep_sleep_start();\n";
+	 	ret = "#ifdef ESP32\n "+ret+"#else Serial.println(F(\"deep sleep ESP32 only\"));\n #endif \n";
+	    return ret;
  	}
 }
 

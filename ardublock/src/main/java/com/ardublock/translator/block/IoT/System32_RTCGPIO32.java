@@ -41,7 +41,7 @@ public class System32_RTCGPIO32 extends TranslatorBlock
 			+ "    Serial.println(F(\"sorry, only RTC-GPIO 0,2,4,12-15,25-27,32-39 allowed\"));\n"
 			+ "  }\n"
 			+ "  #else\n"
-			+ "    Serial.println(F(\"sorry, RTC-GPIO for ESP32 only\"));\n"
+			+ "    Serial.println(F(\"RTC-GPIO ESP32 only\"));\n"
 			+ "  #endif\n"
 			+ "}";
 	translator.addDefinitionCommand(def);

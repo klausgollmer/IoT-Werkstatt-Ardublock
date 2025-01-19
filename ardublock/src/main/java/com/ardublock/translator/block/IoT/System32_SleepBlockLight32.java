@@ -23,11 +23,16 @@ public class System32_SleepBlockLight32  extends TranslatorBlock {
       TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
   	String Delay_ms = translatorBlock.toCode();
   	//translator.setWiFiProgram(true);
-
+	translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
+	
   	String ret = "//------- Light SLEEP ---------------------------- \n"
-  		+ "Serial.flush();"
-          + "esp_sleep_enable_timer_wakeup("+Delay_ms+" * 1000ULL);\n"
-          + "esp_light_sleep_start();";
+  			+ "#ifdef ESP32\n"
+  	  	    + "  Serial.flush();"
+            + "  esp_sleep_enable_timer_wakeup("+Delay_ms+" * 1000ULL);\n"
+            + "  esp_light_sleep_start();\n"
+            + "#else"
+    		+ "  Serial.print(F(\"lightsleep32 ESP32 only\"));\n"
+            + "#endif\n";
       	return ret;
  	}
 }

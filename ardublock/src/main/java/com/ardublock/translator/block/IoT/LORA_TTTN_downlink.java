@@ -16,6 +16,7 @@ public class LORA_TTTN_downlink  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 	
+		translator.addHeaderFile("IoTW_LMIC.h");
 		translator.addSetupCommand("LoRaWANCallbackPointer=LoRaWAN_DownlinkCallback;");
 		
 		

@@ -32,28 +32,16 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 
 		
 	String PinMapping = "// -------- LoRa PinMapping \r\n"
-			+ "#if defined(BOARD_TTGO_V1)\r\n"
-			+ "const lmic_pinmap lmic_pins = {\r\n"
-			+ "  .nss = LORA_CS, \r\n"
-			+ "  .rxtx = LMIC_UNUSED_PIN,\r\n"
-			+ "  .rst = LORA_RST,\r\n"
-			+ "  .dio = {\r\n"
-			+ "    LORA_IRQ, 33,  LMIC_UNUSED_PIN }\r\n"
-			+ "};\r\n"
-			+ "#else\r\n"
 			+ "const lmic_pinmap lmic_pins = {  \r\n"
-			+ "  .nss = LMIC_NSS,                            // Connected to pin D\r\n"
-			+ "  .rxtx = LMIC_UNUSED_PIN,             // For placeholder only, Do not connected on RFM92/RFM95\r\n"
-			+ "  .rst = LMIC_UNUSED_PIN,              // Needed on RFM92/RFM95? (probably not) D0/GPIO16 \r\n"
-			+ "  .dio = {\r\n"
-			+ "    LMIC_DIO, LMIC_DIO, LMIC_UNUSED_PIN             }\r\n"
-			+ "};\r\n"
-			+ "#endif\r\n"
-			+ "#if defined(XIAO_ESP32S3)\r\n"
-			+ "const Arduino_LMIC::HalConfiguration_t myConfig;\r\n"
-			+ "const lmic_pinmap *pPinMap = Arduino_LMIC::GetPinmap_XIAO_S3_WIO_SX1262();\r\n"
-			+ "#endif\r\n";
+			+ "  .nss = IOTW_LMIC_NSS,     \n"
+			+ "  .rxtx = LMIC_UNUSED_PIN,  // For placeholder only, Do not connected on RFM92/RFM95\r\n"
+			+ "  .rst = IOTW_LMIC_RST,      \r\n"
+			+ "  .dio = {IOTW_LMIC_DIO0, IOTW_LMIC_DIO1, LMIC_UNUSED_PIN}\r\n"
+			+ "};\r\n";
+
+			
 			translator.addDefinitionCommand(PinMapping);
+			
 			
 			
 			String deveui,appeui,appkey,ret,wert;
@@ -127,14 +115,7 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 		
 		String init = "// -- initialize LoraWAN LMIC structure\n"
 				+ "void LoRaWAN_Start_OTA(int fromRTCMem) { // using OTA-Communication \n" 	
-				+ " // #if defined(BOARD_TTGO_V1)\r\n"
-				+ " //    SPI.begin(SCK,MISO,MOSI,SS);\r\n"
-				+ " // #endif\n"
-				+ "#if defined(XIAO_ESP32S3)\n"
-				+ "  os_init_ex(pPinMap);\n"
-				+ "#else\n"
 				+ "  os_init();             // LMIC LoraWAN\n"
-				+ "#endif\n "
 				+ "  LMIC_reset();          // Reset the MAC state \n"
 		        + "  LMIC_setClockError(MAX_CLOCK_ERROR * 5 / 100); // timing difference esp clock\n"
 		        + "  if  (fromRTCMem) {"
@@ -211,18 +192,14 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 		        + "    }\r\n"
 		        + "  }\r\n"
 		        + "  uint32_t tout = millis()+30000; // harter Timeout\r\n"
-		        + "  while ( millis() < tout && !LoRaWAN_Event_No_Join && !LoRaWAN_Event_TxComplete) {\r\n"
-		        + "     yield();\r\n"
-		        + "     os_runloop_once_sleep();\r\n"
+		        + "    while ((millis() < tout && ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING))) && !LoRaWAN_Event_No_Join) {\r\n"
+		        + "      yield();\r\n"
+		        + "      os_runloop_once_sleep();\r\n"
 		        + "  }\r\n"
 		        + "  Serial.println(F(\"Tx finished\")); "
 		        + "} // Block \n";
 	    
-	    
-	    
-	    	    
-	    
-		translator.setLORAProgram(true);
+	    translator.setLORAProgram(true);
  	    
 	               
 	    return codePrefix + ret + codeSuffix;

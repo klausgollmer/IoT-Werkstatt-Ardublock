@@ -35,7 +35,8 @@ public class ExtSen_MaxbotixGet2 extends TranslatorBlock
     String Setup,Def; 
     if (use_uart) {
        translator.addHeaderFile("HardwareSerial.h");
-       translator.addHeaderFile("driver/uart.h");
+       translator.addHeaderFile("#if defined(ESP32)\n #include <driver/uart.h> \n #endif\n");
+
        Setup ="#if defined(ESP32)\n"
        		+ " swSerMaxBot.begin(9600, SERIAL_8N1,"+rxpin+", -1); // UART kein TX\r\n"
        		+ " uart_set_line_inverse(UART_NUM_"+UART+", UART_SIGNAL_RXD_INV); //RX-Pegelinvertierung aktivieren\n"

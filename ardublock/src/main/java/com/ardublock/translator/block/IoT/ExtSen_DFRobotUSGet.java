@@ -30,7 +30,8 @@ public class ExtSen_DFRobotUSGet extends TranslatorBlock
     String Setup,Def; 
     if (use_uart) {
        translator.addHeaderFile("HardwareSerial.h");
-       translator.addHeaderFile("driver/uart.h");
+       translator.addHeaderFile("#if defined(ESP32)\n #include <driver/uart.h> \n #endif\n");
+
        Setup ="#if defined(ESP32)\n"
        		+ " swSerUS.begin(9600, SERIAL_8N1,"+rxpin+", -1); // UART kein TX\r\n"
        		+ "#else \n"
