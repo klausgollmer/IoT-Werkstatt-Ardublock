@@ -122,6 +122,7 @@ public class OpenblocksFrame extends JFrame
 		//
 		
 		this.setSize(new Dimension(1024, 760));
+		
 		this.setLayout(new BorderLayout());
 		//put the frame to the center of screen
 		this.setLocationRelativeTo(null);
@@ -493,7 +494,7 @@ public class OpenblocksFrame extends JFrame
 		File saveFile = letUserChooseSaveFile();
 		saveFile = checkFileSuffix(saveFile);
 		if (saveFile == null)
-		{
+		{			
 			return ;
 		}
 		
@@ -571,6 +572,9 @@ public class OpenblocksFrame extends JFrame
 	
 	private File checkFileSuffix(File saveFile)
 	{
+		if (saveFile == null) {
+				return saveFile;
+		}
 		String filePath = saveFile.getAbsolutePath();
 		if (filePath.endsWith(".abp"))
 		{
