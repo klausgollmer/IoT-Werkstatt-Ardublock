@@ -3978,38 +3978,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-        <BlockGenus name="sendBoschSpex" kind="command" color="30 30 255"
-			initlabel="bg.sendBoschSpex" editable-label="no" is-label-value="no">
-			<BlockConnectors>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="REST URL">
-					<DefaultArg genus-name="text" label="reinholds-test" />
-				</BlockConnector>
-			
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="Credentials">
-					<DefaultArg genus-name="text" label="cmVpbmhvbGRzLXRlc3QteGRpYm1zLWFwaTpBaC05R3FpeVBKT1d6SGRZ" />
-				</BlockConnector>
-	
-     		    <BlockConnector connector-type="string"
-					connector-kind="socket" label="deviceID">
-					<DefaultArg genus-name="text" label="abc123" />
-				</BlockConnector>
-	
-  		        <BlockConnector connector-type="string"
-					connector-kind="socket" label="state">
-					<DefaultArg genus-name="text" label="GREEN" />
-				</BlockConnector>
-	
-			    <BlockConnector connector-type="number"
-					connector-kind="socket" label="CO2">
-				</BlockConnector>
-			    <BlockConnector connector-type="number"
-					connector-kind="socket" label="IAQ">
-				</BlockConnector>
-			</BlockConnectors>
-		</BlockGenus>
-
+   
 
              <BlockGenus name="sendThingsboard" kind="command" color="30 30 255"
 			initlabel="bg.sendThingsboard" editable-label="no" is-label-value="no">
@@ -5497,6 +5466,13 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+
+
+        <BlockGenus name="modemSleep" kind="command"
+			color="80 80 80" initlabel="bg.modemSleep">
+		</BlockGenus>
+
+
 		
 		<BlockGenus name="sleep32" kind="command" color="50 50 50"
 			initlabel="bg.sleep32">

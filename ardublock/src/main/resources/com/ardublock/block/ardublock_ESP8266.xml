@@ -3962,7 +3962,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-        <BlockGenus name="sendBoschSpex" kind="command" color="30 30 255"
+      <!--         <BlockGenus name="sendBoschSpex" kind="command" color="30 30 255"
 			initlabel="bg.sendBoschSpex" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
@@ -3993,7 +3993,8 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-
+-->
+      
 
        <BlockGenus name="sendThingsboard" kind="command" color="30 30 255"
 			initlabel="bg.sendThingsboard" editable-label="no" is-label-value="no">
@@ -5563,6 +5564,11 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+		<BlockGenus name="modemSleep" kind="command"
+			color="80 80 80" initlabel="bg.modemSleep">
+		</BlockGenus>
+		
+		
 		<BlockGenus name="sleep32" kind="command" color="50 50 50"
 			initlabel="bg.sleep32">
 			<description>
@@ -6587,9 +6593,10 @@
 			<BlockDrawer button-color="50 50 50" name="bd.ESP_system"
 				type="factory">
 			  <BlockGenusMember>Divider_ESP8266</BlockGenusMember>
+		      <BlockGenusMember>modemSleep</BlockGenusMember>	
 			  <BlockGenusMember>LightSleep</BlockGenusMember>
 			  <BlockGenusMember>sleep</BlockGenusMember>
-		      <BlockGenusMember>readReset</BlockGenusMember>
+     	      <BlockGenusMember>readReset</BlockGenusMember>
 		      <BlockGenusMember>readVCC</BlockGenusMember>
 			  <BlockGenusMember>WiFiEnable</BlockGenusMember>
 			  <BlockGenusMember>Divider_OTA</BlockGenusMember>

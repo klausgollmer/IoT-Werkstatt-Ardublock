@@ -86,14 +86,18 @@ public class Translator
 		
 		StringBuilder headerCommand = new StringBuilder();
 		headerCommand.append(Disclaimer);
-		
+	/*	
 		if (!isWiFiProgram()) {
+			System.out.println("N1");
 		//  addHeaderFile("ESP8266WiFi.h");
 			addDefinitionCommand ("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");
+		}  else {
+			System.out.println("N2");
 		}
+		*/
 		addHeaderFile("IoTBoards_Generic.h");
 		addHeaderFile("Wire.h");
-		addDefinitionCommand("extern void initOLED(int);");
+		//addDefinitionCommand("extern void initOLED(int);");
 	
     
 		
@@ -143,34 +147,27 @@ public class Translator
 		
 		
 		StringBuilder setupFunction = new StringBuilder();
-		setupFunction.append("void setup()\n{ //Einmalige Initialisierung \n");
+	//	setupFunction.append("void setup()\n{ //Einmalige Initialisierung \n");
+		setupFunction.append("void setup(){ //Einmalige Initialisierung \n");
 		
 		
+		setupFunction.append("   IoT_WerkstattInit(); // init Werkstatt \n");
 		
 		if (!isWiFiProgram()) {
-			   setupFunction.append("#if defined(ESP8266) \n WiFi.forceSleepBegin(); \n #endif \n");
-			   setupFunction.append("#if defined(ESP32) \n  WiFi.mode(WIFI_OFF); \n #endif \n");
+			//System.out.println("N3");
+			//setupFunction.append("   IoT_WerkstattInit(false); // Wifi not used \n");
+		} else {
+			//System.out.println("N4");
+			//setupFunction.append("   IoT_WerkstattInit(true);  // Wifi is used \n");
+			
+			//   setupFunction.append("#if defined(ESP8266) \n WiFi.forceSleepBegin(); \n #endif \n");
+			//   setupFunction.append("#if defined(ESP32) \n  WiFi.mode(WIFI_OFF); \n #endif \n");
 		}
 		
-		setupFunction.append("#if defined(IOTW_BOARD_MAKEY)\n #ifndef IOTW_LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n    #else \n initOLED(2000);\n    #endif\n #endif\n");
+		//setupFunction.append("#if defined(IOTW_BOARD_MAKEY)\n #ifndef IOTW_LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n    #else \n initOLED(2000);\n    #endif\n #endif\n");
 		setupFunction.append("Serial.begin(115200);");
+
 		
-		
-		//addSetupCommand("Serial.begin(115200);");
-		//addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-		//addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
-//		addSetupCommand("#if defined(IOTW_BOARD_MAKEY)\n #ifndef IOTW_LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n    #else \n initOLED(2000);\n    #endif\n #endif\n");
-			
-		/* #kgo das hat zur Folge, dass die Befehle unter Umständen oppelt auftauchen (z.B. Serial.Begin)
-	    setupFunction.append("Serial.begin(115200);");
-		setupFunction.append("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-		setupFunction.append("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
-	    
-		setupFunction.append("#ifndef IOTW_LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n #else \n initOLED(2000);\n #endif\n");
-		*/
-		
-		
-		//setupFunction.append("initOLED(); // init OLED (and Logo)\n");
  	    if (false) { //isRTCVarProgram()) {
  	    	
             String util = "// Lese gespeicherte Daten aus RTC-Memory\n"

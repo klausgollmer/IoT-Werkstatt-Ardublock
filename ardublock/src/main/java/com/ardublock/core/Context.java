@@ -1,5 +1,8 @@
 package com.ardublock.core;
 
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+import java.awt.Insets;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +22,8 @@ import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 //import javax.xml.parsers.DocumentBuilder;
 //import javax.xml.parsers.DocumentBuilderFactory;
@@ -31,6 +36,7 @@ import javax.swing.JLabel;
 import processing.app.Editor;
 
 import com.ardublock.ui.listener.OpenblocksFrameListener;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import edu.mit.blocks.codeblocks.Block;
 import edu.mit.blocks.controller.WorkspaceController;
@@ -209,6 +215,33 @@ public class Context
 		workspaceController.setStyleList(list);
 		workspaceController.setLangDefDtd(this.getClass().getResourceAsStream(LANG_DTD_PATH));
 
+		   String javaVersion = System.getProperty("java.version");
+		     // Java Runtime Vendor
+		     String javaVendor = System.getProperty("java.vendor");
+		     // Java Home Path
+		     String javaHome = System.getProperty("java.home");
+
+		     
+		 	 UIManager.put("Button.arc", 10);
+			 UIManager.put("Button.margin", new Insets(1, 3, 3, 3));
+			 UIManager.put("Component.focusWidth", 1);
+			 UIManager.put("Component.innerFocusWidth", 1);
+		     
+			 // Set larger font size
+			 UIManager.put("defaultFont", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
+			 UIManager.put("Button.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
+			 UIManager.put("Label.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
+			 UIManager.put("ComboBox.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
+			 /*
+		     System.out.println("Java Version: " + javaVersion);
+		     System.out.println("Java Vendor: " + javaVendor);
+		     System.out.println("Java Home: " + javaHome);
+		     
+		     System.out.println("Default Font: " + UIManager.get("defaultFont"));
+		     System.out.println("Button Font: " + UIManager.get("Button.font"));
+		     System.out.println("Label Font: " + UIManager.get("Label.font"));
+		     */
+		
 		String workingDir = System.getProperty("user.dir");
 		arduinoTargetString = getArduinoTarget(workingDir+"/portable/preferences.txt");
 		System.out.println("target: " + arduinoTargetString);
