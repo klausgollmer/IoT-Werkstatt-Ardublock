@@ -21,12 +21,12 @@ public class ExtSen_NFCWrite extends TranslatorBlock
     //translator.addHeaderFile("NfcAdapter.h");
     //translator.addHeaderFile("PN532/PN532_I2C/PN532_I2C.h");
     //translator.addHeaderFile("PN532/PN532/PN532.h");
-    //translator.addHeaderFile("Wire.h");
+    //// now in init translator.addHeaderFile("Wire.h");
 
     translator.addHeaderFile("NfcAdapter.h");
     translator.addHeaderFile("PN532_I2C.h");
     translator.addHeaderFile("PN532.h");
-    translator.addHeaderFile("Wire.h");
+    // now in init translator.addHeaderFile("Wire.h");
 
     
     // Deklarationen hinzuf�gen
@@ -39,8 +39,8 @@ public class ExtSen_NFCWrite extends TranslatorBlock
     // Setupdeklaration
 	//translator.addSetupCommand("Serial.begin(115200);");
     // I2C-initialisieren
-	translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-	translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+	// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+	// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 	 
 	String Setup = "Serial.println(\"Initialize NFC Reader\");\r\n" + 
 		           "nfcSeed.begin();  // ---- PN532 NFC-Reader\n";

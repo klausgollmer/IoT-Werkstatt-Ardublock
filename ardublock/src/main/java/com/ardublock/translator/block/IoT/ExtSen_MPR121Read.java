@@ -21,7 +21,7 @@ public class ExtSen_MPR121Read extends TranslatorBlock
 		
 		 // Header hinzuf�gen
 	    translator.addHeaderFile("Adafruit_MPR121.h");
-	    translator.addHeaderFile("Wire.h");
+	    // now in init translator.addHeaderFile("Wire.h");
 
 	    
 		String Dis="/* Adafruit MPR121 Touch Sensor \n"
@@ -37,8 +37,8 @@ public class ExtSen_MPR121Read extends TranslatorBlock
 	    // I2C-initialisieren
 	    //translator.addSetupCommand("Serial.begin(115200);");
 	    
-	    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-	    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+	    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+	    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 	 
 	   	   
 	    String Setup = "if (!cap1.begin(0x5B)) { Serial.println(\"Failed to communicate MPR121 Touch\");while (1) {delay(1);};}// 0x5A \n";

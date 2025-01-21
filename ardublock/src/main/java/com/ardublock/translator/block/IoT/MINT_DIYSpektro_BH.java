@@ -42,8 +42,8 @@ public class MINT_DIYSpektro_BH  extends TranslatorBlock {
 
 		
 		//translator.addSetupCommand("Serial.begin(115200);");
-		translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-	    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+		// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+	    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 		String Setup = "if (!LightSensor.begin() while(1) {Serial.println(\"missing BH1750\");delay(100);}\r\n";
 	    translator.addSetupCommand(Setup);
 

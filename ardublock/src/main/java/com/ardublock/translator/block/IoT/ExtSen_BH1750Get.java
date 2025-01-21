@@ -24,8 +24,8 @@ public class ExtSen_BH1750Get extends TranslatorBlock
     // I2C-initialisieren
     
     String Setup;
-    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
     // Deklarationen hinzuf�gen
     
 	String Dis="/* Lib for BH1750 Light Sensor \n"

@@ -24,10 +24,21 @@ public class ExtDisp_OLED_Font  extends TranslatorBlock {
 				 + "https://github.com/adafruit/Adafruit-GFX-Library?tab=License-1-ov-file#readme  \n"
 				 + "*/\n";
 	   	translator.addDefinitionCommand(Dis);
-	   	String Def="extern Adafruit_SH1107 myOLEDdisplay;"
-				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
+	   	String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);\r\n"
+	   			 + "GFXcanvas1 canvas(IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT);"
 				 + "#define IOTW_LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
+
+		
+	   	String Setup = "if (myOLEDdisplay.begin(0x3C, true)) { // OLED Display Address 0x3C default\r\n"
+	   			+ "	 myOLEDdisplay.setRotation(1);\r\n"
+	   			+ "	 myOLEDdisplay.clearDisplay(); \r\n"
+	   			+ "	 myOLEDdisplay.display();\r\n"
+	   			+ "  canvas.setFont(&FreeMonoBold18pt7b);\n"
+	   			+ "} else {\r\n"
+	   			+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
+	   			+ "} \r\n";
+  	    translator.addSetupCommand(Setup);
 	
 		String f,t,s;
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);

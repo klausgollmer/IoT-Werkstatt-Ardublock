@@ -24,8 +24,8 @@ public class ExtSen_DustHM330Get extends TranslatorBlock
     // I2C-initialisieren
     
     String Setup;
-    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
 	Setup = "while (!HM330sensor_ready) {\r\n" + 
 			"    HM330sensor_ready = !HM330sensor.init(); // HM330 Feinstaubsensor \r\n" + 

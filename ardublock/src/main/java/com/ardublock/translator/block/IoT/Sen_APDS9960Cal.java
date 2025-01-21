@@ -18,15 +18,15 @@ public class Sen_APDS9960Cal extends TranslatorBlock
         
     
     // Header hinzuf�gen
-    translator.addHeaderFile("Wire.h");
+    // now in init translator.addHeaderFile("Wire.h");
     translator.addHeaderFile("Adafruit_APDS9960.h");
     
     
     // Setupdeklaration
     // I2C-initialisieren
     //translator.addSetupCommand("Serial.begin(115200);");
-    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
     translator.addSetupCommand("if (!apds.begin()) Serial.println(\"Kein ADPS Gesture-Sensor gefunden\");\n");
     translator.addSetupCommand("apds.setProxGain(APDS9960_PGAIN_8X);");

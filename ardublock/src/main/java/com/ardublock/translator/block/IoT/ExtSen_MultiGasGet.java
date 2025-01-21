@@ -19,13 +19,13 @@ public class ExtSen_MultiGasGet extends TranslatorBlock
    
     // Header hinzuf�gen
    
-    translator.addHeaderFile("Wire.h");
+    // now in init translator.addHeaderFile("Wire.h");
     translator.addHeaderFile("MutichannelGasSensor.h");
     //translator.addSetupCommand("Serial.begin(115200);");
     // Setupdeklaration
     // I2C-initialisieren
-    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
     translator.addSetupCommand("multigas.begin(); // Grove Multigas, I2C Address 0x04\n"
     		+ "multigas.powerOn(); \n"

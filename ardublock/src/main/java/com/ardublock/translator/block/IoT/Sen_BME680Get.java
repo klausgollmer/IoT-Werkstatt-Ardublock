@@ -20,7 +20,7 @@ public class Sen_BME680Get extends TranslatorBlock
            
     // Header hinzuf�gen
     translator.addHeaderFile("Adafruit_BME680.h");
-    translator.addHeaderFile("Wire.h");
+    // now in init translator.addHeaderFile("Wire.h");
     String Dis ="/***************************************************************************\r\n"
     		+ "  This is a library for the BME680 gas, humidity, temperature & pressure sensor\r\n"
     		+ "  Designed specifically to work with the Adafruit BME680 Breakout\r\n"
@@ -40,8 +40,8 @@ public class Sen_BME680Get extends TranslatorBlock
 	// Setupdeklaration
     // I2C-initialisieren
     //translator.addSetupCommand("Serial.begin(115200);");
-    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
     
     translator.addSetupCommand("boschBME680_ready = boschBME680.begin(118);\n");

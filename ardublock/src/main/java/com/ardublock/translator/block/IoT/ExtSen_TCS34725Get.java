@@ -18,15 +18,15 @@ public class ExtSen_TCS34725Get extends TranslatorBlock
         
     
     // Header hinzuf�gen
-    translator.addHeaderFile("Wire.h");
+    // now in init translator.addHeaderFile("Wire.h");
     translator.addHeaderFile("Adafruit_TCS34725.h");
     
     
     // Setupdeklaration
     // I2C-initialisieren
     //translator.addSetupCommand("Serial.begin(115200);");
-    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
     translator.addSetupCommand("if (!tcs.begin()) Serial.println(\"Kein TCS34725 RGB-Sensor gefunden\");\n");
     

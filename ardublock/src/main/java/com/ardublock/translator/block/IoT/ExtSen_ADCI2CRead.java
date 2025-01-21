@@ -20,7 +20,7 @@ public class ExtSen_ADCI2CRead extends TranslatorBlock
 	    String adr = translatorBlock.toCode();
 		
 		 // Header hinzuf�gen
-	    translator.addHeaderFile("Wire.h");
+	    // now in init translator.addHeaderFile("Wire.h");
 
 	    String Setup = "// **************  Grove I2C-ADC Expander  *********************************\n"+
 	    		"// Copyright (c) 2013 Seeed Technology Inc.\r\n"+

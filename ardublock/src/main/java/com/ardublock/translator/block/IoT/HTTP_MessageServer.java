@@ -28,7 +28,7 @@ public class HTTP_MessageServer  extends TranslatorBlock {
 		if (!Sensorik.equals("false")) {
  	      translator.addHeaderFile("SparkFunBME280.h");
    	      translator.addHeaderFile("Adafruit_BME680.h");
-		  translator.addHeaderFile("Wire.h");
+		  // now in init translator.addHeaderFile("Wire.h");
 		  String EncDef =   "#if defined(ESP8266) \n"
 			      + "// Autor Paul Stoffregen, http://www.pjrc.com/teensy/td_libs_Encoder.html\n"
 			      + " #include <Encoder.h> \n"
@@ -98,8 +98,8 @@ public class HTTP_MessageServer  extends TranslatorBlock {
 		translator.addSetupCommand("server.on(\"/\", serverHomepage);");
 		
 		if (!Sensorik.equals("false")) {	 	    
-			translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-			translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+			// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+			// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 			 
 			translator.addSetupCommand("boschBME280.settings.runMode = 3; // Normal Mode\n"
          		+ "boschBME280.settings.tempOverSample  = 4; \n"

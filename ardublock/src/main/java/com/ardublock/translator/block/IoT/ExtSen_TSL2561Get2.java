@@ -34,8 +34,8 @@ public class ExtSen_TSL2561Get2 extends TranslatorBlock
     
     
     String Setup;
-    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
     // Deklarationen hinzuf�gen
     String dec = " // Adafruit TSL2561, https://github.com/adafruit/Adafruit_TSL2561, Written by Kevin (KTOWN) Townsend for Adafruit Industries \n"
               + "Adafruit_TSL2561_Unified tsl = Adafruit_TSL2561_Unified("+adress+", 12345);\n";

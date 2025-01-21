@@ -17,15 +17,15 @@ public class ExtDisp_MatrixPrint  extends TranslatorBlock {
 	{
 
 		translator.addHeaderFile("Ticker.h");
-		translator.addHeaderFile("Wire.h");
+		// now in init translator.addHeaderFile("Wire.h");
 		translator.addHeaderFile("Adafruit_GFX.h");
 		translator.addHeaderFile("Adafruit_IS31FL3731.h");
 		
 		   // I2C-initialisieren
 		//translator.addSetupCommand("Serial.begin(115200);");
 	   
-		translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+		// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+		// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 		 
            // Matrix initialisieren	    
 	    String Setup =        "matrix.begin();// Matrix initialisieren \n"

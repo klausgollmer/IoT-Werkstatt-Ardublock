@@ -18,7 +18,7 @@ public class ExtSen_K30Get extends TranslatorBlock
         
   
     // Header hinzuf�gen
-    translator.addHeaderFile("Wire.h");
+    // now in init translator.addHeaderFile("Wire.h");
    	
     String Def = "float K30read() {\r\n" + 
     		"  float co2_value = NAN;\r\n" + 
@@ -58,8 +58,8 @@ public class ExtSen_K30Get extends TranslatorBlock
    	translator.addDefinitionCommand("//Reading CO2 from the K30\n");
    	translator.addDefinitionCommand(Def);
 	
-    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
  
    	
     

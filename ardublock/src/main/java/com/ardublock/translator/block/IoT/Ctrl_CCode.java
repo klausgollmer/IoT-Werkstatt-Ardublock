@@ -16,7 +16,7 @@ public class Ctrl_CCode  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 
-		//translator.addHeaderFile("Wire.h");
+		//// now in init translator.addHeaderFile("Wire.h");
 		//translator.addHeaderFile("rgb_lcd.h");
 		//translator.addDefinitionCommand(Def);
 	

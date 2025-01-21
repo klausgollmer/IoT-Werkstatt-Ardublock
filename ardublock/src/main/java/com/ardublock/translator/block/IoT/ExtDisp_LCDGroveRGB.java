@@ -16,7 +16,7 @@ public class ExtDisp_LCDGroveRGB  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 
-		translator.addHeaderFile("Wire.h");
+		// now in init translator.addHeaderFile("Wire.h");
 		translator.addHeaderFile("rgb_lcd.h");
 		
 		String Dis = "/*  Grove - Serial LCD RGB Backlight\n"
@@ -42,8 +42,8 @@ public class ExtDisp_LCDGroveRGB  extends TranslatorBlock {
 		   // I2C-initialisieren
 		//translator.addSetupCommand("Serial.begin(115200);");
 	   
-		translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+		// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+		// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 		 
            // Matrix initialisieren	    
 	    String Setup = "lcd.begin(16, 2);// LCD Backlight initialisieren \n";

@@ -18,7 +18,7 @@ public class ExtSen_GPSGetI2C extends TranslatorBlock
         
     // Header hinzuf�gen
     translator.addHeaderFile("Adafruit_GPS.h");
-    translator.addHeaderFile("Wire.h");
+    // now in init translator.addHeaderFile("Wire.h");
     
     // Setupdeklaration
     // I2C-initialisieren
@@ -39,8 +39,8 @@ public class ExtSen_GPSGetI2C extends TranslatorBlock
     translator.addDefinitionCommand(Def);
    
 	//translator.addSetupCommand("Serial.begin(115200);");
-	translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-	translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+	// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+	// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 
     String Set = " // Adafruit GPS-Lib Written by Limor Fried/Ladyada for Adafruit Industries. BSD license\r\n" + 
     		"  // https://github.com/adafruit/Adafruit_GPS\r\n" + 

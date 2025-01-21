@@ -24,7 +24,7 @@ public class ExtOut_SX1509Write extends TranslatorBlock
 
 	    
 		 // Header hinzuf�gen
-	    translator.addHeaderFile("Wire.h");
+	    // now in init translator.addHeaderFile("Wire.h");
 	    translator.addHeaderFile("SparkFunSX1509.h");
 
 	   	translator.addDefinitionCommand("// SparkFun SX1509 I/O Expander https://github.com/sparkfun/SparkFun_SX1509_Arduino_Library\r\n");
@@ -35,8 +35,8 @@ public class ExtOut_SX1509Write extends TranslatorBlock
 	    // I2C-initialisieren
 	    //translator.addSetupCommand("Serial.begin(115200);");
 	    
-	    translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-	    translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+	    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+	    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 	 
 	   	   
 	    String Setup = "if (!io.begin(0x3E)) { Serial.println(\"Failed to communicate SX1509 Expander\");while (1) {delay(1);};}\n";

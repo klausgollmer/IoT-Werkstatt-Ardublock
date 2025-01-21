@@ -18,18 +18,31 @@ public class ExtDisp_OLED_PrintTerminal  extends TranslatorBlock {
 
 		translator.addHeaderFile("Adafruit_GFX.h");
 		translator.addHeaderFile("Adafruit_SH110X.h");
-			
+        translator.addHeaderFile("Fonts/FreeMonoBold18pt7b.h");
+		
+		
+		
 		String Dis="/* Adafruit SH110x OLED  / GFX \n"
 				 + "Copyright (c) Adafruit Industries\r\n"
 				 + "BSD, Disclaimer see https://github.com/adafruit/Adafruit_SH110x?tab=License-1-ov-file#readme \n"
 				 + "https://github.com/adafruit/Adafruit-GFX-Library?tab=License-1-ov-file#readme  \n"
 				 + "*/\n";
 	   	translator.addDefinitionCommand(Dis);
-	   	String Def="extern Adafruit_SH1107 myOLEDdisplay;"
-				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
+	   	String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);\r\n"
+	   			 + "GFXcanvas1 canvas(IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT);"
 				 + "#define IOTW_LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
-	
+
+		
+	   	String Setup = "if (myOLEDdisplay.begin(0x3C, true)) { // OLED Display Address 0x3C default\r\n"
+	   			+ "	 myOLEDdisplay.setRotation(1);\r\n"
+	   			+ "	 myOLEDdisplay.clearDisplay(); \r\n"
+	   			+ "	 myOLEDdisplay.display();\r\n"
+	   			+ "  canvas.setFont(&FreeMonoBold18pt7b);\n"
+	   			+ "} else {\r\n"
+	   			+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
+	   			+ "} \r\n";
+ 	    translator.addSetupCommand(Setup);
 		
 		
 		Def = "// defines for OLED Terminal Mode \n"
@@ -37,7 +50,7 @@ public class ExtDisp_OLED_PrintTerminal  extends TranslatorBlock {
 			+ "#define MAX_LINES 8 // Anzahl der Zeilen, die auf dem Display angezeigt werden können\n"
 			+ "#define LINE_HEIGHT 8 // Höhe jeder Textzeile in Pixeln\n"
 			+ "#define CHAR_WIDTH 6 // Breite eines Zeichens bei Textgröße 1\n"
-			+ "#define MAX_CHARS_PER_LINE (SCREEN_WIDTH / CHAR_WIDTH) // Maximale Zeichen pro Zeile\n"
+			+ "#define MAX_CHARS_PER_LINE (IOTW_SCREEN_WIDTH / CHAR_WIDTH) // Maximale Zeichen pro Zeile\n"
 			+ "\n"
 			+ "String textBuffer[MAX_LINES]; // Puffer für die Textzeilen\n"
 			+ "int currentLine = 0; // Aktuelle Zeile im Puffer";	
@@ -51,11 +64,11 @@ public class ExtDisp_OLED_PrintTerminal  extends TranslatorBlock {
 		String LF = translatorBlock.toCode();
 		
 		// I2C-initialisieren
-		translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+		// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+		// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 				
-		String Setup = "#ifndef IOTW_BOARD_MAKEY \n initOLED(0);\n #endif\n";
-		translator.addSetupCommand(Setup);
+	//	String Setup = "#ifndef IOTW_BOARD_MAKEY \n initOLED(0);\n #endif\n";
+	//	translator.addSetupCommand(Setup);
 
 		    
 	    Setup =   "myOLEDdisplay.setRotation(0);\n"

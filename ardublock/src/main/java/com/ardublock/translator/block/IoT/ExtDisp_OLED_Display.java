@@ -18,6 +18,8 @@ public class ExtDisp_OLED_Display  extends TranslatorBlock {
 
 		translator.addHeaderFile("Adafruit_GFX.h");
 		translator.addHeaderFile("Adafruit_SH110X.h");
+	    translator.addHeaderFile("Fonts/FreeMonoBold18pt7b.h");
+		
 		translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
 		String Dis="/* Adafruit SH110x OLED  / GFX \n"
 				 + "Copyright (c) Adafruit Industries\r\n"
@@ -26,23 +28,30 @@ public class ExtDisp_OLED_Display  extends TranslatorBlock {
 				 + "*/\n";
 	   	translator.addDefinitionCommand(Dis);
 	
-	   	String Def="extern Adafruit_SH1107 myOLEDdisplay;"
-				 + "GFXcanvas1 canvas(SCREEN_WIDTH, SCREEN_HEIGHT);"
+	   	translator.addDefinitionCommand(Dis);
+	   	String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);\r\n"
+	   			 + "GFXcanvas1 canvas(IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT);"
 				 + "#define IOTW_LOGO_WAIT";
 		translator.addDefinitionCommand(Def);
 
-		// I2C-initialisieren
-		translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 		
-		String Setup = "#ifndef IOTW_BOARD_MAKEY \n initOLED(0);\n #endif\n";
-		translator.addSetupCommand(Setup);
+	   	String Setup = "if (myOLEDdisplay.begin(0x3C, true)) { // OLED Display Address 0x3C default\r\n"
+	   			+ "	 myOLEDdisplay.setRotation(1);\r\n"
+	   			+ "	 myOLEDdisplay.clearDisplay(); \r\n"
+	   			+ "	 myOLEDdisplay.display();\r\n"
+	   			+ "  canvas.setFont(&FreeMonoBold18pt7b);\n"
+	   			+ "} else {\r\n"
+	   			+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
+	   			+ "} \r\n";
+  	    translator.addSetupCommand(Setup);
 
-		
+		// I2C-initialisieren
+		//// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+		//// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 		
 		
 		 String ret="// Display Canvas \n"	+ 
-	            "myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), SCREEN_WIDTH, SCREEN_HEIGHT, SH110X_WHITE, SH110X_BLACK);\n" + 
+	            "myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT, SH110X_WHITE, SH110X_BLACK);\n" + 
 			    "myOLEDdisplay.display();\n"; 
 		return codePrefix + ret + codeSuffix;
 	}

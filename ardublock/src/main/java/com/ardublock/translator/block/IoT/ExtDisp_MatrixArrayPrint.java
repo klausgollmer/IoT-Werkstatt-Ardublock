@@ -16,7 +16,7 @@ public class ExtDisp_MatrixArrayPrint  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 
-		translator.addHeaderFile("Wire.h");
+		// now in init translator.addHeaderFile("Wire.h");
 		translator.addHeaderFile("Adafruit_GFX.h");
 		translator.addHeaderFile("Adafruit_IS31FL3731.h");
 		translator.addDefinitionCommand("String matrixausgabe_text  = \" \"; // Ausgabetext als globale Variable\n");
@@ -42,8 +42,8 @@ public class ExtDisp_MatrixArrayPrint  extends TranslatorBlock {
 		// I2C-initialisieren
 		//translator.addSetupCommand("Serial.begin(115200);");
 	   
-		translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-		translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+		// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
+		// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
 
 	
 		String Dis="/* Charlieplex Matrix \n"
