@@ -3962,7 +3962,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-        <BlockGenus name="sendBoschSpex" kind="command" color="30 30 255"
+      <!--         <BlockGenus name="sendBoschSpex" kind="command" color="30 30 255"
 			initlabel="bg.sendBoschSpex" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
@@ -3993,7 +3993,8 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-
+-->
+      
 
        <BlockGenus name="sendThingsboard" kind="command" color="30 30 255"
 			initlabel="bg.sendThingsboard" editable-label="no" is-label-value="no">
