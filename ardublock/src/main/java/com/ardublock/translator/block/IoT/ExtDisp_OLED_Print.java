@@ -16,7 +16,7 @@ public class ExtDisp_OLED_Print  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 
-		translator.addHeaderFile("Adafruit_GFX.h");
+		//translator.addHeaderFile("Adafruit_GFX.h");
 		translator.addHeaderFile("Adafruit_SH110X.h");
 		translator.addHeaderFile("Fonts/FreeMonoBold18pt7b.h");
 		//translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
@@ -28,22 +28,25 @@ public class ExtDisp_OLED_Print  extends TranslatorBlock {
 				 + "*/\n";
 	   	translator.addDefinitionCommand(Dis);
 	    	   	
-	   	String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);\r\n"
-	   			 + "GFXcanvas1 canvas(IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT);"
-				 + "#define IOTW_LOGO_WAIT";
+	   	String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);\r\n";
+		translator.addDefinitionCommand(Def);
+
+	   	Def="GFXcanvas1 canvas(IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT);\n";
 		translator.addDefinitionCommand(Def);
 
 		
-	   	String Setup = "if (myOLEDdisplay.begin(0x3C, true)) { // OLED Display Address 0x3C default\r\n"
-	   			+ "	 myOLEDdisplay.setRotation(1);\r\n"
-	   			+ "	 myOLEDdisplay.clearDisplay(); \r\n"
-	   			+ "	 myOLEDdisplay.display();\r\n"
-	   			+ "  canvas.setFont(&FreeMonoBold18pt7b);\n"
-	   			+ "} else {\r\n"
-	   			+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
-	   			+ "} \r\n";
+	   	String Setup ="if (!(myOLEDdisplay.begin(0x3C, true))) { // OLED Display Address 0x3C default\r\n"
+	   		  		+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
+	   		  		+ "} \r\n";
  	    translator.addSetupCommand(Setup);
 		
+ 	    Setup =   " myOLEDdisplay.setRotation(1);\r\n"
+ 	    		+ " myOLEDdisplay.clearDisplay(); \r\n"
+ 	    		+ " myOLEDdisplay.display();\r\n"
+ 	    		+ " canvas.setFont(&FreeMonoBold18pt7b);\n";
+   	    translator.addSetupCommand(Setup);
+ 	    
+ 	    
 		String x = "";
 		String y = "";
 	

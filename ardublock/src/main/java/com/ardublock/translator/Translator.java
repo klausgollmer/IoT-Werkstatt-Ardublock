@@ -96,7 +96,7 @@ public class Translator
 		}
 		*/
 		addHeaderFile("IoTBoards_Generic.h");
-		addHeaderFile("Wire.h");
+		//addHeaderFile("Wire.h");
 		//addDefinitionCommand("extern void initOLED(int);");
 	
     

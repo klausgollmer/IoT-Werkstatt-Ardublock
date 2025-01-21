@@ -26,22 +26,13 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
 				 + "https://github.com/adafruit/Adafruit-GFX-Library?tab=License-1-ov-file#readme  \n"
 				 + "*/\n";
 	   	translator.addDefinitionCommand(Dis);
-	   	String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);\r\n"
-	   			 + "GFXcanvas1 canvas(IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT);"
-				 + "#define IOTW_LOGO_WAIT";
+	   
+		String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);\r\n";
 		translator.addDefinitionCommand(Def);
 
+	   	Def="GFXcanvas1 canvas(IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT);\n";
+		translator.addDefinitionCommand(Def);
 		
-	   	String Setup = "if (myOLEDdisplay.begin(0x3C, true)) { // OLED Display Address 0x3C default\r\n"
-	   			+ "	 myOLEDdisplay.setRotation(1);\r\n"
-	   			+ "	 myOLEDdisplay.clearDisplay(); \r\n"
-	   			+ "	 myOLEDdisplay.display();\r\n"
-	   			+ "  canvas.setFont(&FreeMonoBold18pt7b);\n"
-	   			+ "} else {\r\n"
-	   			+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
-	   			+ "} \r\n";
-  	    translator.addSetupCommand(Setup);
-	
 		String ArrayStruct ="//--------------------------------  IoTDataArray for timeseries \n"
 				+ "// Dimension IOTARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
 				+ "#define IOTARRAYLEN 64 \n"
@@ -57,11 +48,27 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
 				+ "";
 		translator.addDefinitionCommand(ArrayStruct);
 
-		// I2C-initialisieren
-		//// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-		//// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
-		  	    
-	    Setup = "if (!IoTArrayDataInitDone) {\n"
+		
+		
+		/*
+	   	String Setup = "if (myOLEDdisplay.begin(0x3C, true)) { // OLED Display Address 0x3C default\r\n"
+	   			+ "	 myOLEDdisplay.setRotation(1);\r\n"
+	   			+ "	 myOLEDdisplay.clearDisplay(); \r\n"
+	   			+ "	 myOLEDdisplay.display();\r\n"
+	   			+ "  canvas.setFont(&FreeMonoBold18pt7b);\n"
+	   			+ "} else {\r\n"
+	   			+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
+	   			+ "} \r\n";
+	   			*/
+		
+		
+		String Setup ="if (!(myOLEDdisplay.begin(0x3C, true))) { // OLED Display Address 0x3C default\r\n"
+   		  		+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
+   		  		+ "} \r\n";
+   	    translator.addSetupCommand(Setup);
+		
+	    Setup =   "myOLEDdisplay.setRotation(1)"
+	    		+ "if (!IoTArrayDataInitDone) {\n"
 	    		+ "  IoTArrayDataInitDone = 1;\n"
 	    		+ "  for (uint8_t i=0; i<IOTARRAYLEN; i++) {\n"
 	    		+ "    IoTArrayData[i] = NAN;\n"
@@ -95,29 +102,29 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
 	    		+ "  canvas.print(IoTArrayData[IoTArrayDataIndex-1], 1); // Print last value with 1 decimal place\n"
 	    		+ "\n"
 	    		+ "  // Draw the axis labels\n"
-	    		+ "  canvas.setCursor(2, SCREEN_HEIGHT - 8);\n"
+	    		+ "  canvas.setCursor(2, IOTW_SCREEN_HEIGHT - 8);\n"
 	    		+ "  canvas.print(minVal, 1); // Print min value with 1 decimal place\n"
 	    		+ "  canvas.setCursor(2, 0);\n"
 	    		+ "  canvas.print(maxVal, 1); // Print max value with 1 decimal place\n"
 	    		+ "\n"
 	    		+ "  // Draw Coordinates\n"
-	    		+ "  int zero = map(0, minVal, maxVal, SCREEN_HEIGHT - 1, 0);\n"
-	    		+ "  canvas.drawLine(0, 0, 0, SCREEN_HEIGHT-1, SH110X_WHITE);\n"
-	    		+ "  canvas.drawLine(0, zero, SCREEN_WIDTH - 1, zero, SH110X_WHITE);\n"
+	    		+ "  int zero = map(0, minVal, maxVal, IOTW_SCREEN_HEIGHT - 1, 0);\n"
+	    		+ "  canvas.drawLine(0, 0, 0, IOTW_SCREEN_HEIGHT-1, SH110X_WHITE);\n"
+	    		+ "  canvas.drawLine(0, zero, IOTW_SCREEN_WIDTH - 1, zero, SH110X_WHITE);\n"
 	    		+ "   \n"
 	    		+ "  // Draw the data graph\n"
 	    		+ "  int prevX = 0;\n"
-	    		+ "  int prevY = map(IoTArrayData[0], minVal, maxVal, SCREEN_HEIGHT - 1, 10);\n"
+	    		+ "  int prevY = map(IoTArrayData[0], minVal, maxVal, IOTW_SCREEN_HEIGHT - 1, 10);\n"
 	    		+ "  for (int i = 0; i <= IoTArrayDataIndex - 1; i++) {\n"
-	    		+ "    int x = map(i, 0, IOTARRAYLEN-1, 0, SCREEN_WIDTH - 1);\n"
-	    		+ "    int y = map(IoTArrayData[i], minVal, maxVal, SCREEN_HEIGHT - 1, 10);\n"
+	    		+ "    int x = map(i, 0, IOTARRAYLEN-1, 0, IOTW_SCREEN_WIDTH - 1);\n"
+	    		+ "    int y = map(IoTArrayData[i], minVal, maxVal, IOTW_SCREEN_HEIGHT - 1, 10);\n"
 	    		+ "    canvas.drawLine(prevX, prevY, x, y, SH110X_WHITE);\n"
 	    		+ "    canvas.drawLine(prevX, prevY+1, x, y+1, SH110X_WHITE);\n"
 	    		+ "    prevX = x;\n"
 	    		+ "    prevY = y;\n"
 	    		+ "  }\n"
 	    		+ "\n"
-	    		+ "  myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), SCREEN_WIDTH, SCREEN_HEIGHT, SH110X_WHITE, SH110X_BLACK);\n"
+	    		+ "  myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT, SH110X_WHITE, SH110X_BLACK);\n"
 	    		+ "  myOLEDdisplay.display();\n"
 	    		+ "}";
 		translator.addDefinitionCommand(Display);
