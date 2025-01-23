@@ -68,7 +68,9 @@ public class Sen_BSEC2Get extends TranslatorBlock
     		+ "  iaqSensor.debug = 0;";
     translator.addSetupCommand(Setup);
     translator.addSetupCommand(" Bsec_Ticker.attach_ms(3000, iaqSensor_Housekeeping);\r\n");
-    translator.addSetupCommand(" Serial.println(\"start BSEC2, waiting for initialization ...\"); delay(3500);");
+    translator.addSetupCommand(" Serial.println(F(\"start BSEC2, waiting for initialization ...\"));");
+    translator.addSetupCommand(" while((isnan(iaqSensor.temperature))) delay(10);");
+    
     
     // Deklarationen hinzuf�gen
     	

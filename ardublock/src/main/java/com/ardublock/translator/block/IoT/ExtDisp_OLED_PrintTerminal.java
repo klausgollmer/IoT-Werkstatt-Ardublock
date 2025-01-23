@@ -25,7 +25,7 @@ public class ExtDisp_OLED_PrintTerminal  extends TranslatorBlock {
 				 + "https://github.com/adafruit/Adafruit-GFX-Library?tab=License-1-ov-file#readme  \n"
 				 + "*/\n";
 	   	translator.addDefinitionCommand(Dis);
-	   	String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);\r\n";
+	   	String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);";
 	    translator.addDefinitionCommand(Def);
 
 		

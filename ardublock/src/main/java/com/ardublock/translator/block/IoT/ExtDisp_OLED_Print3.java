@@ -5,9 +5,9 @@ import com.ardublock.translator.block.TranslatorBlock;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class ExtDisp_OLED_Print  extends TranslatorBlock {
+public class ExtDisp_OLED_Print3  extends TranslatorBlock {
 
-	public ExtDisp_OLED_Print (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	public ExtDisp_OLED_Print3 (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
@@ -18,7 +18,7 @@ public class ExtDisp_OLED_Print  extends TranslatorBlock {
 
 		//translator.addHeaderFile("Adafruit_GFX.h");
 		translator.addHeaderFile("Adafruit_SH110X.h");
-		translator.addHeaderFile("Fonts/FreeMonoBold18pt7b.h");
+		
 		//translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
 		
 		String Dis="/* Adafruit SH110x OLED  / GFX \n"
@@ -42,32 +42,55 @@ public class ExtDisp_OLED_Print  extends TranslatorBlock {
 		
  	    Setup =   " myOLEDdisplay.setRotation(1);\r\n"
  	    		+ " myOLEDdisplay.clearDisplay(); \r\n"
- 	    		+ " myOLEDdisplay.display();\r\n"
- 	    		+ " canvas.setFont(&FreeMonoBold18pt7b);\n";
-   	    translator.addSetupCommand(Setup);
+ 	    		+ " myOLEDdisplay.display();\r\n";
+ 	    translator.addSetupCommand(Setup);
  	    
  	    
-		String x = "";
-		String y = "";
+		String s1 = "\"\"";
+		String s2 = "\"\"";
+		String s3 = "\"\"";
 	
+	    String s ="";
 		
-		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
-		String t = translatorBlock.toCode();
-		
-		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
+		TranslatorBlock translatorBlock = this.getTranslatorBlockAtSocket(0);
 		if (translatorBlock!=null) {
-		  x = translatorBlock.toCode();
+		  s1 = translatorBlock.toCode();
 	    }	    	
+		translatorBlock = this.getTranslatorBlockAtSocket(1);
+		if (translatorBlock!=null) {
+		  s2 = translatorBlock.toCode();
+	    }	    	
+		translatorBlock = this.getTranslatorBlockAtSocket(2);
+		if (translatorBlock!=null) {
+		  s3 = translatorBlock.toCode();
+	    }	    	
+		translatorBlock = this.getRequiredTranslatorBlockAtSocket(3);
+		s = translatorBlock.toCode(); // size
 
-		translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
-		if (translatorBlock!=null) {
-		  y = translatorBlock.toCode();
-	    }	    	
-		    
-	 	String ret="// Print text to OLED Canvas \n"	+ 
-		          "canvas.setCursor("+x+","+y+");\n" + 
-				  "canvas.print("+t+");\n";
+		String fontlib="Fonts/FreeMono"+s+"7b.h";
+		String font="&FreeMono"+s+"7b";
+  	    translator.addHeaderFile(fontlib);
 		
+		
+	 	String ret = "// OLED print 3 lines "
+	 			+" // Clear Canvas \r\n"
+	 			+ "canvas.fillScreen(SH110X_BLACK);\r\n"
+	 			+ "\r\n"
+	 			+ "canvas.setFont("+font+");\r\n"
+	 			+ "\r\n"
+	 			+ "// Print text to OLED Canvas 1. line \r\n"
+	 			+ "canvas.setCursor(0,15);\r\n"
+	 			+ "canvas.print("+s1+");\r\n"
+	 			+ "  \r\n"
+	 			+ "canvas.setCursor(0,38);\r\n"
+	 			+ "canvas.print("+s2+");\r\n"
+	 			+ "  \r\n"
+	 			+ "canvas.setCursor(0,61);\r\n"
+	 			+ "canvas.print("+s3+");"
+	 			+ "// Display Canvas \r\n"
+	 			+ "myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT, SH110X_WHITE, SH110X_BLACK);\r\n"
+	 			+ "myOLEDdisplay.display();\r\n";
+	 	
 		return codePrefix + ret + codeSuffix;
 		
 	}

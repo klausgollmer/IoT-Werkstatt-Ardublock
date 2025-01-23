@@ -1211,7 +1211,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.message">
-					<DefaultArg genus-name="message" label="message" />
+					<DefaultArg genus-name="message" label="message\u0020" />
 				</BlockConnector>
 				<BlockConnector connector-type="boolean"
 					connector-kind="socket" label="bc.ln">
@@ -1710,6 +1710,28 @@
 					<DefaultArg genus-name="number" label="45" />
 				</BlockConnector>
 
+			</BlockConnectors>
+		</BlockGenus>
+    
+       <BlockGenus name="OLED_Print3" kind="command" color="74 108 212"
+			initlabel="bg.OLED_Print3" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="text">
+					<DefaultArg genus-name="message" label="text\u0020" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="text">
+				
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="text">
+				
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="size">
+					<DefaultArg genus-name="OLED_FontSize12" label="9pt"/>
+				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
     
@@ -6220,12 +6242,8 @@
 				<BlockGenusMember>pin-write-digital</BlockGenusMember>
 				
 				<BlockGenusMember>Divider_Display</BlockGenusMember>
-				<BlockGenusMember>OLED_Clear</BlockGenusMember>
-				<BlockGenusMember>OLED_Print</BlockGenusMember>
-				<BlockGenusMember>OLED_Display</BlockGenusMember>
-				<BlockGenusMember>OLED_Font</BlockGenusMember>
+				<BlockGenusMember>OLED_Print3</BlockGenusMember>
 				<BlockGenusMember>OLED_DispArray</BlockGenusMember>
-				
 			
 				
 	<!-- 			<BlockGenusMember>IoTmessage</BlockGenusMember> -->
@@ -6278,6 +6296,12 @@
 				<BlockGenusMember>matrixArrayDisplay</BlockGenusMember>
                 <BlockGenusMember>iot_neowing</BlockGenusMember>
  				<BlockGenusMember>LCDGroveRGB</BlockGenusMember>
+				<BlockGenusMember>OLED_Clear</BlockGenusMember>
+				<BlockGenusMember>OLED_Print</BlockGenusMember>
+				<BlockGenusMember>OLED_Display</BlockGenusMember>
+				<BlockGenusMember>OLED_Font</BlockGenusMember>
+				<BlockGenusMember>OLED_DispArray</BlockGenusMember>
+				<BlockGenusMember>OLED_Print3</BlockGenusMember>
  				
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBME_Adr</BlockGenusMember>

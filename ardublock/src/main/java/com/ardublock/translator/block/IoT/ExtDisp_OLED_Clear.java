@@ -26,7 +26,7 @@ public class ExtDisp_OLED_Clear  extends TranslatorBlock {
 	   	translator.addDefinitionCommand(Dis);
 	   
 		translator.addHeaderFile("Adafruit_SH110X.h");
-		String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);\r\n";
+		String Def="Adafruit_SH1107 myOLEDdisplay = Adafruit_SH1107(IOTW_SCREEN_HEIGHT, IOTW_SCREEN_WIDTH, &Wire);";
 		translator.addDefinitionCommand(Def);
 
 	   	Def="GFXcanvas1 canvas(IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT);\n";
