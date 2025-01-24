@@ -15,7 +15,7 @@ public class AI_EDGE_RegModelCalculate  extends TranslatorBlock {
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		translator.addHeaderFile("IoTW_Edge_Impulse.h");
+		translator.addHeaderFile("IoTW_EI.h");
 		translator.addHeaderFile("curveFitting.h");
 	
 		/*

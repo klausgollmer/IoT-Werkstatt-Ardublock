@@ -19,34 +19,34 @@ public class AI_EDGE_IMPULSE_classify  extends TranslatorBlock {
 	//	translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
 		translator.addHeaderFile("esp32_test_inferencing.h");
 		
-		String EI_Def ="// ---- EDGE IMPULSE definitions  \n" + 
-				"// static float features[EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE];\n" + 
-				"// const int sampling_interval_ms = 20; // Anpassen entsprechend des Edge-Impulse-Projekts (z. B. 50 Hz = 20 ms)\n"+
-				"int raw_feature_get_data(size_t offset, size_t length, float *out_ptr);\n";			
+		String EI_Def ="// ---- EDGE IMPULSE definitions  \n"
+				+ "// static float features[EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE];\n"
+				+ "// const int sampling_interval_ms = 20; // Anpassen entsprechend des Edge-Impulse-Projekts (z. B. 50 Hz = 20 ms)\n"
+				+ "\n"
+				+ "// Zugriff auf das gleiche Speicherfeld\n"
+				+ "float* features = reinterpret_cast<float*>(EI_Datenfeld);\n"
+				+ "\n"
+				+ "int raw_feature_get_data(size_t offset, size_t length, float *out_ptr) {\n"
+				+ "    memcpy(out_ptr, features + offset, length * sizeof(float));\n"
+				+ "    return 0;\n"
+				+ "}\n";			
 		translator.addDefinitionCommand(EI_Def);
 		
-		String fun = "int raw_feature_get_data(size_t offset, size_t length, float *out_ptr);\n"
-				+ "\n"
-				+ "// -------- EDGE IMPULSE Classification\n"
+		String fun = "// -------- EDGE IMPULSE Classification\n"
 				+ "int EI_classification(float reject) {\n"
 				+ "\n"
 				+ "  int max_index = 0;\n"
 				+ "  // Überprüfe die Größe des Feature-Puffers\n"
-				+ "\n"
-				+ "  // Zugriff auf das gleiche Speicherfeld\n"
-				+ "  float* features = reinterpret_cast<float*>(EI_Datenfeld);\n"
-				+ "\n"
-				+ "  if (sizeof(features) / sizeof(float) != EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE) {\n"
+				+ "  if (EI_Index*EI_MAXSENSOR != EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE) {\n"
 				+ "    Serial.print(F(\"Die Größe des 'features'-Arrays ist nicht korrekt. Erwartet:\"));\n"
 				+ "    Serial.printf(\"%lu Elemente, aber hatte: %lu\\n\",\n"
-				+ "    EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE, sizeof(features) / sizeof(float));\n"
+				+ "    EI_CLASSIFIER_DSP_INPUT_FRAME_SIZE, EI_Index*EI_MAXSENSOR);\n"
 				+ "    return (-3);\n"
-				+ "  }\n"
-				+ "\n"
+				+ "  }"
 				+ "  // Führe Inferenz aus\n"
 				+ "  ei_impulse_result_t result = {0};\n"
 				+ "  signal_t features_signal;\n"
-				+ "  features_signal.total_length = sizeof(features) / sizeof(features[0]);\n"
+				+ "  features_signal.total_length = EI_Index*EI_MAXSENSOR;\n"
 				+ "  features_signal.get_data = &raw_feature_get_data;\n"
 				+ "\n"
 				+ "  EI_IMPULSE_ERROR res = run_classifier(&features_signal, &result, false /* Debug-Ausgabe */);\n"
