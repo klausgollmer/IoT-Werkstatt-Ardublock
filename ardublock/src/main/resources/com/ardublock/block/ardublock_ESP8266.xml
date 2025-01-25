@@ -3341,28 +3341,23 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
-		<BlockGenus name="WiFiMan" kind="command" color="30 30 255"
-			initlabel="bg.connectWLANAP" editable-label="no" is-label-value="no">
+     	<BlockGenus name="WiFiMan" kind="command" color="30 30 255"
+			initlabel="bg.WiFiMan" editable-label="no" is-label-value="no">
 			<description>
 				<text>connect to WLAN</text>
 			</description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.ssid">
-<!-- 					<DefaultArg genus-name="ssid" label="FRITZ!Box Gastzugang" />-->
- 					<DefaultArg genus-name="ssid" label="hackathon" />
+					connector-kind="socket" label="Portal">
+ 					<DefaultArg genus-name="ssid" label="Makey needs new WiFi" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.pass">
 					<DefaultArg genus-name="passwort" label="IoTWerkstatt" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/wifi.gif</FileLocation>
-				</Image>
-			</Images>
 		</BlockGenus>
+		
 		
 			<BlockGenus name="connectWLANAPTO" kind="data" color="30 30 255"
 			initlabel="bg.connectWLANAP" editable-label="no" is-label-value="no">
@@ -6348,10 +6343,11 @@
 	
 			<BlockDrawer button-color="37 79 140" name="bd.WLAN_communication"
 				type="factory">
-				<!-- <BlockGenusMember>WiFiMan</BlockGenusMember>-->
+		
 				<BlockGenusMember>Divider_WiFi</BlockGenusMember>
 				<BlockGenusMember>connectWLANAP</BlockGenusMember>
 				<BlockGenusMember>connectWLANAPTO</BlockGenusMember>
+				<BlockGenusMember>WiFiMan</BlockGenusMember>
 				<BlockGenusMember>Divider_WiFiAP</BlockGenusMember>
 				<BlockGenusMember>buildWLANAP</BlockGenusMember>
 				<BlockGenusMember>Divider_DNS</BlockGenusMember>
