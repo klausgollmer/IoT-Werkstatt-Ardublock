@@ -20,8 +20,8 @@ public class AI_EDGE_RegModelSelect  extends TranslatorBlock {
 	/*	
 		String EI_Def ="// ---- EDGE AI data \n" + 
 				"int     EI_NumSens=0,EI_Index=0;\n" + 
-				"float   EI_Datenfeld[EI_MAXPOINTS][EI_MAXSENSOR]; \n" +
-				"int     AI_Datentyp[EI_MAXPOINTS];\n"+
+				"float   EI_Datenfeld[IOTW_EI_MAXPOINTS][EI_MAXSENSOR]; \n" +
+				"int     AI_Datentyp[IOTW_EI_MAXPOINTS];\n"+
 				"String  EI_nameOfSensor[EI_MAXSENSOR];\n" + 
 				"String  EI_unitOfSensor[EI_MAXSENSOR];\n" + 
 				"";

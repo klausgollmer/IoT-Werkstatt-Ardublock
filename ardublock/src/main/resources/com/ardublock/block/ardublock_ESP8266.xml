@@ -644,15 +644,22 @@
 		
 		<BlockGenus name="isnan" kind="function" color="255 20 147"
 			initlabel="bg.isnan">
-			<description>
-				<text>is not a number</text>
-			</description>
 			<BlockConnectors>
 				<BlockConnector connector-type="boolean"
 					connector-kind="plug" />
 				<BlockConnector connector-type="number"
 					connector-kind="socket" />
 					
+			</BlockConnectors>
+		</BlockGenus>
+		
+		<BlockGenus name="isempty" kind="function" color="255 20 147"
+			initlabel="bg.isempty">
+			<BlockConnectors>
+				<BlockConnector connector-type="boolean"
+					connector-kind="plug" />
+				<BlockConnector connector-type="string"
+					connector-kind="socket" />
 			</BlockConnectors>
 		</BlockGenus>
 		
@@ -4818,7 +4825,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 	
-		  <BlockGenus name="NOWSendPeer" kind="command" color="30 30 255"
+		<BlockGenus name="NOWSendPeer" kind="command" color="30 30 255"
 			initlabel="bg.NOWSendPeer" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
@@ -4826,8 +4833,9 @@
 					<DefaultArg genus-name="text" label="FF:FF:FF:FF:FF:FF" />
 				</BlockConnector>
 			    <BlockConnector connector-type="string"
-					connector-kind="socket" label="message">
-					<DefaultArg genus-name="text" label="Hallo Makey" />
+			    
+		    	connector-kind="socket" label="bc.message">
+				<DefaultArg genus-name="message" label="message" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="chan">
@@ -4835,6 +4843,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+    
         
         <BlockGenus name="NOWReceive" kind="command" color="30 30 255"
 			initlabel="bg.NOWReceive" editable-label="no" is-label-value="no">
@@ -6205,7 +6214,7 @@
 				<BlockGenusMember>less_equal</BlockGenusMember>
 				<BlockGenusMember>not_equal</BlockGenusMember>
 				<BlockGenusMember>isnan</BlockGenusMember>
-					
+		        <BlockGenusMember>isempty</BlockGenusMember>					
 				<BlockGenusMember>equal_string</BlockGenusMember>
 				<BlockGenusMember>not_equal_string</BlockGenusMember>
 				<BlockGenusMember>equal_digital</BlockGenusMember>

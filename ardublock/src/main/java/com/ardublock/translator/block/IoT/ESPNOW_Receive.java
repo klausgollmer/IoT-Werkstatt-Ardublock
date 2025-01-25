@@ -51,13 +51,13 @@ public class ESPNOW_Receive extends TranslatorBlock
     String Setup = "// ESP-NOW initialisieren\r\n"
     		+ "WiFi.mode(WIFI_STA);\r\n"
     		+ "if (esp_now_init() != 0) {\r\n"
-    		+ "    Serial.println(\"Fehler beim Initialisieren von ESP-NOW\");\r\n"
+    		+ "    Serial.println(F(\"Fehler beim Initialisieren von ESP-NOW\"));\r\n"
     		+ "    return;\r\n"
     		+ "}\n";
     translator.addSetupCommand(Setup);
     Setup = "#if defined(ESP8266) \n esp_now_set_self_role(ESP_NOW_ROLE_SLAVE); // Gerät als Empfänger konfigurieren\n #endif\n"
     		+ "esp_now_register_recv_cb(NOWmessageReceived);\n"
-    		+ "Serial.print(\"ESP-Now callback is waiting for data\");\n";
+    		+ "Serial.print(F(\"ESP-Now callback is waiting for data\"));\n";
     translator.addSetupCommand(Setup);
     
     String ret = "";

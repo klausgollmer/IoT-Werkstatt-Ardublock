@@ -30,7 +30,7 @@ public class HTTP_REST_RequestJWT  extends TranslatorBlock {
 				"  String antwort =\"\";\n" + 
 				"  start = xml.indexOf(suchtext);     // Suche Text\n" + 
 				" \n" + 
-				"  if (start > 0) {                   // Item gefunden\n" + 
+				"  if (start >= 0) {                   // Item gefunden\n" + 
 				"    antwort = xml.substring(start+suchtext.length(),xml.length());\n" + 
 				"   // Serial.println(\"antw:\"+antwort);\n" + 
 				"    doppel = antwort.indexOf(':');\n" + 

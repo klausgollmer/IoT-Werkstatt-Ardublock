@@ -29,7 +29,7 @@ public class AI_EDGE_ClassifySample  extends TranslatorBlock {
 	    v1 = translatorBlock.toCode();
 
 	    String Code="// ---------------  Sample EDGE IMPULSE\n" + 
-	    		"  if (EI_Index < EI_MAXPOINTS) {\n" + 
+	    		"  if (EI_Index < IOTW_EI_MAXPOINTS) {\n" + 
 	    		"     EI_Datenfeld[EI_Index][0] = "+v1+";\n"; 
 		
 	    
@@ -55,16 +55,15 @@ public class AI_EDGE_ClassifySample  extends TranslatorBlock {
 	    }
 	    
 	    
-	    String Konstanten ="// Maximum Datapoints in storage\n"
-	    		+ "#define EI_MAXPOINTS 50\n"
+	    String Konstanten ="// Number of sensors in datafield\n"
 	    		+ "#define EI_MAXSENSOR "+no+"\n"; 
 		translator.addDefinitionCommand(Konstanten);
 	    
 		
 		String EI_Def ="// ---- EDGE AI data \n" + 
 				"int     EI_NumSens=0,EI_Index=0;\n" + 
-				"float   EI_Datenfeld[EI_MAXPOINTS][EI_MAXSENSOR]; \n" +
-				"int     AI_Datentyp[EI_MAXPOINTS];\n"+
+				"float   EI_Datenfeld[IOTW_EI_MAXPOINTS][EI_MAXSENSOR]; \n" +
+				"int     AI_Datentyp[IOTW_EI_MAXPOINTS];\n"+
 				"String  EI_nameOfSensor[4]; // 4 Sensor in Ardublock\n" + 
 				"String  EI_unitOfSensor[4];\n" + 
 				"";
@@ -77,7 +76,7 @@ public class AI_EDGE_ClassifySample  extends TranslatorBlock {
 	    Code+=	"     EI_Index++;\n" +
 	    		"     EI_NumSens = "+no+";\n;"+ 
 	    		"  } else {\n" + 
-	    		"    Serial.println(\"EDGE IMPULSE: EI_Index exceeds EI_MAXPOINTS\");\n" + 
+	    		"    Serial.println(\"EDGE IMPULSE: EI_Index exceeds IOTW_EI_MAXPOINTS\");\n" + 
 	    		"  }";
 
 	    return codePrefix + Code + codeSuffix;

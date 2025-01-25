@@ -638,9 +638,6 @@
 		
 		<BlockGenus name="isnan" kind="function" color="255 20 147"
 			initlabel="bg.isnan">
-			<description>
-				<text>is not a number</text>
-			</description>
 			<BlockConnectors>
 				<BlockConnector connector-type="boolean"
 					connector-kind="plug" />
@@ -650,6 +647,15 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+		<BlockGenus name="isempty" kind="function" color="255 20 147"
+			initlabel="bg.isempty">
+			<BlockConnectors>
+				<BlockConnector connector-type="boolean"
+					connector-kind="plug" />
+				<BlockConnector connector-type="string"
+					connector-kind="socket" />
+			</BlockConnectors>
+		</BlockGenus>
 		
 		
 <!--****************** Mathematical Operators *************** -->
@@ -4815,8 +4821,9 @@
 					<DefaultArg genus-name="text" label="FF:FF:FF:FF:FF:FF" />
 				</BlockConnector>
 			    <BlockConnector connector-type="string"
-					connector-kind="socket" label="message">
-					<DefaultArg genus-name="text" label="Hallo Makey" />
+			    
+		    	connector-kind="socket" label="bc.message">
+				<DefaultArg genus-name="message" label="message" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="chan">
@@ -5666,7 +5673,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.host">
-  				<DefaultArg genus-name="host" label="octopus" />
+  				<DefaultArg genus-name="host" label="makey" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
@@ -6197,6 +6204,7 @@
 				<BlockGenusMember>less_equal</BlockGenusMember>
 				<BlockGenusMember>not_equal</BlockGenusMember>
 				<BlockGenusMember>isnan</BlockGenusMember>
+				<BlockGenusMember>isempty</BlockGenusMember>
 					
 				<BlockGenusMember>equal_string</BlockGenusMember>
 				<BlockGenusMember>not_equal_string</BlockGenusMember>

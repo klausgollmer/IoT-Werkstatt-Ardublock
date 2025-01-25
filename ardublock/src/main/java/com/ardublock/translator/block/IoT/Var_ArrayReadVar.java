@@ -21,24 +21,23 @@ public class Var_ArrayReadVar  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		String ArrayStruct ="//--------------------------------  IoTDataArray for timeseries \n"
-				+ "// Dimension IOTARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
-				+ "#define IOTARRAYLEN 64 \n"
+				+ "// Dimension IOTW_ARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
 				+ "#if defined(ESP32) && defined(IOTW_USE_DEEPSLEEP)\n"
-				+ "  RTC_DATA_ATTR float   IoTArrayData[IOTARRAYLEN];\n"
+				+ "  RTC_DATA_ATTR float   IoTArrayData[IOTW_ARRAYLEN];\n"
 				+ "  RTC_DATA_ATTR uint8_t IoTArrayDataIndex     = 0;\n"
 				+ "  RTC_DATA_ATTR uint8_t IoTArrayDataInitDone  = 0;\n"
 				+ "#else\n"
-				+ "  float   IoTArrayData[IOTARRAYLEN];\n"
+				+ "  float   IoTArrayData[IOTW_ARRAYLEN];\n"
 				+ "  uint8_t IoTArrayDataIndex     = 0;\n"
 				+ "  uint8_t IoTArrayDataInitDone  = 0;\n"
 				+ "#endif\n"
 				+ "";
 		translator.addDefinitionCommand(ArrayStruct);
 
-		String Vali = "// Array hat IOTARRAYLEN Einträge - Check Index zur Laufzeit \n" + 
+		String Vali = "// Array hat IOTW_ARRAYLEN Einträge - Check Index zur Laufzeit \n" + 
 				"int IoTArrayCheckIndex(float input) {\n" + 
 				"  int index = 0;\n" + 
-				"  if ((round(input) < 0) || (round(input) > (IOTARRAYLEN-1))) {\n" + 
+				"  if ((round(input) < 0) || (round(input) > (IOTW_ARRAYLEN-1))) {\n" + 
 				"    Serial.println(\"IoTArrayData index fehler\");\n" + 
 				"    Serial.println(String(\"index \") + String(input) + String(\" not valid\"));\n" + 
 				"  } else index = round(input);\n" + 

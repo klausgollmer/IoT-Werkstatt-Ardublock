@@ -25,14 +25,13 @@ public class ExtDisp_MatrixArrayPrint  extends TranslatorBlock {
 
 		
 		String ArrayStruct ="//--------------------------------  IoTDataArray for timeseries \n"
-				+ "// Dimension IOTARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
-				+ "#define IOTARRAYLEN 64 \n"
+				+ "// Dimension IOTW_ARRAYLEN, only the first 15 elements were displayed charlieplex matrix \n"
 				+ "#if defined(ESP32) && defined(IOTW_USE_DEEPSLEEP)\n"
-				+ "  RTC_DATA_ATTR float   IoTArrayData[IOTARRAYLEN];\n"
+				+ "  RTC_DATA_ATTR float   IoTArrayData[IOTW_ARRAYLEN];\n"
 				+ "  RTC_DATA_ATTR uint8_t IoTArrayDataIndex     = 0;\n"
 				+ "  RTC_DATA_ATTR uint8_t IoTArrayDataInitDone  = 0;\n"
 				+ "#else\n"
-				+ "  float   IoTArrayData[IOTARRAYLEN];\n"
+				+ "  float   IoTArrayData[IOTW_ARRAYLEN];\n"
 				+ "  uint8_t IoTArrayDataIndex     = 0;\n"
 				+ "  uint8_t IoTArrayDataInitDone  = 0;\n"
 				+ "#endif\n"
@@ -64,7 +63,7 @@ public class ExtDisp_MatrixArrayPrint  extends TranslatorBlock {
 	    
 	    Setup = "if (!IoTArrayDataInitDone) {\n"
 	    		+ "  IoTArrayDataInitDone = 1;\n"
-	    		+ "  for (uint8_t i=0; i<IOTARRAYLEN; i++) {\n"
+	    		+ "  for (uint8_t i=0; i<IOTW_ARRAYLEN; i++) {\n"
 	    		+ "    IoTArrayData[i] = NAN;\n"
 	    		+ "  }\n"
 	    		+ "}";

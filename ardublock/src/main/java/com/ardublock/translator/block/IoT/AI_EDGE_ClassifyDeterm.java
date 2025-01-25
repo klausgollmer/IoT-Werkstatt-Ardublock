@@ -22,8 +22,8 @@ public class AI_EDGE_ClassifyDeterm  extends TranslatorBlock {
 		/*
 		String EI_Def ="// ---- EDGE AI data \n" + 
 				"int     EI_NumSens=0,EI_Index=0;\n" + 
-				"float   EI_Datenfeld[EI_MAXPOINTS][EI_MAXSENSOR]; \n" +
-				"int     AI_Datentyp[EI_MAXPOINTS];\n"+
+				"float   EI_Datenfeld[IOTW_EI_MAXPOINTS][EI_MAXSENSOR]; \n" +
+				"int     AI_Datentyp[IOTW_EI_MAXPOINTS];\n"+
 				"String  EI_nameOfSensor[EI_MAXSENSOR];\n" + 
 				"String  EI_unitOfSensor[EI_MAXSENSOR];\n" + 
 				"";
@@ -37,7 +37,7 @@ public class AI_EDGE_ClassifyDeterm  extends TranslatorBlock {
 				"  // -------- Nearest Neighbour Classification\n" + 
 				"  float pattern[EI_MAXSENSOR];\n" + 
 				"  float dist = 0., Betrag = 0.;\n" + 
-				"  float sse[EI_MAXPOINTS];\n" + 
+				"  float sse[IOTW_EI_MAXPOINTS];\n" + 
 				"  float ref[EI_MAXSENSOR];\n" + 
 				"  int i_min=0,final_class;\n" + 
 				"\n" + 
