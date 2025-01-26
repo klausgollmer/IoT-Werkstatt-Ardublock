@@ -10,6 +10,7 @@ import javax.swing.CellRendererPane;
 import javax.swing.JComponent;
 import javax.swing.JTextArea;
 import javax.swing.JToolTip;
+import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicToolTipUI;
 
 public class CToolTip extends JToolTip {
@@ -43,10 +44,12 @@ class CToolTipUI extends BasicToolTipUI {
         this.background = background;
         renderer = new CellRendererPane();
         textArea = new JTextArea();
-        textArea.setMargin(new Insets(0, 3, 0, 0));
+//        textArea.setMargin(new Insets(0, 3, 0, 0));
+        textArea.setMargin(new Insets(5, 5, 5, 5));
         renderer.removeAll();
         renderer.add(textArea);
-        textArea.setFont(new Font("Ariel", Font.PLAIN, 11));
+//        textArea.setFont(new Font("Ariel", Font.PLAIN, 11));
+        textArea.setFont(new Font("Ariel", Font.PLAIN, 14));
         textArea.setWrapStyleWord(true);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
@@ -66,7 +69,8 @@ class CToolTipUI extends BasicToolTipUI {
         }
         textArea.setText(tipText);
         Dimension d = textArea.getPreferredSize();
-        d.width = Math.min(d.width, WIDTH);
+        //d.width = Math.min(d.width, WIDTH);
+        d.width = 2*Math.min(d.width, WIDTH);
         d.height++;
         textArea.setSize(d);
         return d;

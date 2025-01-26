@@ -22,6 +22,7 @@ import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
@@ -235,8 +236,9 @@ public class Context
 		     UIManager.put("FileChooser.listFont", new Font("Arial", Font.PLAIN, 16)); // Liste
 		     UIManager.put("FileChooser.buttonFont", new Font("Arial", Font.PLAIN, 16)); // Schaltflächen
 		     UIManager.put("FileChooser.labelFont", new Font("Arial", Font.PLAIN, 14)); // Labels
-		    
-			 
+	         ToolTipManager.sharedInstance().setInitialDelay(500); 
+	        
+
 			 /*
 		     System.out.println("Java Version: " + javaVersion);
 		     System.out.println("Java Vendor: " + javaVendor);

@@ -82,8 +82,8 @@
 		<BlockGenus name="Divider_Motor" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Div" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_NFC" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
-	   <BlockGenus name= "Divider_Weight" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
- 		<BlockGenus name="Divider_Bool" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+        <BlockGenus name="Divider_Weight" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+     	<BlockGenus name="Divider_Bool" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Num" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_String" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Time" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -109,6 +109,7 @@
         <BlockGenus name="Divider_Server" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Thing" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Thingsboard" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+        
         <BlockGenus name="Divider_Sense" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Energy" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Smart" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -214,23 +215,8 @@
 		
 		<BlockGenus name="if" kind="command" initlabel="bg.if"
 			color="255 221 0">
-			<description>
-				<text>
-					If
-					<arg n="1" />
-					is true, the agent will run the blocks attached to
-					<arg n="2" />
-				</text>
-				<arg-description n="1" name="test">
-					The condition being
-					tested.
-				</arg-description>
-
-				<arg-description n="2" name="then">
-					The set of instructions
-					that is done when the condition is true.
-				</arg-description>
-			</description>
+		 	<description><text></text></description>
+		
 			<BlockConnectors>
 				<BlockConnector label="bc.test" connector-kind="socket"
 					connector-type="boolean" />
@@ -241,26 +227,8 @@
 
 		<BlockGenus name="ifelse" kind="command" initlabel="bg.ifelse"
 			color="255 221 0">
-			<description>
-				<text>
-					Does the first set of commands if the condition specified is
-					true, otherwise it will do the second set of commands.
-				</text>
-				<arg-description n="1" name="test">
-					The condition being
-					tested.
-				</arg-description>
-
-				<arg-description n="2" name="then">
-					The set of instructions
-					that is done when the condition is true.
-				</arg-description>
-
-				<arg-description n="3" name="else">
-					The set of instructions
-					that is done when the condition is false.
-				</arg-description>
-			</description>
+			<description><text></text></description>
+			
 			<BlockConnectors>
 				<BlockConnector label="bc.test" connector-kind="socket"
 					connector-type="boolean" />
@@ -273,23 +241,8 @@
 
 	<BlockGenus name="switchcase" kind="command" initlabel="bg.ifelse"
 			color="255 221 0">
-			<description>
-				<text>
-					Does the first set of commands if the condition specified is
-					true, otherwise it will do the second set of commands.
-				</text>
-				<arg-description n="1" name="test">
-					The condition being	tested.
-				</arg-description>
-
-				<arg-description n="2" name="then">
-					The set of instructions	that is done when the condition is true.
-				</arg-description>
-
-				<arg-description n="3" name="else">
-					The set of instructions	that is done when the condition is false.
-				</arg-description>
-			</description>
+			<description><text></text></description>
+			
 			<BlockConnectors>
 				<BlockConnector label="switch" connector-kind="socket" connector-type="number" />
 				
@@ -389,6 +342,8 @@
 
 		<BlockGenus name="code" kind="command" color="255 221 0"
 			initlabel="bg.code">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="code ">
@@ -399,6 +354,8 @@
 
 		<BlockGenus name="codeg" kind="command" color="255 221 0"
 			initlabel="bg.codeg">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="code ">
@@ -637,7 +594,8 @@
 		
 		<BlockGenus name="isnan" kind="function" color="255 20 147"
 			initlabel="bg.isnan">
-		
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="boolean"
 					connector-kind="plug" />
@@ -649,6 +607,8 @@
 		
 		<BlockGenus name="isempty" kind="function" color="255 20 147"
 			initlabel="bg.isempty">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="boolean"
 					connector-kind="plug" />
@@ -761,6 +721,8 @@
 
 		<BlockGenus name="modulo" kind="function" color="160 32 240"
 			initlabel="bg.modulo">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector label="" connector-kind="plug"
 					connector-type="number" position-type="mirror">
@@ -777,6 +739,8 @@
 
 		<BlockGenus name="abs" kind="function" color="160 32 240"
 			initlabel="bg.abs">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
@@ -787,6 +751,8 @@
 
 		<BlockGenus name="round" kind="function" color="160 32 240"
 			initlabel="bg.round">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
@@ -803,6 +769,8 @@
 
 		<BlockGenus name="pow" kind="function" color="160 32 240"
 			initlabel="bg.pow">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
@@ -815,6 +783,8 @@
 
 		<BlockGenus name="sqrt" kind="function" color="160 32 240"
 			initlabel="bg.sqrt">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
@@ -825,6 +795,8 @@
 
 		<BlockGenus name="sin" kind="function" color="160 32 240"
 			initlabel="bg.sin">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
@@ -835,6 +807,8 @@
 
 		<BlockGenus name="cos" kind="function" color="160 32 240"
 			initlabel="bg.cos">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
@@ -845,6 +819,8 @@
 
 		<BlockGenus name="tan" kind="function" color="160 32 240"
 			initlabel="bg.tan">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
@@ -1398,6 +1374,8 @@
 
 	    <BlockGenus name="button_rot_minmax" kind="command" color="44 165 226"
 			initlabel="bg.button_rot_minmax">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 			  <BlockConnector connector-type="number"
 					connector-kind="socket" label="min">
@@ -1413,6 +1391,8 @@
 
 	    <BlockGenus name="touch_rot_minmax" kind="command" color="44 165 226"
 			initlabel="bg.touch_rot_minmax">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 			  <BlockConnector connector-type="number"
 					connector-kind="socket" label="min">
@@ -1441,6 +1421,8 @@
 
         <BlockGenus name="touch_press" kind="data" color="44 165 226" 
             initlabel="bg.touch_press">
+       		<description><text></text></description>
+	
 			<BlockConnectors>
   			  <BlockConnector connector-type="number"
 					connector-kind="socket" label="Pin">
@@ -1470,6 +1452,8 @@
 <!--  BME280 Daten -->
 		<BlockGenus name="GetBME" kind="data" color="44 165 226"
 			initlabel="bg.GetBME" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.BMEVector" connector-type="number" connector-kind="socket" position-type="single">
@@ -1481,6 +1465,8 @@
 <!--  BME280 Daten -->
 		<BlockGenus name="GetBME_Adr" kind="data" color="44 165 226"
 			initlabel="bg.GetBME" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.BMEVector" connector-type="number" connector-kind="socket" position-type="single">
@@ -1518,6 +1504,8 @@
 <!--  BME 680 Daten -->
 		<BlockGenus name="GetBME680" kind="data" color="44 165 226"
 			initlabel="bg.GetBME" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.BMEVector" connector-type="number" connector-kind="socket" position-type="single">
@@ -1528,6 +1516,8 @@
 
 		<BlockGenus name="GetBME680offset" kind="data" color="44 165 226"
 			initlabel="bg.GetBME" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.BMEVector" connector-type="number" connector-kind="socket" position-type="single">
@@ -1587,25 +1577,27 @@
 
 		<BlockGenus name="GetBSEC" kind="data" color="44 165 226"
 			initlabel="bg.GetBSEC" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
-				<BlockConnector label="" connector-type="number" connector-kind="socket" position-type="single">
+				<BlockConnector label="bc.BMEVector" connector-type="number" connector-kind="socket" position-type="single">
                     <DefaultArg genus-name="BSECVectorTemp" label="Temperatur"/>
                 </BlockConnector>	
         	</BlockConnectors>
 		</BlockGenus>
-		
-		<BlockGenus name="DebugBSEC" kind="command" color="44 165 226"
+
+   	    <BlockGenus name="DebugBSEC" kind="command" color="44 165 226"
 			initlabel="bg.DebugBSEC" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="boolean"
-					connector-kind="socket" label="print">
+					connector-kind="socket" label="bc.ln">
 					<DefaultArg genus-name="true" label="true" />
 				</BlockConnector>
         	</BlockConnectors>
 		</BlockGenus>
-
-
 
        <BlockGenus name="BSECVectorTemp" kind="data" color="255 0 0" initlabel="bg.BSECVectorTemp" editable-label="no" is-label-value="no" >
           <BlockConnectors>
@@ -1676,7 +1668,7 @@
 	 	    <BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.7Seg">
-						<!-- DefaultArg genus-name="number" label="88.88" /-->	
+					<!-- DefaultArg genus-name="number" label="88.88" /-->	
 				</BlockConnector>
 		    </BlockConnectors>
 		</BlockGenus> 
@@ -1684,6 +1676,8 @@
 
     <BlockGenus name="LCDGroveRGB" kind="command" color="74 108 212"
 			initlabel="bg.LCDGroveRGB" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="x">
@@ -1703,6 +1697,8 @@
 			
     <BlockGenus name="OLED_Print" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Print" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="text">
@@ -1719,9 +1715,11 @@
 
 			</BlockConnectors>
 		</BlockGenus>
-    
-       <BlockGenus name="OLED_Print3" kind="command" color="74 108 212"
+		
+		   <BlockGenus name="OLED_Print3" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Print3" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="text">
@@ -1739,12 +1737,15 @@
 					connector-kind="socket" label="size">
 					<DefaultArg genus-name="OLED_FontSize12" label="9pt"/>
 				</BlockConnector>
-			</BlockConnectors>
+				</BlockConnectors>
 		</BlockGenus>
+		
+		
     
         <BlockGenus name="OLED_DispArray" kind="command" color="74 108 212"
 			initlabel="bg.OLED_DispArray" editable-label="no" is-label-value="no">
-			<BlockConnectors>
+				<description><text></text></description>
+				<BlockConnectors>
 			
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="value">
@@ -1770,6 +1771,8 @@
     
      <BlockGenus name="OLED_PrintTerminal" kind="command" color="74 108 212"
 			initlabel="bg.OLED_PrintTerminal" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="text">
@@ -1787,6 +1790,8 @@
 			
     <BlockGenus name="OLED_Clear" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Clear" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 			</BlockConnectors>
 		</BlockGenus>
@@ -1794,6 +1799,8 @@
     			
     <BlockGenus name="OLED_Display" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Display" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
 			</BlockConnectors>
 		</BlockGenus>
@@ -1801,6 +1808,8 @@
 			
     <BlockGenus name="OLED_Font" kind="command" color="74 108 212"
 			initlabel="bg.OLED" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
 			<BlockConnectors>
   			    <BlockConnector connector-type="string"
 					connector-kind="socket" label="font">
@@ -1883,6 +1892,7 @@
 			
     <BlockGenus name="OLED" kind="command" color="44 165 226"
 			initlabel="bg.OLED" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="x">
@@ -1930,6 +1940,7 @@
 <!-- ADPS Gesture -->
 		<BlockGenus name="ADPS9960Get" kind="data" color="44 165 226"
 			initlabel="bg.ADPS9960Get" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
   			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
    			    <BlockConnector label="bc.ADPS9960Vector" connector-type="number" connector-kind="socket" position-type="single">
@@ -1941,7 +1952,7 @@
 		
 		<BlockGenus name="ADPS9960Cal" kind="command" color="44 165 226"
 			initlabel="bg.ADPS9960Cal" editable-label="no" is-label-value="no">
-			
+			<description><text></text></description>
 		</BlockGenus>
 		
 
@@ -1985,6 +1996,7 @@
 <!-- ADPS Gesture -->
 		<BlockGenus name="TCS34725Get" kind="data" color="44 165 226"
 			initlabel="bg.TCS34725Get" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
   			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
    			    <BlockConnector label="bc.TCS34725Vector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2021,6 +2033,7 @@
 <!-- INA219 Current & load -->
 		<BlockGenus name="INA219Get" kind="data" color="44 165 226"
 			initlabel="bg.INA219Get" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
   			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
    			    <BlockConnector label="bc.INA219Vector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2035,13 +2048,13 @@
 		</BlockGenus>
 
         <BlockGenus name="INA219Current" kind="data" color="255 0 0" initlabel="bg.INA219Current" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
+    	  <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
 
        <BlockGenus name="INA219LoadVoltage" kind="data" color="255 0 0" initlabel="bg.INA219LoadVoltage" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
+    	  <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
@@ -2058,6 +2071,7 @@
 <!-- BNO055 Daten -->
 		<BlockGenus name="GetBNO" kind="data" color="44 165 226"
 			initlabel="bg.GetBNO" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.BNOVector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2114,7 +2128,8 @@
 
 		<BlockGenus name="NFCRead" kind="data" color="44 165 226"
 			initlabel="bg.NFCRead" editable-label="no" is-label-value="no">
-			<BlockConnectors>
+	         <description><text></text></description>
+				<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="plug" position-type="single" />
   			    <BlockConnector label="bc.NFCVector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2171,6 +2186,7 @@
 <!-- MMA Beschleunigungssensor -->
 		<BlockGenus name="GetMMA7660" kind="data" color="44 165 226"
 			initlabel="bg.GetMMA7660" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 			    <BlockConnector label="bc.BNODim" connector-type="boolean" connector-kind="socket" position-type="single">
@@ -2196,6 +2212,7 @@
 	<!--  Multichannel Gas Sensor -->
 		<BlockGenus name="GetMGas" kind="data" color="44 165 226"
 			initlabel="bg.GetMGas" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.MGasVector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2291,6 +2308,7 @@
 <!--  Maxbotix Ultraschall Sensor -->
 		<BlockGenus name="GetMaxbotix" kind="data" color="44 165 226"
 			initlabel="bg.GetMaxbotix" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
@@ -2304,9 +2322,10 @@
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
-
+		
 		<BlockGenus name="GetMaxbotix2" kind="data" color="44 165 226"
 			initlabel="bg.GetMaxbotix2" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
@@ -2343,6 +2362,7 @@
 <!--  China DFRobot Ultraschall Sensor -->
 		<BlockGenus name="GetDFRobotUS" kind="data" color="44 165 226"
 			initlabel="bg.GetDFRobotUS" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
@@ -2355,10 +2375,9 @@
         	</BlockConnectors>
 		</BlockGenus>
 
-
-
-       <BlockGenus name="medianfilter" kind="data" color="44 165 226"
+     <BlockGenus name="medianfilter" kind="data" color="44 165 226"
 			initlabel="bg.medianfilter" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector connector-type="number"
@@ -2377,12 +2396,10 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-
-
-
 	<!--  Honeywell Feinstaub Sensor -->
 		<BlockGenus name="GetDustHoney" kind="data" color="44 165 226"
 			initlabel="bg.GetDustHoney" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.DustHoneyVector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2397,6 +2414,7 @@
 	<!--  Honeywell Feinstaub Sensor -->
 		<BlockGenus name="GetDustHM330" kind="data" color="44 165 226"
 			initlabel="bg.GetDustHM330" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.DustHoneyVector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2437,6 +2455,7 @@
 	
 		<BlockGenus name="GetLightTSL" kind="data" color="44 165 226"
 			initlabel="bg.GetLightTSL" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="" connector-type="number" connector-kind="socket" position-type="single">
@@ -2447,6 +2466,7 @@
 
 		<BlockGenus name="GetLightTSLnew" kind="data" color="44 165 226"
 			initlabel="bg.GetLightTSLnew" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="typ" connector-type="number" connector-kind="socket" position-type="single">
@@ -2498,6 +2518,7 @@
 	<!-- GPS Daten -->
 		<BlockGenus name="GetGPS" kind="data" color="44 165 226"
 			initlabel="bg.GetGPS" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="RxPin">
@@ -2512,6 +2533,7 @@
 
 		<BlockGenus name="GetGPSI2C" kind="data" color="44 165 226"
 			initlabel="bg.GetGPSI2C" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.GPSVector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2556,6 +2578,7 @@
     <!--  SCD4x Daten -->
 		<BlockGenus name="GetSCD40" kind="data" color="44 165 226"
 			initlabel="bg.GetSCD40" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.SCD30Vector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2567,6 +2590,7 @@
         	
    		<BlockGenus name="CalSCD40" kind="command" color="44 165 226"
 			initlabel="bg.CalSCD40" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Altitude">
@@ -2580,6 +2604,7 @@
 	<!--  SCD30 Daten -->
 		<BlockGenus name="GetSCD30" kind="data" color="44 165 226"
 			initlabel="bg.GetSCD30" editable-label="no" is-label-value="no">
+ 	        <description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.SCD30Vector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2609,6 +2634,7 @@
 	<!--  SCD30 Kalibrieren -->
 		<BlockGenus name="CalSCD30" kind="command" color="44 165 226"
 			initlabel="bg.CalSCD30" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Altitude">
@@ -2620,6 +2646,7 @@
 	<!--  SCD30 Temperatur Offest -->
 		<BlockGenus name="ToffsetSCD30" kind="command" color="44 165 226"
 			initlabel="bg.ToffsetSCD30" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Offset">
@@ -2632,6 +2659,7 @@
 <!--  K30 Data -->
 		<BlockGenus name="GetK30" kind="data" color="44 165 226"
 			initlabel="bg.GetK30" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 			</BlockConnectors>
@@ -2642,6 +2670,7 @@
 	<!--  MHZ19 Daten -->
 		<BlockGenus name="GetMHZ19" kind="data" color="44 165 226"
 			initlabel="bg.GetMHZ19" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="bc.MHZ19Vector" connector-type="number" connector-kind="socket" position-type="single">
@@ -2669,6 +2698,7 @@
 	<!--  MHZ Kalibrieren -->
 		<BlockGenus name="CalMHZ19" kind="command" color="44 165 226"
 			initlabel="bg.CalMHZ19" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 			    <BlockConnector connector-type="string"
 					connector-kind="socket" label="tx,rx">
@@ -2677,10 +2707,10 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-
 	<!--  HX711 Weight -->
 		<BlockGenus name="GetHX711" kind="data" color="44 165 226"
 			initlabel="bg.GetHX711" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 	            <BlockConnector connector-type="string"
@@ -2692,6 +2722,7 @@
 
 		<BlockGenus name="CalHX711" kind="command" color="44 165 226"
 			initlabel="bg.CalHX711" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 	            <BlockConnector connector-type="number"
 					connector-kind="socket" label="weight in unit">
@@ -2702,6 +2733,7 @@
 
 		<BlockGenus name="TaraHX711" kind="command" color="44 165 226"
 			initlabel="bg.TaraHX711" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 			</BlockConnectors>
 		</BlockGenus>
@@ -2709,6 +2741,7 @@
 		
 		<BlockGenus name="SetScaleHX711" kind="command" color="44 165 226"
 			initlabel="bg.SetScaleHX711" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 	            <BlockConnector connector-type="number"
 					connector-kind="socket" label="scale">
@@ -2719,15 +2752,19 @@
 
 		<BlockGenus name="GetScaleHX711" kind="data" color="44 165 226"
 			initlabel="bg.GetScaleHX711" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 			</BlockConnectors>
 		</BlockGenus>
 
 
+
+
 	<!--  DosisIntegral -->
 		<BlockGenus name="DosisIntegral" kind="data" color="44 165 226"
 			initlabel="bg.DosisIntegral" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="input" connector-type="number" connector-kind="socket" position-type="single">
@@ -2743,6 +2780,8 @@
 	<!--  DosisIntegral -->
 		<BlockGenus name="EMAsmooth" kind="data" color="44 165 226"
 			initlabel="bg.EMAsmooth" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="input" connector-type="number" connector-kind="socket" position-type="single">
@@ -2756,8 +2795,10 @@
 		</BlockGenus>
 
 
-<BlockGenus name="MEANsmooth" kind="data" color="44 165 226"
+          <BlockGenus name="MEANsmooth" kind="data" color="44 165 226"
 			initlabel="bg.MEANsmooth" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="input" connector-type="number" connector-kind="socket" position-type="single">
@@ -3337,25 +3378,8 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-
-  		<BlockGenus name="connectWLANShelly" kind="command" color="30 30 255"
-			initlabel="bg.connectWLANShelly" editable-label="no" is-label-value="no">
-			<description>
-				<text>connect to WLAN</text>
-			</description>
-			<BlockConnectors>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.ssid">
-<!-- 					<DefaultArg genus-name="ssid" label="FRITZ!Box Gastzugang" />-->
- 					<DefaultArg genus-name="ssid" label="ShellyPlusPlugS-D4D4DAEDE65C" />
-				</BlockConnector>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.pass">
-				</BlockConnector>
-			</BlockConnectors>
-		</BlockGenus>
 		
-		<BlockGenus name="WiFiMan" kind="command" color="30 30 255"
+  	  	<BlockGenus name="WiFiMan" kind="command" color="30 30 255"
 			initlabel="bg.WiFiMan" editable-label="no" is-label-value="no">
 			<description>
 				<text>connect to WLAN</text>
@@ -3371,6 +3395,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+		
 		
 			<BlockGenus name="connectWLANAPTO" kind="data" color="30 30 255"
 			initlabel="bg.connectWLANAP" editable-label="no" is-label-value="no">
@@ -3797,9 +3822,8 @@
 		</BlockGenus>
 
 
-    
-    
-        <BlockGenus name="sendThingspeak" kind="command" color="30 30 255"
+   
+       <BlockGenus name="sendThingspeak" kind="command" color="30 30 255"
 			initlabel="bg.sendThingspeak" editable-label="no" is-label-value="no">
 			<description>
 				<text>connect to WLAN</text>
@@ -3813,7 +3837,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.apikey">
-					<DefaultArg genus-name="apikey" label="FI6I8Q36AZ0VYKVW" />
+					<DefaultArg genus-name="apikey" label="mein API-Key" />
 				</BlockConnector>
 			    <BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.thing1">
@@ -3998,10 +4022,41 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-   
-
-             <BlockGenus name="sendThingsboard" kind="command" color="30 30 255"
+<!--         <BlockGenus name="sendBoschSpex" kind="command" color="30 30 255"
+			initlabel="bg.sendBoschSpex" editable-label="no" is-label-value="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="REST URL">
+					<DefaultArg genus-name="text" label="reinholds-test" />
+				</BlockConnector>
+			
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Credentials">
+					<DefaultArg genus-name="text" label="cmVpbmhvbGRzLXRlc3QteGRpYm1zLWFwaTpBaC05R3FpeVBKT1d6SGRZ" />
+				</BlockConnector>
+	
+     		    <BlockConnector connector-type="string"
+					connector-kind="socket" label="deviceID">
+					<DefaultArg genus-name="text" label="abc123" />
+				</BlockConnector>
+	
+  		        <BlockConnector connector-type="string"
+					connector-kind="socket" label="state">
+					<DefaultArg genus-name="text" label="GREEN" />
+				</BlockConnector>
+	
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="CO2">
+				</BlockConnector>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="IAQ">
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+-->
+         <BlockGenus name="sendThingsboard" kind="command" color="30 30 255"
 			initlabel="bg.sendThingsboard" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.host">
@@ -4040,6 +4095,7 @@
 
      <BlockGenus name="askThingsboard" kind="data" color="30 30 255"
 			initlabel="bg.askThingsboard" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="host">
@@ -4063,11 +4119,13 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-      
+  
+
 
 
   <BlockGenus name="sendSensebox" kind="command" color="30 30 255"
 			initlabel="bg.sendSensebox" editable-label="no" is-label-value="no">
+			
 			<description>
 				<text>connect to OpenSenseMap.org</text>
 			</description>
@@ -4125,7 +4183,29 @@
 
 
 
-           <BlockGenus name="sendHTTPSGet" kind="data" color="30 30 255"
+        <BlockGenus name="sendHTTPGet" kind="data" color="30 30 255"
+			initlabel="bg.sendHTTPGet" editable-label="no" is-label-value="no">
+			<description>
+				<text>REST Get</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.host">
+					<DefaultArg genus-name="host" label="Server IP" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.port">
+					<DefaultArg genus-name="number" label="80" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.URI">
+					<DefaultArg genus-name="URI" label="Server GET " />
+				</BlockConnector>
+				<BlockConnector connector-type="string" connector-kind="plug" />
+			</BlockConnectors>
+		</BlockGenus>
+
+        <BlockGenus name="sendHTTPSGet" kind="data" color="30 30 255"
 			initlabel="bg.sendHTTPSGet" editable-label="no" is-label-value="no">
 			<description>
 				<text>REST Get</text>
@@ -4147,7 +4227,7 @@
 				<BlockConnector connector-type="string" connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
-        
+		
 		<BlockGenus name="EcoflowGet" kind="data" color="30 30 255"
 			initlabel="bg.EcoflowGet" editable-label="no" is-label-value="no">
 			<description>
@@ -4246,6 +4326,7 @@
 
      <BlockGenus name="sendShelly" kind="command" color="30 30 255"
 			initlabel="bg.sendShelly" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.host">
@@ -4266,6 +4347,7 @@
 	<!--  Shelly -->
 		<BlockGenus name="getShelly" kind="data" color="30 30 255"
 			initlabel="bg.getShelly" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector connector-type="string"
@@ -4282,6 +4364,7 @@
 	<!--  Shelly -->
 		<BlockGenus name="getShelly2" kind="data" color="30 30 255"
 			initlabel="bg.getShelly2" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector connector-type="string"
@@ -4502,6 +4585,12 @@
 					connector-kind="socket" label="bc.IoTmessage">
 					<DefaultArg genus-name="IoTmessage" label="Hallo IoTHackathon" />
 				</BlockConnector>
+				<BlockConnector connector-type="boolean"
+					connector-kind="socket" label="Retained">
+					<DefaultArg genus-name="true" label="true" />
+				</BlockConnector>
+		
+				
 			</BlockConnectors>
 		</BlockGenus>
 
@@ -4536,6 +4625,11 @@
 					connector-kind="socket" label="bc.mqtttopic">
 					<DefaultArg genus-name="mqtttopic" label="inTopic" />
 				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="QoS">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+	
 <!-- 
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.mqttpayload">
@@ -4568,6 +4662,7 @@
 		<!--  Person Sensor -->
 		<BlockGenus name="readPS" kind="data" color="30 30 255"
 			initlabel="bg.readPS" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector connector-type="number"
@@ -4653,6 +4748,7 @@
 
 	<BlockGenus name="readVL53" kind="data" color="44 165 226"
 			initlabel="bg.readVL53" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector connector-type="boolean"
@@ -4754,10 +4850,61 @@
 				<BlockConnector connector-type="string"	connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
+		
+<!-- ESP-Now -->
+
+
+        <BlockGenus name="NOWShowMAC" kind="data" color="30 30 255"
+			initlabel="bg.NOWShowMAC" editable-label="no">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"	connector-kind="plug" />
+			</BlockConnectors>
+		</BlockGenus>
+	
+		  <BlockGenus name="NOWSendPeer" kind="command" color="30 30 255"
+			initlabel="bg.NOWSendPeer" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="MAC">
+					<DefaultArg genus-name="text" label="FF:FF:FF:FF:FF:FF" />
+				</BlockConnector>
+			    <BlockConnector connector-type="string"
+			    
+		    	connector-kind="socket" label="bc.message">
+				<DefaultArg genus-name="message" label="message" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="chan">
+					<DefaultArg genus-name="number" label="1" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
         
+        <BlockGenus name="NOWReceive" kind="command" color="30 30 255"
+			initlabel="bg.NOWReceive" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="cmd" connector-kind="socket"
+					label="bc.mqttcallback" />
+		 	 </BlockConnectors>
+		</BlockGenus>
+
+       <BlockGenus name="NOWPayloadStr" kind="data" color="204 0 102"
+			initlabel="bg.NOWPayloadStr" editable-label="no">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"	connector-kind="plug" />
+			</BlockConnectors>
+		</BlockGenus>
+
+		
+ <!-- Influx -->
         
         <BlockGenus name="createInfluxDB" kind="command" color="30 30 255"
 			initlabel="bg.createInfluxDB" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.host">
@@ -4772,6 +4919,7 @@
 
         <BlockGenus name="sendInfluxDB" kind="command" color="30 30 255"
 			initlabel="bg.sendInfluxDB" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 	     		<BlockConnector connector-type="string"
 					connector-kind="socket" label="Device">
@@ -4801,6 +4949,7 @@
 
         <BlockGenus name="createEDGE" kind="command" color="30 30 255"
 			initlabel="bg.createEDGE" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Sensor1">
@@ -4831,6 +4980,7 @@
 
         <BlockGenus name="sampleEDGE" kind="command" color="30 30 255"
 			initlabel="bg.sampleEDGE" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Value1">
@@ -4853,8 +5003,9 @@
 			
 		</BlockGenus>
 
-    <BlockGenus name="classifyEDGE" kind="data" color="30 30 255"
+        <BlockGenus name="classifyEDGE" kind="data" color="30 30 255"
 			initlabel="bg.classifyEDGE" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 			    <BlockConnector connector-type="number"	connector-kind="plug" />
 				<BlockConnector connector-type="number"
@@ -4874,6 +5025,7 @@
 
         <BlockGenus name="sendEDGE" kind="command" color="30 30 255"
 			initlabel="bg.sendEDGE" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 			
 				<BlockConnector connector-type="string"
@@ -4916,6 +5068,7 @@
 
     <BlockGenus name="sampleClass" kind="command" color="30 30 255"
 			initlabel="bg.sampleClass" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Target">
@@ -4956,6 +5109,7 @@
 
          <BlockGenus name="detClass" kind="data" color="30 30 255"
 			initlabel="bg.detClass" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" />
 				<BlockConnector connector-type="number"
@@ -4987,6 +5141,7 @@
         
          <BlockGenus name="AIselectRegModel" kind="data" color="30 30 255"
 			initlabel="bg.AIselectRegModel" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 			    <BlockConnector connector-type="number"	connector-kind="plug" />
 		  		<BlockConnector label="Datatyp" connector-type="number" connector-kind="socket" position-type="single">
@@ -5023,6 +5178,7 @@
      
         <BlockGenus name="AIcalcRegModel" kind="data" color="30 30 255"
 			initlabel="bg.AIcalcRegModel" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" />
 				<BlockConnector connector-type="number"
@@ -5044,6 +5200,7 @@
         
          <BlockGenus name="AIcaliRegModel" kind="command" color="30 30 255"
 			initlabel="bg.AIcaliRegModel" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector label="Modeltyp" connector-type="number" connector-kind="socket" position-type="single">
                     <DefaultArg genus-name="AIModeltypAuto" label="all/auto"/>
@@ -5057,6 +5214,7 @@
      	<!--  ChatGPT -->
 		<BlockGenus name="askGPT" kind="data" color="30 30 255"
 			initlabel="bg.askGPT" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"	connector-kind="plug" position-type="single" />
 				<BlockConnector connector-type="string"
@@ -5336,15 +5494,14 @@
           </BlockConnectors>
         </BlockGenus>
 
-
- <!-- 
+<!-- 
         <BlockGenus name="DIYSpectroVectD1RGB" kind="data" color="255 0 0" initlabel="bg.DIYSpectroVectD1RGB" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
  -->
-
+ 
         <BlockGenus name="DIYSpectroVectD1W" kind="data" color="255 0 0" initlabel="bg.DIYSpectroVectD1W" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
@@ -5354,6 +5511,7 @@
         
          <BlockGenus name="initHM" kind="command" color="30 30 255"
 			initlabel="bg.initHM" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="type">
@@ -5370,6 +5528,7 @@
 	<!--  Hoymiles -->
 		<BlockGenus name="getHM" kind="data" color="30 30 255"
 			initlabel="bg.getHM" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector connector-type="number"
@@ -5426,6 +5585,7 @@
     	<!--  DosisIntegral -->
 		<BlockGenus name="absHum" kind="data" color="44 165 226"
 			initlabel="bg.absHum" editable-label="no" is-label-value="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 				<BlockConnector label="Temperature" connector-type="number" connector-kind="socket" position-type="single">
@@ -5486,30 +5646,16 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-
-
+		
         <BlockGenus name="modemSleep" kind="command"
 			color="80 80 80" initlabel="bg.modemSleep">
-		</BlockGenus>
-
-
-		
-		<BlockGenus name="sleep32" kind="command" color="50 50 50"
-			initlabel="bg.sleep32">
-			<description>
-				<text>program deep sleep in x milliseconds</text>
-			</description>
-			<BlockConnectors>
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="bc.milliseconds">
-					<DefaultArg genus-name="number" label="60000" />
-				</BlockConnector>
-			</BlockConnectors>
+			<description><text></text></description>
 		</BlockGenus>
 		
 		
-		      <BlockGenus name="Frequency32" kind="command" color="50 50 50"
+        <BlockGenus name="Frequency32" kind="command" color="50 50 50"
 			initlabel="bg.Frequency32">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="f [MHz]">
@@ -5521,6 +5667,7 @@
 		
 		 <BlockGenus name="RTC_GPIO32" kind="command" color="50 50 50"
 			initlabel="bg.RTC_GPIO32">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="RTC GPIO">
@@ -5534,9 +5681,19 @@
 		</BlockGenus>
 		
 		
-	
-		
-		
+		<BlockGenus name="sleep32" kind="command" color="50 50 50"
+			initlabel="bg.sleep32">
+			
+			<description>
+				<text>program deep sleep in x milliseconds</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.milliseconds">
+					<DefaultArg genus-name="number" label="60000" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
 		
 		
 		
@@ -5552,12 +5709,14 @@
 
 		<BlockGenus name="readReset" kind="data"
 			color="50 50 50" initlabel="bg.readReset">
+			<description><text></text></description>
 			<BlockConnectors>
    			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
 			</BlockConnectors>
 		</BlockGenus>
 		
 		<BlockGenus name="readReset32" kind="data" color="50 50 50" initlabel="bg.readReset32">
+		<description><text></text></description>
 			<BlockConnectors>
    			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
    			   	<BlockConnector connector-type="number"
@@ -5566,11 +5725,11 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-	
 		
 
         <BlockGenus name="WiFiEnable" kind="command" color="50 50 50"
 			initlabel="bg.WeFiEnable">
+			<description><text></text></description>
 			<BlockConnectors>
 					<BlockConnector connector-type="boolean"
 				    connector-kind="socket" label="bc.sleepRF">
@@ -5588,7 +5747,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.host">
-  				<DefaultArg genus-name="host" label="octopus" />
+  				<DefaultArg genus-name="host" label="makey" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
@@ -6252,7 +6411,6 @@
 				type="factory">
 				<BlockGenusMember>Divider_WiFi</BlockGenusMember>
 				<BlockGenusMember>connectWLANAP</BlockGenusMember>
-				<BlockGenusMember>connectWLANShelly</BlockGenusMember>
 				<BlockGenusMember>connectWLANAPTO</BlockGenusMember>
 				<BlockGenusMember>WiFiMan</BlockGenusMember>
 				<BlockGenusMember>Divider_WiFiAP</BlockGenusMember>
