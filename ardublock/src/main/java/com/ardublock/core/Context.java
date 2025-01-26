@@ -237,7 +237,9 @@ public class Context
 		     UIManager.put("FileChooser.buttonFont", new Font("Arial", Font.PLAIN, 16)); // Schaltflächen
 		     UIManager.put("FileChooser.labelFont", new Font("Arial", Font.PLAIN, 14)); // Labels
 	         ToolTipManager.sharedInstance().setInitialDelay(500); 
-	        
+	         UIManager.put("TextArea.labelFont", new Font("Arial", Font.PLAIN, 14)); // Labels
+	         UIManager.put("TextArea.font", new Font("Arial", Font.PLAIN, 14)); // Labels
+		        
 
 			 /*
 		     System.out.println("Java Version: " + javaVersion);
