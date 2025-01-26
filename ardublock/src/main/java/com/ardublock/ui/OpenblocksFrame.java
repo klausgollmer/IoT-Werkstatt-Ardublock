@@ -6,8 +6,10 @@ import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +29,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
@@ -34,6 +37,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.FontUIResource;
 
 import com.ardublock.core.Context;
 import com.ardublock.ui.listener.ArdublockWorkspaceListener;
@@ -89,8 +93,6 @@ public class OpenblocksFrame extends JFrame
 	{
 		context = Context.getContext();
 		this.setTitle(makeFrameTitle());
-		
-		
 		//
 		 Image img = null;
 		  // Lade das Bild von einem relativen Pfad
@@ -200,6 +202,10 @@ public class OpenblocksFrame extends JFrame
 	{
 		final Context context = Context.getContext();
 		
+		int mymargin=5;
+		
+		
+		
 		/*
 		WorkspaceController workspaceController = context.getWorkspaceController();
 		JComponent workspaceComponent = workspaceController.getWorkspacePanel();
@@ -209,16 +215,24 @@ public class OpenblocksFrame extends JFrame
 		
 		// WTF I can't add worksapcelistener by workspace contrller
 		workspace.addWorkspaceListener(new ArdublockWorkspaceListener(this));
-		
+
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 		JButton newButton = new JButton(uiMessageBundle.getString("ardublock.ui.new"));
+		newButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
 		newButton.addActionListener(new NewButtonListener(this));
+
 		JButton saveButton = new JButton(uiMessageBundle.getString("ardublock.ui.save"));
+		saveButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
 		saveButton.addActionListener(new SaveButtonListener(this));
+
 		JButton saveAsButton = new JButton(uiMessageBundle.getString("ardublock.ui.saveAs"));
+		saveAsButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
 		saveAsButton.addActionListener(new SaveAsButtonListener(this));
+
+		
 		JButton openButton = new JButton(uiMessageBundle.getString("ardublock.ui.load"));
+		openButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
 		openButton.addActionListener(new OpenButtonListener(this));
 		String mess;
 		
@@ -230,15 +244,22 @@ public class OpenblocksFrame extends JFrame
 		}
 			
 		JButton generateButton = new JButton(mess);
+		generateButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
 		generateButton.addActionListener(new GenerateCodeButtonListener(this, context));
+
 		JButton serialMonitorButton = new JButton(uiMessageBundle.getString("ardublock.ui.serialMonitor"));
+		serialMonitorButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
 		serialMonitorButton.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 				context.getEditor().handleSerial();
 			}
 		});
+		
+		
 		JButton saveImageButton = new JButton(uiMessageBundle.getString("ardublock.ui.saveImage"));
+		saveImageButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
 		saveImageButton.addActionListener(new ActionListener () {
+
 			public void actionPerformed(ActionEvent e) {
 				Dimension size = workspace.getCanvasSize();
 				System.out.println("size: " + size);
@@ -268,7 +289,10 @@ public class OpenblocksFrame extends JFrame
 
 		String[] programList = {"Starter","Makey","Octopus"};
 		boardComboBox = new JComboBox<String>(programList);
+		//boardComboBox.setFont(new Font("Arial", Font.BOLD, 18)); // Schriftgröße 18
+		
 		boardComboBox.setSelectedItem((String)context.ArdublockVersion);
+		
 		boardComboBox.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -290,6 +314,7 @@ public class OpenblocksFrame extends JFrame
 		
 		JLabel zoomLabel = new JLabel("Zoom: ");
 		JButton zoomIn = new JButton("+");
+		zoomIn.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
 		zoomIn.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 				double zoom = Page.getZoomLevel();
@@ -302,7 +327,8 @@ public class OpenblocksFrame extends JFrame
 			}
 		});
 		
-		JButton zoomOut = new JButton("-");
+		JButton zoomOut = new JButton("- ");
+		zoomOut.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
 		zoomOut.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 				double zoom = Page.getZoomLevel();
@@ -344,9 +370,8 @@ public class OpenblocksFrame extends JFrame
 
 		JPanel bottomPanel = new JPanel();
 		
-		
-		
 		JButton websiteButton = new JButton(uiMessageBundle.getString("ardublock.ui.website"));
+		websiteButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
 		websiteButton.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 			    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
@@ -402,6 +427,7 @@ public class OpenblocksFrame extends JFrame
 	
 	public void doOpenArduBlockFile()
 	{
+		
 		if (context.isWorkspaceChanged())
 		{
 			int optionValue = JOptionPane.showOptionDialog(this, uiMessageBundle.getString("message.content.open_unsaved"), uiMessageBundle.getString("message.title.question"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
@@ -556,11 +582,21 @@ public class OpenblocksFrame extends JFrame
 		if (context.isWorkspaceChanged())
 		{
 			int optionValue = JOptionPane.showOptionDialog(this, uiMessageBundle.getString("message.question.newfile_on_workspace_changed"), uiMessageBundle.getString("message.title.question"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
-			if (optionValue != JOptionPane.YES_OPTION)
+			if (optionValue == JOptionPane.YES_OPTION)
 			{
-				return ;
+				System.out.println("save");
+				doSaveArduBlockFile();
+				if (context.isWorkspaceChanged()) return;
 			}
+			if (optionValue == JOptionPane.CANCEL_OPTION)
+			{
+				System.out.println("exit, do nothing");
+
+				return;
+			}
+
 		}
+		System.out.println("new");
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		context.resetWorksapce();
 		context.setWorkspaceChanged(false);

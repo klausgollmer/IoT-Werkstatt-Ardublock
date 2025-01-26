@@ -30,7 +30,7 @@ public class Main
 
 			
      System.setProperty("sun.java2d.uiScale", "1.4");
-     System.out.println("uiScale 1.4");
+     //System.out.println("uiScale 1.4");
  	 FlatLightLaf.setup();
 
      

@@ -221,17 +221,22 @@ public class Context
 		     // Java Home Path
 		     String javaHome = System.getProperty("java.home");
 
-		     
-		 	 UIManager.put("Button.arc", 10);
-			 UIManager.put("Button.margin", new Insets(1, 3, 3, 3));
-			 UIManager.put("Component.focusWidth", 1);
-			 UIManager.put("Component.innerFocusWidth", 1);
-		     
-			 // Set larger font size
+		 	 // Set larger font size
 			 UIManager.put("defaultFont", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
 			 UIManager.put("Button.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
 			 UIManager.put("Label.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
-			 UIManager.put("ComboBox.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
+			 UIManager.put("ComboBox.font", new FontUIResource(new Font("Arial", Font.BOLD, 18)));
+			 
+			 UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 16));
+		     UIManager.put("OptionPane.buttonFont", new Font("Arial", Font.PLAIN, 16));
+			 UIManager.put("OptionPane.defaultFont", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
+			 
+		     UIManager.put("FileChooser.font", new Font("Arial", Font.PLAIN, 16)); // Allgemeiner Text
+		     UIManager.put("FileChooser.listFont", new Font("Arial", Font.PLAIN, 16)); // Liste
+		     UIManager.put("FileChooser.buttonFont", new Font("Arial", Font.PLAIN, 16)); // Schaltflächen
+		     UIManager.put("FileChooser.labelFont", new Font("Arial", Font.PLAIN, 14)); // Labels
+		    
+			 
 			 /*
 		     System.out.println("Java Version: " + javaVersion);
 		     System.out.println("Java Vendor: " + javaVendor);
@@ -244,7 +249,7 @@ public class Context
 		
 		String workingDir = System.getProperty("user.dir");
 		arduinoTargetString = getArduinoTarget(workingDir+"/portable/preferences.txt");
-		System.out.println("target: " + arduinoTargetString);
+		//System.out.println("target: " + arduinoTargetString);
 
 		switch(arduinoTargetString) {
 		    case "ESP32":
@@ -258,7 +263,7 @@ public class Context
         if (getArduinoVersionString() != ARDUINO_VERSION_UNKNOWN) {
     		ArdublockVersion=getVersion();
         }
-		System.out.println("saved Ardublock Version: " + ArdublockVersion);
+		//System.out.println("saved Ardublock Version: " + ArdublockVersion);
 
 		
 		switch(ArdublockVersion) {
@@ -277,7 +282,7 @@ public class Context
 		  default:
 			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
 		}
-		System.out.println("Version: " + ARDUBLOCK_LANG_PATH);
+		//System.out.println("Version: " + ARDUBLOCK_LANG_PATH);
 	
 		
 		

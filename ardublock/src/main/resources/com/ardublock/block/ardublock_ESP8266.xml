@@ -3349,7 +3349,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Portal">
- 					<DefaultArg genus-name="ssid" label="Makey needs new WiFi" />
+ 					<DefaultArg genus-name="ssid" label="Octopus needs new WiFi" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.pass">
@@ -3399,7 +3399,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.ssid">
-					<DefaultArg genus-name="ssid" label="MeinMakeyWLAN" />
+					<DefaultArg genus-name="ssid" label="MeinOctiWLAN" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.pass">
@@ -3571,7 +3571,7 @@
 			<BlockConnectors>
 			    <BlockConnector connector-type="string"
 					connector-kind="socket" label="Hostname">
-					<DefaultArg genus-name="host" label="makey" />
+					<DefaultArg genus-name="host" label="octopus" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
