@@ -650,7 +650,7 @@ public class Translator
 				if (block.getGenusName().equals("subroutine"))
 				{
 					String functionName = block.getBlockLabel().trim()+"_gen";
-				System.out.println(block.getBlockLabel().trim());
+		//		System.out.println(block.getBlockLabel().trim());
 					this.addFunctionName(block.getBlockID(), functionName);
 					subroutineBlockSet.add(renderableBlock);
 				}			

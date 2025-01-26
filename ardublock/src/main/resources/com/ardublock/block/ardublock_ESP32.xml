@@ -6666,15 +6666,13 @@
  		      -->
 			</BlockDrawer>
 		</BlockDrawerSet>
+		
 	</BlockDrawerSets>
+
 
 	<Pages drawer-with-page="yes">
 		<Page page-name="Main" page-width="4000" page-color="210 210 210" />
 	</Pages>
 
-	<TrashCan>
-		<OpenTrashImage>com/ardublock/block/IoTkit\Makey1.jpg</OpenTrashImage>
-		<ClosedTrashImage>com/ardublock/block/IoTkit\Makey1.jpg</ClosedTrashImage>
-	</TrashCan>
-
+	
 </BlockLangDef>

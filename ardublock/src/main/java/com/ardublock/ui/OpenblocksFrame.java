@@ -202,7 +202,9 @@ public class OpenblocksFrame extends JFrame
 	{
 		final Context context = Context.getContext();
 		
-		int mymargin=5;
+		int mymargin_lr=10;
+		int mymargin_ul=3;
+		
 		
 		
 		
@@ -219,36 +221,36 @@ public class OpenblocksFrame extends JFrame
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 		JButton newButton = new JButton(uiMessageBundle.getString("ardublock.ui.new"));
-		newButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
+		newButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		newButton.addActionListener(new NewButtonListener(this));
 
 		JButton saveButton = new JButton(uiMessageBundle.getString("ardublock.ui.save"));
-		saveButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
+		saveButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		saveButton.addActionListener(new SaveButtonListener(this));
 
 		JButton saveAsButton = new JButton(uiMessageBundle.getString("ardublock.ui.saveAs"));
-		saveAsButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
+		saveAsButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		saveAsButton.addActionListener(new SaveAsButtonListener(this));
 
 		
 		JButton openButton = new JButton(uiMessageBundle.getString("ardublock.ui.load"));
-		openButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
+		openButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		openButton.addActionListener(new OpenButtonListener(this));
 		String mess;
 		
 		if (context.getArduinoCodeFileString()=="") {
-			System.out.println("in");
+			//System.out.println("in");
 			mess = uiMessageBundle.getString("ardublock.ui.upload");
 		} else {
 			mess = uiMessageBundle.getString("ardublock.ui.generate");
 		}
 			
 		JButton generateButton = new JButton(mess);
-		generateButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
+		generateButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		generateButton.addActionListener(new GenerateCodeButtonListener(this, context));
 
 		JButton serialMonitorButton = new JButton(uiMessageBundle.getString("ardublock.ui.serialMonitor"));
-		serialMonitorButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
+		serialMonitorButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		serialMonitorButton.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 				context.getEditor().handleSerial();
@@ -257,7 +259,7 @@ public class OpenblocksFrame extends JFrame
 		
 		
 		JButton saveImageButton = new JButton(uiMessageBundle.getString("ardublock.ui.saveImage"));
-		saveImageButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
+		saveImageButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		saveImageButton.addActionListener(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
@@ -314,7 +316,7 @@ public class OpenblocksFrame extends JFrame
 		
 		JLabel zoomLabel = new JLabel("Zoom: ");
 		JButton zoomIn = new JButton("+");
-		zoomIn.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
+		zoomIn.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		zoomIn.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 				double zoom = Page.getZoomLevel();
@@ -328,7 +330,7 @@ public class OpenblocksFrame extends JFrame
 		});
 		
 		JButton zoomOut = new JButton("- ");
-		zoomOut.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
+		zoomOut.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		zoomOut.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 				double zoom = Page.getZoomLevel();
@@ -371,7 +373,7 @@ public class OpenblocksFrame extends JFrame
 		JPanel bottomPanel = new JPanel();
 		
 		JButton websiteButton = new JButton(uiMessageBundle.getString("ardublock.ui.website"));
-		websiteButton.setMargin(new Insets(mymargin, mymargin, mymargin, mymargin)); // Innenabstände: Oben, Links, Unten, Rechts
+		websiteButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		websiteButton.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 			    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;

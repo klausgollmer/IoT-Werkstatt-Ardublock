@@ -22,4 +22,9 @@ public class SocketNullException extends ArdublockException
 	}
 	private static final long serialVersionUID = -3386587749080938964L;
 
+	
+	 @Override
+	    public void printStackTrace() {
+	        // Überschreibt die Standardausgabe, um die Konsole sauber zu halten
+	    }
 }

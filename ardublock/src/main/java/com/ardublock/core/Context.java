@@ -225,7 +225,7 @@ public class Context
 			 UIManager.put("defaultFont", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
 			 UIManager.put("Button.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
 			 UIManager.put("Label.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
-			 UIManager.put("ComboBox.font", new FontUIResource(new Font("Arial", Font.BOLD, 18)));
+			 UIManager.put("ComboBox.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
 			 
 			 UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 16));
 		     UIManager.put("OptionPane.buttonFont", new Font("Arial", Font.PLAIN, 16));

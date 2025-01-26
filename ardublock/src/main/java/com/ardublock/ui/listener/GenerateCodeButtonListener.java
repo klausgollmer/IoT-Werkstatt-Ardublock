@@ -55,7 +55,8 @@ public class GenerateCodeButtonListener implements ActionListener
 		for (RenderableBlock renderableBlock:renderableBlocks)
 		{
 			Block block = renderableBlock.getBlock();
-			
+	
+		
 			if (!block.hasPlug() && (Block.NULL.equals(block.getBeforeBlockID())))
 			{
 				
@@ -100,6 +101,7 @@ public class GenerateCodeButtonListener implements ActionListener
 					}
 					subroutineBlockSet.add(renderableBlock);
 				}
+				
 				if (block.getGenusName().equals("scoop_task"))
 				{
 					translator.setScoopProgram(true);
@@ -144,13 +146,14 @@ public class GenerateCodeButtonListener implements ActionListener
 			for (RenderableBlock renderableBlock : scoopBlockSet)
 			{
 				translator.setRootBlockName("scoop");
+				
 				Block scoopBlock = renderableBlock.getBlock();
 				code.append(translator.translate(scoopBlock.getBlockID()));
 			}
 			
 			for (RenderableBlock renderableBlock : subroutineBlockSet)
 			{
-
+                boolean add_ok = false;
 				Block subroutineBlock = renderableBlock.getBlock();
 				
 				if (subroutineBlock.getGenusName().equals("subroutine")){
@@ -162,7 +165,28 @@ public class GenerateCodeButtonListener implements ActionListener
 					translator.setRootBlockName("TTN_RxCallback");
 				}
 				
-				code.append(translator.translate(subroutineBlock.getBlockID()));
+                //	each subroutine definition must have at least one call	
+				for (RenderableBlock testBlock : renderableBlocks)
+				{
+					Block block = testBlock.getBlock();
+					if (block.getGenusName().equals(subroutineBlock.getGenusName()+"-ref")) {
+					//	System.out.println("Genius ok");
+						if (block.getBlockLabel().equals(subroutineBlock.getBlockLabel())) {
+					//		System.out.println("label ok");
+							System.out.println("Genius " + block.getGenusName());
+							System.out.println("Label " + block.getBlockLabel());
+					
+							System.out.println("before "+block.getBeforeBlockID());
+							System.out.println("before NULL"+Block.NULL.equals(block.getBeforeBlockID()));
+		                     if ((block.hasPlug() || (!Block.NULL.equals(block.getBeforeBlockID())))) 			
+							   add_ok = true;		
+						}
+					}
+					//System.out.println("Genius " + block.getGenusName());
+					//System.out.println("Label " + block.getBlockLabel());
+				}
+				
+				if (add_ok == true) code.append(translator.translate(subroutineBlock.getBlockID()));
 			}
 			
 			translator.beforeGenerateHeader();

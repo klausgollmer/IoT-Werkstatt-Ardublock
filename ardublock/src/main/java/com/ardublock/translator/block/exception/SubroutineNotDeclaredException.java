@@ -14,6 +14,8 @@ public class SubroutineNotDeclaredException extends ArdublockException
 	
 	public SubroutineNotDeclaredException(Long blockId)
 	{
+		//System.out.println("not declared");
+		
 		this.blockId = blockId;
 	}
 	
@@ -21,4 +23,9 @@ public class SubroutineNotDeclaredException extends ArdublockException
 	{
 		return this.blockId;
 	}
+	
+	 @Override
+	    public void printStackTrace() {
+	        // Überschreibt die Standardausgabe, um die Konsole sauber zu halten
+	 }
 }
