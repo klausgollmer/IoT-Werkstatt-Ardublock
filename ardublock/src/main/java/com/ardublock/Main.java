@@ -33,33 +33,7 @@ public class Main
      //System.out.println("uiScale 1.4");
  	 FlatLightLaf.setup();
 
-     
-     // Set system properties for high DPI scaling
-	 //System.setProperty("swing.aatext", "true");
-	 //System.setProperty("awt.useSystemAAFontSettings", "lcd");
-       
-  
-     /*
-  	FlatLightLaf.setup();
- 	 UIManager.put("Button.arc", 10);
-	 UIManager.put("Button.margin", new Insets(1, 3, 3, 3));
-	 UIManager.put("Component.focusWidth", 1);
-	 UIManager.put("Component.innerFocusWidth", 1);
-
-	        // Set larger font size
-	 /*
-	 UIManager.put("defaultFont", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
-	 UIManager.put("Button.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
-	 UIManager.put("Label.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
-	 UIManager.put("ComboBox.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
-	 */
-	
-     //Jetzt im Context.jar
-	 
-	 
-	 
-	 
-	 Context context = Context.getContext();
+ 	 Context context = Context.getContext();
 	 context.setArduinoCodeFileString("");
 	    
 		

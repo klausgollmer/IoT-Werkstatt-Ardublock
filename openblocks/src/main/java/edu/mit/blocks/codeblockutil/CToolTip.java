@@ -49,7 +49,7 @@ class CToolTipUI extends BasicToolTipUI {
         renderer.removeAll();
         renderer.add(textArea);
 //        textArea.setFont(new Font("Ariel", Font.PLAIN, 11));
-        textArea.setFont(new Font("Arial", Font.PLAIN, 14));
+        textArea.setFont(new Font("Arial", Font.PLAIN, 16));
         textArea.setWrapStyleWord(true);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);

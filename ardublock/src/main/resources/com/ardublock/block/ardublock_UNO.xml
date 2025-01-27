@@ -3034,7 +3034,7 @@
 				
 			</BlockConnectors>
 		</BlockGenus> 
-
+<!-- 
         <BlockGenus name="iot_WS2812Ring" kind="command"
 			color="74 108 212" initlabel="bg.iot_WS2812Ring">
 			<description>
@@ -3072,9 +3072,9 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus> 
-
+-->
     <BlockGenus name="iot_WS2812Ring_c" kind="command"
-			color="74 108 212" initlabel="bg.iot_WS2812Ring">
+			color="74 108 212" initlabel="bg.iot_WS2812Ring_c">
 			<description>
 				<text>ada_neopixel_pixel_colorGRB</text>
 			</description>
