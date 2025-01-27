@@ -54,7 +54,7 @@ public class CPopupMenu extends JPopupMenu implements ActionListener {
     }
 
     public void setZoomLevel(double zoom) {
-        this.zoom = zoom;
+        this.zoom = zoom*1.4; // #kgo zoom auswahl z. B. bei BSEC
         // change the size of the panel and the text
         view.setPreferredSize(new Dimension((int) (100 * this.zoom), (int) (items * ITEM_HEIGHT * this.zoom)));
         this.setPopupSize((int) (100 * this.zoom), (int) (Math.min(items * ITEM_HEIGHT + 10, 100) * this.zoom));

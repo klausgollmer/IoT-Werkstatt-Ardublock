@@ -1,5 +1,6 @@
 package edu.mit.blocks.workspace;
 
+import java.awt.Font;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
@@ -60,7 +61,7 @@ public class ContextMenu extends PopupMenu implements ActionListener {
     	cloneItem1.setActionCommand(CLONE_BLOCK);
     	cloneItem1.addActionListener(rndBlockMenu);
         addCommentMenu.add(cloneItem1);
-        
+        addCommentMenu.setFont(new Font("Arial", Font.PLAIN, 16)); // Setzt Schriftgröße für das gesamte Menü
         addCommentMenuInit = true;
         
     }

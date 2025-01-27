@@ -10,16 +10,15 @@ import javax.swing.CellRendererPane;
 import javax.swing.JComponent;
 import javax.swing.JTextArea;
 import javax.swing.JToolTip;
-import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicToolTipUI;
 
 public class CToolTip extends JToolTip {
 
     private static final long serialVersionUID = 328149080249L;
-    private Color background = new Color(255, 255, 225);
+    private Color background = new Color(255, 255, 150);
 
     private CToolTip() {
-        this(new Color(255, 255, 225));
+        this(new Color(55, 255, 225));
     }
 
     public CToolTip(Color background) {
@@ -41,7 +40,7 @@ class CToolTipUI extends BasicToolTipUI {
 
     public CToolTipUI(Color background) {
         super();
-        this.background = background;
+        this.background = Color.WHITE;
         renderer = new CellRendererPane();
         textArea = new JTextArea();
 //        textArea.setMargin(new Insets(0, 3, 0, 0));
