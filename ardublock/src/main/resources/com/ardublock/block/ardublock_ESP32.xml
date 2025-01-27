@@ -62,7 +62,7 @@
 					label="bc.setup" />
 				<BlockConnector connector-type="cmd" connector-kind="socket"
 					label="bc.loop" />
-			</BlockConnectors>
+		 		</BlockConnectors>
 		
 			<Images>
 			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
