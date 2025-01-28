@@ -134,7 +134,7 @@ public class Context
 		String text = "version="+ArdublockVersion;
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.write(text);
-        	System.out.println("gespeichert wurde: " + text);
+//        	System.out.println("gespeichert wurde: " + text);
 
         } catch (IOException e) {
            // System.err.println("Fehler beim Schreiben in die Datei: " + e.getMessage());

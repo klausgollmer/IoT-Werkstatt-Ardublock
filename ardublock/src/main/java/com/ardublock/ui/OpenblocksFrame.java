@@ -299,7 +299,7 @@ public class OpenblocksFrame extends JFrame
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				System.out.println("item state changed to: " + boardComboBox.getSelectedItem() + ".  Current Ardublock Version = " + context.ArdublockVersion);
+		//		System.out.println("item state changed to: " + boardComboBox.getSelectedItem() + ".  Current Ardublock Version = " + context.ArdublockVersion);
 				//- ignore if selected program is same as the current one. 
 				if (context.ArdublockVersion == boardComboBox.getSelectedItem()) {
 					System.out.println("skipped");

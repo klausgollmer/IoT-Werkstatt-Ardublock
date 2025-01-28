@@ -86,6 +86,7 @@
      	<BlockGenus name="Divider_Bool" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Num" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_String" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+		<BlockGenus name="Divider_Predef" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Time" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Array" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 	    <BlockGenus name="Divider_Math" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -927,6 +928,28 @@
 					position-type="mirror" />
 			</BlockConnectors>
 		</BlockGenus>
+
+        <BlockGenus name="predef_number" kind="data"
+			initlabel="bg.predef_number" editable-label="yes" is-label-value="yes"
+			color="0 102 102">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="plug" position-type="mirror" />
+			</BlockConnectors>
+		</BlockGenus>
+
+		<BlockGenus name="setter_predef_number" kind="command"
+			color="0 102 102" initlabel="bg.setter_predef_number" editable-label="yes" is-label-value="yes">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="value">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
 
 		<BlockGenus name="variable_number" kind="data"
 			initlabel="bg.variable_number" editable-label="yes" is-label-value="yes"
@@ -6322,6 +6345,11 @@
 				<BlockGenusMember>variable_number_double</BlockGenusMember>	
 				<BlockGenusMember>local_variable_number</BlockGenusMember>				
 				<BlockGenusMember>number</BlockGenusMember>
+				
+				<BlockGenusMember>Divider_Predef</BlockGenusMember>
+				<BlockGenusMember>setter_predef_number</BlockGenusMember>				
+				<BlockGenusMember>predef_number</BlockGenusMember>	
+	
 				
 				<BlockGenusMember>Divider_String</BlockGenusMember>
 				<BlockGenusMember>setter_variable_String</BlockGenusMember> 

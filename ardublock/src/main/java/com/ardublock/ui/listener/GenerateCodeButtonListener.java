@@ -163,6 +163,7 @@ public class GenerateCodeButtonListener implements ActionListener
 					translator.setRootBlockName("sub_return");
 				} else if (subroutineBlock.getGenusName().equals("TTN_RxCallback")){
 					translator.setRootBlockName("TTN_RxCallback");
+				    add_ok = true;	
 				}
 				
                 //	each subroutine definition must have at least one call	

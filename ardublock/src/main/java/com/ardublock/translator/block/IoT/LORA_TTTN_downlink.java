@@ -22,7 +22,8 @@ public class LORA_TTTN_downlink  extends TranslatorBlock {
 		
 //		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    String ret;
-		ret = "void LoRaWAN_DownlinkCallback(){ // ---------- my callbackfunction downlink\n";
+		ret = "// LoRaWAN Downlink enabled -> Get Commands from TTN Gateway\n"
+				+ "void LoRaWAN_DownlinkCallback(){ // ---------- my callbackfunction downlink\n";
 		TranslatorBlock translatorBlock = getTranslatorBlockAtSocket(0);
 		while (translatorBlock != null)
 		{
