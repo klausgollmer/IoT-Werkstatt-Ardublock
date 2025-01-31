@@ -31,7 +31,7 @@ public class ExtDisp_OLED_Font  extends TranslatorBlock {
 		translator.addDefinitionCommand(Def);
 		
 		String Setup ="if (!(myOLEDdisplay.begin(0x3C, true))) { // OLED Display Address 0x3C default\r\n"
-   		  		+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
+   		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
    		  		+ "} \r\n";
   	    translator.addSetupCommand(Setup);
 	

@@ -36,17 +36,17 @@ public class System_BasicOTA  extends TranslatorBlock {
 	    	  + "  ArduinoOTA.onEnd([](){}); \n"
 	          + "  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total){});\n"
               + "ArduinoOTA.onError([](ota_error_t error) {\n" + 
-              "    Serial.printf(\"Error[%u]: \", error);\n" + 
+              "    IOTW_PRINTF(\"Error[%u]: \", error);\n" + 
               "    if (error == OTA_AUTH_ERROR) {\n" + 
-              "      Serial.println(\"Auth Failed\");\n" + 
+              "      IOTW_PRINTLN(\"Auth Failed\");\n" + 
               "    } else if (error == OTA_BEGIN_ERROR) {\n" + 
-              "      Serial.println(\"Begin Failed\");\n" + 
+              "      IOTW_PRINTLN(\"Begin Failed\");\n" + 
               "    } else if (error == OTA_CONNECT_ERROR) {\n" + 
-              "      Serial.println(\"Connect Failed\");\n" + 
+              "      IOTW_PRINTLN(\"Connect Failed\");\n" + 
               "    } else if (error == OTA_RECEIVE_ERROR) {\n" + 
-              "      Serial.println(\"Receive Failed\");\n" + 
+              "      IOTW_PRINTLN(\"Receive Failed\");\n" + 
               "    } else if (error == OTA_END_ERROR) {\n" + 
-              "      Serial.println(\"End Failed\");\n" + 
+              "      IOTW_PRINTLN(\"End Failed\");\n" + 
               "    }\n" + 
               "  });";
 	  		translator.addSetupCommand(setup);

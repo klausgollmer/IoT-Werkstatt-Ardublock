@@ -45,10 +45,10 @@ public class HTTP_IFTTTTrigger  extends TranslatorBlock {
 		        +"      antwort = antwort + client.readStringUntil('\\r');\n"
 		        +"    else ok = 0;\n"
 		        +"    client.stop(); \n"
-		        +"    Serial.println(antwort);\n"
+		        +"    IOTW_PRINTLN(antwort);\n"
 		        + "  } \n"
 		        + " } \n"
-		        + " if (!ok) Serial.print(\" no connection\"); // Fehlermeldung\n"
+		        + " if (!ok) IOTW_PRINT(\" no connection\"); // Fehlermeldung\n"
 		        + " return ok;\n"
 		        + "}\n";
 
@@ -66,10 +66,10 @@ public class HTTP_IFTTTTrigger  extends TranslatorBlock {
         	 + " String host = \"maker.ifttt.com\";\n"
              + " String cmd = \"/trigger/\" + String(" + trigger + ") + \"/with/key/\" + String("+apikey+");"
              + " String antwort = \" \";\n"
-             +"  Serial.print(\"\\n Trigger IFTTT \");\n"
-             +"  Serial.println("+trigger+");\n"
+             +"  IOTW_PRINT(\"\\n Trigger IFTTT \");\n"
+             +"  IOTW_PRINTLN("+trigger+");\n"
              + " httpGET(host,cmd,antwort,80); \n"
-             +"  Serial.println(antwort);\n"
+             +"  IOTW_PRINTLN(antwort);\n"
              +"} // Blockende\n";
 
         return codePrefix + ret + codeSuffix;

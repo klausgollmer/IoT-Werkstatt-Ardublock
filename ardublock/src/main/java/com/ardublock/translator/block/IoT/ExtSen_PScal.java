@@ -22,7 +22,7 @@ public class ExtSen_PScal  extends TranslatorBlock {
 
 		//translator.addSetupCommand("Serial.begin(115200);");
    	    // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-		// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+		// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
 			
 		String ID;
 		TranslatorBlock translatorBlock = this.getTranslatorBlockAtSocket(0);
@@ -62,7 +62,7 @@ public class ExtSen_PScal  extends TranslatorBlock {
 	    		"\n" + 
 	    		"  int wait = PS_MAXWAITCAL; // n frames stable \n" + 
 	    		"  if (person_sensor_read(&results)) { // valid results\n" + 
-	    		"    //Serial.print(results.faces[0].id_confidence);\n" + 
+	    		"    //IOTW_PRINT(results.faces[0].id_confidence);\n" + 
 	    		"    while (wait > 0 && OK) {\n" + 
 	    		"      delay(1);\n" + 
 	    		"      if (!((results.num_faces == 1) &&\n" + 
@@ -73,12 +73,12 @@ public class ExtSen_PScal  extends TranslatorBlock {
 	    		"        yield();\n" + 
 	    		"      } \n" + 
 	    		"      else {\n" + 
-	    		"        if (wait==PS_MAXWAITCAL) Serial.print(\" start ...\");\n" + 
+	    		"        if (wait==PS_MAXWAITCAL) IOTW_PRINT(\" start ...\");\n" + 
 	    		"        delay (250);\n" + 
-	    		"        Serial.println(\"New\");\n" + 
+	    		"        IOTW_PRINTLN(\"New\");\n" + 
 	    		"        person_sensor_read(&results);\n" + 
 	    		"        yield();\n" + 
-	    		"        Serial.print('.');\n" + 
+	    		"        IOTW_PRINT('.');\n" + 
 	    		"      }\n" + 
 	    		"      wait--;\n" + 
 	    		"      delay(1);\n" + 
@@ -86,7 +86,7 @@ public class ExtSen_PScal  extends TranslatorBlock {
 	    		"    if (OK) {\n" + 
 	    		"      person_sensor_write_reg(\n" + 
 	    		"      PERSON_SENSOR_REG_CALIBRATE_ID, ID);\n" + 
-	    		"      Serial.println(\" done\");\n" + 
+	    		"      IOTW_PRINTLN(\" done\");\n" + 
 	    		"      OK = ID;\n" + 
 	    		"      PS_next_unused_id += 1;\n" + 
 	    		"    }\n" + 
@@ -99,12 +99,12 @@ public class ExtSen_PScal  extends TranslatorBlock {
 	    		"  if (type == 1) {\n" + 
 	    		"    person_sensor_write_reg(\n" + 
 	    		"    PERSON_SENSOR_REG_PERSIST_IDS, 0x01);\n" + 
-	    		"    Serial.println(\"PS: Store any recognized IDs even when unpowered\");\n" + 
+	    		"    IOTW_PRINTLN(\"PS: Store any recognized IDs even when unpowered\");\n" + 
 	    		"  } \n" + 
 	    		"  else {\n" + 
 	    		"    person_sensor_write_reg(\n" + 
 	    		"    PERSON_SENSOR_REG_ERASE_IDS  , 0x00);\n" + 
-	    		"    Serial.println(\"PS: Wipe any recognized IDs from storage\");\n" + 
+	    		"    IOTW_PRINTLN(\"PS: Wipe any recognized IDs from storage\");\n" + 
 	    		"  }\n" + 
 	    		"}\n" + 
 	    		"\n" + 

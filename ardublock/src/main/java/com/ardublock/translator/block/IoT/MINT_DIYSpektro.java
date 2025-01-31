@@ -43,9 +43,9 @@ public class MINT_DIYSpektro  extends TranslatorBlock {
 		
 		//translator.addSetupCommand("Serial.begin(115200);");
 		// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-	    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+	    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
 		String Setup = "  if(!tsl.begin()) {\r\n" + 
-				"    Serial.print(\"no TSL2561 detected ... Check your wiring or I2C ADDR!\");\r\n" + 
+				"    IOTW_PRINT(\"no TSL2561 detected ... Check your wiring or I2C ADDR!\");\r\n" + 
 				"    while(1) {yield();};\r\n" + 
 				"  }\r\n" + 
 				"  /* Setup the sensor gain and integration time */\r\n" + 

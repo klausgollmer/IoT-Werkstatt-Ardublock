@@ -25,11 +25,11 @@ public class ExtSen_SCD30Cal extends TranslatorBlock
     // I2C-initialisieren
    
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
     translator.setSCD30Program(true);;
     
     
-    String Setup = "if (airSensorSCD30.begin() == false) {Serial.println(\"The SCD30 did not respond. Please check wiring.\"); while(1) {yield(); delay(1);} }\n";
+    String Setup = "if (airSensorSCD30.begin() == false) {IOTW_PRINTLN(\"The SCD30 did not respond. Please check wiring.\"); while(1) {yield(); delay(1);} }\n";
     translator.addSetupCommand(Setup);
     
     
@@ -44,10 +44,10 @@ public class ExtSen_SCD30Cal extends TranslatorBlock
 	
 	
     String cmd = "// Forced Calibration Sensirion SCD 30\n"+
-          		 "Serial.print(\"Start SCD 30 calibration, please wait 10 s ...\");delay(10000);\n"+
+          		 "IOTW_PRINT(\"Start SCD 30 calibration, please wait 10 s ...\");delay(10000);\n"+
                  "airSensorSCD30.setAltitudeCompensation("+code+"); // Altitude in m ü NN \n"+
                  "airSensorSCD30.setForcedRecalibrationFactor(400); // fresh air \n"+
-  		         "Serial.println(\" done\");\n";
+  		         "IOTW_PRINTLN(\" done\");\n";
 
     return codePrefix + cmd + codeSuffix;
   }

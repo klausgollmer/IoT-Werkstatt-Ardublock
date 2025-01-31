@@ -37,7 +37,7 @@ public class ExtOut_SDprint extends TranslatorBlock
 	   			"  }\r\n" + 
 	   			"  // if the file isn't open, pop up an error:\r\n" + 
 	   			"  else {\r\n" + 
-	   			"    Serial.println(\"error opening SD file\");\r\n" + 
+	   			"    IOTW_PRINTLN(\"error opening SD file\");\r\n" + 
 	   			"  }"
 	   			+ "}";
 	   		   	translator.addDefinitionCommand(SDprint);
@@ -48,15 +48,15 @@ public class ExtOut_SDprint extends TranslatorBlock
 	    //translator.addSetupCommand("Serial.begin(115200);");
 	    
 	    String initial = " if (!SD.begin(chipSelect)) {\r\n" + 
-	    		"    Serial.println(\"initialization failed. Things to check:\");\r\n" + 
-	    		"    Serial.println(\"1. is a card inserted?\");\r\n" + 
-	    		"    Serial.println(\"2. is your wiring correct?\");\r\n" + 
-	    		"    Serial.println(\"3. did you change the chipSelect pin to match your shield or module?\");\r\n" + 
-	    		"    Serial.println(\"Note: press reset button on the board and reopen this Serial Monitor after fixing your issue!\");\r\n" + 
+	    		"    IOTW_PRINTLN(\"initialization failed. Things to check:\");\r\n" + 
+	    		"    IOTW_PRINTLN(\"1. is a card inserted?\");\r\n" + 
+	    		"    IOTW_PRINTLN(\"2. is your wiring correct?\");\r\n" + 
+	    		"    IOTW_PRINTLN(\"3. did you change the chipSelect pin to match your shield or module?\");\r\n" + 
+	    		"    IOTW_PRINTLN(\"Note: press reset button on the board and reopen this Serial Monitor after fixing your issue!\");\r\n" + 
 	    		"    while (true);\r\n" + 
 	    		"  }\r\n" + 
 	    		"\r\n" + 
-	    		"  Serial.println(\"initialization done.\");";
+	    		"  IOTW_PRINTLN(\"initialization done.\");";
 	    translator.addSetupCommand(initial);
 	  
 	    String ret = "";

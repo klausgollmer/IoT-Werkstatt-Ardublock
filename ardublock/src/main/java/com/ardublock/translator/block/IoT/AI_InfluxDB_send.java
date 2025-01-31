@@ -36,7 +36,7 @@ public class AI_InfluxDB_send  extends TranslatorBlock {
 	    		"  row.addTag(\"Unit\", "+unit+");\n" + 
 	    		"  row.addValue(\"Value\", "+val+");\n" + 
 	    		"  influx.write(row);}\n" + 
-	    		"  Serial.println(\"influx data send\");\n"; 
+	    		"  IOTW_PRINTLN(\"influx data send\");\n"; 
 	    String ret = cmd;
         return codePrefix + ret + codeSuffix;
 	 	}

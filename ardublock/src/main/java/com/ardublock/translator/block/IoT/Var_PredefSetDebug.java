@@ -24,6 +24,7 @@ public class Var_PredefSetDebug  extends TranslatorBlock {
 		String Value = tb.toCode();
 	    int zahl = Integer.parseInt(Value);
 		translator.setDebugProgram(zahl);
+		
 		return codePrefix + codeSuffix;
 	 	}
 }

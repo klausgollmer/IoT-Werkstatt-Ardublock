@@ -53,8 +53,8 @@ public class System8266_RTCReadVar  extends TranslatorBlock {
 				"uint8_t RTCvalidateSlot(float slot) {\n" + 
 				"  uint8_t index = 0;\n" + 
 				"  if ((round(slot) < 0) || (round(slot) > 126)) {\n" + 
-				"    Serial.println(\"Sorry RTC-Memory allows for 127 Slots\");\n" + 
-				"    Serial.println(String(\"slot \") + String(slot) + String(\" not valid\"));\n" + 
+				"    IOTW_PRINTLN(\"Sorry RTC-Memory allows for 127 Slots\");\n" + 
+				"    IOTW_PRINTLN(String(\"slot \") + String(slot) + String(\" not valid\"));\n" + 
 				"  } else index = round(slot);\n" + 
 				"  return(index);  \n" + 
 				"}\n"; 
@@ -67,7 +67,7 @@ public class System8266_RTCReadVar  extends TranslatorBlock {
 	            "int RTCVarCheck() {" +
 				"    uint32_t crcOfData = RTCcalculateCRC32((uint8_t*) &RTCData.data[0], sizeof(RTCData.data));\n" + 
 				"    if (crcOfData != RTCData.crc32) {\n" + 
-				"      Serial.println(\"doesn't match CRC32 of RTCVar, Data is probably invalid!\");\n" + 
+				"      IOTW_PRINTLN(\"doesn't match CRC32 of RTCVar, Data is probably invalid!\");\n" + 
 				"    return 0;\n"+
 				"    } else {\n" + 
 				"    return 1;\n"+

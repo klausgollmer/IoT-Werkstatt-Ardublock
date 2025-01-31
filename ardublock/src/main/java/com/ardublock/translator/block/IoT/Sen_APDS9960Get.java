@@ -26,9 +26,9 @@ public class Sen_APDS9960Get extends TranslatorBlock
     // I2C-initialisieren
     //translator.addSetupCommand("Serial.begin(115200);");
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
  
-    translator.addSetupCommand("if (!apds.begin()) Serial.println(\"Kein ADPS Gesture-Sensor gefunden\");\n");
+    translator.addSetupCommand("if (!apds.begin()) IOTW_PRINTLN(\"Kein ADPS Gesture-Sensor gefunden\");\n");
     translator.addSetupCommand("apds.setADCGain(APDS9960_AGAIN_64X);");
     translator.addSetupCommand("apds.setProxGain(APDS9960_PGAIN_8X);");
     translator.addSetupCommand("apds.setLED( APDS9960_LEDDRIVE_100MA,APDS9960_LEDBOOST_300PCNT);");
@@ -121,30 +121,30 @@ public class Sen_APDS9960Get extends TranslatorBlock
     		+ "        switch (gain) {\r\n"
     		+ "        case 1:\r\n"
     		+ "          apds.setADCGain(APDS9960_AGAIN_1X);\r\n"
-    		+ "          //Serial.println(\"reduce RGB AGAIN 1x\");\r\n"
+    		+ "          //IOTW_PRINTLN(\"reduce RGB AGAIN 1x\");\r\n"
     		+ "          break;           \r\n"
     		+ "        case 4:\r\n"
     		+ "          apds.setADCGain(APDS9960_AGAIN_4X);\r\n"
-    		+ "          //Serial.println(\"reduce RGB AGAIN 4x\");\r\n"
+    		+ "          //IOTW_PRINTLN(\"reduce RGB AGAIN 4x\");\r\n"
     		+ "          break;           \r\n"
     		+ "        case 16:\r\n"
     		+ "          apds.setADCGain(APDS9960_AGAIN_16X);\r\n"
-    		+ "          //Serial.println(\"reduce RGB AGAIN 16x\");\r\n"
+    		+ "          //IOTW_PRINTLN(\"reduce RGB AGAIN 16x\");\r\n"
     		+ "          break;           \r\n"
     		+ "        }\r\n"
     		+ "      } \r\n"
     		+ "      else {      \r\n"
     		+ "        integrationTime /= 2;\r\n"
     		+ "        apds.setADCIntegrationTime(integrationTime);\r\n"
-    		+ "        //Serial.print(\"reduce integrationTime \");\r\n"
-    		+ "        //Serial.println(integrationTime);\r\n"
+    		+ "        //IOTW_PRINT(\"reduce integrationTime \");\r\n"
+    		+ "        //IOTW_PRINTLN(integrationTime);\r\n"
     		+ "      }\r\n"
     		+ "    }\r\n"
     		+ "  }\r\n"
-    		+ "  Serial.print(\"APDS9960 adjust: integrationTime = \");\r\n"
-    		+ "  Serial.print(integrationTime);\r\n"
-    		+ "  Serial.print(\" ms and AGAIN = \");\r\n"
-    		+ "  Serial.println(gain);\r\n"
+    		+ "  IOTW_PRINT(\"APDS9960 adjust: integrationTime = \");\r\n"
+    		+ "  IOTW_PRINT(integrationTime);\r\n"
+    		+ "  IOTW_PRINT(\" ms and AGAIN = \");\r\n"
+    		+ "  IOTW_PRINTLN(gain);\r\n"
     		+ "}\r\n"
     		+ "\r\n"
     		+ "\r\n"
@@ -153,7 +153,7 @@ public class Sen_APDS9960Get extends TranslatorBlock
     		+ "  float r_mean = 0.0, g_mean = 0.0, b_mean = 0.0, brightness_mean = 0.0;\r\n"
     		+ "  adjustSensitivityAPDS9960();\r\n"
     		+ "  readMeanColorAPDS9960(r_mean, g_mean, b_mean, brightness_mean,4);\r\n"
-    		+ "  Serial.println(\"APDS9960 whitebalance\");\r\n"
+    		+ "  IOTW_PRINTLN(\"APDS9960 whitebalance\");\r\n"
     		+ "  APDS9960_calibrate_r = 4095./r_mean;\r\n"
     		+ "  APDS9960_calibrate_g = 4095./g_mean;\r\n"
     		+ "  APDS9960_calibrate_b = 4095./b_mean;\r\n"
@@ -192,7 +192,7 @@ public class Sen_APDS9960Get extends TranslatorBlock
     		+ "    break;\r\n"
     		+ "  case 2: // AmbientLight\r\n"
     		+ "    //value = c;\r\n"
-    		+ "    Serial.print(\"readLux\");\r\n"
+    		+ "    IOTW_PRINT(\"readLux\");\r\n"
     		+ "    value = apds.calculateLux(r,g,b);\r\n"
     		+ "    break;\r\n"
     		+ "  case 3: // red\r\n"

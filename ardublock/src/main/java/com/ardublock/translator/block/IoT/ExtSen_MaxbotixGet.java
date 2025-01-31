@@ -38,7 +38,7 @@ public class ExtSen_MaxbotixGet extends TranslatorBlock
     translator.addSetupCommand(Setup);
     if (sleep != "-1")
     		Setup = "pinMode("+sleep+",OUTPUT); digitalWrite("+sleep+",HIGH); \n"+
-    				"Serial.println(\"Side effect: set sleep GPIO"+sleep+" to OUTPUT HIGH (Maxbotix sensor)\");";
+    				"IOTW_PRINTLN(\"Side effect: set sleep GPIO"+sleep+" to OUTPUT HIGH (Maxbotix sensor)\");";
     translator.addSetupCommand(Setup);
     
     String wakeup = "#if defined(ESP8266)\r\n"
@@ -46,7 +46,7 @@ public class ExtSen_MaxbotixGet extends TranslatorBlock
     		+ " *  https://kevinstadler.github.io/notes/esp8266-deep-sleep-light-sleep-arduino/\r\n"
     		+ " */\r\n"
     		+ "void fpm_wakup_cb_func(void) { // used for light sleep\r\n"
-    		+ "  Serial.println(\"wakeup lightsleep\"); \r\n"
+    		+ "  IOTW_PRINTLN(\"wakeup lightsleep\"); \r\n"
     		+ "  Serial.flush();\r\n"
     		+ "}\r\n"
     		+ "void MaxBotixLightsleep(long ms) {\r\n"

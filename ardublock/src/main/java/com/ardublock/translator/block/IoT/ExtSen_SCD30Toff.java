@@ -24,11 +24,11 @@ public class ExtSen_SCD30Toff extends TranslatorBlock
     // I2C-initialisieren
    
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
     translator.setSCD30Program(true);;
     
     
-    String Setup = "if (airSensorSCD30.begin() == false) {Serial.println(\"The SCD30 did not respond. Please check wiring.\"); while(1) {yield(); delay(1);} }\n";
+    String Setup = "if (airSensorSCD30.begin() == false) {IOTW_PRINTLN(\"The SCD30 did not respond. Please check wiring.\"); while(1) {yield(); delay(1);} }\n";
     translator.addSetupCommand(Setup);
     
     
@@ -48,13 +48,13 @@ public class ExtSen_SCD30Toff extends TranslatorBlock
          	     "float T_OffOld=airSensorSCD30.getTemperatureOffset();// old Offset\n"+
       		     "float T_OffNew="+code+";// new Offset\n"+
          	     "if (T_OffNew<0) T_OffNew=0; // only positive offset \n"+
-      		     "Serial.print(\"Actual T=\");Serial.println(T_Act);\n"+
-          		 "Serial.print(\"Old Offset=\");Serial.println(T_OffOld);\n"+
-          		 "Serial.print(\"New Offset=\");Serial.println(T_OffNew);\n"+
-        		 "Serial.print(\"Set SCD 30 Temperature offset, please wait 10 s ...\");\n"+
+      		     "IOTW_PRINT(\"Actual T=\");IOTW_PRINTLN(T_Act);\n"+
+          		 "IOTW_PRINT(\"Old Offset=\");IOTW_PRINTLN(T_OffOld);\n"+
+          		 "IOTW_PRINT(\"New Offset=\");IOTW_PRINTLN(T_OffNew);\n"+
+        		 "IOTW_PRINT(\"Set SCD 30 Temperature offset, please wait 10 s ...\");\n"+
                  "airSensorSCD30.setTemperatureOffset(T_OffNew); // set offset \n"+
         		 "delay(10000);\n"+ 
-         		 "Serial.println(\" done, valid after power on\");\n";
+         		 "IOTW_PRINTLN(\" done, valid after power on\");\n";
 
     return codePrefix + cmd + codeSuffix;
   }

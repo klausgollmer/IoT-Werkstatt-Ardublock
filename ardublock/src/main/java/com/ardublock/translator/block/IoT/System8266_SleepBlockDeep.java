@@ -65,7 +65,7 @@ public class System8266_SleepBlockDeep  extends TranslatorBlock {
 	            "int RTCLoadCheck() {" +
 				"    uint32_t crcOfData = RTCcalculateCRC32((uint8_t*) &RTCData.data[0], sizeof(RTCData.data));\n" + 
 				"    if (crcOfData != RTCData.crc32) {\n" + 
-				"      Serial.println(\"CRC32 in RTC memory doesn't match CRC32 of data. Data is probably invalid!\");\n" + 
+				"      IOTW_PRINTLN(\"CRC32 in RTC memory doesn't match CRC32 of data. Data is probably invalid!\");\n" + 
 				"    return 0;\n"+
 				"    } else {\n" + 
 				"    return 1;\n"+
@@ -89,7 +89,7 @@ public class System8266_SleepBlockDeep  extends TranslatorBlock {
 		if (translator.isLORAProgram()) {
 			translator.addHeaderFile("#define IOTW_LORA_DEEPSLEEP");
 			ret = "if (os_queryTimeCriticalJobs(ms2osticks("+Delay_ms+"))) { \n" + 
-				  "    Serial.println(\"busywaiting for criticalJobs\");\n" + 
+				  "    IOTW_PRINTLN(\"busywaiting for criticalJobs\");\n" + 
 				  "    while (os_queryTimeCriticalJobs(ms2osticks("+Delay_ms+"))) { \n" + 
 				  "     yield();  \n" + 
 				  "     os_runloop_once();\n" + 

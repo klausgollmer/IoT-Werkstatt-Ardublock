@@ -48,7 +48,7 @@ public class ExtSen_K30Get extends TranslatorBlock
     		"    if (sum == buffer[3])\r\n" + 
     		"      co2_value = co2_raw;\r\n" + 
     		"    else\r\n" + 
-    		"      Serial.print(\"K30 failed reading.\");\r\n" + 
+    		"      IOTW_PRINT(\"K30 failed reading.\");\r\n" + 
     		"    Tout--;\r\n" + 
     		"  }\r\n" + 
     		"  return co2_value;\r\n" + 
@@ -59,7 +59,7 @@ public class ExtSen_K30Get extends TranslatorBlock
    	translator.addDefinitionCommand(Def);
 	
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
  
    	
     

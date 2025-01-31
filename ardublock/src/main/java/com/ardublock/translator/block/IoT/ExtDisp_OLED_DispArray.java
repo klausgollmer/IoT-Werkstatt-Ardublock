@@ -56,13 +56,13 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
 	   			+ "	 myOLEDdisplay.display();\r\n"
 	   			+ "  canvas.setFont(&FreeMonoBold18pt7b);\n"
 	   			+ "} else {\r\n"
-	   			+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
+	   			+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
 	   			+ "} \r\n";
 	   			*/
 		
 		
 		String Setup ="if (!(myOLEDdisplay.begin(0x3C, true))) { // OLED Display Address 0x3C default\r\n"
-   		  		+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
+   		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
    		  		+ "} \r\n";
    	    translator.addSetupCommand(Setup);
 		

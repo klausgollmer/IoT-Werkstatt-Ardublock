@@ -44,10 +44,10 @@ public class HTTP_REST_Get  extends TranslatorBlock {
 		        +"      antwort = antwort + client.readStringUntil('\\r');\n"
 		        +"    else ok = 0;\n"
 		        +"    client.stop(); \n"
-		        +"    Serial.println(antwort);\n"
+		        +"    IOTW_PRINTLN(antwort);\n"
 		        + "  } \n"
 		        + " } \n"
-		        + " if (!ok) Serial.print(\" no connection\"); // Fehlermeldung\n"
+		        + " if (!ok) IOTW_PRINT(\" no connection\"); // Fehlermeldung\n"
 		        + " return ok;\n"
 		        + "}\n";
 

@@ -29,7 +29,7 @@ public class MQTT_Publish  extends TranslatorBlock {
 	    retrained = translatorBlock.toCode();
         
 	    String ret = "mqttreconnect();\n   {String pay=String("+payload+");\n mqttclient.publish("+topic+",pay.c_str(),"+retrained+");\n"+
-	                 "Serial.print(\"mqtt publish on topic: \"); Serial.print(String("+topic+")+String(\" data: \"));Serial.println(pay);};\n"; 
+	                 "IOTW_PRINT(\"mqtt publish on topic: \"); IOTW_PRINT(String("+topic+")+String(\" data: \"));IOTW_PRINTLN(pay);};\n"; 
         return codePrefix + ret + codeSuffix;
 	 	}
 }

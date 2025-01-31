@@ -31,7 +31,7 @@ public class HTTP_HerukoSend  extends TranslatorBlock {
 				 "     client->setInsecure();\n" + 
 				 "  }\n" + 
 				 "  HTTPClient https;\n" + 
-				 "  // Serial.println(message);\n" + 
+				 "  // IOTW_PRINTLN(message);\n" + 
 				 "  if (https.begin(*client, message)){  // HTTPS\n" + 
 				 "    // start connection and send HTTP header\n" + 
 				 "    int httpCode = https.GET();\n" + 
@@ -40,19 +40,19 @@ public class HTTP_HerukoSend  extends TranslatorBlock {
 				 "      // HTTP header has been send and Server response header has been handled\n" + 
 				 "      String payload = https.getString();\n" + 
 				 "      antwort = payload;\n" + 
-				 "      // Serial.println(payload);\n" + 
+				 "      // IOTW_PRINTLN(payload);\n" + 
 				 "      // file found at server\n" + 
 				 "      if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {\n" + 
 				 "        ok = 1;\n" + 
 				 "      }\n" + 
 				 "    } \n" + 
 				 "    else {\n" + 
-				 "      Serial.printf(\"[HTTPS] GET... failed, error: %s\\n\", https.errorToString(httpCode).c_str());\n" + 
+				 "      IOTW_PRINTF(\"[HTTPS] GET... failed, error: %s\\n\", https.errorToString(httpCode).c_str());\n" + 
 				 "    }\n" + 
 				 "    https.end();\n" + 
 				 "  } \n" + 
 				 "  else {\n" + 
-				 "    Serial.printf(\"[HTTPS] Unable to connect\\n\");\n" + 
+				 "    IOTW_PRINTF(\"[HTTPS] Unable to connect\\n\");\n" + 
 				 "  }\n" + 
 				 "  return ok;\n" + 
 				 "}";
@@ -108,7 +108,7 @@ public class HTTP_HerukoSend  extends TranslatorBlock {
 	   
 	    
 	    ret = "\n{ //Block------------------------------ sende Daten an Heruko (mit http GET) \n"
-       		 +" Serial.println(\"\\nHeruko update \");\n"
+       		 +" IOTW_PRINTLN(\"\\nHeruko update \");\n"
 	    	 +" const uint8_t fingerprint[20] ="+finger+";\n"	
         	 +" String cmd = \"/beatmungsgeraet?serialnumber=\"+ String(" + apikey +");\n" 
              +" String host = "+ host +";\n"

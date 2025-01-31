@@ -64,11 +64,11 @@ public class BLYNK_Connect  extends TranslatorBlock {
 	    
 	    ret +="int BlynkCon = 0;\n"
 	        + "while (BlynkCon == 0) {\n"
-	        + "Serial.print (\"\\nBlynk connect ... \");\n" 
+	        + "IOTW_PRINT (\"\\nBlynk connect ... \");\n" 
 	        + "BlynkCon=Blynk.connect();\n"
-	        + "if (BlynkCon == 0) {Serial.println(\"failed, try again\");delay(1000);}\n"
+	        + "if (BlynkCon == 0) {IOTW_PRINTLN(\"failed, try again\");delay(1000);}\n"
 	        + "}\n"
-	        + "Serial.println(\"connected\");\n";
+	        + "IOTW_PRINTLN(\"connected\");\n";
 	    
 	    
         return codePrefix + ret + codeSuffix;

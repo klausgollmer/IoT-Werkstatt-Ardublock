@@ -41,9 +41,9 @@ public class ExtSen_MHZ19Cal extends TranslatorBlock
 	translator.addDefinitionCommand("MHZ19 myMHZ19; // Objekt MHZ19 Umweltsensor");
 	
     String cmd = "// Forced Calibration MH-Z19\n"+
-                 "   Serial.print(\"ABC Status: \"); myMHZ19.getABC() ? Serial.println(\"ON\") :  Serial.println(\"OFF\");  // now print it's status\r\n"
-               + "    Serial.println(\"please waiting 20 minutes...\");\r\n"
-               + "    Serial.println(\"Calibrating..\");\r\n"
+                 "   IOTW_PRINT(\"ABC Status: \"); myMHZ19.getABC() ? IOTW_PRINTLN(\"ON\") :  IOTW_PRINTLN(\"OFF\");  // now print it's status\r\n"
+               + "    IOTW_PRINTLN(\"please waiting 20 minutes...\");\r\n"
+               + "    IOTW_PRINTLN(\"Calibrating..\");\r\n"
                + "    myMHZ19.calibrate();    // Take a reading which be used as the zero point for 400 ppm \n";
    
     return codePrefix + cmd + codeSuffix;

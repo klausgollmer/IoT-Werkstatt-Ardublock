@@ -41,7 +41,7 @@ public class ESPNOW_SendPeer extends TranslatorBlock
     String Setup = "// ESP-NOW initialisieren\r\n"
     		+ "WiFi.mode(WIFI_STA);\r\n"
     		+ "if (esp_now_init() != 0) {\r\n"
-    		+ "    Serial.println(F(\"Fehler beim Initialisieren von ESP-NOW\"));\r\n"
+    		+ "    IOTW_PRINTLN(F(\"Fehler beim Initialisieren von ESP-NOW\"));\r\n"
     		+ "    return;\r\n"
     		+ "}\n";
     translator.addSetupCommand(Setup);
@@ -51,7 +51,7 @@ public class ESPNOW_SendPeer extends TranslatorBlock
     String Code = ""
     		+ "#if defined(ESP8266)\n"
     		+ "if (esp_now_add_peer("+MACname+",ESP_NOW_ROLE_SLAVE,"+chan+", NULL, 0) != 0) {\r\n"
-    		+ "    Serial.println(F(\"Fehler beim Hinzufügen des Peers\"));\r\n"
+    		+ "    IOTW_PRINTLN(F(\"Fehler beim Hinzufügen des Peers\"));\r\n"
     		+ "    return;"
     		+ "}"
     		+ "#endif";
@@ -65,7 +65,7 @@ public class ESPNOW_SendPeer extends TranslatorBlock
     		+ "  peerInfo_"+ext+".encrypt = false;\r\n"
     		+ "\r\n"
     		+ "  if (esp_now_add_peer(&peerInfo_"+ext+") != ESP_OK) {\r\n"
-    		+ "    Serial.println(F(\"Fehler beim Hinzufügen des Peers\"));\r\n"
+    		+ "    IOTW_PRINTLN(F(\"Fehler beim Hinzufügen des Peers\"));\r\n"
     		+ "    return;\r\n"
     		+ "  }"
     		+ "#endif";
@@ -76,7 +76,7 @@ public class ESPNOW_SendPeer extends TranslatorBlock
     		+ "  uint8_t data_"+ext+"[txt_"+ext+".length() + 1];\r\n"
     		+ "  txt_"+ext+".getBytes(data_"+ext+", txt_"+ext+".length() + 1);"
     		+ "  if (esp_now_send("+MACname+", data_"+ext+", sizeof(data_"+ext+")) != 0) {\r\n"
-    		+ "    Serial.println(F(\"Fehler beim Senden der Nachricht an Peer \"));\r\n"
+    		+ "    IOTW_PRINTLN(F(\"Fehler beim Senden der Nachricht an Peer \"));\r\n"
     		+ "  }";
     
     return codePrefix + Send + codeSuffix;

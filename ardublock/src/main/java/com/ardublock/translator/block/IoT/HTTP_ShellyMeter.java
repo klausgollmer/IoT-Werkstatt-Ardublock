@@ -30,7 +30,7 @@ public class HTTP_ShellyMeter  extends TranslatorBlock {
 				"  String message = host+cmd;\n" + 
 				"  WiFiClient client;\n" + 
 				"  #if defined(ESP8266)\n HTTPClient http;\n#elif defined(ESP32) \n HTTPClient http;\n#endif\n" + 
-				"  //Serial.println(message);\n" + 
+				"  //IOTW_PRINTLN(message);\n" + 
 				"  if (http.begin(client, message)){  // HTTP\n" + 
 				"    // start connection and send HTTP header\n" + 
 				"    int httpCode = http.GET();\n" + 
@@ -39,19 +39,19 @@ public class HTTP_ShellyMeter  extends TranslatorBlock {
 				"      // HTTP header has been send and Server response header has been handled\n" + 
 				"      String payload = http.getString();\n" + 
 				"      antwort = payload;\n" + 
-				"      //Serial.println(payload);\n" + 
+				"      //IOTW_PRINTLN(payload);\n" + 
 				"      // file found at server\n" + 
 				"      if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {\n" + 
 				"        ok = 1;\n" + 
 				"      }\n" + 
 				"    } \n" + 
 				"    else {\n" + 
-				"      Serial.printf(\"[HTTP] GET... failed, error: %s\\n\", http.errorToString(httpCode).c_str());\n" + 
+				"      IOTW_PRINTF(\"[HTTP] GET... failed, error: %s\\n\", http.errorToString(httpCode).c_str());\n" + 
 				"    }\n" + 
 				"    http.end();\n" + 
 				"  } \n" + 
 				"  else {\n" + 
-				"    Serial.printf(\"[HTTP] Unable to connect\\n\");\n" + 
+				"    IOTW_PRINTF(\"[HTTP] Unable to connect\\n\");\n" + 
 				"  }\n" + 
 				"  return ok;\n" + 
 				"}\n" + 
@@ -70,8 +70,8 @@ public class HTTP_ShellyMeter  extends TranslatorBlock {
   	    		"      udp.read(packetBuffer, NTP_PACKET_SIZE);\n" + 
   	    		"      IPAddress clientIP      = udp.remoteIP();\n" + 
   	    		"      unsigned int clientPort = udp.remotePort();\n" + 
-  	    		"      Serial.print(\"Received packet from NTP client IP \");\n" + 
-  	    		"      Serial.println(clientIP);\n" + 
+  	    		"      IOTW_PRINT(\"Received packet from NTP client IP \");\n" + 
+  	    		"      IOTW_PRINTLN(clientIP);\n" + 
   	    		"      // send a reply to the client with the current time\n" + 
   	    		"      packetBuffer[0] = 0b00100100;   // LI, Version, Mode\n" + 
   	    		"      packetBuffer[1] = 4;     // Stratum, or type of clock\n" + 
@@ -145,7 +145,7 @@ public class HTTP_ShellyMeter  extends TranslatorBlock {
 					"    valStr= xml.substring(start,ende);// Zahltext\n" + 
 					"  } \n" + 
 					"  else                             // Item nicht gefunden\n" + 
-					"  Serial.print(\"error - no such item: \"+suchtext);\n" + 
+					"  IOTW_PRINT(\"error - no such item: \"+suchtext);\n" + 
 					"  return valStr;\n" + 
 					"}\n" + 
 					"void ShellySwitch(String host,int state) { \n" + 

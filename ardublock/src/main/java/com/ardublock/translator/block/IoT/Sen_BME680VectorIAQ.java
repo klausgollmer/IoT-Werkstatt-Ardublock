@@ -23,15 +23,15 @@ public class Sen_BME680VectorIAQ extends TranslatorBlock
 	    		"  float gas_upper_limit = 50000. ;\r\n" + 
 	    		"  float gas = boschBME680.readGas();\r\n" + 
 	    		"  String text;\r\n" + 
-	    		"  //Serial.print(\"gas:\"+String(gas));\r\n" + 
+	    		"  //IOTW_PRINT(\"gas:\"+String(gas));\r\n" + 
 	    		"  if (gas > gas_upper_limit) gas = gas_upper_limit;\r\n" + 
 	    		"  if (gas < gas_lower_limit) gas = gas_lower_limit;\r\n" + 
 	    		"  float IAQ_score = 500*(1.-(gas-gas_lower_limit)/(gas_upper_limit-gas_lower_limit));\r\n" + 
 	    		"  IAQ_filter = IAQ_score*alpha+IAQ_filter*(1-alpha);\r\n" + 
 	    		"\r\n" + 
-	    		"  //Serial.print(\" score:\"+String(IAQ_score));\r\n" + 
-	    		"  //Serial.print(\" filter:\"+String(IAQ_filter));\r\n" + 
-	    		"  //Serial.println();\r\n" + 
+	    		"  //IOTW_PRINT(\" score:\"+String(IAQ_score));\r\n" + 
+	    		"  //IOTW_PRINT(\" filter:\"+String(IAQ_filter));\r\n" + 
+	    		"  //IOTW_PRINTLN();\r\n" + 
 	    		"    switch ((int) IAQ_filter) {\r\n" + 
 	    		"    case 301 ... 500:\r\n" + 
 	    		"       text = \"Hazardous\" ;\r\n" + 
@@ -52,7 +52,7 @@ public class Sen_BME680VectorIAQ extends TranslatorBlock
 	    		"       text = \"Good\" ;\r\n" + 
 	    		"       break;\r\n" + 
 	    		"   }\r\n" + 
-	    		"   Serial.println(text); \r\n" + 
+	    		"   IOTW_PRINTLN(text); \r\n" + 
 	    		"   return IAQ_filter;\r\n" + 
 	    		"}";
 	    

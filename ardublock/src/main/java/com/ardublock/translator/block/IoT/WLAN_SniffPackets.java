@@ -75,7 +75,7 @@ public class WLAN_SniffPackets  extends TranslatorBlock {
 	    		+ "    esp_wifi_set_promiscuous(false);             // Stoppen\n"
 	    		+ "#endif\n"
 	    		+ "\n"
-	    		+ "    Serial.println(\"channel \" + String(mychannel) + \": \" + String(WiFiPacketCount) + \" packets per second\");\n"
+	    		+ "    IOTW_PRINTLN(\"channel \" + String(mychannel) + \": \" + String(WiFiPacketCount) + \" packets per second\");\n"
 	    		+ "    return WiFiPacketCount;\n"
 	    		+ "}\n"
 	    		+ ""; 

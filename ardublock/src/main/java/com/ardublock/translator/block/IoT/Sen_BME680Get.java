@@ -41,17 +41,17 @@ public class Sen_BME680Get extends TranslatorBlock
     // I2C-initialisieren
     //translator.addSetupCommand("Serial.begin(115200);");
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
  
     
     translator.addSetupCommand("boschBME680_ready = boschBME680.begin(118);\n");
 
     translator.addSetupCommand("if (boschBME680_ready == 0) {"+
-    		"while(1) { Serial.println(\"BME680 nicht vorhanden - der alte Octopus nutzt BME280, ggf. Puzzleteile tauschen\");delay(500);}\n"+
+    		"while(1) { IOTW_PRINTLN(\"BME680 nicht vorhanden - der alte Octopus nutzt BME280, ggf. Puzzleteile tauschen\");delay(500);}\n"+
     		"}\n");
 
     
-//    String Setup = "if (!boschBME680.begin(118)) { Serial.println(\"Failed to communicate BME680\");while (1) {delay(1);};}\n";
+//    String Setup = "if (!boschBME680.begin(118)) { IOTW_PRINTLN(\"Failed to communicate BME680\");while (1) {delay(1);};}\n";
 //    translator.addSetupCommand(Setup);
     
     

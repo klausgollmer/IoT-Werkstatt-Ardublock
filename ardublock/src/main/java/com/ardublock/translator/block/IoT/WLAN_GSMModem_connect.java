@@ -45,12 +45,12 @@ public class WLAN_GSMModem_connect  extends TranslatorBlock {
 				+ "int checkMobilfunk() {\n"
 				+ "   int OK = 0;\n"
 				+ "   if (!modem.waitForNetwork()) {   \n"      
-				+ "	    Serial.print(\" kein Mobilfunknetz\");\n"
+				+ "	    IOTW_PRINT(\" kein Mobilfunknetz\");\n"
 				+ "   } else { \n"
-				+ "     Serial.print(\"\\n GSM signal quality (2..30): \");\n"
-				+ "     Serial.println(modem.getSignalQuality());\n"
+				+ "     IOTW_PRINT(\"\\n GSM signal quality (2..30): \");\n"
+				+ "     IOTW_PRINTLN(modem.getSignalQuality());\n"
 				+ "     if (!modem.gprsConnect(GSM_APN,GSM_USER,GSM_PASS)) {\n"
-				+ "	       Serial.print(\" Mobilfunk ok, aber kein APN Zugang\");\n"
+				+ "	       IOTW_PRINT(\" Mobilfunk ok, aber kein APN Zugang\");\n"
 				+ "	    } else { \n" 
 				+ "	       OK =1;   // alles klar, es kann losgehen\n"
 				+ "	    }\n"
@@ -62,13 +62,13 @@ public class WLAN_GSMModem_connect  extends TranslatorBlock {
 		translator.setGPRSProgram(true); // Merke das Kommunikation über GSM-Läuft
 		
 	    String ret = "//------------ GSM-Modem initialisieren \n"
-	         +"Serial.print (\"\\nGSM-Modem initialisieren\");\n"
+	         +"IOTW_PRINT (\"\\nGSM-Modem initialisieren\");\n"
 	         +"modem.restart();\n"
-	         +"Serial.print (\"\\nund jetzt im Mobilfunknetz einbuchen ... \");\n"
+	         +"IOTW_PRINT (\"\\nund jetzt im Mobilfunknetz einbuchen ... \");\n"
 	         +"if (checkMobilfunk()) {\n"
-	         +"   Serial.println(\" alles OK \"); \n"
+	         +"   IOTW_PRINTLN(\" alles OK \"); \n"
 	         +"  } else { \n"
-	         +"   Serial.println(\" , versuche es spaeter erneut\"); \n"
+	         +"   IOTW_PRINTLN(\" , versuche es spaeter erneut\"); \n"
 	         +"};\n";
 	         
 	    

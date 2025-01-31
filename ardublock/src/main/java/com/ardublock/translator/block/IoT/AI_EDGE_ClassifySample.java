@@ -76,7 +76,7 @@ public class AI_EDGE_ClassifySample  extends TranslatorBlock {
 	    Code+=	"     EI_Index++;\n" +
 	    		"     EI_NumSens = "+no+";\n;"+ 
 	    		"  } else {\n" + 
-	    		"    Serial.println(\"EDGE IMPULSE: EI_Index exceeds IOTW_EI_MAXPOINTS\");\n" + 
+	    		"    IOTW_PRINTLN(\"EDGE IMPULSE: EI_Index exceeds IOTW_EI_MAXPOINTS\");\n" + 
 	    		"  }";
 
 	    return codePrefix + Code + codeSuffix;

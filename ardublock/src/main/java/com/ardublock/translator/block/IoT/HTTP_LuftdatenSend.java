@@ -36,17 +36,17 @@ public class HTTP_LuftdatenSend  extends TranslatorBlock {
 		"void sendLuftdaten(String server, String sensor_id, String Xpin, String data) {\n" + 
 			"     HTTPClient http; //Declare object of class HTTPClient\n" + 
 			"     String req=\"http://\"+server+\"/v1/push-sensor-data/\";\n" + 
-			"     //Serial.println(req);\n" + 
+			"     //IOTW_PRINTLN(req);\n" + 
 			"     http.begin(wifiClient,req);              // Specify request destination\n" + 
 			"     http.addHeader(\"X-PIN\",Xpin); //  \n" + 
 			"     http.addHeader(\"X-Sensor\",sensor_id);\n" + 
 			"     http.addHeader(\"Content-Type\", \"application/json\"); //\n" + 
-			"     Serial.println(\"sensor.community: sent data to sensor with sensor id = \" + sensor_id);\n" + 
-			"     Serial.println(data);\n" + 
+			"     IOTW_PRINTLN(\"sensor.community: sent data to sensor with sensor id = \" + sensor_id);\n" + 
+			"     IOTW_PRINTLN(data);\n" + 
 			"     int httpCode = http.POST(data); //Send the request\n" + 
 			"     String payload = http.getString(); //Get the response payload\n" + 
-			"     //Serial.print(httpCode);  //Print HTTP return code\n" + 
-			"     Serial.println(payload); //Print request response payload\n" + 
+			"     //IOTW_PRINT(httpCode);  //Print HTTP return code\n" + 
+			"     IOTW_PRINTLN(payload); //Print request response payload\n" + 
 			"     http.end(); //Close connection\n"+
         "}\n";
 		translator.addDefinitionCommand(httpPOST);
@@ -65,7 +65,7 @@ public class HTTP_LuftdatenSend  extends TranslatorBlock {
 	     else 
          JsonCode += " String ChipID = "+translatorBlock.toCode() +";\n";
 	    
-	     //JsonCode += " Serial.println(\"please register your device, your ChipID / Sensor ID = \"+myChipID);\n";
+	     //JsonCode += " IOTW_PRINTLN(\"please register your device, your ChipID / Sensor ID = \"+myChipID);\n";
 	 	
 	    
 	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);

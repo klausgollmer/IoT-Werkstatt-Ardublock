@@ -40,7 +40,7 @@ public class ExtSen_GPSGetI2C extends TranslatorBlock
    
 	//translator.addSetupCommand("Serial.begin(115200);");
 	// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-	// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+	// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
 
     String Set = " // Adafruit GPS-Lib Written by Limor Fried/Ladyada for Adafruit Industries. BSD license\r\n" + 
     		"  // https://github.com/adafruit/Adafruit_GPS\r\n" + 
@@ -59,11 +59,11 @@ public class ExtSen_GPSGetI2C extends TranslatorBlock
 			"  char c;\r\n" + 
 			"  if (sel == 1) {        // Update GPS values\r\n" + 
 			"    // processing all old messages in buffer\r\n" + 
-			"    // Serial.println(\"\\nclear old\");\r\n" + 
+			"    // IOTW_PRINTLN(\"\\nclear old\");\r\n" + 
 			"    c = ' ';\r\n" + 
 			"    while ((c > 0)) {\r\n" + 
 			"       if (GPS.newNMEAreceived()) {\r\n" + 
-			"         //Serial.println(GPS.lastNMEA());\r\n" + 
+			"         //IOTW_PRINTLN(GPS.lastNMEA());\r\n" + 
 			"         GPS.parse(GPS.lastNMEA());\r\n" + 
 			"       }\r\n" + 
 			"       c = GPS.read();\r\n" + 
@@ -71,19 +71,19 @@ public class ExtSen_GPSGetI2C extends TranslatorBlock
 			"    }\r\n" + 
 			"    \r\n" + 
 			"    ok = 0;\r\n" + 
-			"    //Serial.print(\"\\nGPS: listen \");\r\n" + 
+			"    //IOTW_PRINT(\"\\nGPS: listen \");\r\n" + 
 			"    while ((!ok) && (tout > 0))  { \r\n" + 
 			"      c = GPS.read();\r\n" + 
 			"      if (GPS.newNMEAreceived()) {\r\n" + 
 			"        ok = GPS.parse(GPS.lastNMEA());\r\n" + 
-			"        //Serial.print(\"new: \");\r\n" + 
-			"        //Serial.println(ok);\r\n" + 
+			"        //IOTW_PRINT(\"new: \");\r\n" + 
+			"        //IOTW_PRINTLN(ok);\r\n" + 
 			"      }\r\n" + 
 			"      tout--; \r\n" + 
 			"      delay(1);\r\n" + 
 			"    } // wait for new input\r\n" + 
 			"    if (tout == 0) {\r\n" + 
-			"      Serial.println(\"GPS-timeout\");\r\n" + 
+			"      IOTW_PRINTLN(\"GPS-timeout\");\r\n" + 
 			"    }\r\n" + 
 			"  }\r\n" + 
 			"  switch (sel) {\r\n" + 
@@ -106,28 +106,28 @@ public class ExtSen_GPSGetI2C extends TranslatorBlock
 			"  }\r\n" + 
 			"\r\n" + 
 			"  if (printout) {\r\n" + 
-			"     Serial.print(\"\\nTime: \");\r\n" + 
-			"    if (GPS.hour < 10) { Serial.print('0'); }\r\n" + 
-			"    Serial.print(GPS.hour, DEC); Serial.print(':');\r\n" + 
-			"    if (GPS.minute < 10) { Serial.print('0'); }\r\n" + 
-			"    Serial.print(GPS.minute, DEC); Serial.print(':');\r\n" + 
-			"    if (GPS.seconds < 10) { Serial.print('0'); }\r\n" + 
-			"    Serial.print(GPS.seconds, DEC); Serial.print('.');\r\n" + 
-			"    Serial.print(\"Date: \");\r\n" + 
-			"    Serial.print(GPS.day, DEC); Serial.print('/');\r\n" + 
-			"    Serial.print(GPS.month, DEC); Serial.print(\"/20\");\r\n" + 
-			"    Serial.println(GPS.year, DEC);\r\n" + 
-			"    Serial.print(\"Fix: \"); Serial.print((int)GPS.fix);\r\n" + 
-			"    Serial.print(\" quality: \"); Serial.println((int)GPS.fixquality);\r\n" + 
+			"     IOTW_PRINT(\"\\nTime: \");\r\n" + 
+			"    if (GPS.hour < 10) { IOTW_PRINT('0'); }\r\n" + 
+			"    IOTW_PRINT(GPS.hour, DEC); IOTW_PRINT(':');\r\n" + 
+			"    if (GPS.minute < 10) { IOTW_PRINT('0'); }\r\n" + 
+			"    IOTW_PRINT(GPS.minute, DEC); IOTW_PRINT(':');\r\n" + 
+			"    if (GPS.seconds < 10) { IOTW_PRINT('0'); }\r\n" + 
+			"    IOTW_PRINT(GPS.seconds, DEC); IOTW_PRINT('.');\r\n" + 
+			"    IOTW_PRINT(\"Date: \");\r\n" + 
+			"    IOTW_PRINT(GPS.day, DEC); IOTW_PRINT('/');\r\n" + 
+			"    IOTW_PRINT(GPS.month, DEC); IOTW_PRINT(\"/20\");\r\n" + 
+			"    IOTW_PRINTLN(GPS.year, DEC);\r\n" + 
+			"    IOTW_PRINT(\"Fix: \"); IOTW_PRINT((int)GPS.fix);\r\n" + 
+			"    IOTW_PRINT(\" quality: \"); IOTW_PRINTLN((int)GPS.fixquality);\r\n" + 
 			"    if (GPS.fix) {\r\n" + 
-			"      Serial.print(\"Location: \");\r\n" + 
-			"      Serial.print(GPS.latitude, 4); Serial.print(GPS.lat);\r\n" + 
-			"      Serial.print(\", \");\r\n" + 
-			"      Serial.print(GPS.longitude, 4); Serial.println(GPS.lon);\r\n" + 
-			"      Serial.print(\"Speed (knots): \"); Serial.println(GPS.speed);\r\n" + 
-			"      Serial.print(\"Angle: \"); Serial.println(GPS.angle);\r\n" + 
-			"      Serial.print(\"Altitude: \"); Serial.println(GPS.altitude);\r\n" + 
-			"      Serial.print(\"Satellites: \"); Serial.println((int)GPS.satellites);\r\n" + 
+			"      IOTW_PRINT(\"Location: \");\r\n" + 
+			"      IOTW_PRINT(GPS.latitude, 4); IOTW_PRINT(GPS.lat);\r\n" + 
+			"      IOTW_PRINT(\", \");\r\n" + 
+			"      IOTW_PRINT(GPS.longitude, 4); IOTW_PRINTLN(GPS.lon);\r\n" + 
+			"      IOTW_PRINT(\"Speed (knots): \"); IOTW_PRINTLN(GPS.speed);\r\n" + 
+			"      IOTW_PRINT(\"Angle: \"); IOTW_PRINTLN(GPS.angle);\r\n" + 
+			"      IOTW_PRINT(\"Altitude: \"); IOTW_PRINTLN(GPS.altitude);\r\n" + 
+			"      IOTW_PRINT(\"Satellites: \"); IOTW_PRINTLN((int)GPS.satellites);\r\n" + 
 			"    }\r\n" + 
 			"  }\r\n" + 
 			"\r\n" + 

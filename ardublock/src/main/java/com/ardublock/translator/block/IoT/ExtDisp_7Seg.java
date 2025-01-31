@@ -48,7 +48,7 @@ public class ExtDisp_7Seg extends TranslatorBlock
 	//translator.addSetupCommand("Serial.begin(115200);");
     // I2C-initialisieren
 	// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-	// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+	// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
 	 
     
     String Setup = "matrix7Seg.begin(0x70); // ---- Initialisiere 7Segment Matrix\n"

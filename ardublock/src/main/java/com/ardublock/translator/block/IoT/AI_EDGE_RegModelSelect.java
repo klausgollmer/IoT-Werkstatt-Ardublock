@@ -39,13 +39,13 @@ public class AI_EDGE_RegModelSelect  extends TranslatorBlock {
 	       String fun = "// --------- AI Regession Model \n" + 
 	        		"float AI_RegModelCalculate(float x1,float x2, float x3, int no, int modeltyp) {\n" + 
 	        		"  float y = 0;\n" + 
-	        		"  if (no > 1) Serial.print(\"\\nonly one input dimension in ModelCalculate jet\");\n" + 
+	        		"  if (no > 1) IOTW_PRINT(\"\\nonly one input dimension in ModelCalculate jet\");\n" + 
 	        		"  if (modeltyp == AI_MODEL_AUTO){\n" + 
 	        		"    modeltyp = AI_RegParaBestModeltyp;\n" + 
-	        		"    Serial.println(\"Model:\"+String(modeltyp));\n" + 
+	        		"    IOTW_PRINTLN(\"Model:\"+String(modeltyp));\n" + 
 	        		"  }\n" + 
 	        		"  if (AI_RegPara_valid[modeltyp] == 0) {\n" + 
-	        		"    Serial.printf(\"\\nNo calculation for type %i, start parameter calibration first\",modeltyp);  \n" + 
+	        		"    IOTW_PRINTF(\"\\nNo calculation for type %i, start parameter calibration first\",modeltyp);  \n" + 
 	        		"  } \n" + 
 	        		"  else {  // use parameter for calculation    \n" + 
 	        		"    switch (modeltyp) {\n" + 
@@ -63,7 +63,7 @@ public class AI_EDGE_RegModelSelect  extends TranslatorBlock {
 	        		"      break;\n" + 
 	        		"\n" + 
 	        		"    default:  \n" + 
-	        		"      Serial.printf(\"\\nwrong modeltype %i,  0 <= type < %i\", modeltyp,AI_MAXMODEL );\n" + 
+	        		"      IOTW_PRINTF(\"\\nwrong modeltype %i,  0 <= type < %i\", modeltyp,AI_MAXMODEL );\n" + 
 	        		"    }\n" + 
 	        		"  }\n" + 
 	        		"  return y;\n" + 
@@ -103,14 +103,14 @@ public class AI_EDGE_RegModelSelect  extends TranslatorBlock {
 	        		"        break;\n" + 
 	        		"\n" + 
 	        		"      default:  \n" + 
-	        		"        Serial.printf(\"\\nwrong modeltype %i,  0 <= type < %i\", modeltyp,AI_MAXMODEL );\n" + 
+	        		"        IOTW_PRINTF(\"\\nwrong modeltype %i,  0 <= type < %i\", modeltyp,AI_MAXMODEL );\n" + 
 	        		"      }\n" + 
 	        		"\n" + 
 	        		"      i_cal++;\n" + 
 	        		"    }\n" + 
 	        		"  }\n" + 
 	        		"\n" + 
-	        		"  //Serial.printf(\"\\nDo model calibration fitCurve using %i calibration Data available ...\",i_cal+1);\n" + 
+	        		"  //IOTW_PRINTF(\"\\nDo model calibration fitCurve using %i calibration Data available ...\",i_cal+1);\n" + 
 	        		"  int ret = fitCurve(order, i_cal, x, y, order+1, para);\n" + 
 	        		"\n" + 
 	        		"\n" + 
@@ -121,29 +121,29 @@ public class AI_EDGE_RegModelSelect  extends TranslatorBlock {
 	        		"    } \n" + 
 	        		"    switch (modeltyp) {\n" + 
 	        		"    case AI_MODEL_LIN:\n" + 
-	        		"      Serial.printf(\"\\n y = %8.3f*x+%8.3f        \",para[0],para[1]);\n" + 
+	        		"      IOTW_PRINTF(\"\\n y = %8.3f*x+%8.3f        \",para[0],para[1]);\n" + 
 	        		"      break;\n" + 
 	        		"    case AI_MODEL_QUAD: \n" + 
-	        		"      Serial.printf(\"\\n y = %8.3f*x^2+%8.3f*x+%8.3f\",para[0],para[1],para[2]);\n" + 
+	        		"      IOTW_PRINTF(\"\\n y = %8.3f*x^2+%8.3f*x+%8.3f\",para[0],para[1],para[2]);\n" + 
 	        		"      break;\n" + 
 	        		"    case AI_MODEL_EXP: \n" + 
-	        		"      Serial.printf(\"\\n y = %8.3f*exp(%8.3f*x)   \",pow(CONST_e,para[1]),para[0]);\n" + 
+	        		"      IOTW_PRINTF(\"\\n y = %8.3f*exp(%8.3f*x)   \",pow(CONST_e,para[1]),para[0]);\n" + 
 	        		"      break;\n" + 
 	        		"\n" + 
 	        		"    case AI_MODEL_CUB: \n" + 
-	        		"      Serial.printf(\"\\n y = %8.3f*x^3+%8.3f*x^2+%8.3f*x+%8.3f\",para[0],para[1],para[2],para[3]);\n" + 
+	        		"      IOTW_PRINTF(\"\\n y = %8.3f*x^3+%8.3f*x^2+%8.3f*x+%8.3f\",para[0],para[1],para[2],para[3]);\n" + 
 	        		"      break;\n" + 
 	        		"    default:  \n" + 
-	        		"      Serial.printf(\"\\nwrong modeltype %i,  0 <= type < %i\", modeltyp,AI_MAXMODEL );\n" + 
+	        		"      IOTW_PRINTF(\"\\nwrong modeltype %i,  0 <= type < %i\", modeltyp,AI_MAXMODEL );\n" + 
 	        		"    }\n" + 
 	        		"\n" + 
 	        		"  } \n" + 
-	        		"  else Serial.printf(\"\\nError fitCurve ret = %i\\n\",ret);\n" + 
+	        		"  else IOTW_PRINTF(\"\\nError fitCurve ret = %i\\n\",ret);\n" + 
 	        		"}  \n" + 
 	        		"\n" + 
 	        		"// ------- AI Calibrate regression model\n" + 
 	        		"void AI_RegModelCalibrate(int modeltyp){\n" + 
-	        		"  Serial.printf(\"\\nDo model calibration using calibration data available ...\");"+
+	        		"  IOTW_PRINTF(\"\\nDo model calibration using calibration data available ...\");"+
 	        		"  if (modeltyp == AI_MODEL_AUTO) { // all models\n" + 
 	        		"    for (int m = 0; m<AI_MAXMODEL;m++) {\n" + 
 	        		"      AI_RegModelCalibrateOne(m);\n" + 
@@ -153,7 +153,7 @@ public class AI_EDGE_RegModelSelect  extends TranslatorBlock {
 	        		"    AI_RegModelCalibrateOne(modeltyp);\n" + 
 	        		"  }\n" + 
 	        		"\n" + 
-	                 "Serial.println();"+
+	                 "IOTW_PRINTLN();"+
 	        		"}\n" + 
 	        		"// --------- AI Regession Model Selection\n" + 
 	        		"int AI_RegModelSelect(int what){\n" + 
@@ -171,7 +171,7 @@ public class AI_EDGE_RegModelSelect  extends TranslatorBlock {
 	        		"      i_val++;\n" + 
 	        		"    }\n" + 
 	        		"  }\n" + 
-	        		"  Serial.printf(\"\\nDo model validation using %i validation data available\",i_val);\n" + 
+	        		"  IOTW_PRINTF(\"\\nDo model validation using %i validation data available\",i_val);\n" + 
 	        		"\n" + 
 	        		"  for (int m = 0;m < AI_MAXMODEL;m++){\n" + 
 	        		"    sse[m]=0;\n" + 
@@ -180,9 +180,9 @@ public class AI_EDGE_RegModelSelect  extends TranslatorBlock {
 	        		"      sse[m]+=((y_pred-y[i])*(y_pred-y[i]));\n" + 
 	        		"    }\n" + 
 	        		"    if (sse[m]<sse[m_min]) m_min = m;\n" + 
-	        		"    Serial.printf(\"\\n model %i ->sse = %f\",m,sse[m]);\n" + 
+	        		"    IOTW_PRINTF(\"\\n model %i ->sse = %f\",m,sse[m]);\n" + 
 	        		"  }\n" + 
-	        		"  Serial.printf(\"\\nSelect the best fit model %i\\n\",m_min);\n" + 
+	        		"  IOTW_PRINTF(\"\\nSelect the best fit model %i\\n\",m_min);\n" + 
 	        		"  AI_RegParaBestModeltyp = m_min;\n" + 
 	        		"  return m_min;\n" + 
 	        		"}\n" + 

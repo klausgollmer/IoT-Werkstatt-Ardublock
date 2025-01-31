@@ -38,8 +38,8 @@ public class Var_ArrayReadVar  extends TranslatorBlock {
 				"int IoTArrayCheckIndex(float input) {\n" + 
 				"  int index = 0;\n" + 
 				"  if ((round(input) < 0) || (round(input) > (IOTW_ARRAYLEN-1))) {\n" + 
-				"    Serial.println(\"IoTArrayData index fehler\");\n" + 
-				"    Serial.println(String(\"index \") + String(input) + String(\" not valid\"));\n" + 
+				"    IOTW_PRINTLN(\"IoTArrayData index fehler\");\n" + 
+				"    IOTW_PRINTLN(String(\"index \") + String(input) + String(\" not valid\"));\n" + 
 				"  } else index = round(input);\n" + 
 				"  return(index);  \n" + 
 				"}\n"; 

@@ -37,13 +37,13 @@ public class HTTP_SenseboxSend  extends TranslatorBlock {
         "  String jsonValue = \"{\\\"value\\\":\" + String(measurement)+ \"}\";\n" + 
         "  //Mit OSeM Server verbinden und POST Operation durchführen\n" + 
         "  String req=\"http://\"+server+\"/boxes/\"+SENSEBOX_ID+\"/\"+sensorId;\n" + 
-        "  Serial.println(req);\n" + 
+        "  IOTW_PRINTLN(req);\n" + 
         "  http.begin(wifiClient,req); //Specify request destination\n" + 
         "  http.addHeader(\"Content-Type\", \"application/json\"); //\n" + 
         "  int httpCode = http.POST(jsonValue); //Send the request\n" + 
         "  String payload = http.getString(); //Get the response payload\n" + 
-        "  //Serial.print(httpCode);  //Print HTTP return code\n" + 
-        "  Serial.println(payload); //Print request response payload\n" + 
+        "  //IOTW_PRINT(httpCode);  //Print HTTP return code\n" + 
+        "  IOTW_PRINTLN(payload); //Print request response payload\n" + 
         "  http.end(); //Close connection\n" + 
         " }";
 		

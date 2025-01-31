@@ -959,6 +959,17 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+	   <BlockGenus name="debug_level" kind="command"
+			color="0 102 102" initlabel="bg.debug_level">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="level">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
 
 		<BlockGenus name="variable_number" kind="data"
 			initlabel="bg.variable_number" editable-label="yes" is-label-value="yes"
@@ -6287,11 +6298,15 @@
 				<BlockGenusMember>sub_return</BlockGenusMember>
 				<BlockGenusMember>sub_return-ref</BlockGenusMember>
 
-  			    <BlockGenusMember>Divider_Code</BlockGenusMember>
+                <BlockGenusMember>Divider_Code</BlockGenusMember>
 				<BlockGenusMember>code</BlockGenusMember>
 				<BlockGenusMember>codeg</BlockGenusMember>
 				<BlockGenusMember>program</BlockGenusMember>
-               
+            
+	            <BlockGenusMember>Divider_Predef</BlockGenusMember>
+				<BlockGenusMember>setter_predef_number</BlockGenusMember>				
+				<BlockGenusMember>predef_number</BlockGenusMember>	
+				<BlockGenusMember>debug_level</BlockGenusMember>	
 			</BlockDrawer>
 
             <!-- bd.logic -->
@@ -6388,6 +6403,8 @@
 		    	<BlockGenusMember>glue_nb</BlockGenusMember>
 		   	    <BlockGenusMember>cat_string</BlockGenusMember>
 				<BlockGenusMember>message</BlockGenusMember>
+				<BlockGenusMember>Divider_Predef</BlockGenusMember>
+				<BlockGenusMember>debug_level</BlockGenusMember>	
 		
 			</BlockDrawer>
 

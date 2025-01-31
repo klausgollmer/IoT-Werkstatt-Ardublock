@@ -30,7 +30,7 @@ public class System8266_SleepBlockLight  extends TranslatorBlock {
 			" *  https://kevinstadler.github.io/notes/esp8266-deep-sleep-light-sleep-arduino/\n" + 
 			"*/\n" + 
 			"void fpm_wakup_cb_func(void) { // used for light sleep\n" + 
-			"  Serial.println(\"wakeup lightsleep\"); Serial.flush();\n" + 
+			"  IOTW_PRINTLN(\"wakeup lightsleep\"); Serial.flush();\n" + 
 			"}\n" + 
 			"void lightsleep(long ms) {\n" + 
 			"    // Wifi off\n" + 

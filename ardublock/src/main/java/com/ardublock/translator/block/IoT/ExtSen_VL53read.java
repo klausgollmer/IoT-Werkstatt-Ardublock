@@ -21,12 +21,12 @@ public class ExtSen_VL53read extends TranslatorBlock
 
 	//translator.addSetupCommand("Serial.begin(115200);");
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-	// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+	// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
 		
     String Setup = "VL53sensor.setTimeout(500);\r\n" + 
     		"  if (!VL53sensor.init())\r\n" + 
     		"  {\r\n" + 
-    		"    Serial.println(\"Failed to detect and initialize VL53sensor!\");\r\n" + 
+    		"    IOTW_PRINTLN(\"Failed to detect and initialize VL53sensor!\");\r\n" + 
     		"    while (1) {}\r\n" + 
     		"  }";
     
@@ -61,7 +61,7 @@ public class ExtSen_VL53read extends TranslatorBlock
     		"  Val = VL53sensor.readRangeSingleMillimeters();\r\n" + 
     		"  if (VL53sensor.timeoutOccurred()){\r\n" + 
     		"    Val = NAN;\r\n" + 
-    		"    Serial.println(\"VL53 Sensor TIMEOUT\");\r\n" + 
+    		"    IOTW_PRINTLN(\"VL53 Sensor TIMEOUT\");\r\n" + 
     		"  }\r\n" + 
     		"  return Val;\r\n" + 
     		"}";

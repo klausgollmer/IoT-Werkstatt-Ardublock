@@ -57,7 +57,7 @@ public class Sen_TouchRotMinMax extends TranslatorBlock
 			  		"    case 1: wert = (touchRead(IOTW_TOUCH_PIN_UP)<IOTW_TOUCH_UP_THRESHOLD);break;\r\n" + 
 			  		"    case 2: wert = (touchRead(IOTW_TOUCH_PIN_DOWN)<IOTW_TOUCH_DOWN_THRESHOLD);break;\r\n" + 
 			  		"    case 3: wert = (touchRead(IOTW_TOUCH_PIN_BUTTON)<IOTW_TOUCH_BUTTON_THRESHOLD); break;\r\n" + 
-			  		"    default: Serial.println(\"touch button 1-3\\n\"); break;\r\n" + 
+			  		"    default: IOTW_PRINTLN(\"touch button 1-3\\n\"); break;\r\n" + 
 			  		"  }\r\n" + 
 			  		"  return wert;\r\n" + 
 			  		"}\n "+ 

@@ -30,7 +30,7 @@ public class ExtDisp_OLED_PrintTerminal  extends TranslatorBlock {
 
 		
 	    String Setup ="if (!(myOLEDdisplay.begin(0x3C, true))) { // OLED Display Address 0x3C default\r\n"
-   		  		+ "  Serial.println(F(\"\\nno OLED detected\"));\r\n"
+   		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
    		  		+ "} \r\n";
  	    translator.addSetupCommand(Setup);
 		
@@ -54,7 +54,7 @@ public class ExtDisp_OLED_PrintTerminal  extends TranslatorBlock {
 		
 		// I2C-initialisieren
 		// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-		// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+		// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
 			
 
 	    Setup =   "myOLEDdisplay.setRotation(0);\n"

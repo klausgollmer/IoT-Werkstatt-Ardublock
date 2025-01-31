@@ -45,7 +45,7 @@ public class AI_EDGE_ClassifyDeterm  extends TranslatorBlock {
 				"  pattern[2]=s2;\n" + 
 				"  pattern[3]=s3;\n" + 
 				"\n" + 
-				"  Serial.print(\"\\nPattern:\\n\"); \n" + 
+				"  IOTW_PRINT(\"\\nPattern:\\n\"); \n" + 
 				"  if (norm==1) {   // Normiere Pattern auf Einheitsvektor (Länge 1)\n" + 
 				"    for (int j = 1; j < EI_NumSens; j++) {\n" + 
 				"     dist += pattern[j]*pattern[j];\n" + 
@@ -55,10 +55,10 @@ public class AI_EDGE_ClassifyDeterm  extends TranslatorBlock {
 				"  \n" + 
 				"  for (int j = 1; j < EI_NumSens; j++) {\n" + 
 				"    pattern[j] = pattern[j]/Betrag;\n" + 
-				"    Serial.printf(\" %6.2f \",(pattern[j]));\n" + 
+				"    IOTW_PRINTF(\" %6.2f \",(pattern[j]));\n" + 
 				"  }\n" + 
 				"  \n" + 
-				"  Serial.println(\"\\nClassify:\"); \n" + 
+				"  IOTW_PRINTLN(\"\\nClassify:\"); \n" + 
 				"  for (int i = 0; i < EI_Index; i++) {\n" + 
 				"    dist   = 0.; Betrag = 0.;\n" + 
 				"    for (int j = 1; j < EI_NumSens; j++) {// Referenzmuster erzeugen\n" + 
@@ -73,18 +73,18 @@ public class AI_EDGE_ClassifyDeterm  extends TranslatorBlock {
 				"    dist = 0;     // Abstand zum Referenzmuster ermitteln\n" + 
 				"    for (int j = 1; j < EI_NumSens; j++) {\n" + 
 				"      dist += (ref[j] - pattern[j]) * (ref[j] - pattern[j]);\n" + 
-				"      Serial.printf(\" %6.2f \",(ref[j]));\n" + 
+				"      IOTW_PRINTF(\" %6.2f \",(ref[j]));\n" + 
 				"    }\n" + 
 				"    sse[i] = dist;\n" + 
 				"  \n" + 
-				"    Serial.print(\" i=\"+String(i)+ \" class=\"+String(EI_Datenfeld[i][0])+String(\" sse=\") + String(sse[i])+ String(\"\\n\")); \n" + 
+				"    IOTW_PRINT(\" i=\"+String(i)+ \" class=\"+String(EI_Datenfeld[i][0])+String(\" sse=\") + String(sse[i])+ String(\"\\n\")); \n" + 
 				"    if (sse[i] < sse[i_min]) {   // Minimum suchen\n" + 
 				"      i_min = i;\n" + 
 				"    }\n" + 
 				"  }\n" + 
  			    "  final_class = EI_Datenfeld[i_min][0];\n" + 
 				"  if (sse[i_min] > rej) final_class = 0; // Rejection \n"+
-				"  Serial.println(\"Minimum: index = \"+String(i_min)+String(\"-> Class= \")+String(final_class));\n" + 
+				"  IOTW_PRINTLN(\"Minimum: index = \"+String(i_min)+String(\"-> Class= \")+String(final_class));\n" + 
 				"  return final_class;\n" + 
 				"}\n" + 
 				""; 

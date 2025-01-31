@@ -28,9 +28,9 @@ public class ExtSen_BNO055Get extends TranslatorBlock
     // I2C-initialisieren
     //translator.addSetupCommand("Serial.begin(115200);");
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
  
-    translator.addSetupCommand("if (!boschBNE055.begin()) Serial.println(\"Kein BNO055 Lagesensor gefunden\");\n");
+    translator.addSetupCommand("if (!boschBNE055.begin()) IOTW_PRINTLN(\"Kein BNO055 Lagesensor gefunden\");\n");
     translator.addSetupCommand("boschBNE055.setExtCrystalUse(true);\n");
     
     // Deklarationen hinzuf�gen

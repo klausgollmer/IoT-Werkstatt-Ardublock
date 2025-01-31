@@ -24,24 +24,24 @@ public class HTTP_REST_JSONGet  extends TranslatorBlock {
 				"  String valStr = \"\";                // Hilfsstring\n" + 
 				"\n" + 
 				"  \n" + 
-				"  //Serial.println(\"string:\"+xml);\n" + 
+				"  //IOTW_PRINTLN(\"string:\"+xml);\n" + 
 				"  int start,ende,doppel,ende1,ende2; // Index im Text\n" + 
 				"  String antwort =\"\";\n" + 
 				"  start = xml.indexOf(suchtext);     // Suche Text\n" + 
 				" \n" + 
 				"  if (start >= 0) {                   // Item gefunden\n" + 
 				"    antwort = xml.substring(start+suchtext.length(),xml.length());\n" + 
-				"   // Serial.println(\"antw:\"+antwort);\n" + 
+				"   // IOTW_PRINTLN(\"antw:\"+antwort);\n" + 
 				"    doppel = antwort.indexOf(':');\n" + 
-				"   // Serial.println(\"doppel:\"+String(doppel));\n" + 
+				"   // IOTW_PRINTLN(\"doppel:\"+String(doppel));\n" + 
 				"    \n" + 
 				"    antwort = antwort.substring(doppel+1,antwort.length());\n" + 
-				"   // Serial.println(\"antw:\"+antwort);\n" + 
+				"   // IOTW_PRINTLN(\"antw:\"+antwort);\n" + 
 				"    \n" + 
 				"    ende1 =  antwort.indexOf(',');  // Ende der Zahl\n" + 
-				"   // Serial.println(\", =\"+String(ende1));\n" + 
+				"   // IOTW_PRINTLN(\", =\"+String(ende1));\n" + 
 				"    ende2 =  antwort.indexOf('\"',1);  // Ende der Zahl\n" + 
-				"   // Serial.println(\"# =\"+String(ende2));\n" + 
+				"   // IOTW_PRINTLN(\"# =\"+String(ende2));\n" + 
 				"    if (ende1 >= 0) {\n" + 
 				"      ende = ende1;\n" + 
 				"    } else {\n" + 
@@ -52,7 +52,7 @@ public class HTTP_REST_JSONGet  extends TranslatorBlock {
 				"    valStr.trim();\n" + 
 				"  } \n" + 
 				"  else                             // Item nicht gefunden\n" + 
-				"  Serial.print(\"error - no such item: \"+suchtext);\n" + 
+				"  IOTW_PRINT(\"error - no such item: \"+suchtext);\n" + 
 				"  return valStr;\n" + 
 				"}\n" + 
 				"";

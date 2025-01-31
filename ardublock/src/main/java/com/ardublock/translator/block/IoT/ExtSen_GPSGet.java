@@ -49,13 +49,13 @@ public class ExtSen_GPSGet extends TranslatorBlock
     		"  float ret = 0;      // return value\r\n" + 
     		"  uint8_t  ok = 0;       // valid value\r\n" + 
     		"  if (sel == 1) {        // Update GPS values\r\n" + 
-    		"    Serial.print(\"\\nGPS: listen to sat ...\");\r\n" + 
+    		"    IOTW_PRINT(\"\\nGPS: listen to sat ...\");\r\n" + 
     		"    while (ssGPS.available() > 0) ssGPS.read(); // flush pipe (delete old data)\r\n" + 
     		"    while ((ssGPS.available() == 0) && tout > 0)  { \r\n" + 
     		"      tout--; \r\n" + 
     		"      delay(1);\r\n" + 
     		"    } // wait for new input\r\n" + 
-    		"    if (tout == 0) Serial.println(\"GPS-timeout\");\r\n" + 
+    		"    if (tout == 0) IOTW_PRINTLN(\"GPS-timeout\");\r\n" + 
     		"    tout = 5000; \r\n" + 
     		"    while ((tout>0) && (ok == 0)) {\r\n" + 
     		"      if (ssGPS.available() > 0) {\r\n" + 
@@ -72,23 +72,23 @@ public class ExtSen_GPSGet extends TranslatorBlock
     		"  switch (sel) {\r\n" + 
     		"  case 1: \r\n" + 
     		"    ret = ok;\r\n" + 
-    		"    if (!ok) Serial.println(\"no fix\");\r\n" + 
+    		"    if (!ok) IOTW_PRINTLN(\"no fix\");\r\n" + 
     		"    break;\r\n" + 
     		"  case 2: \r\n" + 
     		"    ret = gps.location.lat() ;\r\n" + 
-    		"    Serial.println(\"GPS: lat = \"+String(ret));\r\n" + 
+    		"    IOTW_PRINTLN(\"GPS: lat = \"+String(ret));\r\n" + 
     		"    break;\r\n" + 
     		"  case 3: \r\n" + 
     		"    ret = gps.location.lng() ;\r\n" + 
-    		"    Serial.println(\"GPS: lng = \"+String(ret));\r\n" + 
+    		"    IOTW_PRINTLN(\"GPS: lng = \"+String(ret));\r\n" + 
     		"    break;\r\n" + 
     		"  case 4: \r\n" + 
     		"    ret = gps.altitude.meters();\r\n" + 
-    		"    Serial.println(\"GPS: alt = \"+String(ret));\r\n" + 
+    		"    IOTW_PRINTLN(\"GPS: alt = \"+String(ret));\r\n" + 
     		"    break;\r\n" + 
     		"  case 5: \r\n" + 
     		"    ret = gps.hdop.value();\r\n" + 
-    		"    Serial.println(\"GPS: hdop = \"+String(ret));\r\n" + 
+    		"    IOTW_PRINTLN(\"GPS: hdop = \"+String(ret));\r\n" + 
     		"    break;\r\n" + 
     		"  }\r\n" + 
     		"  return ret;   \r\n" + 

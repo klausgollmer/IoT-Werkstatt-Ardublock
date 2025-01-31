@@ -31,10 +31,10 @@ public class WLAN_mDNS  extends TranslatorBlock {
 
 	    String ret = "//------------ mDNS - Responder starten \n"
 	    	+ "if (MDNS.begin("+URL+")) {              // Start the mDNS responder \n" + 
-	    	"    Serial.println(\"mDNS responder started, hostname = \"+String("+URL+")+String(\".local\"));\n" + 
+	    	"    IOTW_PRINTLN(\"mDNS responder started, hostname = \"+String("+URL+")+String(\".local\"));\n" + 
 	        "    MDNS.addService(\"http\", \"tcp\", 80);\n"+
 	    	"  } else {\n" + 
-	    	"    Serial.println(\"Error setting up mDNS responder!\");\n" + 
+	    	"    IOTW_PRINTLN(\"Error setting up mDNS responder!\");\n" + 
 	    	"  }\n" + 
 	    	"matrixausgabe_text = String(\" Meine URL:\") + String("+URL+")+String(\".local\");\n" +
    		    "matrixausgabe_index=0;\n";

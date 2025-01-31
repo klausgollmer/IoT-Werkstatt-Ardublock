@@ -6361,13 +6361,7 @@
 				<BlockGenusMember>variable_number_double</BlockGenusMember>	
 				<BlockGenusMember>local_variable_number</BlockGenusMember>				
 				<BlockGenusMember>number</BlockGenusMember>
-				
-				<BlockGenusMember>Divider_Predef</BlockGenusMember>
-				<BlockGenusMember>setter_predef_number</BlockGenusMember>				
-				<BlockGenusMember>predef_number</BlockGenusMember>	
-				<BlockGenusMember>debug_level</BlockGenusMember>	
-		
-				
+						
 				<BlockGenusMember>Divider_String</BlockGenusMember>
 				<BlockGenusMember>setter_variable_String</BlockGenusMember> 
 				<BlockGenusMember>variable_String</BlockGenusMember> 

@@ -87,8 +87,9 @@ public class Translator
 		
 		StringBuilder headerCommand = new StringBuilder();
 		headerCommand.append(Disclaimer);
-		if (isDebugProgram() > 0) 
+		if (isDebugProgram() != 1) 
 			headerCommand.append("#define IOTW_DEBUG_LEVEL "+ isDebugProgram() + "\n");
+		headerCommand.append("#include <IoTBoards_Generic.h>");	
 		
 	/*	
 		if (!isWiFiProgram()) {
@@ -99,7 +100,7 @@ public class Translator
 			System.out.println("N2");
 		}
 		*/
-		addHeaderFile("IoTBoards_Generic.h");
+		//addHeaderFile("IoTBoards_Generic.h");
 		//addHeaderFile("Wire.h");
 		//addDefinitionCommand("extern void initOLED(int);");
 	

@@ -26,9 +26,9 @@ public class ExtSen_TCS34725Get extends TranslatorBlock
     // I2C-initialisieren
     //translator.addSetupCommand("Serial.begin(115200);");
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
  
-    translator.addSetupCommand("if (!tcs.begin()) Serial.println(\"Kein TCS34725 RGB-Sensor gefunden\");\n");
+    translator.addSetupCommand("if (!tcs.begin()) IOTW_PRINTLN(\"Kein TCS34725 RGB-Sensor gefunden\");\n");
     
     String Dis="/* Adafruit TCS34725 Color Sensor\n"
 			 + "Copyright (c) 2012 Adafruit Industries\r\n"

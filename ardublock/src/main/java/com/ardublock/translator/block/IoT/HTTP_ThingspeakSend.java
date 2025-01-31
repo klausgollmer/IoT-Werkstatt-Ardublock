@@ -45,10 +45,10 @@ public class HTTP_ThingspeakSend  extends TranslatorBlock {
 		        +"      antwort = antwort + client.readStringUntil('\\r');\n"
 		        +"    else ok = 0;\n"
 		        +"    client.stop(); \n"
-		        +"    Serial.println(antwort);\n"
+		        +"    IOTW_PRINTLN(antwort);\n"
 		        + "  } \n"
 		        + " } \n"
-		        + " if (!ok) Serial.print(\" no connection\"); // Fehlermeldung\n"
+		        + " if (!ok) IOTW_PRINT(\" no connection\"); // Fehlermeldung\n"
 		        + " return ok;\n"
 		        + "}\n";
 
@@ -99,7 +99,7 @@ public class HTTP_ThingspeakSend  extends TranslatorBlock {
 	   
 	    
 	    ret = "\n{ //Block------------------------------ sende Daten an Thingspeak (mit http GET) \n"
-       		 +" Serial.println(\"\\nThingspeak update \");\n"
+       		 +" IOTW_PRINTLN(\"\\nThingspeak update \");\n"
         	 +" String cmd = \"/update?api_key=\"+ String(" + apikey +");\n" 
              +" String host = "+ host +";\n"
              +" String antwort= \" \";\n"

@@ -40,9 +40,9 @@ public class ExtSen_NFCWrite extends TranslatorBlock
 	//translator.addSetupCommand("Serial.begin(115200);");
     // I2C-initialisieren
 	// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-	// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+	// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
 	 
-	String Setup = "Serial.println(\"Initialize NFC Reader\");\r\n" + 
+	String Setup = "IOTW_PRINTLN(\"Initialize NFC Reader\");\r\n" + 
 		           "nfcSeed.begin();  // ---- PN532 NFC-Reader\n";
     translator.addSetupCommand(Setup);
 
@@ -51,14 +51,14 @@ public class ExtSen_NFCWrite extends TranslatorBlock
     Read= "// -----------  Schreibefunktion NFC-Tag, wartet auf Tag\n"
   		+ "void NFCWrite(int index, String NewMessage) { \n"
     	+ "  uint8_t  OK=0;\n"
-   	    + "  Serial.print(\"\\nNFC-Write, warte auf NFC-Tag \");\n"
+   	    + "  IOTW_PRINT(\"\\nNFC-Write, warte auf NFC-Tag \");\n"
         + "  while (!OK)  { // wiederhole bis gueltiger Transponder gesehen\n"
         + "    long T = millis();\n"
         + "    OK = nfcSeed.tagPresent();\n"
         + "    if ((millis()-T) < 15) {                 // QnD Bugfix: zu schnell, wiederhole\n"
         + "      OK = 0;     \n"
         + "      Wire.begin(SDA, SCL);                          // I2C-Bus restart\n" 
-        + "      #if defined(ESP8266)\n if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n #endif \n"
+        + "      #if defined(ESP8266)\n if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n #endif \n"
         + "      nfcSeed.begin();\n"
         + "    }\n"
         + "  }\n"
@@ -66,11 +66,11 @@ public class ExtSen_NFCWrite extends TranslatorBlock
   //      + "  String tagID = tag.getUidString();\n"
         +"   NdefMessage message = NdefMessage();\n"
         +"   message.addUriRecord(NewMessage);\n"
-        +"   Serial.println(\"and write d\"+NewMessage);\n"
+        +"   IOTW_PRINTLN(\"and write d\"+NewMessage);\n"
             +"   bool success = nfcSeed.write(message);\n"
         +"   if (success) \n"
-        +"      Serial.println(\" ok\");\n"
-        +"   else  Serial.print(\" failed\");\n"
+        +"      IOTW_PRINTLN(\" ok\");\n"
+        +"   else  IOTW_PRINT(\" failed\");\n"
         +"   delay(500);\n"
         +"}\n";
         

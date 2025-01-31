@@ -25,7 +25,7 @@ public class ExtSen_DustHM330Get extends TranslatorBlock
     
     String Setup;
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
  
 	Setup = "while (!HM330sensor_ready) {\r\n" + 
 			"    HM330sensor_ready = !HM330sensor.init(); // HM330 Feinstaubsensor \r\n" + 
@@ -56,14 +56,14 @@ public class ExtSen_DustHM330Get extends TranslatorBlock
         "  if (chan == 3) i=5; // 1.0\r\n" + 
         "  if (chan == 1) i=7; // 10\r\n" + 
         "  if(HM330sensor.read_sensor_value(data,29)) {\r\n" + 
-        "        Serial.println(\"HM330X read result failed!!!\");\r\n" + 
+        "        IOTW_PRINTLN(\"HM330X read result failed!!!\");\r\n" + 
         "    } else {\r\n" + 
         "     // Test Checksum\r\n" + 
         "       uint8_t sum=0;\r\n" + 
         "       for(int i=0;i<28;i++){\r\n" + 
         "        sum+=data[i];\r\n" + 
         "       }\r\n" + 
-        "       if(sum!=data[28]) Serial.println(\"wrong checkSum!!!!\");\r\n" + 
+        "       if(sum!=data[28]) IOTW_PRINTLN(\"wrong checkSum!!!!\");\r\n" + 
         "       else {\r\n" + 
         "         myvalue = (uint16_t)data[i*2]<<8|data[i*2+1];\r\n" + 
         "       }\r\n" + 

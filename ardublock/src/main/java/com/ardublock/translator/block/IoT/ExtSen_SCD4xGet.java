@@ -35,10 +35,10 @@ public class ExtSen_SCD4xGet extends TranslatorBlock
 	translator.addDefinitionCommand("SCD4x airSensorSCD40; // Objekt SDC40 Umweltsensor");
     
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
     //translator.setSCD30Program(true);
     
-    String Setup = "if (airSensorSCD40.begin() == false) {Serial.println(\"The SCD40 did not respond. Please check wiring.\"); while(1) {yield(); delay(1);} }\n";
+    String Setup = "if (airSensorSCD40.begin() == false) {IOTW_PRINTLN(\"The SCD40 did not respond. Please check wiring.\"); while(1) {yield(); delay(1);} }\n";
     translator.addSetupCommand(Setup);
     
     //translator.addSetupCommand("airSensorSCD40.useStaleData(true);            // do not wait for fresh data\n");

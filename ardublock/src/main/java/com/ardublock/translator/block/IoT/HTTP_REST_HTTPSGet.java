@@ -32,7 +32,7 @@ public class HTTP_REST_HTTPSGet  extends TranslatorBlock {
 				+ "#if defined(ESP8266)  \n"
 				+ "  if (strlen(fingerprint) > 1) {  \n"
 				+ "     client.setFingerprint(fingerprint);\n"
-				+ "     Serial.println(\"check certificate\");\n"
+				+ "     IOTW_PRINTLN(\"check certificate\");\n"
 				+ "\n"
 				+ "  } else { \n"
 				+ "     client.setInsecure();\n"
@@ -40,17 +40,17 @@ public class HTTP_REST_HTTPSGet  extends TranslatorBlock {
 				+ "#else\n"
 				+ "  if (strlen(fingerprint) > 1) {\n"
 				+ "    //if (client.verify(fingerprint, host_cstr)) {\n"
-				+ "    //  Serial.println(\"certificate matches\");\n"
+				+ "    //  IOTW_PRINTLN(\"certificate matches\");\n"
 				+ "    //} else {\n"
-				+ "    //  Serial.println(\"certificate doesn't match\");\n"
+				+ "    //  IOTW_PRINTLN(\"certificate doesn't match\");\n"
 				+ "    //}\n"
-				+ "     Serial.println(\"sorry, ESP32 lib not check SHA-1 certificate\");\n"
+				+ "     IOTW_PRINTLN(\"sorry, ESP32 lib not check SHA-1 certificate\");\n"
 				+ "  } else {\n"
 				+ "     client.setInsecure();\n"
 				+ "  }\n"
 				+ "#endif\n"
 				+ "  HTTPClient https;\n"
-				+ "  // Serial.println(message);\n"
+				+ "  // IOTW_PRINTLN(message);\n"
 				+ "  if (https.begin(client, message)){  // HTTPS\n"
 				+ "    // start connection and send HTTP header\n"
 				+ "    int httpCode = https.GET();\n"
@@ -59,19 +59,19 @@ public class HTTP_REST_HTTPSGet  extends TranslatorBlock {
 				+ "      // HTTP header has been send and Server response header has been handled\n"
 				+ "      String payload = https.getString();\n"
 				+ "      antwort = payload;\n"
-				+ "      // Serial.println(payload);\n"
+				+ "      // IOTW_PRINTLN(payload);\n"
 				+ "      // file found at server\n"
 				+ "      if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {\n"
 				+ "        ok = 1;\n"
 				+ "      }\n"
 				+ "    } \n"
 				+ "    else {\n"
-				+ "      Serial.printf(\"[HTTPS] GET... failed, error: %s\\n\", https.errorToString(httpCode).c_str());\n"
+				+ "      IOTW_PRINTF(\"[HTTPS] GET... failed, error: %s\\n\", https.errorToString(httpCode).c_str());\n"
 				+ "    }\n"
 				+ "    https.end();\n"
 				+ "  } \n"
 				+ "  else {\n"
-				+ "    Serial.printf(\"[HTTPS] Unable to connect\\n\");\n"
+				+ "    IOTW_PRINTF(\"[HTTPS] Unable to connect\\n\");\n"
 				+ "  }\n"
 				+ "  return ok;\n"
 				+ "}";
@@ -84,7 +84,7 @@ public class HTTP_REST_HTTPSGet  extends TranslatorBlock {
 				"  String message = host+cmd;\n" + 
 				"  WiFiClient client;\n" + 
 				"  #if defined(ESP8266)\n HTTPClient http;\n#elif defined(ESP32) \n HTTPClient http;\n#endif\n" + 
-				"  //Serial.println(message);\n" + 
+				"  //IOTW_PRINTLN(message);\n" + 
 				"  if (http.begin(client, message)){  // HTTP\n" + 
 				"    // start connection and send HTTP header\n" + 
 				"    int httpCode = http.GET();\n" + 
@@ -93,19 +93,19 @@ public class HTTP_REST_HTTPSGet  extends TranslatorBlock {
 				"      // HTTP header has been send and Server response header has been handled\n" + 
 				"      String payload = http.getString();\n" + 
 				"      antwort = payload;\n" + 
-				"      //Serial.println(payload);\n" + 
+				"      //IOTW_PRINTLN(payload);\n" + 
 				"      // file found at server\n" + 
 				"      if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {\n" + 
 				"        ok = 1;\n" + 
 				"      }\n" + 
 				"    } \n" + 
 				"    else {\n" + 
-				"      Serial.printf(\"[HTTP] GET... failed, error: %s\\n\", http.errorToString(httpCode).c_str());\n" + 
+				"      IOTW_PRINTF(\"[HTTP] GET... failed, error: %s\\n\", http.errorToString(httpCode).c_str());\n" + 
 				"    }\n" + 
 				"    http.end();\n" + 
 				"  } \n" + 
 				"  else {\n" + 
-				"    Serial.printf(\"[HTTP] Unable to connect\\n\");\n" + 
+				"    IOTW_PRINTF(\"[HTTP] Unable to connect\\n\");\n" + 
 				"  }\n" + 
 				"  return ok;\n" + 
 				"}\n" + 

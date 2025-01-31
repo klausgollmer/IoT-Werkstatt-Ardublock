@@ -99,7 +99,7 @@ public class HTTP_MessageServer  extends TranslatorBlock {
 		
 		if (!Sensorik.equals("false")) {	 	    
 			// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
-			// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) Serial.println(F(\"Something wrong with I2C\")); \n  #endif \n");
+			// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
 			 
 			translator.addSetupCommand("boschBME280.settings.runMode = 3; // Normal Mode\n"
          		+ "boschBME280.settings.tempOverSample  = 4; \n"
@@ -182,7 +182,7 @@ public class HTTP_MessageServer  extends TranslatorBlock {
 		    +" if (server.hasArg(\"message\")) {// Wenn neuer Anzeigetext eingetroffen,\n"
 			+"   matrixausgabe_text = server.arg(\"message\");     // dann Text vom Client einlesen\n"
 			+"   matrixausgabe_index=0;\n"
-			+"   Serial.print(\"Server Anzeigetext: \"); Serial.println(matrixausgabe_text);\n"
+			+"   IOTW_PRINT(\"Server Anzeigetext: \"); IOTW_PRINTLN(matrixausgabe_text);\n"
 			+" }\n"       
 			+" String html=String(INDEX_HTML_START);  // Hompage zusammenbauen\n" 
 			+" html=html+messwertTabelle();           // Aktuelle Messwerte integrieren\n"
@@ -223,7 +223,7 @@ public class HTTP_MessageServer  extends TranslatorBlock {
 					    +" if (server.hasArg(\"message\")) {// Wenn neuer Anzeigetext eingetroffen,\n"
 						+"   matrixausgabe_text = server.arg(\"message\");     // dann Text vom Client einlesen\n"
 						+"   matrixausgabe_index=0;\n"
-						+"   Serial.print(\"Server Anzeigetext: \"); Serial.println(matrixausgabe_text);\n"
+						+"   IOTW_PRINT(\"Server Anzeigetext: \"); IOTW_PRINTLN(matrixausgabe_text);\n"
 						+" }\n"       
 						+" String html=String(INDEX_HTML_START);  // Hompage zusammenbauen\n" 
 						+" html=html+String(INDEX_HTML_END);      // Http-Body abschliessen \n"
