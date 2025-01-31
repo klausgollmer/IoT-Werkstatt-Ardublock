@@ -53,6 +53,7 @@ public class Translator
 	private boolean isScoopProgram;
 	private boolean isMQTTProgram;
 	private boolean isWiFiProgram;
+	private int isDebugProgram;
 	private boolean isRTCVarProgram;
 	private boolean isRTCNTPProgram;
 	private boolean isBlynkProgram;
@@ -86,6 +87,9 @@ public class Translator
 		
 		StringBuilder headerCommand = new StringBuilder();
 		headerCommand.append(Disclaimer);
+		if (isDebugProgram() > 0) 
+			headerCommand.append("#define IOTW_DEBUG_LEVEL "+ isDebugProgram() + "\n");
+		
 	/*	
 		if (!isWiFiProgram()) {
 			System.out.println("N1");
@@ -272,6 +276,7 @@ public class Translator
 		isScoopProgram = false;
 		isMQTTProgram = false;
 		isWiFiProgram = false;
+		isDebugProgram = 0;
 		isRTCVarProgram = false;
 		isRTCNTPProgram = false;
 		isBlynkProgram = false;
@@ -466,6 +471,11 @@ public class Translator
 		return isWiFiProgram;
 	}
 
+	public int isDebugProgram() {
+		return isDebugProgram;
+	}
+
+	
 	public boolean isRTCVarProgram() {
 		return isRTCVarProgram;
 	}
@@ -489,6 +499,10 @@ public class Translator
 
 	public void setWiFiProgram(boolean isWiFiProgram) {
 		this.isWiFiProgram = isWiFiProgram;
+	}
+	
+	public void setDebugProgram(int isDebugProgram) {
+		this.isDebugProgram = isDebugProgram;
 	}
 	
 	

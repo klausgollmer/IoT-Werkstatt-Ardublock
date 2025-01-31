@@ -18,7 +18,6 @@ public class LORA_TTNSend_abp  extends TranslatorBlock {
 		translator.addHeaderFile("lmic.h");
 		translator.addHeaderFile("hal/hal.h");
 		translator.addHeaderFile("IoTW_LMIC.h");
-	//	translator.addHeaderFile("#define LORA_TX_INTERVAL 10");
 		translator.setLORAProgram(true);   
 		
 		String Defaults=""

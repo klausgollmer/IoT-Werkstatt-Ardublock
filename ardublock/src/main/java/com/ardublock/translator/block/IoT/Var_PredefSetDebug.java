@@ -10,9 +10,9 @@ import com.ardublock.translator.block.exception.BlockException;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class Var_PredefSetNum  extends TranslatorBlock {
+public class Var_PredefSetDebug  extends TranslatorBlock {
 	private static ResourceBundle uiMessageBundle = ResourceBundle.getBundle("com/ardublock/block/ardublock");
-	public Var_PredefSetNum (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	public Var_PredefSetDebug (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
@@ -20,15 +20,10 @@ public class Var_PredefSetNum  extends TranslatorBlock {
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		
-		//TODO take out special character
-		String Symbol = label;
 		TranslatorBlock tb = this.getRequiredTranslatorBlockAtSocket(0);
 		String Value = tb.toCode();
-		Symbol = Symbol.toUpperCase();
-		Symbol.replaceAll("[^a-zA-Z0-9_]", "");
-		translator.addHeaderFile("#define "+Symbol+" "+Value);
-		//translator.addDefinitionCommand("#define "+Symbol+" "+ Value);
+	    int zahl = Integer.parseInt(Value);
+		translator.setDebugProgram(zahl);
 		return codePrefix + codeSuffix;
 	 	}
 }

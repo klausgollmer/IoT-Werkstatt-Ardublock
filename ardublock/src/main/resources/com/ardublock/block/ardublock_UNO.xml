@@ -954,6 +954,16 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+		<BlockGenus name="debug_level" kind="command"
+			color="0 102 102" initlabel="bg.debug_level">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="level">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
 
 
 
@@ -6355,6 +6365,7 @@
 				<BlockGenusMember>Divider_Predef</BlockGenusMember>
 				<BlockGenusMember>setter_predef_number</BlockGenusMember>				
 				<BlockGenusMember>predef_number</BlockGenusMember>	
+				<BlockGenusMember>debug_level</BlockGenusMember>	
 		
 				
 				<BlockGenusMember>Divider_String</BlockGenusMember>
