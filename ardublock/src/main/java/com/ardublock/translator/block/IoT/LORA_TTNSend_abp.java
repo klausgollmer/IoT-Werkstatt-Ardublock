@@ -73,9 +73,8 @@ public class LORA_TTNSend_abp  extends TranslatorBlock {
 				+ "  .rst = IOTW_LMIC_RST,      \r\n"
 				+ "  .dio = {IOTW_LMIC_DIO0, IOTW_LMIC_DIO1, LMIC_UNUSED_PIN}\r\n"
 				+ "};\r\n";
-
-				
 				translator.addDefinitionCommand(PinMapping);
+				translator.addDefinitionCommand("int IOTW_debug_level = IOTW_DEBUG_LEVEL; // Debug print auch in den IOTW_ Libs nutzen\n");
 				
 		
 		

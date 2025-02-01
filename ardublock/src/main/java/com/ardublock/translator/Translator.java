@@ -89,7 +89,7 @@ public class Translator
 		headerCommand.append(Disclaimer);
 		if (isDebugProgram() != 1) 
 			headerCommand.append("#define IOTW_DEBUG_LEVEL "+ isDebugProgram() + "\n");
-		headerCommand.append("#include <IoTBoards_Generic.h>");	
+		headerCommand.append("#include <IoTBoards_Generic.h>\n");	
 		
 	/*	
 		if (!isWiFiProgram()) {
@@ -277,7 +277,7 @@ public class Translator
 		isScoopProgram = false;
 		isMQTTProgram = false;
 		isWiFiProgram = false;
-		isDebugProgram = 0;
+		isDebugProgram = 1;
 		isRTCVarProgram = false;
 		isRTCNTPProgram = false;
 		isBlynkProgram = false;

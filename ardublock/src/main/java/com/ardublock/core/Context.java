@@ -345,7 +345,12 @@ public class Context
 		
 		FactoryManager manager = workspace.getFactoryManager();
 		Block newBlock;
-        newBlock = new Block(workspace, "program", false);
+		
+		if (ArdublockVersion == "Starter")
+			  newBlock = new Block(workspace, "program", false);
+		else
+			newBlock = new Block(workspace, "debugprogram", false);
+		
         FactoryRenderableBlock factoryRenderableBlock = new FactoryRenderableBlock(workspace, manager, newBlock.getBlockID());
         RenderableBlock renderableBlock = factoryRenderableBlock.createNewInstance();
         renderableBlock.setLocation(100, 100);

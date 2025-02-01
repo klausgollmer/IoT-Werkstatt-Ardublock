@@ -35,7 +35,7 @@ public class System32_SleepBlockDeep32  extends TranslatorBlock {
 	    	translator.addHeaderFile("IoTW_LMIC.h");
 	    	ret += "SaveLMICToRTC_ESP32("+Delay_ms+"/1000);\n" ;
 		}
-		ret += "IOTW_PRINT(F(\"deep sleep now\"));\n"
+		ret += "IOTW_PRINT(F(\"deep sleep \"));\n"
 			+  "IOTW_PRINTLN("+Delay_ms+");\n"	
 	   		+  "Serial.flush();\n"
 	   		+  "Serial.end();\n"

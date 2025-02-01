@@ -29,11 +29,13 @@ public class System32_ResetReason32 extends TranslatorBlock
     
     String Reason = "int resetReason(int cpu) {\r\n" + 
             "#ifdef ESP32\n"+
-    		"  IOTW_PRINT(F(\"CPU0 reset reason: \"));\r\n" + 
-    		"  IOTW_PRINTLN(rtc_get_reset_reason(0));\r\n" + 
-    		"  IOTW_PRINT(F(\"CPU1 reset reason: \"));\r\n" + 
-    		"  IOTW_PRINTLN(rtc_get_reset_reason(1));\r\n" + 
-    		"  switch (rtc_get_reset_reason(cpu))\r\n"
+    		"#if (IOTW_DEBUG_LEVEL >1)\r\n"
+    		+ "  IOTW_PRINT(F(\"CPU0 reset reason: \"));\r\n"
+    		+ "  IOTW_PRINTLN(rtc_get_reset_reason(0));\r\n"
+    		+ "  IOTW_PRINT(F(\"CPU1 reset reason: \"));\r\n"
+    		+ "  IOTW_PRINTLN(rtc_get_reset_reason(1));\r\n"
+    		+ "#endif\r\n"
+    		+ "switch (rtc_get_reset_reason(cpu))\r\n"
     		+ " {\r\n"
     		+ "    case 1 : IOTW_PRINTLN (F(\"POWERON_RESET\"));break;          /**<1, Vbat power on reset*/\r\n"
     		+ "    case 3 : IOTW_PRINTLN (F(\"SW_RESET\"));break;               /**<3, Software reset digital core*/\r\n"
@@ -51,7 +53,7 @@ public class System32_ResetReason32 extends TranslatorBlock
     		+ "    case 15 : IOTW_PRINTLN (F(\"RTCWDT_BROWN_OUT_RESET\"));break;/**<15, Reset when the vdd voltage is not stable*/\r\n"
     		+ "    case 16 : IOTW_PRINTLN (F(\"RTCWDT_RTC_RESET\"));break;      /**<16, RTC Watch dog reset digital core and rtc module*/\r\n"
     		+ "    default : IOTW_PRINTLN (F(\"NO_MEAN\"));\r\n"
-    		+ "  }\r\n"
+    		+ " }\r\n"
     		+ "return rtc_get_reset_reason(cpu);\r\n" +
     		"#else\n"+
     		"  IOTW_PRINT(F(\"reset reason ESP32 only \")); return 0;\r\n" + 

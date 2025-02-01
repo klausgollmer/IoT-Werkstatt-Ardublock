@@ -18,7 +18,8 @@ public class WLAN_SniffPackets  extends TranslatorBlock {
 	    translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
 	    translator.addHeaderFile("#if defined(ESP32) \n #include <esp_WiFi.h>\n#endif\n");		
 		translator.addHeaderFile("IoTSniffer.h");
-	
+		translator.addDefinitionCommand("int IOTW_debug_level = IOTW_DEBUG_LEVEL; // Debug print auch in den IOTW_ Libs nutzen\n");
+		
 		translator.setWiFiProgram(true);
 
 

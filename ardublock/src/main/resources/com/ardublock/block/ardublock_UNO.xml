@@ -71,6 +71,48 @@
 			</Images>
 		</BlockGenus>
 		
+		<BlockGenus name="debugprogram" kind="command" color="208 165 50" 
+			initlabel="bg.debugprogram" is-starter="yes" is-terminator="yes"
+			label-unique="no">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector label="bc.debug" connector-type="number" connector-kind="socket" position-type="single">
+                     <DefaultArg genus-name="debug1" label="Normal"/>
+                </BlockConnector>	
+		
+				<BlockConnector connector-type="cmd" connector-kind="socket"
+					label="bc.setup" />
+				<BlockConnector connector-type="cmd" connector-kind="socket"
+					label="bc.loop" />
+			</BlockConnectors>
+		
+			<Images>
+			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
+					<FileLocation>com/ardublock/block/IoTkit/IconMakeyIoTW.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+		
+		<BlockGenus name="debug0" kind="data" color="0 102 102" initlabel="bg.debug0" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="debug1" kind="data" color="0 102 102" initlabel="bg.debug1" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="debug2" kind="data" color="0 102 102" initlabel="bg.debug2" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
+		
+		
 		<BlockGenus name="Divider" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Display" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Environment" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -954,18 +996,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-		<BlockGenus name="debug_level" kind="command"
-			color="0 102 102" initlabel="bg.debug_level">
-			<description><text></text></description>
-			<BlockConnectors>
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="level">
-					<DefaultArg genus-name="number" label="0" />
-				</BlockConnector>
-			</BlockConnectors>
-		</BlockGenus>
-
-
+	
 
 
 
@@ -1626,17 +1657,7 @@
         	</BlockConnectors>
 		</BlockGenus>
 
-   	    <BlockGenus name="DebugBSEC" kind="command" color="44 165 226"
-			initlabel="bg.DebugBSEC" editable-label="no" is-label-value="no">
-			<description><text></text></description>
-	
-			<BlockConnectors>
-				<BlockConnector connector-type="boolean"
-					connector-kind="socket" label="bc.ln">
-					<DefaultArg genus-name="true" label="true" />
-				</BlockConnector>
-        	</BlockConnectors>
-		</BlockGenus>
+   	 
 
        <BlockGenus name="BSECVectorTemp" kind="data" color="255 0 0" initlabel="bg.BSECVectorTemp" editable-label="no" is-label-value="no" >
           <BlockConnectors>
@@ -5971,6 +5992,14 @@
 
 		<!-- BlockFamilies andere -->
 
+	     <BlockFamily>
+			<FamilyMember>debug0</FamilyMember>
+			<FamilyMember>debug1</FamilyMember>
+			<FamilyMember>debug2</FamilyMember>
+		</BlockFamily>
+		
+	  
+
 		<BlockFamily>
 			<FamilyMember>digital-high</FamilyMember>
 			<FamilyMember>digital-low</FamilyMember>
@@ -6407,7 +6436,7 @@
 				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBSEC</BlockGenusMember>
-				<BlockGenusMember>DebugBSEC</BlockGenusMember>
+			
 				<BlockGenusMember>GetBME680offset</BlockGenusMember>
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>

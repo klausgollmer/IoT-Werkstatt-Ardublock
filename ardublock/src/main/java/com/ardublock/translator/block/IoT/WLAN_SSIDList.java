@@ -16,6 +16,7 @@ public class WLAN_SSIDList  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		translator.addHeaderFile("WiFi_SSIDListner.h");
+		translator.addDefinitionCommand("int IOTW_debug_level = IOTW_DEBUG_LEVEL; // Debug print auch in den IOTW_ Libs nutzen\n");
 		
 		//translator.addSetupCommand("Serial.begin(115200);");
 		translator.addSetupCommand("SSIDListner(); // from https://github.com/kalanda/esp8266-sniffer");

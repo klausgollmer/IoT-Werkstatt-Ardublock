@@ -40,13 +40,19 @@ public class SigProc_Medianfilter extends TranslatorBlock
     // Header hinzuf�gen
     translator.addHeaderFile("SoftwareSerial.h");
   
-    String MedianCode = "// ---------------------- simple median filter with 3 values \n"
+    String MedianCode = "// ---------------------- simple median filter with 3 values \r\n"
     		+ "float findMedian(float v1, float v2, float v3) { \r\n"
-    		+ "    if ((v1 <= v2 && v2 <= v3) || (v3 <= v2 && v2 <= v1)) return v2;\r\n"
-    		+ "    if ((v2 <= v3 && v3 <= v1) || (v1 <= v3 && v3 <= v2)) return v3;\r\n"
-    		+ "    return v1;\r\n"
-    		+ "}\r\n"
-    		+ "";
+    		+ "  float median=NAN;\r\n"
+    		+ "  if ((v1 <= v2 && v2 <= v3) || (v3 <= v2 && v2 <= v1)) {\r\n"
+    		+ "    median = v2; \r\n"
+    		+ "  } else if ((v2 <= v3 && v3 <= v1) || (v1 <= v3 && v3 <= v2)) {\r\n"
+    		+ "    median = v3;\r\n"
+    		+ "  } else median = v1;\r\n"
+    		+ "  #if (IOTW_DEBUG_LEVEL >1) \r\n"
+    		+ "    IOTW_PRINTF(\"\\nMedian return %f \\n\",median); \r\n"
+    		+ "  #endif\r\n"
+    		+ "  return median;\r\n"
+    		+ "}\r\n";
     translator.addDefinitionCommand(MedianCode);		
 	
     String FilterCode = "// ---------------------- medianfilter with sample and retry, eliminate outlayer \n"
@@ -64,6 +70,9 @@ public class SigProc_Medianfilter extends TranslatorBlock
     		+ "      data[i]="+code+";\r\n"
     		+ "      tryout--;\r\n"
     		+ "    }\r\n"
+    		+ "    #if (IOTW_DEBUG_LEVEL >1) \r\n"
+    		+ "       IOTW_PRINTF(\"\\nMedian measurement %i: %f\",i,data[i]); \r\n"
+    		+ "    #endif\r\n"
     		+ "  }\r\n"
     		+ "  return findMedian(data[0],data[1],data[2]); // return the median\r\n"
     		+ "}";

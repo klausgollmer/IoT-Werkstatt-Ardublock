@@ -19,7 +19,7 @@ public class HTTP_ThingsboardAsk  extends TranslatorBlock {
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
 		translator.addHeaderFile("WiFiClientSecure.h");
 		//translator.addSetupCommand("Serial.begin(115200);");
-		
+		/*
 		String JSON="//--------------------------------------- tiny JSON Parser\n" + 
 				"String parseJSON(String xml,String suchtext) {\n" + 
 				"  String valStr = \"\";                // Hilfsstring\n" + 
@@ -57,9 +57,69 @@ public class HTTP_ThingsboardAsk  extends TranslatorBlock {
 				"  return valStr;\n" + 
 				"}\n" + 
 				"";
+				*/
+		String JSON = "// ----------------------  tiny JSON Parser \n"
+				+ "String parseJSON(String json, String key) {\n"
+				+ "  String valStr = \"\";\n"
+				+ "  int start, endPos, colonPos, commaPos, quotePos;\n"
+				+ "  String remaining = \"\";\n"
+				+ "\n"
+				+ "  start = json.indexOf(key);  // Locate the key\n"
+				+ "\n"
+				+ "#if (IOTW_DEBUG_LEVEL > 1)\n"
+				+ "    IOTW_PRINTF(\"\\nparseJSON: string: %s, key: %s \", json.c_str(), key.c_str());\n"
+				+ "#endif\n"
+				+ "  if (start >= 0) {  // Key found\n"
+				+ "    remaining = json.substring(start + key.length());  // Extract substring after key\n"
+				+ "\n"
+				+ "    colonPos = remaining.indexOf(':');  // Locate colon\n"
+				+ "    if (colonPos == -1) {\n"
+				+ "     IOTW_PRINTLN(F(\"JSON ERROR: no colon found\"));\n"
+				+ "     return valStr;\n"
+				+ "    }\n"
+				+ "      \n"
+				+ "    remaining = remaining.substring(colonPos + 1);  // Extract value part\n"
+				+ "      \n"
+				+ "	commaPos = remaining.indexOf(',');  // Find comma (possible end)\n"
+				+ "	quotePos = remaining.indexOf('\"', 1);  // Find closing quote (if exists)\n"
+				+ "\n"
+				+ "	// Determine the correct end position\n"
+				+ "	if (commaPos != -1 && quotePos != -1) {\n"
+				+ "	 endPos = min(commaPos, quotePos);  // Take the first one\n"
+				+ "	} else if (commaPos != -1) {\n"
+				+ "	 endPos = commaPos;\n"
+				+ "	} else if (quotePos != -1) {\n"
+				+ "	 endPos = quotePos;\n"
+				+ "	} else {\n"
+				+ "	 endPos = remaining.length();  // If neither, take the rest\n"
+				+ "	}\n"
+				+ "\n"
+				+ "	valStr = remaining.substring(0, endPos);\n"
+				+ "	 \n"
+				+ "	// Trim whitespace and remove surrounding quotes if present\n"
+				+ "	valStr.trim();\n"
+				+ "	if (valStr.startsWith(\"\\\"\") && valStr.endsWith(\"\\\"\")) {\n"
+				+ "	 valStr = valStr.substring(1, valStr.length() - 1);\n"
+				+ "	}\n"
+				+ "  } else {\n"
+				+ "	IOTW_PRINTLN(F(\"JSON ERROR: Key not found\"));\n"
+				+ "	return valStr;\n"
+				+ "  }\n"
+				+ "  valStr.trim();\n"
+				+ "  if (valStr.endsWith(\"}\")) {\n"
+				+ "	 valStr = valStr.substring(0, valStr.length() - 1);\n"
+				+ "  }\n"
+				+ "  #if (IOTW_DEBUG_LEVEL > 1)\n"
+				+ "	  IOTW_PRINTF(\"return: %s\\n\", valStr.c_str());\n"
+				+ "  #endif\n"
+				+ "\n"
+				+ "  return valStr;\n"
+				+ "}\n"
+				+ "" ;
+
   	    translator.addDefinitionCommand(JSON);
-		
-		String httpGET ="// request actual timeseries data from thingsboard\n"
+	
+  	    String httpGET ="// request actual timeseries data from thingsboard\n"
 				+ "String askThingsboard(String server, String device, String JWT,String key) {\n"
 				+ "  HTTPClient http;              // HTTPClient-Objekt deklarieren\n"
 				+ "  WiFiClient wifiClient;        // Für HTTP-Verbindungen\n"
