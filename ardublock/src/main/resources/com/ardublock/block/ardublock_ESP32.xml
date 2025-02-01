@@ -70,45 +70,6 @@
 				</Image>
 			</Images>
 		</BlockGenus>
-<BlockGenus name="debugprogram" kind="command" color="208 165 50" 
-			initlabel="bg.debugprogram" is-starter="yes" is-terminator="yes"
-			label-unique="no">
-			<description><text></text></description>
-			<BlockConnectors>
-				<BlockConnector label="bc.debug" connector-type="number" connector-kind="socket" position-type="single">
-                     <DefaultArg genus-name="debug1" label="Normal"/>
-                </BlockConnector>	
-		
-				<BlockConnector connector-type="cmd" connector-kind="socket"
-					label="bc.setup" />
-				<BlockConnector connector-type="cmd" connector-kind="socket"
-					label="bc.loop" />
-			</BlockConnectors>
-		
-			<Images>
-			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
-					<FileLocation>com/ardublock/block/IoTkit/IconMakeyIoTW.png</FileLocation>
-				</Image>
-			</Images>
-		</BlockGenus>
-		
-		<BlockGenus name="debug0" kind="data" color="0 102 102" initlabel="bg.debug0" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-
-       <BlockGenus name="debug1" kind="data" color="0 102 102" initlabel="bg.debug1" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-
-       <BlockGenus name="debug2" kind="data" color="0 102 102" initlabel="bg.debug2" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
 		
 
 
@@ -5987,13 +5948,7 @@
 		<!-- BlockFamilies andere -->
 		
 		
-	     <BlockFamily>
-			<FamilyMember>debug0</FamilyMember>
-			<FamilyMember>debug1</FamilyMember>
-			<FamilyMember>debug2</FamilyMember>
-		</BlockFamily>
-		
-	  
+	   
 
 		<BlockFamily>
 			<FamilyMember>digital-high</FamilyMember>

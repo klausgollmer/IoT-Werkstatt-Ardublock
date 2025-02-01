@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.RenderingHints;
@@ -40,6 +41,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.FontUIResource;
 
 import com.ardublock.core.Context;
+import com.ardublock.translator.Translator;
 import com.ardublock.ui.listener.ArdublockWorkspaceListener;
 import com.ardublock.ui.listener.GenerateCodeButtonListener;
 import com.ardublock.ui.listener.NewButtonListener;
@@ -69,6 +71,7 @@ public class OpenblocksFrame extends JFrame
 	private ResourceBundle uiMessageBundle;
 	
 	public JComboBox boardComboBox;
+	public JComboBox debugComboBox;
 	
 	
 	
@@ -312,6 +315,39 @@ public class OpenblocksFrame extends JFrame
 			
 		});
 		
+	//	JLabel debugLabel = new JLabel("        "+uiMessageBundle.getString("ardublock.ui.debug"));
+		String[] debugList = {uiMessageBundle.getString("ardublock.ui.debug0"),uiMessageBundle.getString("ardublock.ui.debug1"),uiMessageBundle.getString("ardublock.ui.debug2")};
+        JComboBox<String> debugComboBox = new JComboBox<>(debugList);
+
+        // Set initial selection
+        int currentDebugLevel = Translator.isDebugProgram();
+        if (currentDebugLevel >= 0 && currentDebugLevel < debugList.length) {
+            debugComboBox.setSelectedIndex(currentDebugLevel);
+        } else {
+            debugComboBox.setSelectedIndex(0); // Default to "None"
+        }
+
+        // Add action listener for selection changes
+        debugComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int actual = Translator.isDebugProgram();
+                int selectedIndex = debugComboBox.getSelectedIndex();
+
+                if (actual == selectedIndex) {
+                  //  System.out.println("Selection unchanged. Skipping update.");
+                    return;
+                }
+
+                // Update debug program
+                if (selectedIndex >= 0) {
+                    Translator.setDebugProgram(selectedIndex);
+                 //   System.out.println("Debug program changed to: " + debugList[selectedIndex]);
+                }
+            }
+        });
+
+		
 		
 		
 		JLabel zoomLabel = new JLabel("Zoom: ");
@@ -388,7 +424,7 @@ public class OpenblocksFrame extends JFrame
 			    }
 			}
 		});
-		JLabel versionLabel = new JLabel(uiMessageBundle.getString("ardublock.ui.version"));
+		JLabel versionLabel = new JLabel("        "+uiMessageBundle.getString("ardublock.ui.version")+"       ");
 		JLabel inoLabel = new JLabel("Arduino: ");
 		JLabel inoFileLabel = new JLabel(context.getArduinoCodeFileString());
 	//	JLabel zoomLabel = new JLabel("Zoom:");
@@ -414,14 +450,16 @@ public class OpenblocksFrame extends JFrame
 		buttons.add(jp4);
 		buttons.add(jp5);
 
-			
-		
+	
+	//	bottomPanel.setLayout(new GridLayout(1, 1, 10, 1));
+		//bottomPanel.add(debugLabel);
+		bottomPanel.add(debugComboBox);
 		bottomPanel.add(versionLabel);
 	    bottomPanel.add(saveImageButton);
 		bottomPanel.add(websiteButton);
 		bottomPanel.add(inoFileLabel);
-		
-		
+	
+		//bottomPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		this.add(buttons, BorderLayout.NORTH);
 		this.add(bottomPanel, BorderLayout.SOUTH);
 		this.add(workspace, BorderLayout.CENTER);

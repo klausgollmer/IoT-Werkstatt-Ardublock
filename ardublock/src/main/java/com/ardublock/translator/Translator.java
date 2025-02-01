@@ -53,7 +53,7 @@ public class Translator
 	private boolean isScoopProgram;
 	private boolean isMQTTProgram;
 	private boolean isWiFiProgram;
-	private int isDebugProgram;
+	private static int isDebugProgram=1;
 	private boolean isRTCVarProgram;
 	private boolean isRTCNTPProgram;
 	private boolean isBlynkProgram;
@@ -277,7 +277,7 @@ public class Translator
 		isScoopProgram = false;
 		isMQTTProgram = false;
 		isWiFiProgram = false;
-		isDebugProgram = 1;
+		
 		isRTCVarProgram = false;
 		isRTCNTPProgram = false;
 		isBlynkProgram = false;
@@ -472,7 +472,7 @@ public class Translator
 		return isWiFiProgram;
 	}
 
-	public int isDebugProgram() {
+	public static int isDebugProgram() {
 		return isDebugProgram;
 	}
 
@@ -502,8 +502,8 @@ public class Translator
 		this.isWiFiProgram = isWiFiProgram;
 	}
 	
-	public void setDebugProgram(int isDebugProgram) {
-		this.isDebugProgram = isDebugProgram;
+	public static void setDebugProgram(int isDebugProgram) {
+		Translator.isDebugProgram = isDebugProgram;
 	}
 	
 	
