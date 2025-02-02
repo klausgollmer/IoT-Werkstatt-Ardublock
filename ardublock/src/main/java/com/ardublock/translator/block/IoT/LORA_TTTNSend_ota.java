@@ -195,7 +195,8 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 		        + "      yield();\r\n"
 		        + "      os_runloop_once_sleep();\r\n"
 		        + "  }\r\n"
-		        + "  IOTW_PRINTLN(F(\"Tx finished\")); "
+		        + "  if (millis() < tout) IOTW_PRINTLN(F(\"Tx finished ✅\")); "
+		        + "    else IOTW_PRINTLN(F(\"❌ Timeout\")); "
 		        + "} // Block \n";
 	    
 	    translator.setLORAProgram(true);

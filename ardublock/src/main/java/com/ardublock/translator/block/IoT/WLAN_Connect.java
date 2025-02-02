@@ -31,23 +31,25 @@ public class WLAN_Connect  extends TranslatorBlock {
 	    if (translatorBlock!=null)
     	    pass = translatorBlock.toCode();
 	    
-
+	    
 	    ret = "//------------ WLAN initialisieren \n"
-	     	 +"WiFi.disconnect();WiFi.persistent(false);\n"
-	         +"WiFi.mode(WIFI_STA);\n"
-	         +"delay(100);\n"
-	         +"IOTW_PRINT (\"\\nWLAN connect to:\");\n"
-	         +"IOTW_PRINT("+ssid+");\n"        
-	         +"WiFi.begin(" + ssid + "," + pass +");\n"
-	         +"while (WiFi.status() != WL_CONNECTED) { // Warte bis Verbindung steht \n"
-	         +"  delay(500); IOTW_PRINT(\".\");\n" 
-	         +"};\n"
-	         +"IOTW_PRINTLN (\"\\nconnected, meine IP:\"+ WiFi.localIP().toString());\n"
-	         +"matrixausgabe_text = \" Meine IP:\" + WiFi.localIP().toString();\n"
-             +"myOwnIP = WiFi.localIP();\n"
-   		     +"matrixausgabe_index=0;\n";
+		     	 +"WiFi.disconnect();WiFi.persistent(false);\n"
+		         +"WiFi.mode(WIFI_STA);\n"
+		         +"delay(100);\n"
+		         +"IOTW_PRINT (F(\"\\nWiFi connect to: \"));\n"
+		         +"IOTW_PRINT("+ssid+");\n"        
+		         +"IOTW_PRINT(\" \");\n"
+		         +"WiFi.begin(" + ssid + "," + pass +");\n"
+		         +"while (WiFi.status() != WL_CONNECTED) { // Warte bis Verbindung steht \n"
+		         +"  delay(500); IOTW_PRINT(\".\");\n" 
+		         +"};\n"
+		     	 +"IOTW_PRINT(F(\" meine IP: \"));\n"
+		         +"IOTW_PRINT(WiFi.localIP().toString());\n"
+		    	 +"IOTW_PRINTLN(F(\" ✅ connected\"));\n"
+		         +"matrixausgabe_text = \" Meine IP:\" + WiFi.localIP().toString();\n"
+	             +"myOwnIP = WiFi.localIP();\n"
+	   		     +"matrixausgabe_index=0;\n";
 	    
         return codePrefix + ret + codeSuffix;
 	 	}
 }
-

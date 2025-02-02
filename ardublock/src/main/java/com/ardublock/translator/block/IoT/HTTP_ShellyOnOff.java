@@ -20,38 +20,90 @@ public class HTTP_ShellyOnOff  extends TranslatorBlock {
 //		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
 		//translator.addSetupCommand("Serial.begin(115200);");
 		
-		String httpGET ="//--------------------------------------- http-GET with wifi-Client\n" + 
-				"int httpClientGET(String host, String cmd, String &antwort) {\n" + 
-				"  int ok = 0;\n" + 
-				"  String message = host+cmd;\n" + 
-				"  WiFiClient client;\n" + 
-				"  #if defined(ESP8266)\n HTTPClient http;\n#elif defined(ESP32) \n HTTPClient http;\n#endif\n" + 
-				"  //IOTW_PRINTLN(message);\n" + 
-				"  if (http.begin(client, message)){  // HTTP\n" + 
-				"    // start connection and send HTTP header\n" + 
-				"    int httpCode = http.GET();\n" + 
-				"    // httpCode will be negative on error\n" + 
-				"    if (httpCode > 0) {\n" + 
-				"      // HTTP header has been send and Server response header has been handled\n" + 
-				"      String payload = http.getString();\n" + 
-				"      antwort = payload;\n" + 
-				"      //IOTW_PRINTLN(payload);\n" + 
-				"      // file found at server\n" + 
-				"      if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {\n" + 
-				"        ok = 1;\n" + 
-				"      }\n" + 
-				"    } \n" + 
-				"    else {\n" + 
-				"      IOTW_PRINTF(\"[HTTP] GET... failed, error: %s\\n\", http.errorToString(httpCode).c_str());\n" + 
-				"    }\n" + 
-				"    http.end();\n" + 
-				"  } \n" + 
-				"  else {\n" + 
-				"    IOTW_PRINTF(\"[HTTP] Unable to connect\\n\");\n" + 
-				"  }\n" + 
-				"  return ok;\n" + 
-				"}\n" + 
-				"";
+		String httpGET = "//--------------------------------------- http-GET with wifi-Client\r\n"
+				+ "// ----------------------------------------------------------------------------\r\n"
+				+ "// httpClientGET: HTTP GET-Request mit HTTPClient\r\n"
+				+ "//\r\n"
+				+ "// Parameter:\r\n"
+				+ "//   host:   z.B. \"api.thingspeak.com\" oder \"http://api.thingspeak.com\"\r\n"
+				+ "//   cmd:    z.B. \"/update?api_key=DEIN_KEY&field1=123\"\r\n"
+				+ "//   antwort: Enthält am Ende die Serverantwort\r\n"
+				+ "//\r\n"
+				+ "// Rückgabewert:\r\n"
+				+ "//   1 = Erfolg (HTTP 200 oder Redirect 301)\r\n"
+				+ "//   0 = Fehler (Verbindungsfehler oder HTTP-Code != 200/301)\r\n"
+				+ "// ----------------------------------------------------------------------------\r\n"
+				+ "int httpClientGET(String host, String cmd, String &antwort) {\r\n"
+				+ "  // Debug-/Fehler-Strings\r\n"
+				+ "  String errorString      = \"\";\r\n"
+				+ "  String errorStringDebug = \"\";\r\n"
+				+ "  IOTW_PRINT(\"httpClientGET \"+host+\" \");\r\n"
+				+ "  int ret = 0;  // Rückgabewert: 1 = Erfolg, 0 = Fehler\r\n"
+				+ "\r\n"
+				+ "  // 1) WLAN-Verbindung prüfen\r\n"
+				+ "  if (WiFi.status() != WL_CONNECTED) {\r\n"
+				+ "    errorString += \"⚠ no WiFi connection\";\r\n"
+				+ "    IOTW_PRINTLN(errorString);\r\n"
+				+ "    return 0; \r\n"
+				+ "  }\r\n"
+				+ "\r\n"
+				+ "  // 2) URL-Zusammenbau (Verhindert doppelte http:// Präfixe)\r\n"
+				+ "  String url;\r\n"
+				+ "  if (host.startsWith(\"http://\") || host.startsWith(\"https://\")) {\r\n"
+				+ "    url = host + cmd;  // Falls host schon mit http(s) beginnt, direkt übernehmen\r\n"
+				+ "  } \r\n"
+				+ "  else {\r\n"
+				+ "    url = \"http://\" + host + cmd;\r\n"
+				+ "  }\r\n"
+				+ "\r\n"
+				+ "  // Debug-Ausgabe vorbereiten\r\n"
+				+ "  errorStringDebug += \"[INFO] Using HTTPClient for GET:\\n\";\r\n"
+				+ "  errorStringDebug += \"URL: \" + url + \"\\n\";\r\n"
+				+ "\r\n"
+				+ "  // 3) HTTPClient vorbereiten\r\n"
+				+ "  {\r\n"
+				+ "    WiFiClient client;\r\n"
+				+ "    HTTPClient http;\r\n"
+				+ "\r\n"
+				+ "    if (!http.begin(client, url)) {\r\n"
+				+ "      errorString += \"❌ Unable to connect\";\r\n"
+				+ "      IOTW_PRINTLN(errorString);\r\n"
+				+ "      return 0;\r\n"
+				+ "    }\r\n"
+				+ "\r\n"
+				+ "    // 4) GET-Anfrage senden\r\n"
+				+ "    int httpCode = http.GET();\r\n"
+				+ "    if (httpCode > 0) {\r\n"
+				+ "      // Server hat geantwortet\r\n"
+				+ "      String payload = http.getString();\r\n"
+				+ "      antwort = payload;\r\n"
+				+ "\r\n"
+				+ "      if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {\r\n"
+				+ "        errorString += \"✅ success\";\r\n"
+				+ "        ret = 1;  // Erfolg\r\n"
+				+ "      } \r\n"
+				+ "      else {\r\n"
+				+ "        errorString += \"❌ Unexpected HTTP-Code: \" + String(httpCode);\r\n"
+				+ "      }\r\n"
+				+ "\r\n"
+				+ "    } \r\n"
+				+ "    else {\r\n"
+				+ "      // Fehlerfall\r\n"
+				+ "      errorString += \"❌ HTTP GET failed, error: \" + http.errorToString(httpCode);\r\n"
+				+ "    }\r\n"
+				+ "\r\n"
+				+ "    http.end();\r\n"
+				+ "  }\r\n"
+				+ "\r\n"
+				+ "  // 5) Finale Ausgaben\r\n"
+				+ "  IOTW_PRINTLN(errorString);\r\n"
+				+ "#if (IOTW_DEBUG_LEVEL >1)\r\n"
+				+ "  IOTW_PRINTLN(errorStringDebug);\r\n"
+				+ "#endif\r\n"
+				+ "\r\n"
+				+ "  return ret;\r\n"
+				+ "}";
+		
 		translator.addDefinitionCommand(httpGET);
 
 		String Shelly = "// https://shelly-api-docs.shelly.cloud/gen1/#shelly-plug-plugs\n" + 

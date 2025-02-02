@@ -18,110 +18,145 @@ public class HTTP_REST_RequestJWT  extends TranslatorBlock {
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
 		translator.addHeaderFile("WiFiClientSecure.h");
-		//translator.addSetupCommand("Serial.begin(115200);");
-		/*
-		String JSON="//--------------------------------------- tiny JSON Parser\n" + 
-				"String parseJSON(String xml,String suchtext) {\n" + 
-				"  String valStr = \"\";                // Hilfsstring\n" + 
-				"\n" + 
-				"  \n" + 
-				"  //IOTW_PRINTLN(\"string:\"+xml);\n" + 
-				"  int start,ende,doppel,ende1,ende2; // Index im Text\n" + 
-				"  String antwort =\"\";\n" + 
-				"  start = xml.indexOf(suchtext);     // Suche Text\n" + 
-				" \n" + 
-				"  if (start >= 0) {                   // Item gefunden\n" + 
-				"    antwort = xml.substring(start+suchtext.length(),xml.length());\n" + 
-				"   // IOTW_PRINTLN(\"antw:\"+antwort);\n" + 
-				"    doppel = antwort.indexOf(':');\n" + 
-				"   // IOTW_PRINTLN(\"doppel:\"+String(doppel));\n" + 
-				"    \n" + 
-				"    antwort = antwort.substring(doppel+1,antwort.length());\n" + 
-				"   // IOTW_PRINTLN(\"antw:\"+antwort);\n" + 
-				"    \n" + 
-				"    ende1 =  antwort.indexOf(',');  // Ende der Zahl\n" + 
-				"   // IOTW_PRINTLN(\", =\"+String(ende1));\n" + 
-				"    ende2 =  antwort.indexOf('\"',1);  // Ende der Zahl\n" + 
-				"   // IOTW_PRINTLN(\"# =\"+String(ende2));\n" + 
-				"    if (ende1 >= 0) {\n" + 
-				"      ende = ende1;\n" + 
-				"    } else {\n" + 
-				"      ende = ende2;\n" + 
-				"    }\n" + 
-				"    valStr= antwort.substring(0,ende);// itemtext\n" + 
-				"    valStr.replace(\"\\\"\",\" \");          // delete ggf. vorhandene \"\n" + 
-				"    valStr.trim();\n" + 
-				"  } \n" + 
-				"  else                             // Item nicht gefunden\n" + 
-				"  IOTW_PRINT(\"error - no such item: \"+suchtext);\n" + 
-				"  return valStr;\n" + 
-				"}\n" + 
-				"";
-		
-		*/
-		
-		String JSON = "// ----------------------  tiny JSON Parser \n"
-				+ "String parseJSON(String json, String key) {\n"
-				+ "  String valStr = \"\";\n"
-				+ "  int start, endPos, colonPos, commaPos, quotePos;\n"
-				+ "  String remaining = \"\";\n"
-				+ "\n"
-				+ "  start = json.indexOf(key);  // Locate the key\n"
-				+ "\n"
-				+ "#if (IOTW_DEBUG_LEVEL > 1)\n"
-				+ "    IOTW_PRINTF(\"\\nparseJSON: string: %s, key: %s \", json.c_str(), key.c_str());\n"
-				+ "#endif\n"
-				+ "  if (start >= 0) {  // Key found\n"
-				+ "    remaining = json.substring(start + key.length());  // Extract substring after key\n"
-				+ "\n"
-				+ "    colonPos = remaining.indexOf(':');  // Locate colon\n"
-				+ "    if (colonPos == -1) {\n"
-				+ "     IOTW_PRINTLN(F(\"JSON ERROR: no colon found\"));\n"
-				+ "     return valStr;\n"
-				+ "    }\n"
-				+ "      \n"
-				+ "    remaining = remaining.substring(colonPos + 1);  // Extract value part\n"
-				+ "      \n"
-				+ "	commaPos = remaining.indexOf(',');  // Find comma (possible end)\n"
-				+ "	quotePos = remaining.indexOf('\"', 1);  // Find closing quote (if exists)\n"
-				+ "\n"
-				+ "	// Determine the correct end position\n"
-				+ "	if (commaPos != -1 && quotePos != -1) {\n"
-				+ "	 endPos = min(commaPos, quotePos);  // Take the first one\n"
-				+ "	} else if (commaPos != -1) {\n"
-				+ "	 endPos = commaPos;\n"
-				+ "	} else if (quotePos != -1) {\n"
-				+ "	 endPos = quotePos;\n"
-				+ "	} else {\n"
-				+ "	 endPos = remaining.length();  // If neither, take the rest\n"
-				+ "	}\n"
-				+ "\n"
-				+ "	valStr = remaining.substring(0, endPos);\n"
-				+ "	 \n"
-				+ "	// Trim whitespace and remove surrounding quotes if present\n"
-				+ "	valStr.trim();\n"
-				+ "	if (valStr.startsWith(\"\\\"\") && valStr.endsWith(\"\\\"\")) {\n"
-				+ "	 valStr = valStr.substring(1, valStr.length() - 1);\n"
-				+ "	}\n"
-				+ "  } else {\n"
-				+ "	IOTW_PRINTLN(F(\"JSON ERROR: Key not found\"));\n"
-				+ "	return valStr;\n"
-				+ "  }\n"
-				+ "  valStr.trim();\n"
-				+ "  if (valStr.endsWith(\"}\")) {\n"
-				+ "	 valStr = valStr.substring(0, valStr.length() - 1);\n"
-				+ "  }\n"
-				+ "  #if (IOTW_DEBUG_LEVEL > 1)\n"
-				+ "	  IOTW_PRINTF(\"return: %s\\n\", valStr.c_str());\n"
-				+ "  #endif\n"
-				+ "\n"
-				+ "  return valStr;\n"
-				+ "}\n"
-				+ "" ;
-
-  	    translator.addDefinitionCommand(JSON);
+		translator.addHeaderFile("ArduinoJson.h");
 		
 		String httpPOST = "// Request JSON Web token\n"
+				+"String requestJWT(String server, String username, String password) {\n"
+				+ "  // In diesen Strings sammeln wir Ausgaben und Debug-Infos:\n"
+				+ "  String errorString      = \"ThingsBoard request JWT \";\n"
+				+ "  String errorStringDebug = \"\";\n"
+				+ "  String tokenValue       = \"\";  // Hier speichern wir später den Token\n"
+				+ "\n"
+				+ "  // 1) WLAN prüfen\n"
+				+ "  if (WiFi.status() != WL_CONNECTED) {\n"
+				+ "    errorString += \"⚠ WiFi not connected!\";\n"
+				+ "    IOTW_PRINTLN(errorString);\n"
+				+ "    return \"\";  // Abbrechen, wenn keine Verbindung besteht\n"
+				+ "  }\n"
+				+ "\n"
+				+ "  // 2) URL zusammenbauen & HTTPS/HTTP unterscheiden\n"
+				+ "  bool isSecure = false;\n"
+				+ "  String req;\n"
+				+ "  if (server.startsWith(\"https\")) {\n"
+				+ "    isSecure = true;\n"
+				+ "    req     = server + \"/api/auth/login\";\n"
+				+ "  } else if (server.startsWith(\"http\")) {\n"
+				+ "    req = server + \"/api/auth/login\";\n"
+				+ "  } else {\n"
+				+ "    req = \"http://\" + server + \"/api/auth/login\";\n"
+				+ "  }\n"
+				+ "\n"
+				+ "  // 3) JSON-Daten für POST anlegen\n"
+				+ "  StaticJsonDocument<200> jsonDoc;\n"
+				+ "  jsonDoc[\"username\"] = username;\n"
+				+ "  jsonDoc[\"password\"] = password;\n"
+				+ "\n"
+				+ "  String postData;\n"
+				+ "  serializeJson(jsonDoc, postData);\n"
+				+ "\n"
+				+ "  // 4) Debug-Infos (nur bei Bedarf ausgeben)  errorStringDebug += \"[INFO] HTTP-POST requestJWT:\\n\";\n"
+				+ "  errorStringDebug += \"Server: \" + server + \"\\n\";\n"
+				+ "  errorStringDebug += \"Request: \" + req + \"\\n\";\n"
+				+ "  errorStringDebug += \"JSON: \" + postData + \"\\n\";\n"
+				+ "\n"
+				+ "  // 5) HTTP-Client vorbereiten\n"
+				+ "  HTTPClient http;\n"
+				+ "  WiFiClient wifiClient;  // Für unverschlüsselte HTTP-Verbindungen\n"
+				+ "  http.setTimeout(5000);  // Timeout auf 5 Sekunden\n"
+				+ "\n"
+				+ "  if (isSecure) {\n"
+				+ "    // HTTPS-Verbindung\n"
+				+ "    WiFiClientSecure wifiClientSecure;\n"
+				+ "    wifiClientSecure.setInsecure();  // Zertifikatsprüfung deaktivieren\n"
+				+ "    http.begin(wifiClientSecure, req);\n"
+				+ "  } else {\n"
+				+ "    // HTTP-Verbindung\n"
+				+ "    http.begin(wifiClient, req);\n"
+				+ "  }\n"
+				+ "\n"
+				+ "  // 6) Header für JSON-POST festlegen\n"
+				+ "  http.addHeader(\"Content-Type\", \"application/json\");\n"
+				+ "  http.addHeader(\"Accept\", \"application/json\");\n"
+				+ "\n"
+				+ "  // 7) POST-Anfrage stellen und Antwort auslesen\n"
+				+ "  int httpCode   = http.POST(postData);\n"
+				+ "  String payload = \"\";  // Antwort des Servers (JSON oder Fehlermeldung)\n"
+				+ "  if (httpCode > 0) {\n"
+				+ "    payload = http.getString();\n"
+				+ "\n"
+				+ "    // Erfolgs- und Fehlercodes unterscheiden\n"
+				+ "    switch (httpCode) {\n"
+				+ "      case 200:\n"
+				+ "        errorString += \"✅ 200 OK\";\n"
+				+ "        break;\n"
+				+ "      case 201:\n"
+				+ "        errorString += \"✅ 201 Created\";\n"
+				+ "        break;\n"
+				+ "      case 400:\n"
+				+ "        errorString += \"❌ 400 Bad Request\";\n"
+				+ "        break;\n"
+				+ "      case 401:\n"
+				+ "        errorString += \"❌ 401 Unauthorized\";\n"
+				+ "        break;\n"
+				+ "      case 403:\n"
+				+ "        errorString += \"❌ 403 Forbidden\";\n"
+				+ "        break;\n"
+				+ "      case 404:\n"
+				+ "        errorString += \"❌ 404 Not Found\";\n"
+				+ "        break;\n"
+				+ "      case 500:\n"
+				+ "        errorString += \"❌ 500 Internal Server Error\";\n"
+				+ "        break;\n"
+				+ "      default:\n"
+				+ "        errorString += \"❌ HTTP-Code: \" + String(httpCode);\n"
+				+ "        break;\n"
+				+ "    }\n"
+				+ "  } else {\n"
+				+ "    // HTTP-Code < 0 => Verbindungsfehler auf ESP\n"
+				+ "    errorString += \"❌ connection failed code: \" + String(httpCode);\n"
+				+ "    if (httpCode == -1) {\n"
+				+ "      errorString += \" (host not reachable)\";\n"
+				+ "    } else if (httpCode == -4) {\n"
+				+ "      errorString += \" (request timeout)\";\n"
+				+ "    } else if (httpCode == -5) {\n"
+				+ "      errorString += \" (no connection to server)\";\n"
+				+ "    }\n"
+				+ "  }\n"
+				+ "\n"
+				+ "  http.end(); // Verbindung schließen\n"
+				+ "\n"
+				+ "  // 8) Nur bei Erfolg (httpCode 200/201) Token parsen\n"
+				+ "  if (httpCode == 200 || httpCode == 201) {\n"
+				+ "    // Direkt mit ArduinoJson parsen, z.B.:\n"
+				+ "    StaticJsonDocument<512> doc;\n"
+				+ "    DeserializationError err = deserializeJson(doc, payload);\n"
+				+ "    if (!err) {\n"
+				+ "      tokenValue = doc[\"token\"] | \"\";\n"
+				+ "    }\n"
+				+ "  } else {\n"
+				+ "    // Bei Fehlern: vollständige Antwort anzeigen\n"
+				+ "    if (!payload.isEmpty()) {\n"
+				+ "       errorString += \"\\nAnswer: \" + payload;\n"
+				+ "    }\n"
+				+ "  }\n"
+				+ "\n"
+				+ "  // 9) Abschließende Ausgabe\n"
+				+ "  IOTW_PRINTLN(errorString);\n"
+				+ "#if (IOTW_DEBUG_LEVEL >1)\n"
+				+ "  IOTW_PRINTLN(errorStringDebug);\n"
+				+ "#endif\n"
+				+ "\n"
+				+ "  // 10) JWT zurückgeben\n"
+				+ "  return tokenValue;\n"
+				+ "}\n"
+				+ "";
+				
+				
+				
+				
+				
+				
+/*				
 				+ "String requestJWT(String server, String username, String password) {\n"
 				+ "  HTTPClient http;              // HTTPClient-Objekt deklarieren\n"
 				+ "  WiFiClient wifiClient;        // Für HTTP-Verbindungen\n"
@@ -174,7 +209,7 @@ public class HTTP_REST_RequestJWT  extends TranslatorBlock {
 				+ "  \n"
 				+ "  return payload; // JWT zurückgeben\n"
 				+ "}";
-		
+	*/	
 		translator.addDefinitionCommand(httpPOST);
 		
 		String host,user,pass,ret;

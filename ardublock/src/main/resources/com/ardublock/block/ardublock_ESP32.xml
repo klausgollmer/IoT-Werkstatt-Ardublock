@@ -4359,23 +4359,7 @@
         	
         	
         	
-	<!--  Shelly -->
-		<BlockGenus name="getShelly" kind="data" color="30 30 255"
-			initlabel="bg.getShelly" editable-label="no" is-label-value="no">
-			<description><text></text></description>
-			<BlockConnectors>
-				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.host">
-					<DefaultArg genus-name="host" label="192.168.33.1" />
-				</BlockConnector>
-				
-				<BlockConnector label="bc.ShellyVector" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="ShellyVectorPower" label="Power [W]"/>
-                </BlockConnector>	
-			</BlockConnectors>
-		</BlockGenus>
-
+	
 	<!--  Shelly -->
 		<BlockGenus name="getShelly2" kind="data" color="30 30 255"
 			initlabel="bg.getShelly2" editable-label="no" is-label-value="no">
@@ -4458,22 +4442,7 @@
 
 
 
-        <BlockGenus name="sendIFTTT" kind="command" color="30 30 255"
-			initlabel="bg.sendIFTTT" editable-label="no" is-label-value="no">
-			<description>
-				<text>trigger IFTTT</text>
-			</description>
-			<BlockConnectors>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.host">
-					<DefaultArg genus-name="trigger" label="Blume" />
-				</BlockConnector>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.key">
-					<DefaultArg genus-name="key" label="dI6FYPeZZpdbWtcAVDpjIa" />
-				</BlockConnector>
-			</BlockConnectors>
-		</BlockGenus>
+      
 
      <BlockGenus name="sendIFTTT2" kind="command" color="30 30 255"
 			initlabel="bg.sendIFTTT" editable-label="no" is-label-value="no">

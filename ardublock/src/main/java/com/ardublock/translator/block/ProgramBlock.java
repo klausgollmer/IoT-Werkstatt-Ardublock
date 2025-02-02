@@ -81,7 +81,8 @@ public class ProgramBlock extends TranslatorBlock
 
 		if (translator.isMQTTProgram())
 		{
-			ret += "mqttclient.loop();// MQTT-Client bedienen\n";
+			//ret += "mqttclient.loop();// MQTT-Client bedienen\n";
+			ret += "mqttreconnect(1);// MQTT-Client bedienen\n";
 		}
 		if (translator.isHTTPServerProgram())
 		{

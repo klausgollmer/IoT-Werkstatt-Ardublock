@@ -49,9 +49,9 @@ public class WLAN_WiFiMan  extends TranslatorBlock {
 	    }
 	    
 	    ret +=    "if(!res) {\n"
-	    		+ "   IOTW_PRINTLN(F(\"Failed to connect\"));\n"
+	    		+ "   IOTW_PRINTLN(F(\"\\n⚠ no WiFi connection\"));\n"
 	    		+ "} else {\n"
-	    		+ "   IOTW_PRINTLN (\"\\nconnected, meine IP:\"+ WiFi.localIP().toString());\n"
+	    		+ "   IOTW_PRINTLN (\"\\nmeine IP:\"+ WiFi.localIP().toString()+\" ✅ connected\");\n"
 	    		+ "}";
 	    
         return codePrefix + ret + codeSuffix;

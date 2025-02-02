@@ -46,8 +46,10 @@ public class MQTT_Subscribe  extends TranslatorBlock {
 		translatorBlock = getTranslatorBlockAtSocket(2);
 		ret = ret + "  String payload = String((char*)pay); // payload als String interpretieren\n"
                   + "  MQTT_Rx_Payload=payload.substring(0,len);    // mit Länge von len Zeichen\n"
- 			      + "  IOTW_PRINTLN(String(\"callback on topic: \")+ String("+topic+"));\n"; 	
-				
+              	  + "  #if (IOTW_DEBUG_LEVEL >1) \r\n"
+ 			      + "      IOTW_PRINTLN(String(\"📡 callback on topic: \")+ String("+topic+"));\n" 	
+ 			      + "      IOTW_PRINTLN(String(\"   payloadc: \")+ MQTT_RxPayload);\n" 	
+		          + "  #endif\r\n";
 		while (translatorBlock != null)
 		{
 			ret = ret + translatorBlock.toCode();
@@ -72,7 +74,8 @@ public class MQTT_Subscribe  extends TranslatorBlock {
 		        + "} else IOTW_PRINTLN(\" err max. mqtt subscription\");\n";
 		translator.addSetupCommand(setup);		
 	
-        return codePrefix + "mqttreconnect();" + codeSuffix;
+       return codePrefix + "" + codeSuffix;
+//       return codePrefix + "mqttreconnect(1);" + codeSuffix;
 	 	}
 }
 

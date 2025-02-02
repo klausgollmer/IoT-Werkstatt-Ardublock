@@ -239,7 +239,7 @@ public class LORA_TTNSend_abp  extends TranslatorBlock {
 		        + "  // Check if there is not a current TX/RX job running, wait until finished\r\n"
 		        + "  if (!((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_JOINING))) {\r\n"
 		        + "    if (LMIC_setTxData2(port, mydata, sizeof(mydata), 0)) {\r\n"
-		        + "        IOTW_PRINTLN(F(\"------------------------  setTxData: error\"));\r\n"
+		        + "        IOTW_PRINTLN(F(\"❌ setTxData: error\"));\r\n"
 		        + "    }\r\n"
 		        + "  }\r\n"
 		        + "  uint32_t tout = millis()+30000; // harter Timeout\r\n"
@@ -247,7 +247,8 @@ public class LORA_TTNSend_abp  extends TranslatorBlock {
 		        + "      yield();\r\n"
 		        + "      os_runloop_once_sleep();\r\n"
 		        + "  }\r\n"
-		        + "  IOTW_PRINTLN(F(\"Tx finished\")); "
+		        + "  if (millis() < tout) IOTW_PRINTLN(F(\"Tx finished ✅\")); "
+		        + "    else IOTW_PRINTLN(F(\"❌ Timeout\")); "
 		        + "} // Block \n";
 
 	    

@@ -32,6 +32,8 @@ public class HTTP_LuftdatenSend  extends TranslatorBlock {
 		*/
 		
 		translator.addDefinitionCommand("WiFiClient wifiClient;");
+		
+		/*
 		String httpPOST ="//-------------------------Luftdaten.info  ------ HTTP-POST\n" +
 		"void sendLuftdaten(String server, String sensor_id, String Xpin, String data) {\n" + 
 			"     HTTPClient http; //Declare object of class HTTPClient\n" + 
@@ -49,6 +51,85 @@ public class HTTP_LuftdatenSend  extends TranslatorBlock {
 			"     IOTW_PRINTLN(payload); //Print request response payload\n" + 
 			"     http.end(); //Close connection\n"+
         "}\n";
+        */
+		
+		String httpPOST = "// ----------------------------------------------------------------------------\n"
+				+ "// sendLuftdaten: Sendet Messwerte an sensor.community (Luftdaten.info)\n"
+				+ "//\n"
+				+ "// Parameter:\n"
+				+ "//   server:     z.B. \"api.sensor.community\"\n"
+				+ "//   sensor_id:  Die ID des Sensors (String)\n"
+				+ "//   Xpin:       Der X-PIN Header-Wert (String)\n"
+				+ "//   data:       Die zu sendenden JSON-Daten\n"
+				+ "//\n"
+				+ "// ----------------------------------------------------------------------------\n"
+				+ "void sendLuftdaten(String server, String sensor_id, String Xpin, String data) {\n"
+				+ "  // Debug-/Fehlermeldungen\n"
+				+ "  String errorString      = \"\";\n"
+				+ "  String errorStringDebug = \"\";\n"
+				+ "  IOTW_PRINT(F(\"SensorCommunity \"));\n"
+				+ "  // 1) WLAN-Verbindung prüfen\n"
+				+ "  if (WiFi.status() != WL_CONNECTED) {\n"
+				+ "    errorString += \"⚠ no WiFi connection\";\n"
+				+ "    IOTW_PRINTLN(errorString);\n"
+				+ "    return;\n"
+				+ "  }\n"
+				+ "\n"
+				+ "  // 2) URL korrekt zusammenbauen\n"
+				+ "  String url;\n"
+				+ "  if (server.startsWith(\"http://\") || server.startsWith(\"https://\")) {\n"
+				+ "    url = server + \"/v1/push-sensor-data/\";\n"
+				+ "  } \n"
+				+ "  else {\n"
+				+ "    url = \"http://\" + server + \"/v1/push-sensor-data/\";\n"
+				+ "  }\n"
+				+ "\n"
+				+ "  // Debug-Informationen vorbereiten\n"
+				+ "  errorStringDebug += \"[INFO] Using HTTPClient for POST:\\n\";\n"
+				+ "  errorStringDebug += \"URL: \" + url + \"\\n\";\n"
+				+ "  errorStringDebug += \"X-Sensor: \" + sensor_id + \"\\n\";\n"
+				+ "  errorStringDebug += \"X-PIN: \" + Xpin + \"\\n\";\n"
+				+ "  errorStringDebug += \"JSON: \" + data + \"\\n\";\n"
+				+ "\n"
+				+ "  // 3) HTTP-Request vorbereiten\n"
+				+ "  WiFiClient wifiClient;\n"
+				+ "  HTTPClient http;\n"
+				+ "\n"
+				+ "  http.begin(wifiClient, url);\n"
+				+ "  http.addHeader(\"X-PIN\", Xpin);\n"
+				+ "  http.addHeader(\"X-Sensor\", sensor_id);\n"
+				+ "  http.addHeader(\"Content-Type\", \"application/json\");\n"
+				+ "\n"
+				+ "  // Debugging: Zeige, was gesendet wird\n"
+				+ "  IOTW_PRINTLN(\"sensor.community: sending data to sensor with ID = \" + sensor_id);\n"
+				+ "  IOTW_PRINTLN(data);\n"
+				+ "\n"
+				+ "  // 4) POST-Anfrage senden\n"
+				+ "  int httpCode = http.POST(data);\n"
+				+ "  String payload = http.getString();\n"
+				+ "\n"
+				+ "  if (httpCode > 0) {\n"
+				+ "    if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_CREATED) {\n"
+				+ "      errorString += \"✅ success\";\n"
+				+ "    } \n"
+				+ "    else {\n"
+				+ "      errorString += \"❌ Unexpected HTTP-Code: \" + String(httpCode);\n"
+				+ "    }\n"
+				+ "  } \n"
+				+ "  else {\n"
+				+ "    errorString += \"❌ HTTP POST failed: \" + http.errorToString(httpCode);\n"
+				+ "  }\n"
+				+ "\n"
+				+ "  // Verbindung schließen\n"
+				+ "  http.end();\n"
+				+ "\n"
+				+ "  // 5) Debug- und Fehlermeldungen ausgeben\n"
+				+ "  IOTW_PRINTLN(errorString);\n"
+				+ "#if (IOTW_DEBUG_LEVEL >1)\n"
+				+ "  IOTW_PRINTLN(errorStringDebug);\n"
+				+ "#endif\n"
+				+ "}\n";
+		
 		translator.addDefinitionCommand(httpPOST);
 		
 

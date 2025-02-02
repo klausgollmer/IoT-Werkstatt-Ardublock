@@ -647,7 +647,7 @@ public class AutoFormat
 						getnl();
 						indent_puts();
 						// fprintf(outfil,"\n");
-						fprintf("\n");
+						fprintf("\n"); //#kgo zeilenumbruch nach } else 
 						s_flg = 1;
 						if (c_level < s_level[level])
 							if (level > 0)

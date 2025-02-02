@@ -27,6 +27,7 @@ public class HTTP_EcoflowGet  extends TranslatorBlock {
 	    		"  int ok = 0;\n" + 
 	    		"  std::unique_ptr<BearSSL::WiFiClientSecure>client(new BearSSL::WiFiClientSecure);\n" + 
 	    		"  String message = host+cmd;\n" + 
+	    		"  IOTW_PRINT(message);\n"+
 	    		"  if (sizeof(fingerprint) > 4) { // Validiere SHA-1 Fingerprint\n" + 
 	    		"    client->setFingerprint(fingerprint);\n" + 
 	    		"  } \n" + 
@@ -51,15 +52,16 @@ public class HTTP_EcoflowGet  extends TranslatorBlock {
 	    		"      // file found at server\n" + 
 	    		"      if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {\n" + 
 	    		"        ok = 1;\n" + 
+	    		"        IOTW_PRINT(F(\"✅ [HTTPS] success\\n\"));\n" + 
 	    		"      }\n" + 
 	    		"    } \n" + 
 	    		"    else {\n" + 
-	    		"      IOTW_PRINTF(\"[HTTPS] GET... failed, error: %s\\n\", https.errorToString(httpCode).c_str());\n" + 
+	    		"      IOTW_PRINTF(\"❌ [HTTPS] GET... failed, error: %s\\n\", https.errorToString(httpCode).c_str());\n" + 
 	    		"    }\n" + 
 	    		"    https.end();\n" + 
 	    		"  } \n" + 
 	    		"  else {\n" + 
-	    		"    IOTW_PRINTF(\"[HTTPS] Unable to connect\\n\");\n" + 
+	    		"    IOTW_PRINT(F(\"❌ [HTTPS] Unable to connect\\n\"));\n" + 
 	    		"  }\n" + 
 	    		"  return ok;\n" + 
 	    		"}\n" + 
