@@ -3988,87 +3988,6 @@
         </BlockGenus>
   		
 
-
-        <BlockGenus name="sendHeruko" kind="command" color="30 30 255"
-			initlabel="bg.sendHeruko" editable-label="no" is-label-value="no">
-			<BlockConnectors>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="bc.host">
-<!-- 					<DefaultArg genus-name="ssid" label="api.thingspeak.com" /> -->
-					<DefaultArg genus-name="host" label="https://beatmungsgeraet.herokuapp.com" />
-				</BlockConnector>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="finger">
-<!-- 				<DefaultArg genus-name="host" label="{0x08,0x3B,0x71,0x72,0x02,0x43,0x6E,0xCA,0xED,0x42,0x86,0x93,0xBA,0x7E,0xDF,0x81,0xC4,0xBC,0x62,0x30}" -->
-					<DefaultArg genus-name="host" label="08:3B:71:72:02:43:6E:CA:ED:42:86:93:BA:7E:DF:81:C4:BC:62:30" />
-
-				</BlockConnector>
-	
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="serial">
-					<DefaultArg genus-name="host" label="device123" />
-				</BlockConnector>
-		
-			    <BlockConnector connector-type="number"
-					connector-kind="socket" label="volume">
-				</BlockConnector>
-				    <BlockConnector connector-type="number"
-					connector-kind="socket" label="alarm">
-				</BlockConnector>
-				    <BlockConnector connector-type="number"
-					connector-kind="socket" label="spO2">
-				</BlockConnector>
-				    <BlockConnector connector-type="number"
-					connector-kind="socket" label="CO2">
-				</BlockConnector>
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="humidity">
-			    </BlockConnector>
-				    <BlockConnector connector-type="number"
-					connector-kind="socket" label="heartbeat">
-<!--				</BlockConnector>
-				    <BlockConnector connector-type="number"
-					connector-kind="socket" label="bc.thing7">
-				</BlockConnector>
-				    <BlockConnector connector-type="number"
-					connector-kind="socket" label="bc.thing8">
--->
-				</BlockConnector>
-			</BlockConnectors>
-		</BlockGenus>
-
-<!--         <BlockGenus name="sendBoschSpex" kind="command" color="30 30 255"
-			initlabel="bg.sendBoschSpex" editable-label="no" is-label-value="no">
-			<BlockConnectors>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="REST URL">
-					<DefaultArg genus-name="text" label="reinholds-test" />
-				</BlockConnector>
-			
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="Credentials">
-					<DefaultArg genus-name="text" label="cmVpbmhvbGRzLXRlc3QteGRpYm1zLWFwaTpBaC05R3FpeVBKT1d6SGRZ" />
-				</BlockConnector>
-	
-     		    <BlockConnector connector-type="string"
-					connector-kind="socket" label="deviceID">
-					<DefaultArg genus-name="text" label="abc123" />
-				</BlockConnector>
-	
-  		        <BlockConnector connector-type="string"
-					connector-kind="socket" label="state">
-					<DefaultArg genus-name="text" label="GREEN" />
-				</BlockConnector>
-	
-			    <BlockConnector connector-type="number"
-					connector-kind="socket" label="CO2">
-				</BlockConnector>
-			    <BlockConnector connector-type="number"
-					connector-kind="socket" label="IAQ">
-				</BlockConnector>
-			</BlockConnectors>
-		</BlockGenus>
--->
          <BlockGenus name="sendThingsboard" kind="command" color="30 30 255"
 			initlabel="bg.sendThingsboard" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -4236,7 +4155,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Fingerprint">
-					<DefaultArg genus-name="text" label="10:90:C3:4F:56:F7:78:A8:76:CE:9C:3E:9C:9D:83:DD:F7:FC:DE:D2" />
+					
 				</BlockConnector>
 				
 				<BlockConnector connector-type="string" connector-kind="plug" />

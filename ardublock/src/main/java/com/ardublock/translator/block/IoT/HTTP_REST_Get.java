@@ -26,11 +26,11 @@ public class HTTP_REST_Get  extends TranslatorBlock {
 			Check=  " int ok = 1;\n";
 		}
 		
-		String httpGET ="//--------------------------------------- HTTP-Get new\n"
-				+"int httpGET(String host, String cmd, String &antwort, int port) {\n"
+		String httpGET ="//--------------------------------------- HTTP-Get old\n"
+				+"int httpGETold(String host, String cmd, String &antwort, int port) {\n"
 				+ "  // Sammeln von Meldungen und Debug-Informationen\n"
 				+ "  String errorString      = \"\";\n"
-				+ "  IOTW_PRINT(\"httpGET \"+host+ \" \");\n"
+				+ "  IOTW_PRINT(\"http-GET \"+host+ \" ... \");\n"
 				+ "  String errorStringDebug = \"\";\n"
 				+ "  int ret = 0;  // 0 = Fehler, 1 = Erfolg\n"
 				+ "\n"
@@ -121,7 +121,7 @@ public class HTTP_REST_Get  extends TranslatorBlock {
 		String get="//--------------------------------------- Abfrage HTTP REST \n"
 		+"String httpRESTGET(String host,String cmd,int Port) { \n"		
 		+"  String antwort;\n"  
-		+"  httpGET(host,cmd,antwort,Port);\n   // Anfrage senden, Antwort holen\n"
+		+"  httpGETold(host,cmd,antwort,Port);\n   // Anfrage senden, Antwort holen\n"
 	    +"  return antwort;\n"			
 		+"}\n";
 		translator.addDefinitionCommand(get);

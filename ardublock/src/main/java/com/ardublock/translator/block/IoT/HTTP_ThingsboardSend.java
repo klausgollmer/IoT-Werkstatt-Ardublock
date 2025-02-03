@@ -86,7 +86,7 @@ public class HTTP_ThingsboardSend  extends TranslatorBlock {
 		
 		String httpPOST =  "// ------- http-POST Thingsboard\n"
                           +"void sendThingsboard(String server, String token, String n1, String d1, String n2, String d2, String n3, String d3) {\n"
-                          + "  String errorString =      \"ThingsBoard send \"+server+\" \";  // Fehlermeldungen hier sammeln\n"
+                          + "  String errorString =      \"ThingsBoard send \"+server+\" ... \";  // Fehlermeldungen hier sammeln\n"
                           + "  String errorStringDebug = \"\";     // Fehlermeldungen hier sammeln\n"
                           + "  String payload = \"\";\n"
                           + "\n"
@@ -170,7 +170,7 @@ public class HTTP_ThingsboardSend  extends TranslatorBlock {
                           + "        errorString += \"❌ HTTP-Code: \" + String(httpCode);\n"
                           + "    }\n"
                           + "  } else {\n"
-                          + "    errorString += \"❌ connection failed code: \" + String(httpCode);\n"
+                          + "    //errorString += \" code: \" + String(httpCode);\n"
                           + "    \n"
                           + "    // ESP-spezifische Fehlercodes\n"
                           + "    if (httpCode == -1) {\n"
@@ -196,6 +196,7 @@ public class HTTP_ThingsboardSend  extends TranslatorBlock {
 		translator.addDefinitionCommand(httpPOST);
 		
 		String host,access,n1,d1,n2="\"\"",d2="\"NAN\"",n3="\"\"",d3="\"NAN\"",ret;
+		
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    host = translatorBlock.toCode();
 

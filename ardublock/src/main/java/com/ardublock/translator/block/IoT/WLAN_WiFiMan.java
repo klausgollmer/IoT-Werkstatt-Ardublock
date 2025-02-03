@@ -39,6 +39,9 @@ public class WLAN_WiFiMan  extends TranslatorBlock {
     	    pass_ok = true;
 	    }
 
+//	    translator.addSetupCommand("wm.setTimeout(30); // Timeout 30 s -> open Portal to set the WiFi parameter");
+	    
+	    
 	    if (ssid_ok) {
 	      if (pass_ok) {
 	       ret = "int res = wm.autoConnect("+ssid+","+pass+");\n";

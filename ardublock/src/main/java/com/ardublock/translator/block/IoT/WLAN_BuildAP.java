@@ -38,7 +38,7 @@ public class WLAN_BuildAP  extends TranslatorBlock {
     
 	    ret = "//------------ eigenen WLAN - Accespoint aufbauen \n"
 	         +"WiFi.softAP(" + ssid + "," + pass +");\n"
-             +"IOTW_PRINT(\"\\nAccessPoint SSID:\"); IOTW_PRINT("+ssid+");\n"        
+             +"IOTW_PRINT(F(\"\\nAccessPoint SSID:\")); IOTW_PRINT("+ssid+");\n"        
 	         +"IOTW_PRINTLN (\"  IP:\"+ WiFi.softAPIP().toString());\n"
              +"myOwnIP = WiFi.softAPIP();\n"
 	         +"matrixausgabe_text = String(\"Mein Netz:\") + String(" + ssid + ") + String( \" IP:\") + WiFi.softAPIP().toString();\n"

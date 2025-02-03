@@ -96,7 +96,7 @@ public class ProgramBlock extends TranslatorBlock
 		
 		ret = ret + "} //end loop\n\n";
 		
-		String Dis = "\n\n\n/* Disclaimer MIT License\n"
+		String Dis = "\n/* Disclaimer for Components with MIT License\n"
 				+ "Some of the libraries used are under MIT Licence. The following applies to these:"
 				+ "Permission is hereby granted, free of charge, to any person obtaining a copy\n"
 				+ "of this software and associated documentation files (the \"Software\"), to deal\n"
