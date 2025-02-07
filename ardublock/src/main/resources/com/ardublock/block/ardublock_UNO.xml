@@ -1225,7 +1225,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.message">
-					<DefaultArg genus-name="message" label="message\u0020" />
+					<DefaultArg genus-name="message" label="Hello IoT\u0020" />
 				</BlockConnector>
 				<BlockConnector connector-type="boolean"
 					connector-kind="socket" label="bc.ln">

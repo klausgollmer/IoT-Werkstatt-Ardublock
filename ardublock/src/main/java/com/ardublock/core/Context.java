@@ -237,9 +237,8 @@ public class Context
 		     UIManager.put("FileChooser.buttonFont", new Font("Arial", Font.PLAIN, 16)); // Schaltflächen
 		     UIManager.put("FileChooser.labelFont", new Font("Arial", Font.PLAIN, 14)); // Labels
 	         ToolTipManager.sharedInstance().setInitialDelay(500); 
-	      
-
-			 /*
+	         UIManager.put("CheckBox.font", new Font("Arial", Font.PLAIN, 14)); // Schriftgröße 18
+	    	 /*
 		     System.out.println("Java Version: " + javaVersion);
 		     System.out.println("Java Vendor: " + javaVendor);
 		     System.out.println("Java Home: " + javaHome);
@@ -248,7 +247,8 @@ public class Context
 		     System.out.println("Button Font: " + UIManager.get("Button.font"));
 		     System.out.println("Label Font: " + UIManager.get("Label.font"));
 		     */
-		
+
+	    /* lese aktuelle version aus preferences.txt     
 		String workingDir = System.getProperty("user.dir");
 		arduinoTargetString = getArduinoTarget(workingDir+"/portable/preferences.txt");
 		//System.out.println("target: " + arduinoTargetString);
@@ -262,10 +262,14 @@ public class Context
 		    break;
 		}
 		
-        if (getArduinoVersionString() != ARDUINO_VERSION_UNKNOWN) {
-    		ArdublockVersion=getVersion();
-        }
-		//System.out.println("saved Ardublock Version: " + ArdublockVersion);
+		oder aus tools        
+	    /* lese letzte Version*/     
+	   	ArdublockVersion=getVersion();
+	   	           
+//        if (getArduinoVersionString() != ARDUINO_VERSION_UNKNOWN) {
+//    		ArdublockVersion=getVersion();
+//        }
+		System.out.println("get saved Ardublock Version: " + ArdublockVersion);
 
 		
 		switch(ArdublockVersion) {
@@ -398,7 +402,7 @@ public class Context
 	
 	private String getArduinoTarget(String filepath) {
         File configFile = new File(filepath);
-     //   System.out.println("target file: " +configFile);
+        System.out.println("target file: " +configFile);
         if (configFile.exists()) {
             InputStream is = null;
             BufferedReader reader = null;

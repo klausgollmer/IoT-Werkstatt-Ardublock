@@ -14,6 +14,7 @@ import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -24,12 +25,14 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -72,6 +75,7 @@ public class OpenblocksFrame extends JFrame
 	
 	public JComboBox boardComboBox;
 	public JComboBox debugComboBox;
+	public JCheckBox greenCheckBox;
 	
 	
 	
@@ -197,7 +201,6 @@ public class OpenblocksFrame extends JFrame
 			context.setWorkspaceChanged(false);
 			this.setTitle(this.makeFrameTitle());
 			this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-          
 		}
 	}	
 	
@@ -292,6 +295,19 @@ public class OpenblocksFrame extends JFrame
 			}
 		});
 
+		   // Green Checkbox erstellen
+        JCheckBox greenCheckBox = new JCheckBox("Green Code");
+        greenCheckBox.setBounds(50, 50, 200, 30);
+        // Event Listener für die Checkbox
+        greenCheckBox.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+            	Translator.setGreenProgram(1);
+            } else {
+              	Translator.setGreenProgram(0);
+            }
+        });
+		
+		
 		String[] programList = {"Starter","Makey","Octopus"};
 		boardComboBox = new JComboBox<String>(programList);
 		//boardComboBox.setFont(new Font("Arial", Font.BOLD, 18)); // Schriftgröße 18
@@ -309,7 +325,16 @@ public class OpenblocksFrame extends JFrame
 					return;
 				}
 				else {
-					changeBoardVersion();
+					changeBoardVersion();					
+				}
+				if (context.ArdublockVersion.contains("Makey")) {
+			  	   greenCheckBox.setSelected(Translator.isGreenProgram() != 0);
+			 	   greenCheckBox.setVisible(true);
+				} else {
+				   Translator.setGreenProgram(0);	
+			  	   greenCheckBox.setSelected(Translator.isGreenProgram() != 0);
+			 	   greenCheckBox.setVisible(false);
+					
 				}
 			}
 			
@@ -347,7 +372,9 @@ public class OpenblocksFrame extends JFrame
             }
         });
 
-		
+        
+         
+     
 		
 		
 		JLabel zoomLabel = new JLabel("Zoom: ");
@@ -424,7 +451,8 @@ public class OpenblocksFrame extends JFrame
 			    }
 			}
 		});
-		JLabel versionLabel = new JLabel("        "+uiMessageBundle.getString("ardublock.ui.version")+"       ");
+		JLabel homeLabel = new JLabel("        Umwelt-Campus Birkenfeld, HS Trier       ");
+		JLabel versionLabel = new JLabel(uiMessageBundle.getString("ardublock.ui.version"));
 		JLabel inoLabel = new JLabel("Arduino: ");
 		JLabel inoFileLabel = new JLabel(context.getArduinoCodeFileString());
 	//	JLabel zoomLabel = new JLabel("Zoom:");
@@ -454,11 +482,17 @@ public class OpenblocksFrame extends JFrame
 	//	bottomPanel.setLayout(new GridLayout(1, 1, 10, 1));
 		//bottomPanel.add(debugLabel);
 		bottomPanel.add(debugComboBox);
-		bottomPanel.add(versionLabel);
-	    bottomPanel.add(saveImageButton);
+
+		//System.out.println(" los"+context.ArdublockVersion);
+
+		bottomPanel.add(greenCheckBox);
+	    greenCheckBox.setVisible(context.ArdublockVersion.contains("Makey"));
+		bottomPanel.add(homeLabel);
 		bottomPanel.add(websiteButton);
+	    bottomPanel.add(saveImageButton);
+		bottomPanel.add(versionLabel);
 		bottomPanel.add(inoFileLabel);
-	
+		
 		//bottomPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		this.add(buttons, BorderLayout.NORTH);
 		this.add(bottomPanel, BorderLayout.SOUTH);

@@ -54,6 +54,7 @@ public class Translator
 	private boolean isMQTTProgram;
 	private boolean isWiFiProgram;
 	private static int isDebugProgram=1;
+	private static int isGreenProgram=0;
 	private boolean isRTCVarProgram;
 	private boolean isRTCNTPProgram;
 	private boolean isBlynkProgram;
@@ -89,6 +90,9 @@ public class Translator
 		headerCommand.append(Disclaimer);
 		if (isDebugProgram() != 1) 
 			headerCommand.append("#define IOTW_DEBUG_LEVEL "+ isDebugProgram() + "\n");
+		if (isGreenProgram() == 1) 
+			headerCommand.append("#define IOTW_GREEN_CODE_LEVEL "+ isGreenProgram() + "\n");
+		
 		headerCommand.append("#include <IoTBoards_Generic.h>\n");	
 		
 	/*	
@@ -154,8 +158,7 @@ public class Translator
 		StringBuilder setupFunction = new StringBuilder();
 	//	setupFunction.append("void setup()\n{ //Einmalige Initialisierung \n");
 		setupFunction.append("void setup(){ //Einmalige Initialisierung \n");
-		
-		
+		setupFunction.append("   Serial.begin(115200);");
 		setupFunction.append("   IoT_WerkstattInit(); // init Werkstatt \n");
 		
 		if (!isWiFiProgram()) {
@@ -170,8 +173,7 @@ public class Translator
 		}
 		
 		//setupFunction.append("#if defined(IOTW_BOARD_MAKEY)\n #ifndef IOTW_LOGO_WAIT\n initOLED(0);// init OLED (and Logo)\n    #else \n initOLED(2000);\n    #endif\n #endif\n");
-		setupFunction.append("Serial.begin(115200);");
-
+	
 		
  	    if (false) { //isRTCVarProgram()) {
  	    	
@@ -476,6 +478,10 @@ public class Translator
 		return isDebugProgram;
 	}
 
+	public static int isGreenProgram() {
+		return isGreenProgram;
+	}
+
 	
 	public boolean isRTCVarProgram() {
 		return isRTCVarProgram;
@@ -504,6 +510,10 @@ public class Translator
 	
 	public static void setDebugProgram(int isDebugProgram) {
 		Translator.isDebugProgram = isDebugProgram;
+	}
+	
+	public static void setGreenProgram(int isGreenProgram) {
+		Translator.isGreenProgram = isGreenProgram;
 	}
 	
 	
