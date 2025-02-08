@@ -1468,20 +1468,20 @@
 		</BlockGenus>
 
 
+		
 		<BlockGenus name="pin-read-analog" kind="data" color="44 165 226"
 			initlabel="bg.pin-read-analog">
-			<description>
-				<text>Read analog value from pin</text>
-			</description>
+		    <description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
-					connector-kind="socket" label="Pin">
+					connector-kind="socket" label="A">
 					<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
+		
 
 <!--  BME280 Daten -->
 		<BlockGenus name="GetBME" kind="data" color="44 165 226"

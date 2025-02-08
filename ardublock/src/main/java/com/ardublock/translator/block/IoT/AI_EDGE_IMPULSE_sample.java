@@ -17,8 +17,8 @@ public class AI_EDGE_IMPULSE_sample  extends TranslatorBlock {
 	{
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266HTTPClient.h> \n#elif defined(ESP32) \n #include <HTTPClient.h>\n#endif\n");
-		
-		
+		translator.addDefinitionCommand("int IOTW_debug_level = IOTW_DEBUG_LEVEL; // Debug print auch in den IOTW_ Libs nutzen\n");
+		translator.addHeaderFile("IoTW_EI.h");
 		
 	String v1,v2,v3,v4;
 		

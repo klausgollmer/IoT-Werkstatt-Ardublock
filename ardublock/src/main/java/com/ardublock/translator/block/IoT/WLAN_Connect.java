@@ -22,7 +22,7 @@ public class WLAN_Connect  extends TranslatorBlock {
 		translator.addDefinitionCommand("IPAddress myOwnIP; // ownIP for mDNS \n");
 
 		translator.setWiFiProgram(true);
-		System.out.println("set WiFi");
+		//System.out.println("set WiFi");
 		String ssid,pass="\"\"",ret;
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    ssid = translatorBlock.toCode();
