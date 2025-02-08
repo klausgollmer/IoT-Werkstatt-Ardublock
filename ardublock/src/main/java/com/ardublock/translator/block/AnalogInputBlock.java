@@ -14,10 +14,10 @@ public class AnalogInputBlock extends TranslatorBlock
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
-		String ret = "analogRead(";
+		String ret = "analogRead(A";
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 		ret = ret + translatorBlock.toCode();
-		ret = ret + ")";
+		ret = ret + ")*IOTW_AI_SCALE";
 		return codePrefix + ret + codeSuffix;
 	}
 

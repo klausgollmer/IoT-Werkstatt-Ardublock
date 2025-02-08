@@ -1338,6 +1338,16 @@
 			</BlockConnectors>
 		</BlockGenus>
 	
+		<BlockGenus name="cat_string3" kind="data" color="165 42 42"
+			initlabel="bg.cat_string3" editable-label="no">
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="plug" />
+				<BlockConnector connector-type="string" connector-kind="socket" />
+				<BlockConnector connector-type="string" connector-kind="socket" />
+				<BlockConnector connector-type="string" connector-kind="socket" />
+			</BlockConnectors>
+		</BlockGenus>
 		
 		
 <!--****************** Input *************** -->
@@ -2395,6 +2405,30 @@
 				</BlockConnector>
         	</BlockConnectors>
 		</BlockGenus>
+
+   <BlockGenus name="MapC" kind="data" color="44 165 226"
+			initlabel="bg.MapC" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="Value">
+				</BlockConnector>
+				
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Input">
+					<DefaultArg genus-name="text" label="0.0,10.0" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Output">
+					<DefaultArg genus-name="text" label="0.0,100.0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+
+
+
 
      <BlockGenus name="medianfilter" kind="data" color="44 165 226"
 			initlabel="bg.medianfilter" editable-label="no" is-label-value="no">
@@ -6213,6 +6247,7 @@
 				<BlockGenusMember>cos</BlockGenusMember>
 				<BlockGenusMember>tan</BlockGenusMember>
 				<BlockGenusMember>random</BlockGenusMember>
+			    <BlockGenusMember>MapC</BlockGenusMember>
 				
 			</BlockDrawer>
 
@@ -6264,6 +6299,7 @@
 	        	<BlockGenusMember>glue_ns</BlockGenusMember>
 		    	<BlockGenusMember>glue_nb</BlockGenusMember>
 		   	    <BlockGenusMember>cat_string</BlockGenusMember>
+		   	    <BlockGenusMember>cat_string3</BlockGenusMember>
 				<BlockGenusMember>message</BlockGenusMember>
 		
 			</BlockDrawer>
@@ -6395,7 +6431,7 @@
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
 				<BlockGenusMember>LIDAR_TFmini_read</BlockGenusMember>
 				<BlockGenusMember>medianfilter</BlockGenusMember>
-				
+			    <BlockGenusMember>MapC</BlockGenusMember>
 				
 				
                 <BlockGenusMember>Divider_Weight</BlockGenusMember>

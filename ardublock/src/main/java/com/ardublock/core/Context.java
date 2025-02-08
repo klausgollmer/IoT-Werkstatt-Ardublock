@@ -263,13 +263,19 @@ public class Context
 		}
 		
 		oder aus tools        
-	    /* lese letzte Version*/     
-	   	ArdublockVersion=getVersion();
-	   	           
-//        if (getArduinoVersionString() != ARDUINO_VERSION_UNKNOWN) {
-//    		ArdublockVersion=getVersion();
-//        }
-		System.out.println("get saved Ardublock Version: " + ArdublockVersion);
+	    /* lese letzte Version*/   
+	         
+	         
+	   	//ArdublockVersion=getVersion();
+        Context context = Context.getContext();     
+	    if  (context.isInArduino())
+	    	ArdublockVersion=getVersion();
+	    
+        //if (getArduinoVersionString() != ARDUINO_VERSION_UNKNOWN) {
+    	//	ArdublockVersion=getVersion();
+        //}
+	
+        System.out.println("get saved Ardublock Version: " + ArdublockVersion);
 
 		
 		switch(ArdublockVersion) {
