@@ -21,6 +21,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -248,7 +250,11 @@ public class OpenblocksFrame extends JFrame
 			//System.out.println("in");
 			mess = uiMessageBundle.getString("ardublock.ui.upload");
 		} else {
-			mess = uiMessageBundle.getString("ardublock.ui.generate");
+			// mess = uiMessageBundle.getString("ardublock.ui.generate");
+			Path path = Paths.get(context.getArduinoCodeFileString());
+	        // Nur den Dateinamen extrahieren
+	        String fileName = path.getFileName().toString();
+			mess = fileName;
 		}
 			
 		JButton generateButton = new JButton(mess);
@@ -453,20 +459,20 @@ public class OpenblocksFrame extends JFrame
 		});
 		JLabel homeLabel = new JLabel("        Umwelt-Campus Birkenfeld, HS Trier       ");
 		JLabel versionLabel = new JLabel(uiMessageBundle.getString("ardublock.ui.version"));
-		JLabel inoLabel = new JLabel("Arduino: ");
-		JLabel inoFileLabel = new JLabel(context.getArduinoCodeFileString());
-	//	JLabel zoomLabel = new JLabel("Zoom:");
+		JLabel inoLabel = new JLabel("Code: ");
 
+		
+		JLabel inoFileLabel = new JLabel(context.getArduinoCodeFileString());
+		inoFileLabel.setFont(new Font("Arial", Font.PLAIN, 8)); // Schriftgröße 8
+	
 		jp5.add(inoLabel);
         jp5.add(jp3);
 		jp5.add(generateButton);
-		//jp5.setBorder(new CompoundBorder(border, margin));
-
+	
 		jp7.add(zoomLabel);
 		jp7.add(zoomIn);
 		jp7.add(zoomOut);
-		//jp7.setBorder(new CompoundBorder(border, margin));
-
+	
 		
 		buttons.add(jp0);
 		buttons.add(jp7);
@@ -477,7 +483,7 @@ public class OpenblocksFrame extends JFrame
 		buttons.add(jp3);
 		buttons.add(jp4);
 		buttons.add(jp5);
-
+	
 	
 	//	bottomPanel.setLayout(new GridLayout(1, 1, 10, 1));
 		//bottomPanel.add(debugLabel);
@@ -491,7 +497,7 @@ public class OpenblocksFrame extends JFrame
 		bottomPanel.add(websiteButton);
 	    bottomPanel.add(saveImageButton);
 		bottomPanel.add(versionLabel);
-		bottomPanel.add(inoFileLabel);
+		//bottomPanel.add(inoFileLabel);
 		
 		//bottomPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		this.add(buttons, BorderLayout.NORTH);

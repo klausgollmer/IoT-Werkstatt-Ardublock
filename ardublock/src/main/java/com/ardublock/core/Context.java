@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
 //import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -36,6 +37,7 @@ import javax.swing.plaf.FontUIResource;
 
 import processing.app.Editor;
 
+import com.ardublock.Main;
 import com.ardublock.ui.listener.OpenblocksFrameListener;
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -70,7 +72,7 @@ public class Context
 	
 	private Set<RenderableBlock> highlightBlockSet;
 	private Set<OpenblocksFrameListener> ofls;
-	private boolean isInArduino = false;
+	private boolean isInArduino = true;
 	private String arduinoVersionString = ARDUINO_VERSION_UNKNOWN;
 	private String arduinoTargetString = ARDUINO_TARGET_UNKNOWN;
 	private String arduinoCodeFileString = "";
@@ -102,6 +104,7 @@ public class Context
 				if (singletonContext == null)
 				{
 					singletonContext = new Context();
+					System.out.println("New Context");
 				}
 			}
 		}
@@ -131,6 +134,24 @@ public class Context
 	public void writeVersion() {
 		String workingDir = System.getProperty("user.dir");
 		String filePath = workingDir+"\\portable\\sketchbook\\tools\\ArduBlockTool\\tool\\ardublock-Makey-Lab.txt";
+		
+		 try {
+	            // Das aktuelle JAR-File als File-Objekt holen
+	            File jarFile = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+
+	            // Das übergeordnete Verzeichnis des JAR-Files
+	            String jarDir = jarFile.getParent();
+	            filePath = jarDir+"\\ardublock-Makey-Lab.txt";
+	            
+	      //      System.out.println("Laufendes JAR-Verzeichnis: " + jarDir);
+	      //      System.out.println("schreibfile: " + filePath);
+
+	        } catch (URISyntaxException e) {
+	            e.printStackTrace();
+	        }
+		
+		
+		
 		String text = "version="+ArdublockVersion;
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.write(text);
@@ -145,7 +166,26 @@ public class Context
 	private String getVersion() {
 		String workingDir = System.getProperty("user.dir");
 		String filepath = workingDir+"\\portable\\sketchbook\\tools\\ArduBlockTool\\tool\\ardublock-Makey-Lab.txt";
-        File configFile = new File(filepath);
+        
+		 try {
+	            // Das aktuelle JAR-File als File-Objekt holen
+	            File jarFile = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+
+	            // Das übergeordnete Verzeichnis des JAR-Files
+	            String jarDir = jarFile.getParent();
+	            filepath = jarDir+"\\ardublock-Makey-Lab.txt";
+	            
+	            //System.out.println("Laufendes JAR-Verzeichnis: " + jarDir);
+	            //System.out.println("schreibfile: " + filepath);
+
+	        } catch (URISyntaxException e) {
+	            e.printStackTrace();
+	        }
+		
+		
+		
+		
+		File configFile = new File(filepath);
         
         
         if (configFile.exists()) {
@@ -199,7 +239,8 @@ public class Context
 		/*
 		 * workspace = new Workspace(); workspace.reset(); workspace.setl
 		 */
-		 		
+
+    	
 		// Style list
 		List<String[]> list = new ArrayList<String[]>();
 		String[][] styles = {};
@@ -216,12 +257,18 @@ public class Context
 		workspaceController.setStyleList(list);
 		workspaceController.setLangDefDtd(this.getClass().getResourceAsStream(LANG_DTD_PATH));
 
-		   String javaVersion = System.getProperty("java.version");
+		
+
+		     String javaVersion = System.getProperty("java.version");
 		     // Java Runtime Vendor
 		     String javaVendor = System.getProperty("java.vendor");
 		     // Java Home Path
 		     String javaHome = System.getProperty("java.home");
 
+		     
+		     
+		     
+		     
 		 	 // Set larger font size
 			 UIManager.put("defaultFont", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
 			 UIManager.put("Button.font", new FontUIResource(new Font("Arial", Font.PLAIN, 16)));
@@ -267,16 +314,20 @@ public class Context
 	         
 	         
 	   	//ArdublockVersion=getVersion();
-        Context context = Context.getContext();     
-	    if  (context.isInArduino())
+//        Context context = Context.getContext();     
+	    //System.out.println("jetzt in resetWorkspace");
+        //System.out.println("is in arduino"+isInArduino());
+        //System.out.println("Ardublock Version: " + ArdublockVersion);
+	    if  (isInArduino()) {
 	    	ArdublockVersion=getVersion();
-	    
+	        System.out.println("get saved Ardublock Version: " + ArdublockVersion);
+	    }
         //if (getArduinoVersionString() != ARDUINO_VERSION_UNKNOWN) {
     	//	ArdublockVersion=getVersion();
         //}
+        //System.out.println("Ardublock Version nach get: " + ArdublockVersion);
 	
-        System.out.println("get saved Ardublock Version: " + ArdublockVersion);
-
+    
 		
 		switch(ArdublockVersion) {
 		  case "All":
@@ -534,11 +585,12 @@ public class Context
 	
 	
 	public boolean isInArduino() {
-	//	System.out.println(isInArduino);
+		//System.out.println("read isInArduino()"+isInArduino);
 		return isInArduino;
 	}
 
 	public void setInArduino(boolean isInArduino) {
+		//System.out.println("in setInArduino"+isInArduino);
 		this.isInArduino = isInArduino;
 	}
 

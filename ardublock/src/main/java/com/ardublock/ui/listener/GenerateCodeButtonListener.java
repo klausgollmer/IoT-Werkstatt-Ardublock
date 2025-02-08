@@ -247,8 +247,7 @@ public class GenerateCodeButtonListener implements ActionListener
 			
 		}
 		
-		if (success)
-		{
+		if (success) {
 			AutoFormat formatter = new AutoFormat();
 			String codeOut = code.toString();
 			
@@ -257,21 +256,21 @@ public class GenerateCodeButtonListener implements ActionListener
 				codeOut = formatter.format(codeOut);
 			}
 			
-			System.out.println(codeOut);
+			//System.out.println(codeOut);
 			
-			if (!context.isInArduino())
-			{
+			if (!context.isInArduino()) { // Print in Eclipse
 				System.out.println(codeOut);
-				  //String filePath = "E:\\IoTW2\\Sketchbook\\IoT-Werkstatt";
-				  //String fileName = "IoT-Werkstatt.ino";
-				  //String content = "This is the content of the file.";
-				  
-				  Context context = Context.getContext();
+			} else {
+				String myVersion = context.getArduinoVersionString();
+			    //System.out.println(myVersion);
+			    if (myVersion.startsWith("1.")) { // Arduino IDE 1
+				  context.didGenerate(codeOut);
+			    } else { // Arduino IDE 2
 				  String codeFile = context.getArduinoCodeFileString();
 			      ArduinoIDE2.writeFile(codeFile, codeOut);
-			    
-			}		
-			context.didGenerate(codeOut);
+			    }		
+			// context.didGenerate(codeOut);
+			}
 		}
 	}
 }

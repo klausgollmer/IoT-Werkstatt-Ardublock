@@ -12,6 +12,9 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
 import processing.app.Editor;
 import processing.app.EditorTab;
 import processing.app.SketchFile;
@@ -20,6 +23,7 @@ import processing.app.tools.Tool;
 import com.ardublock.core.Context;
 import com.ardublock.ui.ArduBlockToolFrame;
 import com.ardublock.ui.listener.OpenblocksFrameListener;
+import com.formdev.flatlaf.FlatLightLaf;
 
 public class ArduBlockTool implements Tool, OpenblocksFrameListener
 {
@@ -28,17 +32,23 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	static ArduBlockToolFrame openblocksFrame;
 	
 	public void init(Editor editor) {
+		
+			
 		if (ArduBlockTool.editor == null )
 		{
-			ArduBlockTool.editor = editor;
-			ArduBlockTool.openblocksFrame = new ArduBlockToolFrame();
-			ArduBlockTool.openblocksFrame.addListener(this);
+			//System.out.println("Start aus Arduino");
 			Context context = Context.getContext();
 			String arduinoVersion = this.getArduinoVersion();
 			context.setInArduino(true);
+			//System.out.println("Setze setInArduino in .ini");
 			context.setArduinoVersionString(arduinoVersion);
 			context.setEditor(editor);
-			System.out.println("Arduino Version: " + arduinoVersion);
+			//System.out.println("Arduino Version: " + arduinoVersion);
+			
+			ArduBlockTool.editor = editor;
+			ArduBlockTool.openblocksFrame = new ArduBlockToolFrame();
+			ArduBlockTool.openblocksFrame.addListener(this);
+		
 		
 			
 		}

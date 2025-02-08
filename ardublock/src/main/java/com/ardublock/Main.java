@@ -28,6 +28,8 @@ public class Main
 	public static void main(String args[]) throws SAXException, IOException, ParserConfigurationException
 	{
 
+		
+		
 			
      System.setProperty("sun.java2d.uiScale", "1.4");
      //System.out.println("uiScale 1.4");
@@ -35,7 +37,7 @@ public class Main
 
  	 Context context = Context.getContext();
 	 context.setArduinoCodeFileString("");
-	    
+	   System.out.println("Start aus Main");
 		
 	   if (args.length > 0) {
 	     String parameter = args[0];
@@ -43,13 +45,14 @@ public class Main
 	    
 	     //Context context = Context.getContext();
 	     context.setArduinoCodeFileString(parameter);
-	     context.setInArduino(false);
+	     System.out.println("Start code generator");
+	     context.setInArduino(true);
 	     
 	   } else {
-	     System.out.println("Kein Parameter übergeben.");
-	     context.setArduinoCodeFileString("E:\\IoTW_IDE2\\Sketchbook\\IoT-Werkstatt\\IoT-Werkstatt.ino");
-	     context.setArduinoCodeFileString("nix");
-	     context.setInArduino(true);
+	     System.out.println("Eclipse start");
+	     //context.setArduinoCodeFileString("E:\\IoTW_IDE2\\Sketchbook\\IoT-Werkstatt\\IoT-Werkstatt.ino");
+	     context.setArduinoCodeFileString("Eclipse");
+	     context.setInArduino(false);
 	   }
 				
 		Main me = new Main();
