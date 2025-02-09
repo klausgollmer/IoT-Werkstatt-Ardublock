@@ -4949,12 +4949,22 @@
 			
 		</BlockGenus>
 
-        <BlockGenus name="classifyEDGE" kind="data" color="30 30 255"
+         <BlockGenus name="classifyEDGE" kind="data" color="30 30 255"
 			initlabel="bg.classifyEDGE" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 			<BlockConnectors>
 			    <BlockConnector connector-type="number"	connector-kind="plug" />
-				<BlockConnector connector-type="number"
+			    
+			    <BlockConnector label="AI task" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="classifyEDGEr" label="regression"/>
+                </BlockConnector>	
+			    
+			    <BlockConnector connector-type="string"
+					connector-kind="socket" label="library">
+					<DefaultArg genus-name="host" label="projectname_inferencing.h" />
+				</BlockConnector>
+				
+			    <BlockConnector connector-type="number"
 					connector-kind="socket" label="reject">
 				</BlockConnector>
 			</BlockConnectors>
@@ -4963,9 +4973,19 @@
 			    <FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
 				</Image>
 			</Images>
-			
 		</BlockGenus>
 
+        <BlockGenus name="classifyEDGEc" kind="data" color="255 0 0" initlabel="bg.classifyEDGEc" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        <BlockGenus name="classifyEDGEr" kind="data" color="255 0 0" initlabel="bg.classifyEDGEr" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+       
 
 
 
@@ -6157,6 +6177,11 @@
 		<BlockFamily>
 			<FamilyMember>AIDatatypCal</FamilyMember>
 			<FamilyMember>AIDatatypVal</FamilyMember>
+		</BlockFamily>
+		
+		<BlockFamily>
+			<FamilyMember>classifyEDGEr</FamilyMember>
+			<FamilyMember>classifyEDGEc</FamilyMember>
 		</BlockFamily>
 		
 		
