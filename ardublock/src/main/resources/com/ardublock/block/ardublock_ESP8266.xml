@@ -69,8 +69,8 @@
 			</BlockConnectors>
 		
 			<Images>
-			   <Image block-location="northwest" image-editable="no" width="65" height = "60">
-					<FileLocation>com/ardublock/block/IoTkit/IconOctopus1.png</FileLocation>
+			   <Image block-location="northwest" image-editable="no" width="75" height = "80">
+					<FileLocation>com/ardublock/block/IoTkit/IconOctopus2.png</FileLocation>
 				</Image>
 			</Images>
 		</BlockGenus>
@@ -6145,7 +6145,8 @@
 
 		<BlockFamily>
 			<FamilyMember>SMARDVectRen</FamilyMember>
-			<FamilyMember>SMARDVectCO2</FamilyMember>
+			<!-- FamilyMember>SMARDVectCO2</FamilyMember -->
+	
 		</BlockFamily>
 
 		<BlockFamily>
@@ -6702,10 +6703,10 @@
 	<Pages drawer-with-page="yes">
 		<Page page-name="Main" page-width="4000" page-color="210 210 210" />
 	</Pages>
-
+<!-- 
 	<TrashCan>
 		<OpenTrashImage>com/ardublock/block/IoTkit\Makey1.jpg</OpenTrashImage>
 		<ClosedTrashImage>com/ardublock/block/IoTkit\Makey1.jpg</ClosedTrashImage>
 	</TrashCan>
-
+-->
 </BlockLangDef>

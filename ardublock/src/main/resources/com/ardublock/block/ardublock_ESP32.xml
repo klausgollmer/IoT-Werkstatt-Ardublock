@@ -6140,7 +6140,7 @@
 
 		<BlockFamily>
 			<FamilyMember>SMARDVectRen</FamilyMember>
-			<FamilyMember>SMARDVectCO2</FamilyMember>
+			<!-- FamilyMember>SMARDVectCO2</FamilyMember -->
 		</BlockFamily>
 
 		<BlockFamily>
