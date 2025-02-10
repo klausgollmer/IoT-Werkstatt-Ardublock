@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -69,10 +71,22 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
         this.setBackground(Color.GRAY);
         this.timer = new EnlargerTimer();
         this.listeners = new ArrayList<ExplorerListener>();
-        retardedPane = new JPanel();
+//        retardedPane = new JPanel();
         Color myColor = new Color(210, 210, 210); 
         //#kgo der untere Abschnitt unter den Werkzeugkästen
+//        retardedPane.setBackground(myColor);
+
+        int fixedWidth = 50;
+        int fixedHeight = 50;
+
+        // Erstelle das Panel mit Bild
+        retardedPane = new ImagePanel("IconTrash.png", fixedWidth, fixedHeight);
+
+        // Falls nötig, die Positionierung anpassen
+        retardedPane.setPreferredSize(new Dimension(fixedWidth, fixedHeight));
         retardedPane.setBackground(myColor);
+        retardedPane.setOpaque(true);
+        buttonPane = new JPanel();
         
         buttonPane = new JPanel();
         //buttonPane.setBackground(Color.GRAY);
@@ -92,6 +106,51 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
         this.addFocusListener(this);
     }
 
+    
+    
+    public class ImagePanel extends JPanel {
+        private Image backgroundImage;
+        private int imgWidth, imgHeight; // Feste Bildgröße
+
+        public ImagePanel(String imagePath, int width, int height) {
+            // Lade das Bild
+            ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource(imagePath));
+            if (icon.getImage() == null) {
+                System.err.println("❌ Bild konnte nicht geladen werden!");
+            } else {
+                backgroundImage = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                this.imgWidth = width;
+                this.imgHeight = height;
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (backgroundImage != null) {
+                // Dynamisch unten **links** zeichnen
+                int x = 10;  // 10px Abstand vom linken Rand
+                int y = getHeight() - imgHeight - 10; // 10px Abstand vom unteren Rand
+                g.drawImage(backgroundImage, x, y, imgWidth, imgHeight, this);
+            }
+        }
+    }
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * Returns the default width of the selected sliding container
      */
