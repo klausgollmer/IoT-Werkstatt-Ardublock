@@ -6215,7 +6215,7 @@
 
 			<!-- bd.control -->
 			<BlockDrawer button-color="233 244 124" name="bd.control"
-				type="factory" description="fffuf">
+				type="factory">
 			
 			    <BlockGenusMember>Divider_Wait</BlockGenusMember>
 				<BlockGenusMember>delay</BlockGenusMember>

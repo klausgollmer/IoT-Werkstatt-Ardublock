@@ -173,7 +173,7 @@ public class RBHighlightHandler extends JComponent implements ComponentListener,
     private void updateBounds() {
         if (this.getParent() == null) {
             // Zielkomponente ist noch nicht eingebunden – ggf. später erneut versuchen
-            System.err.println("updateBounds() aufgerufen, aber this.getParent() ist null!");
+            //System.err.println("updateBounds() aufgerufen, aber this.getParent() ist null!");
             return;
         }
         

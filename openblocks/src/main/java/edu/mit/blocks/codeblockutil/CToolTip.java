@@ -45,10 +45,9 @@ class CToolTipUI extends BasicToolTipUI {
     private JEditorPane editorPane;
     private Color background;
     // Speichert den ursprünglich gesetzten Tooltip-Text,
-    // z. B. "Dies ist ein Beispiel. Hier findest du: http://test.de"
+    // z. B. "Alles was den Programmablauf steuert. ... Beispiele hier: https://www.umwelt-campus.de/..."
     private String originalTipText;
    
-    
     public CToolTipUI(Color background) {
         super();
         // Hintergrundfarbe (weiß)
@@ -77,19 +76,29 @@ class CToolTipUI extends BasicToolTipUI {
         if (tipText == null) {
             return new Dimension(0, 0);
         }
-        // Speichern des Originaltexts, wie er vom Anwender gesetzt wurde
+        // Speichern des Originaltexts, wie er vom Anwender gesetzt wurde.
         originalTipText = tipText;
-        // Wenn der Text noch nicht als HTML vorliegt, bauen wir ihn in eine HTML-Struktur ein
+        // Falls der Text noch nicht als HTML vorliegt, betten wir ihn in eine HTML-Struktur ein.
+        // Dabei wird über makeLinksClickable() jede URL durch einen Link ersetzt, der nur den Server anzeigt.
         if (!tipText.trim().toLowerCase().startsWith("<html>")) {
-            tipText = "<html><head></head><body>" + makeLinksClickable(tipText) + "</body></html>";
+            tipText = "<html><head>"
+                    + "<style type=\"text/css\">"
+                    + "body { word-break: break-all; overflow-wrap: break-word; white-space: normal; }"
+                    + "</style>"
+                    + "</head><body>" 
+                    + makeLinksClickable(tipText) 
+                    + "</body></html>";
         } else {
             if (!tipText.toLowerCase().contains("<body>")) {
-                tipText = tipText.replaceFirst("(?i)<html>", "<html><head></head><body>") + "</body></html>";
+                tipText = tipText.replaceFirst("(?i)<html>", 
+                        "<html><head><style type=\"text/css\">body { word-break: break-all; overflow-wrap: break-word; white-space: normal; }</style></head><body>") 
+                        + "</body></html>";
             }
         }
         editorPane.setText(tipText);
         Dimension d = editorPane.getPreferredSize();
-        d.width = 2 * Math.min(d.width, WIDTH);
+        // Optional: Passe die Breite an (hier: maximal 2*min(WIDTH, d.width))
+        d.width = 2 * Math.min(d.width, WIDTH)+30;
         d.height++;
         editorPane.setSize(d);
         return d;
@@ -107,15 +116,14 @@ class CToolTipUI extends BasicToolTipUI {
     }
 
     /**
-     * Sucht im übergebenen Text (z. B. "Dies ist ein Beispiel. Hier findest du: http://test.de")
+     * Diese Methode sucht im übergebenen Text (z. B. "Alles was ... Beispiele hier: https://www.umwelt-campus.de/...")
      * alle Vorkommen von URLs (http:// oder https://) und ersetzt diese durch einen HTML-Link,
-     * der per CSS in blau und unterstrichen angezeigt wird.
+     * bei dem als Linktext nur der Host (z. B. "www.umwelt-campus.de") angezeigt wird.
      */
     private String makeLinksClickable(String text) {
         if (text == null) {
             return "";
         }
-        // Verwende einen Regex, um alle Vorkommen von URLs zu finden.
         Pattern pattern = Pattern.compile("(?i)(https?://\\S+)");
         Matcher matcher = pattern.matcher(text);
         StringBuffer sb = new StringBuffer();
@@ -123,7 +131,17 @@ class CToolTipUI extends BasicToolTipUI {
             String url = matcher.group(1);
             // Entferne nachgestellte Satzzeichen, falls vorhanden.
             url = url.replaceAll("[.,;:!?)]*$", "");
-            String replacement = "<a href=\"" + url + "\" style=\"color: blue; text-decoration: underline;\">" + url + "</a>";
+            String display = url;
+            try {
+                java.net.URI uri = new java.net.URI(url);
+                if (uri.getHost() != null) {
+                    display = uri.getHost();
+                }
+            } catch (Exception ex) {
+                // Fallback: Nutze die volle URL
+            }
+            // Ersetze die URL durch einen Link, bei dem nur der Host angezeigt wird.
+            String replacement = "<a href=\"" + url + "\" style=\"color: blue; text-decoration: underline;\">" + display + "</a>";
             matcher.appendReplacement(sb, replacement);
         }
         matcher.appendTail(sb);
@@ -149,17 +167,12 @@ class CToolTipUI extends BasicToolTipUI {
 
     /**
      * Diese Methode wird beim Klick im Tooltip aufgerufen.
-     * Sie extrahiert die erste URL aus dem ursprünglich gesetzten Tooltip-Text
-     * und öffnet diese im Standardbrowser.
+     * Es wird die erste URL aus dem ursprünglichen Tooltip-Text extrahiert und im Standardbrowser geöffnet.
      */
     private void dispatchEventToEditor(MouseEvent e) {
-    //    System.out.println("Dispatching click event at: " + e.getPoint());
         String url = extractFirstUrl(originalTipText);
         if (url != null) {
-    //        System.out.println("Link detected: " + url);
             openWebpage(url);
-        } else {
-    //        System.out.println("Kein Link gefunden.");
         }
     }
 
