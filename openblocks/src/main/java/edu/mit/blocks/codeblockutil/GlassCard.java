@@ -1,5 +1,5 @@
 package edu.mit.blocks.codeblockutil;
-
+//import static com.ardublock.ui.UiMessageBundle.getString;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -9,6 +9,7 @@ import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.MenuItem;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.event.ActionEvent;
@@ -20,8 +21,12 @@ import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 
 import javax.swing.JComponent;
+import javax.swing.JPopupMenu;
+import javax.swing.JToolTip;
+import javax.swing.UIManager;
 
 import edu.mit.blocks.codeblockutil.CScrollPane.ScrollPolicy;
 
@@ -52,6 +57,8 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
     private CScrollPane scroll;
     private final static int SCROLLBAR_WIDTH = 18;
 
+   
+    
     /**
      * constructor
      * @param i
@@ -63,8 +70,10 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
         this.explorer = ex;
         this.canvas = canvas;
         this.button = new GlassButton(canvas.getColor(), canvas.getColor().brighter().brighter().brighter(), canvas.getName());
-//        this.button.setMaximumSize(new Dimension(0,50));
-//        this.button.setPreferredSize(new Dimension(0,50));
+
+        this.button.setToolTipText(TipToolQnD(canvas.getName()));
+        UIManager.put("ToolTip.font", new Font("Arial", Font.PLAIN, 14));
+
         this.scroll = new CGlassScrollPane(
                 canvas.getJComponent(),
                 ScrollPolicy.VERTICAL_BAR_AS_NEEDED,
@@ -77,8 +86,83 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
         this.scroll.setPreferredSize(
                 new Dimension(canvas.getJComponent().getPreferredSize().width + SCROLLBAR_WIDTH,
                 canvas.getJComponent().getPreferredSize().height));
+
     }
 
+    private String TipToolQnD(String name) {
+	    ResourceBundle uiMessageBundle = ResourceBundle.getBundle("com/ardublock/block/ardublock");
+        if (name.equals(uiMessageBundle.getString("bd.control")))
+            return uiMessageBundle.getString("bd.control.description");
+        
+        if (name.equals(uiMessageBundle.getString("bd.logic")))
+            return uiMessageBundle.getString("bd.logic.description");
+        
+        if (name.equals(uiMessageBundle.getString("bd.operators")))
+            return uiMessageBundle.getString("bd.operators.description");
+        
+        if (name.equals(uiMessageBundle.getString("bd.number")))
+            return uiMessageBundle.getString("bd.number.description");
+        
+        if (name.equals(uiMessageBundle.getString("bd.ser_communication")))
+            return uiMessageBundle.getString("bd.ser_communication.description");
+        
+        if (name.equals(uiMessageBundle.getString("bd.input")))
+            return uiMessageBundle.getString("bd.input.description");
+        
+        if (name.equals(uiMessageBundle.getString("bd.signal")))
+            return uiMessageBundle.getString("bd.signal.description");
+  
+        if (name.equals(uiMessageBundle.getString("bd.input_ext")))
+            return uiMessageBundle.getString("bd.input_ext.description");
+        
+        if (name.equals(uiMessageBundle.getString("bd.output")))
+            return uiMessageBundle.getString("bd.output.description");
+  
+        if (name.equals(uiMessageBundle.getString("bd.WLAN_communication")))
+            return uiMessageBundle.getString("bd.WLAN_communication.description");
+  
+        if (name.equals(uiMessageBundle.getString("bd.HTTP_communication")))
+            return uiMessageBundle.getString("bd.HTTP_communication.description");
+
+        if (name.equals(uiMessageBundle.getString("bd.MQTT_communication")))
+            return uiMessageBundle.getString("bd.MQTT_communication.description");
+
+        if (name.equals(uiMessageBundle.getString("bd.LORA_communication")))
+            return uiMessageBundle.getString("bd.LORA_communication.description");
+
+        if (name.equals(uiMessageBundle.getString("bd.Blynk_communication")))
+            return uiMessageBundle.getString("bd.Blynk_communication.description");
+
+        if (name.equals(uiMessageBundle.getString("bd.ESPNow")))
+            return uiMessageBundle.getString("bd.ESPNow.description");
+
+        if (name.equals(uiMessageBundle.getString("bd.database")))
+            return uiMessageBundle.getString("bd.database.description");
+
+        if (name.equals(uiMessageBundle.getString("bd.WLAN_NTP")))
+           	return uiMessageBundle.getString("bd.WLAN_NTP.description");
+        
+        if (name.equals(uiMessageBundle.getString("bd.WLAN_privacy")))
+            return uiMessageBundle.getString("bd.WLAN_privacy.description");
+        
+        if (name.equals(uiMessageBundle.getString("bd.MINT")))
+            return uiMessageBundle.getString("bd.MINT.description");
+
+        if (name.equals(uiMessageBundle.getString("bd.MED")))
+            return uiMessageBundle.getString("bd.MED.description");
+
+        if (name.equals(uiMessageBundle.getString("bd.ESP_irq")))
+            return uiMessageBundle.getString("bd.ESP_irq.description");
+
+        if (name.equals(uiMessageBundle.getString("bd.ESP_system")))
+            return uiMessageBundle.getString("bd.ESP_system.description");
+
+        if (name.equals(uiMessageBundle.getString("bd.ESP32_system")))
+            return uiMessageBundle.getString("bd.ESP32_system.description");
+
+        return name;
+    }
+    	    
     /**
      * When the user presses the button, the explorer selects the
      * corresponding canvas

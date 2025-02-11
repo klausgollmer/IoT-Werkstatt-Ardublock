@@ -21,6 +21,7 @@ import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 
 import javax.swing.JButton;
+import javax.swing.JToolTip;
 import javax.swing.SwingUtilities;
 
 /**
@@ -64,6 +65,23 @@ public class CButton extends JButton implements MouseListener {
     /** Color of the foreground whe hovered */
     Color hoveredColor = Color.red;
 
+    private Color tooltipBackground = new Color(255, 255, 255); // Standardfarbe für Tooltip
+    
+/*    
+    public void setToolTipBackground(Color color) {
+        this.tooltipBackground = color;
+    }
+*/
+    
+    @Override
+    public JToolTip createToolTip() {
+        CToolTip tip = new CToolTip(tooltipBackground);
+        tip.setComponent(this);
+        return tip;
+    }
+    
+    
+    
     /**
      * Creates a button with text and black buttonColor, and
      * white slectedColor
