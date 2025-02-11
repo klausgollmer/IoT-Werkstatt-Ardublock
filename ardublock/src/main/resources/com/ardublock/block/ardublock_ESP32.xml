@@ -1313,6 +1313,7 @@
 
 		<BlockGenus name="glue_poly" kind="data" color="165 42 42"
 			initlabel="bg.glue_poly" editable-label="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="plug" />
@@ -1322,6 +1323,7 @@
 
 		<BlockGenus name="cat_string" kind="data" color="165 42 42"
 			initlabel="bg.cat_string" editable-label="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="plug" />
@@ -1334,6 +1336,7 @@
 
 		<BlockGenus name="cat_string3" kind="data" color="165 42 42"
 			initlabel="bg.cat_string3" editable-label="no">
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="plug" />

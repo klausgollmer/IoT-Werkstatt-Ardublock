@@ -320,7 +320,7 @@ public class Context
         //System.out.println("Ardublock Version: " + ArdublockVersion);
 	    if  (isInArduino()) {
 	    	ArdublockVersion=getVersion();
-	        System.out.println("get saved Ardublock Version: " + ArdublockVersion);
+	     //   System.out.println("get saved Ardublock Version: " + ArdublockVersion);
 	    }
         //if (getArduinoVersionString() != ARDUINO_VERSION_UNKNOWN) {
     	//	ArdublockVersion=getVersion();

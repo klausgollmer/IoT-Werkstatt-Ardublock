@@ -457,7 +457,7 @@ public class OpenblocksFrame extends JFrame
 			    }
 			}
 		});
-		JLabel homeLabel = new JLabel("        Umwelt-Campus Birkenfeld, HS Trier       ");
+		JLabel homeLabel = new JLabel("        Umwelt-Campus Birkenfeld, Hochschule Trier       ");
 		JLabel versionLabel = new JLabel(uiMessageBundle.getString("ardublock.ui.version"));
 		JLabel inoLabel = new JLabel("Code: ");
 
