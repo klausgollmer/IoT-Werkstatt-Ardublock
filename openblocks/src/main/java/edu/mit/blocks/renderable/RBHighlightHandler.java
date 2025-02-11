@@ -164,11 +164,28 @@ public class RBHighlightHandler extends JComponent implements ComponentListener,
     /**
      * Resizes and moves this highlight to match its RB's size and position
      */
+    /*
     private void updateBounds() {
         Point rbLoc = SwingUtilities.convertPoint(rb.getParent(), rb.getLocation(), this.getParent());
         this.setBounds(rbLoc.x - HIGHLIGHT_STROKE_WIDTH / 2, rbLoc.y - HIGHLIGHT_STROKE_WIDTH / 2, rb.getBlockWidth() + HIGHLIGHT_STROKE_WIDTH, rb.getBlockHeight() + HIGHLIGHT_STROKE_WIDTH);
     }
+*/
+    private void updateBounds() {
+        if (this.getParent() == null) {
+            // Zielkomponente ist noch nicht eingebunden – ggf. später erneut versuchen
+            System.err.println("updateBounds() aufgerufen, aber this.getParent() ist null!");
+            return;
+        }
+        
+        Point rbLoc = SwingUtilities.convertPoint(rb.getParent(), rb.getLocation(), this.getParent());
+        this.setBounds(rbLoc.x - HIGHLIGHT_STROKE_WIDTH / 2,
+                       rbLoc.y - HIGHLIGHT_STROKE_WIDTH / 2,
+                       rb.getBlockWidth() + HIGHLIGHT_STROKE_WIDTH,
+                       rb.getBlockHeight() + HIGHLIGHT_STROKE_WIDTH);
+    }
 
+    
+    
     /************************************************************
      * ComponentListener methods for when the RB moves or resizes
      ************************************************************/

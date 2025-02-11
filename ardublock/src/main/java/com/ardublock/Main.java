@@ -8,6 +8,8 @@ import java.io.IOException;
 //import java.util.Enumeration;
 
 import com.formdev.flatlaf.FlatLightLaf;
+
+import javax.swing.ToolTipManager;
 //import javax.swing.*;
 //import java.awt.*;
 //import javax.swing.JFrame;
@@ -35,6 +37,14 @@ public class Main
      //System.out.println("uiScale 1.4");
  	 FlatLightLaf.setup();
 
+     ToolTipManager.sharedInstance().setInitialDelay(1000);  // Warte 200ms
+     ToolTipManager.sharedInstance().setDismissDelay(5000); // Nach 5s schließen
+     ToolTipManager.sharedInstance().setReshowDelay(0);     // Kein zusätzlicher Delay beim erneuten Anzeigen
+     
+     javax.swing.ToolTipManager.sharedInstance().setLightWeightPopupEnabled(false);
+
+ 	 
+ 	 
  	 Context context = Context.getContext();
 	 context.setArduinoCodeFileString("");
 	   System.out.println("Start aus Main");

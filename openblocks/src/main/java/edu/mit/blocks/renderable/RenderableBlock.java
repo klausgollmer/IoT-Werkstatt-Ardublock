@@ -171,6 +171,28 @@ public class RenderableBlock extends JComponent implements SearchableElement,
 	private double unzoomedX;
 	private double unzoomedY;
 
+	  @Override
+	public Point getToolTipLocation(MouseEvent e) {
+		     Point defaultPos = super.getToolTipLocation(e);
+
+		        // Falls der Standard null ist oder du alles selbst bestimmen möchtest:
+		        if (defaultPos == null) {
+		            // x und y beziehen sich auf den Button (relative Koordinaten)
+		            defaultPos = new Point(e.getX(), e.getY());
+		        }
+
+		        // Beispiel: Den Tooltip 15 Pixel nach unten verschieben
+		        defaultPos.y = 10;
+
+		        defaultPos.x = 80;   // 10 Pixel nach rechts
+		        
+  //System.out.println("pos: " + defaultPos.x ) ;
+		  
+	        return new Point(defaultPos.x, defaultPos.y);
+	}
+	
+	
+	
 	/**
 	 * Constructs a new RenderableBlock instance with the specified parent
 	 * WorkspaceWidget and Long blockID of its associated Block

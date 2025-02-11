@@ -10,6 +10,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.event.MouseEvent;
@@ -79,6 +80,28 @@ public class CButton extends JButton implements MouseListener {
         tip.setComponent(this);
         return tip;
     }
+    
+    @Override
+    public Point getToolTipLocation(MouseEvent e) {
+        // Standardposition holen
+        Point defaultPos = super.getToolTipLocation(e);
+
+        // Falls der Standard null ist oder du alles selbst bestimmen möchtest:
+        if (defaultPos == null) {
+            // x und y beziehen sich auf den Button (relative Koordinaten)
+            defaultPos = new Point(e.getX(), e.getY());
+        }
+
+        // Beispiel: Den Tooltip 15 Pixel nach oben verschieben
+        defaultPos.y = 19;
+
+        // oder so:
+        defaultPos.x = 120;   // 10 Pixel nach rechts
+        // defaultPos.y -= 20;   // 20 Pixel nach oben
+
+        return defaultPos;
+    }
+
     
     
     

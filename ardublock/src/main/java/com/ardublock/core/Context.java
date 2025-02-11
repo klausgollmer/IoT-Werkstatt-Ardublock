@@ -283,7 +283,15 @@ public class Context
 		     UIManager.put("FileChooser.listFont", new Font("Arial", Font.PLAIN, 16)); // Liste
 		     UIManager.put("FileChooser.buttonFont", new Font("Arial", Font.PLAIN, 16)); // Schaltflächen
 		     UIManager.put("FileChooser.labelFont", new Font("Arial", Font.PLAIN, 14)); // Labels
-	         ToolTipManager.sharedInstance().setInitialDelay(500); 
+//	         ToolTipManager.sharedInstance().setInitialDelay(500); 
+	         
+	         
+	         ToolTipManager.sharedInstance().setInitialDelay(1000);  // Warte 200ms
+	         ToolTipManager.sharedInstance().setDismissDelay(5000); // Nach 5s schließen
+	         ToolTipManager.sharedInstance().setReshowDelay(0);     // Kein zusätzlicher Delay beim erneuten Anzeigen
+	         
+	         javax.swing.ToolTipManager.sharedInstance().setLightWeightPopupEnabled(false);
+	         
 	         UIManager.put("CheckBox.font", new Font("Arial", Font.PLAIN, 14)); // Schriftgröße 18
 	    	 /*
 		     System.out.println("Java Version: " + javaVersion);
