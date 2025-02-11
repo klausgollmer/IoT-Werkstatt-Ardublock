@@ -72,8 +72,8 @@ public class GlassCard implements ActionListener, PropertyChangeListener {
         this.button = new GlassButton(canvas.getColor(), canvas.getColor().brighter().brighter().brighter(), canvas.getName());
 
         this.button.setToolTipText(TipToolQnD(canvas.getName()));
-        UIManager.put("ToolTip.font", new Font("Arial", Font.PLAIN, 14));
-
+//        UIManager.put("ToolTip.font", new Font("Arial", Font.PLAIN, 14));
+        UIManager.put("EditorPane.font", new Font("Arial", Font.PLAIN, 16));
         this.scroll = new CGlassScrollPane(
                 canvas.getJComponent(),
                 ScrollPolicy.VERTICAL_BAR_AS_NEEDED,

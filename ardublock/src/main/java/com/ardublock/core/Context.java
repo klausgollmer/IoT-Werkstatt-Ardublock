@@ -1,5 +1,6 @@
 package com.ardublock.core;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.Insets;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.ToolTipManager;
@@ -284,8 +286,12 @@ public class Context
 		     UIManager.put("FileChooser.buttonFont", new Font("Arial", Font.PLAIN, 16)); // Schaltflächen
 		     UIManager.put("FileChooser.labelFont", new Font("Arial", Font.PLAIN, 14)); // Labels
 //	         ToolTipManager.sharedInstance().setInitialDelay(500); 
-	         
-	         
+		     UIManager.put("ToolTip.font", new Font("Arial", Font.PLAIN, 16));
+		     UIManager.put("ToolTip.background", Color.YELLOW);
+		     UIManager.put("ToolTip.foreground", Color.BLACK);
+		     UIManager.put("ToolTip.border", BorderFactory.createLineBorder(Color.BLACK));
+		     UIManager.put("EditorPane.font", new Font("Arial", Font.PLAIN, 16));
+		     
 	         ToolTipManager.sharedInstance().setInitialDelay(1000);  // Warte 200ms
 	         ToolTipManager.sharedInstance().setDismissDelay(5000); // Nach 5s schließen
 	         ToolTipManager.sharedInstance().setReshowDelay(0);     // Kein zusätzlicher Delay beim erneuten Anzeigen

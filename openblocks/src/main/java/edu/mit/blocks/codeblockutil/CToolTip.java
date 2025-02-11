@@ -69,7 +69,7 @@ class CToolTipUI extends BasicToolTipUI {
         editorPane.setBackground(background);
         renderer.paintComponent(g, editorPane, c, 1, 1, size.width - 1, size.height - 1, true);
     }
-
+/*
     @Override
     public Dimension getPreferredSize(JComponent c) {
         String tipText = ((JToolTip) c).getTipText();
@@ -103,7 +103,51 @@ class CToolTipUI extends BasicToolTipUI {
         editorPane.setSize(d);
         return d;
     }
+*/
+    @Override
+    public Dimension getPreferredSize(JComponent c) {
+        String tipText = ((JToolTip) c).getTipText();
+        if (tipText == null) {
+            return new Dimension(0, 0);
+        }
+        // Speichern des Originaltexts, wie er vom Anwender gesetzt wurde.
+        originalTipText = tipText;
+        
+        // Falls der Text noch nicht als HTML vorliegt, betten wir ihn in eine HTML-Struktur ein.
+        // Dabei fügen wir einen CSS-Style ein, der eine feste Breite (WIDTH in Pixel) vorgibt.
+        if (!tipText.trim().toLowerCase().startsWith("<html>")) {
+            tipText = "<html><head>"
+                    + "<style type=\"text/css\">"
+                    + "body { font-family: Arial, sans-serif; font-size: 12px; "
+                    + "word-break: normal; overflow-wrap: break-word; white-space: normal; "
+                    + "width: " + WIDTH + "px; }"  // Hier wird die feste Breite definiert.
+                    + "</style>"
+                    + "</head><body>" 
+                    + makeLinksClickable(tipText) 
+                    + "</body></html>";
+        } else {
+            if (!tipText.toLowerCase().contains("<body>")) {
+                tipText = tipText.replaceFirst("(?i)<html>", 
+                        "<html><head><style type=\"text/css\">"
+                        + "body { font-family: Arial, sans-serif; font-size: 12px; "
+                        + "word-break: normal; overflow-wrap: break-word; white-space: normal; "
+                        + "width: " + WIDTH + "px; }"
+                        + "</style></head><body>") 
+                        + "</body></html>";
+            }
+        }
+        
+        editorPane.setText(tipText);
+        // Hole die vom EditorPane berechnete PreferredSize.
+        Dimension d = editorPane.getPreferredSize();
+        // Entferne die manuelle Breitenanpassung – die Breite wird nun durch CSS bestimmt.
+        editorPane.setSize(d);
+        return d;
+    }
 
+
+    
+    
     @Override
     public void installUI(JComponent c) {
         super.installUI(c);

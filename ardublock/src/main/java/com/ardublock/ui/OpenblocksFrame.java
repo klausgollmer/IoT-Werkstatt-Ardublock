@@ -15,11 +15,14 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -440,7 +443,56 @@ public class OpenblocksFrame extends JFrame
 
 
 		JPanel bottomPanel = new JPanel();
+
+		// Angenommen, die URL steht in Deinem uiMessageBundle unter dem Schlüssel "ardublock.ui.website"
+		//String websiteURL = uiMessageBundle.getString("ardublock.ui.website");
+/*
+		String websiteURL = "www.umwelt-campus.de";
+		JLabel websiteLabel = new JLabel(
+		    "<html>         " +
+		    "<a href=\"" + websiteURL + "\" style=\"text-decoration: underline; color: blue;\">" + websiteURL + "</a>" +
+		    ", Hochschule Trier" +
+		    "</html>         "
+		);
+	*/	
 		
+		String websiteURL = "www.umwelt-campus.de";
+		JLabel websiteLabel = new JLabel(
+		    "<html>" +
+	          "<div style=\"padding-left:40px; padding-right:30px;\">" +
+	           "Umwelt-Campus Birkenfeld, Hochschule Trier, " +
+			  
+	            "<a href=\"" + websiteURL + "\" style=\"text-decoration: underline; color: blue;\">" 
+		          + websiteURL + 
+		        "</a>" +
+		      "</div>" +
+		    "</html>"
+		);
+
+		// Setze den Cursor auf den Hand-Cursor, damit der Benutzer erkennt, dass es klickbar ist
+		websiteLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+		// Füge einen MouseListener hinzu, der beim Klick die URL im Standardbrowser öffnet
+		websiteLabel.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		    	try {
+				    String url = "http://www.umwelt-campus.de";  // Ersetze durch Deine URL
+				    System.out.println("Versuche, URL zu öffnen: " + url);
+				    // Option 1: Direkte Erzeugung der URI
+				    URI uri = new URI(url);
+				    // Option 2: Mit URL-Konvertierung (falls Probleme auftreten)
+				    // URI uri = new URL(url).toURI();
+				    Desktop.getDesktop().browse(uri);
+				} catch (Exception ex) {
+				    ex.printStackTrace();
+				    System.err.println("Failed to open Webseite. Error message: " + ex.getMessage());
+				}
+		    }
+		});
+		
+		
+		/*
 		JButton websiteButton = new JButton(uiMessageBundle.getString("ardublock.ui.website"));
 		websiteButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		websiteButton.addActionListener(new ActionListener () {
@@ -457,6 +509,7 @@ public class OpenblocksFrame extends JFrame
 			    }
 			}
 		});
+		*/
 		JLabel homeLabel = new JLabel("        Umwelt-Campus Birkenfeld, Hochschule Trier       ");
 		JLabel versionLabel = new JLabel(uiMessageBundle.getString("ardublock.ui.version"));
 		JLabel inoLabel = new JLabel("Code: ");
@@ -493,8 +546,8 @@ public class OpenblocksFrame extends JFrame
 
 		bottomPanel.add(greenCheckBox);
 	    greenCheckBox.setVisible(context.ArdublockVersion.contains("Makey"));
-		bottomPanel.add(homeLabel);
-		bottomPanel.add(websiteButton);
+		//bottomPanel.add(homeLabel);
+		bottomPanel.add(websiteLabel);
 	    bottomPanel.add(saveImageButton);
 		bottomPanel.add(versionLabel);
 		//bottomPanel.add(inoFileLabel);
