@@ -175,11 +175,11 @@ public class GenerateCodeButtonListener implements ActionListener
 					//	System.out.println("Genius ok");
 						if (block.getBlockLabel().equals(subroutineBlock.getBlockLabel())) {
 					//		System.out.println("label ok");
-							System.out.println("Genius " + block.getGenusName());
-							System.out.println("Label " + block.getBlockLabel());
+					//		System.out.println("Genius " + block.getGenusName());
+					//		System.out.println("Label " + block.getBlockLabel());
 					
-							System.out.println("before "+block.getBeforeBlockID());
-							System.out.println("before NULL"+Block.NULL.equals(block.getBeforeBlockID()));
+					//		System.out.println("before "+block.getBeforeBlockID());
+					//		System.out.println("before NULL"+Block.NULL.equals(block.getBeforeBlockID()));
 		                     if ((block.hasPlug() || (!Block.NULL.equals(block.getBeforeBlockID())))) 			
 							   add_ok = true;		
 						}

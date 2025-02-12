@@ -277,7 +277,62 @@ public class OpenblocksFrame extends JFrame
 		}
 	}	
 	
-	
+	 /**
+     * Sucht im angegebenen Verzeichnis nach einer PDF-Datei und öffnet die erste gefundene
+     * im Standard-Webbrowser.
+     *
+     * @param directoryPath Der Pfad zum Verzeichnis, in dem nach einer PDF-Datei gesucht wird.
+     */
+    public static void openPdfInBrowser(String directoryPath) {
+        // Erstelle ein File-Objekt für das Verzeichnis
+        File directory = new File(directoryPath);
+        
+        // Prüfen, ob das Verzeichnis existiert und gültig ist
+        if (!directory.exists() || !directory.isDirectory()) {
+            System.err.println("Ungültiges Verzeichnis: " + directoryPath);
+            return;
+        }
+
+        // Suche nach Dateien, deren Name mit ".pdf" endet (unabhängig von Groß-/Kleinschreibung)
+        File[] pdfFiles = directory.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".pdf");
+            }
+        });
+
+        // Überprüfen, ob mindestens eine PDF-Datei gefunden wurde
+        if (pdfFiles == null || pdfFiles.length == 0) {
+      //      System.out.println("Keine PDF-Datei im Verzeichnis gefunden: " + directoryPath);
+            return;
+        }
+
+        // Wähle die erste gefundene PDF-Datei aus
+        File pdfFile = pdfFiles[0];
+        //System.out.println("Öffne PDF-Datei im Browser: " + pdfFile.getAbsolutePath());
+
+        // Prüfe, ob das Desktop-Feature unterstützt wird
+        if (!Desktop.isDesktopSupported()) {
+            System.err.println("Desktop wird auf diesem System nicht unterstützt.");
+            return;
+        }
+
+        Desktop desktop = Desktop.getDesktop();
+        if (!desktop.isSupported(Desktop.Action.BROWSE)) {
+            System.err.println("Die BROWSE-Aktion wird auf diesem System nicht unterstützt.");
+            return;
+        }
+
+        try {
+            // Konvertiere die Datei in eine URI und öffne sie im Browser
+            URI pdfUri = pdfFile.toURI();
+            desktop.browse(pdfUri);
+        } catch (Exception e) {
+            System.err.println("Fehler beim Öffnen der PDF-Datei im Browser:");
+            e.printStackTrace();
+        }
+    }
+
 	
 
 	 /**
@@ -681,6 +736,7 @@ public class OpenblocksFrame extends JFrame
                 		doOpenTutorFile(DemoFile);
                 	playWavInBrowser(Dir+tutorComboBox.getSelectedItem());                	
                 	openLinkFromDirectory(Dir+tutorComboBox.getSelectedItem());
+                	openPdfInBrowser(Dir+tutorComboBox.getSelectedItem());
                 }
             }
         });
