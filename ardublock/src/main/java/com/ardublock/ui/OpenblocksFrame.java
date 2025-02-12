@@ -20,13 +20,20 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.concurrent.CountDownLatch;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -40,6 +47,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -64,6 +72,9 @@ import edu.mit.blocks.workspace.PageChangeEventManager;
 import edu.mit.blocks.workspace.Workspace;
 import javax.swing.BorderFactory;
 
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 
 public class OpenblocksFrame extends JFrame
 {
@@ -82,8 +93,8 @@ public class OpenblocksFrame extends JFrame
 	public JComboBox debugComboBox;
 	public JCheckBox greenCheckBox;
 	
-	
-	
+
+	public JComboBox<String> tutorComboBox = new JComboBox<String>();
 	
 	public void addListener(OpenblocksFrameListener ofl)
 	{
@@ -149,6 +160,7 @@ public class OpenblocksFrame extends JFrame
 		fileChooser.setFileFilter(ffilter);
 		fileChooser.addChoosableFileFilter(ffilter);
 		
+		
 		initOpenBlocks();
 		
 
@@ -200,14 +212,251 @@ public class OpenblocksFrame extends JFrame
 		}
 		else {
 			context.ArdublockVersion = (String) boardComboBox.getSelectedItem();
+			
+			String[] tutorList = new String[0];
+			
+
+//			if (tutorComboBox != null) {
+//			    tutorComboBox.setModel(new DefaultComboBoxModel<>(tutorList));
+//			} else {
+//			    System.err.println("vorher tutorComboBox ist null!");
+//			}
+			
 			this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		    context.writeVersion();
 			context.resetWorksapce();
 			context.setWorkspaceChanged(false);
 			this.setTitle(this.makeFrameTitle());
 			this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			
+			// Tutor aktualisieren
+			Object selectedBoard = boardComboBox.getSelectedItem();
+			if (selectedBoard == null) {
+			    System.err.println("Kein Board ausgewählt.");
+			    return; // oder setze einen Default-Wert
+			}
+
+			String board = selectedBoard.toString();
+			//System.out.println("board"+board);
+			
+			String Dir, MyDir=System.getProperty("user.dir");
+	        File currentDirFile = new File(MyDir);
+	        // Den übergeordneten Ordner (eine Ebene zurück) abrufen
+	        String UserDir = currentDirFile.getParent();
+			
+			Locale currentLocale = Locale.getDefault();
+			String language = currentLocale.getLanguage();
+			// In ein File-Objekt umwandeln
+	       
+			if (context.isInArduino())
+				Dir = UserDir+"/Tutor/" + language+ "/"+boardComboBox.getSelectedItem() + "/";
+
+			else
+			    Dir = "E:/IoTW/Tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
+			
+			tutorList = getSubDirectoryNames(Dir);
+
+			// Falls getSubDirectoryNames null zurückgibt, lieber ein leeres Array verwenden
+			if (tutorList == null) {
+			    tutorList = new String[0];
+			}
+
+			if (tutorComboBox != null) {
+			    tutorComboBox.setModel(new DefaultComboBoxModel<>(tutorList));
+			} else {
+			    System.err.println("tutorComboBox ist null!");
+			}
+	 
+			if (tutorList.length <= 1) {
+	            tutorComboBox.setEnabled(false);
+	        } else {
+	            tutorComboBox.setEnabled(true);
+	        }
+	        
+			
 		}
 	}	
+	
+	
+	
+
+	 /**
+     * Öffnet die Datei Link.txt im angegebenen Verzeichnis, liest den darin enthaltenen Link aus
+     * und öffnet diesen im Standardbrowser.
+     *
+     * @param directoryPath Der Pfad zum Verzeichnis, in dem sich die Datei Link.txt befindet.
+     */
+    public static void openLinkFromDirectory(String directoryPath) {
+        // Prüfen, ob das übergebene Verzeichnis existiert und ein Verzeichnis ist
+     //   System.out.println("openLink"+directoryPath);
+        
+        File directory = new File(directoryPath);
+        if (!directory.exists() || !directory.isDirectory()) {
+         //   System.err.println("Das Verzeichnis existiert nicht oder ist kein Verzeichnis: " + directoryPath);
+            return;
+        }
+
+        // Erstelle ein File-Objekt für Link.txt im übergebenen Verzeichnis
+        File linkFile = new File(directory, "Link.txt");
+        if (!linkFile.exists()) {
+         //   System.err.println("Die Datei Link.txt wurde im Verzeichnis " + directoryPath + " nicht gefunden.");
+            return;
+        }
+
+        // Lese den Link aus der Datei
+        String link = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(linkFile))) {
+            link = reader.readLine();
+            if (link != null) {
+                link = link.trim();
+            }
+        } catch (IOException e) {
+            System.err.println("Fehler beim Lesen der Datei: " + e.getMessage());
+            return;
+        }
+
+        if (link == null || link.isEmpty()) {
+            System.err.println("Der Link in der Datei ist leer.");
+            return;
+        }
+
+        // Prüfen, ob die Desktop-Funktionalität unterstützt wird
+        if (!Desktop.isDesktopSupported()) {
+            System.err.println("Desktop wird auf diesem System nicht unterstützt.");
+            return;
+        }
+
+        Desktop desktop = Desktop.getDesktop();
+        if (!desktop.isSupported(Desktop.Action.BROWSE)) {
+            System.err.println("Die BROWSE-Aktion wird auf diesem System nicht unterstützt.");
+            return;
+        }
+
+        // Versuche, den Link im Standardbrowser zu öffnen
+        try {
+            URI uri = new URI(link);
+            desktop.browse(uri);
+         //   System.out.println("Link wird geöffnet: " + link);
+        } catch (Exception e) {
+            System.err.println("Fehler beim Öffnen des Links: " + e.getMessage());
+        }
+    }
+
+    
+    /**
+     * Gibt alle Unterverzeichnisse des angegebenen Verzeichnispfads als String-Array zurück. Die erste Rückgabe ist immer "AI Tutor"
+     *
+     * @param directoryPath Der Pfad zum Verzeichnis, in dem nach Unterverzeichnissen gesucht werden soll.
+     * @return Ein String-Array, das die vollständigen Pfade der gefundenen Unterverzeichnisse enthält.
+     *         Falls der Pfad ungültig ist oder keine Unterverzeichnisse vorhanden sind, wird ein leeres Array zurückgegeben.
+     */
+    public static String[] getSubDirectoryNames(String directoryPath) {
+        File directory = new File(directoryPath);
+
+        // Liste für die Ergebnisnamen erstellen (Typ explizit angeben)
+        List<String> namesList = new ArrayList<String>();
+
+        // Füge den festen Eintrag hinzu
+        namesList.add("AI Tutor");
+
+        // Prüfen, ob der Pfad existiert und ein Verzeichnis ist
+        if (!directory.exists() || !directory.isDirectory()) {
+            //System.err.println("Der angegebene Pfad ist kein gültiges Verzeichnis: " + directoryPath);
+            return namesList.toArray(new String[0]);
+        }
+
+        // Alle Unterverzeichnisse auflisten
+        File[] subDirs = directory.listFiles(File::isDirectory);
+        if (subDirs != null) {
+            for (File subDir : subDirs) {
+                namesList.add(subDir.getName());
+            }
+        }
+        return namesList.toArray(new String[0]);
+    }
+
+   
+   
+    /**
+     * Sucht im übergebenen Verzeichnis nach einer WAV-Datei und öffnet diese im Standardbrowser.
+     * Dadurch übernimmt der Browser die Wiedergabe und bietet auch eigene Steuerelemente.
+     *
+     * @param directoryPath Der Pfad zum Verzeichnis, in dem nach einer WAV-Datei gesucht wird.
+     */
+    public static void playWavInBrowser(String directoryPath) {
+        File directory = new File(directoryPath);
+        if (!directory.exists() || !directory.isDirectory()) {
+            System.err.println("Ungültiges Verzeichnis: " + directoryPath);
+            return;
+        }
+
+        // Suche nach Dateien, die auf ".wav" enden (unabhängig von Groß-/Kleinschreibung)
+        File[] wavFiles = directory.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".wav");
+            }
+        });
+
+        if (wavFiles == null || wavFiles.length == 0) {
+//            System.out.println("Keine WAV-Datei im Verzeichnis gefunden.");
+            return;
+        }
+
+        // Wähle die erste gefundene WAV-Datei aus
+        File wavFile = wavFiles[0];
+//        System.out.println("Öffne WAV-Datei im Browser: " + wavFile.getName());
+
+        // Prüfe, ob Desktop und BROWSE unterstützt werden
+        if (!Desktop.isDesktopSupported()) {
+            System.err.println("Desktop wird auf diesem System nicht unterstützt.");
+            return;
+        }
+        Desktop desktop = Desktop.getDesktop();
+        if (!desktop.isSupported(Desktop.Action.BROWSE)) {
+            System.err.println("Die BROWSE-Aktion wird auf diesem System nicht unterstützt.");
+            return;
+        }
+
+        try {
+            // Konvertiere den Dateipfad in eine URI und öffne diese im Browser
+            URI uri = wavFile.toURI();
+            desktop.browse(uri);
+        } catch (Exception e) {
+            System.err.println("Fehler beim Öffnen der WAV-Datei im Browser: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    
+    public static String findAbpFile(String directoryPath) {
+        // Erstelle ein File-Objekt für das Verzeichnis
+        File directory = new File(directoryPath);
+
+        // Prüfen, ob das Verzeichnis existiert und gültig ist
+        if (!directory.exists() || !directory.isDirectory()) {
+            System.err.println("Kein gültiges Verzeichnis: " + directoryPath);
+            return null;
+        }
+
+        // Suche nach Dateien, deren Name mit ".abp" endet (unabhängig von Groß-/Kleinschreibung)
+        File[] abpFiles = directory.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".abp");
+            }
+        });
+
+        // Falls mindestens eine Datei gefunden wurde, wird die erste zurückgegeben
+        if (abpFiles != null && abpFiles.length > 0) {
+            return abpFiles[0].getAbsolutePath();
+        }
+
+        // Falls keine .abp-Datei gefunden wurde, gebe null zurück
+        //System.out.println("Keine .abp-Datei gefunden in " + directoryPath);
+        return "";
+    }
+    
 	
 	private void initOpenBlocks()
 	{
@@ -334,7 +583,7 @@ public class OpenblocksFrame extends JFrame
 					return;
 				}
 				else {
-					changeBoardVersion();					
+					changeBoardVersion();
 				}
 				if (context.ArdublockVersion.contains("Makey")) {
 			  	   greenCheckBox.setSelected(Translator.isGreenProgram() != 0);
@@ -382,9 +631,59 @@ public class OpenblocksFrame extends JFrame
         });
 
         
-         
-     
+ 	
+    	String Dir, MyDir=System.getProperty("user.dir");
+        File currentDirFile = new File(MyDir);
+        // Den übergeordneten Ordner (eine Ebene zurück) abrufen
+        String UserDir = currentDirFile.getParent();
 		
+		Locale currentLocale = Locale.getDefault();
+		String language = currentLocale.getLanguage();
+		// In ein File-Objekt umwandeln
+       
+		if (context.isInArduino())
+			Dir = UserDir+"/Tutor/" + language+ "/"+boardComboBox.getSelectedItem() + "/";
+
+		else
+		    Dir = "E:/IoTW/Tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
+	
+		System.out.println(Dir);
+		String[] tutorList = getSubDirectoryNames(Dir);
+		// Erzeuge separate Arrays für jeden Bestandteil
+		
+       // JComboBox<String> tutorComboBox = new JComboBox<>(tutorList);
+		tutorComboBox.setModel(new DefaultComboBoxModel<String>(tutorList));
+		
+        // Set initial selection
+        tutorComboBox.setSelectedIndex(0); // Default to "None"
+        if (tutorList.length <= 1) {
+            tutorComboBox.setEnabled(false);
+        } else {
+            tutorComboBox.setEnabled(true);
+        }
+        
+        // Add action listener for selection changes
+        tutorComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //int actual = Translator.isDebugProgram();
+                int selectedIndex = tutorComboBox.getSelectedIndex();
+
+               // if (actual == selectedIndex) {
+                  //  System.out.println("Selection unchanged. Skipping update.");
+               //     return;
+               // }
+
+                // Update debug program
+                if (selectedIndex > 0) {
+                	String DemoFile = findAbpFile(Dir+tutorComboBox.getSelectedItem());
+                	if (!DemoFile.isEmpty())
+                		doOpenTutorFile(DemoFile);
+                	playWavInBrowser(Dir+tutorComboBox.getSelectedItem());                	
+                	openLinkFromDirectory(Dir+tutorComboBox.getSelectedItem());
+                }
+            }
+        });
 		
 		JLabel zoomLabel = new JLabel("Zoom: ");
 		JButton zoomIn = new JButton("+");
@@ -437,6 +736,7 @@ public class OpenblocksFrame extends JFrame
 		//jp1.setBorder(new CompoundBorder(border, margin));
 
 		jp0.add(boardComboBox);
+		jp0.add(tutorComboBox);
 		if (context.getArduinoCodeFileString()=="")
    		     jp3.add(serialMonitorButton);
 
@@ -522,9 +822,9 @@ public class OpenblocksFrame extends JFrame
         jp5.add(jp3);
 		jp5.add(generateButton);
 	
-		jp7.add(zoomLabel);
-		jp7.add(zoomIn);
-		jp7.add(zoomOut);
+	//	jp7.add(zoomLabel);
+	//	jp7.add(zoomIn);
+	//	jp7.add(zoomOut);
 	
 		
 		buttons.add(jp0);
@@ -540,6 +840,10 @@ public class OpenblocksFrame extends JFrame
 	
 	//	bottomPanel.setLayout(new GridLayout(1, 1, 10, 1));
 		//bottomPanel.add(debugLabel);
+		
+//		jp7.add(zoomLabel);
+		bottomPanel.add(zoomIn);
+		bottomPanel.add(zoomOut);
 		bottomPanel.add(debugComboBox);
 
 		//System.out.println(" los"+context.ArdublockVersion);
@@ -613,6 +917,56 @@ public class OpenblocksFrame extends JFrame
 			}
 		}
 	}
+	
+	private void loadTutorFile(File Example)
+	{
+			try
+			{
+				this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				context.loadArduBlockFile(Example);
+				context.setWorkspaceChanged(false);
+			}
+			catch (IOException e)
+			{
+				JOptionPane.showOptionDialog(this, uiMessageBundle.getString("message.file_not_found"), uiMessageBundle.getString("message.title.error"), JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null, null, JOptionPane.OK_OPTION);
+				e.printStackTrace();
+			}
+			finally
+			{
+				this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+	}
+	
+	
+	
+	public void doOpenTutorFile(String filePath)
+	{
+		File demoFile= new File(filePath);
+
+		if (context.isWorkspaceChanged())
+		{
+			int optionValue = JOptionPane.showOptionDialog(this, uiMessageBundle.getString("message.content.open_unsaved"), uiMessageBundle.getString("message.title.question"), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
+			if (optionValue == JOptionPane.YES_OPTION)
+			{
+				doSaveArduBlockFile();
+				this.loadTutorFile(demoFile);
+			}
+			else
+			{
+				if (optionValue == JOptionPane.NO_OPTION)
+				{
+					this.loadTutorFile(demoFile);
+				}
+			}
+		}
+		else
+		{
+			this.loadTutorFile(demoFile);
+		}
+		this.setTitle(makeFrameTitle());
+	}
+	
+	
 	
 	public void doSaveArduBlockFile()
 	{
