@@ -45,6 +45,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -110,6 +111,13 @@ public class OpenblocksFrame extends JFrame
 		}
 		return title;
 		
+	}
+	
+	public void bringToFront() {
+  		    setAlwaysOnTop(true);
+	        toFront();
+	        requestFocus();
+	        setAlwaysOnTop(false); 
 	}
 	
 	public OpenblocksFrame()
@@ -207,10 +215,11 @@ public class OpenblocksFrame extends JFrame
 		{
 			//- change combobox selection back to the current version.
 			boardComboBox.setSelectedItem((String)context.ArdublockVersion);
-			System.out.println("Setting combo box back to original: " + context.ArdublockVersion);
+	//		System.out.println("Setting combo box back to original: " + context.ArdublockVersion);
 			return;
 		}
 		else {
+	//		System.out.println("changeBoard in der Proc- "+boardComboBox.getSelectedItem());
 			context.ArdublockVersion = (String) boardComboBox.getSelectedItem();
 			
 			String[] tutorList = new String[0];
@@ -247,7 +256,7 @@ public class OpenblocksFrame extends JFrame
 			Locale currentLocale = Locale.getDefault();
 			String language = currentLocale.getLanguage();
 			// In ein File-Objekt umwandeln
-	       
+		//	System.out.println("change dir: " + context.ArdublockVersion);
 			if (context.isInArduino())
 				Dir = UserDir+"/Tutor/" + language+ "/"+boardComboBox.getSelectedItem() + "/";
 
@@ -638,6 +647,7 @@ public class OpenblocksFrame extends JFrame
 					return;
 				}
 				else {
+			//		System.out.println("changeBoard - "+boardComboBox.getSelectedItem());
 					changeBoardVersion();
 				}
 				if (context.ArdublockVersion.contains("Makey")) {
@@ -673,14 +683,14 @@ public class OpenblocksFrame extends JFrame
                 int selectedIndex = debugComboBox.getSelectedIndex();
 
                 if (actual == selectedIndex) {
-                  //  System.out.println("Selection unchanged. Skipping update.");
+//                    System.out.println("Selection unchanged. Skipping update.");
                     return;
                 }
 
                 // Update debug program
                 if (selectedIndex >= 0) {
                     Translator.setDebugProgram(selectedIndex);
-                 //   System.out.println("Debug program changed to: " + debugList[selectedIndex]);
+ //                   System.out.println("Debug program changed to: " + debugList[selectedIndex]);
                 }
             }
         });
@@ -702,7 +712,10 @@ public class OpenblocksFrame extends JFrame
 		else
 		    Dir = "E:/IoTW/Tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
 	
-		System.out.println(Dir);
+		//System.out.println("ggg"+Dir);
+		//System.out.println(boardComboBox.getSelectedItem());
+		//System.out.println(context.ArdublockVersion);
+		
 		String[] tutorList = getSubDirectoryNames(Dir);
 		// Erzeuge separate Arrays für jeden Bestandteil
 		
@@ -723,11 +736,13 @@ public class OpenblocksFrame extends JFrame
             public void actionPerformed(ActionEvent e) {
                 //int actual = Translator.isDebugProgram();
                 int selectedIndex = tutorComboBox.getSelectedIndex();
+                String Dir;
+                if (context.isInArduino())
+        			Dir = UserDir+"/Tutor/" + language+ "/"+boardComboBox.getSelectedItem() + "/";
 
-               // if (actual == selectedIndex) {
-                  //  System.out.println("Selection unchanged. Skipping update.");
-               //     return;
-               // }
+        		else
+        		    Dir = "E:/IoTW/Tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
+        	
 
                 // Update debug program
                 if (selectedIndex > 0) {
@@ -737,6 +752,17 @@ public class OpenblocksFrame extends JFrame
                 	playWavInBrowser(Dir+tutorComboBox.getSelectedItem());                	
                 	openLinkFromDirectory(Dir+tutorComboBox.getSelectedItem());
                 	openPdfInBrowser(Dir+tutorComboBox.getSelectedItem());
+                	
+                //	ActionListener action = event -> System.out.println("Button clicked");
+                //	new javax.swing.Timer(500, timerEvent -> bringToFront()).start();
+                	 SwingUtilities.invokeLater(() -> bringToFront());
+                	 Timer timer = new Timer(200, evt -> bringToFront());
+                	    timer.setRepeats(false); 
+                	    timer.start();
+                	 
+                	 
+                	 
+                	 
                 }
             }
         });
