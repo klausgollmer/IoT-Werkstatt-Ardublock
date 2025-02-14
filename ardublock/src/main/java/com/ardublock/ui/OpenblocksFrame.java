@@ -809,8 +809,8 @@ public class OpenblocksFrame extends JFrame
 
 		Border border = BorderFactory.createLineBorder(Color.black);
 		Border margin = new EmptyBorder(1,1,1,1);
-		JLabel abpLabel = new JLabel("Block:");
-		jp1.add(abpLabel);
+//		JLabel abpLabel = new JLabel("Block:");
+//		jp1.add(abpLabel);
 		jp1.add(newButton);
 		jp1.add(saveButton);
 		jp1.add(saveAsButton);
@@ -819,8 +819,8 @@ public class OpenblocksFrame extends JFrame
 
 		jp0.add(boardComboBox);
 		jp0.add(tutorComboBox);
-		if (context.getArduinoCodeFileString()=="")
-   		     jp3.add(serialMonitorButton);
+//		if (context.getArduinoCodeFileString()=="")
+//   		     jp3.add(serialMonitorButton);
 
 
 
@@ -894,13 +894,13 @@ public class OpenblocksFrame extends JFrame
 		*/
 		JLabel homeLabel = new JLabel("        Umwelt-Campus Birkenfeld, Hochschule Trier       ");
 		JLabel versionLabel = new JLabel(uiMessageBundle.getString("ardublock.ui.version"));
-		JLabel inoLabel = new JLabel("Code: ");
+		//JLabel inoLabel = new JLabel("Code: ");
 
 		
 		JLabel inoFileLabel = new JLabel(context.getArduinoCodeFileString());
 		inoFileLabel.setFont(new Font("Arial", Font.PLAIN, 8)); // Schriftgröße 8
 	
-		jp5.add(inoLabel);
+		//jp5.add(inoLabel);
         jp5.add(jp3);
 		jp5.add(generateButton);
 	
@@ -1046,6 +1046,7 @@ public class OpenblocksFrame extends JFrame
 			this.loadTutorFile(demoFile);
 		}
 		this.setTitle(makeFrameTitle());
+		context.setWorkspaceChanged(false);
 	}
 	
 	

@@ -19,10 +19,13 @@ public class ArdublockWorkspaceListener implements WorkspaceListener
 	
 	public void workspaceEventOccurred(WorkspaceEvent event)
 	{
-		//System.out.println("Event: " + event.getEventType());
+		//System.out.println("Event: " + event.getEventType() );
+		
+		
 		if (!context.isWorkspaceChanged())
 		{
-			context.setWorkspaceChanged(true);
+			if ((event.getEventType()!= 3) && (event.getEventType()!= 10))
+			    context.setWorkspaceChanged(true);
 			context.setWorkspaceEmpty(false);
 			String title = frame.makeFrameTitle();
 			if (frame != null)
