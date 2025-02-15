@@ -30,6 +30,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -222,8 +223,8 @@ public class OpenblocksFrame extends JFrame
 	//		System.out.println("changeBoard in der Proc- "+boardComboBox.getSelectedItem());
 			context.ArdublockVersion = (String) boardComboBox.getSelectedItem();
 			
-			String[] tutorList = new String[0];
-			
+			String[] tutorList      = new String[0];
+			String[] tutorList_trim = new String[0];
 
 //			if (tutorComboBox != null) {
 //			    tutorComboBox.setModel(new DefaultComboBoxModel<>(tutorList));
@@ -264,14 +265,20 @@ public class OpenblocksFrame extends JFrame
 			    Dir = "E:/IoTW/Tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
 			
 			tutorList = getSubDirectoryNames(Dir);
-
+			 // Neues Array mit gefilterten Strings erstellen
+			tutorList_trim = Arrays.stream(tutorList)
+	                .map(s -> s.replaceFirst("^\\d+_", ""))  // Entfernt NUR die Zahl + "_"
+	                .toArray(String[]::new);
+			
+			
 			// Falls getSubDirectoryNames null zurückgibt, lieber ein leeres Array verwenden
 			if (tutorList == null) {
 			    tutorList = new String[0];
+			    tutorList_trim = new String[0];
 			}
 
 			if (tutorComboBox != null) {
-			    tutorComboBox.setModel(new DefaultComboBoxModel<>(tutorList));
+			    tutorComboBox.setModel(new DefaultComboBoxModel<>(tutorList_trim));
 			} else {
 			    System.err.println("tutorComboBox ist null!");
 			}
@@ -529,9 +536,6 @@ public class OpenblocksFrame extends JFrame
 		int mymargin_lr=10;
 		int mymargin_ul=3;
 		
-		
-		
-		
 		/*
 		WorkspaceController workspaceController = context.getWorkspaceController();
 		JComponent workspaceComponent = workspaceController.getWorkspacePanel();
@@ -590,6 +594,53 @@ public class OpenblocksFrame extends JFrame
 		saveImageButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		saveImageButton.addActionListener(new ActionListener () {
 
+			
+			public void actionPerformed(ActionEvent e) {
+			    Dimension size = workspace.getCanvasSize();
+			   // System.out.println("Canvas Size: " + size);
+
+			    int width = Math.min(size.width*3,  10000); // Limit width to avoid excessive memory usage
+			    int height = Math.min(size.height*2, 10000); // Limit height to avoid excessive memory usage
+
+			    // Ensure we have a valid image size
+			    if (width <= 0 || height <= 0) {
+			        System.err.println("Invalid canvas size. Aborting image creation.");
+			        return;
+			    }
+
+		//	    BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+			    BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_USHORT_565_RGB);
+			    Graphics2D g = bi.createGraphics();
+
+			    try {
+			        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+			        // Adjust scale factor based on actual canvas size
+			        double scaleFactor = 300.0 / 72.0;
+			        g.scale(scaleFactor, scaleFactor);
+
+			        // Paint the workspace content onto the BufferedImage
+			        workspace.getBlockCanvas().getPageAt(0).getJComponent().paint(g);
+
+			        // Show file chooser dialog
+			        JFileChooser fc = new JFileChooser();
+			        fc.setSelectedFile(new File("ardublock.png"));
+			        int returnVal = fc.showSaveDialog(workspace.getBlockCanvas().getJComponent());
+
+			        if (returnVal == JFileChooser.APPROVE_OPTION) {
+			            File file = fc.getSelectedFile();
+			            ImageIO.write(bi, "png", file);
+			        //    System.out.println("Image saved successfully: " + file.getAbsolutePath());
+			        }
+			    } catch (Exception ex) {
+			        ex.printStackTrace(); // Print exception details instead of ignoring them
+			    } finally {
+			        g.dispose();
+			    }
+			}
+			
+			
+			/*
 			public void actionPerformed(ActionEvent e) {
 				Dimension size = workspace.getCanvasSize();
 				System.out.println("size: " + size);
@@ -615,6 +666,8 @@ public class OpenblocksFrame extends JFrame
 					g.dispose();
 				}
 			}
+			*/
+			
 		});
 
 		   // Green Checkbox erstellen
@@ -717,10 +770,19 @@ public class OpenblocksFrame extends JFrame
 		//System.out.println(context.ArdublockVersion);
 		
 		String[] tutorList = getSubDirectoryNames(Dir);
+		 // Neues Array mit gefilterten Strings erstellen
+        String[] tutorList_trim = Arrays.stream(tutorList)
+                .map(s -> s.replaceFirst("^\\d+_", ""))  // Entfernt NUR die Zahl + "_"
+                .toArray(String[]::new);
+		
+		
+		
+		
+		
 		// Erzeuge separate Arrays für jeden Bestandteil
 		
        // JComboBox<String> tutorComboBox = new JComboBox<>(tutorList);
-		tutorComboBox.setModel(new DefaultComboBoxModel<String>(tutorList));
+		tutorComboBox.setModel(new DefaultComboBoxModel<String>(tutorList_trim));
 		
         // Set initial selection
         tutorComboBox.setSelectedIndex(0); // Default to "None"
@@ -742,16 +804,19 @@ public class OpenblocksFrame extends JFrame
 
         		else
         		    Dir = "E:/IoTW/Tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
-        	
-
                 // Update debug program
                 if (selectedIndex > 0) {
-                	String DemoFile = findAbpFile(Dir+tutorComboBox.getSelectedItem());
+                    String[] tutorList = getSubDirectoryNames(Dir);
+           		 // Neues Array mit gefilterten Strings erstellen
+                    String[] tutorList_trim = Arrays.stream(tutorList)
+                           .map(s -> s.replaceFirst("^\\d+_", ""))  // Entfernt NUR die Zahl + "_"
+                           .toArray(String[]::new);
+           			String DemoFile = findAbpFile(Dir+tutorList[tutorComboBox.getSelectedIndex()]);
                 	if (!DemoFile.isEmpty())
                 		doOpenTutorFile(DemoFile);
-                	playWavInBrowser(Dir+tutorComboBox.getSelectedItem());                	
-                	openLinkFromDirectory(Dir+tutorComboBox.getSelectedItem());
-                	openPdfInBrowser(Dir+tutorComboBox.getSelectedItem());
+                	playWavInBrowser(Dir+tutorList[selectedIndex]);                	
+                	openLinkFromDirectory(Dir+tutorList[selectedIndex]);
+                	openPdfInBrowser(Dir+tutorList[selectedIndex]);
                 	
                 //	ActionListener action = event -> System.out.println("Button clicked");
                 //	new javax.swing.Timer(500, timerEvent -> bringToFront()).start();
