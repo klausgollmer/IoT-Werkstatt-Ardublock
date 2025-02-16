@@ -566,6 +566,7 @@ public class Context
 	
 	public void saveArduBlockFile(File saveFile, String saveString) throws IOException
 	{
+	//	System.out.println("saveArdublo"+saveFile+" "+saveString);
 		if (!saveFile.exists())
 		{
 			saveFile.createNewFile();
@@ -581,6 +582,8 @@ public class Context
 	{
 		if (savedFile != null)
 		{
+			
+	//		System.out.println("loadArdublo"+savedFile);
 			saveFilePath = savedFile.getAbsolutePath();
 			saveFileName = savedFile.getName();
 			workspaceController.resetWorkspace();

@@ -97,7 +97,7 @@ public class OpenblocksFrame extends JFrame
 	
 
 	public JComboBox<String> tutorComboBox = new JComboBox<String>();
-	
+	 
 	public void addListener(OpenblocksFrameListener ofl)
 	{
 		context.registerOpenblocksFrameListener(ofl);
@@ -168,7 +168,8 @@ public class OpenblocksFrame extends JFrame
 		ffilter = new FileNameExtensionFilter(uiMessageBundle.getString("ardublock.file.suffix"), "abp");
 		fileChooser.setFileFilter(ffilter);
 		fileChooser.addChoosableFileFilter(ffilter);
-		
+		tutorComboBox.setMaximumRowCount(10);
+		 
 		
 		initOpenBlocks();
 		
@@ -821,7 +822,7 @@ public class OpenblocksFrame extends JFrame
                 //	ActionListener action = event -> System.out.println("Button clicked");
                 //	new javax.swing.Timer(500, timerEvent -> bringToFront()).start();
                 	 SwingUtilities.invokeLater(() -> bringToFront());
-                	 Timer timer = new Timer(200, evt -> bringToFront());
+                	 Timer timer = new Timer(800, evt -> bringToFront());
                 	    timer.setRepeats(false); 
                 	    timer.start();
                 	 
@@ -1118,13 +1119,14 @@ public class OpenblocksFrame extends JFrame
 	
 	public void doSaveArduBlockFile()
 	{
-		if (!context.isWorkspaceChanged())
-		{
-			return ;
-		}
+//		if (!context.isWorkspaceChanged())
+//		{
+//		System.out.println("no change");
+//			return ;
+//		}
 		
 		String saveString = getArduBlockString();
-		
+		//System.out.println("doSave"+saveString);
 		if (context.getSaveFilePath() == null)
 		{
 			chooseFileAndSave(saveString);
@@ -1132,6 +1134,7 @@ public class OpenblocksFrame extends JFrame
 		else
 		{
 			File saveFile = new File(context.getSaveFilePath());
+		//	System.out.println("doSave"+saveFile);
 			writeFileAndUpdateFrame(saveString, saveFile);
 		}
 	}

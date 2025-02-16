@@ -6227,19 +6227,20 @@
   			    <BlockGenusMember>Divider_Case</BlockGenusMember>
 				<BlockGenusMember>if</BlockGenusMember>
 				<BlockGenusMember>ifelse</BlockGenusMember>
-				<BlockGenusMember>switchcase</BlockGenusMember>
+		<!-- 		<BlockGenusMember>switchcase</BlockGenusMember> -->
 				
   			    <BlockGenusMember>Divider_UP</BlockGenusMember>
 				<BlockGenusMember>subroutine</BlockGenusMember>
 				<BlockGenusMember>subroutine-ref</BlockGenusMember>
-				<BlockGenusMember>sub_return</BlockGenusMember>
+		<!-- 
+					<BlockGenusMember>sub_return</BlockGenusMember>
+			
 				<BlockGenusMember>sub_return-ref</BlockGenusMember>
-
   			    <BlockGenusMember>Divider_Code</BlockGenusMember>
 				<BlockGenusMember>code</BlockGenusMember>
 				<BlockGenusMember>codeg</BlockGenusMember>
 				<BlockGenusMember>program</BlockGenusMember>
-               
+ -->              
 			</BlockDrawer>
 
             <!-- bd.logic -->
@@ -6252,11 +6253,13 @@
 				<BlockGenusMember>greater_equal</BlockGenusMember>
 				<BlockGenusMember>less_equal</BlockGenusMember>
 				<BlockGenusMember>not_equal</BlockGenusMember>
+				<!-- 
 				<BlockGenusMember>isnan</BlockGenusMember>
 				<BlockGenusMember>isempty</BlockGenusMember>	
 				<BlockGenusMember>equal_string</BlockGenusMember>
 				<BlockGenusMember>not_equal_string</BlockGenusMember>
 				<BlockGenusMember>equal_digital</BlockGenusMember>
+				 -->
 			    <BlockGenusMember>Divider_Logic</BlockGenusMember>
 				<BlockGenusMember>and</BlockGenusMember>
 				<BlockGenusMember>or</BlockGenusMember>
@@ -6271,6 +6274,7 @@
 				<BlockGenusMember>subtraction</BlockGenusMember>
 				<BlockGenusMember>multiplication</BlockGenusMember>
 				<BlockGenusMember>division</BlockGenusMember>
+				<!-- 
 				<BlockGenusMember>modulo</BlockGenusMember>
 				<BlockGenusMember>abs</BlockGenusMember>
 				<BlockGenusMember>round</BlockGenusMember>
@@ -6281,7 +6285,7 @@
 				<BlockGenusMember>tan</BlockGenusMember>
 				<BlockGenusMember>random</BlockGenusMember>
 			    <BlockGenusMember>MapC</BlockGenusMember>
-				
+				-->
 			</BlockDrawer>
 
 
@@ -6300,7 +6304,7 @@
 				<BlockGenusMember>variable_number_double</BlockGenusMember>	
 				<BlockGenusMember>local_variable_number</BlockGenusMember>				
 				<BlockGenusMember>number</BlockGenusMember>
-						
+		<!-- 				
 				<BlockGenusMember>Divider_String</BlockGenusMember>
 				<BlockGenusMember>setter_variable_String</BlockGenusMember> 
 				<BlockGenusMember>variable_String</BlockGenusMember> 
@@ -6312,7 +6316,7 @@
 				<BlockGenusMember>Divider_Array</BlockGenusMember>
 				<BlockGenusMember>setArrayVarNum</BlockGenusMember> 
 				<BlockGenusMember>readArrayVarNum</BlockGenusMember> 
-			
+		 -->	
 			</BlockDrawer>
 
 			<!-- Ser_communication -->
@@ -6324,8 +6328,10 @@
 				<BlockGenusMember>OLED_PrintTerminal</BlockGenusMember>
 				<BlockGenusMember>serial_print_num</BlockGenusMember>
 				<BlockGenusMember>serial_print</BlockGenusMember>
+				<!-- 
 				<BlockGenusMember>serial_readString</BlockGenusMember>
 				<BlockGenusMember>serial_available</BlockGenusMember>
+				-->
 				<BlockGenusMember>Divider_Type</BlockGenusMember>
 				<BlockGenusMember>glue_sn</BlockGenusMember>
 				<BlockGenusMember>glue_sb</BlockGenusMember>
@@ -6344,21 +6350,23 @@
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-read-analog</BlockGenusMember>
 				<BlockGenusMember>pin-read-digital</BlockGenusMember>
-				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
+		<!-- 	<BlockGenusMember>pin-mode-pullup</BlockGenusMember> -->
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBSEC</BlockGenusMember>
 			
-				<BlockGenusMember>GetBME680offset</BlockGenusMember>
+			<!-- <BlockGenusMember>GetBME680offset</BlockGenusMember> -->
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
-				<BlockGenusMember>ADPS9960Cal</BlockGenusMember>
+			<!-- 	<BlockGenusMember>ADPS9960Cal</BlockGenusMember> -->
 				<BlockGenusMember>Divider_Encoder</BlockGenusMember>
 				<BlockGenusMember>button_press</BlockGenusMember>
 				<BlockGenusMember>button_rot</BlockGenusMember>
-			    <BlockGenusMember>button_rot_minmax</BlockGenusMember>	
+			    <BlockGenusMember>button_rot_minmax</BlockGenusMember>
+			    <!-- 	
 			    <BlockGenusMember>touch_rot</BlockGenusMember>	
   		        <BlockGenusMember>touch_press</BlockGenusMember>	
-  		        <BlockGenusMember>touch_rot_minmax</BlockGenusMember>	
+  		        <BlockGenusMember>touch_rot_minmax</BlockGenusMember>
+  		        -->	
 				<BlockGenusMember>glue_sn</BlockGenusMember>
 				<BlockGenusMember>glue_sb</BlockGenusMember>
 			 
@@ -6390,11 +6398,14 @@
 				type="factory">
 				<BlockGenusMember>Divider_WiFi</BlockGenusMember>
 				<BlockGenusMember>connectWLANAP</BlockGenusMember>
+				<!-- 
 				<BlockGenusMember>connectWLANAPTO</BlockGenusMember>
 				<BlockGenusMember>WiFiMan</BlockGenusMember>
+				-->
 				<BlockGenusMember>Divider_WiFiAP</BlockGenusMember>
 				<BlockGenusMember>buildWLANAP</BlockGenusMember>
-				<!--BlockGenusMember>connectGPRS</BlockGenusMember-->
+				<!--BlockGenusMember>connectGPRS</BlockGenusMember 
+				-->
 				
 			</BlockDrawer>
 			
@@ -6404,6 +6415,8 @@
 				<BlockGenusMember>ownMessageServer</BlockGenusMember>
 			    <BlockGenusMember>Divider_Thing</BlockGenusMember>
 			    <BlockGenusMember>sendThingspeak</BlockGenusMember>
+			
+				<!-- 
 				<BlockGenusMember>askThingspeak</BlockGenusMember>
 				<BlockGenusMember>Divider_Thingsboard</BlockGenusMember>
 			    <BlockGenusMember>sendThingsboard</BlockGenusMember>
@@ -6414,10 +6427,12 @@
 			 	<BlockGenusMember>getShelly2</BlockGenusMember>
 			 	<BlockGenusMember>LEDShelly</BlockGenusMember>
 	 		    <BlockGenusMember>askSMARD</BlockGenusMember>
+	 		   
 	            <BlockGenusMember>Divider_Server</BlockGenusMember>
 		 	    <BlockGenusMember>ownMessageServer_CO2_V2</BlockGenusMember>
-			 	
+			 	 -->
   			</BlockDrawer>
+
 								
 								          <!-- bd.input, external -->
           <BlockDrawer button-color="122 150 200" name="bd.input_ext"
