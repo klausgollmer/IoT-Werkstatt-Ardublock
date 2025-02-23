@@ -106,7 +106,7 @@ public class Context
 				if (singletonContext == null)
 				{
 					singletonContext = new Context();
-					System.out.println("New Context");
+				//	System.out.println("New Context");
 				}
 			}
 		}

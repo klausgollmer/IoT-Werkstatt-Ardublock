@@ -6302,7 +6302,7 @@
 				<BlockGenusMember>setter_variable_number</BlockGenusMember>				
 				<BlockGenusMember>variable_number</BlockGenusMember>	
 				<BlockGenusMember>variable_number_double</BlockGenusMember>	
-				<BlockGenusMember>local_variable_number</BlockGenusMember>				
+		<!-- 	<BlockGenusMember>local_variable_number</BlockGenusMember> -->				
 				<BlockGenusMember>number</BlockGenusMember>
 		<!-- 				
 				<BlockGenusMember>Divider_String</BlockGenusMember>
@@ -6379,7 +6379,7 @@
 				type="factory">
 				<BlockGenusMember>Divider_LED</BlockGenusMember>
 				<BlockGenusMember>iot_neopixel_light</BlockGenusMember>
-				<BlockGenusMember>iot_neopixel</BlockGenusMember>
+			<!-- <BlockGenusMember>iot_neopixel</BlockGenusMember> -->
 			
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>

@@ -793,10 +793,12 @@ public class OpenblocksFrame extends JFrame
             tutorComboBox.setEnabled(true);
         }
         
+        
         // Add action listener for selection changes
         tutorComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	
                 //int actual = Translator.isDebugProgram();
                 int selectedIndex = tutorComboBox.getSelectedIndex();
                 String Dir;
@@ -809,30 +811,33 @@ public class OpenblocksFrame extends JFrame
                 if (selectedIndex > 0) {
                     String[] tutorList = getSubDirectoryNames(Dir);
            		 // Neues Array mit gefilterten Strings erstellen
+                    
                     String[] tutorList_trim = Arrays.stream(tutorList)
                            .map(s -> s.replaceFirst("^\\d+_", ""))  // Entfernt NUR die Zahl + "_"
                            .toArray(String[]::new);
            			String DemoFile = findAbpFile(Dir+tutorList[tutorComboBox.getSelectedIndex()]);
-                	if (!DemoFile.isEmpty())
-                		doOpenTutorFile(DemoFile);
-                	playWavInBrowser(Dir+tutorList[selectedIndex]);                	
-                	openLinkFromDirectory(Dir+tutorList[selectedIndex]);
-                	openPdfInBrowser(Dir+tutorList[selectedIndex]);
-                	
-                //	ActionListener action = event -> System.out.println("Button clicked");
-                //	new javax.swing.Timer(500, timerEvent -> bringToFront()).start();
-                	 SwingUtilities.invokeLater(() -> bringToFront());
+              if (!DemoFile.isEmpty()) {
+              		doOpenTutorFile(DemoFile);
+  		      }
+              	playWavInBrowser(Dir+tutorList[selectedIndex]);                	
+              	openLinkFromDirectory(Dir+tutorList[selectedIndex]);
+              	openPdfInBrowser(Dir+tutorList[selectedIndex]);
+              	
+                	 //SwingUtilities.invokeLater(() -> bringToFront());
                 	 Timer timer = new Timer(800, evt -> bringToFront());
                 	    timer.setRepeats(false); 
                 	    timer.start();
+                	   // System.out.println("wsc");
+               	     SwingUtilities.invokeLater(() -> context.setWorkspaceChanged(false));
+                            	 
                 	 
                 	 
-                	 
-                	 
+              
                 }
+              
             }
+            
         });
-		
 		JLabel zoomLabel = new JLabel("Zoom: ");
 		JButton zoomIn = new JButton("+");
 		zoomIn.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
