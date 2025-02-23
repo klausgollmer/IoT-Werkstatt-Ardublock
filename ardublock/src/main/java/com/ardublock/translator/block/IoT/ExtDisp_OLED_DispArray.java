@@ -93,6 +93,7 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
 	    		+ "  //myOLEDdisplay.setRotation(0);\n"
 	    		+ "  canvas.fillScreen(SH110X_BLACK);\n"
 	    		+ "  // Draw the title\n"
+	    		+ "  canvas.setFont();\n"
 	    		+ "  canvas.setTextSize(1);\n"
 	    		+ "  canvas.setTextColor(SH110X_WHITE);\n"
 	    		+ "  canvas.setCursor(40, 0);\n"
@@ -128,7 +129,7 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
 	    		+ "}";
 		translator.addDefinitionCommand(Display);
 		
-		TranslatorBlock translatorBlock = this.getTranslatorBlockAtSocket(0);
+		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 		String val = "NAN";
 		if (translatorBlock != null) {
 			val = translatorBlock.toCode();

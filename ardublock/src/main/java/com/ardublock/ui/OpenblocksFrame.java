@@ -706,7 +706,7 @@ public class OpenblocksFrame extends JFrame
 				}
 				if (context.ArdublockVersion.contains("Makey")) {
 			  	   greenCheckBox.setSelected(Translator.isGreenProgram() != 0);
-			 	   greenCheckBox.setVisible(true);
+			 	   //greenCheckBox.setVisible(true);
 				} else {
 				   Translator.setGreenProgram(0);	
 			  	   greenCheckBox.setSelected(Translator.isGreenProgram() != 0);
@@ -1002,7 +1002,8 @@ public class OpenblocksFrame extends JFrame
 		//System.out.println(" los"+context.ArdublockVersion);
 
 		bottomPanel.add(greenCheckBox);
-	    greenCheckBox.setVisible(context.ArdublockVersion.contains("Makey"));
+	    //greenCheckBox.setVisible(context.ArdublockVersion.contains("Makey"));
+	    greenCheckBox.setVisible(false);
 		//bottomPanel.add(homeLabel);
 		bottomPanel.add(websiteLabel);
 	    bottomPanel.add(saveImageButton);

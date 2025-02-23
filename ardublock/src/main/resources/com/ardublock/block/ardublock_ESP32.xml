@@ -1795,6 +1795,13 @@
 		</BlockGenus>
 
 
+        <BlockGenus name="OLED_ClearArray" kind="command" color="74 108 212"
+			initlabel="bg.OLED_ClearArray" editable-label="no" is-label-value="no">
+				<description><text></text></description>
+				<BlockConnectors>
+			</BlockConnectors>
+		</BlockGenus>
+
     
      <BlockGenus name="OLED_PrintTerminal" kind="command" color="74 108 212"
 			initlabel="bg.OLED_PrintTerminal" editable-label="no" is-label-value="no">
@@ -6387,7 +6394,7 @@
 				<BlockGenusMember>Divider_Display</BlockGenusMember>
 				<BlockGenusMember>OLED_Print3</BlockGenusMember>
 				<BlockGenusMember>OLED_DispArray</BlockGenusMember>
-				
+				<BlockGenusMember>OLED_ClearArray</BlockGenusMember>
 			
 				
 	<!-- 			<BlockGenusMember>IoTmessage</BlockGenusMember> -->
@@ -6545,6 +6552,7 @@
 				<BlockGenusMember>OLED_Display</BlockGenusMember>
 				<BlockGenusMember>OLED_Font</BlockGenusMember>
 				<BlockGenusMember>OLED_DispArray</BlockGenusMember>
+				<BlockGenusMember>OLED_ClearArray</BlockGenusMember>
 				<BlockGenusMember>OLED_Print3</BlockGenusMember>
 				
  				
