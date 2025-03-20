@@ -1971,7 +1971,7 @@
 
 
 	
-<!-- ADPS Gesture -->
+<!-- ADPS 9960 Gesture -->
 		<BlockGenus name="ADPS9960Get" kind="data" color="44 165 226"
 			initlabel="bg.ADPS9960Get" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -2025,6 +2025,64 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
+
+	
+<!-- ADPS 9999 -->
+		<BlockGenus name="ADPS9999Get" kind="data" color="44 165 226"
+			initlabel="bg.ADPS9999Get" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+  			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+   			    <BlockConnector label="bc.ADPS9999Vector" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="ADPS9999Prox" label="Abstand"/>	
+                </BlockConnector>
+			</BlockConnectors>
+			
+		</BlockGenus>
+		
+		<BlockGenus name="ADPS9999Cal" kind="command" color="44 165 226"
+			initlabel="bg.ADPS9999Cal" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+		</BlockGenus>
+		
+
+       <BlockGenus name="ADPS9999IR" kind="data" color="255 0 0" initlabel="bg.ADPS9999IR" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="ADPS9999Prox" kind="data" color="255 0 0" initlabel="bg.ADPS9999Prox" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="ADPS9999Ambi" kind="data" color="255 0 0" initlabel="bg.ADPS9999Ambi" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="ADPS9999Red" kind="data" color="255 0 0" initlabel="bg.ADPS9999Red" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="ADPS9999Green" kind="data" color="255 0 0" initlabel="bg.ADPS9999Green" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="ADPS9999Blue" kind="data" color="255 0 0" initlabel="bg.ADPS9999Blue" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+
 
 
 <!-- ADPS Gesture -->
@@ -6098,6 +6156,17 @@
 			<FamilyMember>ADPS9960Blue</FamilyMember>
 		</BlockFamily>
 
+        <BlockFamily>
+			<FamilyMember>ADPS9999Prox</FamilyMember>
+			<FamilyMember>ADPS9999Ambi</FamilyMember>
+			<FamilyMember>ADPS9999Red</FamilyMember>
+			<FamilyMember>ADPS9999Green</FamilyMember>
+			<FamilyMember>ADPS9999Blue</FamilyMember>
+			<FamilyMember>ADPS9999IR</FamilyMember>
+		</BlockFamily>
+
+
+
 	    <BlockFamily>
 			<FamilyMember>TCS34725Red</FamilyMember>
 			<FamilyMember>TCS34725Green</FamilyMember>
@@ -6571,6 +6640,9 @@
 		        <BlockGenusMember>GetK30</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
+				<BlockGenusMember>ADPS9999Get</BlockGenusMember>
+				<BlockGenusMember>ADPS9999Cal</BlockGenusMember>
+				
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Cal</BlockGenusMember>
 				<BlockGenusMember>TCS34725Get</BlockGenusMember>
@@ -6581,6 +6653,7 @@
 	            <BlockGenusMember>GetMaxbotix2</BlockGenusMember>
                 <BlockGenusMember>GetDFRobotUS</BlockGenusMember>
 				<BlockGenusMember>readVL53</BlockGenusMember>
+				<BlockGenusMember>ADPS9999Get</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
 				<BlockGenusMember>LIDAR_TFmini_read</BlockGenusMember>
 
