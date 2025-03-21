@@ -1981,7 +1981,7 @@
 			<BlockConnectors>
   			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
    			    <BlockConnector label="bc.ADPS9999Vector" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="ADPS9999Prox" label="Abstand"/>	
+                    <DefaultArg genus-name="ADPS9999Dist" label="Abstand (cm)"/>	
                 </BlockConnector>
 			</BlockConnectors>
 			
@@ -2004,6 +2004,13 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
+
+       <BlockGenus name="ADPS9999Dist" kind="data" color="255 0 0" initlabel="bg.ADPS9999Dist" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
 
        <BlockGenus name="ADPS9999Ambi" kind="data" color="255 0 0" initlabel="bg.ADPS9999Ambi" editable-label="no" is-label-value="no" >
           <BlockConnectors>
@@ -6153,7 +6160,8 @@
 			<FamilyMember>ADPS9960Blue</FamilyMember>
 		</BlockFamily>
 
-       <BlockFamily>
+        <BlockFamily>
+			<FamilyMember>ADPS9999Dist</FamilyMember>
 			<FamilyMember>ADPS9999Prox</FamilyMember>
 			<FamilyMember>ADPS9999Ambi</FamilyMember>
 			<FamilyMember>ADPS9999Red</FamilyMember>
@@ -6161,7 +6169,7 @@
 			<FamilyMember>ADPS9999Blue</FamilyMember>
 			<FamilyMember>ADPS9999IR</FamilyMember>
 		</BlockFamily>
-
+    
 
 	    <BlockFamily>
 			<FamilyMember>TCS34725Red</FamilyMember>
