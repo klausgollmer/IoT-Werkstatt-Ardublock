@@ -1722,7 +1722,7 @@
 		</BlockGenus>
 				
 			
-    <BlockGenus name="OLED_Print" kind="command" color="74 108 212"
+        <BlockGenus name="OLED_Print" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Print" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -5498,6 +5498,65 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+		
+<!-- Audio, BT -->		
+      <BlockGenus name="WebRadio" kind="command" color="74 108 212"
+			initlabel="bg.WebRadio" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="play">
+					<DefaultArg genus-name="message" label="http://mp3.ffh.de/radioffh/hqlivestream.mp3" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+
+        <BlockGenus name="SAM_Say" kind="command" color="74 108 212"
+			initlabel="bg.SAM_Say" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="text">
+					<DefaultArg genus-name="message" label="Hello Makey, lets play toogether!     " />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
+        <BlockGenus name="SAM_Conf" kind="command" color="74 108 212"
+			initlabel="bg.SAM_Conf" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="speed">
+					<DefaultArg genus-name="number" label="72" />
+				</BlockConnector>
+
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="pitch">
+					<DefaultArg genus-name="number" label="64" />
+				</BlockConnector>
+
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="mouth">
+					<DefaultArg genus-name="number" label="128" />
+				</BlockConnector>
+
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="throat">
+					<DefaultArg genus-name="number" label="128" />
+				</BlockConnector>
+
+			
+			</BlockConnectors>
+		</BlockGenus>
+		
+		
+		
+		
+		
 <!-- MINT -->
 		<BlockGenus name="DIYSpectro" kind="command" color="44 165 226"
 			initlabel="bg.DIYSpectro" editable-label="no" is-label-value="no">
@@ -6615,6 +6674,17 @@
 			  <!-- -  <BlockGenusMember>scanSSIDWLAN</BlockGenusMember> -->
 			</BlockDrawer>
 
+           <BlockDrawer button-color="37 79 140" name="bd.Audio"
+				type="factory">
+			  <BlockGenusMember>SAM_Say</BlockGenusMember>
+			  <BlockGenusMember>SAM_Conf</BlockGenusMember>
+			  <BlockGenusMember>WebRadio</BlockGenusMember>
+			</BlockDrawer>			
+
+
+
+
+
           <!-- bd.input, external -->
           <BlockDrawer button-color="122 150 200" name="bd.input_ext"
 				type="factory">
@@ -6750,8 +6820,9 @@
 			</BlockDrawer>
 
 			<!-- vent -->
-			
 
+
+       
  <BlockDrawer button-color="80 80 80" name="bd.ESP_irq"
 				type="factory">
 			  <BlockGenusMember>Divider_IRQ</BlockGenusMember>
