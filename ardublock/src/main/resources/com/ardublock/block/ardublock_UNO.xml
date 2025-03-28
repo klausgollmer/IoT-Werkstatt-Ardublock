@@ -74,7 +74,7 @@
 			
 		
 		
-		<BlockGenus name="Divider" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+		<BlockGenus name="Divider_I2C" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Display" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Environment" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Distance" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -5741,6 +5741,11 @@
 		
         <BlockGenus name="modemSleep" kind="command"
 			color="80 80 80" initlabel="bg.modemSleep">
+			<description><text></text></description>
+		</BlockGenus>
+		
+		<BlockGenus name="I2CScan" kind="command"
+			color="80 80 80" initlabel="bg.I2CScan">
 			<description><text></text></description>
 		</BlockGenus>
 		

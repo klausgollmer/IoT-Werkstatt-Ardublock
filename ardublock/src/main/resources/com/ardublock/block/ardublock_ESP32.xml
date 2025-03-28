@@ -76,6 +76,8 @@
 
 		
 		<BlockGenus name="Divider" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+		<BlockGenus name="Divider_I2C" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+		
 		<BlockGenus name="Divider_Display" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Environment" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Distance" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -5748,6 +5750,11 @@
 			<description><text></text></description>
 		</BlockGenus>
 		
+		<BlockGenus name="I2CScan" kind="command"
+			color="80 80 80" initlabel="bg.I2CScan">
+			<description><text></text></description>
+		</BlockGenus>
+		
 		
         <BlockGenus name="Frequency32" kind="command" color="50 50 50"
 			initlabel="bg.Frequency32">
@@ -6822,7 +6829,7 @@
 			<!-- vent -->
 
 
-       
+<!--        
  <BlockDrawer button-color="80 80 80" name="bd.ESP_irq"
 				type="factory">
 			  <BlockGenusMember>Divider_IRQ</BlockGenusMember>
@@ -6834,6 +6841,8 @@
 			  <BlockGenusMember>timerDetach</BlockGenusMember>
 			  
 			</BlockDrawer>
+	
+-->	
 			
 			<!-- internal 
 			<BlockDrawer button-color="50 50 50" name="bd.ESP_system"
@@ -6863,14 +6872,23 @@
 			 
 			  <BlockGenusMember>Divider_ESP32</BlockGenusMember>
 		      <BlockGenusMember>modemSleep</BlockGenusMember>	
-  		      <BlockGenusMember>LightSleep32</BlockGenusMember>	
+		      <BlockGenusMember>LightSleep32</BlockGenusMember>	
   			  <BlockGenusMember>sleep32</BlockGenusMember>
   		      <BlockGenusMember>RTC_GPIO32</BlockGenusMember>	
   		      <BlockGenusMember>Frequency32</BlockGenusMember>	
-  		      <BlockGenusMember>readReset32</BlockGenusMember>	
+  		      <BlockGenusMember>readReset32</BlockGenusMember>
+  		      <BlockGenusMember>Divider_I2C</BlockGenusMember>
+ 		      <BlockGenusMember>I2CScan</BlockGenusMember>	
   		      <BlockGenusMember>Divider_OTA</BlockGenusMember>
  		      <BlockGenusMember>basicOTA</BlockGenusMember>
- 		      
+              <BlockGenusMember>Divider_IRQ</BlockGenusMember>
+			  <BlockGenusMember>irqEnable</BlockGenusMember>
+			  <BlockGenusMember>irqAttach</BlockGenusMember>
+			  <BlockGenusMember>irqDetach</BlockGenusMember>
+			  <BlockGenusMember>Divider</BlockGenusMember>
+			  <BlockGenusMember>timerAttach</BlockGenusMember>
+			  <BlockGenusMember>timerDetach</BlockGenusMember>
+ 		         
 				<!-- 
 			  <BlockGenusMember>LightSleep</BlockGenusMember>
 			  <BlockGenusMember>sleep</BlockGenusMember>
