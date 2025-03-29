@@ -5555,7 +5555,75 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+	    <BlockGenus name="BuzzerTone" kind="command" color="74 108 212"
+			initlabel="bg.BuzzerTone" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="frequency (Hz)">
+					<DefaultArg genus-name="number" label="100" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="duration (ms)">
+					<DefaultArg genus-name="number" label="1000" />
+				</BlockConnector>
+				
+			</BlockConnectors>
+		</BlockGenus>
 		
+		
+		
+	    <BlockGenus name="BuzzerSong" kind="command" color="74 108 212"
+			initlabel="bg.BuzzerSong" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+   			    <BlockConnector label="bc.BuzzerVector" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="Buzzer0" label="Happy Birthday"/>	
+                </BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="duration (s)">
+					<DefaultArg genus-name="number" label="10" />
+				</BlockConnector>
+				
+			</BlockConnectors>
+		</BlockGenus>
+		
+		<BlockGenus name="Buzzer0" kind="data" color="255 0 0" initlabel="bg.Buzzer0" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		<BlockGenus name="Buzzer1" kind="data" color="255 0 0" initlabel="bg.Buzzer1" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
+		<BlockGenus name="Buzzer2" kind="data" color="255 0 0" initlabel="bg.Buzzer2" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
+		<BlockGenus name="Buzzer3" kind="data" color="255 0 0" initlabel="bg.Buzzer3" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
+		<BlockGenus name="Buzzer4" kind="data" color="255 0 0" initlabel="bg.Buzzer4" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
+		<BlockGenus name="Buzzer5" kind="data" color="255 0 0" initlabel="bg.Buzzer5" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
 		
 		
 		
@@ -6240,6 +6308,17 @@
 			<FamilyMember>ADPS9999IR</FamilyMember>
 		</BlockFamily>
 
+        <BlockFamily>
+			<FamilyMember>Buzzer0</FamilyMember>
+			<FamilyMember>Buzzer1</FamilyMember>
+			<FamilyMember>Buzzer2</FamilyMember>
+			<FamilyMember>Buzzer3</FamilyMember>
+			<FamilyMember>Buzzer4</FamilyMember>
+			<FamilyMember>Buzzer5</FamilyMember>
+		</BlockFamily>
+
+
+
 
 
 	    <BlockFamily>
@@ -6683,8 +6762,10 @@
 
            <BlockDrawer button-color="37 79 140" name="bd.Audio"
 				type="factory">
-			  <BlockGenusMember>SAM_Say</BlockGenusMember>
 			  <BlockGenusMember>SAM_Conf</BlockGenusMember>
+			  <BlockGenusMember>SAM_Say</BlockGenusMember>
+			  <BlockGenusMember>BuzzerSong</BlockGenusMember>
+			  <BlockGenusMember>BuzzerTone</BlockGenusMember>
 			  <BlockGenusMember>WebRadio</BlockGenusMember>
 			</BlockDrawer>			
 
