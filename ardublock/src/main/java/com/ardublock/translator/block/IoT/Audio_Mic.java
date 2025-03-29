@@ -41,109 +41,109 @@ public class Audio_Mic  extends TranslatorBlock {
 	   	  + "boolean WebRadioInit = false;\n";
 		translator.addDefinitionCommand(Def);
 
-		/*
-		MEMS i2S Mic: https://www.adafruit.com/product/3421
-		*/
-		#include "driver/i2s.h"
-
-		/*
-		Configuration structure for the i2s interface
-		    
-		    The Adafruit breakout for the SPH0645LM4H MEMS mic states it works on LEFT by default. this is not true, so use the RIGHT ONLY config
-		    channel_format: I2S_CHANNEL_FMT_ONLY_RIGHT,
-		    
-		    The SPH0645LM4H sends out data in MSB but only LSB works in this config
-		    communication_format: (i2s_comm_format_t)(I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_LSB)
-		*/
-		/*
-		MEMS i2S Mic: https://www.adafruit.com/product/3421
-		*/
-		#include "driver/i2s.h"
-
-		/*
-		Configuration structure for the i2s interface
-		    
-		    The Adafruit breakout for the SPH0645LM4H MEMS mic states it works on LEFT by default. this is not true, so use the RIGHT ONLY config
-		    channel_format: I2S_CHANNEL_FMT_ONLY_RIGHT,
-		    
-		    The SPH0645LM4H sends out data in MSB but only LSB works in this config
-		    communication_format: (i2s_comm_format_t)(I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_LSB)
-		*/
-		#define I2S_MIC_SERIAL_CLOCK GPIO_NUM_12
-		#define I2S_MIC_LEFT_RIGHT_CLOCK GPIO_NUM_2
-		#define I2S_MIC_SERIAL_DATA GPIO_NUM_27
-		#define SAMPLE_BUFFER_SIZE 512
-		#define SAMPLE_RATE 8000
-
-		i2s_config_t i2s_config = {
-		      mode: (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
-		      sample_rate: SAMPLE_RATE,
-		      bits_per_sample: I2S_BITS_PER_SAMPLE_32BIT,
-		      channel_format: I2S_CHANNEL_FMT_ONLY_LEFT,
-		      communication_format: (i2s_comm_format_t)(I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_LSB),
-		      intr_alloc_flags: ESP_INTR_FLAG_LEVEL1,
-		      dma_buf_count: 8,
-		      dma_buf_len: 8
-		};
-
-		//  Configure whatever pins you have available and make sure you set them up with PiNmode() Before setting up i2s system
-		i2s_pin_config_t pin_config = {
-		    .bck_io_num = I2S_MIC_SERIAL_CLOCK, //this is BCK pin
-		    .ws_io_num = I2S_MIC_LEFT_RIGHT_CLOCK, // this is LRCK pin
-		    .data_out_num = I2S_PIN_NO_CHANGE, // this is DATA output pin
-		    .data_in_num = I2S_MIC_SERIAL_DATA   //DATA IN
-		};
-
-		void setup()
-		{
-		  // we need serial output for the plotter
-		  Serial.begin(115200);
-		  // start up the I2S peripheral
-		  i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
-		  i2s_set_pin(I2S_NUM_0, &pin_config);
-		}
-
-
-		int32_t raw_samples[SAMPLE_BUFFER_SIZE];
-		void loop()
-		{
-		  // read from the I2S device
-		  size_t bytes_read = 0;
-		  i2s_read(I2S_NUM_0, raw_samples, sizeof(int32_t) * SAMPLE_BUFFER_SIZE, &bytes_read, portMAX_DELAY);
-		  int samples_read = bytes_read / sizeof(int32_t);
-		  // dump the samples out to the serial channel.
-		  for (int i = 0; i < samples_read; i++)
-		  {
-		    Serial.printf("%ld\n", raw_samples[i]);
-		  }
-		}
-		
-		String Helper = "// Called when a metadata event occurs (i.e. an ID3 tag, an ICY block, etc.\r\n"
-				+ "void MDCallback(void *cbData, const char *type, bool isUnicode, const char *string)\r\n"
-				+ "{\r\n"
-				+ "  const char *ptr = reinterpret_cast<const char *>(cbData);\r\n"
-				+ "  (void) isUnicode; // Punt this ball for now\r\n"
-				+ "  // Note that the type and string may be in PROGMEM, so copy them to RAM for printf\r\n"
-				+ "  char s1[32], s2[64];\r\n"
-				+ "  strncpy_P(s1, type, sizeof(s1));\r\n"
-				+ "  s1[sizeof(s1)-1]=0;\r\n"
-				+ "  strncpy_P(s2, string, sizeof(s2));\r\n"
-				+ "  s2[sizeof(s2)-1]=0;\r\n"
-				+ "  Serial.printf(\"METADATA(%s) '%s' = '%s'\\n\", ptr, s1, s2);\r\n"
-				+ "  Serial.flush();\r\n"
-				+ "}\r\n"
+		String Helper ="		MEMS i2S Mic: https://www.adafruit.com/product/3421\r\n"
+				+ "		*/\r\n"
+				+ "		#include \"driver/i2s.h\"\r\n"
 				+ "\r\n"
-				+ "// Called when there's a warning or error (like a buffer underflow or decode hiccup)\r\n"
-				+ "void StatusCallback(void *cbData, int code, const char *string)\r\n"
-				+ "{\r\n"
-				+ "  const char *ptr = reinterpret_cast<const char *>(cbData);\r\n"
-				+ "  // Note that the string may be in PROGMEM, so copy it to RAM for printf\r\n"
-				+ "  char s1[64];\r\n"
-				+ "  strncpy_P(s1, string, sizeof(s1));\r\n"
-				+ "  s1[sizeof(s1)-1]=0;\r\n"
-				+ "  Serial.printf(\"STATUS(%s) '%d' = '%s'\\n\", ptr, code, s1);\r\n"
-				+ "  Serial.flush();\r\n"
-				+ "}\r\n"
+				+ "		/*\r\n"
+				+ "		Configuration structure for the i2s interface\r\n"
+				+ "		    \r\n"
+				+ "		    The Adafruit breakout for the SPH0645LM4H MEMS mic states it works on LEFT by default. this is not true, so use the RIGHT ONLY config\r\n"
+				+ "		    channel_format: I2S_CHANNEL_FMT_ONLY_RIGHT,\r\n"
+				+ "		    \r\n"
+				+ "		    The SPH0645LM4H sends out data in MSB but only LSB works in this config\r\n"
+				+ "		    communication_format: (i2s_comm_format_t)(I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_LSB)\r\n"
+				+ "		*/\r\n"
+				+ "		/*\r\n"
+				+ "		MEMS i2S Mic: https://www.adafruit.com/product/3421\r\n"
+				+ "		*/\r\n"
+				+ "		#include \"driver/i2s.h\"\r\n"
+				+ "\r\n"
+				+ "		/*\r\n"
+				+ "		Configuration structure for the i2s interface\r\n"
+				+ "		    \r\n"
+				+ "		    The Adafruit breakout for the SPH0645LM4H MEMS mic states it works on LEFT by default. this is not true, so use the RIGHT ONLY config\r\n"
+				+ "		    channel_format: I2S_CHANNEL_FMT_ONLY_RIGHT,\r\n"
+				+ "		    \r\n"
+				+ "		    The SPH0645LM4H sends out data in MSB but only LSB works in this config\r\n"
+				+ "		    communication_format: (i2s_comm_format_t)(I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_LSB)\r\n"
+				+ "		*/\r\n"
+				+ "		#define I2S_MIC_SERIAL_CLOCK GPIO_NUM_12\r\n"
+				+ "		#define I2S_MIC_LEFT_RIGHT_CLOCK GPIO_NUM_2\r\n"
+				+ "		#define I2S_MIC_SERIAL_DATA GPIO_NUM_27\r\n"
+				+ "		#define SAMPLE_BUFFER_SIZE 512\r\n"
+				+ "		#define SAMPLE_RATE 8000\r\n"
+				+ "\r\n"
+				+ "		i2s_config_t i2s_config = {\r\n"
+				+ "		      mode: (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),\r\n"
+				+ "		      sample_rate: SAMPLE_RATE,\r\n"
+				+ "		      bits_per_sample: I2S_BITS_PER_SAMPLE_32BIT,\r\n"
+				+ "		      channel_format: I2S_CHANNEL_FMT_ONLY_LEFT,\r\n"
+				+ "		      communication_format: (i2s_comm_format_t)(I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_LSB),\r\n"
+				+ "		      intr_alloc_flags: ESP_INTR_FLAG_LEVEL1,\r\n"
+				+ "		      dma_buf_count: 8,\r\n"
+				+ "		      dma_buf_len: 8\r\n"
+				+ "		};\r\n"
+				+ "\r\n"
+				+ "		//  Configure whatever pins you have available and make sure you set them up with PiNmode() Before setting up i2s system\r\n"
+				+ "		i2s_pin_config_t pin_config = {\r\n"
+				+ "		    .bck_io_num = I2S_MIC_SERIAL_CLOCK, //this is BCK pin\r\n"
+				+ "		    .ws_io_num = I2S_MIC_LEFT_RIGHT_CLOCK, // this is LRCK pin\r\n"
+				+ "		    .data_out_num = I2S_PIN_NO_CHANGE, // this is DATA output pin\r\n"
+				+ "		    .data_in_num = I2S_MIC_SERIAL_DATA   //DATA IN\r\n"
+				+ "		};\r\n"
+				+ "\r\n"
+				+ "		void setup()\r\n"
+				+ "		{\r\n"
+				+ "		  // we need serial output for the plotter\r\n"
+				+ "		  Serial.begin(115200);\r\n"
+				+ "		  // start up the I2S peripheral\r\n"
+				+ "		  i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);\r\n"
+				+ "		  i2s_set_pin(I2S_NUM_0, &pin_config);\r\n"
+				+ "		}\r\n"
+				+ "\r\n"
+				+ "\r\n"
+				+ "		int32_t raw_samples[SAMPLE_BUFFER_SIZE];\r\n"
+				+ "		void loop()\r\n"
+				+ "		{\r\n"
+				+ "		  // read from the I2S device\r\n"
+				+ "		  size_t bytes_read = 0;\r\n"
+				+ "		  i2s_read(I2S_NUM_0, raw_samples, sizeof(int32_t) * SAMPLE_BUFFER_SIZE, &bytes_read, portMAX_DELAY);\r\n"
+				+ "		  int samples_read = bytes_read / sizeof(int32_t);\r\n"
+				+ "		  // dump the samples out to the serial channel.\r\n"
+				+ "		  for (int i = 0; i < samples_read; i++)\r\n"
+				+ "		  {\r\n"
+				+ "		    Serial.printf(\"%ld\\n\", raw_samples[i]);\r\n"
+				+ "		  }\r\n"
+				+ "		}\r\n"
+				+ "		\r\n"
+				+ "		String Helper = \"// Called when a metadata event occurs (i.e. an ID3 tag, an ICY block, etc.\\r\\n\"\r\n"
+				+ "				+ \"void MDCallback(void *cbData, const char *type, bool isUnicode, const char *string)\\r\\n\"\r\n"
+				+ "				+ \"{\\r\\n\"\r\n"
+				+ "				+ \"  const char *ptr = reinterpret_cast<const char *>(cbData);\\r\\n\"\r\n"
+				+ "				+ \"  (void) isUnicode; // Punt this ball for now\\r\\n\"\r\n"
+				+ "				+ \"  // Note that the type and string may be in PROGMEM, so copy them to RAM for printf\\r\\n\"\r\n"
+				+ "				+ \"  char s1[32], s2[64];\\r\\n\"\r\n"
+				+ "				+ \"  strncpy_P(s1, type, sizeof(s1));\\r\\n\"\r\n"
+				+ "				+ \"  s1[sizeof(s1)-1]=0;\\r\\n\"\r\n"
+				+ "				+ \"  strncpy_P(s2, string, sizeof(s2));\\r\\n\"\r\n"
+				+ "				+ \"  s2[sizeof(s2)-1]=0;\\r\\n\"\r\n"
+				+ "				+ \"  Serial.printf(\\\"METADATA(%s) '%s' = '%s'\\\\n\\\", ptr, s1, s2);\\r\\n\"\r\n"
+				+ "				+ \"  Serial.flush();\\r\\n\"\r\n"
+				+ "				+ \"}\\r\\n\"\r\n"
+				+ "				+ \"\\r\\n\"\r\n"
+				+ "				+ \"// Called when there's a warning or error (like a buffer underflow or decode hiccup)\\r\\n\"\r\n"
+				+ "				+ \"void StatusCallback(void *cbData, int code, const char *string)\\r\\n\"\r\n"
+				+ "				+ \"{\\r\\n\"\r\n"
+				+ "				+ \"  const char *ptr = reinterpret_cast<const char *>(cbData);\\r\\n\"\r\n"
+				+ "				+ \"  // Note that the string may be in PROGMEM, so copy it to RAM for printf\\r\\n\"\r\n"
+				+ "				+ \"  char s1[64];\\r\\n\"\r\n"
+				+ "				+ \"  strncpy_P(s1, string, sizeof(s1));\\r\\n\"\r\n"
+				+ "				+ \"  s1[sizeof(s1)-1]=0;\\r\\n\"\r\n"
+				+ "				+ \"  Serial.printf(\\\"STATUS(%s) '%d' = '%s'\\\\n\\\", ptr, code, s1);\\r\\n\"\r\n"
+				+ "				+ \"  Serial.flush();\\r\\n\"\r\n"
+				+ "				+ \"}\\r\\n\"\r\n"
+				+ "				+ \"\";\r\n"
 				+ "";
 		translator.addDefinitionCommand(Helper);
 		
