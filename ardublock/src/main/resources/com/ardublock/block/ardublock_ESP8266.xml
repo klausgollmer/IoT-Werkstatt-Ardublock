@@ -130,6 +130,7 @@
         <BlockGenus name="Divider_Blynk" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Privacy" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Signal" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+        <BlockGenus name="Divider_SMTP" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 
         <BlockGenus name="Divider_ChatGPT" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_KNN" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -5498,6 +5499,56 @@
 			   <BlockConnector connector-type="number" connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
+		
+		
+		<!-- SMTP -->
+        <BlockGenus name="SMTP_Config" kind="command" color="30 30 255"
+			initlabel="bg.SMTP_Config" editable-label="no" is-label-value="no">
+			<description><text>connect SMTP</text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="smtp host">
+					<DefaultArg genus-name="text" label="smtp.gmail.com" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="port">
+					<DefaultArg genus-name="number" label="587" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="author">
+					<DefaultArg genus-name="text" label="xxxxx@gmail.com" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="app pass">
+					<DefaultArg genus-name="GPRSpass" label="my passwort" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+        <BlockGenus name="SMTP_Send" kind="command" color="30 30 255"
+			initlabel="bg.SMTP_Send" editable-label="no" is-label-value="no">
+			<description><text>connect SMTP</text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="recipient">
+					<DefaultArg genus-name="text" label="destination@mail.com" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="subject">
+					<DefaultArg genus-name="text" label="Subject from Makey:Lab" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="text">
+					<DefaultArg genus-name="text" label="Message Text, hello Makey" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+
+		
+		
+		
+		
 		<!-- Audio, BT -->		
 		 <BlockGenus name="WebRadio" kind="command" color="74 108 212"
 			initlabel="bg.WebRadio" editable-label="no" is-label-value="no">
@@ -6742,6 +6793,9 @@
 	<!-- IoT.communication -->
 			<BlockDrawer button-color="37 79 140" name="bd.WLAN_NTP"
 				type="factory">
+			    <BlockGenusMember>Divider_SMTP</BlockGenusMember>
+				<BlockGenusMember>SMTP_Config</BlockGenusMember>
+				<BlockGenusMember>SMTP_Send</BlockGenusMember>
 			    <BlockGenusMember>Divider_Time</BlockGenusMember>
 				<BlockGenusMember>NTP</BlockGenusMember>
 				<BlockGenusMember>NTPctime</BlockGenusMember>

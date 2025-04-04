@@ -33,7 +33,8 @@ public class SMTP_Config  extends TranslatorBlock {
 	    
 	    String Dis = "/* ESP-Mail-Client, https://github.com/mobizt/ESP-Mail-Client/tree/master, \r\n"
 	    		+ "   MIT License Copyright (c) 2025 mobizt, for Disclaimer see end of file \r\n"
-	    		+ "   https://github.com/mobizt/ESP-Mail-Client/tree/master?tab=MIT-1-ov-file#readme\r\n";
+	    		+ "   https://github.com/mobizt/ESP-Mail-Client/tree/master?tab=MIT-1-ov-file#readme\r\n"
+	    		+ "*/\n";
 	    translator.addDefinitionCommand(Dis);
 	 
 	    String def = "#define SMTP_HOST "+host+ "\r\n"
@@ -89,7 +90,15 @@ public class SMTP_Config  extends TranslatorBlock {
 		translator.addDefinitionCommand(def);	
 		
 	    String setup = "//---------------------------------- STMP-Client \n"
-	    		+ "smtp.debug(IOTW_DEBUG_LEVEL);\r\n"
+	    		
+	    		
+	    		
+	    		
+	    		+ "#if (IOTW_DEBUG_LEVEL > 1)\r\n"
+	    		+ "  smtp.debug(1);\r\n"
+	    		+ "#else\r\n"
+	    		+ "  smtp.debug(0);\r\n"
+	    		+ "#endif\n"
 	    		+ "/* Set the callback function to get the sending results */\r\n"
 	    		+ "smtp.callback(smtpCallback);\n";
 	    
