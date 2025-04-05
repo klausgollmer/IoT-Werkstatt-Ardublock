@@ -125,6 +125,7 @@
         <BlockGenus name="Divider_Privacy" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Signal" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_SMTP" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+        <BlockGenus name="Divider_Messenger" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 
         <BlockGenus name="Divider_ChatGPT" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_KNN" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -5517,7 +5518,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="app pass">
-					<DefaultArg genus-name="GPRSpass" label="my passwort" />
+					<DefaultArg genus-name="apikey" label="my passwort" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="rate mail/h">
@@ -5539,13 +5540,30 @@
 					<DefaultArg genus-name="text" label="Subject from Makey:Lab" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
-					connector-kind="socket" label="text">
+					connector-kind="socket" label="message">
 					<DefaultArg genus-name="text" label="Message Text, hello Makey" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
 
-
+       <BlockGenus name="Whatsup_Send" kind="command" color="30 30 255"
+			initlabel="bg.Whatsup_Send" editable-label="no" is-label-value="no">
+			<description><text>connect SMTP</text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="phone">
+					<DefaultArg genus-name="text" label="+496782xxxxxx" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="apikey">
+					<DefaultArg genus-name="apikey" label="from callmebot.com" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="message">
+					<DefaultArg genus-name="text" label="Message Text, hello Makey" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
 		
 		
 		

@@ -36,6 +36,7 @@ public class SMTP_Config  extends TranslatorBlock {
 	    String Dis = "/* ESP-Mail-Client, https://github.com/mobizt/ESP-Mail-Client/tree/master, \r\n"
 	    		+ "   MIT License Copyright (c) 2025 mobizt, for Disclaimer see end of file \r\n"
 	    		+ "   https://github.com/mobizt/ESP-Mail-Client/tree/master?tab=MIT-1-ov-file#readme\r\n"
+	    		+ "   for application see: https://randomnerdtutorials.com/esp32-send-email-smtp-server-arduino-ide/"
 	    		+ "*/\n";
 	    translator.addDefinitionCommand(Dis);
 	 
