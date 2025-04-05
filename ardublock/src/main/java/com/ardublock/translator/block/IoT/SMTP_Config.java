@@ -17,7 +17,7 @@ public class SMTP_Config  extends TranslatorBlock {
 	{
 		translator.addHeaderFile("ESP_Mail_Client.h");
 		
-		String host,port,sender="\"\"",pass="\"\"",Delay;
+		String host,port,sender="\"\"",pass="\"\"",rate;
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    host = translatorBlock.toCode();
 
@@ -27,9 +27,11 @@ public class SMTP_Config  extends TranslatorBlock {
 	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
 	    sender = translatorBlock.toCode();
 		    
-	    translatorBlock = this.getTranslatorBlockAtSocket(3);
+	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(3);
 	    pass = translatorBlock.toCode();
 	    
+	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(4);
+	    rate = translatorBlock.toCode();
 	    
 	    String Dis = "/* ESP-Mail-Client, https://github.com/mobizt/ESP-Mail-Client/tree/master, \r\n"
 	    		+ "   MIT License Copyright (c) 2025 mobizt, for Disclaimer see end of file \r\n"
@@ -39,8 +41,15 @@ public class SMTP_Config  extends TranslatorBlock {
 	 
 	    String def = "#define SMTP_HOST "+host+ "\r\n"
 	    		+ "#define SMTP_PORT "+port+"\r\n"
-	    		+ "#define AUTHOR_EMAIL "+sender+"\r\n"
-	    		+ "#define AUTHOR_PASSWORD "+pass+"\r\n"
+	    		+ "#define SMTP_AUTHOR_EMAIL "+sender+"\r\n"
+	    		+ "#define SMTP_AUTHOR_PASSWORD "+pass+"\r\n"
+	    		+ "#define SMTP_RATE "+rate+"\r\n"
+	    		+ "#define SMTP_RATE_MAX 60\r\n"
+	    		+ "#define HOUR 3600000UL\r\n"
+	    		+ "#if (SMTP_RATE < SMTP_RATE_MAX) \r\n"
+	    		+ "  uint32_t SMTP_buffer[SMTP_RATE]; \r\n"
+	    		+ "  uint8_t  SMTP_buffer_cnt = 0;\r\n"
+	    		+ "#endif\r\n"
 	    		+ "int SMTP_email_init = 0;\r\n"
 	    		+ "SMTPSession smtp;\r\n"
 	    		+ "void smtpCallback(SMTP_Status status);\r\n"
@@ -90,10 +99,6 @@ public class SMTP_Config  extends TranslatorBlock {
 		translator.addDefinitionCommand(def);	
 		
 	    String setup = "//---------------------------------- STMP-Client \n"
-	    		
-	    		
-	    		
-	    		
 	    		+ "#if (IOTW_DEBUG_LEVEL > 1)\r\n"
 	    		+ "  smtp.debug(1);\r\n"
 	    		+ "#else\r\n"

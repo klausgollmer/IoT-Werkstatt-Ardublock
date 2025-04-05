@@ -5499,7 +5499,7 @@
 		</BlockGenus>
 		
 		<!-- SMTP -->
-        <BlockGenus name="SMTP_Config" kind="command" color="30 30 255"
+            <BlockGenus name="SMTP_Config" kind="command" color="30 30 255"
 			initlabel="bg.SMTP_Config" editable-label="no" is-label-value="no">
 			<description><text>connect SMTP</text></description>
 			<BlockConnectors>
@@ -5519,9 +5519,13 @@
 					connector-kind="socket" label="app pass">
 					<DefaultArg genus-name="GPRSpass" label="my passwort" />
 				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="rate mail/h">
+					<DefaultArg genus-name="number" label="10" />
+				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-
+    
         <BlockGenus name="SMTP_Send" kind="command" color="30 30 255"
 			initlabel="bg.SMTP_Send" editable-label="no" is-label-value="no">
 			<description><text>connect SMTP</text></description>
