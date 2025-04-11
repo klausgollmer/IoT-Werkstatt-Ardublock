@@ -26,7 +26,7 @@ public class System32_SleepBlockDeep32  extends TranslatorBlock {
 		translator.setDeepSleepProgram(true);
 		translator.addHeaderFile("#define IOTW_USE_DEEPSLEEP");
 		translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
-		
+		translator.addHeaderFile("#if defined(ESP32)\n #include <driver/rtc_io.h> \n #endif\n");
 		
 		String ret = "//------- deep SLEEP ----------------------------\n";
 	    if (translator.isLORAProgram()) {
@@ -80,6 +80,10 @@ public class System32_SleepBlockDeep32  extends TranslatorBlock {
 	   		+ "  btStop();\n"
 	   		+ "  esp_wifi_stop();\n"
 	   		+ "  */\n "
+	   		+ " rtc_gpio_init(GPIO_NUM_2);\n"
+	   		+ " rtc_gpio_set_direction(GPIO_NUM_2, RTC_GPIO_MODE_INPUT_ONLY);\n"
+	   		+ " rtc_gpio_pullup_dis(GPIO_NUM_2);\n"
+	   		+ " rtc_gpio_pulldown_dis(GPIO_NUM_2);"
 	        +  "esp_sleep_enable_timer_wakeup("+Delay_ms+" * 1000ULL);\n"
 	   	    +  "esp_deep_sleep_start();\n";
 	 	ret = "#ifdef ESP32\n "+ret+"#else IOTW_PRINTLN(F(\"deep sleep ESP32 only\"));\n #endif \n";
