@@ -89,7 +89,7 @@ public class OpenblocksFrame extends JFrame
 	private JFileChooser fileChooser;
 	private FileFilter ffilter;
 	
-	private ResourceBundle uiMessageBundle;
+	private static ResourceBundle uiMessageBundle;
 	
 	public JComboBox boardComboBox;
 	public JComboBox debugComboBox;
@@ -429,8 +429,10 @@ public class OpenblocksFrame extends JFrame
         List<String> namesList = new ArrayList<String>();
 
         // Füge den festen Eintrag hinzu
-        namesList.add("AI Tutor");
+        
+        namesList.add(uiMessageBundle.getString("ardublock.ui.aiHelp"));
 
+        
         // Prüfen, ob der Pfad existiert und ein Verzeichnis ist
         if (!directory.exists() || !directory.isDirectory()) {
             //System.err.println("Der angegebene Pfad ist kein gültiges Verzeichnis: " + directoryPath);
