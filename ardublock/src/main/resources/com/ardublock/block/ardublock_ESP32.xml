@@ -5917,12 +5917,37 @@
 					connector-kind="socket" label="RTC GPIO">
 					<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
-				<BlockConnector connector-type="boolean"
+				<BlockConnector connector-type="number"
 					connector-kind="socket" label="level">
-					<DefaultArg genus-name="digital-high" label="LOW" />
+					<DefaultArg genus-name="RTC_GPIO32_low" label="LOW" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+		
+  		
+
+
+
+        <BlockGenus name="RTC_GPIO32_low" kind="data" color="255 0 0" initlabel="bg.RTC_GPIO32_low" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
+        <BlockGenus name="RTC_GPIO32_high" kind="data" color="255 0 0" initlabel="bg.RTC_GPIO32_high" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
+        <BlockGenus name="RTC_GPIO32_float" kind="data" color="255 0 0" initlabel="bg.RTC_GPIO32_flow" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+		
+		
 		
 		
 		<BlockGenus name="sleep32" kind="command" color="50 50 50"
@@ -6443,6 +6468,13 @@
 			<FamilyMember>LightTSLVectVis</FamilyMember>
 			<FamilyMember>LightTSLVectIR</FamilyMember>
 		</BlockFamily>
+
+   	    <BlockFamily>
+			<FamilyMember>RTC_GPIO32_low</FamilyMember>
+			<FamilyMember>RTC_GPIO32_high</FamilyMember>
+			<FamilyMember>RTC_GPIO32_float</FamilyMember>
+		</BlockFamily>
+
 
 		<BlockFamily>
 			<FamilyMember>SMARDVectRen</FamilyMember>
