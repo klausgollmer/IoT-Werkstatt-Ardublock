@@ -80,11 +80,42 @@ public class Translator
 	public String genreateHeaderCommand()
 	{
 		
-		String Disclaimer = "/* Disclaimer IoT-Werkstatt CC 4.0 BY NC SA \n"+
-				"       This program is distributed in the hope that it will be useful,\n" + 
-				"       but WITHOUT ANY WARRANTY; without even the implied warranty of\n" + 
-				"       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For Ardublock see the\n" + 
-				"       GNU General Public License for more details. */\n\n";
+		//String Disclaimer = "/* Disclaimer IoT-Werkstatt CC 4.0 BY NC SA \n"+
+		//		"       This program is distributed in the hope that it will be useful,\n" + 
+		//		"       but WITHOUT ANY WARRANTY; without even the implied warranty of\n" + 
+		//		"       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For Ardublock see the\n" + 
+		//		"       GNU General Public License for more details. */\n\n";
+		//
+		String Disclaimer = "/*\r\n"
+				+ " *  Sketch-Gerüst generiert von „IoT-Werkstatt:MakeyLab“ v2.0\r\n"
+				+ " *\r\n"
+				+ " *  Copyright (c) 2025  Klaus-Uwe Gollmer\r\n"
+				+ " *  Based on ArduBlock (c) 2011 David Li & He Qichen\r\n"
+				+ " *\r\n"
+				+ " *  This program is free software: you can redistribute it and/or modify\r\n"
+				+ " *  it under the terms of the GNU General Public License as published by\r\n"
+				+ " *  the Free Software Foundation, either version 3 of the License, or\r\n"
+				+ " *  (at your option) any later version.\r\n"
+				+ " *\r\n"
+				+ " *  This program is distributed in the hope that it will be useful,\r\n"
+				+ " *  but WITHOUT ANY WARRANTY; …\r\n"
+				+ " *\r\n"
+				+ " *  SPDX-License-Identifier: GPL-3.0-or-later\r\n"
+				+ " */\r\n"
+				+ "";		
+		
+		
+		Disclaimer = "/*\r\n"
+				+ " * Sketch-Gerüst generiert von „IoT-Werkstatt“ v2.0\r\n"
+				+ " *\r\n"
+				+ " * SPDX-License-Identifier: MIT\r\n"
+				+ " * Copyright (c) 2025 Klaus-Uwe Gollmer/IoT-Werkstatt\r\n"
+				+ " *\r\n"
+				+ " * Permission is hereby granted, free of charge, to any person obtaining\r\n"
+				+ " * a copy of this software and associated documentation files (the\r\n"
+				+ " * \"Software\"), to deal in the Software without restriction …\r\n"
+				+ " */\r\n"
+				+ "";
 		
 		StringBuilder headerCommand = new StringBuilder();
 		headerCommand.append(Disclaimer);

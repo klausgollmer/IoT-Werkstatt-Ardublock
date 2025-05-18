@@ -20,6 +20,7 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 		translator.addHeaderFile("hal/hal.h");
 //		translator.addHeaderFile("#define LORA_TX_INTERVAL 10");
 		translator.addHeaderFile("IoTW_LMIC.h");
+		translator.addHeaderFile("#define IOTW_LORA_DEEPSLEEP");
 		translator.setLORAProgram(true);   
 	
 		String Dis="/* LoRaWAN LMIC Lib\n"

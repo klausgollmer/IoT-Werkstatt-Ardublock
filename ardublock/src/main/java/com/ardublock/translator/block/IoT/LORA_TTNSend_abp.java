@@ -18,6 +18,7 @@ public class LORA_TTNSend_abp  extends TranslatorBlock {
 		translator.addHeaderFile("lmic.h");
 		translator.addHeaderFile("hal/hal.h");
 		translator.addHeaderFile("IoTW_LMIC.h");
+		translator.addHeaderFile("#define IOTW_LORA_DEEPSLEEP");
 		translator.setLORAProgram(true);   
 		
 		String Defaults=""
