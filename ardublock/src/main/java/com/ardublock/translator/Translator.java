@@ -1,5 +1,8 @@
 package com.ardublock.translator;
-
+import java.util.ResourceBundle;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -7,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+
 
 //import javax.swing.JOptionPane;
 
@@ -28,7 +33,8 @@ import edu.mit.blocks.workspace.Workspace;
 public class Translator
 {
 	//private static final String variablePrefix = "_ABVAR_";
-	
+	private static ResourceBundle uiMessageBundle = ResourceBundle.getBundle("com/ardublock/block/ardublock");
+
 	private Set<String> headerFileSet;
 	private Set<String> definitionSet;
 	private List<String> setupCommand;
@@ -86,22 +92,22 @@ public class Translator
 		//		"       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For Ardublock see the\n" + 
 		//		"       GNU General Public License for more details. */\n\n";
 		//
+		
+		String ver = uiMessageBundle.getString("ardublock.ui.version");
+		LocalDateTime jetzt = LocalDateTime.now();
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss", Locale.GERMAN); //    Tag.Monat.Jahr Stunde:Minute:Sekunde
+	
 		String Disclaimer = "/*\r\n"
-				+ " * Sketch-Gerüst generiert von „IoT-Werkstatt“ v2.0\r\n"
+				+ " * Sketch-Gerüst generiert von IoT-Werkstatt Makey:Lab "+ver+" am " + jetzt.format(fmt) + "\r\n"
 				+ " *\r\n"
 				+ " * SPDX-License-Identifier: MIT\r\n"
-				+ " * Copyright (c) 2025 Klaus-Uwe Gollmer/IoT-Werkstatt\r\n"
+				+ " * Copyright (c) 2025 IoT-Werkstatt / Klaus-Uwe Gollmer\r\n"
 				+ " *\r\n"
-				+ " *  Special Exception: The code produced by this generator may be\r\n"
-				+ " *  redistributed and/or modified under any terms of your choice,\r\n"
-				+ " *  provided it does not contain substantial portions of the generator\r\n"
-				+ " *  source beyond this stub. " 
-				+ " * \r\n"
-				+ " *  Dieser Stub ruft eventuell Funktionen externer Bibliotheken auf (#include Zeilen)\r\n"
-				+ " *  Diese Bibliotheken selbst sind separat lizenziert – siehe portable/libraries:\r\n"
-				+ " *  Der Einsatz dieser Bibliotheken kann zusätzliche Lizenzpflichten auslösen \r\n"
-				+ " * \r\n"
-				+ "";
+				+ " * Dieser Code ruft eventuell Funktionen externer Bibliotheken auf (#include Zeilen)\r\n"
+				+ " * Diese Bibliotheken selbst sind separat lizenziert – siehe portable/libraries:\r\n"
+				+ " * Der Einsatz dieser Bibliotheken kann zusätzliche Lizenzpflichten auslösen \r\n"
+				+ " */ \r\n"
+				+ "\r\n";
 		
 		StringBuilder headerCommand = new StringBuilder();
 		headerCommand.append(Disclaimer);
@@ -639,6 +645,8 @@ public class Translator
 	
 	public Set<RenderableBlock> findEntryBlocks()
 	{
+		
+		
 		Set<RenderableBlock> loopBlockSet = new HashSet<RenderableBlock>();
 		Iterable<RenderableBlock> renderableBlocks = workspace.getRenderableBlocks();
 		

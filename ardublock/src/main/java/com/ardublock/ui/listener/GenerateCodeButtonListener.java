@@ -51,7 +51,7 @@ public class GenerateCodeButtonListener implements ActionListener
 		Set<RenderableBlock> scoopBlockSet = new HashSet<RenderableBlock>();
 		StringBuilder code = new StringBuilder();
 		
-		
+		int CountTask = 0;
 		for (RenderableBlock renderableBlock:renderableBlocks)
 		{
 			Block block = renderableBlock.getBlock();
@@ -80,7 +80,12 @@ public class GenerateCodeButtonListener implements ActionListener
 				{
 					loopBlockSet.add(renderableBlock);
 				}
-				
+				if(block.getGenusName().equals("freeRTOS_task"))
+				{
+					loopBlockSet.add(renderableBlock);
+					CountTask++;
+				}
+			
 				if(block.getGenusName().equals("setup"))
 				{
 					loopBlockSet.add(renderableBlock);
@@ -125,7 +130,7 @@ public class GenerateCodeButtonListener implements ActionListener
 			JOptionPane.showMessageDialog(parentFrame, uiMessageBundle.getString("ardublock.translator.exception.noLoopFound"), "Error", JOptionPane.ERROR_MESSAGE);
 			return ;
 		}
-		if (loopBlockSet.size() > 1) {
+		if ((loopBlockSet.size() > 1) & (CountTask==0)) {
 			for (RenderableBlock rb : loopBlockSet)
 			{
 				context.highlightBlock(rb);

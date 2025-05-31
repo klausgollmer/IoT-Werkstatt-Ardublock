@@ -72,6 +72,37 @@
 		</BlockGenus>
 		
 
+        <BlockGenus name="freeRTOS_task" kind="command" color="0 0 0" 
+			initlabel="bg.freeRTOS_task" is-starter="yes" is-terminator="yes"
+			label-unique="no">
+			<description>
+			<text>freeRTOS Task</text>
+			</description>
+			<BlockConnectors>
+			
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Taskname">
+					<DefaultArg genus-name="text" label="Task1" />
+				</BlockConnector>
+  			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="prio">
+					<DefaultArg genus-name="number" label="5" />
+				</BlockConnector>
+				<BlockConnector connector-type="cmd" connector-kind="socket"
+					label="bc.setup" />
+				<BlockConnector connector-type="cmd" connector-kind="socket"
+					label="bc.loop" />
+		 		</BlockConnectors>
+		
+			<Images>
+			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
+					<FileLocation>com/ardublock/block/IoTkit/IconMakeyIoTW.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+
+
+
 
 
 		
@@ -143,6 +174,7 @@
         <BlockGenus name="Divider_ESP8266" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  		<BlockGenus name="Divider_OTA" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  		<BlockGenus name="Divider_RTC" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+ 		<BlockGenus name="Divider_RTOS" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  		
  		
 			<BlockGenus name="repeat_times" kind="command" color="255 221 0"
@@ -6191,6 +6223,45 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+        <BlockGenus name="freeRTOS_vTaskDelay" kind="command" color="0 0 0"
+			initlabel="bg.freeRTOS_vTaskDelay" editable-label="no" is-label-value="no">
+			<description>
+				<text></text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="number">
+					<DefaultArg genus-name="number" label="1000" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+        <BlockGenus name="freeRTOS_semaGive" kind="command" color="0 0 0"
+			initlabel="bg.freeRTOS_semaGive" editable-label="no" is-label-value="no">
+			<description>
+				<text></text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="name">
+					<DefaultArg genus-name="text" label="Semaphore1" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+        <BlockGenus name="freeRTOS_semaTake" kind="command" color="0 0 0"
+			initlabel="bg.freeRTOS_semaTake" editable-label="no" is-label-value="no">
+			<description>
+				<text></text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="name">
+					<DefaultArg genus-name="text" label="Semaphore1" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
 
 	</BlockGenuses>
 
@@ -7076,9 +7147,13 @@
 			  <BlockGenusMember>irqEnable</BlockGenusMember>
 			  <BlockGenusMember>irqAttach</BlockGenusMember>
 			  <BlockGenusMember>irqDetach</BlockGenusMember>
-			  <BlockGenusMember>Divider</BlockGenusMember>
 			  <BlockGenusMember>timerAttach</BlockGenusMember>
 			  <BlockGenusMember>timerDetach</BlockGenusMember>
+			  <BlockGenusMember>Divider_RTOS</BlockGenusMember>
+ 		      <BlockGenusMember>freeRTOS_task</BlockGenusMember>
+ 		      <BlockGenusMember>freeRTOS_vTaskDelay</BlockGenusMember>
+ 		      <BlockGenusMember>freeRTOS_semaGive</BlockGenusMember>
+ 		      <BlockGenusMember>freeRTOS_semaTake</BlockGenusMember>
  		         
 				<!-- 
 			  <BlockGenusMember>LightSleep</BlockGenusMember>
