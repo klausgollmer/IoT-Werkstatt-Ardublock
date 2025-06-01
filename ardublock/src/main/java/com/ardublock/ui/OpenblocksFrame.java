@@ -260,10 +260,10 @@ public class OpenblocksFrame extends JFrame
 			// In ein File-Objekt umwandeln
 		//	System.out.println("change dir: " + context.ArdublockVersion);
 			if (context.isInArduino())
-				Dir = UserDir+"/Tutor/" + language+ "/"+boardComboBox.getSelectedItem() + "/";
+				Dir = UserDir+"/tutor/" + language+ "/"+boardComboBox.getSelectedItem() + "/";
 
 			else
-			    Dir = "E:/IoTW/Tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
+			    Dir = "E:/IoTW/tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
 			
 			tutorList = getSubDirectoryNames(Dir);
 			 // Neues Array mit gefilterten Strings erstellen
@@ -763,10 +763,10 @@ public class OpenblocksFrame extends JFrame
 		// In ein File-Objekt umwandeln
        
 		if (context.isInArduino())
-			Dir = UserDir+"/Tutor/" + language+ "/"+boardComboBox.getSelectedItem() + "/";
+			Dir = UserDir+"/tutor/" + language+ "/"+boardComboBox.getSelectedItem() + "/";
 
 		else
-		    Dir = "E:/IoTW/Tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
+		    Dir = "E:/IoTW/tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
 	
 		//System.out.println("ggg"+Dir);
 		//System.out.println(boardComboBox.getSelectedItem());
@@ -805,10 +805,10 @@ public class OpenblocksFrame extends JFrame
                 int selectedIndex = tutorComboBox.getSelectedIndex();
                 String Dir;
                 if (context.isInArduino())
-        			Dir = UserDir+"/Tutor/" + language+ "/"+boardComboBox.getSelectedItem() + "/";
+        			Dir = UserDir+"/tutor/" + language+ "/"+boardComboBox.getSelectedItem() + "/";
 
         		else
-        		    Dir = "E:/IoTW/Tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
+        		    Dir = "E:/IoTW/tutor/"+ language+ "/"+boardComboBox.getSelectedItem()+"/";
                 // Update debug program
                 if (selectedIndex > 0) {
                     String[] tutorList = getSubDirectoryNames(Dir);

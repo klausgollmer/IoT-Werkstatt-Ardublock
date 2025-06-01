@@ -71,7 +71,8 @@
 			</Images>
 		</BlockGenus>
 		
-		 <BlockGenus name="freeRTOS_task" kind="command" color="0 0 0" 
+		
+        <BlockGenus name="freeRTOS_task" kind="command" color="0 0 0" 
 			initlabel="bg.freeRTOS_task" is-starter="yes" is-terminator="yes"
 			label-unique="no">
 			<description>
@@ -87,6 +88,11 @@
 					connector-kind="socket" label="prio">
 					<DefaultArg genus-name="number" label="5" />
 				</BlockConnector>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="stack">
+					<DefaultArg genus-name="number" label="2048" />
+				</BlockConnector>
+	
 				<BlockConnector connector-type="cmd" connector-kind="socket"
 					label="bc.setup" />
 				<BlockConnector connector-type="cmd" connector-kind="socket"
@@ -99,7 +105,6 @@
 				</Image>
 			</Images>
 		</BlockGenus>
-			
 		
 		
 		<BlockGenus name="Divider_I2C" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -6218,7 +6223,7 @@
 			</description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
-					connector-kind="socket" label="number">
+					connector-kind="socket" label="ms">
 					<DefaultArg genus-name="number" label="1000" />
 				</BlockConnector>
 			</BlockConnectors>

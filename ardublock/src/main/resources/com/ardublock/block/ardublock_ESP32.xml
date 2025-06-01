@@ -88,6 +88,11 @@
 					connector-kind="socket" label="prio">
 					<DefaultArg genus-name="number" label="5" />
 				</BlockConnector>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="stack">
+					<DefaultArg genus-name="number" label="2048" />
+				</BlockConnector>
+	
 				<BlockConnector connector-type="cmd" connector-kind="socket"
 					label="bc.setup" />
 				<BlockConnector connector-type="cmd" connector-kind="socket"
@@ -6230,7 +6235,7 @@
 			</description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
-					connector-kind="socket" label="number">
+					connector-kind="socket" label="ms">
 					<DefaultArg genus-name="number" label="1000" />
 				</BlockConnector>
 			</BlockConnectors>

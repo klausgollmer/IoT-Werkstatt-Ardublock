@@ -22,16 +22,20 @@ public class System32_RTOS_Task  extends TranslatorBlock {
     translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
   	String Prio = translatorBlock.toCode();
   	
+  	translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
+  	String Stack = translatorBlock.toCode();
+  	
+  	
   	String Setup ="", Loop="";
   	
-	translatorBlock = getTranslatorBlockAtSocket(2);
+	translatorBlock = getTranslatorBlockAtSocket(3);
 	while (translatorBlock != null)
 	{
 		Setup = Setup + "   "+ translatorBlock.toCode();
 		translatorBlock = translatorBlock.nextTranslatorBlock();
 	}
   	
-	translatorBlock = getRequiredTranslatorBlockAtSocket(3);
+	translatorBlock = getRequiredTranslatorBlockAtSocket(4);
 	while (translatorBlock != null)
 	{
 		Loop = Loop + "   " + translatorBlock.toCode();
@@ -43,8 +47,9 @@ public class System32_RTOS_Task  extends TranslatorBlock {
 	translator.addHeaderFile("#if defined(ESP32)\n #include <freertos/task.h> \n #endif\n");
 	
 	
-	String Task ="// FreeRTOS Task \n"
-			+ "void "+Taskfunction+"(void* pvParameters) {\n"
+	String Task = "// FreeRTOS Task \n"
+ 			+ "#if defined(ESP32)\n"
+			+ " void "+Taskfunction+"(void* pvParameters) {\n"
 			+ "  // Setup\n"
 			+ Setup
 			+ "  // Loop\n"
@@ -52,13 +57,18 @@ public class System32_RTOS_Task  extends TranslatorBlock {
 			+ Loop
 			+ "    vTaskDelay(1);  \n"
 			+ "  }\n"
-			+ "}"
-			+ "";
+			+ " }"
+			+ "#endif\n";
 	
 	translator.addDefinitionCommand(Task);
 	
   	String SetupCMD = "   //------- Create FreeRTOS Task ---------------------------- \n"
-  			+ "   xTaskCreate("+Taskfunction+", "+Taskname+", 1024, NULL, "+Prio+", NULL);\n";
+  			+"#if defined(ESP32)\n"
+  			+"   xTaskCreate("+Taskfunction+", "+Taskname+", "+Stack+", NULL, "+Prio+", NULL);\n"
+  			+"#else\n"
+  			+"   Serial.println(F(\"sorry, FreeRTOS not available (ESP32 only)\"));\n"
+  			+"#endif\n";
+  	
 
   	translator.addSetupCommand(SetupCMD);
 	String ret = "";
