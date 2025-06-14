@@ -226,7 +226,6 @@ public class HTTP_MessageServer_CO2  extends TranslatorBlock {
 
 		
 	    String ret ="//Block------------------------------ HTML-Server\n"
-	    		  +" server.begin();// Server starten\n"
 	              + "server.handleClient(); //Homepageanfragen versorgen\ndelay(1);\n"
 	    		  + "if (doCal) {\n" + 
 	    		  "   CO2_Kalibrierfunktion(); // Kalibrierfunktion aufrufen \n" + 

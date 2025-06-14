@@ -255,7 +255,11 @@ public class Translator
 			 setupFunction.append(esp8266);
 		 }
 		
-		 
+		if (isHTTPServerProgram())
+		{
+			setupFunction.append("server.begin();// Web-Server starten\n");
+		}
+ 
 		
 		
 		setupFunction.append("}\n\n");

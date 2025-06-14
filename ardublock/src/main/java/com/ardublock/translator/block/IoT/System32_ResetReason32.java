@@ -22,9 +22,12 @@ public class System32_ResetReason32 extends TranslatorBlock
    // Code von der Mainfunktion
 	translator.addHeaderFile("#if defined(ESP32)\n #include <rom/rtc.h> \n #endif\n");
     //translator.setWiFiProgram(true);
-    
-    TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
-    String cpu = translatorBlock.toCode();
+    String cpu;
+    TranslatorBlock translatorBlock = this.getTranslatorBlockAtSocket(0);
+    if (translatorBlock!=null)
+	       cpu = translatorBlock.toCode();
+		else 
+		   cpu = "-1";	// use last channel
 
     
     String Reason = "int resetReason(int cpu) {\r\n" + 
@@ -59,6 +62,37 @@ public class System32_ResetReason32 extends TranslatorBlock
     		"  IOTW_PRINT(F(\"reset reason ESP32 only \")); return 0;\r\n" + 
     	    "#endif\n"	+	
     		"}";
+    
+    Reason = "int resetReason(int cpu) {\r\n"
+    		+ "#ifdef ESP32\r\n"
+    		+ "#if (IOTW_DEBUG_LEVEL >1)\r\n"
+    		+ "  IOTW_PRINT(F(\"reset reason: \"));\r\n"
+    		+ "#endif\r\n"
+    		+ "  esp_reset_reason_t reason = esp_reset_reason();\r\n"
+    		+ "\r\n"
+    		+ "  switch (reason) {\r\n"
+    		+ "    case ESP_RST_UNKNOWN:IOTW_PRINTLN(F(\"Unbekannt\"));break;\r\n"
+    		+ "    case ESP_RST_POWERON:IOTW_PRINTLN(F(\"Power-On Reset\"));break;\r\n"
+    		+ "    case ESP_RST_EXT:IOTW_PRINTLN(F(\"Externer Reset (Reset-Taster)\"));break;\r\n"
+    		+ "    case ESP_RST_SW:IOTW_PRINTLN(F(\"Software Reset\"));break;\r\n"
+    		+ "    case ESP_RST_PANIC:IOTW_PRINTLN(F(\"Panik-Reset (Absturz)\"));break;\r\n"
+    		+ "    case ESP_RST_INT_WDT:IOTW_PRINTLN(F(\"Interrupt Watchdog Reset\"));break;\r\n"
+    		+ "    case ESP_RST_TASK_WDT:IOTW_PRINTLN(F(\"Task Watchdog Reset\"));break;\r\n"
+    		+ "    case ESP_RST_WDT:IOTW_PRINTLN(F(\"Allgemeiner Watchdog Reset\"));break;\r\n"
+    		+ "    case ESP_RST_DEEPSLEEP:IOTW_PRINTLN(F(\"Aufwachen aus Deep Sleep\"));break;\r\n"
+    		+ "    case ESP_RST_BROWNOUT:IOTW_PRINTLN(F(\"⚡ Brownout Reset – Vcc war zu niedrig\"));break;\r\n"
+    		+ "    case ESP_RST_SDIO:IOTW_PRINTLN(F(\"SDIO Reset (selten)\"));break;\r\n"
+    		+ "    default:IOTW_PRINTLN(F(\"Nicht definiert\"));break;\r\n"
+    		+ "  }\r\n"
+    		+ "  return (int) reason;\r\n"
+    		+ "#else\r\n"
+    		+ "  IOTW_PRINT(F(\"reset reason ESP32 only \")); \r\n"
+    		+ "  return 0;\r\n"
+    		+ "#endif\r\n"
+    		+ "}";
+    
+    
+    
     translator.addDefinitionCommand(Reason);
 	ret = "resetReason("+cpu+")"; 
     return codePrefix + ret + codeSuffix;

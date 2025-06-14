@@ -1527,6 +1527,27 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+        <BlockGenus name="NTC_Temp" kind="data" color="44 165 226"
+			initlabel="bg.NTC_Temp" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector label="R_ntc [kOhm]" connector-type="number" connector-kind="socket" position-type="single">
+                </BlockConnector>
+                
+                <BlockConnector label="R_25 [kOhm]" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="10."/>
+                </BlockConnector>
+                
+                <BlockConnector label="beta" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="3950.0"/>
+                </BlockConnector>
+                
+     		</BlockConnectors>
+		 </BlockGenus>
+
+
 <!--  BME280 Daten -->
 		<BlockGenus name="GetBME" kind="data" color="44 165 226"
 			initlabel="bg.GetBME" editable-label="no" is-label-value="no">
@@ -6027,7 +6048,6 @@
    			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
    			   	<BlockConnector connector-type="number"
 					connector-kind="socket" label="cpu">
-				<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
@@ -6991,6 +7011,7 @@
 			    <BlockGenusMember>CalSCD40</BlockGenusMember>
 		        
 		        <BlockGenusMember>GetK30</BlockGenusMember>
+                <BlockGenusMember>NTC_Temp</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
 				<BlockGenusMember>ADPS9999Get</BlockGenusMember>

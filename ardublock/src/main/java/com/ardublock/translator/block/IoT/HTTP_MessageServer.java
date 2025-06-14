@@ -251,7 +251,6 @@ public class HTTP_MessageServer  extends TranslatorBlock {
 
 		
 	    String ret ="//Block------------------------------ HTML-Server\n"
-	    		  + "server.begin();// Server starten \n" 
 	    	  	  + "server.handleClient(); //Homepageanfragen versorgen\ndelay(1);\n";
         return codePrefix + ret + codeSuffix;
 	 	}
