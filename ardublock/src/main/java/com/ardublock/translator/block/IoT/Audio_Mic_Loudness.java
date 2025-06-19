@@ -49,6 +49,7 @@ public class Audio_Mic_Loudness  extends TranslatorBlock {
 				 + "    .fixed_mclk           = 0\r\n"
 				 + "  };\r\n"
 				 + "  const i2s_pin_config_t pins = {\r\n"
+				 + "    .mck_io_num   = I2S_PIN_NO_CHANGE,\r\n"
 				 + "    .bck_io_num   = IOTW_MIC_BCK_PIN,\r\n"
 				 + "    .ws_io_num    = IOTW_MIC_WS_PIN,\r\n"
 				 + "    .data_out_num = I2S_PIN_NO_CHANGE,\r\n"
@@ -182,6 +183,7 @@ public class Audio_Mic_Loudness  extends TranslatorBlock {
 				 + "  return claps;\r\n"
 				 + "}";
 	   	translator.addDefinitionCommand(Dis);
+	    	   	
 	    	   	
 	   
 		
