@@ -25,11 +25,7 @@ public class Out_NeopixelColorLight  extends TranslatorBlock {
 		
    	      	    
    	       String setup=  "pixels.begin();//-------------- Initialisierung Neopixel\n"
-   		      +"delay(1);\n"
-	    		  +"pixels.show();\n"
-   		      +"pixels.setPixelColor(0,0,0,0,0); // alle aus\n"
-   		      +"pixels.setPixelColor(1,0,0,0,0);\n" 
-   		      +"pixels.show();                 // und anzeigen\n"; 
+	    	  +"pixels.clear();pixels.show();\n";
             translator.addSetupCommand(setup);
 		
 			

@@ -48,14 +48,9 @@ public class MINT_DIYSpektro_BH  extends TranslatorBlock {
 	    translator.addSetupCommand(Setup);
 
 	       String setup=  "pixels.begin();//-------------- Initialisierung Neopixel\n"
-	    		      +"delay(1);\n"
-	 	    		  +"pixels.show();\n"
-	    		      +"pixels.setPixelColor(0,0,0,0,0); // alle aus\n"
-	    		      +"pixels.setPixelColor(1,0,0,0,0);\n" 
-	    		      +"pixels.show();                 // und anzeigen\n"; 
-	             translator.addSetupCommand(setup);
-	 	
-		
+	    	  +"pixels.clear();pixels.show();\n";
+         translator.addSetupCommand(setup);
+
 	     translator.addSetupCommand("//------------ DIY Spectrometer \n // https://www.haw-hamburg.de/fakultaeten-und-departments/ls/ls-forschung/projekte/projekte-aus-der-chemie/schuman/smartphone-photometer.html ");
 	     translator.addSetupCommand(setup_typ);
 		 return codePrefix + codeSuffix;
