@@ -128,7 +128,7 @@ public class OpenblocksFrame extends JFrame
 		//
 		 Image img = null;
 		  // Lade das Bild von einem relativen Pfad
-	        String relativePath = "/com/ardublock/block/IoTkit/IconMakey.png";  // Der Pfad innerhalb des Ressourcenverzeichnisses
+	        String relativePath = "/com/ardublock/block/IoTkit/IconMakeyLab.png";  // Der Pfad innerhalb des Ressourcenverzeichnisses
 	      
 	        try {
 	            URL imgURL = getClass().getResource(relativePath);

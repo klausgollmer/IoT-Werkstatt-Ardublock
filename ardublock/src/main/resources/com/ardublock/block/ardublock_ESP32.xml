@@ -66,7 +66,7 @@
 		
 			<Images>
 			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
-					<FileLocation>com/ardublock/block/IoTkit/IconMakeyIoTW.png</FileLocation>
+					<FileLocation>com/ardublock/block/IoTkit/IconMakeyLab.png</FileLocation>
 				</Image>
 			</Images>
 		</BlockGenus>
@@ -101,7 +101,7 @@
 		
 			<Images>
 			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
-					<FileLocation>com/ardublock/block/IoTkit/IconMakeyIoTW.png</FileLocation>
+					<FileLocation>com/ardublock/block/IoTkit/IconMakeyLab.png</FileLocation>
 				</Image>
 			</Images>
 		</BlockGenus>
@@ -2466,6 +2466,53 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
+
+<!--  Dallas DS18B20 one-wire temperature -->
+
+       <BlockGenus name="DS18B20Get" kind="data" color="44 165 226"
+			initlabel="bg.DS18B20Get" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+ 			   <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+   			    <BlockConnector label="gpio" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="25"/>	
+                </BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="index">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="resolution">
+					<DefaultArg genus-name="number" label="9" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="mode">
+					<DefaultArg genus-name="DS18B20_req_get" label="request and get" />
+				</BlockConnector>
+				
+				
+			</BlockConnectors>
+		</BlockGenus>
+
+        <BlockGenus name="DS18B20_req_get" kind="data" color="255 0 0" initlabel="bg.DS18B20_req_get" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+        <BlockGenus name="DS18B20_req" kind="data" color="255 0 0" initlabel="bg.DS18B20_req" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+        <BlockGenus name="DS18B20_get" kind="data" color="255 0 0" initlabel="bg.DS18B20_get" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
 
 <!--  Maxbotix Ultraschall Sensor -->
 		<BlockGenus name="GetMaxbotix" kind="data" color="44 165 226"
@@ -6620,6 +6667,13 @@
 		</BlockFamily>
 
 
+		<BlockFamily>
+			<FamilyMember>DS18B20_req_get</FamilyMember>
+			<FamilyMember>DS18B20_req</FamilyMember>
+			<FamilyMember>DS18B20_get</FamilyMember>
+		</BlockFamily>
+
+
         <BlockFamily>
 			<FamilyMember>PSVectIdent</FamilyMember>
 			<FamilyMember>PSVectFace</FamilyMember>
@@ -7053,6 +7107,7 @@
 		        
 		        <BlockGenusMember>GetK30</BlockGenusMember>
                 <BlockGenusMember>NTC_Temp</BlockGenusMember>
+                <BlockGenusMember>DS18B20Get</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
 				<BlockGenusMember>ADPS9999Get</BlockGenusMember>
