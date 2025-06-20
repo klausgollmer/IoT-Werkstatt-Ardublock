@@ -38,6 +38,8 @@ public class ExtSen_OneWire_Temp extends TranslatorBlock
     		+ "DallasTemperature ds(&oneWire);"
     		+ " float DS18B20_get(uint8_t i, uint8_t r, uint8_t m) {\r\n"
     		+ "  float val =NAN;\r\n"
+    		+ "  uint32_t oldFreq = getCpuFrequencyMhz();\r\n"
+    		+ "  if (oldFreq < 80) setCpuFrequencyMhz(80);\n"
     		+ "  switch (m) {\r\n"
     		+ "    case 0:\r\n"
     		+ "        ds.setResolution(r);        // setze Auflösung\r\n"
@@ -53,6 +55,8 @@ public class ExtSen_OneWire_Temp extends TranslatorBlock
     		+ "         val = ds.getTempCByIndex(i);// Ergebnis holen\r\n"
     		+ "    break;\r\n"
     		+ "  }\r\n"
+    		+ "  if (oldFreq < 80) setCpuFrequencyMhz(oldFreq);\r\n"
+    		+ " "
     		+ "  return val;\r\n"
     		+ " }\r\n"
     		+ "\r\n"
@@ -74,11 +78,11 @@ public class ExtSen_OneWire_Temp extends TranslatorBlock
    	translator.addDefinitionCommand(Dis);
 
     String Set = "ds.begin();\r\n"
-  		+ "  ds.setResolution("+res+");"
+  		+ "  ds.setResolution("+res+");\n"
 		+ "  #if (IOTW_DEBUG_LEVEL >1)\r\n"
 		+ "    DS18B20_printSensorTable();\r\n"
 		+ "  #endif\"\r\n"
-		+ "  ds.requestTemperatures();";
+		+ "  ds.requestTemperatures();\n";
 	translator.addSetupCommand(Set);
    	
 	// Code von der Mainfunktion

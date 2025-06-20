@@ -118,6 +118,7 @@
 		<BlockGenus name="Divider_Environment" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Distance" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Light" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+		<BlockGenus name="Divider_Sound" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Expand" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_GPS" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_LED" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -6877,9 +6878,9 @@
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Cal</BlockGenusMember>
+				<BlockGenusMember>Divider_Sound</BlockGenusMember>
 				<BlockGenusMember>MIC_Loudness</BlockGenusMember>
 				<BlockGenusMember>MIC_Claps</BlockGenusMember>
-				<BlockGenusMember>ADPS9960Cal</BlockGenusMember>
 				<BlockGenusMember>Divider_Encoder</BlockGenusMember>
 				<BlockGenusMember>button_press</BlockGenusMember>
 				<BlockGenusMember>button_rot</BlockGenusMember>
