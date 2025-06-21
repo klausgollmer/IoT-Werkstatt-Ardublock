@@ -36,26 +36,20 @@ public class ExtSen_OneWire_Temp extends TranslatorBlock
     		+ "// https://github.com/milesburton/Arduino-Temperature-Control-Library\r\n"
     		+ "OneWire oneWire("+gpio+");\r\n"
     		+ "DallasTemperature ds(&oneWire);"
-    		+ " float DS18B20_get(uint8_t i, uint8_t r, uint8_t m) {\r\n"
+    		+ " float DS18B20_get(uint8_t i, uint8_t m) {\r\n"
     		+ "  float val =NAN;\r\n"
-    		+ "  uint32_t oldFreq = getCpuFrequencyMhz();\r\n"
-    		+ "  if (oldFreq < 80) setCpuFrequencyMhz(80);\n"
     		+ "  switch (m) {\r\n"
     		+ "    case 0:\r\n"
-    		+ "        ds.setResolution(r);        // setze Auflösung\r\n"
-    		+ "        ds.requestTemperatures();   // startet Wandlung  \r\n"
-    		+ "        if (r==9) delay(100); else delay(800);\r\n"
     		+ "        val = ds.getTempCByIndex(i);// Ergebnis holen\r\n"
+    		+ "        ds.requestTemperatures();   // startet Wandlung  \r\n"
     		+ "    break;\r\n"
     		+ "    case 1: \r\n"
-    		+ "         ds.setResolution(r);        // setze Auflösung\r\n"
     		+ "         ds.requestTemperatures();   // startet Wandlung  \r\n"
     		+ "    break;          \r\n"
     		+ "    case 2: \r\n"
     		+ "         val = ds.getTempCByIndex(i);// Ergebnis holen\r\n"
     		+ "    break;\r\n"
     		+ "  }\r\n"
-    		+ "  if (oldFreq < 80) setCpuFrequencyMhz(oldFreq);\r\n"
     		+ " "
     		+ "  return val;\r\n"
     		+ " }\r\n"
@@ -86,9 +80,7 @@ public class ExtSen_OneWire_Temp extends TranslatorBlock
 	translator.addSetupCommand(Set);
    	
 	// Code von der Mainfunktion
-	ret = "DS18B20_get("+index+","+res+","+mode+")"; 
-	
-   
+	ret = "DS18B20_get("+index+","+mode+")"; 
     return codePrefix + ret + codeSuffix;
   }
 }

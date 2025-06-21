@@ -2496,6 +2496,40 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+     <BlockGenus name="DS18B20Get32" kind="data" color="44 165 226"
+			initlabel="bg.DS18B20Get32" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+ 			   <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+   			    <BlockConnector label="gpio" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="25"/>	
+                </BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="index">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="resolution">
+					<DefaultArg genus-name="number" label="9" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="mode">
+					<DefaultArg genus-name="DS18B20_req_get" label="get and request" />
+				</BlockConnector>
+				
+				
+			</BlockConnectors>
+		</BlockGenus>
+
+ <BlockGenus name="DS18B20Req32" kind="command" color="44 165 226"
+			initlabel="bg.DS18B20Req32" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+ 			</BlockConnectors>
+		</BlockGenus>
+
+
         <BlockGenus name="DS18B20_req_get" kind="data" color="255 0 0" initlabel="bg.DS18B20_req_get" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
@@ -7108,7 +7142,8 @@
 		        
 		        <BlockGenusMember>GetK30</BlockGenusMember>
                 <BlockGenusMember>NTC_Temp</BlockGenusMember>
-                <BlockGenusMember>DS18B20Get</BlockGenusMember>
+                <BlockGenusMember>DS18B20Req32</BlockGenusMember>
+                <BlockGenusMember>DS18B20Get32</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
 				<BlockGenusMember>ADPS9999Get</BlockGenusMember>
