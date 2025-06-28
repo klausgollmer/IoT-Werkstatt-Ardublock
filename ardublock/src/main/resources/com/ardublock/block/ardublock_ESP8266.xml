@@ -5721,7 +5721,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="play">
-					<DefaultArg genus-name="message" label="http://mp3.ffh.de/radioffh/hqlivestream.mp3" />
+					<DefaultArg genus-name="message" label="http://dispatcher.rndfnk.com/br/br1/obb/mp3/low"/>
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>

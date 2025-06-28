@@ -1492,7 +1492,7 @@
 	    <BlockGenus name="touch_rot" kind="data" color="44 165 226"
 			initlabel="bg.touch_rot">
 			<description>
-				<text>Read analog value from pin</text>
+				<text>Read touch value from pin</text>
 			</description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
@@ -1521,7 +1521,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="A">
-					<DefaultArg genus-name="number" label="0" />
+					<DefaultArg genus-name="number" label="5" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
@@ -5722,7 +5722,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="play">
-					<DefaultArg genus-name="message" label="http://mp3.ffh.de/radioffh/hqlivestream.mp3" />
+					<DefaultArg genus-name="message" label="http://dispatcher.rndfnk.com/br/br1/obb/mp3/low" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>

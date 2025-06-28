@@ -26,6 +26,7 @@ public class Audio_WebRadio  extends TranslatorBlock {
 		translator.addHeaderFile("AudioFileSourceBuffer.h");
 		translator.addHeaderFile("AudioGeneratorMP3.h");
 		translator.addHeaderFile("AudioOutputI2S.h");
+		translator.addHeaderFile("esp_wifi.h");
 		
 		String Dis="/* ESP8266Audio "
 				 + "   GPL-3.0 Licence https://github.com/earlephilhower/ESP8266Audio/?tab=GPL-3.0-1-ov-file#readme \n"
@@ -58,23 +59,26 @@ public class Audio_WebRadio  extends TranslatorBlock {
 				+ "}\r\n"
 				+ "\r\n"
 				+ "// Called when there's a warning or error (like a buffer underflow or decode hiccup)\r\n"
-				+ "void StatusCallback(void *cbData, int code, const char *string)\r\n"
-				+ "{\r\n"
-				+ "  const char *ptr = reinterpret_cast<const char *>(cbData);\r\n"
-				+ "  // Note that the string may be in PROGMEM, so copy it to RAM for printf\r\n"
-				+ "  char s1[64];\r\n"
-				+ "  strncpy_P(s1, string, sizeof(s1));\r\n"
-				+ "  s1[sizeof(s1)-1]=0;\r\n"
-				+ "  Serial.printf(\"STATUS(%s) '%d' = '%s'\\n\", ptr, code, s1);\r\n"
-				+ "  Serial.flush();\r\n"
-				+ "}\r\n"
+				+ "void StatusCallback(void *cbData, int code, const char *msg){\r\n"
+				+ "  static uint16_t lostCnt = 0;\r\n"
+				+ "  if(code == 257){                       // MAD_ERROR_LOSTSYNC\r\n"
+				+ "      if(++lostCnt > 100){               // ~100 aufeinanderfolgende Fehler\r\n"
+				+ "          mp3->desync();                 // Frame-Suche zurücksetzen\r\n"
+				+ "          lostCnt = 0;\r\n"
+				+ "      }\r\n"
+				+ "  } else {\r\n"
+				+ "      lostCnt = 0;                       // alles wieder gut\r\n"
+				+ "  }\r\n"
+				+ "}\n"
 				+ "";
 		translator.addDefinitionCommand(Helper);
 		
 		
 		
 	   	String Setup ="DAC_out = new AudioOutputI2S(0,AudioOutputI2S::INTERNAL_DAC);\r\n"
-	   		    	+ "DAC_out->begin();\r\n";
+	   		    	+ "DAC_out->begin();\r\n"
+	   		    	+ "float volume = 0.25;             // 25 % der Originalamplitude\r\n"
+	   		    	+ "DAC_out->SetGain(volume);       // 0.0 … 4.0   (1.0 = 100 %)\n";
 	    translator.addSetupCommand(Setup);
 		
 	    
@@ -83,11 +87,13 @@ public class Audio_WebRadio  extends TranslatorBlock {
 				
 				+"   if (!WebRadioInit) {\r\n"
 				+ "    WebRadioInit = true;\r\n"
+				+ "    esp_wifi_set_ps(WIFI_PS_NONE);\r\n"
+				+ "    WiFi.setSleep(false);          //no sleep, reduce dropout\n"
 				+ "    char *URL="+mp3+";\n"
 				+ "    audioLogger = &Serial;\r\n"
 				+ "    file = new AudioFileSourceICYStream(URL);\r\n"
 				+ "    file->RegisterMetadataCB(MDCallback, (void*)\"ICY\");\r\n"
-				+ "    buff = new AudioFileSourceBuffer(file, 2048);\r\n"
+				+ "    buff = new AudioFileSourceBuffer(file, 4*8192);\r\n"
 				+ "    buff->RegisterStatusCB(StatusCallback, (void*)\"buffer\");\r\n"
 				+ "    mp3 = new AudioGeneratorMP3();\r\n"
 				+ "    mp3->RegisterStatusCB(StatusCallback, (void*)\"mp3\");\r\n"
@@ -102,8 +108,9 @@ public class Audio_WebRadio  extends TranslatorBlock {
 				+ "     }\r\n"
 				+ "    if (!mp3->loop()) mp3->stop();\r\n"
 				+ "  } else {\r\n"
-				+ "    Serial.printf(\"MP3 done\\n\");\r\n"
-				+ "    delay(1000);\r\n"
+				+ "    Serial.printf(\"MP3 restart\\n\");\r\n"
+				+ "    mp3->stop(); delete mp3;buff->close(); delete buff; delete file;\n"
+				+ "    WebRadioInit=false;\n"
 				+ "  }";
 		
 		return codePrefix + ret + codeSuffix;
