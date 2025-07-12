@@ -2497,13 +2497,16 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-       <BlockGenus name="DS18B20Req32" kind="command" color="44 165 226"
+   <BlockGenus name="DS18B20Req32" kind="command" color="44 165 226"
 			initlabel="bg.DS18B20Req32" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 			<BlockConnectors>
+			<BlockConnector label="gpio" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="25"/>	
+            </BlockConnector>
  			</BlockConnectors>
 		</BlockGenus>
-
+   
 
        <BlockGenus name="DS18B20Get" kind="data" color="44 165 226"
 			initlabel="bg.DS18B20Get" editable-label="no" is-label-value="no">

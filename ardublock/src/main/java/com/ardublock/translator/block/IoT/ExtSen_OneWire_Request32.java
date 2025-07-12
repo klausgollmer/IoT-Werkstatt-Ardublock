@@ -15,11 +15,12 @@ public class ExtSen_OneWire_Request32 extends TranslatorBlock
   public String toCode() throws SocketNullException, SubroutineNotDeclaredException
   {
 	  
-	  
+  TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
+  String gpio = translatorBlock.toCode();  
 	  
     String ret;
     // Code von der Mainfunktion
-	ret = "ds->request();"; 
+	ret = "ds_"+gpio+"->request();"; 
     return codePrefix + ret + codeSuffix;
   }
 }

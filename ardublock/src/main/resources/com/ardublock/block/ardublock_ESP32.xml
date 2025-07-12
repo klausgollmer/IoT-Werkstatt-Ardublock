@@ -2526,9 +2526,12 @@
 			initlabel="bg.DS18B20Req32" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 			<BlockConnectors>
+			<BlockConnector label="gpio" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="25"/>	
+            </BlockConnector>
  			</BlockConnectors>
 		</BlockGenus>
-
+ 
 
         <BlockGenus name="DS18B20_req_get" kind="data" color="255 0 0" initlabel="bg.DS18B20_req_get" editable-label="no" is-label-value="no" >
           <BlockConnectors>

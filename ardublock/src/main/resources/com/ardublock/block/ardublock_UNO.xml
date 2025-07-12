@@ -2497,6 +2497,9 @@
 			initlabel="bg.DS18B20Req32" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 			<BlockConnectors>
+			<BlockConnector label="gpio" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="25"/>	
+            </BlockConnector>
  			</BlockConnectors>
 		</BlockGenus>
 
