@@ -32,7 +32,7 @@ public class ExtSen_OneWire_Temp32 extends TranslatorBlock
     
     
     String Dis="// OneWire für den ESP32\r\n"
-    		+ "// MIT License Copyright (c) 2023 htmltiger https://github.com/junkfix/esp32-ds18b20\r\n"
+    		+ "// MIT License Copyright (c) 2023 htmltiger, https://github.com/junkfix/esp32-ds18b20\r\n"
     		+ "const uint8_t MaxDev = 4;\r\n"
     		+ "const char *errt[] = {\"\", \"CRC\", \"BAD\",\"DC\",\"DRV\"};\r\n"
     		+ "\r\n";
