@@ -1859,6 +1859,16 @@
 
 			</BlockConnectors>
 		</BlockGenus>
+		
+		<BlockGenus name="OLED_AddArray" kind="command" color="74 108 212"
+			initlabel="bg.OLED_AddArray" editable-label="no" is-label-value="no">
+				<description><text></text></description>
+				<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="value">
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
 
         <BlockGenus name="OLED_ClearArray" kind="command" color="74 108 212"
 			initlabel="bg.OLED_ClearArray" editable-label="no" is-label-value="no">
@@ -5835,12 +5845,24 @@
         </BlockGenus>
 		
 		
-			    <BlockGenus name="MIC_Loudness" kind="data" color="44 165 226"
+		<BlockGenus name="MIC_Loudness" kind="data" color="44 165 226"
 			initlabel="bg.MIC_Loudness" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
 			<BlockConnectors>
  			   <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+			</BlockConnectors>
+		</BlockGenus>
+		
+		  <BlockGenus name="MIC_Fourier" kind="data" color="44 165 226"
+			initlabel="bg.MIC_Fourier" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+ 			   <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+ 			     <BlockConnector label="freq" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="200"/>	
+                </BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
 		
@@ -6985,6 +7007,7 @@
 				<BlockGenusMember>OLED_Font</BlockGenusMember>
 				<BlockGenusMember>OLED_DispArray</BlockGenusMember>
 				<BlockGenusMember>OLED_ClearArray</BlockGenusMember>
+				<BlockGenusMember>OLED_AddArray</BlockGenusMember>
 				<BlockGenusMember>OLED_Print3</BlockGenusMember>
  				
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>

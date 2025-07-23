@@ -43,7 +43,7 @@ public class ExtOut_NeopixelColor  extends TranslatorBlock {
 			Blue = translatorBlock.toCode();
 			
 	
-			String ret = "pixels.setPixelColor("+Pixel_Nb+","+Red+"&0x3F,"+Green+"&0x3F,"+Blue+"&0x3F);\n"
+			String ret = "pixels.setPixelColor("+Pixel_Nb+",(int)"+Red+"&0x3F,(int)"+Green+"&0x3F,(int)"+Blue+"&0x3F);\n"
 					+ "pixels.show();";
 
 			

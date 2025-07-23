@@ -5,9 +5,9 @@ import com.ardublock.translator.block.TranslatorBlock;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
+public class ExtDisp_OLED_AddArray  extends TranslatorBlock {
 
-	public ExtDisp_OLED_DispArray (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	public ExtDisp_OLED_AddArray (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
@@ -77,8 +77,8 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
 	    
 	
 	    
-	    String Display = "//------------------ OLED: Display first Values of IoTDataArray\n"
-	    		+ "void OLEDDisplayIoTArrayData(float actValue, String IoTDataName, float minVal, float maxVal) {\n"
+	    String Display = "//------------------ OLED: add Values of IoTDataArray\n"
+	    		+ "void OLEDDisplayIoTArrayData_Add(float actValue) {\n"
 	    		+ "  if (!isnan(actValue)) { // add value\n"
 	    		+ "    if (IoTArrayDataIndex  > (IOTW_ARRAYLEN - 1) ) { // shift left\n"
 	    		+ "      for (uint8_t i = 1; i < IOTW_ARRAYLEN; i++) {\n"
@@ -89,62 +89,16 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
 	    		+ "    IoTArrayData[IoTArrayDataIndex] = actValue;\n"
 	    		+ "    IoTArrayDataIndex++; \n"
 	    		+ "  }\n"
-	    		+ "  //myOLEDdisplay.clearDisplay();\n"
-	    		+ "  //myOLEDdisplay.setRotation(0);\n"
-	    		+ "  canvas.fillScreen(SH110X_BLACK);\n"
-	    		+ "  // Draw the title\n"
-	    		+ "  canvas.setFont();\n"
-	    		+ "  canvas.setTextSize(1);\n"
-	    		+ "  canvas.setTextColor(SH110X_WHITE);\n"
-	    		+ "  canvas.setCursor(40, 0);\n"
-	    		+ "  canvas.print(IoTDataName+\":\");\n"
-	    		+ "  // Draw the last value on the right side\n"
-	    		+ "  canvas.print(IoTArrayData[IoTArrayDataIndex-1], 1); // Print last value with 1 decimal place\n"
-	    		+ "\n"
-	    		+ "  // Draw the axis labels\n"
-	    		+ "  canvas.setCursor(2, IOTW_SCREEN_HEIGHT - 8);\n"
-	    		+ "  canvas.print(minVal, 1); // Print min value with 1 decimal place\n"
-	    		+ "  canvas.setCursor(2, 0);\n"
-	    		+ "  canvas.print(maxVal, 1); // Print max value with 1 decimal place\n"
-	    		+ "\n"
-	    		+ "  // Draw Coordinates\n"
-	    		+ "  int zero = map(0, minVal, maxVal, IOTW_SCREEN_HEIGHT - 1, 0);\n"
-	    		+ "  canvas.drawLine(0, 0, 0, IOTW_SCREEN_HEIGHT-1, SH110X_WHITE);\n"
-	    		+ "  canvas.drawLine(0, zero, IOTW_SCREEN_WIDTH - 1, zero, SH110X_WHITE);\n"
-	    		+ "   \n"
-	    		+ "  // Draw the data graph\n"
-	    		+ "  int prevX = 0;\n"
-	    		+ "  int prevY = map(IoTArrayData[0], minVal, maxVal, IOTW_SCREEN_HEIGHT - 1, 10);\n"
-	    		+ "  for (int i = 0; i <= IoTArrayDataIndex - 1; i++) {\n"
-	    		+ "    int x = map(i, 0, IOTW_ARRAYLEN-1, 0, IOTW_SCREEN_WIDTH - 1);\n"
-	    		+ "    int y = map(IoTArrayData[i], minVal, maxVal, IOTW_SCREEN_HEIGHT - 1, 10);\n"
-	    		+ "    canvas.drawLine(prevX, prevY, x, y, SH110X_WHITE);\n"
-	    		+ "    canvas.drawLine(prevX, prevY+1, x, y+1, SH110X_WHITE);\n"
-	    		+ "    prevX = x;\n"
-	    		+ "    prevY = y;\n"
-	    		+ "  }\n"
-	    		+ "\n"
-	    		+ "  myOLEDdisplay.drawBitmap(0,0, canvas.getBuffer(), IOTW_SCREEN_WIDTH, IOTW_SCREEN_HEIGHT, SH110X_WHITE, SH110X_BLACK);\n"
-	    		+ "  myOLEDdisplay.display();\n"
 	    		+ "}";
 		translator.addDefinitionCommand(Display);
 		
-		TranslatorBlock translatorBlock = this.getTranslatorBlockAtSocket(0);
+		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 		String val = "NAN";
 		if (translatorBlock != null) {
 			val = translatorBlock.toCode();
 		}
-	
-		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
-		String text = translatorBlock.toCode();
-	
 		
-		translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
-		String min = translatorBlock.toCode();
-		translatorBlock = this.getRequiredTranslatorBlockAtSocket(3);
-		String max = translatorBlock.toCode();
-		
-		String ret  = "OLEDDisplayIoTArrayData(" + val + "," + text + "," + min +"," + max+ ");";
+		String ret  = "OLEDDisplayIoTArrayData_Add(" + val + ");";
 		return codePrefix + ret + codeSuffix;
 		
 	}
