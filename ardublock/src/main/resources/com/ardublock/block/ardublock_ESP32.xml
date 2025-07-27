@@ -1528,6 +1528,21 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+		<BlockGenus name="analogReadmV_32" kind="data" color="44 165 226"
+			initlabel="bg.analogReadmV_32">
+		    <description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="A">
+					<DefaultArg genus-name="number" label="5" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="plug" />
+			</BlockConnectors>
+		</BlockGenus>
+
+
+
         <BlockGenus name="NTC_Temp" kind="data" color="44 165 226"
 			initlabel="bg.NTC_Temp" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -6931,6 +6946,7 @@
 				type="factory">
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-read-analog</BlockGenusMember>
+				<BlockGenusMember>analogReadmV_32</BlockGenusMember>
 				<BlockGenusMember>pin-read-digital</BlockGenusMember>
 				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
