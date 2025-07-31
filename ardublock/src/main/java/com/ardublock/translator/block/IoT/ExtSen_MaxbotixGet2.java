@@ -26,6 +26,8 @@ public class ExtSen_MaxbotixGet2 extends TranslatorBlock
 	    use_uart = false;
     
     
+   // System.out.println("rx:" + rxpin+"---");
+    
 	//System.out.println("UART:" + UART+"---");
     
 	//System.out.println("flagUART: " + use_uart);

@@ -2606,7 +2606,7 @@
                 </BlockConnector>	
                 <BlockConnector connector-type="number"
 				    connector-kind="socket" label="serial">
-					<DefaultArg genus-name="UART_SW" label="SW Serial" />
+					<DefaultArg genus-name="UART_1" label="HW UART 1" />
 				</BlockConnector>
                 
                 
@@ -2619,12 +2619,12 @@
           </BlockConnectors>
         </BlockGenus>
 		
-  	   <BlockGenus name="UART_1" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
+  	   <BlockGenus name="UART_1" kind="data" color="255 0 0" initlabel="bg.UART_1" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
-  	   <BlockGenus name="UART_2" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
+  	   <BlockGenus name="UART_2" kind="data" color="255 0 0" initlabel="bg.UART_2" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
@@ -2643,7 +2643,7 @@
                 </BlockConnector>	
                 <BlockConnector connector-type="number"
 				    connector-kind="socket" label="serial">
-					<DefaultArg genus-name="UART_SW" label="SW Serial" />
+					<DefaultArg genus-name="UART_1" label="HW UART 1" />
 				</BlockConnector>
         	</BlockConnectors>
 		</BlockGenus>

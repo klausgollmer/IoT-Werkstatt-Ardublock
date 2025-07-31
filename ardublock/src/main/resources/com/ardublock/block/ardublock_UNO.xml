@@ -2593,6 +2593,23 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+	<BlockGenus name="GetMaxbotix" kind="data" color="44 165 226"
+			initlabel="bg.GetMaxbotix" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="22"/>
+                </BlockConnector>	
+				<BlockConnector label="max Val" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="5000"/>
+                </BlockConnector>	
+               	<BlockConnector label="sleep GPIO" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="0"/>
+                </BlockConnector>	
+			</BlockConnectors>
+		</BlockGenus>
+		
 		<BlockGenus name="GetMaxbotix2" kind="data" color="44 165 226"
 			initlabel="bg.GetMaxbotix2" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -2603,7 +2620,7 @@
                 </BlockConnector>	
                 <BlockConnector connector-type="number"
 				    connector-kind="socket" label="serial">
-					<DefaultArg genus-name="UART_SW" label="SW Serial" />
+					<DefaultArg genus-name="UART_1" label="HW UART 1" />
 				</BlockConnector>
                 
                 
@@ -2616,12 +2633,12 @@
           </BlockConnectors>
         </BlockGenus>
 		
-  	   <BlockGenus name="UART_1" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
+  	   <BlockGenus name="UART_1" kind="data" color="255 0 0" initlabel="bg.UART_1" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
-  	   <BlockGenus name="UART_2" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
+  	   <BlockGenus name="UART_2" kind="data" color="255 0 0" initlabel="bg.UART_2" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
@@ -2640,10 +2657,32 @@
                 </BlockConnector>	
                 <BlockConnector connector-type="number"
 				    connector-kind="socket" label="serial">
-					<DefaultArg genus-name="UART_SW" label="SW Serial" />
+					<DefaultArg genus-name="UART_1" label="HW UART 1" />
 				</BlockConnector>
         	</BlockConnectors>
 		</BlockGenus>
+
+
+        <BlockGenus name="MapC" kind="data" color="44 165 226"
+			initlabel="bg.MapC" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="Value">
+				</BlockConnector>
+				
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Input">
+					<DefaultArg genus-name="text" label="0.0,10.0" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Output">
+					<DefaultArg genus-name="text" label="0.0,100.0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
 
    <BlockGenus name="MapC" kind="data" color="44 165 226"
 			initlabel="bg.MapC" editable-label="no" is-label-value="no">
