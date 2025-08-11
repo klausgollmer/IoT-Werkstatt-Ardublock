@@ -16,7 +16,7 @@ public class ExtSen_Max7368 extends TranslatorBlock
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 
-		String ret = "300,9999";
+		String ret = "500,9999";
 		return codePrefix + ret + codeSuffix;
 	}
 }
