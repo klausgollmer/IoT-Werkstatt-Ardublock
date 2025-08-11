@@ -2515,8 +2515,10 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="mode">
-					<DefaultArg genus-name="DS18B20_req_get" label="request and get" />
+					<DefaultArg genus-name="DS18B20_req_get" label="request, wait and get" />
 				</BlockConnector>
+
+
 				
 				
 			</BlockConnectors>
@@ -2541,7 +2543,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="mode">
-					<DefaultArg genus-name="DS18B20_req_get" label="get and request" />
+					<DefaultArg genus-name="DS18B20_req_get" label="request, wait and get" />
 				</BlockConnector>
 				
 				
@@ -2560,6 +2562,12 @@
  
 
         <BlockGenus name="DS18B20_req_get" kind="data" color="255 0 0" initlabel="bg.DS18B20_req_get" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+        <BlockGenus name="DS18B20_get_req" kind="data" color="255 0 0" initlabel="bg.DS18B20_req_get" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
@@ -2612,6 +2620,40 @@
                 
 			</BlockConnectors>
        </BlockGenus>
+
+		<BlockGenus name="GetMaxbotix3" kind="data" color="44 165 226"
+			initlabel="bg.GetMaxbotix3" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="16"/>
+                </BlockConnector>	
+                <BlockConnector connector-type="number"
+				    connector-kind="socket" label="serial">
+					<DefaultArg genus-name="UART_1" label="HW UART 1" />
+				</BlockConnector>
+                <BlockConnector connector-type="number"
+				    connector-kind="socket" label="type">
+					<DefaultArg genus-name="MAX7368" label="7368 (10 m)" />
+				</BlockConnector>
+  		</BlockConnectors>
+       </BlockGenus>
+
+
+	   <BlockGenus name="MAX7368" kind="data" color="255 0 0" initlabel="bg.MAX7368" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+	
+	   <BlockGenus name="MAX7369" kind="data" color="255 0 0" initlabel="bg.MAX7369" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+
 		
   	   <BlockGenus name="UART_SW" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
           <BlockConnectors>
@@ -6476,10 +6518,11 @@
 			<FamilyMember>UART_1</FamilyMember>
 			<FamilyMember>UART_2</FamilyMember>
 		</BlockFamily>
-		
-		
-		
-		
+	
+		<BlockFamily>
+			<FamilyMember>MAX7368</FamilyMember>
+			<FamilyMember>MAX7369</FamilyMember>
+		</BlockFamily>
 		
 		<BlockFamily>
 			<FamilyMember>addition</FamilyMember>
@@ -6747,6 +6790,7 @@
 
 		<BlockFamily>
 			<FamilyMember>DS18B20_req_get</FamilyMember>
+			<FamilyMember>DS18B20_get_req</FamilyMember>
 			<FamilyMember>DS18B20_req</FamilyMember>
 			<FamilyMember>DS18B20_get</FamilyMember>
 		</BlockFamily>
@@ -7203,7 +7247,7 @@
 				<BlockGenusMember>GetLightBH</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Distance</BlockGenusMember>
-	            <BlockGenusMember>GetMaxbotix2</BlockGenusMember>
+	            <BlockGenusMember>GetMaxbotix3</BlockGenusMember>
                 <BlockGenusMember>GetDFRobotUS</BlockGenusMember>
 				<BlockGenusMember>readVL53</BlockGenusMember>
 				<BlockGenusMember>ADPS9999Get</BlockGenusMember>

@@ -2514,7 +2514,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="mode">
-					<DefaultArg genus-name="DS18B20_req_get" label="get and request" />
+					<DefaultArg genus-name="DS18B20_req_get" label="request, wait and get" />
 				</BlockConnector>
 				
 				
@@ -2551,18 +2551,25 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="mode">
-					<DefaultArg genus-name="DS18B20_req_get" label="request and get" />
+					<DefaultArg genus-name="DS18B20_req_get" label="request, wait and get" />
 				</BlockConnector>
 				
 				
 			</BlockConnectors>
 		</BlockGenus>
 
-        <BlockGenus name="DS18B20_req_get" kind="data" color="255 0 0" initlabel="bg.DS18B20_req_get" editable-label="no" is-label-value="no" >
+       <BlockGenus name="DS18B20_req_get" kind="data" color="255 0 0" initlabel="bg.DS18B20_req_get" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
+
+        <BlockGenus name="DS18B20_get_req" kind="data" color="255 0 0" initlabel="bg.DS18B20_req_get" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
 
         <BlockGenus name="DS18B20_req" kind="data" color="255 0 0" initlabel="bg.DS18B20_req" editable-label="no" is-label-value="no" >
           <BlockConnectors>
@@ -6748,12 +6755,13 @@
 			<FamilyMember>classifyEDGEc</FamilyMember>
 		</BlockFamily>
 		
-		<BlockFamily>
+	    <BlockFamily>
 			<FamilyMember>DS18B20_req_get</FamilyMember>
+			<FamilyMember>DS18B20_get_req</FamilyMember>
 			<FamilyMember>DS18B20_req</FamilyMember>
 			<FamilyMember>DS18B20_get</FamilyMember>
 		</BlockFamily>
-		
+	
 		
 		   <BlockFamily>
 			<FamilyMember>Buzzer0</FamilyMember>
