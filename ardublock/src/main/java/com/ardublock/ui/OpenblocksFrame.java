@@ -164,7 +164,24 @@ public class OpenblocksFrame extends JFrame
 		
 		uiMessageBundle = ResourceBundle.getBundle("com/ardublock/block/ardublock");
 		
+		// fileChooser = new JFileChooser();
+		
+		// Aufwachen im aktuellen Arbeitsverzeichnis /IoTW/Arduino
+		// Userdaten in /IoTW/user
+		Path wd    = Paths.get(System.getProperty("user.dir")).toAbsolutePath(); // IoTW/arduino
+		Path base  = wd.getParent();                                             // IoTW
+		Path target= (base != null ? base.resolve("user") : wd.resolve("..\\user")).normalize();
+
+		File dir = target.toFile();
+		if (!dir.isDirectory()) dir.mkdirs(); // muss existieren
+
 		fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(dir);
+		fileChooser.showSaveDialog(this);
+
+		
+		
+		
 		ffilter = new FileNameExtensionFilter(uiMessageBundle.getString("ardublock.file.suffix"), "abp");
 		fileChooser.setFileFilter(ffilter);
 		fileChooser.addChoosableFileFilter(ffilter);
