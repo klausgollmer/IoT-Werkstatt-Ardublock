@@ -234,7 +234,7 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 		        + "    digitalWrite(IOTW_LORA_JOIN_LED_PIN,HIGH);\r\n"
 		        + "   }\r\n"
 		        + "#endif\n"
-		        + "  uint32_t tout = millis()+30000; // harter Timeout\r\n"
+		        + "  uint32_t tout = millis()+120000; // harter Timeout Joining SF10\r\n"
 		        + "    while ((millis() < tout && ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING))) && !LoRaWAN_Event_No_Join) {\r\n"
 		        + "      yield();\r\n"
 		        + "      os_runloop_once_sleep();\r\n"
