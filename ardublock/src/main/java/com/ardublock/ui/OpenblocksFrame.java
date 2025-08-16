@@ -177,10 +177,6 @@ public class OpenblocksFrame extends JFrame
 
 		fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(dir);
-		fileChooser.showSaveDialog(this);
-
-		
-		
 		
 		ffilter = new FileNameExtensionFilter(uiMessageBundle.getString("ardublock.file.suffix"), "abp");
 		fileChooser.setFileFilter(ffilter);

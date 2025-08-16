@@ -31,6 +31,15 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 				 + "*/\n";
 	translator.addDefinitionCommand(Dis);
 
+	String PostJoin = "// LoRaWAN TX startet nach dem Join mit SF9 (wird dann vom System ggf. runtergestuft) \n"
+			+ "#if defined(ESP32)\r\n"
+			+ "RTC_DATA_ATTR bool LMIC_postJoinConfigured = false;\r\n"
+			+ "#else\r\n"
+			+ "bool LMIC_postJoinConfigured = false;\r\n"
+			+ "#endif\r\n";
+	translator.addDefinitionCommand(PostJoin);
+		
+	
 		
 	String PinMapping = "// -------- LoRa PinMapping \r\n"
 			+ "const lmic_pinmap lmic_pins = {  \r\n"
@@ -135,7 +144,34 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
             String setup = "  LoRaWAN_Start_OTA(true); // Prepare LMIC-Engine\n";
 			translator.addSetupCommand(setup);
 			
-	
+	 String Debug = "// -----------------------  LMIC Debug info \n"
+			 + "#if (IOTW_DEBUG_LEVEL >1)\r\n"
+			 + "  void LMIC_print_downlink_info() {\r\n"
+			 + "    const char* dr2str[] = {\"SF12\",\"SF11\",\"SF10\",\"SF9\",\"SF8\",\"SF7\",\"SF7B\",\"FSK\"};\r\n"
+			 + "    if (LMIC.txrxFlags & TXRX_DNW1) Serial.println(F(\"Downlink in RX1\"));\r\n"
+			 + "    if (LMIC.txrxFlags & TXRX_DNW2) Serial.println(F(\"Downlink in RX2\"));\r\n"
+			 + "  \r\n"
+			 + "    // RX2-Parameter, die dein Node aktuell erwartet:\r\n"
+			 + "    Serial.print(F(\"RX2 DR = \"));\r\n"
+			 + "    Serial.print(LMIC.dn2Dr);\r\n"
+			 + "    Serial.print(F(\" (\"));\r\n"
+			 + "    Serial.print(dr2str[LMIC.dn2Dr]);\r\n"
+			 + "    Serial.println(F(\")\"));\r\n"
+			 + "    if (LMIC.adrEnabled) {\r\n"
+			 + "      Serial.println(F(\"ADR ist AKTIV ✅\"));\r\n"
+			 + "    } else {\r\n"
+			 + "      Serial.println(F(\"ADR ist AUS ❌\"));\r\n"
+			 + "    }\r\n"
+			 + "    Serial.print(F(\"Aktuelle Tx DR: \"));\r\n"
+			 + "    Serial.print(dr2str[LMIC.datarate]); // z. B. \"SF9\"\r\n"
+			 + "    Serial.print(F(\" / TX-Power: \"));\r\n"
+			 + "    Serial.print(LMIC.txpow);\r\n"
+			 + "    Serial.println(F(\" dBm\"));\r\n"
+			 + "  }\r\n"
+			 + "#endif\n";
+		translator.addDefinitionCommand(Debug);
+			
+			
 		
     	
     	translatorBlock = this.getRequiredTranslatorBlockAtSocket(3);
@@ -179,7 +215,7 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 	    }
 	    
 	    
-	    ret = "\n{ //Block------------------------------ send data to network\n"
+	    ret = ret = "\n{ //Block------------------------------ send data to network\n"
 	    		+ "int port = " + port + ";\n"
 	    		+ "static uint8_t mydata["+ count + "];\n"
 	       		+ wert 
@@ -205,70 +241,134 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 		        + "  }\r\n"
 		        + "  if (millis() < tout) IOTW_PRINTLN(F(\"Tx finished ✅\")); "
 		        + "    else IOTW_PRINTLN(F(\"❌ Timeout\")); "
+		        + "\n"
+		        + "  // erste TX nach Join mit SF10, kann durch ADR runtergestuft werden \n"
+		        + "  if (!LMIC_postJoinConfigured && (LMIC.devaddr != 0)) {    //  Session vorhanden\r\n"
+		        + "      LMIC_setAdrMode(1);                                   //  Netz darf auf SF8/SF7 runterstufen\r\n"
+		        + "      LMIC_postJoinConfigured = true;\r\n"
+		        + "  }"
+		        + "  #if (IOTW_DEBUG_LEVEL >1)\r\n"
+		        + "    LMIC_print_downlink_info();\r\n"
+		        + "  #endif\n"
 		        + "} // Block \n";
+	    		
 	    
 	    translator.setLORAProgram(true);
  	    
 	               
 	    return codePrefix + ret + codeSuffix;
 	 	}
+
 }
+/*
+ *    ret = "\n{ //Block------------------------------ send data to network\n"
+	    		+ "int port = " + port + ";\n"
+	    		+ "static uint8_t mydata["+ count + "];\n"
+	       		+ wert 
+		        + "  LoRaWAN_Event_No_Join = 0;\r\n"
+		        + "  LoRaWAN_Event_TxComplete = 0;\r\n"
+		        + "  // Check if there is not a current TX/RX job running, wait until finished\r\n"
+		        + "  if (!((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_JOINING))) {\r\n"
+		        + "    if (LMIC_setTxData2(port, mydata, sizeof(mydata), 0)) {\r\n"
+		        + "        IOTW_PRINTLN(F(\"------------------------  setTxData: error\"));\r\n"
+		        + "    }\r\n"
+		        + "  }\r\n"
+		        + "#ifdef IOTW_LORA_JOIN_LED_PIN\r\n"
+		        + "   if (LMIC.opmode & OP_JOINING) {\r\n"
+		        + "    rtc_gpio_deinit((gpio_num_t)IOTW_LORA_JOIN_LED_PIN);\r\n"
+		        + "    pinMode(IOTW_LORA_JOIN_LED_PIN,OUTPUT);\r\n"
+		        + "    digitalWrite(IOTW_LORA_JOIN_LED_PIN,HIGH);\r\n"
+		        + "   }\r\n"
+		        + "#endif\n"
+		        + "  uint32_t tout = millis()+30000; // harter Timeout\r\n"
+		        + "    while ((millis() < tout && ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING))) && !LoRaWAN_Event_No_Join) {\r\n"
+		        + "      yield();\r\n"
+		        + "      os_runloop_once_sleep();\r\n"
+		        + "  }\r\n"
+		        + "  if (millis() < tout) IOTW_PRINTLN(F(\"Tx finished ✅\")); "
+		        + "    else IOTW_PRINTLN(F(\"❌ Timeout\")); "
+		        + "\n"
+		        + "  // erste TX nach Join mit SF9, kann durch ADR runtergestuft werden \n"
+		        + "  if (!LMIC_postJoinConfigured && (LMIC.devaddr != 0)) {    //  Session vorhanden\r\n"
+		        + "      LMIC_setDrTxpow(DR_SF9, 14);                          //  Uplink künftig SF9 starten\r\n"
+		        + "      LMIC_setAdrMode(1);                                   //  Netz darf auf SF8/SF7 runterstufen\r\n"
+		        + "      LMIC_postJoinConfigured = true;\r\n"
+		        + "  }"
+		        + "  #if (IOTW_DEBUG_LEVEL >1)\r\n"
+		        + "    LMIC_print_downlink_info();\r\n"
+		        + "  #endif\n"
+		        + "} // Block \n";
+ */
+
 
 /*
-ret = "\n{ //Block------------------------------ send data to network\n"
-+ "int port = " + port + ";\n"
-+ "static uint8_t mydata["+ count + "];\n"
-	+ wert +
-  " int Retry = 2, tout = 30000,  err=1;\r\n"
-  + "    while (Retry > 0) {\r\n"
-  + "      // Check if there is not a current TX/RX job running, wait until finished\r\n"
-  + "      if (!((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING))) {\r\n"
-  + "        //LoRaWAN_Tx_Ready = 0;\r\n"
-  + "        err = LMIC_setTxData2(port, mydata, sizeof(mydata), 0);     // Sende  \r\n"
-  + "        if (err==1) {\r\n"
-  + "          IOTW_PRINTLN(F(\"------------------------  setTxData: error\"));\r\n"
-  + "        } else { // err = 0, packet queued\r\n"
-  + "          IOTW_PRINTLN(F(\"Packet queued: \"));\r\n"
-  + "          long m = millis();\r\n"
-  + "          while (LMIC.opmode & OP_TXDATA) { //(!LoRaWAN_Tx_Ready) {            \r\n"
-  + "            yield();\r\n"
-  + "            os_runloop_once_sleep();\r\n"
-  + "            if ((millis()- m) > tout ) {\r\n"
-  + "              IOTW_PRINT(F(\"timeout abort\"));\r\n"
-  + "              err = 1;\r\n"
-  + "              break;\r\n"
-  + "            }\r\n"
-  + "          }      \r\n"
-  + "          if (err == 0) {\r\n"
-  + "            IOTW_PRINT(F(\" packet send \"));\r\n"
-  + "            Retry = 0;\r\n"
-  + "          }\r\n"
-  + "        }\r\n"
-  + "      }\r\n"
-  + "      if (err) { \r\n"
-  + "        Retry=Retry-1;\r\n"
-  + "        IOTW_PRINT(F(\", retry \"));\r\n"
-  + "        long m = millis();\r\n"
-  + "        while ((millis()-m) < tout) {\r\n"
-  + "          yield();\r\n"
-  + "          os_runloop_once_sleep();\r\n"
-  + "        }\r\n"
-  + "      }\r\n"
-  + "    } \r\n"
-  + "    \r\n"
-  + "    if ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING)) {\r\n"
-  + "      IOTW_PRINT(F(\"some MAC-TXRX activ, mode = \"));\r\n"
-  + "      IOTW_PRINTLN(LMIC.opmode,HEX);\r\n"
-  + "      long m = millis();\r\n"
-  + "      while ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING)) {\r\n"
-  + "        yield();\r\n"
-  + "        os_runloop_once_sleep();\r\n"
-  + "        if  ((millis()- m) > tout ) {\r\n"
-  + "              IOTW_PRINTLN(F(\"abort communication, lost job\"));\r\n"
-  + "              break;\r\n"
-  + "        }\r\n"
-  + "      }\r\n"
-  + "    }\r\n"
-  + "    IOTW_PRINTLN(F(\"Tx finished\"));"
-  + " } // Block \n";
-*/
+ * ret = "\n{ //Block------------------------------ send data to network\n"
+	    	  + "  int port = " + port + ";\n"
+	    	  + "  static uint8_t mydata["+ count + "];\n"
+	       	  + wert 
+		      + "  LoRaWAN_Event_No_Join = 0;\r\n"
+		      + "  LoRaWAN_Event_TxComplete = 0;\r\n"
+		      + "   // Check if there is not a current TX/RX job running, wait until finished\r\n"
+		      + "    if (!((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_JOINING))) {\r\n"
+		      + "      if (LMIC_setTxData2(port, mydata, sizeof(mydata), 0)) {\r\n"
+		      + "        IOTW_PRINTLN(F(\"------------------------  setTxData: error\"));\r\n"
+		      + "      }\r\n"
+		      + "    }\r\n"
+		      + "#ifdef IOTW_LORA_JOIN_LED_PIN\r\n"
+		      + "    if (LMIC.opmode & OP_JOINING) {\r\n"
+		      + "      rtc_gpio_deinit((gpio_num_t)IOTW_LORA_JOIN_LED_PIN);\r\n"
+		      + "      pinMode(IOTW_LORA_JOIN_LED_PIN,OUTPUT);\r\n"
+		      + "      digitalWrite(IOTW_LORA_JOIN_LED_PIN,HIGH);\r\n"
+		      + "    }\r\n"
+		      + "#endif\r\n"
+		      + "    uint32_t tout = millis()+30000; // harter Timeout\r\n"
+		      + "    while ((millis() < tout && ((LMIC.opmode & OP_TXRXPEND) || (LMIC.opmode & OP_TXDATA) || (LMIC.opmode & OP_POLL) || (LMIC.opmode & OP_JOINING))) && !LoRaWAN_Event_No_Join) {\r\n"
+		      + "      yield();\r\n"
+		      + "      os_runloop_once_sleep();\r\n"
+		      + "    }\r\n"
+		      + "if (millis() < tout) {\r\n"
+		      + "  IOTW_PRINTLN(F(\"Tx finished ✅\"));\r\n"
+		      + "\r\n"
+		      + "  // Frischer Join erkannt? Dann einmalig Start-DR & ADR setzen, Zähler resetten\r\n"
+		      + "  if ((LMIC.devaddr != 0) && !LMIC_postJoinConfigured) {\r\n"
+		      + "    LMIC_setDrTxpow(DR_SF9, 14);  // Uplink ab jetzt mit SF9 starten\r\n"
+		      + "    LMIC_setAdrMode(1);           // Netz darf weiter runterstufen\r\n"
+		      + "    LMIC_postJoinConfigured = true;\r\n"
+		      + "    LMIC_JoinFailCount = 0;\r\n"
+		      + "  }\r\n"
+		      + "} else {\r\n"
+		      + "  IOTW_PRINTLN(F(\"❌ Timeout / Join fail\"));\r\n"
+		      + "\r\n"
+		      + "#ifdef ESP32\r\n"
+		      + "  // Nur wenn wirklich keine Session existiert, den Fail zählen\r\n"
+		      + "  if (LMIC.devaddr == 0) {\r\n"
+		      + "    if (LMIC_JoinFailCount < 10) {\r\n"
+		      + "      LMIC_JoinFailCount++;\r\n"
+		      + "      IOTW_PRINT(F(\"Join fail count = \"));\r\n"
+		      + "      IOTW_PRINTLN(LMIC_JoinFailCount);\r\n"
+		      + "      // Nächster Versuch im normalen Messzyklus\r\n"
+		      + "    } else {\r\n"
+		      + "      // 10 Fehlschläge -> 1h schlafen.\r\n"
+		      + "      uint32_t sleep_ms = 3600000UL;\r\n"
+		      + "      IOTW_PRINTLN(F(\"Join backoff: sleep 1h\"));\r\n"
+		      + "\r\n"
+		      + "#ifdef IOTW_LORA_DEEPSLEEP\r\n"
+		      + "      SaveLMICToRTC_ESP32(sleep_ms / 1000);\r\n"
+		      + "#endif\r\n"
+		      + "      Serial.flush(); Serial.end();\r\n"
+		      + "      rtc_gpio_init(GPIO_NUM_2);\r\n"
+		      + "      rtc_gpio_set_direction(GPIO_NUM_2, RTC_GPIO_MODE_INPUT_ONLY);\r\n"
+		      + "      rtc_gpio_pullup_dis(GPIO_NUM_2);\r\n"
+		      + "      rtc_gpio_pulldown_dis(GPIO_NUM_2);\r\n"
+		      + "      esp_sleep_enable_timer_wakeup((uint64_t)sleep_ms * 1000ULL);\r\n"
+		      + "      esp_deep_sleep_start();\r\n"
+		      + "    }\r\n"
+		      + "  }\r\n"
+		      + "#endif\r\n"
+		      + "}\r\n"
+		      + "\r\n"
+		      + "#if (IOTW_DEBUG_LEVEL >1)\r\n"
+		      + "    LMIC_print_downlink_info();\r\n"
+		      + "#endif\r\n"
+		      + "  } // Block \n";
+ */

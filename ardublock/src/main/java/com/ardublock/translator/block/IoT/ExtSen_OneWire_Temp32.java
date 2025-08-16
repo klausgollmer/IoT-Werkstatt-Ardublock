@@ -56,7 +56,7 @@ public class ExtSen_OneWire_Temp32 extends TranslatorBlock
     		+ "      DS18B20_setResolutionESP32_"+gpio+"(DS18B20_addr_"+gpio+"[i],bits);\r\n"
     		+ "    }\r\n"
     		+ "    DS18B20_Resolution_"+gpio+" = bits;\r\n"
-    		+ "    if (devices < 1) Serial.println(\"no DS\"); \r\n"
+    		+ "    if (devices < 1) IOTW_PRINTLN(F(\"no DS\")); \r\n"
     		+ "  }\r\n"
     		+ "}\r\n"
     		+ "\r\n"

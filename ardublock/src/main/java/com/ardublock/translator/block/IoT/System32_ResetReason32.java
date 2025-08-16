@@ -65,11 +65,10 @@ public class System32_ResetReason32 extends TranslatorBlock
     
     Reason = "int resetReason(int cpu) {\r\n"
     		+ "#ifdef ESP32\r\n"
+      		+ "esp_reset_reason_t reason = esp_reset_reason();\r\n"
+      	  
     		+ "#if (IOTW_DEBUG_LEVEL >1)\r\n"
     		+ "  IOTW_PRINT(F(\"reset reason: \"));\r\n"
-    		+ "#endif\r\n"
-    		+ "  esp_reset_reason_t reason = esp_reset_reason();\r\n"
-    		+ "\r\n"
     		+ "  switch (reason) {\r\n"
     		+ "    case ESP_RST_UNKNOWN:IOTW_PRINTLN(F(\"Unbekannt\"));break;\r\n"
     		+ "    case ESP_RST_POWERON:IOTW_PRINTLN(F(\"Power-On Reset\"));break;\r\n"
@@ -84,6 +83,7 @@ public class System32_ResetReason32 extends TranslatorBlock
     		+ "    case ESP_RST_SDIO:IOTW_PRINTLN(F(\"SDIO Reset (selten)\"));break;\r\n"
     		+ "    default:IOTW_PRINTLN(F(\"Nicht definiert\"));break;\r\n"
     		+ "  }\r\n"
+      		+ "#endif\r\n"
     		+ "  return (int) reason;\r\n"
     		+ "#else\r\n"
     		+ "  IOTW_PRINT(F(\"reset reason ESP32 only \")); \r\n"

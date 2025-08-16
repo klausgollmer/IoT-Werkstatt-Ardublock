@@ -126,7 +126,7 @@ public class ExtSen_DFRobotUSGet extends TranslatorBlock
    			+ "#endif\r\n"
    			+ "\r\n"
     		+ "  #if (IOTW_DEBUG_LEVEL >1)\r\n"
-	        + "    IOTW_PRINT(F(\"DFRobot attempt=\"));\r\n"
+	        + "    IOTW_PRINT(F(\" DFRobot, attempt=\"));\r\n"
 		    + "    IOTW_PRINTLN((int)attempt);\r\n"
     		+ "  #endif\r\n"
 		   

@@ -4,9 +4,9 @@ import com.ardublock.translator.Translator;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class SerialPrintIoT extends TranslatorBlock
+public class SerialDebugIoT extends TranslatorBlock
 {
-	public SerialPrintIoT(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	public SerialDebugIoT(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
@@ -27,10 +27,11 @@ public class SerialPrintIoT extends TranslatorBlock
 		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 		String test=translatorBlock.toCode();
 		if(test.equals("true")){
-		    ret="Serial.println("+text+");\n";
+		    ret="IOTW_PRINTLN("+text+");\n";
 		} else {
-		    ret="Serial.print("+text+");\n";
+		    ret="IOTW_PRINT("+text+");\n";
 		}
+			
 		return ret;
 	}
 }

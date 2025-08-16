@@ -92,10 +92,10 @@ public class ExtSen_GPSGetI2C extends TranslatorBlock
 			"      else  ret = NAN;\r\n" + 
 			"    break;\r\n" + 
 			"  case 2: \r\n" + 
-			"    ret = GPS.latitude/100.;\r\n" + 
+			"    ret = GPS.latitudeDegrees;\r\n" + 
 			"    break;\r\n" + 
 			"  case 3: \r\n" + 
-			"    ret = GPS.longitude/100.;\r\n" + 
+			"    ret = GPS.longitudeDegrees;\r\n" + 
 			"    break;\r\n" + 
 			"  case 4: \r\n" + 
 			"    ret = GPS.altitude;\r\n" + 

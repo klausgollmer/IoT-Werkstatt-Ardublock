@@ -1268,6 +1268,25 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+
+		<BlockGenus name="serial_debug" kind="command" color="165 42 42"
+			initlabel="bg.serial_debug">
+			<description>
+				<text>send message via Serial port</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.message">
+					<DefaultArg genus-name="message" label="Debug \u0020" />
+				</BlockConnector>
+				<BlockConnector connector-type="boolean"
+					connector-kind="socket" label="bc.ln">
+					<DefaultArg genus-name="true" label="true" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+
 		
 		<BlockGenus name="serial_print_num" kind="command" color="165 42 42"
 			initlabel="bg.serial_print_num">
@@ -6972,6 +6991,7 @@
 				<BlockGenusMember>serial_print</BlockGenusMember>
 				<BlockGenusMember>serial_readString</BlockGenusMember>
 				<BlockGenusMember>serial_available</BlockGenusMember>
+				<BlockGenusMember>serial_debug</BlockGenusMember>
 				<BlockGenusMember>Divider_Type</BlockGenusMember>
 				<BlockGenusMember>glue_sn</BlockGenusMember>
 				<BlockGenusMember>glue_sb</BlockGenusMember>
