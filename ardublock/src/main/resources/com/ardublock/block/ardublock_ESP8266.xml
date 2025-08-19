@@ -1273,6 +1273,24 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+		<BlockGenus name="serial_debug" kind="command" color="165 42 42"
+			initlabel="bg.serial_debug">
+			<description>
+				<text>send message via Serial port</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.message">
+					<DefaultArg genus-name="message" label="Debug \u0020" />
+				</BlockConnector>
+				<BlockConnector connector-type="boolean"
+					connector-kind="socket" label="bc.ln">
+					<DefaultArg genus-name="true" label="true" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
+		
 		<BlockGenus name="serial_print_num" kind="command" color="165 42 42"
 			initlabel="bg.serial_print_num">
 			<description>
@@ -2621,6 +2639,38 @@
 			</BlockConnectors>
        </BlockGenus>
 		
+		<BlockGenus name="GetMaxbotix3" kind="data" color="44 165 226"
+			initlabel="bg.GetMaxbotix3" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="16"/>
+                </BlockConnector>	
+                <BlockConnector connector-type="number"
+				    connector-kind="socket" label="serial">
+					<DefaultArg genus-name="UART_1" label="HW UART 1" />
+				</BlockConnector>
+                <BlockConnector connector-type="number"
+				    connector-kind="socket" label="type">
+					<DefaultArg genus-name="MAX7368" label="7368 (10 m)" />
+				</BlockConnector>
+  		</BlockConnectors>
+       </BlockGenus>
+
+
+	   <BlockGenus name="MAX7368" kind="data" color="255 0 0" initlabel="bg.MAX7368" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+	
+	   <BlockGenus name="MAX7369" kind="data" color="255 0 0" initlabel="bg.MAX7369" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+		
   	   <BlockGenus name="UART_SW" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
@@ -3675,7 +3725,6 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.ssid">
-<!-- 					<DefaultArg genus-name="ssid" label="FRITZ!Box Gastzugang" />-->
  					<DefaultArg genus-name="ssid" label="hackathon" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
@@ -3711,7 +3760,6 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.ssid">
-<!-- 					<DefaultArg genus-name="ssid" label="FRITZ!Box Gastzugang" />-->
  					<DefaultArg genus-name="ssid" label="hackathon" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
@@ -5502,6 +5550,102 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+ <BlockGenus name="sendTTN_RFM95_ota2" kind="command" color="30 30 255"
+			initlabel="bg.sendTTN_RFM95_ota2" editable-label="no" is-label-value="no">
+			<description>
+				<text>connect to TTN</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.TTN_DEVEUI">
+					<DefaultArg genus-name="TTN_DEVEUI" label="0000000000000000 (8 Byte)" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.TTN_APPEUI">
+					<DefaultArg genus-name="TTN_APPEUI" label="0000000000000000" />
+				</BlockConnector>
+		  	    <BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.TTN_APPKEY">
+					<DefaultArg genus-name="TTN_APPKEY" label="00000000000000000000000000000000 (16 Byte)" />
+				</BlockConnector>
+				
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="Tx SF">
+					<DefaultArg genus-name="TTN_SF_Auto" label="Auto (ADR on)" />
+				</BlockConnector>
+				
+				
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.TTN_PORT">
+					<DefaultArg genus-name="number" label="10" />
+				</BlockConnector>
+				
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing1">
+				</BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing2">
+				</BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing3">
+				</BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing4">
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing5">
+			    </BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing6">
+				 </BlockConnector>
+				
+			</BlockConnectors>
+		</BlockGenus>
+
+
+       <BlockGenus name="TTN_SF_Auto" kind="data" color="255 0 0" initlabel="bg.TTN_SF_Auto" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="TTN_SF7" kind="data" color="255 0 0" initlabel="bg.TTN_SF7" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+       <BlockGenus name="TTN_SF8" kind="data" color="255 0 0" initlabel="bg.TTN_SF8" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="TTN_SF9" kind="data" color="255 0 0" initlabel="bg.TTN_SF9" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="TTN_SF10" kind="data" color="255 0 0" initlabel="bg.TTN_SF10" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+        <BlockGenus name="TTN_SF11" kind="data" color="255 0 0" initlabel="bg.TTN_SF11" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+         <BlockGenus name="TTN_SF12" kind="data" color="255 0 0" initlabel="bg.TTN_SF12" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+
+
         <BlockGenus name="TTN_DEVEUI" kind="data" color="255 0 0"
 			initlabel="bg.TTN_DEVEUI" editable-label="yes">
 			<description>
@@ -5584,6 +5728,59 @@
 				 </BlockConnector>
 				</BlockConnectors>
 		</BlockGenus>
+
+ <BlockGenus name="sendTTN_RFM95_abp2" kind="command" color="30 30 255"
+			initlabel="bg.sendTTN_RFM95_abp2" editable-label="no" is-label-value="no">
+			<description>
+				<text>connect to TTN</text>
+			</description>
+			
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.TTN_DEVADD">
+					<DefaultArg genus-name="TTN_DEVADD" label="00000000 (4 Byte Device address)" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.TTN_NETSKEY">
+					<DefaultArg genus-name="TTN_NETSKEY" label="00000000000000000000000000000000 (16 Byte NwkSKey)" />
+				</BlockConnector>
+		  	    <BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.TTN_APPSKEY">
+					<DefaultArg genus-name="TTN_APPSKEY" label="00000000000000000000000000000000 (16 Byte AppSKey)" />
+				</BlockConnector>
+	            <BlockConnector connector-type="number"
+					connector-kind="socket" label="Tx SF">
+					<DefaultArg genus-name="TTN_SF_Auto" label="Auto (ADR on)" />
+				</BlockConnector>
+
+
+				
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.TTN_PORT">
+					<DefaultArg genus-name="number" label="10" />
+				</BlockConnector>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing1">
+				</BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing2">
+				</BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing3">
+				</BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing4">
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing5">
+			    </BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing6">
+				 </BlockConnector>
+				</BlockConnectors>
+		</BlockGenus>
+
+
 
         <BlockGenus name="TTN_DEVADD" kind="data" color="255 0 0"
 			initlabel="bg.TTN_DEVADD" editable-label="yes">
@@ -6562,7 +6759,15 @@
 			<FamilyMember>BSECVectorGasRaw</FamilyMember>
 		</BlockFamily>
 
-
+         <BlockFamily>
+			<FamilyMember>TTN_SF_Auto</FamilyMember>
+			<FamilyMember>TTN_SF7</FamilyMember>
+			<FamilyMember>TTN_SF8</FamilyMember>
+			<FamilyMember>TTN_SF9</FamilyMember>
+			<FamilyMember>TTN_SF10</FamilyMember>
+			<FamilyMember>TTN_SF11</FamilyMember>
+			<FamilyMember>TTN_SF12</FamilyMember>
+		</BlockFamily>
 
 
         <BlockFamily>
@@ -6921,6 +7126,7 @@
 				<BlockGenusMember>serial_print</BlockGenusMember>
 				<BlockGenusMember>serial_readString</BlockGenusMember>
 				<BlockGenusMember>serial_available</BlockGenusMember>
+				<BlockGenusMember>serial_debug</BlockGenusMember>
 				<BlockGenusMember>Divider_Type</BlockGenusMember>
 				<BlockGenusMember>glue_sn</BlockGenusMember>
 				<BlockGenusMember>glue_sb</BlockGenusMember>
@@ -7047,8 +7253,8 @@
 			<BlockDrawer button-color="37 79 140" name="bd.LORA_communication"
 				type="factory">
 			  <BlockGenusMember>Divider_LoRa</BlockGenusMember>
-			  <BlockGenusMember>sendTTN_RFM95_ota</BlockGenusMember>
-			  <BlockGenusMember>sendTTN_RFM95_abp</BlockGenusMember>
+			  <BlockGenusMember>sendTTN_RFM95_ota2</BlockGenusMember>
+			  <BlockGenusMember>sendTTN_RFM95_abp2</BlockGenusMember>
   		      <BlockGenusMember>Divider</BlockGenusMember>
  
 			  <BlockGenusMember>TTN_RxCallback</BlockGenusMember>
@@ -7176,7 +7382,7 @@
 				<BlockGenusMember>GetLightBH</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Distance</BlockGenusMember>
-	            <BlockGenusMember>GetMaxbotix2</BlockGenusMember>
+	            <BlockGenusMember>GetMaxbotix3</BlockGenusMember>
 	            <BlockGenusMember>GetDFRobotUS</BlockGenusMember>
 				<BlockGenusMember>readVL53</BlockGenusMember>
 				<BlockGenusMember>ADPS9999Get</BlockGenusMember>
