@@ -1,0 +1,238 @@
+package com.ardublock.translator.block.IoT;
+
+import com.ardublock.translator.Translator;
+import com.ardublock.translator.block.TranslatorBlock;
+import com.ardublock.translator.block.exception.SocketNullException;
+import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
+
+public class Audio_Mic_Frequenz_YIN  extends TranslatorBlock {
+
+	public Audio_Mic_Frequenz_YIN (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	{
+		super(blockId, translator, codePrefix, codeSuffix, label);
+	}
+	
+	@Override
+	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
+	{
+
+		translator.addHeaderFile("driver/i2s.h");
+	
+		String Dis="/* Mikrofon I2S "
+				 + "/* ─── Audio-Parameter ─────────────────────────────────────── */\r\n"
+				 + "#define SAMPLE_RATE       16000    // 16 kHz → 1,024 MHz BCLK\r\n"
+				 + "#define DMA_BLOCK_WORDS   64\r\n"
+				 + "#define DMA_BLOCKS        8\r\n"
+				 + "#define SAMPLE_BUF_WORDS  512      // 2 kB-Puffer\r\n"
+				 + "static int32_t raw[SAMPLE_BUF_WORDS];\r\n"
+				 + "\r\n"
+				 + "/* ─── Globale Kalibrier-Parameter ─────────────────────────── */\r\n"
+				 + "static float noiseFloor  = 1.0f;   // mittlerer Max-Wert in Stille\r\n"
+				 + "static float scaleFactor = 1.0f;   // 4095 / noiseFloor\r\n"
+				 + "\r\n"
+				 + "// ─────────────────────────────────────────────────────────────\r\n"
+				 + "//  I²S-Initialisierung\r\n"
+				 + "// ─────────────────────────────────────────────────────────────\r\n"
+				 + "static void i2sInit()\r\n"
+				 + "{\r\n"
+				 + "  const i2s_config_t cfg = {\r\n"
+				 + "    .mode                 = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),\r\n"
+				 + "    .sample_rate          = SAMPLE_RATE,\r\n"
+				 + "    .bits_per_sample      = I2S_BITS_PER_SAMPLE_32BIT,\r\n"
+				 + "    .channel_format       = I2S_CHANNEL_FMT_ONLY_LEFT,\r\n"
+				 + "    .communication_format = I2S_COMM_FORMAT_I2S,\r\n"
+				 + "    .intr_alloc_flags     = ESP_INTR_FLAG_LEVEL1,\r\n"
+				 + "    .dma_buf_count        = DMA_BLOCKS,\r\n"
+				 + "    .dma_buf_len          = DMA_BLOCK_WORDS,\r\n"
+				 + "    .use_apll             = false,\r\n"
+				 + "    .tx_desc_auto_clear   = false,\r\n"
+				 + "    .fixed_mclk           = 0\r\n"
+				 + "  };\r\n"
+				 + "  const i2s_pin_config_t pins = {\r\n"
+				 + "    .mck_io_num   = I2S_PIN_NO_CHANGE,\r\n"
+				 + "    .bck_io_num   = IOTW_GPIO_MIC_BCK,\r\n"
+				 + "    .ws_io_num    = IOTW_GPIO_MIC_WS,\r\n"
+				 + "    .data_out_num = I2S_PIN_NO_CHANGE,\r\n"
+				 + "    .data_in_num  = IOTW_GPIO_MIC_SD\r\n"
+				 + "  };\r\n"
+				 + "  ESP_ERROR_CHECK(i2s_driver_install(I2S_NUM_1, &cfg, 0, nullptr));\r\n"
+				 + "  ESP_ERROR_CHECK(i2s_set_pin       (I2S_NUM_1, &pins));\r\n"
+				 + "  i2s_stop(I2S_NUM_1);\r\n"
+				 + "}\r\n"
+				 + "\r\n";
+	
+	   	translator.addDefinitionCommand(Dis);
+	    	   	
+	    	   	
+		Dis = "static void captureBlock(int32_t* dst, size_t N) {\r\n"
+				+ "  i2s_start(I2S_NUM_1);  \n"
+	   			+ "  size_t need = N * sizeof(int32_t), gotTotal = 0;\r\n"
+	   			+ "  while (gotTotal < need) {\r\n"
+	   			+ "    size_t got = 0;\r\n"
+	   			+ "    i2s_read(I2S_NUM_1, (uint8_t*)dst + gotTotal, need - gotTotal, &got, portMAX_DELAY);\r\n"
+	   			+ "    gotTotal += got;\r\n"
+	   			+ "  }\r\n"
+	   			+ "\r\n"
+	   			+ "  // 24-bit MSB im 32-bit Slot -> um 8 Bit nach rechts\r\n"
+	   			+ "  int64_t acc = 0;\r\n"
+	   			+ "  for (size_t i = 0; i < N; ++i) {\r\n"
+	   			+ "    dst[i] = (dst[i] >> 8);\r\n"
+	   			+ "    acc += dst[i];\r\n"
+	   			+ "  }\r\n"
+	   			+ "  int32_t mean = (int32_t)(acc / (int64_t)N);\r\n"
+	   			+ "  for (size_t i = 0; i < N; ++i) dst[i] -= mean;   // jetzt MUSS es um 0 pendeln\r\n"
+				+ "  i2s_stop(I2S_NUM_1);  \n"
+	   			+ "}";
+	    translator.addDefinitionCommand(Dis);
+	    	   	
+        Dis =     "// Alain de Cheveigné & Hideki Kawahara (2002):\r\n"
+        		+ "// YIN, a fundamental frequency estimator for speech and music.\r\n"
+        		+ "// Journal of the Acoustical Society of America, 111(4), 1917–1930.\n "
+        		+ "// Grundidee: Die Tonhöhe (Grundfrequenz, f₀) eines Signals findet man, \n"
+        		+ "// indem man nach einer zeitlichen Periodizität sucht.\r\n"
+        		+ "// Klassische Methode: Autokorrelation.\r\n"
+        		+ "// YIN ist eine verbesserte Autokorrelationsmethode, die schneller und robuster gegen Obertöne und Rauschen ist.\n"	
+        		+ "// Quelle: CHATGPT 5\n"
+                + "#define PITCH_FS  SAMPLE_RATE   // 16000\r\n"
+                + "#define PITCH_N   2048\r\n"
+                + "#define F_MIN     65.0f\r\n"
+                + "#define F_MAX     1000.0f\r\n"
+                + "\r\n"
+                + "static int32_t ibuf[PITCH_N];\r\n"
+                + "static float   f_hist[3] = {0,0,0};   // für Median-Glättung\r\n"
+                + "static float   f_prev    = 0.0f;      // für Kontinuität\r\n"
+                + "\r\n"
+                + "// Hilfsfunktion: Median von 3\r\n"
+                + "static float med3(float a, float b, float c){\r\n"
+                + "  if (a>b){ float t=a;a=b;b=t; }          // a<=b\r\n"
+                + "  if (b>c){ float t=b;b=c;c=t; }          // b<=c\r\n"
+                + "  if (a>b){ float t=a;a=b;b=t; }          // a<=b<=c\r\n"
+                + "  return b;\r\n"
+                + "}\r\n"
+                + "\r\n"
+                + "static float pitchYIN(float thresh_base = 0.25f) {\r\n"
+                + "  const uint32_t N = PITCH_N;\r\n"
+                + "  const uint32_t tau_min0 = (uint32_t)(PITCH_FS / F_MAX + 0.5f);\r\n"
+                + "  const uint32_t tau_max0 = (uint32_t)(PITCH_FS / F_MIN + 0.5f);\r\n"
+                + "\r\n"
+                + "  // Sicherheitsgrenzen (für Parabel brauchen wir tau±1)\r\n"
+                + "  const uint32_t tau_min = (tau_min0 < 2) ? 2 : tau_min0;\r\n"
+                + "  const uint32_t tau_max = std::min(tau_max0, N - 3);\r\n"
+                + "\r\n"
+                + "  static float d[PITCH_N], cmnd[PITCH_N];\r\n"
+                + "\r\n"
+                + "  // --- 1) Daten holen + schneller RMS/SNR-Check ---\r\n"
+                + "  captureBlock(ibuf, N);\r\n"
+                + "  double e=0.0;\r\n"
+                + "  for (uint32_t i=0;i<N;i++) e += (double)ibuf[i]*ibuf[i];\r\n"
+                + "  float rms = sqrtf((float)(e / N));\r\n"
+                + "  if (rms < 1000.0f) {     // je nach Mikro/Abstand anpassen\r\n"
+                + "    // zu leise → kein Pitch\r\n"
+                + "    f_hist[0]=f_hist[1]; f_hist[1]=f_hist[2]; f_hist[2]=0.0f;\r\n"
+                + "    f_prev = 0.0f;\r\n"
+                + "    return 0.0f;\r\n"
+                + "  }\r\n"
+                + "\r\n"
+                + "  // --- 2) Differenzfunktion d(tau) ---\r\n"
+                + "  for (uint32_t tau = 1; tau <= tau_max; ++tau) {\r\n"
+                + "    double sum = 0.0;\r\n"
+                + "    const uint32_t lim = N - tau;\r\n"
+                + "    for (uint32_t i = 0; i < lim; ++i) {\r\n"
+                + "      int32_t diff = ibuf[i] - ibuf[i + tau];\r\n"
+                + "      sum += (double)diff * (double)diff;\r\n"
+                + "    }\r\n"
+                + "    d[tau] = (float)sum;\r\n"
+                + "  }\r\n"
+                + "\r\n"
+                + "  // --- 3) Kumulative Normalisierung (CMND) ---\r\n"
+                + "  cmnd[0] = 1.0f;\r\n"
+                + "  double run = 0.0;\r\n"
+                + "  for (uint32_t tau = 1; tau <= tau_max; ++tau) {\r\n"
+                + "    run += d[tau];\r\n"
+                + "    cmnd[tau] = (run > 0.0) ? (d[tau] * tau / (float)run) : 1.0f;\r\n"
+                + "  }\r\n"
+                + "\r\n"
+                + "  // --- 4) Adaptiver Schwellwert + Kontinuität ---\r\n"
+                + "  // Wenn es eine Vorperiode gibt: fokussiere Suche auf ±25%\r\n"
+                + "  uint32_t s_lo = tau_min, s_hi = tau_max;\r\n"
+                + "  if (f_prev > 0.0f) {\r\n"
+                + "    float tau_prev = PITCH_FS / f_prev;\r\n"
+                + "    s_lo = (uint32_t)std::max((float)tau_min, tau_prev * 0.75f);\r\n"
+                + "    s_hi = (uint32_t)std::min((float)tau_max, tau_prev * 1.25f);\r\n"
+                + "  }\r\n"
+                + "\r\n"
+                + "  // Erstes lokale Minimum < thresh_dyn im Fokusbereich finden\r\n"
+                + "  float min_cmnd = 1.0f;\r\n"
+                + "  for (uint32_t t = tau_min; t <= tau_max; ++t) if (cmnd[t] < min_cmnd) min_cmnd = cmnd[t];\r\n"
+                + "  float thresh = std::min(thresh_base, std::max(0.10f, min_cmnd + 0.02f));  // leicht adaptiv\r\n"
+                + "\r\n"
+                + "  uint32_t tau_best = 0;\r\n"
+                + "  for (uint32_t tau = s_lo + 1; tau < s_hi; ++tau) {\r\n"
+                + "    if (cmnd[tau] < thresh && cmnd[tau] < cmnd[tau-1]) {\r\n"
+                + "      while (tau + 1 <= s_hi && cmnd[tau+1] < cmnd[tau]) ++tau;\r\n"
+                + "      tau_best = tau; break;\r\n"
+                + "    }\r\n"
+                + "  }\r\n"
+                + "\r\n"
+                + "  // Fallback: globales Minimum, wenn „ordentlich tief“\r\n"
+                + "  if (!tau_best) {\r\n"
+                + "    float bestv = 1e9f; uint32_t bestt = 0;\r\n"
+                + "    for (uint32_t tau = tau_min; tau <= tau_max; ++tau)\r\n"
+                + "      if (cmnd[tau] < bestv) { bestv = cmnd[tau]; bestt = tau; }\r\n"
+                + "    if (bestv < 0.45f) tau_best = bestt; else {\r\n"
+                + "      f_hist[0]=f_hist[1]; f_hist[1]=f_hist[2]; f_hist[2]=0.0f;\r\n"
+                + "      f_prev = 0.0f;\r\n"
+                + "      return 0.0f;\r\n"
+                + "    }\r\n"
+                + "  }\r\n"
+                + "\r\n"
+                + "  // --- 5) Parabolische Subsample-Interpolation ---\r\n"
+                + "  const float x0 = cmnd[tau_best - 1], x1 = cmnd[tau_best], x2 = cmnd[tau_best + 1];\r\n"
+                + "  const float denom = (x0 - 2.0f*x1 + x2);\r\n"
+                + "  const float delta = (fabsf(denom) > 1e-12f) ? 0.5f*(x0 - x2)/denom : 0.0f;\r\n"
+                + "  const float tau_ref = (float)tau_best + delta;\r\n"
+                + "\r\n"
+                + "  float f0 = (tau_ref > 0.0f) ? (PITCH_FS / tau_ref) : 0.0f;\r\n"
+                + "\r\n"
+                + "  // Harmonic-Guard: ganz tiefe Fehl-Halbierungen „verdoppeln“\r\n"
+                + "  if (f0 > 0 && f0 < (F_MIN*0.9f)) f0 *= 2.0f;\r\n"
+                + "\r\n"
+                + "  // --- 6) Glättung + State update ---\r\n"
+                + "  f_hist[0]=f_hist[1]; f_hist[1]=f_hist[2]; f_hist[2]=f0;\r\n"
+                + "  float f_med = med3(f_hist[0], f_hist[1], f_hist[2]);\r\n"
+                + "\r\n"
+                + "  // Kontinuitäts-State nur setzen, wenn gültig\r\n"
+                + "  if (f_med > 0.0f) f_prev = f_med;\r\n"
+                + "\r\n"
+                + "  #if (IOTW_DEBUG_LEVEL >1)\r\n"
+                + "   if (f_med > 0.0f) {\r\n"
+                + "    static const char* names[12]={\"C\",\"C#\",\"D\",\"D#\",\"E\",\"F\",\"F#\",\"G\",\"G#\",\"A\",\"A#\",\"B\"};\r\n"
+                + "    float n = 69.0f + 12.0f * log2f(f0 / 440.0f); // MIDI-Note\r\n"
+                + "    int note = (int)lroundf(n);\r\n"
+                + "    int octave = note / 12 - 1;\r\n"
+                + "    int idx = (note % 12 + 12) % 12;\r\n"
+                + "    float cents = (n - note) * 100.0f;\r\n"
+                + "    Serial.printf(F(\"f0=%.2f Hz  -> %s%d  %+0.1f ct\\n\"), f0, names[idx], octave, cents);\r\n"
+                + "   else\r\n"
+                + "    Serial.println(F(\"Kein stabiler Ton\"));\r\n"
+                + "  #endif\r\n"
+                + "  \r\n"
+                + "  return f_med;\r\n"
+                + "}\n";
+        
+        translator.addDefinitionCommand(Dis);
+	    
+		
+		
+	   	String Setup ="i2sInit();\r\n";
+	    translator.addSetupCommand(Setup);
+		
+	    
+		String ret = "pitchYIN()";
+
+		
+		return codePrefix + ret + codeSuffix;
+		
+	}
+}
+

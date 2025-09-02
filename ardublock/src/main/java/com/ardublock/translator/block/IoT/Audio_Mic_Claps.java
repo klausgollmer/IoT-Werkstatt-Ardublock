@@ -71,8 +71,10 @@ public class Audio_Mic_Claps  extends TranslatorBlock {
 				 + "  ESP_ERROR_CHECK(i2s_set_pin       (I2S_NUM_1, &pins));\r\n"
 				 + "  i2s_stop(I2S_NUM_1);\r\n"
 				 + "}\r\n"
-				 + "\r\n"
-				 + "// ─────────────────────────────────────────────────────────────\r\n"
+				 + "\r\n";
+		translator.addDefinitionCommand(Dis);
+				 
+				 Dis ="// ─────────────────────────────────────────────────────────────\r\n"
 				 + "//  Maximum-Sample eines 32‑ms‑Blocks (Betragswert)\r\n"
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
 				 + "static float captureMax()\r\n"
@@ -90,7 +92,7 @@ public class Audio_Mic_Claps  extends TranslatorBlock {
 				 + "  }\r\n"
 				 + "  return (float)maxVal;\r\n"
 				 + "}\r\n"
-				 + "\r\n"
+				 + "\r\n";
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
 				 + "//  Auto-Kalibrierung (1 s Stille) – ursprüngliche Logik\r\n"
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
@@ -104,7 +106,7 @@ public class Audio_Mic_Claps  extends TranslatorBlock {
 				 + "  if (noiseFloor < 1.0f) noiseFloor = 1.0f;   // Safety\r\n"
 				 + "  scaleFactor = 4095.0f / noiseFloor;\r\n"
 				 + "}\r\n"
-				 + "\r\n"
+				 + "\r\n";
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
 				 + "//  12‑Bit‑Pegel (ursprüngliche Skalierung)\r\n"
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
@@ -116,8 +118,11 @@ public class Audio_Mic_Claps  extends TranslatorBlock {
 				 + "  if (val > 4095)  val = 4095;\r\n"
 				 + "  return (uint16_t)val;\r\n"
 				 + "}\r\n"
-				 + "\r\n"
-				 + "// ─────────────────────────────────────────────────────────────\r\n"
+				 + "\r\n";
+		 translator.addDefinitionCommand(Dis);		 
+				 
+				 
+				 Dis = "// ─────────────────────────────────────────────────────────────\r\n"
 				 + "//  Clap‑Counter mit Mindest‑Pause\r\n"
 				 + "//      pauseSeconds – Stille‑Timeout n (Sekunden)\r\n"
 				 + "//      threshold    – Schwellwert s (0…4095)\r\n"
@@ -200,8 +205,10 @@ public class Audio_Mic_Claps  extends TranslatorBlock {
 		
 		
 		
-	   	String Setup ="i2sInit();\r\n"
-	   			+ "  Serial.println(\"Kalibriere Hintergrund – bitte 1 s Stille …\");\r\n"
+	   	String Setup ="i2sInit();\r\n";
+	   	translator.addSetupCommand(Setup);
+		
+		Setup = "  IOTW_PRINTLN(F(\"Kalibriere Hintergrund – bitte 1 s Stille …\"));\r\n"
 	   			+ "  calibrateSilence();";
 	    translator.addSetupCommand(Setup);
 		

@@ -59,8 +59,11 @@ public class Audio_Mic_Loudness  extends TranslatorBlock {
 				 + "  ESP_ERROR_CHECK(i2s_set_pin       (I2S_NUM_1, &pins));\r\n"
 				 + "  i2s_stop(I2S_NUM_1);\r\n"
 				 + "}\r\n"
-				 + "\r\n"
-				 + "// ─────────────────────────────────────────────────────────────\r\n"
+				 + "\r\n";
+		translator.addDefinitionCommand(Dis);
+		
+				 
+		 Dis ="// ─────────────────────────────────────────────────────────────\r\n"
 				 + "//  Maximum-Sample eines 32‑ms‑Blocks (Betragswert)\r\n"
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
 				 + "static float captureMax()\r\n"
@@ -78,7 +81,7 @@ public class Audio_Mic_Loudness  extends TranslatorBlock {
 				 + "  }\r\n"
 				 + "  return (float)maxVal;\r\n"
 				 + "}\r\n"
-				 + "\r\n"
+				 + "\r\n";
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
 				 + "//  Auto-Kalibrierung (1 s Stille) – ursprüngliche Logik\r\n"
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
@@ -92,7 +95,7 @@ public class Audio_Mic_Loudness  extends TranslatorBlock {
 				 + "  if (noiseFloor < 1.0f) noiseFloor = 1.0f;   // Safety\r\n"
 				 + "  scaleFactor = 4095.0f / noiseFloor;\r\n"
 				 + "}\r\n"
-				 + "\r\n"
+				 + "\r\n";
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
 				 + "//  12‑Bit‑Pegel (ursprüngliche Skalierung)\r\n"
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
@@ -104,93 +107,14 @@ public class Audio_Mic_Loudness  extends TranslatorBlock {
 				 + "  if (val > 4095)  val = 4095;\r\n"
 				 + "  return (uint16_t)val;\r\n"
 				 + "}\r\n"
-				 + "\r\n"
-				 + "// ─────────────────────────────────────────────────────────────\r\n"
-				 + "//  Clap‑Counter mit Mindest‑Pause\r\n"
-				 + "//      pauseSeconds – Stille‑Timeout n (Sekunden)\r\n"
-				 + "//      threshold    – Schwellwert s (0…4095)\r\n"
-				 + "//      minPause     – Mindest­abstand zwischen Klatschern (Sekunden)\r\n"
-				 + "// ─────────────────────────────────────────────────────────────\r\n"
-				 + "// ─────────────────────────────────────────────────────────────\r\n"
-				 + "//  Clap‑Counter 2.0 – erkennt echte Klatscher (Impuls + ZCR)\r\n"
-				 + "//      pauseSeconds – Stille‑Timeout n (Sekunden)\r\n"
-				 + "//      threshold    – Pegel-Schwelle s (0…4095) zum Vorfiltern\r\n"
-				 + "//      minPause     – Mindest­abstand zwischen Klatschern (Sekunden)\r\n"
-				 + "//\r\n"
-				 + "//  ▸ Schritte pro 32‑ms‑Block\r\n"
-				 + "//      1. Pegel ≥ threshold? → Kandidat\r\n"
-				 + "//      2. Impulsbreite (Peak → <25 %) < 30 ms?\r\n"
-				 + "//      3. Zero‑Crossing‑Rate > 0.15 ?\r\n"
-				 + "//     ⇒ erst dann als Klatscher zählen.\r\n"
-				 + "// ─────────────────────────────────────────────────────────────\r\n"
-				 + "static uint16_t countClaps(float pauseSeconds, uint16_t threshold, float minPause = 0.1f)\r\n"
-				 + "{\r\n"
-				 + "  const float blockDur = 0.032f;                         // 32 ms pro Block\r\n"
-				 + "  const uint32_t silenceTarget  = (uint32_t)(pauseSeconds / blockDur + 0.5f);\r\n"
-				 + "  const uint32_t minPauseBlocks = (uint32_t)(minPause    / blockDur + 0.5f) ?: 1;\r\n"
-				 + "\r\n"
-				 + "  uint32_t silenceCnt = 0;   // Dauer der aktuellen Stille (in Blöcken)\r\n"
-				 + "  uint32_t pauseCnt   = 0;   // Sperrzeit nach einem Klatscher\r\n"
-				 + "  uint16_t claps      = 0;\r\n"
-				 + "\r\n"
-				 + "  Serial.printf(\"Warte auf Klatschen (thr=%u, timeout=%.1fs, minPause=%.2fs\\n\",threshold, pauseSeconds, minPause);\r\n"
-				 + "\r\n"
-				 + "  while (silenceCnt < silenceTarget) {\r\n"
-				 + "    /* 1. Block einlesen & Peak-Pegel bestimmen */\r\n"
-				 + "    size_t bytes_read;\r\n"
-				 + "    i2s_start(I2S_NUM_1);\r\n"
-				 + "    i2s_read(I2S_NUM_1, raw, sizeof(raw), &bytes_read, portMAX_DELAY);\r\n"
-				 + "    i2s_stop(I2S_NUM_1);\r\n"
-				 + "\r\n"
-				 + "    uint32_t samples = bytes_read / sizeof(int32_t);\r\n"
-				 + "    int32_t peak = 0; int peakPos = 0;\r\n"
-				 + "    for (uint32_t i = 0; i < samples; ++i) {\r\n"
-				 + "      int32_t v = abs(raw[i]);\r\n"
-				 + "      if (v > peak) { peak = v; peakPos = i; }\r\n"
-				 + "    }\r\n"
-				 + "    uint16_t lvl = (uint16_t)((peak - noiseFloor) * scaleFactor + 0.5f);\r\n"
-				 + "\r\n"
-				 + "    /* 2. Sperrzeit herunterzählen */\r\n"
-				 + "    if (pauseCnt) --pauseCnt;\r\n"
-				 + "\r\n"
-				 + "    bool isClap = false;\r\n"
-				 + "    if (lvl >= threshold && pauseCnt == 0) {\r\n"
-				 + "      /* 2a. Impulsbreite: Zeit bis <25 % Peak */\r\n"
-				 + "      int decay = 0;\r\n"
-				 + "      for (uint32_t i = peakPos; i < samples; ++i) {\r\n"
-				 + "        if (abs(raw[i]) < peak / 4) { decay = i - peakPos; break; }\r\n"
-				 + "      }\r\n"
-				 + "      float decayMs = (float)decay / SAMPLE_RATE * 1000.0f;\r\n"
-				 + "\r\n"
-				 + "      /* 2b. Zero‑Crossing‑Rate innerhalb des Blocks */\r\n"
-				 + "      int zc = 0;\r\n"
-				 + "      for (uint32_t i = 1; i < samples; ++i)\r\n"
-				 + "        if ( (raw[i] ^ raw[i-1]) < 0 ) ++zc;\r\n"
-				 + "      float zcr = (float)zc / (float)samples;\r\n"
-				 + "\r\n"
-				 + "      if (decayMs < 30.0f && zcr > 0.10f) isClap = true;\r\n"
-				 + "    }\r\n"
-				 + "\r\n"
-				 + "    if (isClap) {\r\n"
-				 + "      ++claps;\r\n"
-				 + "      silenceCnt = 0;\r\n"
-				 + "      pauseCnt   = minPauseBlocks;\r\n"
-				 + "      Serial.printf(\"Klatscher #%u erkannt (lvl=%u)\\n\", claps, lvl);\r\n"
-				 + "    } else {\r\n"
-				 + "      ++silenceCnt;\r\n"
-				 + "    }\r\n"
-				 + "  }\r\n"
-				 + "  return claps;\r\n"
-				 + "}";
-	   	translator.addDefinitionCommand(Dis);
-	    	   	
-	    	   	
+				 + "\r\n";
+	    translator.addDefinitionCommand(Dis);		 
+	  
 	   
+	   	String Setup ="i2sInit();\r\n";
+	   	translator.addSetupCommand(Setup);
 		
-		
-		
-	   	String Setup ="i2sInit();\r\n"
-	   			+ "  Serial.println(\"Kalibriere Hintergrund – bitte 1 s Stille …\");\r\n"
+	   	Setup = "  IOTW_PRINTLN(F(\"Kalibriere Hintergrund – bitte 1 s Stille …\"));\r\n"
 	   			+ "  calibrateSilence();";
 	    translator.addSetupCommand(Setup);
 		

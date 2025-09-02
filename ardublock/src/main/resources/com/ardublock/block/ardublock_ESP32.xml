@@ -6117,6 +6117,14 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+		<BlockGenus name="MIC_YIN" kind="data" color="44 165 226"
+			initlabel="bg.MIC_YIN" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+ 			   <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+			</BlockConnectors>
+		</BlockGenus>
+		
 		
 		
 	    <BlockGenus name="MIC_Claps" kind="data" color="44 165 226"
@@ -7202,6 +7210,8 @@
 				<BlockGenusMember>Divider_Sound</BlockGenusMember>
 				<BlockGenusMember>MIC_Loudness</BlockGenusMember>
 				<BlockGenusMember>MIC_Claps</BlockGenusMember>
+				<BlockGenusMember>MIC_YIN</BlockGenusMember>
+				
 				<BlockGenusMember>MIC_Fourier</BlockGenusMember>
 				<BlockGenusMember>Divider_Encoder</BlockGenusMember>
 				<BlockGenusMember>button_press</BlockGenusMember>
