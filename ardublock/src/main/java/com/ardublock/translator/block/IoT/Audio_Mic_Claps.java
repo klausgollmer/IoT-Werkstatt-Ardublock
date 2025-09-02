@@ -92,7 +92,7 @@ public class Audio_Mic_Claps  extends TranslatorBlock {
 				 + "  }\r\n"
 				 + "  return (float)maxVal;\r\n"
 				 + "}\r\n"
-				 + "\r\n";
+				 + "\r\n"
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
 				 + "//  Auto-Kalibrierung (1 s Stille) – ursprüngliche Logik\r\n"
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
@@ -106,7 +106,7 @@ public class Audio_Mic_Claps  extends TranslatorBlock {
 				 + "  if (noiseFloor < 1.0f) noiseFloor = 1.0f;   // Safety\r\n"
 				 + "  scaleFactor = 4095.0f / noiseFloor;\r\n"
 				 + "}\r\n"
-				 + "\r\n";
+				 + "\n"
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
 				 + "//  12‑Bit‑Pegel (ursprüngliche Skalierung)\r\n"
 				 + "// ─────────────────────────────────────────────────────────────\r\n"
@@ -150,7 +150,7 @@ public class Audio_Mic_Claps  extends TranslatorBlock {
 				 + "  uint32_t pauseCnt   = 0;   // Sperrzeit nach einem Klatscher\r\n"
 				 + "  uint16_t claps      = 0;\r\n"
 				 + "\r\n"
-				 + "  Serial.printf(\"Warte auf Klatschen (thr=%u, timeout=%.1fs, minPause=%.2fs\\n\",threshold, pauseSeconds, minPause);\r\n"
+				 + "  Serial.printf(\"Warte auf Klatschen (thr=%u, timeout=%.1fs, minPause=%.2fs)\\n\",threshold, pauseSeconds, minPause);\r\n"
 				 + "\r\n"
 				 + "  while (silenceCnt < silenceTarget) {\r\n"
 				 + "    /* 1. Block einlesen & Peak-Pegel bestimmen */\r\n"
@@ -208,7 +208,7 @@ public class Audio_Mic_Claps  extends TranslatorBlock {
 	   	String Setup ="i2sInit();\r\n";
 	   	translator.addSetupCommand(Setup);
 		
-		Setup = "  IOTW_PRINTLN(F(\"Kalibriere Hintergrund – bitte 1 s Stille …\"));\r\n"
+		Setup = "  IOTW_PRINTLN(F(\"\nKalibriere Hintergrund – bitte 1 s Stille …\"));\r\n"
 	   			+ "  calibrateSilence();";
 	    translator.addSetupCommand(Setup);
 		

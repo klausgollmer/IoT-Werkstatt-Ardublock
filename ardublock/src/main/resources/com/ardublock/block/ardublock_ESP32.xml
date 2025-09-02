@@ -1487,6 +1487,28 @@
 			  </BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+		
+        <BlockGenus name="button_rot_minmax2" kind="command" color="44 165 226"
+			initlabel="bg.button_rot_minmax2">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+			<BlockConnector connector-type="number"
+					connector-kind="socket" label="start">
+					<DefaultArg genus-name="number" label="0" />
+			 </BlockConnector>
+			 <BlockConnector connector-type="number"
+					connector-kind="socket" label="min">
+					<DefaultArg genus-name="number" label="-100" />
+			  </BlockConnector>
+			  <BlockConnector connector-type="number"
+					connector-kind="socket" label="max">
+					<DefaultArg genus-name="number" label="100" />
+			  </BlockConnector>
+			  
+			</BlockConnectors>
+		</BlockGenus>
+
 
 
 	    <BlockGenus name="touch_rot_minmax" kind="command" color="44 165 226"
@@ -6114,6 +6136,10 @@
  			     <BlockConnector label="freq" connector-type="number" connector-kind="socket" position-type="single">
                     <DefaultArg genus-name="number" label="200"/>	
                 </BlockConnector>
+                
+                <BlockConnector label="delta" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="20"/>	
+                </BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
 		
@@ -7211,12 +7237,11 @@
 				<BlockGenusMember>MIC_Loudness</BlockGenusMember>
 				<BlockGenusMember>MIC_Claps</BlockGenusMember>
 				<BlockGenusMember>MIC_YIN</BlockGenusMember>
-				
 				<BlockGenusMember>MIC_Fourier</BlockGenusMember>
 				<BlockGenusMember>Divider_Encoder</BlockGenusMember>
 				<BlockGenusMember>button_press</BlockGenusMember>
 				<BlockGenusMember>button_rot</BlockGenusMember>
-			    <BlockGenusMember>button_rot_minmax</BlockGenusMember>
+			    <BlockGenusMember>button_rot_minmax2</BlockGenusMember>
 			    <!-- 	
 			    <BlockGenusMember>touch_rot</BlockGenusMember>	
   		        <BlockGenusMember>touch_press</BlockGenusMember>	
@@ -7397,8 +7422,10 @@
 
            <BlockDrawer button-color="37 79 140" name="bd.Audio"
 				type="factory">
-			  <BlockGenusMember>MIC_Loudness</BlockGenusMember>
-			  <BlockGenusMember>MIC_Claps</BlockGenusMember>
+				<BlockGenusMember>MIC_Loudness</BlockGenusMember>
+				<BlockGenusMember>MIC_Claps</BlockGenusMember>
+				<BlockGenusMember>MIC_YIN</BlockGenusMember>
+				<BlockGenusMember>MIC_Fourier</BlockGenusMember>
 			  <BlockGenusMember>BuzzerSong</BlockGenusMember>
 			  <BlockGenusMember>BuzzerTone</BlockGenusMember>
 			  <BlockGenusMember>SAM_Conf</BlockGenusMember>

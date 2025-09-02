@@ -1480,6 +1480,28 @@
 			  </BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+		
+		 <BlockGenus name="button_rot_minmax2" kind="command" color="44 165 226"
+			initlabel="bg.button_rot_minmax2">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+			  <BlockConnector connector-type="number"
+					connector-kind="socket" label="min">
+					<DefaultArg genus-name="number" label="-100" />
+			  </BlockConnector>
+			  <BlockConnector connector-type="number"
+					connector-kind="socket" label="max">
+					<DefaultArg genus-name="number" label="100" />
+			  </BlockConnector>
+			  <BlockConnector connector-type="number"
+					connector-kind="socket" label="start">
+					<DefaultArg genus-name="number" label="0" />
+			  </BlockConnector>
+			  
+			</BlockConnectors>
+		</BlockGenus>
+		
 
 
 	    <BlockGenus name="touch_rot_minmax" kind="command" color="44 165 226"
@@ -6081,7 +6103,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
-		  <BlockGenus name="MIC_Fourier" kind="data" color="44 165 226"
+		<BlockGenus name="MIC_Fourier" kind="data" color="44 165 226"
 			initlabel="bg.MIC_Fourier" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -6090,9 +6112,21 @@
  			     <BlockConnector label="freq" connector-type="number" connector-kind="socket" position-type="single">
                     <DefaultArg genus-name="number" label="200"/>	
                 </BlockConnector>
+                
+                <BlockConnector label="delta" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="20"/>	
+                </BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
 		
+		<BlockGenus name="MIC_YIN" kind="data" color="44 165 226"
+			initlabel="bg.MIC_YIN" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+ 			   <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+			</BlockConnectors>
+		</BlockGenus>
+	
 		
 	    <BlockGenus name="MIC_Claps" kind="data" color="44 165 226"
 			initlabel="bg.MIC_Claps" editable-label="no" is-label-value="no">
