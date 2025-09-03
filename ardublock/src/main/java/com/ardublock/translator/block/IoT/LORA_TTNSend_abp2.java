@@ -103,7 +103,17 @@ public class LORA_TTNSend_abp2  extends TranslatorBlock {
 	    if (SF > 0 ) {
 	       ADR_CMD = "  LMIC_setAdrMode(0); \n LMIC_setDrTxpow(DR_SF"+(SF+6)+", 14);\n"; 	
 	    } else {
-		   ADR_CMD = "  LMIC_setAdrMode(1); \n LMIC_setDrTxpow(DR_SF7, 14); \n"; 	
+	 	   ADR_CMD = "  LMIC_setAdrMode(1); \n"
+				   + "  #if defined(CFG_LMIC_EU_like)\r\n"
+				   + "  for (uint8_t ch = 0; ch < MAX_CHANNELS; ch++) {\r\n"
+				   + "   if (LMIC.channelFreq[ch]) {\r\n"
+				   + "       LMIC_setupChannel(ch,\r\n"
+				   + "       LMIC.channelFreq[ch],\r\n"
+				   + "       DR_RANGE_MAP(DR_SF7, DR_SF10),   // erlaubt: DR5..DR2 = SF7..SF10\r\n"
+				   + "       BAND_CENTI);\r\n"
+				   + "    }\r\n"
+				   + "  }\r\n"
+				   + "  #endif \n";
 	    } 
 	
 	    
