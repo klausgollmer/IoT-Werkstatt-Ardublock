@@ -5635,7 +5635,7 @@
 				
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Tx SF">
-					<DefaultArg genus-name="TTN_SF_Auto" label="Auto (ADR on)" />
+					<DefaultArg genus-name="TTN_SF_Auto" label="Auto (ADR on, max SF10)" />
 				</BlockConnector>
 				
 				
