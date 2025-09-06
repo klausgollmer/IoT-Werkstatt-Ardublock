@@ -57,7 +57,7 @@ public class LORA_TTTNSend_ota2  extends TranslatorBlock {
 						
 			
 			
-			String deveui,appeui,appkey,ret,wert,SFtxt,ADR_CMD;
+			String deveui,appeui,appkey,ret,wert,SFtxt,ADR_CMD,SF_BND_CMD="";
 			
 			TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 		    deveui = translatorBlock.toCode();
@@ -85,11 +85,14 @@ public class LORA_TTTNSend_ota2  extends TranslatorBlock {
 					   + "   if (LMIC.channelFreq[ch]) {\r\n"
 					   + "       LMIC_setupChannel(ch,\r\n"
 					   + "       LMIC.channelFreq[ch],\r\n"
-					   + "       DR_RANGE_MAP(DR_SF10, DR_SF7),   // erlaubt: DR5..DR2 = SF7..SF10\r\n"
+					   + "       DR_RANGE_MAP(DR_SF10, DR_SF7),   // erlaubt: DR5..DR2 = SF7..SF10, wird von ADR aber scheinbar überschieben\r\n"
 					   + "       BAND_CENTI);\r\n"
 					   + "    }\r\n"
 					   + "  }\r\n"
 					   + "  #endif \n";
+			   SF_BND_CMD = "if (LMIC.datarate < DR_SF10) { // clamp SF10\r\n"
+			   		+ "        LMIC.datarate = DR_SF10;\r\n"
+			   		+      "}";
 		    } 
 		    
 		    String Hex, ascii;
@@ -187,8 +190,10 @@ public class LORA_TTTNSend_ota2  extends TranslatorBlock {
 			 + "  ostime_t now = os_getTime();\r\n"
 			 + "\r\n"
 			 + "  // --- Downlink-Info ---\r\n"
-			 + "  if (LMIC.txrxFlags & TXRX_DNW1) Serial.println(F(\"Downlink in RX1\"));\r\n"
-			 + "  if (LMIC.txrxFlags & TXRX_DNW2) Serial.println(F(\"Downlink in RX2\"));\r\n"
+			 + "  if (LMIC.dataLen) {  // nur wenn wirklich Daten empfangen wurden\r\n"
+			 + "    if (LMIC.txrxFlags & TXRX_DNW1) Serial.println(F(\"Downlink in RX1 (Daten!)\"));\r\n"
+			 + "    if (LMIC.txrxFlags & TXRX_DNW2) Serial.println(F(\"Downlink in RX2 (Daten!)\"));\r\n"
+			 + "  }"
 			 + "\r\n"
 			 + "  Serial.print(F(\"RX2 DR = \"));\r\n"
 			 + "  Serial.print(LMIC.dn2Dr);\r\n"
@@ -332,7 +337,7 @@ public class LORA_TTTNSend_ota2  extends TranslatorBlock {
 		        + "          IOTW_PRINT(F(\"ms to next tx-slot: \"));\r\n"
 		        + "          IOTW_PRINTLN(app_ms_until_next_tx());\r\n"
 		        + "        #endif            \r\n"
-		        +" #ifdef IOTW_LORA_DEEPSLEEP \n"
+		        +" #if defined(ESP32) && defined(IOTW_LORA_DEEPSLEEP) \n"
 		        + "        IOTW_PRINTLN(F(\"deepsleep 120 s \"));\r\n"
 		        + "        SaveLMICToRTC_ESP32(IOTW_LMIC_JOIN_TOUT/1000);\r\n"
 		        + "        esp_sleep_enable_timer_wakeup(IOTW_LMIC_JOIN_TOUT * 1000ULL);\r\n"
@@ -370,9 +375,8 @@ public class LORA_TTTNSend_ota2  extends TranslatorBlock {
 		        + "      IOTW_PRINT(F(\"Join FailCount = \"));\r\n"
 		        + "      IOTW_PRINTLN(LMIC_JoinFailCount);\r\n"
 				        + "      if (LMIC_JoinFailCount >= IOTW_LMIC_JOIN_MAXFAIL) {\r\n"
-		        + "        #ifdef ESP32 \r\n"
+		        + "        #if defined(ESP32) && defined(IOTW_LORA_DEEPSLEEP) \r\n"
 		        + "           //------- deep SLEEP ----------------------------\r\n"
-		        +             "#if defined(IOTW_LORA_DEEPSLEEP)\r\n"
 		        + "              IOTW_PRINTLN(F(\"No Gateway, go 1 h sleep \"));\r\n"
 		        + "              SaveLMICToRTC_ESP32(3600);\r\n"
 		        + "              Serial.flush();\r\n"
@@ -383,14 +387,13 @@ public class LORA_TTTNSend_ota2  extends TranslatorBlock {
 		        + "              rtc_gpio_pulldown_dis(GPIO_NUM_2);\r\n"
 		        + "              esp_sleep_enable_timer_wakeup(60*60000 * 1000ULL);\r\n"
 		        + "              esp_deep_sleep_start();\r\n"
-		        + "            #endif \n"
 		        + "         #endif \n"
 		        + "      }\r\n"
 		        + "    } else {"
 		        + "      LMIC_JoinFailCount=0;\r\n"
-		        + "      // erste TX nach Join mit SF10, kann durch ADR runtergestuft werden \n"
+		        +        SF_BND_CMD
 		        + "      if (!LMIC_postJoinConfigured) {    //  Session vorhanden\r\n"
-			    + "         LMIC_setLinkCheckMode(0);\r\n"
+			    + "         LMIC_setLinkCheckMode(1);\r\n"
 		        +           ADR_CMD
 		        + "         LMIC_postJoinConfigured = true;\r\n"
 		        + "      } \n"
