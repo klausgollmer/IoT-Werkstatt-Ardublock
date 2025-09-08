@@ -39,7 +39,7 @@ public class LORA_TTTNSend_ota2  extends TranslatorBlock {
 			+ "RTC_DATA_ATTR uint8_t LMIC_JoinFailCount = 0;\r\n"
 			+ "#else\r\n"
 			+ "bool LMIC_postJoinConfigured = false;\r\n"
-			+ "bool uint8_t LMIC_JoinFailCount = 0;\r\n"
+			+ "uint8_t LMIC_JoinFailCount = 0;\r\n"
 			+ "#endif\r\n";
 	translator.addDefinitionCommand(PostJoin);
 		

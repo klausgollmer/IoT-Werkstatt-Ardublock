@@ -86,26 +86,11 @@ public class System8266_SleepBlockDeep  extends TranslatorBlock {
 		//String on = "t"+wake.charAt(0);
 		
 		
-		if (translator.isLORAProgram()) {
-			translator.addHeaderFile("#define IOTW_LORA_DEEPSLEEP");
-			ret = "if (os_queryTimeCriticalJobs(ms2osticks("+Delay_ms+"))) { \n" + 
-				  "    IOTW_PRINTLN(\"busywaiting for criticalJobs\");\n" + 
-				  "    while (os_queryTimeCriticalJobs(ms2osticks("+Delay_ms+"))) { \n" + 
-				  "     yield();  \n" + 
-				  "     os_runloop_once();\n" + 
-				  "    }\n" + 
-				  "  }\n";
-			
-			if (translator.isRTCVarProgram()) {
- 			    ret += "SaveLMICToRTC_ESP8266("+Delay_ms+"/1000); // Save LMIC-State \n ";
-		    } else {
- 			    ret += "SaveLMICToRTC_ESP8266("+Delay_ms+"/1000); // Save LMIC-State \n ";
-		    }
-		}
-		
-			
-			
-		
+	    ret =  "// -------------- deepsleep \n"
+			+  "IOTW_PRINT(F(\"deepsleep \"));IOTW_PRINTLN("+Delay_ms+");IOTW_PRINTLN(\" ms\");\n"
+	    	+  "#if defined(IOTW_LORA_DEEPSLEEP)\n"
+			+  "  SaveLMICToRTC_ESP8266("+Delay_ms+"/1000);\n"
+			+  "#endif\n";
 		if (wake.charAt(0)=='H') {
 		   ret += "\tESP.deepSleep( ";
 		   ret = ret + "(long)"+Delay_ms+"*1000UL";

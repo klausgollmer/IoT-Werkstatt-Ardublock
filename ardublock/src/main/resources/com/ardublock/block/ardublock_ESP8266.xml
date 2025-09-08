@@ -7527,7 +7527,10 @@
 				type="factory">
 			  <BlockGenusMember>Divider_ESP8266</BlockGenusMember>
 		      <BlockGenusMember>modemSleep</BlockGenusMember>	
-			  <BlockGenusMember>LightSleep</BlockGenusMember>
+			  <!-- 
+		      <BlockGenusMember>LightSleep</BlockGenusMember>
+		      -->
+		      
 			  <BlockGenusMember>sleep</BlockGenusMember>
      	      <BlockGenusMember>readReset</BlockGenusMember>
 		      <BlockGenusMember>readVCC</BlockGenusMember>
@@ -7543,6 +7546,7 @@
 			  <BlockGenusMember>Divider</BlockGenusMember>
 			  <BlockGenusMember>timerAttach</BlockGenusMember>
 			  <BlockGenusMember>timerDetach</BlockGenusMember>
+		      <!-- 
 		      <BlockGenusMember>Divider_RTC</BlockGenusMember>
 			  <BlockGenusMember>setRTCVarNum</BlockGenusMember>
 		      <BlockGenusMember>readRTCVarNum</BlockGenusMember>
@@ -7551,6 +7555,7 @@
 		      <BlockGenusMember>RTCtoEEPROM</BlockGenusMember>
 		      <BlockGenusMember>RTCfromEEPROM</BlockGenusMember>
  		      <BlockGenusMember>RTCCheck</BlockGenusMember>
+ 		      -->
 			</BlockDrawer>
 
  		</BlockDrawerSet>
