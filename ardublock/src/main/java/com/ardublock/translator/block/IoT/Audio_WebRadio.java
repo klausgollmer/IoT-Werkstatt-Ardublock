@@ -19,7 +19,10 @@ public class Audio_WebRadio  extends TranslatorBlock {
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 		String mp3 = translatorBlock.toCode();
 		
-		
+		String gain;
+		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
+		gain = translatorBlock.toCode();
+
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
 		
 		translator.addHeaderFile("AudioFileSourceICYStream.h");
@@ -36,12 +39,12 @@ public class Audio_WebRadio  extends TranslatorBlock {
 	   	String Def="AudioOutputI2S *DAC_out = NULL;\r\n";
 		translator.addDefinitionCommand(Def);
 	
-	   	Def="AudioGeneratorMP3 *mp3;\r\n"
-	   	  + "AudioFileSourceICYStream *file;\r\n"
-	   	  + "AudioFileSourceBuffer *buff;\n"
-	   	  + "boolean WebRadioInit = false;\n";
-		translator.addDefinitionCommand(Def);
-
+	 	Def="AudioGeneratorMP3 *mp3;\r\n"
+	 		   	  + "AudioFileSourceICYStream *file;\r\n"
+	 		   	  + "AudioFileSourceBuffer *buff;\n"
+	 		   	  + "boolean WebRadioInit = false;\n"
+	 		   	  + "String WebRadioStreamTitle=\"\";\n";
+	 			translator.addDefinitionCommand(Def);
 		
 		String Helper = "// Called when a metadata event occurs (i.e. an ID3 tag, an ICY block, etc.\r\n"
 				+ "void MDCallback(void *cbData, const char *type, bool isUnicode, const char *string)\r\n"
@@ -54,8 +57,9 @@ public class Audio_WebRadio  extends TranslatorBlock {
 				+ "  s1[sizeof(s1)-1]=0;\r\n"
 				+ "  strncpy_P(s2, string, sizeof(s2));\r\n"
 				+ "  s2[sizeof(s2)-1]=0;\r\n"
-				+ "  Serial.printf(\"METADATA(%s) '%s' = '%s'\\n\", ptr, s1, s2);\r\n"
-				+ "  Serial.flush();\r\n"
+				+ "  //Serial.printf(\"METADATA(%s) '%s' = '%s'\\n\", ptr, s1, s2);\r\n"
+				+ "  WebRadioStreamTitle=s2;\n"
+				+ "  //Serial.flush();\r\n"
 				+ "}\r\n"
 				+ "\r\n"
 				+ "// Called when there's a warning or error (like a buffer underflow or decode hiccup)\r\n"
@@ -85,7 +89,18 @@ public class Audio_WebRadio  extends TranslatorBlock {
 		String ret = " static int lastms = 0;\r\n"
 				+ "\r\n"
 				
-				+"   if (!WebRadioInit) {\r\n"
+				+ "   if (!WebRadioInit) {\r\n"
+				+ "      if (WiFi.status() != WL_CONNECTED) {\r\n"
+				+ "      Serial.println(\"❌ Kein WLAN! Webradio wird nicht gestartet.\");\r\n"
+				+ "      // Optional: WLAN-Reconnect versuchen\r\n"
+				+ "      WiFi.reconnect();\r\n"
+				+ "      delay(2000);\r\n"
+				+ "    // Wenn immer noch kein WLAN → Schleife beenden\r\n"
+				+ "      if (WiFi.status() != WL_CONNECTED) {\r\n"
+				+ "       Serial.println(\"⏸️ Warten auf WLAN-Verbindung...\");\r\n"
+				+ "       return; // ⛔ Hier wird abgebrochen, keine Nullpointer mehr!\r\n"
+				+ "      }\r\n"
+				+ "    }"
 				+ "    WebRadioInit = true;\r\n"
 				+ "    esp_wifi_set_ps(WIFI_PS_NONE);\r\n"
 				+ "    WiFi.setSleep(false);          //no sleep, reduce dropout\n"
@@ -101,11 +116,12 @@ public class Audio_WebRadio  extends TranslatorBlock {
 				+ "  }\r\n"
 				
 				+ "  if (mp3->isRunning()) {\r\n"
-				+ "    if (millis()-lastms > 1000) {\r\n"
-				+ "      lastms = millis();\r\n"
-				+ "      Serial.printf(\"Running for %d ms...\\n\", lastms);\r\n"
-				+ "      Serial.flush();\r\n"
-				+ "     }\r\n"
+				+ "    if (DAC_out) DAC_out->SetGain("+gain+"/10.);\n"
+				+ "    // if (millis()-lastms > 1000) {\r\n"
+				+ "    //  lastms = millis();\r\n"
+				+ "    //  Serial.printf(\"Running for %d ms...\\n\", lastms);\r\n"
+				+ "    //  Serial.flush();\r\n"
+				+ "    //  }\r\n"
 				+ "    if (!mp3->loop()) mp3->stop();\r\n"
 				+ "  } else {\r\n"
 				+ "    Serial.printf(\"MP3 restart\\n\");\r\n"

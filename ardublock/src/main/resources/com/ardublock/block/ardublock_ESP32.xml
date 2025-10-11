@@ -1881,7 +1881,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="size">
-					<DefaultArg genus-name="OLED_FontSize12" label="9pt"/>
+					<DefaultArg genus-name="OLED_FontSize9" label="9pt"/>
 				</BlockConnector>
 				</BlockConnectors>
 		</BlockGenus>
@@ -6004,8 +6004,23 @@
 					connector-kind="socket" label="play">
 					<DefaultArg genus-name="message" label="http://dispatcher.rndfnk.com/br/br1/obb/mp3/low" />
 				</BlockConnector>
-			</BlockConnectors>
+			
+			<BlockConnector connector-type="number"
+				connector-kind="socket" label="gain">
+				<DefaultArg genus-name="number" label="50" />
+			</BlockConnector>
+	
+			</BlockConnectors>		
 		</BlockGenus>
+
+      <BlockGenus name="WebRadioStreamTitle" kind="data" color="74 108 212"
+			initlabel="bg.WebRadioStreamTitle" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+		    <BlockConnectors>
+			   <BlockConnector connector-type="string" connector-kind="plug" />
+			</BlockConnectors>
+	  </BlockGenus>
+
 
 
         <BlockGenus name="SAM_Say" kind="command" color="74 108 212"
@@ -7231,8 +7246,8 @@
 		
 				<BlockGenusMember>GetBME680offset</BlockGenusMember>
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
-				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
-				<BlockGenusMember>ADPS9960Cal</BlockGenusMember>
+				<BlockGenusMember>ADPS9999Get</BlockGenusMember>
+				<BlockGenusMember>ADPS9999Cal</BlockGenusMember>
 				<BlockGenusMember>Divider_Sound</BlockGenusMember>
 				<BlockGenusMember>MIC_Loudness</BlockGenusMember>
 				<BlockGenusMember>MIC_Claps</BlockGenusMember>
@@ -7431,6 +7446,7 @@
 			  <BlockGenusMember>SAM_Conf</BlockGenusMember>
 			  <BlockGenusMember>SAM_Say</BlockGenusMember>
 			  <BlockGenusMember>WebRadio</BlockGenusMember>
+			  <BlockGenusMember>WebRadioStreamTitle</BlockGenusMember>
 			</BlockDrawer>			
 
 

@@ -5967,17 +5967,32 @@
 		
 		
 		<!-- Audio, BT -->		
-		 <BlockGenus name="WebRadio" kind="command" color="74 108 212"
+	      <BlockGenus name="WebRadio" kind="command" color="74 108 212"
 			initlabel="bg.WebRadio" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="play">
-					<DefaultArg genus-name="message" label="http://dispatcher.rndfnk.com/br/br1/obb/mp3/low"/>
+					<DefaultArg genus-name="message" label="http://dispatcher.rndfnk.com/br/br1/obb/mp3/low" />
 				</BlockConnector>
-			</BlockConnectors>
+			
+			<BlockConnector connector-type="number"
+				connector-kind="socket" label="gain">
+				<DefaultArg genus-name="number" label="50" />
+			</BlockConnector>
+	
+			</BlockConnectors>		
 		</BlockGenus>
+
+      <BlockGenus name="WebRadioStreamTitle" kind="data" color="74 108 212"
+			initlabel="bg.WebRadioStreamTitle" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+		    <BlockConnectors>
+			   <BlockConnector connector-type="string" connector-kind="plug" />
+			</BlockConnectors>
+	  </BlockGenus>
+	
 		
 		
 		

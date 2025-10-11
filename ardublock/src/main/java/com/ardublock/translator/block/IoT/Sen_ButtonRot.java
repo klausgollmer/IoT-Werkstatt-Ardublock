@@ -61,14 +61,16 @@ public class Sen_ButtonRot extends TranslatorBlock
         translator.addDefinitionCommand(EncDef);
 
 
-		EncDef = "// Helper rotary encoder\n"
+        EncDef = "// Helper rotary encoder\n"
 		        + "#if defined(ESP8266) \n"
 				+ "Encoder button_encoder(IOTW_GPIO_ROTARY_B,IOTW_GPIO_ROTARY_A);\n"
 			    + "#elif defined(ESP32) \n"
 			    +  "ESP32Encoder button_encoder; \n"
 			    + "#endif\n"
-				+ " \n"
-				+ "int encoderRead() {\r\n"
+				+ " \n";
+        translator.addDefinitionCommand(EncDef);        
+
+		EncDef = "int encoderRead() {\r\n"
 				+ "  int wert = 0;\r\n"
 				+ "#if defined(ESP8266) \r\n"
 				+ "  wert = button_encoder.read();\r\n"

@@ -35,13 +35,20 @@ public class Sen_ButtonRotMinMax2 extends TranslatorBlock
 			      + "int encoder_counter_rot_max = 100;\n"
 			      + "";
 	     translator.addDefinitionCommand(EncDef);
-   	     translator.addDefinitionCommand(EncDef);
+	     EncDef = "// Helper rotary encoder\n"
+			        + "#if defined(ESP8266) \n"
+					+ "Encoder button_encoder(IOTW_GPIO_ROTARY_B,IOTW_GPIO_ROTARY_A);\n"
+				    + "#elif defined(ESP32) \n"
+				    +  "ESP32Encoder button_encoder; \n"
+				    + "#endif\n"
+					+ " \n";
+         translator.addDefinitionCommand(EncDef);        
 		  
 		 ret = "// Configure upper/lower bounds encoder\r\n" +
 		    		    "encoder_counter_rot_min="+min+";\n"+
 		    		    "encoder_counter_rot_max="+max+";\n" +
 		    		    "#if defined(ESP32)\n"+
-		    		    "  button_encoder.setCount("+start+"*2);\n"+
+		    		    "  if (button_encoder.isAttached()) button_encoder.setCount("+start+"*2);\n"+
 		    		    "#else\n"+
 		    		    "  button_encoder.write("+start+");"+
 		    		    "#endif\n";
