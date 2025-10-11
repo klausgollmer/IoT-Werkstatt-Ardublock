@@ -4694,16 +4694,6 @@
 		</BlockGenus>
 
 
-        <BlockFamily>
-			<FamilyMember>TTN_SF_Auto</FamilyMember>
-			<FamilyMember>TTN_SF7</FamilyMember>
-			<FamilyMember>TTN_SF8</FamilyMember>
-			<FamilyMember>TTN_SF9</FamilyMember>
-			<FamilyMember>TTN_SF10</FamilyMember>
-			<FamilyMember>TTN_SF11</FamilyMember>
-			<FamilyMember>TTN_SF12</FamilyMember>
-		</BlockFamily>
-
 
 
         <BlockGenus name="ShellyVectorPower" kind="data" color="255 0 0" initlabel="bg.ShellyVectorPower" editable-label="no" is-label-value="no" >
@@ -6737,6 +6727,18 @@
 		
 
 		<!-- BlockFamilies andere -->
+
+
+        <BlockFamily>
+			<FamilyMember>TTN_SF_Auto</FamilyMember>
+			<FamilyMember>TTN_SF7</FamilyMember>
+			<FamilyMember>TTN_SF8</FamilyMember>
+			<FamilyMember>TTN_SF9</FamilyMember>
+			<FamilyMember>TTN_SF10</FamilyMember>
+			<FamilyMember>TTN_SF11</FamilyMember>
+			<FamilyMember>TTN_SF12</FamilyMember>
+		</BlockFamily>
+
 
 	    <BlockFamily>
 			<FamilyMember>RTC_GPIO32_low</FamilyMember>
