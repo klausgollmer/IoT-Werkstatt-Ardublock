@@ -30,14 +30,14 @@ public class System32_SleepBlockDeep32  extends TranslatorBlock {
 		
 		String ret = "//------- deep SLEEP ----------------------------\n";
 	    if (translator.isLORAProgram()) {
-	    	translator.addHeaderFile("#define IOTW_LORA_DEEPSLEEP");
+//#lora	    	translator.addHeaderFile("#define IOTW_USE_DEEPSLEEP");
 //	    	translator.addHeaderFile("#ifdef ESP32 \n RTC_DATA_ATTR lmic_t RTC_LMIC;\n #endif\n");
 	    	translator.addHeaderFile("IoTW_LMIC.h");
 //	    	ret += "SaveLMICToRTC_ESP32("+Delay_ms+"/1000);\n" ;
 		}
 		ret += "IOTW_PRINT(F(\"deep sleep \"));\n"
 			+  "IOTW_PRINTLN("+Delay_ms+");\n"
-			+  "#if defined(IOTW_LORA_DEEPSLEEP)\n"
+			+  "#if defined(IOTW_USE_LORA)\n"
 			+  "  SaveLMICToRTC_ESP32("+Delay_ms+"/1000);\n"
 			+  "#endif\n"
 			

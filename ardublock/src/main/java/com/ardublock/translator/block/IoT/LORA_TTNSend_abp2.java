@@ -18,7 +18,7 @@ public class LORA_TTNSend_abp2  extends TranslatorBlock {
 		translator.addHeaderFile("lmic.h");
 		translator.addHeaderFile("hal/hal.h");
 		translator.addHeaderFile("IoTW_LMIC.h");
-		translator.addHeaderFile("#define IOTW_LORA_DEEPSLEEP");
+		translator.addHeaderFile("#define IOTW_USE_LORA");
 		translator.setLORAProgram(true);   
 		
 		String Defaults=""
@@ -196,6 +196,13 @@ public class LORA_TTNSend_abp2  extends TranslatorBlock {
 				 + "  Serial.print(F(\" (\"));\r\n"
 				 + "  Serial.print(dr2str[LMIC.dn2Dr]);\r\n"
 				 + "  Serial.println(F(\")\"));\r\n"
+				 + "  Serial.print(\"RX1 delay: \");\r\n"
+				 + "  Serial.print(LMIC.rxDelay);\r\n"
+				 + "  Serial.println(\" seconds\");\r\n"
+				 + "\r\n"
+				 + "  Serial.print(\"RX2 delay: \");\r\n"
+				 + "  Serial.print(LMIC.rxDelay + 1);\r\n"
+				 + "  Serial.println(\" seconds\");"
 				 + "\r\n"
 				 + "  // --- ADR ---\r\n"
 				 + "  if (LMIC.adrEnabled) Serial.println(F(\"ADR ist AKTIV ✅\"));\r\n"
@@ -297,25 +304,15 @@ public class LORA_TTNSend_abp2  extends TranslatorBlock {
 				+ "      LMIC_setupChannel(8, 868800000, DR_RANGE_MAP(DR_FSK,  DR_FSK),  BAND_MILLI);      // g2-band\r\n"
 				+ "      LMIC_setLinkCheckMode(0);   // enable/disable link check validation\r\n"
 				+ "      LMIC.dn2Dr = DR_SF9;	     // TTN uses SF9 for its RX2 window.\r\n"
-				+ "      LMIC_setAdrMode(1); \r\n"
-				+ "    #if defined(CFG_LMIC_EU_like)\r\n"
-				+ "      IOTW_PRINTLN(F(\"ADR on, constrained SF to SF10\"));\r\n"
-				+ "      for (uint8_t ch = 0; ch < MAX_CHANNELS; ch++) {\r\n"
-				+ "        if (LMIC.channelFreq[ch]) {\r\n"
-				+ "          LMIC_setupChannel(ch,\r\n"
-				+ "          LMIC.channelFreq[ch],\r\n"
-				+ "          DR_RANGE_MAP(DR_SF10, DR_SF7),   // erlaubt: DR5..DR2 = SF7..SF10\r\n"
-				+ "          BAND_CENTI);\r\n"
-				+ "        }\r\n"
-				+ "      }\r\n"
-				+ "    #endif \r\n"
-				+ "    LMIC_setDrTxpow(DR_SF10, 14);\r\n"
+				+ "      LMIC.rxDelay = 5;           // RX1 Window s sec \r\n"
+				+ ""
+				+ ADR_CMD
 				+ "    LMIC_setClockError(MAX_CLOCK_ERROR * 5 / 100); // timing difference esp clock\r\n"
 				+ "    Init_LMIC_TTN = true;\r\n"
 				+ "  }\r\n"
 				+ "\r\n"
 				+ "  if  (fromRTCMem) { \r\n"
-				+ "#ifdef IOTW_LORA_DEEPSLEEP \r\n"
+				+ "#ifdef IOTW_USE_DEEPSLEEP \r\n"
 				+ "#ifdef ESP32 \r\n"
 				+ "    LoadLMICFromRTC_ESP32(); // restart from deepsleep, get LMIC state from RTC \r\n"
 				+ "#elif ESP8266 \r\n"
@@ -410,7 +407,7 @@ public class LORA_TTNSend_abp2  extends TranslatorBlock {
 		        + "} // Block \n";
 
 	    
-		translator.setLORAProgram(true);
+		//#lora translator.setLORAProgram(true);
     	    
         return codePrefix + ret + codeSuffix;
 	 	}

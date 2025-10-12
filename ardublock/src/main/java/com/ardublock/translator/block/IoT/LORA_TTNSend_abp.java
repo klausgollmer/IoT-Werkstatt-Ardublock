@@ -18,7 +18,7 @@ public class LORA_TTNSend_abp  extends TranslatorBlock {
 		translator.addHeaderFile("lmic.h");
 		translator.addHeaderFile("hal/hal.h");
 		translator.addHeaderFile("IoTW_LMIC.h");
-		translator.addHeaderFile("#define IOTW_LORA_DEEPSLEEP");
+		translator.addHeaderFile("#define IOTW_USE_LORA");
 		translator.setLORAProgram(true);   
 		
 		String Defaults=""
@@ -173,7 +173,7 @@ public class LORA_TTNSend_abp  extends TranslatorBlock {
 		        + "  LMIC_setDrTxpow(DR_SF7,14); // Set data rate and transmit power for uplink\n"
 	            + "  LMIC_setClockError(MAX_CLOCK_ERROR * 5 / 100); // timing difference esp clock\n"
 		        + "  if  (fromRTCMem) {"
-		        +" #ifdef IOTW_LORA_DEEPSLEEP \n"
+		        +" #ifdef IOTW_USE_DEEPSLEEP \n"
 		        +"   #ifdef ESP32 \n"
 		        +"     LoadLMICFromRTC_ESP32(); // restart from deepsleep, get LMIC state from RTC \n"
 		        +"   #elif ESP8266 \n"

@@ -20,7 +20,7 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 		translator.addHeaderFile("hal/hal.h");
 //		translator.addHeaderFile("#define LORA_TX_INTERVAL 10");
 		translator.addHeaderFile("IoTW_LMIC.h");
-		translator.addHeaderFile("#define IOTW_LORA_DEEPSLEEP");
+		translator.addHeaderFile("#define IOTW_USE_LORA");
 		translator.setLORAProgram(true);   
 	
 		String Dis="/* LoRaWAN LMIC Lib\n"
@@ -132,7 +132,7 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 				+ "  LMIC_reset();          // Reset the MAC state \n"
 		        + "  LMIC_setClockError(MAX_CLOCK_ERROR * 5 / 100); // timing difference esp clock\n"
 		        + "  if  (fromRTCMem) {"
-		        +" #ifdef IOTW_LORA_DEEPSLEEP \n"
+		        +" #ifdef IOTW_USE_DEEPSLEEP \n"
 		        +"   #ifdef ESP32 \n"
 		        +"     LoadLMICFromRTC_ESP32(); // restart from deepsleep, get LMIC state from RTC \n"
 		        +"   #elif ESP8266 \n"
@@ -253,7 +253,7 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 				        + "      if (LMIC_JoinFailCount >= IOTW_LMIC_JOIN_MAXFAIL) {\r\n"
 		        + "        #ifdef ESP32 \r\n"
 		        + "           //------- deep SLEEP ----------------------------\r\n"
-		        +             "#if defined(IOTW_LORA_DEEPSLEEP)\r\n"
+		        +             "#if defined(IOTW_USE_DEEPSLEEP)\r\n"
 		        + "              IOTW_PRINT(F(\"No Gateway, go 1 h sleep \"));\r\n"
 		        + "              Serial.flush();\r\n"
 		        + "              Serial.end();\r\n"
@@ -379,7 +379,7 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 		      + "      uint32_t sleep_ms = 3600000UL;\r\n"
 		      + "      IOTW_PRINTLN(F(\"Join backoff: sleep 1h\"));\r\n"
 		      + "\r\n"
-		      + "#ifdef IOTW_LORA_DEEPSLEEP\r\n"
+		      + "#ifdef IOTW_USE_DEEPSLEEP\r\n"
 		      + "      SaveLMICToRTC_ESP32(sleep_ms / 1000);\r\n"
 		      + "#endif\r\n"
 		      + "      Serial.flush(); Serial.end();\r\n"

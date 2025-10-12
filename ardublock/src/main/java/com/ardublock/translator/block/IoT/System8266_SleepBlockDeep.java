@@ -87,8 +87,8 @@ public class System8266_SleepBlockDeep  extends TranslatorBlock {
 		
 		
 	    ret =  "// -------------- deepsleep \n"
-			+  "IOTW_PRINT(F(\"deepsleep \"));IOTW_PRINTLN("+Delay_ms+");IOTW_PRINTLN(\" ms\");\n"
-	    	+  "#if defined(IOTW_LORA_DEEPSLEEP)\n"
+			+  "IOTW_PRINT(F(\"deepsleep \"));IOTW_PRINT("+Delay_ms+");IOTW_PRINTLN(\" ms\");\n"
+	    	+  "#if defined(IOTW_USE_LORA)\n"
 			+  "  SaveLMICToRTC_ESP8266("+Delay_ms+"/1000);\n"
 			+  "#endif\n";
 		if (wake.charAt(0)=='H') {
