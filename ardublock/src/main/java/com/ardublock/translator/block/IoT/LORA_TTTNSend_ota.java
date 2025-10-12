@@ -128,7 +128,8 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 		
 		String init = "// -- initialize LoraWAN LMIC structure\n"
 				+ "void LoRaWAN_Start_OTA(int fromRTCMem) { // using OTA-Communication \n" 	
-				+ "  os_init();             // LMIC LoraWAN\n"
+		 		+ "  Serial.print(\"---------------------- Das LoRa-Blöckchen ist veraltet. Bitte durch eine aktuelle Version ersetzen \");\n"
+		 	    + "  os_init();             // LMIC LoraWAN\n"
 				+ "  LMIC_reset();          // Reset the MAC state \n"
 		        + "  LMIC_setClockError(MAX_CLOCK_ERROR * 5 / 100); // timing difference esp clock\n"
 		        + "  if  (fromRTCMem) {"
@@ -221,6 +222,7 @@ public class LORA_TTTNSend_ota  extends TranslatorBlock {
 	    
 	    ret = ret = "\n{ //Block------------------------------ send data to network\n"
 	    		+ "int port = " + port + ";\n"
+    		    + "Serial.print(\"Das LoRa-Blöckchen ist veraltet. Bitte durch eine aktuelle Version ersetzen \");\n"
 	    		+ "static uint8_t mydata["+ count + "];\n"
 	       		+ wert 
 		        + "  LoRaWAN_Event_No_Join = 0;\r\n"

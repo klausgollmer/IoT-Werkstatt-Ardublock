@@ -146,7 +146,8 @@ public class LORA_TTNSend_abp  extends TranslatorBlock {
 	    
 	    String init = "// -- initialize LoraWAN LMIC structure\n"
 				+ "void LoRaWAN_Start_ABP(int fromRTCMem) { // using ABP-Communication \n" 	
-				+ "  os_init();             // LMIC LoraWAN\n"
+	    		+ "  Serial.print(\"---------------------- Das LoRa-Blöckchen ist veraltet. Bitte durch eine aktuelle Version ersetzen \");\n"
+	    		+ "	 os_init();             // LMIC LoraWAN\n"
 				+ "  LMIC_reset();          // Reset the MAC state \n"
 			    + "  // Set static session parameters. Instead of dynamically establishing a session\n"
 				+ "  // by joining the network, precomputed session parameters are be provided.\n"
@@ -232,6 +233,7 @@ public class LORA_TTNSend_abp  extends TranslatorBlock {
 	    }
 
 	    ret = "\n{ //Block------------------------------ send data to network\n"
+	    		+ "Serial.print(\"Das LoRa-Blöckchen ist veraltet. Bitte durch eine aktuelle Version ersetzen \");\n"
 	    		+ "int port = " + port + ";\n"
 	    		+ "static uint8_t mydata["+ count + "];\n"
 	       		+ wert 
