@@ -2033,6 +2033,14 @@
           </BlockConnectors>
         </BlockGenus>
     
+      <BlockGenus name="OLED_FontSize7" kind="data" color="255 0 0" initlabel="bg.OLED_FontSize9" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+    
+    
+    
         <BlockGenus name="OLED_FontSize12" kind="data" color="255 0 0" initlabel="bg.OLED_FontSize12" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
@@ -6809,6 +6817,7 @@
 		</BlockFamily>
 
 		<BlockFamily>
+			<FamilyMember>OLED_FontSize7</FamilyMember>
 			<FamilyMember>OLED_FontSize9</FamilyMember>
 			<FamilyMember>OLED_FontSize12</FamilyMember>
 			<FamilyMember>OLED_FontSize18</FamilyMember>
