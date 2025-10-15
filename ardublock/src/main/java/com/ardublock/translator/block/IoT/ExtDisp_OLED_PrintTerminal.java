@@ -33,7 +33,9 @@ public class ExtDisp_OLED_PrintTerminal  extends TranslatorBlock {
    		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
    		  		+ "} \r\n";
  	    translator.addSetupCommand(Setup);
-		
+ 	    Setup = "IoT_WerkstattPreventDiplayClear(); // disable Einbrennschutz für Logo \n";
+        translator.addSetupCommand(Setup);
+	
 		
 		Def = "// defines for OLED Terminal Mode \n"
 			+ "#define MAX_LINES 8 // Anzahl der Zeilen, die auf dem Display angezeigt werden können\n"

@@ -34,6 +34,8 @@ public class ExtDisp_OLED_Font  extends TranslatorBlock {
    		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
    		  		+ "} \r\n";
   	    translator.addSetupCommand(Setup);
+  	    Setup = "IoT_WerkstattPreventDiplayClear(); // disable Einbrennschutz für Logo \n";
+        translator.addSetupCommand(Setup);
 	
 		String f,t,s;
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);

@@ -65,7 +65,8 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
    		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
    		  		+ "} \r\n";
    	    translator.addSetupCommand(Setup);
-		
+        Setup = "IoT_WerkstattPreventDiplayClear(); // disable Einbrennschutz für Logo \n";
+        translator.addSetupCommand(Setup);
 	    Setup =   "myOLEDdisplay.setRotation(1);\n"
 	    		+ "if (!IoTArrayDataInitDone) {\n"
 	    		+ "  IoTArrayDataInitDone = 1;\n"
@@ -74,7 +75,8 @@ public class ExtDisp_OLED_DispArray  extends TranslatorBlock {
 	    		+ "  }\n"
 	    		+ "}";
         translator.addSetupCommand(Setup);
-	    
+      
+	
 	
 	    
 	    String Display = "//------------------ OLED: Display first Values of IoTDataArray\n"

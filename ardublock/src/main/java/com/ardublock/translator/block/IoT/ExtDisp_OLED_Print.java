@@ -39,7 +39,9 @@ public class ExtDisp_OLED_Print  extends TranslatorBlock {
 	   		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
 	   		  		+ "} \r\n";
  	    translator.addSetupCommand(Setup);
-		
+ 	    Setup = "IoT_WerkstattPreventDiplayClear(); // disable Einbrennschutz für Logo \n";
+        translator.addSetupCommand(Setup);
+	
  	    Setup =   " myOLEDdisplay.setRotation(1);\r\n"
  	    		+ " myOLEDdisplay.clearDisplay(); \r\n"
  	    		+ " myOLEDdisplay.display();\r\n"

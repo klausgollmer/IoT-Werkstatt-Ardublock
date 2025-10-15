@@ -35,7 +35,9 @@ public class ExtDisp_OLED_Display  extends TranslatorBlock {
    		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
    		  		+ "} \r\n";
   	    translator.addSetupCommand(Setup);
-
+  	    Setup = "IoT_WerkstattPreventDiplayClear(); // disable Einbrennschutz für Logo \n";
+        translator.addSetupCommand(Setup);
+	
 		// I2C-initialisieren
 		//// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
 		//// now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
