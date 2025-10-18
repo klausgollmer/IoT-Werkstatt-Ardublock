@@ -1960,6 +1960,15 @@
 			</BlockConnectors>
 		</BlockGenus>
     
+    <BlockGenus name="OLED_ClearDisplay" kind="command" color="74 108 212"
+			initlabel="bg.OLED_ClearDisplay" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+			</BlockConnectors>
+		</BlockGenus>
+
+
     			
     <BlockGenus name="OLED_Display" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Display" editable-label="no" is-label-value="no">
@@ -7473,6 +7482,7 @@
                 <BlockGenusMember>iot_neowing</BlockGenusMember>
  				<BlockGenusMember>LCDGroveRGB</BlockGenusMember>
 				<BlockGenusMember>OLED_Clear</BlockGenusMember>
+				<BlockGenusMember>OLED_ClearDisplay</BlockGenusMember>
 				<BlockGenusMember>OLED_Print</BlockGenusMember>
 				<BlockGenusMember>OLED_Display</BlockGenusMember>
 				<BlockGenusMember>OLED_Font</BlockGenusMember>

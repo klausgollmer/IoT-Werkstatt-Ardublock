@@ -1958,6 +1958,14 @@
 			</BlockConnectors>
 		</BlockGenus>
     
+        <BlockGenus name="OLED_ClearDisplay" kind="command" color="74 108 212"
+			initlabel="bg.OLED_ClearDisplay" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+			</BlockConnectors>
+		</BlockGenus>
+    
     			
     <BlockGenus name="OLED_Display" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Display" editable-label="no" is-label-value="no">
