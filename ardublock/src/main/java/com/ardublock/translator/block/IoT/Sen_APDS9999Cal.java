@@ -28,7 +28,7 @@ public class Sen_APDS9999Cal extends TranslatorBlock
     // now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
     // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
  
-    translator.addSetupCommand("if (!apds99.begin()) IOTW_PRINTLN(\"Kein ADPS Gesture-Sensor gefunden\");\n");
+    translator.addSetupCommand("if (!apds99.begin()) IOTW_PRINTLN(\"Kein ADPS Gesture-Sensor gefunden\"); else delay(10);\n");
     translator.addSetupCommand("apds99.setProxRes(APDS9999_PS_RESOLUTION_11BIT);");
     translator.addSetupCommand("apds99.setLED(APDS9999_LEDDRIVE_25MA);");
     translator.addSetupCommand("apds99.setProxPulse(255);");

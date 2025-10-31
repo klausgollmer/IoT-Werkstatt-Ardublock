@@ -53,6 +53,7 @@ public class Sen_ButtonRot extends TranslatorBlock
 		      + "#elif defined(ESP32) \n"
 		      + "// Autor: Kevin Harrington, https://www.arduino.cc/reference/en/libraries/esp32encoder\n"
 		      + " #include <ESP32Encoder.h>;\n"
+		      + " #include <esp_log.h>;\n"
 		      + "#endif\n"
 		      + "// encoder max range\n"
 		      + "int encoder_counter_rot_min = -100;\n"
@@ -98,11 +99,13 @@ public class Sen_ButtonRot extends TranslatorBlock
 		
 		translator.addDefinitionCommand(EncDef);
 	    EncDef ="#if defined(ESP32) \n "
+	    		    +  "    esp_log_level_set(\"gpio\", ESP_LOG_NONE); // disable PU GPIO Error\n"
 			   		+  "    ESP32Encoder::useInternalWeakPullResistors = puType::up;\n"
 			   		+  "    button_encoder.attachHalfQuad(IOTW_GPIO_ROTARY_B, IOTW_GPIO_ROTARY_A); \n "
 			   		+  "    pinMode(IOTW_GPIO_ROTARY_B,INPUT_PULLUP); \n "
 			   		+  "    pinMode(IOTW_GPIO_ROTARY_A,INPUT_PULLUP); \n "
-			   		+  "#endif \n";
+	    		    +  "    esp_log_level_set(\"gpio\", ESP_LOG_WARN); // enable PU GPIO Error\n"
+	    	   		+  "#endif \n";
 	    translator.addSetupCommand(EncDef);
 
 		ret = "encoderRead()";

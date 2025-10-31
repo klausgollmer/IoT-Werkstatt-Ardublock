@@ -60,7 +60,7 @@ public class ExtDisp_OLED_ClearArray  extends TranslatorBlock {
 	   			+ "} \r\n";
 	   			*/
 		
-	    String Setup = "IoT_WerkstattPreventDiplayClear(); // disable Einbrennschutz für Logo \n";
+	    String Setup = "#if defined(ESP32)\n IoT_WerkstattPreventDisplayClear();\n #endif\n // disable Einbrennschutz für Logo \n";
         translator.addSetupCommand(Setup);
 	
 		

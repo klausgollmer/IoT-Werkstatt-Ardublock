@@ -115,6 +115,7 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	{
 		Context context = Context.getContext();
 		File versionFile = context.getArduinoFile("lib/version.txt");
+		//System.out.println("Pfad: " + versionFile.getAbsolutePath());
 		if (versionFile.exists())
 		{
 			try

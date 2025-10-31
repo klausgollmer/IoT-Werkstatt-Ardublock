@@ -208,7 +208,7 @@ public class Audio_Mic_Claps  extends TranslatorBlock {
 	   	String Setup ="i2sInit();\r\n";
 	   	translator.addSetupCommand(Setup);
 		
-		Setup = "  IOTW_PRINTLN(F(\"\nKalibriere Hintergrund – bitte 1 s Stille …\"));\r\n"
+		Setup = "  IOTW_PRINTLN(F(\"\\nKalibriere Hintergrund – bitte 1 s Stille …\"));\r\n"
 	   			+ "  calibrateSilence();";
 	    translator.addSetupCommand(Setup);
 		

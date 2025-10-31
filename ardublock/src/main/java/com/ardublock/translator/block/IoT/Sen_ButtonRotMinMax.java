@@ -27,12 +27,14 @@ public class Sen_ButtonRotMinMax extends TranslatorBlock
 			      + "#elif defined(ESP32) \n"
 			      + "// Autor: Kevin Harrington, https://www.arduino.cc/reference/en/libraries/esp32encoder\n"
 			      + " #include <ESP32Encoder.h>;\n"
+			      + " #include <esp_log.h>;\n"
 			      + "#endif\n"
 			      + "// encoder max range\n"
 			      + "int encoder_counter_rot_min = -100;\n"
 			      + "int encoder_counter_rot_max = 100;\n"
 			      + "";
-	     translator.addDefinitionCommand(EncDef);
+	        translator.addDefinitionCommand(EncDef);
+	   
    	     translator.addDefinitionCommand(EncDef);
 		  
 		 ret = "// Configure upper/lower bounds encoder\r\n" +

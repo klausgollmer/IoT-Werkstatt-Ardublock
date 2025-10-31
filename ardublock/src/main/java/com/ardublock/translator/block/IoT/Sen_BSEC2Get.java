@@ -67,6 +67,7 @@ public class Sen_BSEC2Get extends TranslatorBlock
     translator.addSetupCommand(Setup);
     translator.addSetupCommand(" IOTW_PRINTLN(F(\"start BSEC2, waiting for initialization ...\"));");
     translator.addSetupCommand(" while((isnan(iaqSensor.temperature))){iaqSensor_Housekeeping(); delay(10);}");
+    translator.addSetupCommand(" IOTW_PRINT(F(\" ready\"));");
     translator.addSetupCommand(" Bsec_Ticker.attach_ms(3000, iaqSensor_Housekeeping);\r\n");
     
     

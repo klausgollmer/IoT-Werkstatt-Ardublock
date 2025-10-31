@@ -116,7 +116,7 @@ public class Translator
 		if (isGreenProgram() == 1) 
 			headerCommand.append("#define IOTW_GREEN_CODE_LEVEL "+ isGreenProgram() + "\n");
 		
-		headerCommand.append("#include <IoTBoards_Generic.h>\n");	
+		headerCommand.append("#include <IoTW_config.h>\n");	
 		
 	/*	
 		if (!isWiFiProgram()) {

@@ -35,11 +35,11 @@ public class ExtDisp_OLED_Print3  extends TranslatorBlock {
 		translator.addDefinitionCommand(Def);
 
 		
-	   	String Setup ="if (!(myOLEDdisplay.begin(0x3C, true))) { // OLED Display Address 0x3C default\r\n"
-	   		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
-	   		  		+ "} \r\n";
+		String Setup ="if (!(myOLEDdisplay.begin(0x3C, true))) { // OLED Display Address 0x3C default\r\n"
+   		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
+   		  		+ "} else delay(10);\r\n";
  	    translator.addSetupCommand(Setup);
- 	    Setup = "IoT_WerkstattPreventDiplayClear(); // disable Einbrennschutz für Logo \n";
+ 	    Setup = "#if defined(ESP32)\n IoT_WerkstattPreventDisplayClear();\n #endif\n // disable Einbrennschutz für Logo \n";
         translator.addSetupCommand(Setup);
 	
  	    Setup =   " myOLEDdisplay.setRotation(1);\r\n"

@@ -82,7 +82,7 @@ public class Audio_WebRadio  extends TranslatorBlock {
 	   	String Setup ="DAC_out = new AudioOutputI2S(0,AudioOutputI2S::INTERNAL_DAC);\r\n"
 	   		    	+ "DAC_out->begin();\r\n"
 	   		    	+ "float volume = 0.25;             // 25 % der Originalamplitude\r\n"
-	   		    	+ "DAC_out->SetGain(volume);       // 0.0 … 4.0   (1.0 = 100 %)\n";
+	   		    	+ "DAC_out->SetGain(volume);        // (1.0 = 100 %)\n";
 	    translator.addSetupCommand(Setup);
 		
 	    
