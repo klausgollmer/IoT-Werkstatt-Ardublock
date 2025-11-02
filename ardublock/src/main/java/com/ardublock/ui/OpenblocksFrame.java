@@ -924,7 +924,7 @@ public class OpenblocksFrame extends JFrame
 		);
 	*/	
 		
-		String websiteURL = "www.umwelt-campus.de";
+		String websiteURL = "www.iot-werkstatt.de";
 		JLabel websiteLabel = new JLabel(
 		    "<html>" +
 	          "<div style=\"padding-left:40px; padding-right:30px;\">" +
@@ -945,7 +945,7 @@ public class OpenblocksFrame extends JFrame
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		    	try {
-				    String url = "http://www.umwelt-campus.de";  // Ersetze durch Deine URL
+				    String url = "http://www.iot-werkstatt.de";  // Ersetze durch Deine URL
 				    System.out.println("Versuche, URL zu öffnen: " + url);
 				    // Option 1: Direkte Erzeugung der URI
 				    URI uri = new URI(url);

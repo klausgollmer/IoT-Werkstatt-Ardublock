@@ -7236,7 +7236,7 @@
 			
 			<!-- <BlockGenusMember>GetBME680offset</BlockGenusMember> -->
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
-				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
+				<BlockGenusMember>ADPS9999Get</BlockGenusMember>
 			<!-- 	<BlockGenusMember>ADPS9960Cal</BlockGenusMember> -->
 				<BlockGenusMember>Divider_Encoder</BlockGenusMember>
 				<BlockGenusMember>button_press</BlockGenusMember>
