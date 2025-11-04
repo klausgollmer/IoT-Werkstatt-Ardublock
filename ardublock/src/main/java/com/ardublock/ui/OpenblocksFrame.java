@@ -352,6 +352,12 @@ public class OpenblocksFrame extends JFrame
             System.err.println("Die BROWSE-Aktion wird auf diesem System nicht unterstützt.");
             return;
         }
+        
+        int optionValue = JOptionPane.showOptionDialog(null, pdfFile, "Open pdf Resources", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
+   		if (optionValue == JOptionPane.NO_OPTION)
+   		{
+   			return;
+   	    }
 
         try {
             // Konvertiere die Datei in eine URI und öffne sie im Browser
@@ -416,7 +422,13 @@ public class OpenblocksFrame extends JFrame
             System.err.println("Die BROWSE-Aktion wird auf diesem System nicht unterstützt.");
             return;
         }
-
+        int optionValue = JOptionPane.showOptionDialog(null, link, "Open Internet Resources", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
+		if (optionValue == JOptionPane.NO_OPTION)
+		{
+			return;
+	    }
+	    
+        
         // Versuche, den Link im Standardbrowser zu öffnen
         try {
             URI uri = new URI(link);
@@ -505,6 +517,15 @@ public class OpenblocksFrame extends JFrame
             return;
         }
 
+        int optionValue = JOptionPane.showOptionDialog(null, wavFile, "Open wav Resources", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
+   		if (optionValue == JOptionPane.NO_OPTION)
+   		{
+   			return;
+   	    }
+   	    
+        
+        
+        
         try {
             // Konvertiere den Dateipfad in eine URI und öffne diese im Browser
             URI uri = wavFile.toURI();

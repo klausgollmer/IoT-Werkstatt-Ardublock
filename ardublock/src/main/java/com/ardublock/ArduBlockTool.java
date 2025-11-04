@@ -11,6 +11,9 @@ import java.io.UnsupportedEncodingException;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -86,6 +89,7 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 		
 	}
 	
+	/*
 	public void didGenerate(String source) {
 		java.lang.reflect.Method method;
 		try {
@@ -108,6 +112,276 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 		ArduBlockTool.editor.handleExport(false);
 	}
 	
+*/
+	/*
+	public void didGenerate(String source) {
+	    final String desiredName = "IoTW_Sketch"; // ohne ".ino"
+
+	    // --- Code in den Editor schreiben (wie gehabt) ---
+	    try {
+	        Class<?> ed = ArduBlockTool.editor.getClass();
+	        java.lang.reflect.Method method = ed.getMethod("setText", String.class);
+	        method.invoke(ArduBlockTool.editor, source);
+	    } catch (NoSuchMethodException | IllegalAccessException | SecurityException | java.lang.reflect.InvocationTargetException e) {
+	        ArduBlockTool.editor.getCurrentTab().setText(source);
+	    }
+
+	    // --- Aktuellen Sketch-Ordner auf IoTW_Sketch umstellen (Ordner ggf. überschreiben) ---
+	    try {
+	        processing.app.Sketch sketch = ArduBlockTool.editor.getSketch();
+	        File currentFolder = sketch.getFolder();
+	        File parent       = currentFolder.getParentFile();
+	        File targetFolder = new File(parent, desiredName);
+
+	        String curPath = currentFolder.getCanonicalPath();
+	        String tgtPath = targetFolder.getCanonicalPath();
+
+	        if (!curPath.equals(tgtPath)) {
+	            // vorhandenen Zielordner (mit der einen .ino) hart löschen
+	            if (targetFolder.exists()) {
+	                try (var walk = Files.walk(targetFolder.toPath())) {
+	                    walk.sorted(Comparator.reverseOrder()).forEach(p -> {
+	                        try { Files.delete(p); } catch (IOException ex) { throw new RuntimeException(ex); }
+	                    });
+	                }
+	            }
+	            // und in exakt diesen Ordner speichern (setzt damit den aktuellen Sketch darauf)
+	            sketch.saveAs(targetFolder);
+	        }
+
+	        // zur Sicherheit speichern
+	        sketch.save();
+
+	    } catch (Exception e) {
+	        e.printStackTrace(); // wenn das Umstellen schiefgeht, exportieren wir den aktuellen Sketch
+	    }
+
+	    // --- Export ---
+	    ArduBlockTool.editor.handleExport(false);
+	}
+*/
+
+	// Context context = Context.getContext();
+	//    boolean check = checkBoardPackage(context.ArdublockVersion);
+	
+	/*
+	public void didGenerate(String source) {
+	    final String desiredName = "IoTW_Sketch"; // no ".ino"
+
+	    
+	    
+	    // Write source into the editor
+	    try {
+	        Class<?> ed = ArduBlockTool.editor.getClass();
+	        java.lang.reflect.Method method = ed.getMethod("setText", String.class);
+	        method.invoke(ArduBlockTool.editor, source);
+	    } catch (NoSuchMethodException | IllegalAccessException | SecurityException | java.lang.reflect.InvocationTargetException e) {
+	        ArduBlockTool.editor.getCurrentTab().setText(source);
+	    }
+
+	    try {
+	        processing.app.Sketch sketch = ArduBlockTool.editor.getSketch();
+
+	        File sketchFolder = sketch.getFolder();              
+	        File sketchbookDir = sketchFolder.getParentFile();   
+	        File portableDir   = sketchbookDir.getParentFile();  
+	        File arduinoDir    = portableDir.getParentFile();    
+	        File rootDir       = arduinoDir.getParentFile();     
+
+	        File userSketchbookDir = new File(new File(rootDir, "user"), "Sketchbook");
+	        if (!userSketchbookDir.exists() && !userSketchbookDir.mkdirs()) {
+	            throw new IOException("Cannot create target base dir: " + userSketchbookDir);
+	        }
+
+	        File targetFolder = new File(userSketchbookDir, desiredName); 
+
+	        String curPath = sketch.getFolder().getCanonicalPath();
+	        String tgtPath = targetFolder.getCanonicalPath();
+
+	        if (!curPath.equals(tgtPath)) {
+	            // Hard delete target (you said it contains only one .ino)
+	            if (targetFolder.exists()) {
+	                try (var walk = Files.walk(targetFolder.toPath())) {
+	                    walk.sorted(Comparator.reverseOrder()).forEach(p -> {
+	                        try { Files.delete(p); } catch (IOException ex) { throw new RuntimeException(ex); }
+	                    });
+	                }
+	            }
+	            // Save into the exact target folder (this switches the current sketch)
+	            sketch.saveAs(targetFolder);
+	        }
+
+	        // Ensure saved
+	        sketch.save();
+
+	    } catch (Exception e) {
+	        e.printStackTrace(); // If switching fails, we export the current sketch
+	    }
+
+	    // Export
+	    ArduBlockTool.editor.handleExport(false);
+	}
+	*/
+	/*
+	public void didGenerate(String source) {
+	    java.lang.reflect.Method method;
+	    try {
+	        Class ed = ArduBlockTool.editor.getClass();
+	        Class[] cArg = new Class[1];
+	        cArg[0] = String.class;
+	        method = ed.getMethod("setText", cArg);
+	        method.invoke(ArduBlockTool.editor, source);
+	    } catch (NoSuchMethodException e) {
+	        ArduBlockTool.editor.getCurrentTab().setText(source);
+	    } catch (IllegalAccessException e) {
+	        ArduBlockTool.editor.getCurrentTab().setText(source);
+	    } catch (SecurityException e) {
+	        ArduBlockTool.editor.getCurrentTab().setText(source);
+	    } catch (java.lang.reflect.InvocationTargetException e) {
+	        ArduBlockTool.editor.getCurrentTab().setText(source);
+	    }
+
+	    // bring Arduino window to front
+	    try {
+	        Object base;
+	        try {
+	            base = ArduBlockTool.editor.getClass().getMethod("getBase").invoke(ArduBlockTool.editor);
+	        } catch (NoSuchMethodException nsme) {
+	            java.lang.reflect.Field f = ArduBlockTool.editor.getClass().getDeclaredField("base");
+	            f.setAccessible(true);
+	            base = f.get(ArduBlockTool.editor);
+	        }
+	        final javax.swing.JFrame frame = (javax.swing.JFrame) base;
+	        javax.swing.SwingUtilities.invokeLater(() -> {
+	            frame.setExtendedState(frame.getExtendedState() & ~java.awt.Frame.ICONIFIED);
+	            frame.setAlwaysOnTop(true);
+	            frame.toFront();
+	            frame.requestFocus();
+	            frame.setAlwaysOnTop(false);
+	        });
+	    } catch (Throwable ignore) {}
+	    Context context = Context.getContext();
+		if (checkBoardPackage(context.ArdublockVersion)) { // Board test
+	        ArduBlockTool.editor.handleExport(false);
+		}
+	}
+*/
+	public void didGenerate(String source) {
+	    java.lang.reflect.Method method;
+	    try {
+	        Class ed = ArduBlockTool.editor.getClass();
+	        Class[] cArg = new Class[1];
+	        cArg[0] = String.class;
+	        method = ed.getMethod("setText", cArg);
+	        method.invoke(ArduBlockTool.editor, source);
+	    } catch (NoSuchMethodException e) {
+	        ArduBlockTool.editor.getCurrentTab().setText(source);
+	    } catch (IllegalAccessException e) {
+	        ArduBlockTool.editor.getCurrentTab().setText(source);
+	    } catch (SecurityException e) {
+	        ArduBlockTool.editor.getCurrentTab().setText(source);
+	    } catch (java.lang.reflect.InvocationTargetException e) {
+	        ArduBlockTool.editor.getCurrentTab().setText(source);
+	    }
+
+	    try {
+	        Object base;
+	        try {
+	            base = ArduBlockTool.editor.getClass().getMethod("getBase").invoke(ArduBlockTool.editor);
+	        } catch (NoSuchMethodException nsme) {
+	            java.lang.reflect.Field f = ArduBlockTool.editor.getClass().getDeclaredField("base");
+	            f.setAccessible(true);
+	            base = f.get(ArduBlockTool.editor);
+	        }
+	        final javax.swing.JFrame frame = (javax.swing.JFrame) base;
+	        javax.swing.SwingUtilities.invokeLater(() -> {
+	            frame.setExtendedState(frame.getExtendedState() & ~java.awt.Frame.ICONIFIED);
+	            frame.setAlwaysOnTop(true);
+	            frame.toFront();
+	            frame.requestFocus();
+	            frame.setAlwaysOnTop(false);
+	        });
+	    } catch (Throwable ignore) {}
+
+	    Context context = Context.getContext();
+	    if (checkBoardPackage(context.ArdublockVersion)) {
+	        ArduBlockTool.editor.handleExport(false);
+	    } else {
+	        try {
+	            try {
+	                ArduBlockTool.editor.getClass()
+	                    .getMethod("handleSave", boolean.class)
+	                    .invoke(ArduBlockTool.editor, false);
+	            } catch (NoSuchMethodException e) {
+	                ArduBlockTool.editor.getSketch().save();
+	            }
+	        } catch (Throwable t) {
+	            try {
+					ArduBlockTool.editor.getSketch().save();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	    }
+	}
+
+	
+	
+	/*
+	
+	public static boolean checkBoardPackage(String boardTyp) {
+	    String pkg = processing.app.PreferencesData.get("target_package");
+	    String cur = (pkg == null ? "" : pkg.trim().toLowerCase());
+
+	    String bt = (boardTyp == null ? "" : boardTyp.trim());
+	    String expected = null;
+	    if ("Makey".equalsIgnoreCase(bt)) {
+	        expected = "esp32";
+	    } else if ("Octopus".equalsIgnoreCase(bt)) {
+	        expected = "esp8266";
+	    }
+
+	    if (!expected.equalsIgnoreCase(cur)) {
+	        javax.swing.JOptionPane.showMessageDialog(
+	        	ArduBlockTool.editor,
+	            "Bitte in der IDE das Board einstellen.\nErwartet: " + expected + " ("+ boardTyp + ")" + "\nAktuell: " + (cur.isEmpty() ? "(unbekannt)" : cur),
+	            "Hinweis",
+	            javax.swing.JOptionPane.WARNING_MESSAGE
+	        );
+	        return false;
+	    }
+
+	    return true; // 
+	}
+
+	*/
+	public static boolean checkBoardPackage(String boardTyp) {
+	    String pkg = processing.app.PreferencesData.get("target_package");
+	    String cur = (pkg == null ? "" : pkg.trim().toLowerCase());
+
+	    String bt = (boardTyp == null ? "" : boardTyp.trim());
+	    String expected = null;
+	    if ("Makey".equalsIgnoreCase(bt)) {
+	        expected = "esp32";
+	    } else if ("Octopus".equalsIgnoreCase(bt)) {
+	        expected = "esp8266";
+	    }
+
+	    // Unbekannter Boardname: immer true
+	    if (expected == null) return true;
+
+	    if (!expected.equalsIgnoreCase(cur)) {
+	        javax.swing.JOptionPane.showMessageDialog(
+	            ArduBlockTool.editor,
+	            "Bitte unter Werkzeuge das Board einstellen.\nErwartet: " + expected + " (" + bt + ")\nAktuell: " + (cur.isEmpty() ? "(unbekannt)" : cur),
+	            "Hinweis",
+	            javax.swing.JOptionPane.WARNING_MESSAGE
+	        );
+	        return false;
+	    }
+	    return true;
+	}
 
 	
 	
