@@ -58,6 +58,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.FontUIResource;
 
+import com.ardublock.ArduBlockTool.IoTWGlobalCrossGuard;
 import com.ardublock.core.Context;
 import com.ardublock.translator.Translator;
 import com.ardublock.ui.listener.ArdublockWorkspaceListener;
@@ -205,9 +206,14 @@ public class OpenblocksFrame extends JFrame
 		                        null //"No"
 		                );
 		                if (confirm == JOptionPane.YES_OPTION) {
+	                	    IoTWGlobalCrossGuard.uninstall();
 		                	dispose(); // Close the window
 		                }
-	            	} else dispose(); // Close the window
+	            	} else {
+	            	    System.out.println("cloase");
+	                	IoTWGlobalCrossGuard.uninstall();
+	                	dispose(); // Close the window
+	            	}
 	            }
 	        });
 
