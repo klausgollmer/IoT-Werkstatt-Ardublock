@@ -96,7 +96,7 @@ public class Translator
 		String ver = uiMessageBundle.getString("ardublock.ui.version");
 		LocalDateTime jetzt = LocalDateTime.now();
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss", Locale.GERMAN); //    Tag.Monat.Jahr Stunde:Minute:Sekunde
-	
+	/*
 		String Disclaimer = "/*\r\n"
 				+"\n"
 				+ "####        ########      ##     ##                                                      \r\n"
@@ -116,9 +116,34 @@ public class Translator
 				+ "  Dieser Code ruft eventuell Funktionen externer Bibliotheken auf (#include Zeilen)\r\n"
 				+ "  Diese Bibliotheken selbst sind separat lizenziert – siehe portable/libraries:\r\n"
 				+ "  Der Einsatz dieser Bibliotheken kann zusätzliche Lizenzpflichten auslösen \r\n"
-				+ " */ \r\n"
+				+ " / \r\n"
 				+ "\r\n";
-		
+	*/
+
+		String Disclaimer = "/*                         ####\n"
+				+ ".                            #\n"
+				+ ". ######        ########  ####\n"
+				+ ".   ##             ##     #\n"
+				+ ".   ##    #####    ##     ####\n"
+				+ ".   ##   ##   ##   ##\n"
+				+ ".   ##   ##   ##   ##     [X]  Deine Ideen \r\n"
+				+ ".   ##   ##   ##   ##     [X]  Deine Werkstatt\r\n"
+				+ ".   ##   ##   ##   ##     [X]  IoT ohne Syntax-Frust\r\n"
+				+ ". ######  #####    ##\r\n"
+				+ "\n"
+				+ "  Das Sketch-Gerüst wurde generiert von IoT-Werkstatt Makey:Lab \n"
+				+ "  "+ver+" am " + jetzt.format(fmt) + "\r\n"
+				+ "\n"
+				+ "  Copyright (c) 2025 IoT-Werkstatt / Klaus-Uwe Gollmer\n"
+				+ "\n"
+				+ "  SPDX-License-Identifier: MIT\n"
+				+ "  Dieser Code ruft eventuell Funktionen externer Bibliotheken auf (#include Zeilen)\n"
+				+ "  Diese Bibliotheken selbst sind separat lizenziert – siehe portable/libraries:\n"
+				+ "  Der Einsatz dieser Bibliotheken kann zusätzliche Lizenzpflichten auslösen \n"
+				+ "*/\n"
+				+ "\n";
+	
+	
 		StringBuilder headerCommand = new StringBuilder();
 		headerCommand.append(Disclaimer);
 		if (isDebugProgram() != 1) 
