@@ -210,7 +210,7 @@ public class OpenblocksFrame extends JFrame
 		                	dispose(); // Close the window
 		                }
 	            	} else {
-	            	    System.out.println("cloase");
+	            	    // System.out.println("close");
 	                	IoTWGlobalCrossGuard.uninstall();
 	                	dispose(); // Close the window
 	            	}

@@ -669,7 +669,7 @@ public class BlockGenus {
                         imageLocationNode = imageChildren.item(j);
                         if (imageLocationNode.getNodeName().equals("FileLocation")) {
                             String fileLocation = imageLocationNode.getTextContent();
-                            try {
+                            try { // #kgo Hier werden die images aus der .xml geladen 
                             	URL fileURL = BlockGenus.class.getClassLoader().getResource(fileLocation);
                             	if (fileURL == null ) {
                             		fileURL = new URL("file", "", /*workingDirectory +*/ fileLocation);
