@@ -3805,11 +3805,7 @@
 					connector-kind="plug" />
 				
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/wifi.gif</FileLocation>
-				</Image>
-			</Images>
+	
 		</BlockGenus>
 		
 		
@@ -3828,11 +3824,7 @@
 					<DefaultArg genus-name="passwort" label="mind8Zeichen" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/wifi.gif</FileLocation>
-				</Image>
-			</Images>
+		
 		</BlockGenus>
 
 
@@ -3958,11 +3950,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number" connector-kind="plug" />
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/wifi.gif</FileLocation>
-				</Image>
-			</Images>
+		
 		</BlockGenus>
 
         <BlockGenus name="packetsWLAN" kind="data" color="30 30 255"
@@ -3977,11 +3965,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number" connector-kind="plug" />
 			</BlockConnectors>
-			<Images>
-			    <Image>
-					<FileLocation>com/ardublock/block/IoTkit/wifi.gif</FileLocation>
-				</Image>
-			</Images>
+		
 		</BlockGenus>
 
 
@@ -4958,11 +4942,7 @@
 				
 				</BlockConnectors>
 				
-			<Images>
-			    <Image>
-			    	<FileLocation>com/ardublock/block/IoTkit/PersonSensor.png</FileLocation>
-				</Image>
-			</Images>
+		
 		</BlockGenus>
 		
 		
@@ -5243,11 +5223,7 @@
 				
 				
 			</BlockConnectors>
-  			<Images>
-			    <Image block-location="northwest">
-			    <FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
-				</Image>
-			</Images>
+  			
 		</BlockGenus>
 
 
@@ -5268,11 +5244,7 @@
 					connector-kind="socket" label="Value4">
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image block-location="northwest">
-			    <FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
-				</Image>
-			</Images>
+		
 			
 		</BlockGenus>
 
@@ -5295,11 +5267,7 @@
 					connector-kind="socket" label="reject">
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image block-location="northwest">
-			    <FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
-				</Image>
-			</Images>
+		
 		</BlockGenus>
 
         <BlockGenus name="classifyEDGEc" kind="data" color="255 0 0" initlabel="bg.classifyEDGEc" editable-label="no" is-label-value="no" >
@@ -5351,12 +5319,7 @@
 					<DefaultArg genus-name="text" label="/api/training/data" />
 				</BlockConnector>
 			</BlockConnectors>
-		    <Images>
-			    <Image block-location="northwest">
-					<FileLocation>com/ardublock/block/IoTkit/EDGE_small.png</FileLocation>
-				</Image>
-			</Images>
-			
+		  
 		</BlockGenus>
 
     <BlockGenus name="sampleClass" kind="command" color="30 30 255"
@@ -5380,11 +5343,7 @@
                 </BlockConnector>	
 	
 			</BlockConnectors>
-			<Images>
-			    <Image block-location="northwest">
-			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
-				</Image>
-			</Images>
+			
 			
 		</BlockGenus>
 
@@ -5424,11 +5383,7 @@
 		  		    <DefaultArg genus-name="number" label="INFINITY" />
 				</BlockConnector>
 			</BlockConnectors>
-			<Images>
-			    <Image block-location="northwest">
-			    <FileLocation>com/ardublock/block/IoTkit/Class_small.png</FileLocation>
-				</Image>
-			</Images>
+		
 			
 		</BlockGenus>
         
