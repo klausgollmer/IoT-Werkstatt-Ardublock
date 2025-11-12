@@ -1202,6 +1202,37 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+ <BlockGenus name="setArray2VarNum" kind="command"
+			color="255 77 55" initlabel="bg.setArray2Var">
+			<description>
+				<text>Array</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="index">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="wert">
+  				    <DefaultArg genus-name="number" label="0.0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+        <BlockGenus name="readArray2VarNum" kind="data"
+			color="102 0 61" initlabel="bg.readArray2Var">
+			<description>
+				<text>Array</text>
+			</description>
+			<BlockConnectors>
+   			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="index">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
 
 
 
