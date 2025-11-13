@@ -4252,6 +4252,27 @@
 		      </BlockConnectors>
 		</BlockGenus>
 
+      <BlockGenus name="sendPhyphox" kind="command" color="30 30 255"
+			initlabel="bg.sendPhyphox" editable-label="no" is-label-value="no">
+			<description>
+				<text></text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="BLE-Name">
+ 					<DefaultArg genus-name="text" label="IoT-Werkstatt" /> 
+				</BlockConnector>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing1">
+				</BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing2">
+				</BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing3">
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
 
    
        <BlockGenus name="sendThingspeak" kind="command" color="30 30 255"

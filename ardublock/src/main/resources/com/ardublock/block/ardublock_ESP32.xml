@@ -140,6 +140,8 @@
         <BlockGenus name="Divider_Wait" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  		<BlockGenus name="Divider_Code" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  	
+ 		<BlockGenus name="Divider_Audio" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+ 		<BlockGenus name="Divider_BLE" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  	
         <BlockGenus name="Divider_Test" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Logic" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -4254,6 +4256,28 @@
 		      </BlockConnectors>
 		</BlockGenus>
 
+       <BlockGenus name="sendPhyphox" kind="command" color="30 30 255"
+			initlabel="bg.sendPhyphox" editable-label="no" is-label-value="no">
+			<description>
+				<text></text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="BLE-Name">
+ 					<DefaultArg genus-name="text" label="IoT-Werkstatt" /> 
+				</BlockConnector>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing1">
+				</BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing2">
+				</BlockConnector>
+				    <BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.thing3">
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
 
    
        <BlockGenus name="sendThingspeak" kind="command" color="30 30 255"
@@ -7441,6 +7465,9 @@
 
            <BlockDrawer button-color="37 79 140" name="bd.Audio"
 				type="factory">
+				<BlockGenusMember>Divider_BLE</BlockGenusMember>
+			    <BlockGenusMember>sendPhyphox</BlockGenusMember>
+				<BlockGenusMember>Divider_Audio</BlockGenusMember>
 				<BlockGenusMember>MIC_Loudness</BlockGenusMember>
 				<BlockGenusMember>MIC_Claps</BlockGenusMember>
 				<BlockGenusMember>MIC_YIN</BlockGenusMember>
