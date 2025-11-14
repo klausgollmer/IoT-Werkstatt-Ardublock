@@ -4266,14 +4266,30 @@
 					connector-kind="socket" label="BLE-Name">
  					<DefaultArg genus-name="text" label="IoT-Werkstatt" /> 
 				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Sensor 1">
+					<DefaultArg genus-name="text" label="name,unit" />
+				</BlockConnector>
 			    <BlockConnector connector-type="number"
-					connector-kind="socket" label="bc.thing1">
+					connector-kind="socket" label="wert">
 				</BlockConnector>
-				    <BlockConnector connector-type="number"
-					connector-kind="socket" label="bc.thing2">
+				
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Sensor 2">
+					<DefaultArg genus-name="text" label="name2,unit2" />
 				</BlockConnector>
-				    <BlockConnector connector-type="number"
-					connector-kind="socket" label="bc.thing3">
+				
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="wert">
+				</BlockConnector>
+				
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Sensor 3">
+					<DefaultArg genus-name="text" label="name3,unit3" />
+				</BlockConnector>
+				
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="wert">
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
