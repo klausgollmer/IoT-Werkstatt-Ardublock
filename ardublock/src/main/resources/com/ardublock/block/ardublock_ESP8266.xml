@@ -4221,7 +4221,7 @@
 		</BlockGenus>
 
       
-       <BlockGenus name="sendPhyphox" kind="command" color="30 30 255"
+      <BlockGenus name="sendPhyphox" kind="command" color="30 30 255"
 			initlabel="bg.sendPhyphox" editable-label="no" is-label-value="no">
 			<description>
 				<text></text>
@@ -4241,7 +4241,6 @@
 				
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Sensor 2">
-					<DefaultArg genus-name="text" label="name2,unit2" />
 				</BlockConnector>
 				
 			    <BlockConnector connector-type="number"
@@ -4250,14 +4249,31 @@
 				
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Sensor 3">
-					<DefaultArg genus-name="text" label="name3,unit3" />
 				</BlockConnector>
 				
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="wert">
 				</BlockConnector>
+				
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Sensor 4">
+				</BlockConnector>
+				
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="wert">
+				</BlockConnector>
+				
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Sensor 5">
+				</BlockConnector>
+				
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="wert">
+				</BlockConnector>
+				
 			</BlockConnectors>
 		</BlockGenus>
+   
       
 
    
