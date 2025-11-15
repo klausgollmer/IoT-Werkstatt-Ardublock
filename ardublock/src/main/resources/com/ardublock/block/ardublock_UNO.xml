@@ -1448,7 +1448,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Pin">
-					<DefaultArg genus-name="number" label="15" />
+					<DefaultArg genus-name="number" label="12" />
 				</BlockConnector>
 				<BlockConnector connector-type="boolean"
 					connector-kind="plug" />
@@ -1463,7 +1463,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Pin">
-					<DefaultArg genus-name="number" label="15" />
+					<DefaultArg genus-name="number" label="12" />
 				</BlockConnector>
 				<BlockConnector connector-type="boolean"
 					connector-kind="socket" label="Pullup">
@@ -1594,7 +1594,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="A">
-					<DefaultArg genus-name="number" label="5" />
+					<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
@@ -3363,7 +3363,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="pin">
-					<DefaultArg genus-name="number" label="15" />
+					<DefaultArg genus-name="number" label="13" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.value">
@@ -3419,7 +3419,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="GPIO puls">
-					<DefaultArg genus-name="number" label="15" />
+					<DefaultArg genus-name="number" label="13" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="GPIO dir">
@@ -3471,7 +3471,7 @@
 				
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="pin">
-					<DefaultArg genus-name="number" label="15" />
+					<DefaultArg genus-name="number" label="13" />
 				</BlockConnector>
 		
 				
@@ -3512,7 +3512,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="pin">
-					<DefaultArg genus-name="number" label="15" />
+					<DefaultArg genus-name="number" label="13" />
 				</BlockConnector>
 				
 				<BlockConnector connector-type="string"
@@ -3556,7 +3556,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="pin">
-					<DefaultArg genus-name="number" label="15" />
+					<DefaultArg genus-name="number" label="13" />
 				</BlockConnector>
 				
 				<BlockConnector connector-type="string"
@@ -3582,7 +3582,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.pin_number">
-					<DefaultArg genus-name="number" label="15" />
+					<DefaultArg genus-name="number" label="13" />
 				</BlockConnector>
 				<BlockConnector connector-type="boolean"
 					connector-kind="socket" label="bc.value">
@@ -6636,7 +6636,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Pin">
-					<DefaultArg genus-name="number" label="15" />
+					<DefaultArg genus-name="number" label="13" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Mode">
@@ -6674,7 +6674,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Pin">
-					<DefaultArg genus-name="number" label="15" />
+					<DefaultArg genus-name="number" label="13" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
@@ -7245,7 +7245,7 @@
 			
 			
 				<BlockGenusMember>Divider_Print</BlockGenusMember>
-				<BlockGenusMember>OLED_PrintTerminal</BlockGenusMember>
+			<!--	<BlockGenusMember>OLED_PrintTerminal</BlockGenusMember>-->
 				<BlockGenusMember>serial_print_num</BlockGenusMember>
 				<BlockGenusMember>serial_print</BlockGenusMember>
 				<!-- 
@@ -7270,63 +7270,32 @@
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-read-analog</BlockGenusMember>
 				<BlockGenusMember>pin-read-digital</BlockGenusMember>
-		<!-- 	<BlockGenusMember>pin-mode-pullup</BlockGenusMember> -->
-				<BlockGenusMember>Divider_Environment</BlockGenusMember>
-				<BlockGenusMember>GetBSEC</BlockGenusMember>
-			
-			<!-- <BlockGenusMember>GetBME680offset</BlockGenusMember> -->
-				<BlockGenusMember>Divider_Light</BlockGenusMember>
-				<BlockGenusMember>ADPS9999Get</BlockGenusMember>
-			<!-- 	<BlockGenusMember>ADPS9960Cal</BlockGenusMember> -->
-				<BlockGenusMember>Divider_Encoder</BlockGenusMember>
-				<BlockGenusMember>button_press</BlockGenusMember>
-				<BlockGenusMember>button_rot</BlockGenusMember>
-			    <BlockGenusMember>button_rot_minmax2</BlockGenusMember>
-			    <!-- 	
-			    <BlockGenusMember>touch_rot</BlockGenusMember>	
-  		        <BlockGenusMember>touch_press</BlockGenusMember>	
-  		        <BlockGenusMember>touch_rot_minmax</BlockGenusMember>
-  		        -->	
-				<BlockGenusMember>glue_sn</BlockGenusMember>
-				<BlockGenusMember>glue_sb</BlockGenusMember>
-			 
-		
 			</BlockDrawer>
 
 
 	<!-- bd.output -->
 			<BlockDrawer button-color="122 150 200" name="bd.output"
 				type="factory">
-				<BlockGenusMember>Divider_LED</BlockGenusMember>
-				<BlockGenusMember>iot_neopixel_light</BlockGenusMember>
-			<!-- <BlockGenusMember>iot_neopixel</BlockGenusMember> -->
-			
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>
 				<BlockGenusMember>pin-write-digital</BlockGenusMember>
 				
-				<BlockGenusMember>Divider_Display</BlockGenusMember>
-				<BlockGenusMember>OLED_Print3</BlockGenusMember>
-				<BlockGenusMember>OLED_DispArray</BlockGenusMember>
-				<BlockGenusMember>OLED_ClearArray</BlockGenusMember>
-			
 				
 	<!-- 			<BlockGenusMember>IoTmessage</BlockGenusMember> -->
 				
 			</BlockDrawer>
-	
+<!-- 	
 			<BlockDrawer button-color="37 79 140" name="bd.WLAN_communication"
 				type="factory">
 				<BlockGenusMember>Divider_WiFi</BlockGenusMember>
 				<BlockGenusMember>connectWLANAP</BlockGenusMember>
-				<!-- 
+				
 				<BlockGenusMember>connectWLANAPTO</BlockGenusMember>
 				<BlockGenusMember>WiFiMan</BlockGenusMember>
-				-->
+				
 				<BlockGenusMember>Divider_WiFiAP</BlockGenusMember>
 				<BlockGenusMember>buildWLANAP</BlockGenusMember>
-				<!--BlockGenusMember>connectGPRS</BlockGenusMember 
-				-->
+				
 				
 			</BlockDrawer>
 			
@@ -7337,7 +7306,6 @@
 			    <BlockGenusMember>Divider_Thing</BlockGenusMember>
 			    <BlockGenusMember>sendThingspeak</BlockGenusMember>
 			
-				<!-- 
 				<BlockGenusMember>askThingspeak</BlockGenusMember>
 				<BlockGenusMember>Divider_Thingsboard</BlockGenusMember>
 			    <BlockGenusMember>sendThingsboard</BlockGenusMember>
@@ -7351,9 +7319,9 @@
 	 		   
 	            <BlockGenusMember>Divider_Server</BlockGenusMember>
 		 	    <BlockGenusMember>ownMessageServer_CO2_V2</BlockGenusMember>
-			 	 -->
+			 	
   			</BlockDrawer>
-
+-->
 								
 								          <!-- bd.input, external -->
           <BlockDrawer button-color="122 150 200" name="bd.input_ext"
@@ -7425,18 +7393,8 @@
 				<BlockGenusMember>INA219Get</BlockGenusMember>
 				<BlockGenusMember>MPR121_read</BlockGenusMember>
 
-				<BlockGenusMember>Divider_GPS</BlockGenusMember>
-			    <!--BlockGenusMember>GetGPS</BlockGenusMember-->
-			    <BlockGenusMember>GetGPSI2C</BlockGenusMember>
-
-                <BlockGenusMember>Divider_NFC</BlockGenusMember>
-				<BlockGenusMember>NFCRead</BlockGenusMember>
-				<BlockGenusMember>NFCWrite</BlockGenusMember>
-
 				<BlockGenusMember>Divider_Motor</BlockGenusMember>
 				<BlockGenusMember>pin-write-servo</BlockGenusMember>
-				<BlockGenusMember>feather_motor</BlockGenusMember>
-				<BlockGenusMember>feather_stepmotor</BlockGenusMember>
 				<BlockGenusMember>arduino_stepmotor</BlockGenusMember>
 
 				<BlockGenusMember>Divider_LED</BlockGenusMember>
@@ -7447,11 +7405,6 @@
 				<BlockGenusMember>GetMMA7660</BlockGenusMember>
 				<BlockGenusMember>GetBNO</BlockGenusMember>
 				<BlockGenusMember>SD_print</BlockGenusMember>		
-			 	<BlockGenusMember>readPS</BlockGenusMember>
-			 	<BlockGenusMember>calPS</BlockGenusMember>
-			 	<BlockGenusMember>storePS</BlockGenusMember>
-				
-								
 			</BlockDrawer>
 								
 								
