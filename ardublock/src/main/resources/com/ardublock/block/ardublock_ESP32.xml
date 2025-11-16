@@ -6255,7 +6255,7 @@
 			initlabel="bg.DIYSpectro" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector label="Source" connector-type="string" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="DIYSpectroVectOctiW" label="Weiss Octopus"/>
+                    <DefaultArg genus-name="DIYSpectroVectOctiRGB" label="Neopixel RGB"/>
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
@@ -6264,7 +6264,7 @@
 			initlabel="bg.DIYSpectroBH" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector label="Source" connector-type="string" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="DIYSpectroVectOctiW" label="Weiss Octopus"/>
+                    <DefaultArg genus-name="DIYSpectroVectOctiRGB" label="Neopixel RGB"/>
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
@@ -7112,7 +7112,7 @@
 		<BlockFamily>
 			<FamilyMember>DIYSpectroVectOctiW</FamilyMember>
  			<FamilyMember>DIYSpectroVectOctiRGB</FamilyMember>
-     		<FamilyMember>DIYSpectroVectD1W</FamilyMember>
+<!--     		<FamilyMember>DIYSpectroVectD1W</FamilyMember> -->
 <!-- 			<FamilyMember>DIYSpectroVectD1RGB</FamilyMember> -->
 		</BlockFamily>
 		
@@ -7356,7 +7356,6 @@
 				<BlockGenusMember>Divider_WiFi</BlockGenusMember>
 				<BlockGenusMember>connectWLANAP</BlockGenusMember>
 				<BlockGenusMember>connectWLANAPTO</BlockGenusMember>
-				<BlockGenusMember>connectWLANShelly</BlockGenusMember>
 				<BlockGenusMember>WiFiMan</BlockGenusMember>
 				<BlockGenusMember>connectWLANShelly</BlockGenusMember>
 				<BlockGenusMember>Divider_WiFiAP</BlockGenusMember>

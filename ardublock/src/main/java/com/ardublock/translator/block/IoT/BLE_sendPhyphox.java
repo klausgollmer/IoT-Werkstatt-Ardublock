@@ -173,7 +173,7 @@ public class BLE_sendPhyphox  extends TranslatorBlock {
         ret = "{ // Phyphox send \n"
         		+ Var +         		
                  "PhyphoxBLE::write("+List+");\n"
-                +"delay(50);\n"
+                +"delay(1);\n"
         		+ "}";
         
         return codePrefix + ret + codeSuffix;

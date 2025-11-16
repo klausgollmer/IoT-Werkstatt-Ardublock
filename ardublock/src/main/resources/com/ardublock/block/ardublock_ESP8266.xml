@@ -6218,7 +6218,7 @@
 			initlabel="bg.DIYSpectro" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector label="Source" connector-type="string" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="DIYSpectroVectOctiW" label="Weiss Octopus"/>
+                    <DefaultArg genus-name="DIYSpectroVectOctiRGB" label="Neopixel RGB"/>
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
@@ -6227,7 +6227,7 @@
 			initlabel="bg.DIYSpectroBH" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector label="Source" connector-type="string" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="DIYSpectroVectOctiW" label="Weiss Octopus"/>
+                    <DefaultArg genus-name="DIYSpectroVectOctiRGB" label="Neopixel RGB"/>
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
@@ -7297,9 +7297,6 @@
 				<BlockGenusMember>WiFiMan</BlockGenusMember>
 				<BlockGenusMember>Divider_WiFiAP</BlockGenusMember>
 				<BlockGenusMember>buildWLANAP</BlockGenusMember>
-				<BlockGenusMember>Divider_DNS</BlockGenusMember>
-				<BlockGenusMember>mDNS</BlockGenusMember>
-				<!--BlockGenusMember>connectGPRS</BlockGenusMember-->
 				
 			</BlockDrawer>
 			

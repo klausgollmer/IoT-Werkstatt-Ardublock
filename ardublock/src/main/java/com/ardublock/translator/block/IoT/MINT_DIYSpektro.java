@@ -56,10 +56,11 @@ public class MINT_DIYSpektro  extends TranslatorBlock {
 	    	  +"pixels.clear();pixels.show();\n";
          translator.addSetupCommand(setup);
 
-		
+		 String ret = "DIY_SpectroOctiLoop();\r\n"
+		 		    + "  delay(10);\n";
 	     translator.addSetupCommand("//------------ DIY Spectrometer \n // https://www.haw-hamburg.de/fakultaeten-und-departments/ls/ls-forschung/projekte/projekte-aus-der-chemie/schuman/smartphone-photometer.html ");
 	     translator.addSetupCommand(setup_typ);
-		 return codePrefix + codeSuffix;
+		 return codePrefix + ret+ codeSuffix;
 	 	}
 }
 

@@ -16,7 +16,7 @@ public class WLAN_mDNS  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		translator.addHeaderFile("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");		
-		translator.addHeaderFile("ESPmDNS.h");
+		translator.addHeaderFile("#if defined(ESP32)\n #include <ESPmDNS.h>\n #endif\n");
 		//translator.addSetupCommand("Serial.begin(115200);");
 		translator.addDefinitionCommand("String matrixausgabe_text  = \" \"; // Ausgabetext als globale Variable\n");
 		translator.addDefinitionCommand("volatile int matrixausgabe_index = 0;// aktuelle Position in Matrix\n");
@@ -30,12 +30,14 @@ public class WLAN_mDNS  extends TranslatorBlock {
 
 
 	    String ret = "//------------ mDNS - Responder starten \n"
-	    	+ "if (MDNS.begin("+URL+")) {              // Start the mDNS responder \n" + 
+	    	+ "#if defined(ESP32)\n"	
+	    	+ " if (MDNS.begin("+URL+")) {              // Start the mDNS responder \n" + 
 	    	"    IOTW_PRINTLN(\"mDNS responder started, hostname = \"+String("+URL+")+String(\".local\"));\n" + 
 	        "    MDNS.addService(\"http\", \"tcp\", 80);\n"+
-	    	"  } else {\n" + 
+	    	"   } else {\n" + 
 	    	"    IOTW_PRINTLN(\"Error setting up mDNS responder!\");\n" + 
-	    	"  }\n" + 
+	    	"   }\n" + 
+	    	"#endif\n"+
 	    	"matrixausgabe_text = String(\" Meine URL:\") + String("+URL+")+String(\".local\");\n" +
    		    "matrixausgabe_index=0;\n";
 	    

@@ -44,16 +44,18 @@ public class MINT_DIYSpektro_BH  extends TranslatorBlock {
 		//translator.addSetupCommand("Serial.begin(115200);");
 		// now in init : translator.addSetupCommand("Wire.begin(SDA, SCL); // ---- Initialisiere den I2C-Bus \n");
 	    // now in init : translator.addSetupCommand("#if defined(ESP8266) \n   if (Wire.status() != I2C_OK) IOTW_PRINTLN(F(\"Something wrong with I2C\")); \n  #endif \n");
-		String Setup = "if (!LightSensor.begin() while(1) {IOTW_PRINTLN(\"missing BH1750\");delay(100);}\r\n";
+		String Setup = "if (!LightSensor.begin()) while(1) {IOTW_PRINTLN(\"missing BH1750\");delay(100);}\r\n";
 	    translator.addSetupCommand(Setup);
 
 	       String setup=  "pixels.begin();//-------------- Initialisierung Neopixel\n"
 	    	  +"pixels.clear();pixels.show();\n";
          translator.addSetupCommand(setup);
 
+         String ret = "DIY_SpectroOctiLoop();\r\n"
+		 		    + "  delay(10);\n";
 	     translator.addSetupCommand("//------------ DIY Spectrometer \n // https://www.haw-hamburg.de/fakultaeten-und-departments/ls/ls-forschung/projekte/projekte-aus-der-chemie/schuman/smartphone-photometer.html ");
 	     translator.addSetupCommand(setup_typ);
-		 return codePrefix + codeSuffix;
+		 return codePrefix + ret+ codeSuffix;
 	 	}
 }
 
