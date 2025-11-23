@@ -22,7 +22,7 @@ http://education.mit.edu/
 Ardublock License
 ----
 GNU General Public License v3.0
-Copyright (C) 2011 David Li and He Qichen
+Copyright (C) 2011 David Li and He Qichen  
 Copyright (C) 2025 Klaus-Uwe Gollmer, IoT-Werkstatt
 
 This file is part of ArduBlock.
