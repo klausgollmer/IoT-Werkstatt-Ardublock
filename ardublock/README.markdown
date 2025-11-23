@@ -1,8 +1,7 @@
 IoT-Werkstatt ArduBlock 
 ======
 
-Copyright (C) 2025 IoT-Werkstatt Klaus-Uwe Gollmer
-ArduBlock ist eine grafische Programmiersprache für das Arduino Ökosystem. Im Rahmen der Aktivitäten der IoT-Werkstatt wurde die Plattform um Super-Blöcke mit IoT-Funktion erweitert. Damit erschließt sich das Internet der Dinge in einer spielerischen Weise.
+ArduBlock ist eine grafische Programmiersprache für das Arduino Ökosystem. Im Rahmen der Aktivitäten der IoT-Werkstatt wurde die Plattform um Super-Blöcke mit IoT-Funktion für die ESP Toolchain erweitert. Damit erschließt sich das Internet der Dinge in einer spielerischen Weise.
 Nähere Informationen zur IoT-Werkstatt: www.iot-werkstatt.de
 
 Credits
@@ -24,6 +23,7 @@ Ardublock License
 ----
 GNU General Public License v3.0
 Copyright (C) 2011 David Li and He Qichen
+Copyright (C) 2025 Klaus-Uwe Gollmer, IoT-Werkstatt
 
 This file is part of ArduBlock.
 
