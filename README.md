@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" alt="IoT-Werkstatt Logo" width="350">
+  <img src="Logo.png" alt="IoT-Werkstatt Logo" width="350">
 </p>
 
 # IoT²-Werkstatt – Ardublock
