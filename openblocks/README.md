@@ -6,6 +6,8 @@ This is a fork of [MIT OpenBlocks](http://education.mit.edu/drupal/openblocks)
 
 The principal objective of the fork is to make the code more amenable to inclusion to other projects.
 
+Modifications by: Klaus-Uwe Gollmer (2025)
+
 Getting Started:
 ------
 	$ mvn clean package
