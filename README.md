@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="ab415616-e7d6-49e0-9498-8280f2949738.webp" alt="IoT-Werkstatt Logo" width="350">
+  <img src="logo.png" alt="IoT-Werkstatt Logo" width="350">
 </p>
 
 # IoT²-Werkstatt – Ardublock
@@ -34,9 +34,6 @@ Bitte beachten Sie die jeweilige Lizenz im entsprechenden Unterordner.
 
 # English Version
 
-<p align="center">
-  <img src="ab415616-e7d6-49e0-9498-8280f2949738.webp" alt="IoT-Werkstatt Logo" width="350">
-</p>
 
 ## IoT² Workshop – Ardublock
 
