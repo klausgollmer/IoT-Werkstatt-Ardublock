@@ -330,7 +330,7 @@
 		<BlockGenus name="delay" kind="command" color="255 221 0"
 			initlabel="bg.delay">
 			<description>
-				<text>program delay in x milliseconds</text>
+				<text></text>
 			</description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
@@ -339,6 +339,20 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+		
+		<BlockGenus name="delay_s" kind="command" color="255 221 0"
+			initlabel="bg.delay_s">
+			<description>
+				<text></text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="s">
+					<DefaultArg genus-name="number" label="1" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+			
 		
 		
 		<BlockGenus name="subroutine" kind="command" color="200 200 0"
@@ -7108,6 +7122,7 @@
 			<BlockDrawer button-color="233 244 124" name="bd.control"
 				type="factory">
 			    <BlockGenusMember>Divider_Wait</BlockGenusMember>
+		    	<BlockGenusMember>delay_s</BlockGenusMember>
 				<BlockGenusMember>delay</BlockGenusMember>
 			
   			    <BlockGenusMember>Divider_Loop</BlockGenusMember>
