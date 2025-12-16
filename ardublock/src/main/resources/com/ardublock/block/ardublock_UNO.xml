@@ -4439,36 +4439,20 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-        <BlockGenus name="askSMARD" kind="data" color="30 30 255"
+   <BlockGenus name="askSMARD" kind="data" color="30 30 255"
 			initlabel="bg.askSMARD" editable-label="no" is-label-value="no">
 			<description>
 				<text>read SMARD-Realtime-Data</text>
 			</description>
 			<BlockConnectors>
-				<BlockConnector label="Typ" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="SMARDVectRen" label="Anteil Erneuerbare %"/>
-                </BlockConnector>	
 			    <BlockConnector connector-type="number"
-					connector-kind="socket" label="Vorhersagezeit (h)">
+					connector-kind="socket" label="Vorhersage (h)">
 					<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 				<BlockConnector connector-type="number" connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
-		
-		<BlockGenus name="SMARDVectRen" kind="data" color="255 0 0" initlabel="SMARDVectRen" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-
-  		<BlockGenus name="SMARDVectCO2" kind="data" color="255 0 0" initlabel="SMARDVectCO2" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-  		
-
+     
          <BlockGenus name="sendThingsboard" kind="command" color="30 30 255"
 			initlabel="bg.sendThingsboard" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -7065,11 +7049,6 @@
 			<FamilyMember>LightTSLVectLux</FamilyMember>
 			<FamilyMember>LightTSLVectVis</FamilyMember>
 			<FamilyMember>LightTSLVectIR</FamilyMember>
-		</BlockFamily>
-
-		<BlockFamily>
-			<FamilyMember>SMARDVectRen</FamilyMember>
-			<!-- FamilyMember>SMARDVectCO2</FamilyMember -->
 		</BlockFamily>
 
 		<BlockFamily>

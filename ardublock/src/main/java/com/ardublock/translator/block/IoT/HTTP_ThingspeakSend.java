@@ -143,10 +143,7 @@ public class HTTP_ThingspeakSend  extends TranslatorBlock {
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    host = translatorBlock.toCode();
 	
-	    if (host.contains("api.thingspeak.umwelt-campus.de")) {
-	    	host = "\"thingspeak.umwelt-campus.de\"";
-	    }
-	    
+	  
 
 	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 	    apikey = translatorBlock.toCode();

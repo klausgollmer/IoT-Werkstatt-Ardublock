@@ -131,14 +131,12 @@ public class HTTP_SMARDAsk  extends TranslatorBlock {
 		
 		
 		String channel,host,feldindex,ret;
-	    host = "thingspeak.umwelt-campus.de";
+	    host = "api.thingspeak.com";
 
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
-	    channel = translatorBlock.toCode();
-	    
-	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 	    feldindex = translatorBlock.toCode();
 	    
+	    channel = "3187291";
 	     
 	    ret = "askThingspeak(\""+host+"\",\""+channel+ "\"," + feldindex +"+1)";
         return codePrefix + ret + codeSuffix;

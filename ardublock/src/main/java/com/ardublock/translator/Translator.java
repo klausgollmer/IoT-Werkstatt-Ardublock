@@ -106,7 +106,6 @@ public class Translator
 				+ ".   ##   ##   ##   ##     [X]  Deine Ideen \r\n"
 				+ ".   ##   ##   ##   ##     [X]  Deine Werkstatt\r\n"
 				+ ".   ##   ##   ##   ##     [X]  IoT² ohne Syntax-Frust\r\n"
-				+ ".   ##   ##   ##   ##\r\n"
 				+ ". ######  #####    ##\r\n"
 				+ "\n"
 				+ "  Das Sketch-Gerüst wurde generiert von IoT²-Werkstatt Makey:Lab \n"

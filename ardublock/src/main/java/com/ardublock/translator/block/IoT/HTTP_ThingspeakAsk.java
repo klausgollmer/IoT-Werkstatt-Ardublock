@@ -166,11 +166,7 @@ public class HTTP_ThingspeakAsk  extends TranslatorBlock {
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    host = translatorBlock.toCode();
 
-	    if ("api.thingspeak.umwelt-campus.de".equalsIgnoreCase(host)) {
-	    	host = "thingspeak.umwelt-campus.de";
-	    }
-
-	    
+		    
 	    
 	    translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 	    channel = translatorBlock.toCode();
