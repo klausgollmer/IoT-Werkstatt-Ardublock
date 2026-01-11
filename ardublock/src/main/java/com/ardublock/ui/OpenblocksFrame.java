@@ -428,7 +428,9 @@ public class OpenblocksFrame extends JFrame
             System.err.println("Die BROWSE-Aktion wird auf diesem System nicht unterstützt.");
             return;
         }
-        int optionValue = JOptionPane.showOptionDialog(null, link, "Open Internet Resources", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
+        String mess = uiMessageBundle.getString("ardublock.ui.internet");
+        int optionValue = JOptionPane.showOptionDialog(null, mess,link,JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, JOptionPane.YES_OPTION);
+        
 		if (optionValue == JOptionPane.NO_OPTION)
 		{
 			return;
