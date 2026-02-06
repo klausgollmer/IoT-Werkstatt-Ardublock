@@ -35,8 +35,8 @@ Da beide Komponenten **unterschiedliche Lizenzen** besitzen, wird im Repository-
 Bitte beachten Sie die jeweilige Lizenz im entsprechenden Unterordner.
 
 ### Autor  
-Anpassung Oberfläche, Codegenerator und Setup der IoT²-Funktionen für ESP8266 und ESP32
-Klaus-Uwe Gollmer
+- Anpassung Oberfläche, Codegenerator und Setup der IoT²-Funktionen für ESP8266 und ESP32
+- Klaus-Uwe Gollmer
 ---
 
 # English Version
@@ -76,6 +76,6 @@ Because the components use **different licenses**, there is **no unified LICENSE
 Refer to the LICENSE files inside each component folder.
 
 ### Author
-GUI, Code generator and IoT² functions for ESP8266 and ESP32
-Klaus-Uwe Gollmer
+- Adaption GUI, Code generator and IoT² functions for ESP8266 and ESP32
+- Klaus-Uwe Gollmer
 ---
