@@ -17,12 +17,16 @@ Weitere Informationen, Unterrichtsmaterialien und Projekte auf der Homepage am U
 Dieses Repository kombiniert zwei voneinander unabhängige Open-Source-Projekte, die jeweils ihre eigene Lizenz behalten:
 
 ### 📁 `ardublock/` – GNU GPLv3  
-Ein Fork von **ArduBlock**, einer grafischen Block-Programmieroberfläche für Arduino.  
+Dieses Projekt nutzt **ArduBlock**, eine grafische Block-Programmieroberfläche für Arduino.  
+- David Li and He Qichen
+- Repository hhttps://github.com/taweili/ardublock
 - Lizenz: **GNU General Public License v3 (GPLv3)**  
 - Datei: `ardublock/LICENSE`
 
 ### 📁 `openblocks/` – MIT License  
-Ein Fork von **OpenBlocks**, einem Framework für visuelle Block-Programmierung.  
+Dieses Projekt nutzt **OpenBlocks**, einem Framework für visuelle Block-Programmierung.
+- Eric Klopfer, Daniel Wendel, Ricarose Roque, Corey McCaffrey, Lunduo Ye, Aidan Ho, Brett Warne, Xudan Liu, Hout Nga, Mikael Gueck, David Li, Philippe Cade, Tony Graham
+- Repository: https://github.com/mikaelhg/openblocks
 - Lizenz: **MIT License**  
 - Datei: `openblocks/LICENSE`
 
@@ -51,12 +55,16 @@ More information and teaching materials see homepage at Umwelt-Campus Birkenfeld
 This repository combines two independent open-source projects that each retain their own license:
 
 ### 📁 `ardublock/` – GNU GPLv3  
-A fork of **ArduBlock**, a graphical block-based programming environment for Arduino.  
+**ArduBlock**, a graphical block-based programming environment for Arduino.  
+- David Li and He Qichen
+- Repository hhttps://github.com/taweili/ardublock
 - License: **GNU General Public License v3 (GPLv3)**  
 - File: `ardublock/LICENSE`
 
 ### 📁 `openblocks/` – MIT License  
-A fork of **OpenBlocks**, a framework for visual block editing.  
+**OpenBlocks**, a framework for visual block editing.  
+- Eric Klopfer, Daniel Wendel, Ricarose Roque, Corey McCaffrey, Lunduo Ye, Aidan Ho, Brett Warne, Xudan Liu, Hout Nga, Mikael Gueck, David Li, Philippe Cade, Tony Graham
+- Repository: https://github.com/mikaelhg/openblocks
 - License: **MIT License**  
 - File: `openblocks/LICENSE`
 
