@@ -36,7 +36,7 @@ Bitte beachten Sie die jeweilige Lizenz im entsprechenden Unterordner.
 
 ### Autor  
 - Anpassung Oberfläche, Codegenerator und Setup der IoT²-Funktionen für ESP8266 und ESP32
-- Klaus-Uwe Gollmer
+  Klaus-Uwe Gollmer
 ---
 
 # English Version
