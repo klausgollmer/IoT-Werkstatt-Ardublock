@@ -37,7 +37,8 @@ Bitte beachten Sie die jeweilige Lizenz im entsprechenden Unterordner.
 ### Schnellstart und Installationsanleitung  
 - https://www.umwelt-campus.de/iot-werkstatt/tutorials/schnellstart-makey
 
-# Autor: Klaus-Uwe Gollmer  
+# Autor
+Klaus-Uwe Gollmer  
 - Anpassung Oberfläche
 - Codegenerator und Setup der IoT²-Funktionen für ESP8266 und ESP32
  
@@ -83,7 +84,8 @@ Refer to the LICENSE files inside each component folder.
 - https://www.umwelt-campus.de/iot-werkstatt/tutorials/schnellstart-makey
 - change language in preferences arduino-ide 
 
-# Author: Klaus-Uwe Gollmer
+# Author
+Klaus-Uwe Gollmer
 - Adaption GUI
 - Code generator and IoT² functions for ESP8266 and ESP32
 ---
