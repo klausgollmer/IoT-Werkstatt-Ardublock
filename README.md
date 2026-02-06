@@ -34,9 +34,10 @@ Dieses Projekt nutzt **OpenBlocks**, einem Framework für visuelle Block-Program
 Da beide Komponenten **unterschiedliche Lizenzen** besitzen, wird im Repository-Root **keine gemeinsame LICENSE-Datei** geführt.  
 Bitte beachten Sie die jeweilige Lizenz im entsprechenden Unterordner.
 
-### Autor  
-- Anpassung Oberfläche, Codegenerator und Setup der IoT²-Funktionen für ESP8266 und ESP32
-  Klaus-Uwe Gollmer
+### Autor Klaus-Uwe Gollmer  
+- Anpassung Oberfläche
+- Codegenerator und Setup der IoT²-Funktionen für ESP8266 und ESP32
+ 
 ---
 
 # English Version
@@ -75,7 +76,7 @@ This repository combines two independent open-source projects that each retain t
 Because the components use **different licenses**, there is **no unified LICENSE file** in the project root.  
 Refer to the LICENSE files inside each component folder.
 
-### Author
-- Adaption GUI, Code generator and IoT² functions for ESP8266 and ESP32
-- Klaus-Uwe Gollmer
+### Author Klaus-Uwe Gollmer
+- Adaption GUI
+- Code generator and IoT² functions for ESP8266 and ESP32
 ---
