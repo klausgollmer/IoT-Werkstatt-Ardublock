@@ -19,7 +19,7 @@ Dieses Repository kombiniert zwei voneinander unabhängige Open-Source-Projekte,
 ### 📁 `ardublock/` – GNU GPLv3  
 Dieses Projekt nutzt **ArduBlock**, eine grafische Block-Programmieroberfläche für Arduino.  
 - David Li and He Qichen
-- Repository hhttps://github.com/taweili/ardublock
+- Repository https://github.com/taweili/ardublock
 - Lizenz: **GNU General Public License v3 (GPLv3)**  
 - Datei: `ardublock/LICENSE`
 
@@ -57,7 +57,7 @@ This repository combines two independent open-source projects that each retain t
 ### 📁 `ardublock/` – GNU GPLv3  
 **ArduBlock**, a graphical block-based programming environment for Arduino.  
 - David Li and He Qichen
-- Repository hhttps://github.com/taweili/ardublock
+- Repository https://github.com/taweili/ardublock
 - License: **GNU General Public License v3 (GPLv3)**  
 - File: `ardublock/LICENSE`
 
