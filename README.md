@@ -5,7 +5,7 @@
 # IoT²-Werkstatt – Ardublock
 
 Dieses Repository ist Teil der **IoT²-Werkstatt**, einer offenen Bildungsinitiative für Maker, Schulen, Lernende und Lehrkräfte.
-Ziel ist es, kreative, experimentelle und alltagsnahe Zugänge zu **Elektronik**, **Programmierung** und dem **Internet of Things (IoT)** zu ermöglichen.
+Ziel ist es, kreative, experimentelle und alltagsnahe Zugänge zu **Elektronik**, **Programmierung** und dem **Internet of Things and Thinking (IoT²)** zu ermöglichen.
 
 Weitere Informationen, Unterrichtsmaterialien und Projekte auf der Homepage am Umwelt-Campus Birkenfeld der Hochschule Trier
 👉 https://www.iot-werkstatt.de
