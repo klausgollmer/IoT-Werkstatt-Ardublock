@@ -111,12 +111,13 @@ public class Translator
 				+ "  Das Sketch-Gerüst wurde generiert von IoT²-Werkstatt Makey:Lab \n"
 				+ "  "+ver+" am " + jetzt.format(fmt) + "\r\n"
 				+ "\n"
-				+ "  Copyright (c) 2025 IoT²-Werkstatt / Klaus-Uwe Gollmer\n"
+				+ "  Copyright (c) 2026 IoT²-Werkstatt / Klaus-Uwe Gollmer\n"
 				+ "\n"
-				+ "  SPDX-License-Identifier: MIT\n"
-				+ "  Dieser Code ruft eventuell Funktionen externer Bibliotheken auf (s. #include Zeilen).\n"
+				+ "  SPDX-License-Identifier für das generierte Codegerüst: MIT\n"
+				+ "  Dieser Code ruft Funktionen externer Bibliotheken auf (s. #include Zeilen).\n"
 				+ "  Diese Bibliotheken selbst sind separat lizenziert – siehe jeweiligen Disclaimer.\n"
 				+ "  Der Einsatz dieser Bibliotheken kann zusätzliche Lizenzpflichten auslösen. \n"
+				+ "  Nutzung nur in Compliance mit den im Kommentar vermerkten Link angegebenen Lizenzbedingungen. \n"
 				+ "*/\n"
 				+ "\n";
 	
