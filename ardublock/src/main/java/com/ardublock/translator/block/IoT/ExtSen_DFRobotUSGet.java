@@ -40,13 +40,13 @@ public class ExtSen_DFRobotUSGet extends TranslatorBlock
        Def =   "#if defined(ESP32) \n"
        		+  " HardwareSerial swSerUS("+UART+"); // Hardware UART \n"
        		+ "#else \n"
-            + "  SoftwareSerial swSerUS("+rxpin+", -1); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup\n"   		   	
+            + "  SoftwareSerial swSerUS("+rxpin+", -1); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, LGPL-2.1 license, Peter Lerup\n"   		   	
        	    + "#endif \n";   
        
     } else {
        translator.addHeaderFile("SoftwareSerial.h");
        Setup = "swSerUS.begin(9600,SWSERIAL_8N1); // Maxbotix ultrasonic \n";
-       Def =   "SoftwareSerial swSerUS("+rxpin+", -1); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup\n";   		   	
+       Def =   "SoftwareSerial swSerUS("+rxpin+", -1); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, LGPL-2.1 license, Peter Lerup\n";   		   	
     }
     
     translator.addSetupCommand(Setup);

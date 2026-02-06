@@ -26,7 +26,7 @@ public class ExtSen_LIDAR_TFminiGet extends TranslatorBlock
 
     
     // Deklarationen hinzuf�ge
-    translator.addDefinitionCommand("SoftwareSerial swSerLIDAR(14, 12, false); //Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup, 14 -> TX, 12 -> RX\n");
+    translator.addDefinitionCommand("SoftwareSerial swSerLIDAR(14, 12, false); //Library: https://github.com/plerup/espsoftwareserial/, LGPL-2.1 license, Peter Lerup, 14 -> TX, 12 -> RX\n");
    	
     
     String read = "// LIDAR TFmini http://www.benewake.com/en/tfmini.html \n"

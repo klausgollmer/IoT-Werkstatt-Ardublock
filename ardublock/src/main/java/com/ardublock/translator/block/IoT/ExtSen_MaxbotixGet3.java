@@ -51,13 +51,13 @@ public class ExtSen_MaxbotixGet3 extends TranslatorBlock
        Def =   "#if defined(ESP32) \n"
        		+  " HardwareSerial swSerMaxBot("+UART+"); // Hardware UART \n"
        		+ "#else \n"
-            + " SoftwareSerial swSerMaxBot("+rxpin+", -1,true); // RXPin, TX not used, inverse logic, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup\n"   		   	
+            + " SoftwareSerial swSerMaxBot("+rxpin+", -1,true); // RXPin, TX not used, inverse logic, Library: https://github.com/plerup/espsoftwareserial/, LGPL-2.1 license, Peter Lerup\n"   		   	
        	    + "#endif \n";   
        
     } else {
        translator.addHeaderFile("SoftwareSerial.h");
        Setup = "swSerMaxBot.begin(9600,SWSERIAL_8N1); // Maxbotix ultrasonic \n";
-       Def =   "SoftwareSerial swSerMaxBot("+rxpin+", -1,true); // RXPin, TX not used, inverse logic, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup\n";   		   	
+       Def =   "SoftwareSerial swSerMaxBot("+rxpin+", -1,true); // RXPin, TX not used, inverse logic, Library: https://github.com/plerup/espsoftwareserial/, LGPL-2.1 license, Peter Lerup\n";   		   	
     }
     	
     translator.addSetupCommand(Setup);

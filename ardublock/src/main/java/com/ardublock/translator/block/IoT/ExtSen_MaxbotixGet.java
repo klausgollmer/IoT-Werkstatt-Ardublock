@@ -83,7 +83,7 @@ public class ExtSen_MaxbotixGet extends TranslatorBlock
     
   
     // Deklarationen hinzuf�gen
-	translator.addDefinitionCommand("SoftwareSerial swSerMaxBot("+rxpin+", 100,true); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, Peter Lerup");   		   	
+	translator.addDefinitionCommand("SoftwareSerial swSerMaxBot("+rxpin+", 100,true); // RXPin, TX not used, Library: https://github.com/plerup/espsoftwareserial/, LGPL-2.1 license, Peter Lerup");   		   	
     
     String read = "int readMaxBotRaw(){ // ----------------------- Maxbotix serial protocol\r\n" + 
     		"  int reading = -1;\r\n" + 
