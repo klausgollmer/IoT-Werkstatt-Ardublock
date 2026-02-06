@@ -38,7 +38,7 @@ Bitte beachten Sie die jeweilige Lizenz im entsprechenden Unterordner.
 ## IoT² Workshop – Ardublock
 
 This repository is part of the **IoT²-Werkstatt**, an open educational initiative for maker, students, teachers, and schools.
-Its mission is to provide creative, hands-on access to **electronics**, **programming**, and the **Internet of Things (IoT)**.
+Its mission is to provide creative, hands-on access to **electronics**, **programming**, and the **Internet of Things and Thinking (IoT²)**.
 
 More information and teaching materials see homepage at Umwelt-Campus Birkenfeld, Trier University of Applied Sciences
 
