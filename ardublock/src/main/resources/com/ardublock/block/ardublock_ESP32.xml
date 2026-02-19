@@ -122,6 +122,7 @@
 		<BlockGenus name="Divider_Expand" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_GPS" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_LED" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+		<BlockGenus name="Divider_Servo" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Motor" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Div" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_NFC" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -1251,6 +1252,65 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+		
+		
+		<BlockGenus name="array2Ddef" kind="command"
+			color="255 77 55" initlabel="bg.array2Ddef" editable-label="yes" is-label-value="yes">
+			<description>
+				<text>Array</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="dim 1">
+					<DefaultArg genus-name="number" label="20" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="dim 2">
+					<DefaultArg genus-name="number" label="20" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
+		
+		
+		<BlockGenus name="array2Dset" kind="command"
+			color="255 77 55" initlabel="bg.array2Dset" editable-label="yes" is-label-value="yes">
+			<description>
+				<text>Array</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="index 1">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="index 2">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="wert">
+  				    <DefaultArg genus-name="number" label="0.0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
+		<BlockGenus name="array2Dget" kind="data"
+			color="102 0 61" initlabel="bg.array2Dget" editable-label="yes" is-label-value="yes">
+			<description>
+				<text>Array</text>
+			</description>
+			<BlockConnectors>
+   			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="index 1">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="index 2">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
 
 
 
@@ -1510,6 +1570,13 @@
 			</BlockConnectors>
 		
 		</BlockGenus>
+
+        <BlockGenus name="wait_button_press" kind="command"
+			color="44 165 226" initlabel="bg.wait_button_press">
+			<BlockConnectors>
+			</BlockConnectors>
+		</BlockGenus>
+
 
 		<BlockGenus name="button_rot" kind="data" color="44 165 226"
 			initlabel="bg.button_rot">
@@ -2767,6 +2834,11 @@
           </BlockConnectors>
         </BlockGenus>
 		
+	   <BlockGenus name="UART_0" kind="data" color="255 0 0" initlabel="bg.UART_0" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
   	   <BlockGenus name="UART_1" kind="data" color="255 0 0" initlabel="bg.UART_1" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
@@ -3370,6 +3442,191 @@
 			</BlockConnectors>
 		</BlockGenus>
 	
+	 <BlockGenus name="SmartServoSet" kind="command" color="74 108 212"
+            initlabel="bg.SmartServoSet">
+            <description>
+                <text>write analog to pin</text>
+            </description>
+            <BlockConnectors>
+                <BlockConnector connector-type="number"
+                    connector-kind="socket" label="id">
+                    <DefaultArg genus-name="number" label="1" />
+                </BlockConnector>
+                <BlockConnector connector-type="number"
+                    connector-kind="socket" label="mode">
+                     <DefaultArg genus-name="SmartServoVectorPositionSetDeg" label="Zielwinkel [0-300 Grad]"/>
+                </BlockConnector>
+                <BlockConnector connector-type="number"
+                    connector-kind="socket" label="value">
+                    <DefaultArg genus-name="number" label="0" />
+                </BlockConnector>
+            </BlockConnectors>
+        </BlockGenus>
+
+        <BlockGenus name="SmartServoGet" kind="data" color="74 108 212"
+            initlabel="bg.SmartServoGet" editable-label="yes">
+            <description>
+                <text>string message</text>
+            </description>
+            <BlockConnectors>
+                <BlockConnector connector-type="number"
+                    connector-kind="plug" />
+                <BlockConnector connector-type="number"
+                    connector-kind="socket" label="id">
+                    <DefaultArg genus-name="number" label="1" />
+                </BlockConnector>
+                <BlockConnector connector-type="number"
+                    connector-kind="socket" label="mode">
+                    <DefaultArg genus-name="SmartServoVectorPositionGetDeg" label="Aktueller Winkel [0-300 Grad]"/>
+                </BlockConnector>
+            </BlockConnectors>
+        </BlockGenus>
+	
+        <BlockGenus name="SmartServoStart" kind="command" color="74 108 212"
+            initlabel="bg.SmartServoStart" editable-label="yes">
+            <description>
+                <text>string message</text>
+            </description>
+            <BlockConnectors>
+                <BlockConnector connector-type="number"
+                    connector-kind="socket" label="type">
+                     <DefaultArg genus-name="SmartServoVectorFeetechSCS" label="Feetech SCS / Waveshare"/>
+                </BlockConnector>
+                <BlockConnector connector-type="number"
+                    connector-kind="socket" label="serial">
+                    <DefaultArg genus-name="number" label="2" />
+                </BlockConnector>
+                <BlockConnector connector-type="number"
+                    connector-kind="socket" label="rx">
+                    <DefaultArg genus-name="number" label="16" />
+                </BlockConnector>
+                <BlockConnector connector-type="number"
+                    connector-kind="socket" label="tx">
+                    <DefaultArg genus-name="number" label="17" />
+                </BlockConnector>
+                <BlockConnector connector-type="number"
+                    connector-kind="socket" label="baud">
+                    <DefaultArg genus-name="number" label="1000000" />
+                </BlockConnector>
+            </BlockConnectors>
+        </BlockGenus>
+	
+       <BlockGenus name="SmartServoScan" kind="data" color="74 108 212"
+            initlabel="bg.SmartServoScan" editable-label="yes">
+            <description>
+                <text>string message</text>
+            </description>
+            <BlockConnectors>
+                <BlockConnector connector-type="number"
+                    connector-kind="plug" />
+            </BlockConnectors>
+        </BlockGenus>
+
+
+	
+	   <BlockGenus name="SmartServoVectorPositionGet" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorPositionGet" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+        <BlockGenus name="SmartServoVectorPositionGetDeg" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorPositionGetDeg" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+        
+        <BlockGenus name="SmartServoVectorTorqueEnableGet" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorTorqueEnableGet" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        <BlockGenus name="SmartServoVectorTorqueGet" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorTorqueGet" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        <BlockGenus name="SmartServoVectorMovingGet" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorMovingGet" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+  	    <BlockGenus name="SmartServoVectorTemperatureGet" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorTemperatureGet" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+        <BlockGenus name="SmartServoVectorPingGet" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorPingGet" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+        
+	    <BlockGenus name="SmartServoVectorPositionSet" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorPositionSet" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+       <BlockGenus name="SmartServoVectorPositionSetDeg" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorPositionSetDeg" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+        <BlockGenus name="SmartServoVectorMovingSetCont" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorMovingSetCont" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+        <BlockGenus name="SmartServoVectorMovingSetVel" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorMovingSetVel" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+        <BlockGenus name="SmartServoVectorSetId" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorSetId" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        
+        
+        <BlockGenus name="SmartServoVectorTorqueEnableSet" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorTorqueEnableSet" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        <BlockGenus name="SmartServoVectorTorqueSet" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorTorqueSet" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        <BlockGenus name="SmartServoVectorMovingSet" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorMovingSet" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+        <BlockGenus name="SmartServoVectorRobotis" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorRobotis" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+       <BlockGenus name="SmartServoVectorFeetechSCS" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorFeetechSCS" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+      <BlockGenus name="SmartServoVectorFeetechSCSCL" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorFeetechSCS" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+      
 	
    	    <BlockGenus name="feather_motor" kind="command" color="74 108 212"
 			initlabel="bg.feather_motor">
@@ -6807,6 +7064,7 @@
 		
 		<BlockFamily>
 			<FamilyMember>UART_SW</FamilyMember>
+			<FamilyMember>UART_0</FamilyMember>
 			<FamilyMember>UART_1</FamilyMember>
 			<FamilyMember>UART_2</FamilyMember>
 		</BlockFamily>
@@ -7137,6 +7395,35 @@
 		</BlockFamily>
 		
 		
+		<BlockFamily>
+            <FamilyMember>SmartServoVectorPositionGetDeg</FamilyMember>
+            <FamilyMember>SmartServoVectorPositionGet</FamilyMember>
+            <FamilyMember>SmartServoVectorTorqueEnableGet</FamilyMember>
+            <FamilyMember>SmartServoVectorTorqueGet</FamilyMember>
+            <FamilyMember>SmartServoVectorMovingGet</FamilyMember>
+            <FamilyMember>SmartServoVectorTemperatureGet</FamilyMember>
+            <FamilyMember>SmartServoVectorPingGet</FamilyMember>
+        </BlockFamily>
+		
+		<BlockFamily>
+            <FamilyMember>SmartServoVectorPositionSetDeg</FamilyMember>
+            <FamilyMember>SmartServoVectorPositionSet</FamilyMember>
+            <FamilyMember>SmartServoVectorTorqueEnableSet</FamilyMember>
+            <FamilyMember>SmartServoVectorTorqueSet</FamilyMember>
+            <FamilyMember>SmartServoVectorMovingSet</FamilyMember>
+            <FamilyMember>SmartServoVectorMovingSetCont</FamilyMember>
+            <FamilyMember>SmartServoVectorMovingSetVel</FamilyMember>
+            <FamilyMember>SmartServoVectorSetId</FamilyMember>
+            
+        </BlockFamily>
+		
+		
+		<BlockFamily>
+            <FamilyMember>SmartServoVectorRobotis</FamilyMember>
+            <FamilyMember>SmartServoVectorFeetechSCS</FamilyMember>
+<!--             <FamilyMember>SmartServoVectorFeetechSCSCL</FamilyMember> -->
+        </BlockFamily>
+		
 		</BlockFamilies>
 
 	
@@ -7259,6 +7546,9 @@
 				<BlockGenusMember>readArrayVarNum</BlockGenusMember> 
 				<BlockGenusMember>setArray2VarNum</BlockGenusMember> 
 				<BlockGenusMember>readArray2VarNum</BlockGenusMember> 
+				<BlockGenusMember>array2Dset</BlockGenusMember> 
+				<BlockGenusMember>array2Dget</BlockGenusMember> 
+				<BlockGenusMember>array2Ddef</BlockGenusMember> 
 			
 			</BlockDrawer>
 
@@ -7308,6 +7598,7 @@
 				<BlockGenusMember>MIC_YIN</BlockGenusMember>
 				<BlockGenusMember>MIC_Fourier</BlockGenusMember>
 				<BlockGenusMember>Divider_Encoder</BlockGenusMember>
+				<BlockGenusMember>wait_button_press</BlockGenusMember>
 				<BlockGenusMember>button_press</BlockGenusMember>
 				<BlockGenusMember>button_rot</BlockGenusMember>
 			    <BlockGenusMember>button_rot_minmax2</BlockGenusMember>
@@ -7588,10 +7879,16 @@
 				<BlockGenusMember>NFCWrite</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Motor</BlockGenusMember>
-				<BlockGenusMember>pin-write-servo</BlockGenusMember>
 				<BlockGenusMember>feather_motor</BlockGenusMember>
 				<BlockGenusMember>feather_stepmotor</BlockGenusMember>
 				<BlockGenusMember>arduino_stepmotor</BlockGenusMember>
+				<BlockGenusMember>Divider_Servo</BlockGenusMember>
+        		<BlockGenusMember>pin-write-servo</BlockGenusMember>
+		        <BlockGenusMember>SmartServoStart</BlockGenusMember>
+                <BlockGenusMember>SmartServoScan</BlockGenusMember>
+                <BlockGenusMember>SmartServoSet</BlockGenusMember>
+                <BlockGenusMember>SmartServoGet</BlockGenusMember>
+
 
 				<BlockGenusMember>Divider_LED</BlockGenusMember>
 			 	<BlockGenusMember>iot_WS2812</BlockGenusMember>
