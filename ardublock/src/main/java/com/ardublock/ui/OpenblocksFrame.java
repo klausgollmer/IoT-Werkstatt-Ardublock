@@ -728,7 +728,8 @@ public class OpenblocksFrame extends JFrame
         });
 		
 		
-		String[] programList = {"Starter","Makey","Octopus"};
+		//String[] programList = {"Starter","Makey","Octopus"};
+		String[] programList = {"Starter","Makey","Octopus","Lab"};
 		boardComboBox = new JComboBox<String>(programList);
 		//boardComboBox.setFont(new Font("Arial", Font.BOLD, 18)); // Schriftgröße 18
 		
@@ -748,7 +749,8 @@ public class OpenblocksFrame extends JFrame
 			//		System.out.println("changeBoard - "+boardComboBox.getSelectedItem());
 					changeBoardVersion();
 				}
-				if (context.ArdublockVersion.contains("Makey")) {
+//				if (context.ArdublockVersion.contains("Makey")) {
+				if (context.ArdublockVersion.contains("Makey") || context.ArdublockVersion.contains("Lab")) {
 			  	   greenCheckBox.setSelected(Translator.isGreenProgram() != 0);
 			 	   //greenCheckBox.setVisible(true);
 				} else {

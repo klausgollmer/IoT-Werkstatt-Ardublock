@@ -108,7 +108,7 @@ public class Translator
 				+ ".   ##   ##   ##   ##     [X]  IoT² ohne Syntax-Frust\r\n"
 				+ ". ######  #####    ##\r\n"
 				+ "\n"
-				+ "  Das Sketch-Gerüst wurde generiert von IoT²-Werkstatt Makey:Lab \n"
+				+ "  Das Sketch-Gerüst wurde generiert von IoT²-Werkstatt\n"
 				+ "  "+ver+" am " + jetzt.format(fmt) + "\r\n"
 				+ "\n"
 				+ "  Copyright (c) 2026 IoT²-Werkstatt / Klaus-Uwe Gollmer\n"

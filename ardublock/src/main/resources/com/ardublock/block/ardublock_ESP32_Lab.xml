@@ -46,8 +46,10 @@
 	
 	<BlockGenuses>
 		<BlockGenus name="dummy" kind="command" initlabel="" color="0 0 0" />
-			
 		
+		
+		<!-- ******************** Controls Menu *************** -->
+		<!-- Octopus BlockGenus name="program" kind="command" color="56 87 35"-->
 		
 		<BlockGenus name="program" kind="command" color="208 165 50" 
 			initlabel="bg.program" is-starter="yes" is-terminator="yes"
@@ -60,16 +62,17 @@
 					label="bc.setup" />
 				<BlockConnector connector-type="cmd" connector-kind="socket"
 					label="bc.loop" />
-			</BlockConnectors>
+		 		</BlockConnectors>
 		
 			<Images>
-			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
-					<FileLocation>com/ardublock/block/IoTkit/IconMakeyLab.png</FileLocation>
+			   <Image block-location="northwest" image-editable="no" width="65" height = "50">
+					<FileLocation>com/ardublock/block/IoTkit/IconESP32Custom.png</FileLocation>
 				</Image>
 			</Images>
 		</BlockGenus>
 		
-		
+
+
         <BlockGenus name="freeRTOS_task" kind="command" color="0 0 0" 
 			initlabel="bg.freeRTOS_task" is-starter="yes" is-terminator="yes"
 			label-unique="no">
@@ -98,34 +101,38 @@
 		 		</BlockConnectors>
 		
 			<Images>
-			   <Image block-location="northwest" image-editable="no" width="65" height = "50">
-					<FileLocation>com/ardublock/block/IoTkit/IconStarter.png</FileLocation>
+			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
+					<FileLocation>com/ardublock/block/IoTkit/IconMakeyLab.png</FileLocation>
 				</Image>
 			</Images>
 		</BlockGenus>
+
+
+
+
+
 		
-		
+		<BlockGenus name="Divider" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_I2C" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+		
 		<BlockGenus name="Divider_Display" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Environment" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Distance" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Light" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Sound" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
-		
 		<BlockGenus name="Divider_Expand" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_GPS" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_LED" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+		<BlockGenus name="Divider_Servo" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Motor" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
-	    <BlockGenus name="Divider_Servo" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_Div" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_NFC" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Weight" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
      	<BlockGenus name="Divider_Bool" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Num" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 		<BlockGenus name="Divider_String" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+		<BlockGenus name="Divider_Predef" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Time" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
-        <BlockGenus name="Divider_Predef" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
-        
         <BlockGenus name="Divider_Array" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 	    <BlockGenus name="Divider_Math" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 	    
@@ -135,6 +142,8 @@
         <BlockGenus name="Divider_Wait" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  		<BlockGenus name="Divider_Code" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  	
+ 		<BlockGenus name="Divider_Audio" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+ 		<BlockGenus name="Divider_BLE" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  	
         <BlockGenus name="Divider_Test" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Logic" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -176,6 +185,7 @@
  		<BlockGenus name="Divider_OTA" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  		<BlockGenus name="Divider_RTC" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
  		<BlockGenus name="Divider_RTOS" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+ 		
  		
 			<BlockGenus name="repeat_times" kind="command" color="255 221 0"
 			initlabel="bg.repeat_times">
@@ -255,10 +265,9 @@
 		</BlockGenus>
 		
 		<BlockGenus name="if" kind="command" initlabel="bg.if"
-			color="255 221 0">
+		 	color="255 221 0">
 		 	<description><text></text></description>
-		
-			<BlockConnectors>
+				<BlockConnectors>
 				<BlockConnector label="bc.test" connector-kind="socket"
 					connector-type="boolean" />
 				<BlockConnector label="bc.then" connector-kind="socket"
@@ -268,8 +277,7 @@
 
 		<BlockGenus name="ifelse" kind="command" initlabel="bg.ifelse"
 			color="255 221 0">
-			<description><text></text></description>
-			
+		 	<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector label="bc.test" connector-kind="socket"
 					connector-type="boolean" />
@@ -283,7 +291,6 @@
 	<BlockGenus name="switchcase" kind="command" initlabel="bg.ifelse"
 			color="255 221 0">
 			<description><text></text></description>
-			
 			<BlockConnectors>
 				<BlockConnector label="switch" connector-kind="socket" connector-type="number" />
 				
@@ -319,7 +326,8 @@
 
 
 
-	<BlockGenus name="delay" kind="command" color="255 221 0"
+		
+		<BlockGenus name="delay" kind="command" color="255 221 0"
 			initlabel="bg.delay">
 			<description>
 				<text></text>
@@ -343,8 +351,11 @@
 					<DefaultArg genus-name="number" label="1" />
 				</BlockConnector>
 			</BlockConnectors>
-		</BlockGenus>	
+		</BlockGenus>
 	
+			
+		
+		
 		
 		<BlockGenus name="subroutine" kind="command" color="200 200 0"
 			initlabel="bg.subroutine" is-starter="yes" is-terminator="yes"
@@ -984,7 +995,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-      <BlockGenus name="predef_number" kind="data"
+        <BlockGenus name="predef_number" kind="data"
 			initlabel="bg.predef_number" editable-label="yes" is-label-value="yes"
 			color="0 102 102">
 			<description><text></text></description>
@@ -1006,10 +1017,6 @@
 		</BlockGenus>
 
 	
-
-
-
-
 		<BlockGenus name="variable_number" kind="data"
 			initlabel="bg.variable_number" editable-label="yes" is-label-value="yes"
 			color="204 0 102">
@@ -1215,6 +1222,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+
  <BlockGenus name="setArray2VarNum" kind="command"
 			color="255 77 55" initlabel="bg.setArray2Var">
 			<description>
@@ -1245,9 +1253,9 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-
-
-	<BlockGenus name="array2Ddef" kind="command"
+		
+		
+		<BlockGenus name="array2Ddef" kind="command"
 			color="255 77 55" initlabel="bg.array2Ddef" editable-label="yes" is-label-value="yes">
 			<description>
 				<text>Array</text>
@@ -1369,7 +1377,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-		
+
 		<BlockGenus name="serial_debug" kind="command" color="165 42 42"
 			initlabel="bg.serial_debug">
 			<description>
@@ -1386,7 +1394,8 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-		
+
+
 		
 		<BlockGenus name="serial_print_num" kind="command" color="165 42 42"
 			initlabel="bg.serial_print_num">
@@ -1475,7 +1484,6 @@
 		<BlockGenus name="glue_poly" kind="data" color="165 42 42"
 			initlabel="bg.glue_poly" editable-label="no">
 			<description><text></text></description>
-			
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="plug" />
@@ -1495,10 +1503,10 @@
 			</BlockConnectors>
 		</BlockGenus>
 	
+
 		<BlockGenus name="cat_string3" kind="data" color="165 42 42"
 			initlabel="bg.cat_string3" editable-label="no">
 			<description><text></text></description>
-			
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="plug" />
@@ -1507,6 +1515,9 @@
 				<BlockConnector connector-type="string" connector-kind="socket" />
 			</BlockConnectors>
 		</BlockGenus>
+	
+
+
 		
 		
 <!--****************** Input *************** -->
@@ -1518,7 +1529,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Pin">
-					<DefaultArg genus-name="number" label="12" />
+					<DefaultArg genus-name="number" label="15" />
 				</BlockConnector>
 				<BlockConnector connector-type="boolean"
 					connector-kind="plug" />
@@ -1533,7 +1544,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Pin">
-					<DefaultArg genus-name="number" label="12" />
+					<DefaultArg genus-name="number" label="15" />
 				</BlockConnector>
 				<BlockConnector connector-type="boolean"
 					connector-kind="socket" label="Pullup">
@@ -1546,11 +1557,7 @@
 
 		
 
-         <BlockGenus name="wait_button_press" kind="command"
-			color="44 165 226" initlabel="bg.wait_button_press">
-			<BlockConnectors>
-			</BlockConnectors>
-		</BlockGenus>
+
 
 
         <BlockGenus name="button_press" kind="data"
@@ -1565,11 +1572,16 @@
 		
 		</BlockGenus>
 
+        <BlockGenus name="wait_button_press" kind="command"
+			color="44 165 226" initlabel="bg.wait_button_press">
+			<BlockConnectors>
+			</BlockConnectors>
+		</BlockGenus>
+
+
 		<BlockGenus name="button_rot" kind="data" color="44 165 226"
 			initlabel="bg.button_rot">
-			<description>
-				<text>Read analog value from pin</text>
-			</description>
+			<description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" position-type="mirror" />
@@ -1591,8 +1603,7 @@
 			  </BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-
-
+		
         <BlockGenus name="button_rot_minmax2" kind="command" color="44 165 226"
 			initlabel="bg.button_rot_minmax2">
 			<description><text></text></description>
@@ -1613,7 +1624,7 @@
 			  
 			</BlockConnectors>
 		</BlockGenus>
-     
+
 
 
 	    <BlockGenus name="touch_rot_minmax" kind="command" color="44 165 226"
@@ -1638,7 +1649,7 @@
 	    <BlockGenus name="touch_rot" kind="data" color="44 165 226"
 			initlabel="bg.touch_rot">
 			<description>
-				<text>Read analog value from pin</text>
+				<text>Read touch value from pin</text>
 			</description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
@@ -1661,20 +1672,19 @@
 		</BlockGenus>
 
 
-		
 		<BlockGenus name="pin-read-analog" kind="data" color="44 165 226"
 			initlabel="bg.pin-read-analog">
 		    <description><text></text></description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="A">
-					<DefaultArg genus-name="number" label="0" />
+					<DefaultArg genus-name="number" label="5" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
-		
+
 		<BlockGenus name="analogReadmV_32" kind="data" color="44 165 226"
 			initlabel="bg.analogReadmV_32">
 		    <description><text></text></description>
@@ -1687,9 +1697,10 @@
 					connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
-		
-		
-	    <BlockGenus name="NTC_Temp" kind="data" color="44 165 226"
+
+
+
+        <BlockGenus name="NTC_Temp" kind="data" color="44 165 226"
 			initlabel="bg.NTC_Temp" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -1708,7 +1719,7 @@
                 
      		</BlockConnectors>
 		 </BlockGenus>
-		
+
 
 <!--  BME280 Daten -->
 		<BlockGenus name="GetBME" kind="data" color="44 165 226"
@@ -1848,7 +1859,7 @@
         	</BlockConnectors>
 		</BlockGenus>
 
-   	 
+   	  
 
        <BlockGenus name="BSECVectorTemp" kind="data" color="255 0 0" initlabel="bg.BSECVectorTemp" editable-label="no" is-label-value="no" >
           <BlockConnectors>
@@ -1946,7 +1957,7 @@
 		</BlockGenus>
 				
 			
-    <BlockGenus name="OLED_Print" kind="command" color="74 108 212"
+        <BlockGenus name="OLED_Print" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Print" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -1986,7 +1997,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="size">
-					<DefaultArg genus-name="OLED_FontSize12" label="9pt"/>
+					<DefaultArg genus-name="OLED_FontSize9" label="9pt"/>
 				</BlockConnector>
 				</BlockConnectors>
 		</BlockGenus>
@@ -2017,8 +2028,9 @@
 
 			</BlockConnectors>
 		</BlockGenus>
-		
-		<BlockGenus name="OLED_AddArray" kind="command" color="74 108 212"
+
+
+        <BlockGenus name="OLED_AddArray" kind="command" color="74 108 212"
 			initlabel="bg.OLED_AddArray" editable-label="no" is-label-value="no">
 				<description><text></text></description>
 				<BlockConnectors>
@@ -2034,7 +2046,8 @@
 				<BlockConnectors>
 			</BlockConnectors>
 		</BlockGenus>
-
+    
+    
     
      <BlockGenus name="OLED_PrintTerminal" kind="command" color="74 108 212"
 			initlabel="bg.OLED_PrintTerminal" editable-label="no" is-label-value="no">
@@ -2063,14 +2076,15 @@
 			</BlockConnectors>
 		</BlockGenus>
     
-        <BlockGenus name="OLED_ClearDisplay" kind="command" color="74 108 212"
+    <BlockGenus name="OLED_ClearDisplay" kind="command" color="74 108 212"
 			initlabel="bg.OLED_ClearDisplay" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
 			<BlockConnectors>
 			</BlockConnectors>
 		</BlockGenus>
-    
+
+
     			
     <BlockGenus name="OLED_Display" kind="command" color="74 108 212"
 			initlabel="bg.OLED_Display" editable-label="no" is-label-value="no">
@@ -2144,6 +2158,14 @@
           </BlockConnectors>
         </BlockGenus>
     
+      <BlockGenus name="OLED_FontSize7" kind="data" color="255 0 0" initlabel="bg.OLED_FontSize9" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+    
+    
+    
         <BlockGenus name="OLED_FontSize12" kind="data" color="255 0 0" initlabel="bg.OLED_FontSize12" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="string" connector-kind="plug" position-type="single"/>
@@ -2207,73 +2229,12 @@
 		</BlockGenus>
     
 
-<!-- ADPS 9999 -->
-		<BlockGenus name="ADPS9999Get" kind="data" color="44 165 226"
-			initlabel="bg.ADPS9999Get" editable-label="no" is-label-value="no">
-			<description><text></text></description>
-			<BlockConnectors>
-  			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
-   			    <BlockConnector label="bc.ADPS9999Vector" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="ADPS9999Dist" label="Abstand (cm)"/>	
-                </BlockConnector>
-			</BlockConnectors>
-			
-		</BlockGenus>
-		
-		<BlockGenus name="ADPS9999Cal" kind="command" color="44 165 226"
-			initlabel="bg.ADPS9999Cal" editable-label="no" is-label-value="no">
-			<description><text></text></description>
-		</BlockGenus>
-		
-
-       <BlockGenus name="ADPS9999IR" kind="data" color="255 0 0" initlabel="bg.ADPS9999IR" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-
-       <BlockGenus name="ADPS9999Prox" kind="data" color="255 0 0" initlabel="bg.ADPS9999Prox" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-
-       <BlockGenus name="ADPS9999Dist" kind="data" color="255 0 0" initlabel="bg.ADPS9999Dist" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-
-
-       <BlockGenus name="ADPS9999Ambi" kind="data" color="255 0 0" initlabel="bg.ADPS9999Ambi" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-
-       <BlockGenus name="ADPS9999Red" kind="data" color="255 0 0" initlabel="bg.ADPS9999Red" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-
-       <BlockGenus name="ADPS9999Green" kind="data" color="255 0 0" initlabel="bg.ADPS9999Green" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
-
-       <BlockGenus name="ADPS9999Blue" kind="data" color="255 0 0" initlabel="bg.ADPS9999Blue" editable-label="no" is-label-value="no" >
-          <BlockConnectors>
-            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-          </BlockConnectors>
-        </BlockGenus>
 
 
 
 
 	
-<!-- ADPS Gesture -->
+<!-- ADPS 9960 Gesture -->
 		<BlockGenus name="ADPS9960Get" kind="data" color="44 165 226"
 			initlabel="bg.ADPS9960Get" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -2327,6 +2288,72 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
+
+	
+<!-- ADPS 9999 -->
+		<BlockGenus name="ADPS9999Get" kind="data" color="44 165 226"
+			initlabel="bg.ADPS9999Get" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+  			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+   			    <BlockConnector label="bc.ADPS9999Vector" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="ADPS9999Dist" label="Abstand (cm)"/>	
+                </BlockConnector>
+			</BlockConnectors>
+			
+		</BlockGenus>
+		
+		<BlockGenus name="ADPS9999Cal" kind="command" color="44 165 226"
+			initlabel="bg.ADPS9999Cal" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+		</BlockGenus>
+		
+
+       <BlockGenus name="ADPS9999IR" kind="data" color="255 0 0" initlabel="bg.ADPS9999IR" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="ADPS9999Prox" kind="data" color="255 0 0" initlabel="bg.ADPS9999Prox" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="ADPS9999Ambi" kind="data" color="255 0 0" initlabel="bg.ADPS9999Ambi" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="ADPS9999Dist" kind="data" color="255 0 0" initlabel="bg.ADPS9999Dist" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+
+
+       <BlockGenus name="ADPS9999Red" kind="data" color="255 0 0" initlabel="bg.ADPS9999Red" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="ADPS9999Green" kind="data" color="255 0 0" initlabel="bg.ADPS9999Green" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+       <BlockGenus name="ADPS9999Blue" kind="data" color="255 0 0" initlabel="bg.ADPS9999Blue" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+
 
 
 <!-- ADPS Gesture -->
@@ -2643,7 +2670,35 @@
 
 <!--  Dallas DS18B20 one-wire temperature -->
 
- <BlockGenus name="DS18B20Get32" kind="data" color="44 165 226"
+       <BlockGenus name="DS18B20Get" kind="data" color="44 165 226"
+			initlabel="bg.DS18B20Get" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+ 			   <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+   			    <BlockConnector label="gpio" connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="number" label="25"/>	
+                </BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="index">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="resolution">
+					<DefaultArg genus-name="number" label="9" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="mode">
+					<DefaultArg genus-name="DS18B20_req_get" label="request, wait and get" />
+				</BlockConnector>
+
+
+				
+				
+			</BlockConnectors>
+		</BlockGenus>
+
+     <BlockGenus name="DS18B20Get32" kind="data" color="44 165 226"
 			initlabel="bg.DS18B20Get32" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -2669,7 +2724,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-<BlockGenus name="DS18B20Req32" kind="command" color="44 165 226"
+ <BlockGenus name="DS18B20Req32" kind="command" color="44 165 226"
 			initlabel="bg.DS18B20Req32" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 			<BlockConnectors>
@@ -2678,35 +2733,9 @@
             </BlockConnector>
  			</BlockConnectors>
 		</BlockGenus>
+ 
 
-
-       <BlockGenus name="DS18B20Get" kind="data" color="44 165 226"
-			initlabel="bg.DS18B20Get" editable-label="no" is-label-value="no">
-			<description><text></text></description>
-	
-			<BlockConnectors>
- 			   <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
-   			    <BlockConnector label="gpio" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="number" label="25"/>	
-                </BlockConnector>
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="index">
-					<DefaultArg genus-name="number" label="0" />
-				</BlockConnector>
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="resolution">
-					<DefaultArg genus-name="number" label="12" />
-				</BlockConnector>
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="mode">
-					<DefaultArg genus-name="DS18B20_req_get" label="request, wait and get" />
-				</BlockConnector>
-				
-				
-			</BlockConnectors>
-		</BlockGenus>
-
-       <BlockGenus name="DS18B20_req_get" kind="data" color="255 0 0" initlabel="bg.DS18B20_req_get" editable-label="no" is-label-value="no" >
+        <BlockGenus name="DS18B20_req_get" kind="data" color="255 0 0" initlabel="bg.DS18B20_req_get" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
@@ -2731,27 +2760,8 @@
         </BlockGenus>
 
 
-
-
 <!--  Maxbotix Ultraschall Sensor -->
 		<BlockGenus name="GetMaxbotix" kind="data" color="44 165 226"
-			initlabel="bg.GetMaxbotix" editable-label="no" is-label-value="no">
-			<description><text></text></description>
-			<BlockConnectors>
-				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
-				<BlockConnector label="rx GPIO" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="number" label="22"/>
-                </BlockConnector>	
-				<BlockConnector label="max Val" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="number" label="5000"/>
-                </BlockConnector>	
-               	<BlockConnector label="sleep GPIO" connector-type="number" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="number" label="0"/>
-                </BlockConnector>	
-			</BlockConnectors>
-		</BlockGenus>
-		
-	<BlockGenus name="GetMaxbotix" kind="data" color="44 165 226"
 			initlabel="bg.GetMaxbotix" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 			<BlockConnectors>
@@ -2784,7 +2794,7 @@
                 
 			</BlockConnectors>
        </BlockGenus>
-		
+
 		<BlockGenus name="GetMaxbotix3" kind="data" color="44 165 226"
 			initlabel="bg.GetMaxbotix3" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -2816,19 +2826,20 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
+
+
 		
   	   <BlockGenus name="UART_SW" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
-	
-   	   <BlockGenus name="UART_0" kind="data" color="255 0 0" initlabel="bg.UART_0" editable-label="no" is-label-value="no" >
+		
+	   <BlockGenus name="UART_0" kind="data" color="255 0 0" initlabel="bg.UART_0" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
-		
   	   <BlockGenus name="UART_1" kind="data" color="255 0 0" initlabel="bg.UART_1" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
@@ -2879,26 +2890,6 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-
-   <BlockGenus name="MapC" kind="data" color="44 165 226"
-			initlabel="bg.MapC" editable-label="no" is-label-value="no">
-			<description><text></text></description>
-			<BlockConnectors>
-				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
-				<BlockConnector connector-type="number"
-					connector-kind="socket" label="Value">
-				</BlockConnector>
-				
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="Input">
-					<DefaultArg genus-name="text" label="0.0,10.0" />
-				</BlockConnector>
-				<BlockConnector connector-type="string"
-					connector-kind="socket" label="Output">
-					<DefaultArg genus-name="text" label="0.0,100.0" />
-				</BlockConnector>
-			</BlockConnectors>
-		</BlockGenus>
 
 
 
@@ -3443,7 +3434,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="pin">
-					<DefaultArg genus-name="number" label="13" />
+					<DefaultArg genus-name="number" label="15" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.value">
@@ -3451,8 +3442,6 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-	
-	
 	
 	 <BlockGenus name="SmartServoSet" kind="command" color="74 108 212"
             initlabel="bg.SmartServoSet">
@@ -3638,7 +3627,7 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
-	
+      
 	
    	    <BlockGenus name="feather_motor" kind="command" color="74 108 212"
 			initlabel="bg.feather_motor">
@@ -3686,7 +3675,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="GPIO puls">
-					<DefaultArg genus-name="number" label="13" />
+					<DefaultArg genus-name="number" label="15" />
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="GPIO dir">
@@ -3738,7 +3727,7 @@
 				
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="pin">
-					<DefaultArg genus-name="number" label="13" />
+					<DefaultArg genus-name="number" label="15" />
 				</BlockConnector>
 		
 				
@@ -3750,6 +3739,7 @@
 				
 			</BlockConnectors>
 		</BlockGenus> 
+
 <!-- 
         <BlockGenus name="iot_WS2812Ring" kind="command"
 			color="74 108 212" initlabel="bg.iot_WS2812Ring">
@@ -3779,7 +3769,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="pin">
-					<DefaultArg genus-name="number" label="13" />
+					<DefaultArg genus-name="number" label="15" />
 				</BlockConnector>
 				
 				<BlockConnector connector-type="string"
@@ -3823,7 +3813,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="pin">
-					<DefaultArg genus-name="number" label="13" />
+					<DefaultArg genus-name="number" label="15" />
 				</BlockConnector>
 				
 				<BlockConnector connector-type="string"
@@ -3849,7 +3839,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.pin_number">
-					<DefaultArg genus-name="number" label="13" />
+					<DefaultArg genus-name="number" label="15" />
 				</BlockConnector>
 				<BlockConnector connector-type="boolean"
 					connector-kind="socket" label="bc.value">
@@ -4094,6 +4084,27 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+
+  		<BlockGenus name="connectWLANShelly" kind="command" color="30 30 255"
+			initlabel="bg.connectWLANAP" editable-label="no" is-label-value="no">
+			<description>
+				<text>connect to WLAN</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.ssid">
+ 					<DefaultArg genus-name="ssid" label="shellyplug-s-4022D8836AC0" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="bc.pass">
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+
+		
+		
+		
+		
   	  	<BlockGenus name="WiFiMan" kind="command" color="30 30 255"
 			initlabel="bg.WiFiMan" editable-label="no" is-label-value="no">
 			<description>
@@ -4135,7 +4146,7 @@
 					connector-kind="plug" />
 				
 			</BlockConnectors>
-			
+		
 		</BlockGenus>
 		
 		
@@ -4154,7 +4165,7 @@
 					<DefaultArg genus-name="passwort" label="mind8Zeichen" />
 				</BlockConnector>
 			</BlockConnectors>
-		
+			
 		</BlockGenus>
 
 
@@ -4280,7 +4291,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="number" connector-kind="plug" />
 			</BlockConnectors>
-	
+		
 		</BlockGenus>
 
         <BlockGenus name="packetsWLAN" kind="data" color="30 30 255"
@@ -4519,7 +4530,6 @@
 		      </BlockConnectors>
 		</BlockGenus>
 
-      
        <BlockGenus name="sendPhyphox" kind="command" color="30 30 255"
 			initlabel="bg.sendPhyphox" editable-label="no" is-label-value="no">
 			<description>
@@ -4572,9 +4582,10 @@
 				
 			</BlockConnectors>
 		</BlockGenus>
-    
-      
-        <BlockGenus name="sendThingspeak" kind="command" color="30 30 255"
+
+
+   
+       <BlockGenus name="sendThingspeak" kind="command" color="30 30 255"
 			initlabel="bg.sendThingspeak" editable-label="no" is-label-value="no">
 			<description>
 				<text>connect to WLAN</text>
@@ -4694,7 +4705,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-   <BlockGenus name="askSMARD" kind="data" color="30 30 255"
+        <BlockGenus name="askSMARD" kind="data" color="30 30 255"
 			initlabel="bg.askSMARD" editable-label="no" is-label-value="no">
 			<description>
 				<text>read SMARD-Realtime-Data</text>
@@ -4707,7 +4718,7 @@
 				<BlockConnector connector-type="number" connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
-     
+	
          <BlockGenus name="sendThingsboard" kind="command" color="30 30 255"
 			initlabel="bg.sendThingsboard" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -4875,7 +4886,7 @@
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Fingerprint">
-		
+					
 				</BlockConnector>
 				
 				<BlockConnector connector-type="string" connector-kind="plug" />
@@ -4998,7 +5009,7 @@
         	
         	
         	
-
+	
 	<!--  Shelly -->
 		<BlockGenus name="getShelly2" kind="data" color="30 30 255"
 			initlabel="bg.getShelly2" editable-label="no" is-label-value="no">
@@ -5019,6 +5030,8 @@
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
+
+
 
 
 
@@ -5079,7 +5092,8 @@
 
 
 
-       
+      
+
      <BlockGenus name="sendIFTTT2" kind="command" color="30 30 255"
 			initlabel="bg.sendIFTTT" editable-label="no" is-label-value="no">
 			<description>
@@ -5586,7 +5600,7 @@
 				
 				
 			</BlockConnectors>
-  		
+  	
 		</BlockGenus>
 
 
@@ -5607,11 +5621,10 @@
 					connector-kind="socket" label="Value4">
 				</BlockConnector>
 			</BlockConnectors>
-			
-			
+		
 		</BlockGenus>
 
-         <BlockGenus name="classifyEDGE" kind="data" color="30 30 255"
+        <BlockGenus name="classifyEDGE" kind="data" color="30 30 255"
 			initlabel="bg.classifyEDGE" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 			<BlockConnectors>
@@ -5643,8 +5656,6 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
-       
-      
 
 
 
@@ -5671,7 +5682,7 @@
 
 	     		<BlockConnector connector-type="string"
 					connector-kind="socket" label="Device">
-					<DefaultArg genus-name="text" label="IoT-Octopus" />
+					<DefaultArg genus-name="text" label="Makey:Lab" />
 				</BlockConnector>
 				
 				<BlockConnector connector-type="string"
@@ -5684,7 +5695,7 @@
 					<DefaultArg genus-name="text" label="/api/training/data" />
 				</BlockConnector>
 			</BlockConnectors>
-		
+		   
 			
 		</BlockGenus>
 
@@ -5710,8 +5721,9 @@
 	
 			</BlockConnectors>
 			
-			
 		</BlockGenus>
+
+       
 
        <BlockGenus name="AIDatatypCal" kind="data" color="255 0 0" initlabel="bg.AIDatatypCal" editable-label="no" is-label-value="no" >
           <BlockConnectors>
@@ -5901,7 +5913,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
- <BlockGenus name="sendTTN_RFM95_ota2" kind="command" color="30 30 255"
+        <BlockGenus name="sendTTN_RFM95_ota2" kind="command" color="30 30 255"
 			initlabel="bg.sendTTN_RFM95_ota2" editable-label="no" is-label-value="no">
 			<description>
 				<text>connect to TTN</text>
@@ -5995,8 +6007,6 @@
           </BlockConnectors>
         </BlockGenus>
 
-
-
         <BlockGenus name="TTN_DEVEUI" kind="data" color="255 0 0"
 			initlabel="bg.TTN_DEVEUI" editable-label="yes">
 			<description>
@@ -6032,6 +6042,8 @@
 			   <BlockConnector connector-type="string" connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
+
+				
 
 
        <BlockGenus name="sendTTN_RFM95_abp" kind="command" color="30 30 255"
@@ -6080,7 +6092,7 @@
 				</BlockConnectors>
 		</BlockGenus>
 
- <BlockGenus name="sendTTN_RFM95_abp2" kind="command" color="30 30 255"
+       <BlockGenus name="sendTTN_RFM95_abp2" kind="command" color="30 30 255"
 			initlabel="bg.sendTTN_RFM95_abp2" editable-label="no" is-label-value="no">
 			<description>
 				<text>connect to TTN</text>
@@ -6130,6 +6142,7 @@
 				 </BlockConnector>
 				</BlockConnectors>
 		</BlockGenus>
+
 
 
         <BlockGenus name="TTN_DEVADD" kind="data" color="255 0 0"
@@ -6222,9 +6235,10 @@
 			   <BlockConnector connector-type="number" connector-kind="plug" />
 			</BlockConnectors>
 		</BlockGenus>
-		
-		<!-- SMTP -->
-            <BlockGenus name="SMTP_Config" kind="command" color="30 30 255"
+
+
+<!-- SMTP -->
+        <BlockGenus name="SMTP_Config" kind="command" color="30 30 255"
 			initlabel="bg.SMTP_Config" editable-label="no" is-label-value="no">
 			<description><text>connect SMTP</text></description>
 			<BlockConnectors>
@@ -6250,7 +6264,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-    
+
         <BlockGenus name="SMTP_Send" kind="command" color="30 30 255"
 			initlabel="bg.SMTP_Send" editable-label="no" is-label-value="no">
 			<description><text>connect SMTP</text></description>
@@ -6270,7 +6284,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-       <BlockGenus name="Whatsup_Send" kind="command" color="30 30 255"
+        <BlockGenus name="Whatsup_Send" kind="command" color="30 30 255"
 			initlabel="bg.Whatsup_Send" editable-label="no" is-label-value="no">
 			<description><text>connect SMTP</text></description>
 			<BlockConnectors>
@@ -6288,12 +6302,14 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
+
+
+
+
 		
 		
-		
-		
-		<!-- Audio, BT -->		
-	   <BlockGenus name="WebRadio" kind="command" color="74 108 212"
+<!-- Audio, BT -->		
+      <BlockGenus name="WebRadio" kind="command" color="74 108 212"
 			initlabel="bg.WebRadio" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -6318,9 +6334,9 @@
 			   <BlockConnector connector-type="string" connector-kind="plug" />
 			</BlockConnectors>
 	  </BlockGenus>
-		
-		
-		
+
+
+
         <BlockGenus name="SAM_Say" kind="command" color="74 108 212"
 			initlabel="bg.SAM_Say" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -6328,7 +6344,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="text">
-					<DefaultArg genus-name="message" label="Hello Makey" />
+					<DefaultArg genus-name="message" label="Hello Makey, lets play toogether!     " />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
@@ -6361,7 +6377,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
-		 <BlockGenus name="BuzzerTone" kind="command" color="74 108 212"
+	    <BlockGenus name="BuzzerTone" kind="command" color="74 108 212"
 			initlabel="bg.BuzzerTone" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -6431,8 +6447,7 @@
           </BlockConnectors>
         </BlockGenus>
 		
-		
-		<BlockGenus name="MIC_Loudness" kind="data" color="44 165 226"
+	    <BlockGenus name="MIC_Loudness" kind="data" color="44 165 226"
 			initlabel="bg.MIC_Loudness" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -6441,7 +6456,7 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
-	   <BlockGenus name="MIC_Fourier" kind="data" color="44 165 226"
+		  <BlockGenus name="MIC_Fourier" kind="data" color="44 165 226"
 			initlabel="bg.MIC_Fourier" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -6457,7 +6472,6 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
-		
 		<BlockGenus name="MIC_YIN" kind="data" color="44 165 226"
 			initlabel="bg.MIC_YIN" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -6465,7 +6479,8 @@
  			   <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
 			</BlockConnectors>
 		</BlockGenus>
-	
+		
+		
 		
 	    <BlockGenus name="MIC_Claps" kind="data" color="44 165 226"
 			initlabel="bg.MIC_Claps" editable-label="no" is-label-value="no">
@@ -6488,12 +6503,17 @@
 		</BlockGenus>
 		
 		
+		
+		
+		
+		
+		
 <!-- MINT -->
 		<BlockGenus name="DIYSpectro" kind="command" color="44 165 226"
 			initlabel="bg.DIYSpectro" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector label="Source" connector-type="string" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="DIYSpectroVectOctiW" label="Weiss Octopus"/>
+                    <DefaultArg genus-name="DIYSpectroVectOctiRGB" label="Neopixel RGB"/>
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
@@ -6502,7 +6522,7 @@
 			initlabel="bg.DIYSpectroBH" editable-label="no" is-label-value="no">
 			<BlockConnectors>
 				<BlockConnector label="Source" connector-type="string" connector-kind="socket" position-type="single">
-                    <DefaultArg genus-name="DIYSpectroVectOctiW" label="Weiss Octopus"/>
+                    <DefaultArg genus-name="DIYSpectroVectOctiRGB" label="Neopixel RGB"/>
                 </BlockConnector>	
 			</BlockConnectors>
 		</BlockGenus>
@@ -6697,7 +6717,7 @@
 		</BlockGenus>
 		
 		
-			 <BlockGenus name="RTC_GPIO32" kind="command" color="50 50 50"
+		 <BlockGenus name="RTC_GPIO32" kind="command" color="50 50 50"
 			initlabel="bg.RTC_GPIO32">
 			<description><text></text></description>
 			<BlockConnectors>
@@ -6733,6 +6753,8 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
+
+		
 		
 		
 		
@@ -6776,7 +6798,6 @@
    			    <BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
    			   	<BlockConnector connector-type="number"
 					connector-kind="socket" label="cpu">
-				<DefaultArg genus-name="number" label="0" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
@@ -6802,7 +6823,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.host">
-  				<DefaultArg genus-name="host" label="starter" />
+  				<DefaultArg genus-name="host" label="makey" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
@@ -6887,7 +6908,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Pin">
-					<DefaultArg genus-name="number" label="13" />
+					<DefaultArg genus-name="number" label="15" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="Mode">
@@ -6925,7 +6946,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="Pin">
-					<DefaultArg genus-name="number" label="13" />
+					<DefaultArg genus-name="number" label="15" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
@@ -6989,7 +7010,7 @@
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-      
+
         <BlockGenus name="freeRTOS_semaGive" kind="command" color="0 0 0"
 			initlabel="bg.freeRTOS_semaGive" editable-label="no" is-label-value="no">
 			<description>
@@ -7017,7 +7038,6 @@
 		</BlockGenus>
 
 
-
 	</BlockGenuses>
 
 	<BlockFamilies>
@@ -7026,24 +7046,9 @@
 		
 
 		<!-- BlockFamilies andere -->
-
-
-        <BlockFamily>
-			<FamilyMember>TTN_SF_Auto</FamilyMember>
-			<FamilyMember>TTN_SF7</FamilyMember>
-			<FamilyMember>TTN_SF8</FamilyMember>
-			<FamilyMember>TTN_SF9</FamilyMember>
-			<FamilyMember>TTN_SF10</FamilyMember>
-			<FamilyMember>TTN_SF11</FamilyMember>
-			<FamilyMember>TTN_SF12</FamilyMember>
-		</BlockFamily>
-
-
-	    <BlockFamily>
-			<FamilyMember>RTC_GPIO32_low</FamilyMember>
-			<FamilyMember>RTC_GPIO32_high</FamilyMember>
-			<FamilyMember>RTC_GPIO32_float</FamilyMember>
-		</BlockFamily>
+		
+		
+	   
 
 		<BlockFamily>
 			<FamilyMember>digital-high</FamilyMember>
@@ -7064,8 +7069,11 @@
 			<FamilyMember>UART_1</FamilyMember>
 			<FamilyMember>UART_2</FamilyMember>
 		</BlockFamily>
-		
-		
+	
+		<BlockFamily>
+			<FamilyMember>MAX7368</FamilyMember>
+			<FamilyMember>MAX7369</FamilyMember>
+		</BlockFamily>
 		
 		<BlockFamily>
 			<FamilyMember>addition</FamilyMember>
@@ -7116,6 +7124,7 @@
 		</BlockFamily>
 
 		<BlockFamily>
+			<FamilyMember>OLED_FontSize7</FamilyMember>
 			<FamilyMember>OLED_FontSize9</FamilyMember>
 			<FamilyMember>OLED_FontSize12</FamilyMember>
 			<FamilyMember>OLED_FontSize18</FamilyMember>
@@ -7165,6 +7174,17 @@
 			<FamilyMember>ShellyVectorTotal</FamilyMember>
 			<FamilyMember>ShellyVectorTemp</FamilyMember>
 		</BlockFamily>
+		
+		 <BlockFamily>
+			<FamilyMember>TTN_SF_Auto</FamilyMember>
+			<FamilyMember>TTN_SF7</FamilyMember>
+			<FamilyMember>TTN_SF8</FamilyMember>
+			<FamilyMember>TTN_SF9</FamilyMember>
+			<FamilyMember>TTN_SF10</FamilyMember>
+			<FamilyMember>TTN_SF11</FamilyMember>
+			<FamilyMember>TTN_SF12</FamilyMember>
+		</BlockFamily>
+		
 
         <BlockFamily>
 			<FamilyMember>ShellyVectorGen1</FamilyMember>
@@ -7227,16 +7247,6 @@
 			<FamilyMember>BNOVectorMagnet</FamilyMember>
 		</BlockFamily>
 
-        <BlockFamily>
-			<FamilyMember>Buzzer0</FamilyMember>
-			<FamilyMember>Buzzer1</FamilyMember>
-			<FamilyMember>Buzzer2</FamilyMember>
-			<FamilyMember>Buzzer3</FamilyMember>
-			<FamilyMember>Buzzer4</FamilyMember>
-			<FamilyMember>Buzzer5</FamilyMember>
-		</BlockFamily>
-
-
 		<BlockFamily>
 			<FamilyMember>ADPS9960Gest</FamilyMember>
 			<FamilyMember>ADPS9960Prox</FamilyMember>
@@ -7255,7 +7265,19 @@
 			<FamilyMember>ADPS9999Blue</FamilyMember>
 			<FamilyMember>ADPS9999IR</FamilyMember>
 		</BlockFamily>
-    
+
+        <BlockFamily>
+			<FamilyMember>Buzzer0</FamilyMember>
+			<FamilyMember>Buzzer1</FamilyMember>
+			<FamilyMember>Buzzer2</FamilyMember>
+			<FamilyMember>Buzzer3</FamilyMember>
+			<FamilyMember>Buzzer4</FamilyMember>
+			<FamilyMember>Buzzer5</FamilyMember>
+		</BlockFamily>
+
+
+
+
 
 	    <BlockFamily>
 			<FamilyMember>TCS34725Red</FamilyMember>
@@ -7307,13 +7329,28 @@
 			<FamilyMember>LightTSLVectIR</FamilyMember>
 		</BlockFamily>
 
-		<BlockFamily>
+   	    <BlockFamily>
+			<FamilyMember>RTC_GPIO32_low</FamilyMember>
+			<FamilyMember>RTC_GPIO32_high</FamilyMember>
+			<FamilyMember>RTC_GPIO32_float</FamilyMember>
+		</BlockFamily>
+
+
+	    <BlockFamily>
 			<FamilyMember>HMVect300</FamilyMember>
 			<FamilyMember>HMVect400</FamilyMember>
 			<FamilyMember>HMVect600</FamilyMember>
 			<FamilyMember>HMVect800</FamilyMember>
 			<FamilyMember>HMVect1200</FamilyMember>
 			<FamilyMember>HMVect1600</FamilyMember>
+		</BlockFamily>
+
+
+		<BlockFamily>
+			<FamilyMember>DS18B20_req_get</FamilyMember>
+			<FamilyMember>DS18B20_get_req</FamilyMember>
+			<FamilyMember>DS18B20_req</FamilyMember>
+			<FamilyMember>DS18B20_get</FamilyMember>
 		</BlockFamily>
 
 
@@ -7329,7 +7366,7 @@
 		<BlockFamily>
 			<FamilyMember>DIYSpectroVectOctiW</FamilyMember>
  			<FamilyMember>DIYSpectroVectOctiRGB</FamilyMember>
-     		<FamilyMember>DIYSpectroVectD1W</FamilyMember>
+<!--     		<FamilyMember>DIYSpectroVectD1W</FamilyMember> -->
 <!-- 			<FamilyMember>DIYSpectroVectD1RGB</FamilyMember> -->
 		</BlockFamily>
 		
@@ -7338,19 +7375,10 @@
 			<FamilyMember>AIDatatypVal</FamilyMember>
 		</BlockFamily>
 		
-	    <BlockFamily>
-			<FamilyMember>DS18B20_req_get</FamilyMember>
-			<FamilyMember>DS18B20_get_req</FamilyMember>
-			<FamilyMember>DS18B20_req</FamilyMember>
-			<FamilyMember>DS18B20_get</FamilyMember>
-		</BlockFamily>
-	
-		
 		<BlockFamily>
 			<FamilyMember>classifyEDGEr</FamilyMember>
 			<FamilyMember>classifyEDGEc</FamilyMember>
 		</BlockFamily>
-		
 		
 		<BlockFamily>
 			<FamilyMember>AIModeltypAuto</FamilyMember>
@@ -7367,7 +7395,8 @@
 			<FamilyMember>irqModeFalling</FamilyMember>
 		</BlockFamily>
 		
-			<BlockFamily>
+		
+		<BlockFamily>
             <FamilyMember>SmartServoVectorPositionGetDeg</FamilyMember>
             <FamilyMember>SmartServoVectorPositionGet</FamilyMember>
             <FamilyMember>SmartServoVectorTorqueEnableGet</FamilyMember>
@@ -7396,9 +7425,6 @@
 <!--             <FamilyMember>SmartServoVectorFeetechSCSCL</FamilyMember> -->
         </BlockFamily>
 		
-		
-		
-		
 		</BlockFamilies>
 
 	
@@ -7407,18 +7433,13 @@
 		<BlockDrawerSet name="factory" type="stack" location="southwest"
 			window-per-drawer="no" drawer-draggable="no">
 
-
-		
-					
-
 			<!-- bd.control -->
 			<BlockDrawer button-color="233 244 124" name="bd.control"
 				type="factory">
-			
+	
 			    <BlockGenusMember>Divider_Wait</BlockGenusMember>
 		    	<BlockGenusMember>delay_s</BlockGenusMember>
 				<BlockGenusMember>delay</BlockGenusMember>
-			
   			    <BlockGenusMember>Divider_Loop</BlockGenusMember>
   			    <!-- BlockGenusMember>repeat_times</BlockGenusMember-->
   			    <BlockGenusMember>repeat2</BlockGenusMember>
@@ -7426,20 +7447,24 @@
   			    <BlockGenusMember>Divider_Case</BlockGenusMember>
 				<BlockGenusMember>if</BlockGenusMember>
 				<BlockGenusMember>ifelse</BlockGenusMember>
-		<!-- 		<BlockGenusMember>switchcase</BlockGenusMember> -->
+				<BlockGenusMember>switchcase</BlockGenusMember>
 				
   			    <BlockGenusMember>Divider_UP</BlockGenusMember>
 				<BlockGenusMember>subroutine</BlockGenusMember>
 				<BlockGenusMember>subroutine-ref</BlockGenusMember>
-		<!-- 
-					<BlockGenusMember>sub_return</BlockGenusMember>
-			
+				<BlockGenusMember>sub_return</BlockGenusMember>
 				<BlockGenusMember>sub_return-ref</BlockGenusMember>
+
   			    <BlockGenusMember>Divider_Code</BlockGenusMember>
 				<BlockGenusMember>code</BlockGenusMember>
 				<BlockGenusMember>codeg</BlockGenusMember>
 				<BlockGenusMember>program</BlockGenusMember>
- -->              
+
+	            <BlockGenusMember>Divider_Predef</BlockGenusMember>
+				<BlockGenusMember>setter_predef_number</BlockGenusMember>				
+				<BlockGenusMember>predef_number</BlockGenusMember>	
+			
+               
 			</BlockDrawer>
 
             <!-- bd.logic -->
@@ -7452,13 +7477,12 @@
 				<BlockGenusMember>greater_equal</BlockGenusMember>
 				<BlockGenusMember>less_equal</BlockGenusMember>
 				<BlockGenusMember>not_equal</BlockGenusMember>
-				<!-- 
 				<BlockGenusMember>isnan</BlockGenusMember>
-				<BlockGenusMember>isempty</BlockGenusMember>	
+				<BlockGenusMember>isempty</BlockGenusMember>
+					
 				<BlockGenusMember>equal_string</BlockGenusMember>
 				<BlockGenusMember>not_equal_string</BlockGenusMember>
 				<BlockGenusMember>equal_digital</BlockGenusMember>
-				 -->
 			    <BlockGenusMember>Divider_Logic</BlockGenusMember>
 				<BlockGenusMember>and</BlockGenusMember>
 				<BlockGenusMember>or</BlockGenusMember>
@@ -7473,7 +7497,6 @@
 				<BlockGenusMember>subtraction</BlockGenusMember>
 				<BlockGenusMember>multiplication</BlockGenusMember>
 				<BlockGenusMember>division</BlockGenusMember>
-				<!-- 
 				<BlockGenusMember>modulo</BlockGenusMember>
 				<BlockGenusMember>abs</BlockGenusMember>
 				<BlockGenusMember>round</BlockGenusMember>
@@ -7484,7 +7507,7 @@
 				<BlockGenusMember>tan</BlockGenusMember>
 				<BlockGenusMember>random</BlockGenusMember>
 			    <BlockGenusMember>MapC</BlockGenusMember>
-				-->
+				
 			</BlockDrawer>
 
 
@@ -7497,13 +7520,20 @@
 				<BlockGenusMember>digital-high</BlockGenusMember>
 				<BlockGenusMember>digital-low</BlockGenusMember>
 	
+		<BlockGenusMember>UART_SW</BlockGenusMember>
+	
 				<BlockGenusMember>Divider_Num</BlockGenusMember>
 				<BlockGenusMember>setter_variable_number</BlockGenusMember>				
 				<BlockGenusMember>variable_number</BlockGenusMember>	
 				<BlockGenusMember>variable_number_double</BlockGenusMember>	
-		<!-- 	<BlockGenusMember>local_variable_number</BlockGenusMember> -->				
+				<BlockGenusMember>local_variable_number</BlockGenusMember>				
 				<BlockGenusMember>number</BlockGenusMember>
-		<!-- 				
+				
+				<BlockGenusMember>Divider_Predef</BlockGenusMember>
+				<BlockGenusMember>setter_predef_number</BlockGenusMember>				
+				<BlockGenusMember>predef_number</BlockGenusMember>	
+	
+				
 				<BlockGenusMember>Divider_String</BlockGenusMember>
 				<BlockGenusMember>setter_variable_String</BlockGenusMember> 
 				<BlockGenusMember>variable_String</BlockGenusMember> 
@@ -7515,7 +7545,12 @@
 				<BlockGenusMember>Divider_Array</BlockGenusMember>
 				<BlockGenusMember>setArrayVarNum</BlockGenusMember> 
 				<BlockGenusMember>readArrayVarNum</BlockGenusMember> 
-		 -->	
+				<BlockGenusMember>setArray2VarNum</BlockGenusMember> 
+				<BlockGenusMember>readArray2VarNum</BlockGenusMember> 
+				<BlockGenusMember>array2Dset</BlockGenusMember> 
+				<BlockGenusMember>array2Dget</BlockGenusMember> 
+				<BlockGenusMember>array2Ddef</BlockGenusMember> 
+			
 			</BlockDrawer>
 
 			<!-- Ser_communication -->
@@ -7524,21 +7559,20 @@
 			
 			
 				<BlockGenusMember>Divider_Print</BlockGenusMember>
-			<!--	<BlockGenusMember>OLED_PrintTerminal</BlockGenusMember>-->
 				<BlockGenusMember>serial_print_num</BlockGenusMember>
 				<BlockGenusMember>serial_print</BlockGenusMember>
-				<!-- 
 				<BlockGenusMember>serial_readString</BlockGenusMember>
 				<BlockGenusMember>serial_available</BlockGenusMember>
-				-->
+				<BlockGenusMember>serial_debug</BlockGenusMember>
 				<BlockGenusMember>Divider_Type</BlockGenusMember>
 				<BlockGenusMember>glue_sn</BlockGenusMember>
 				<BlockGenusMember>glue_sb</BlockGenusMember>
 	        	<BlockGenusMember>glue_ns</BlockGenusMember>
 		    	<BlockGenusMember>glue_nb</BlockGenusMember>
 		   	    <BlockGenusMember>cat_string</BlockGenusMember>
-		   	    <BlockGenusMember>cat_string3</BlockGenusMember>
+   		   	    <BlockGenusMember>cat_string3</BlockGenusMember>
 				<BlockGenusMember>message</BlockGenusMember>
+				
 		
 			</BlockDrawer>
 
@@ -7548,33 +7582,39 @@
 				type="factory">
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-read-analog</BlockGenusMember>
+				<BlockGenusMember>analogReadmV_32</BlockGenusMember>
 				<BlockGenusMember>pin-read-digital</BlockGenusMember>
+				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
+				<BlockGenusMember>glue_sn</BlockGenusMember>
+				<BlockGenusMember>glue_sb</BlockGenusMember>
 			</BlockDrawer>
 
 
 	<!-- bd.output -->
 			<BlockDrawer button-color="122 150 200" name="bd.output"
 				type="factory">
+				<BlockGenusMember>Divider_LED</BlockGenusMember>
+	  	
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>
 				<BlockGenusMember>pin-write-digital</BlockGenusMember>
 				
-				
 	<!-- 			<BlockGenusMember>IoTmessage</BlockGenusMember> -->
 				
 			</BlockDrawer>
-<!-- 	
+	
 			<BlockDrawer button-color="37 79 140" name="bd.WLAN_communication"
 				type="factory">
 				<BlockGenusMember>Divider_WiFi</BlockGenusMember>
 				<BlockGenusMember>connectWLANAP</BlockGenusMember>
-				
 				<BlockGenusMember>connectWLANAPTO</BlockGenusMember>
 				<BlockGenusMember>WiFiMan</BlockGenusMember>
-				
+				<BlockGenusMember>connectWLANShelly</BlockGenusMember>
 				<BlockGenusMember>Divider_WiFiAP</BlockGenusMember>
 				<BlockGenusMember>buildWLANAP</BlockGenusMember>
-				
+				<BlockGenusMember>Divider_DNS</BlockGenusMember>
+				<BlockGenusMember>mDNS</BlockGenusMember>
+				<!--BlockGenusMember>connectGPRS</BlockGenusMember-->
 				
 			</BlockDrawer>
 			
@@ -7584,25 +7624,145 @@
 				<BlockGenusMember>ownMessageServer</BlockGenusMember>
 			    <BlockGenusMember>Divider_Thing</BlockGenusMember>
 			    <BlockGenusMember>sendThingspeak</BlockGenusMember>
-			
 				<BlockGenusMember>askThingspeak</BlockGenusMember>
 				<BlockGenusMember>Divider_Thingsboard</BlockGenusMember>
-			    <BlockGenusMember>sendThingsboard</BlockGenusMember>
+				<BlockGenusMember>sendThingsboard</BlockGenusMember>
 			    <BlockGenusMember>askThingsboard</BlockGenusMember>
-				<BlockGenusMember>requestJWT</BlockGenusMember>
+			    <BlockGenusMember>requestJWT</BlockGenusMember>
 				<BlockGenusMember>Divider_Energy</BlockGenusMember>
   			    <BlockGenusMember>sendShelly</BlockGenusMember>
 			 	<BlockGenusMember>getShelly2</BlockGenusMember>
 			 	<BlockGenusMember>LEDShelly</BlockGenusMember>
 	 		    <BlockGenusMember>askSMARD</BlockGenusMember>
-	 		   
+	 		    <BlockGenusMember>EcoflowGet</BlockGenusMember>
+	 		    <BlockGenusMember>Divider_Sense</BlockGenusMember>
+				<BlockGenusMember>sendSensebox</BlockGenusMember>
+				<BlockGenusMember>sendLuftdaten</BlockGenusMember>
+				<BlockGenusMember>Divider_Smart</BlockGenusMember>
+			    <BlockGenusMember>sendIFTTT2</BlockGenusMember>
+                <BlockGenusMember>Divider_Generic</BlockGenusMember>
+			    <BlockGenusMember>sendHTTPSGet</BlockGenusMember>
+			    <BlockGenusMember>JSONGet</BlockGenusMember>
+			    <BlockGenusMember>requestJWT</BlockGenusMember>
 	            <BlockGenusMember>Divider_Server</BlockGenusMember>
 		 	    <BlockGenusMember>ownMessageServer_CO2_V2</BlockGenusMember>
 			 	
   			</BlockDrawer>
--->
-								
-								          <!-- bd.input, external -->
+			
+			<!-- IoT.communication -->
+			<BlockDrawer button-color="37 79 140" name="bd.MQTT_communication"
+				type="factory">
+				<BlockGenusMember>Divider_MQTT</BlockGenusMember>
+  			    <BlockGenusMember>mqttconnect</BlockGenusMember>
+  			    <BlockGenusMember>mqttpublish</BlockGenusMember>
+  			    <BlockGenusMember>mqttsubscribe</BlockGenusMember>
+				<BlockGenusMember>variable_String_Payload</BlockGenusMember> 
+				<BlockGenusMember>glue_ns</BlockGenusMember>
+			</BlockDrawer>
+
+            <!-- IoT.communication -->
+			<BlockDrawer button-color="37 79 140" name="bd.LORA_communication"
+				type="factory">
+			  <BlockGenusMember>Divider_LoRa</BlockGenusMember>
+			  <BlockGenusMember>sendTTN_RFM95_ota2</BlockGenusMember>
+			  <BlockGenusMember>sendTTN_RFM95_abp2</BlockGenusMember>
+  		      <BlockGenusMember>Divider</BlockGenusMember>
+ 
+			  <BlockGenusMember>TTN_RxCallback</BlockGenusMember>
+			  <BlockGenusMember>variable_number_LoRaPort</BlockGenusMember>
+			  <BlockGenusMember>variable_number_LoRaPayload</BlockGenusMember>
+			  <BlockGenusMember>variable_String_LoRaPayload</BlockGenusMember>
+			  
+			</BlockDrawer>
+
+			<!-- IoT.communication -->
+			<BlockDrawer button-color="37 79 140" name="bd.Blynk_communication"
+				type="factory">
+	 		    <BlockGenusMember>Divider_Blynk</BlockGenusMember>
+  			    <BlockGenusMember>connectBlynk</BlockGenusMember>
+  			    <BlockGenusMember>sendBlynk</BlockGenusMember>
+  			    <BlockGenusMember>readBlynk</BlockGenusMember>
+  			    <BlockGenusMember>payloadIntBlynk</BlockGenusMember>
+  			    <BlockGenusMember>payloadFloatBlynk</BlockGenusMember>
+  			    <BlockGenusMember>payloadStrBlynk</BlockGenusMember>
+			</BlockDrawer>
+
+			<!-- IoT.communication -->
+			<BlockDrawer button-color="37 79 140" name="bd.database"
+				type="factory">
+  			    <BlockGenusMember>Divider_ChatGPT</BlockGenusMember>
+  			    <BlockGenusMember>askGPT</BlockGenusMember>
+  			    <BlockGenusMember>Divider_KNN</BlockGenusMember>
+  			    <BlockGenusMember>sampleClass</BlockGenusMember>
+				<BlockGenusMember>detClass</BlockGenusMember>
+				<BlockGenusMember>Divider_Reg</BlockGenusMember>
+			    <BlockGenusMember>AIcaliRegModel</BlockGenusMember>
+			    <BlockGenusMember>AIselectRegModel</BlockGenusMember>
+			    <BlockGenusMember>AIcalcRegModel</BlockGenusMember>
+  			    <BlockGenusMember>Divider_EDGE</BlockGenusMember>
+ 			    <BlockGenusMember>createEDGE</BlockGenusMember>
+  			    <BlockGenusMember>sampleEDGE</BlockGenusMember>
+				<BlockGenusMember>sendEDGE</BlockGenusMember>
+				<BlockGenusMember>classifyEDGE</BlockGenusMember>
+			    <BlockGenusMember>Divider_INFLUX</BlockGenusMember>
+  			    <BlockGenusMember>createInfluxDB</BlockGenusMember>
+  			    <BlockGenusMember>sendInfluxDB</BlockGenusMember>
+			</BlockDrawer>
+
+
+		<!-- IoT. ESP-NOW -->
+			<BlockDrawer button-color="37 79 140" name="bd.ESPNow"
+				type="factory">
+  			    <BlockGenusMember>NOWShowMAC</BlockGenusMember>
+  			    <BlockGenusMember>NOWSendPeer</BlockGenusMember>
+			    <BlockGenusMember>NOWReceive</BlockGenusMember>
+			    <BlockGenusMember>NOWPayloadStr</BlockGenusMember>
+			</BlockDrawer>
+
+
+	<!-- IoT.communication -->
+			<BlockDrawer button-color="37 79 140" name="bd.WLAN_NTP"
+				type="factory">
+			    <BlockGenusMember>Divider_SMTP</BlockGenusMember>
+				<BlockGenusMember>SMTP_Config</BlockGenusMember>
+				<BlockGenusMember>SMTP_Send</BlockGenusMember>
+			    <BlockGenusMember>Divider_Messenger</BlockGenusMember>
+				<BlockGenusMember>Whatsup_Send</BlockGenusMember>
+			    <BlockGenusMember>Divider_Time</BlockGenusMember>
+				<BlockGenusMember>NTP</BlockGenusMember>
+				<BlockGenusMember>NTPctime</BlockGenusMember>
+				<BlockGenusMember>NTPunix</BlockGenusMember>
+			  <!-- -  <BlockGenusMember>scanSSIDWLAN</BlockGenusMember> -->
+			</BlockDrawer>
+
+
+			<!-- IoT.communication -->
+			<BlockDrawer button-color="37 79 140" name="bd.WLAN_privacy"
+				type="factory">
+				<BlockGenusMember>Divider_Privacy</BlockGenusMember>
+				<BlockGenusMember>snifferWLAN</BlockGenusMember>
+				<BlockGenusMember>packetsWLAN</BlockGenusMember>
+			  <!-- -  <BlockGenusMember>scanSSIDWLAN</BlockGenusMember> -->
+			</BlockDrawer>
+
+           <BlockDrawer button-color="37 79 140" name="bd.Audio"
+				type="factory">
+				<BlockGenusMember>Divider_BLE</BlockGenusMember>
+			    <BlockGenusMember>sendPhyphox</BlockGenusMember>
+				<BlockGenusMember>Divider_Audio</BlockGenusMember>
+			  <BlockGenusMember>BuzzerSong</BlockGenusMember>
+			  <BlockGenusMember>BuzzerTone</BlockGenusMember>
+			  <BlockGenusMember>SAM_Conf</BlockGenusMember>
+			  <BlockGenusMember>SAM_Say</BlockGenusMember>
+			  <BlockGenusMember>WebRadio</BlockGenusMember>
+			  <BlockGenusMember>WebRadioStreamTitle</BlockGenusMember>
+			</BlockDrawer>			
+
+
+
+
+
+          <!-- bd.input, external -->
           <BlockDrawer button-color="122 150 200" name="bd.input_ext"
 				type="factory">
 
@@ -7613,6 +7773,7 @@
                 <BlockGenusMember>iot_neowing</BlockGenusMember>
  				<BlockGenusMember>LCDGroveRGB</BlockGenusMember>
 				<BlockGenusMember>OLED_Clear</BlockGenusMember>
+				<BlockGenusMember>OLED_ClearDisplay</BlockGenusMember>
 				<BlockGenusMember>OLED_Print</BlockGenusMember>
 				<BlockGenusMember>OLED_Display</BlockGenusMember>
 				<BlockGenusMember>OLED_Font</BlockGenusMember>
@@ -7620,6 +7781,7 @@
 				<BlockGenusMember>OLED_ClearArray</BlockGenusMember>
 				<BlockGenusMember>OLED_AddArray</BlockGenusMember>
 				<BlockGenusMember>OLED_Print3</BlockGenusMember>
+				
  				
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBME_Adr</BlockGenusMember>
@@ -7635,29 +7797,27 @@
 		        
 		        <BlockGenusMember>GetK30</BlockGenusMember>
                 <BlockGenusMember>NTC_Temp</BlockGenusMember>
-                <BlockGenusMember>DS18B20Get</BlockGenusMember>
+                <BlockGenusMember>DS18B20Req32</BlockGenusMember>
+                <BlockGenusMember>DS18B20Get32</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Light</BlockGenusMember>
-				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
-				<BlockGenusMember>ADPS9960Cal</BlockGenusMember>
 				<BlockGenusMember>ADPS9999Get</BlockGenusMember>
 				<BlockGenusMember>ADPS9999Cal</BlockGenusMember>
 				
+				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
+				<BlockGenusMember>ADPS9960Cal</BlockGenusMember>
 				<BlockGenusMember>TCS34725Get</BlockGenusMember>
 				<BlockGenusMember>GetLightTSLnew</BlockGenusMember>
 				<BlockGenusMember>GetLightBH</BlockGenusMember>
 
 				<BlockGenusMember>Divider_Distance</BlockGenusMember>
 	            <BlockGenusMember>GetMaxbotix3</BlockGenusMember>
-	            <BlockGenusMember>GetDFRobotUS</BlockGenusMember>
+                <BlockGenusMember>GetDFRobotUS</BlockGenusMember>
 				<BlockGenusMember>readVL53</BlockGenusMember>
 				<BlockGenusMember>ADPS9999Get</BlockGenusMember>
 				<BlockGenusMember>ADPS9960Get</BlockGenusMember>
 				<BlockGenusMember>LIDAR_TFmini_read</BlockGenusMember>
-				<BlockGenusMember>medianfilter</BlockGenusMember>
-			    <BlockGenusMember>MapC</BlockGenusMember>
-				
-				
+
                 <BlockGenusMember>Divider_Weight</BlockGenusMember>
 				<BlockGenusMember>GetHX711</BlockGenusMember>
 				<BlockGenusMember>TaraHX711</BlockGenusMember>
@@ -7672,11 +7832,25 @@
 				<BlockGenusMember>INA219Get</BlockGenusMember>
 				<BlockGenusMember>MPR121_read</BlockGenusMember>
 
+				<BlockGenusMember>Divider_GPS</BlockGenusMember>
+			    <!-- BlockGenusMember>GetGPS</BlockGenusMember -->
+			    <BlockGenusMember>GetGPSI2C</BlockGenusMember>
+
+                <BlockGenusMember>Divider_NFC</BlockGenusMember>
+				<BlockGenusMember>NFCRead</BlockGenusMember>
+				<BlockGenusMember>NFCWrite</BlockGenusMember>
+
 				<BlockGenusMember>Divider_Motor</BlockGenusMember>
+				<BlockGenusMember>feather_motor</BlockGenusMember>
+				<BlockGenusMember>feather_stepmotor</BlockGenusMember>
 				<BlockGenusMember>arduino_stepmotor</BlockGenusMember>
-				
 				<BlockGenusMember>Divider_Servo</BlockGenusMember>
-				<BlockGenusMember>pin-write-servo</BlockGenusMember>
+        		<BlockGenusMember>pin-write-servo</BlockGenusMember>
+		        <BlockGenusMember>SmartServoStart</BlockGenusMember>
+                <BlockGenusMember>SmartServoScan</BlockGenusMember>
+                <BlockGenusMember>SmartServoSet</BlockGenusMember>
+                <BlockGenusMember>SmartServoGet</BlockGenusMember>
+
 
 				<BlockGenusMember>Divider_LED</BlockGenusMember>
 			 	<BlockGenusMember>iot_WS2812</BlockGenusMember>
@@ -7686,23 +7860,144 @@
 				<BlockGenusMember>GetMMA7660</BlockGenusMember>
 				<BlockGenusMember>GetBNO</BlockGenusMember>
 				<BlockGenusMember>SD_print</BlockGenusMember>		
+			 	<BlockGenusMember>readPS</BlockGenusMember>
+			 	<BlockGenusMember>calPS</BlockGenusMember>
+			 	<BlockGenusMember>storePS</BlockGenusMember>
+				
+								
 			</BlockDrawer>
-								
-								
-					
-				</BlockDrawerSet>
+
+<!-- bd.signal -->
+			<BlockDrawer button-color="122 150 200" name="bd.signal"
+				type="factory">
+				<BlockGenusMember>Divider_Signal</BlockGenusMember>
+	    		<BlockGenusMember>MEANsmooth</BlockGenusMember>
+				<BlockGenusMember>EMAsmooth</BlockGenusMember>
+ 		        <BlockGenusMember>DosisIntegral</BlockGenusMember>
+ 		        <BlockGenusMember>medianfilter</BlockGenusMember>
+ 		        <BlockGenusMember>absHum</BlockGenusMember>
+ 		        <BlockGenusMember>MapC</BlockGenusMember>
+ 		        
+ 		        
+			</BlockDrawer>
+
+			<!-- MINT -->
+			<BlockDrawer button-color="165 42 42" name="bd.MINT"
+				type="factory">
+				<BlockGenusMember>Divider_Spektro</BlockGenusMember>
+				<BlockGenusMember>DIYSpectro</BlockGenusMember>
+				<BlockGenusMember>GetLightTSL</BlockGenusMember>
+				<BlockGenusMember>DIYSpectroBH</BlockGenusMember>
+				<BlockGenusMember>GetLightBH</BlockGenusMember>
+				
+				<BlockGenusMember>Divider_CO2</BlockGenusMember>
+				<BlockGenusMember>GetSCD40</BlockGenusMember>
+			    <BlockGenusMember>CalSCD40</BlockGenusMember>
+			    <BlockGenusMember>GetSCD30</BlockGenusMember>
+			    <BlockGenusMember>CalSCD30</BlockGenusMember>
+			    <BlockGenusMember>ToffsetSCD30</BlockGenusMember>
+		        <BlockGenusMember>GetMHZ19</BlockGenusMember>
+		        <BlockGenusMember>CalMHZ19</BlockGenusMember>
+		        <BlockGenusMember>absHum</BlockGenusMember>
+			 	<BlockGenusMember>iot_WS2812Ring_c</BlockGenusMember>
+			 	<BlockGenusMember>ownMessageServer_CO2</BlockGenusMember>
+
+				<BlockGenusMember>Divider_Balkon</BlockGenusMember>
+				<BlockGenusMember>initHM</BlockGenusMember>
+				<BlockGenusMember>getHM</BlockGenusMember>
+			</BlockDrawer>
+
+			<!-- vent -->
+
+
+<!--        
+ <BlockDrawer button-color="80 80 80" name="bd.ESP_irq"
+				type="factory">
+			  <BlockGenusMember>Divider_IRQ</BlockGenusMember>
+			  <BlockGenusMember>irqEnable</BlockGenusMember>
+			  <BlockGenusMember>irqAttach</BlockGenusMember>
+			  <BlockGenusMember>irqDetach</BlockGenusMember>
+			  <BlockGenusMember>Divider</BlockGenusMember>
+			  <BlockGenusMember>timerAttach</BlockGenusMember>
+			  <BlockGenusMember>timerDetach</BlockGenusMember>
+			  
+			</BlockDrawer>
+	
+-->	
+			
+			<!-- internal 
+			<BlockDrawer button-color="50 50 50" name="bd.ESP_system"
+				type="factory">
+			  <BlockGenusMember>Divider_ESP8266</BlockGenusMember>
+			  <BlockGenusMember>LightSleep</BlockGenusMember>
+			  <BlockGenusMember>sleep</BlockGenusMember>
+		      <BlockGenusMember>readReset</BlockGenusMember>
+		      <BlockGenusMember>readVCC</BlockGenusMember>
+			  <BlockGenusMember>WiFiEnable</BlockGenusMember>
+			  <BlockGenusMember>Divider_OTA</BlockGenusMember>
+ 		      <BlockGenusMember>basicOTA</BlockGenusMember>
+			  
+		      <BlockGenusMember>Divider_RTC</BlockGenusMember>
+			  <BlockGenusMember>setRTCVarNum</BlockGenusMember>
+		      <BlockGenusMember>readRTCVarNum</BlockGenusMember>
+		      <BlockGenusMember>RTCtoRTCMem</BlockGenusMember>
+		      <BlockGenusMember>RTCfromRTCMem</BlockGenusMember>
+		      <BlockGenusMember>RTCtoEEPROM</BlockGenusMember>
+		      <BlockGenusMember>RTCfromEEPROM</BlockGenusMember>
+ 		      <BlockGenusMember>RTCCheck</BlockGenusMember>
+			</BlockDrawer>
+--> 
+
+            <BlockDrawer button-color="80 80 80" name="bd.ESP32_system"
+				type="factory">
+			 
+			  <BlockGenusMember>Divider_ESP32</BlockGenusMember>
+		      <BlockGenusMember>modemSleep</BlockGenusMember>	
+		      <BlockGenusMember>LightSleep32</BlockGenusMember>	
+  			  <BlockGenusMember>sleep32</BlockGenusMember>
+  		      <BlockGenusMember>RTC_GPIO32</BlockGenusMember>	
+  		      <BlockGenusMember>Frequency32</BlockGenusMember>	
+  		      <BlockGenusMember>readReset32</BlockGenusMember>
+  		      <BlockGenusMember>Divider_I2C</BlockGenusMember>
+ 		      <BlockGenusMember>I2CScan</BlockGenusMember>	
+  		      <BlockGenusMember>Divider_OTA</BlockGenusMember>
+ 		      <BlockGenusMember>basicOTA</BlockGenusMember>
+              <BlockGenusMember>Divider_IRQ</BlockGenusMember>
+			  <BlockGenusMember>irqEnable</BlockGenusMember>
+			  <BlockGenusMember>irqAttach</BlockGenusMember>
+			  <BlockGenusMember>irqDetach</BlockGenusMember>
+			  <BlockGenusMember>timerAttach</BlockGenusMember>
+			  <BlockGenusMember>timerDetach</BlockGenusMember>
+			  <BlockGenusMember>Divider_RTOS</BlockGenusMember>
+ 		      <BlockGenusMember>freeRTOS_task</BlockGenusMember>
+ 		      <BlockGenusMember>freeRTOS_vTaskDelay</BlockGenusMember>
+ 		      <BlockGenusMember>freeRTOS_semaGive</BlockGenusMember>
+ 		      <BlockGenusMember>freeRTOS_semaTake</BlockGenusMember>
+ 		         
+				<!-- 
+			  <BlockGenusMember>LightSleep</BlockGenusMember>
+			  <BlockGenusMember>sleep</BlockGenusMember>
+		      <BlockGenusMember>readReset</BlockGenusMember>
+		      <BlockGenusMember>readVCC</BlockGenusMember>
+			  <BlockGenusMember>WiFiEnable</BlockGenusMember>
+		      <BlockGenusMember>Divider</BlockGenusMember>
+			  <BlockGenusMember>setRTCVarNum</BlockGenusMember>
+		      <BlockGenusMember>readRTCVarNum</BlockGenusMember>
+		      <BlockGenusMember>RTCtoRTCMem</BlockGenusMember>
+		      <BlockGenusMember>RTCfromRTCMem</BlockGenusMember>
+		      <BlockGenusMember>RTCtoEEPROM</BlockGenusMember>
+		      <BlockGenusMember>RTCfromEEPROM</BlockGenusMember>
+ 		      <BlockGenusMember>RTCCheck</BlockGenusMember>
+ 		      -->
+			</BlockDrawer>
+		</BlockDrawerSet>
+		
 	</BlockDrawerSets>
+
 
 	<Pages drawer-with-page="yes">
 		<Page page-name="Main" page-width="4000" page-color="210 210 210" />
 	</Pages>
 
-   <TrashCan>
-		<OpenTrashImage>com/ardublock/block/IoTkit/IconMakeyIoTW.png</OpenTrashImage>
-		<ClosedTrashImage>com/ardublock/block/IoTkit/IconMakeyIoTW.png</ClosedTrashImage>
-	</TrashCan>
-
-
+	
 </BlockLangDef>
-
-

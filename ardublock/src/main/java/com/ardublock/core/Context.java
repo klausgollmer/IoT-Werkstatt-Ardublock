@@ -80,7 +80,7 @@ public class Context
 	private String arduinoCodeFileString = "";
 	private OsType osType; 
 
-	final public static String APP_NAME = "IoT-Werkstatt Makey:Lab";
+	final public static String APP_NAME = "IoT²-Werkstatt Makey:Lab";
 	
 	private Editor editor;
 	
@@ -344,11 +344,11 @@ public class Context
     
 		
 		switch(ArdublockVersion) {
-		  case "All":
-			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
+		  case "Lab":
+			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock_ESP32_Lab.xml";
 		    break;
 		  case "Makey":
-			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock_ESP32.xml";
+			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock_ESP32_Makey.xml";
 		    break;
 		  case "Octopus":
 			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock_ESP8266.xml";
@@ -357,7 +357,7 @@ public class Context
 			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock_UNO.xml";
 		    break;
 		  default:
-			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock.xml";
+			  ARDUBLOCK_LANG_PATH = "/com/ardublock/block/ardublock_ESP32_Makey.xml";
 		}
 		//System.out.println("Version: " + ARDUBLOCK_LANG_PATH);
 	
