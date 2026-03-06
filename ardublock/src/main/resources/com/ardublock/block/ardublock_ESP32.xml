@@ -334,7 +334,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
 					connector-kind="socket" label="bc.milliseconds">
-					<DefaultArg genus-name="number" label="1000" />
+					<DefaultArg genus-name="number" label="250" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
