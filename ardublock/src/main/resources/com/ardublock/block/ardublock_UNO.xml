@@ -63,8 +63,8 @@
 			</BlockConnectors>
 		
 			<Images>
-			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
-					<FileLocation>com/ardublock/block/IoTkit/IconMakeyLab.png</FileLocation>
+			   <Image block-location="northwest" image-editable="no" width="65" height = "60">
+					<FileLocation>com/ardublock/block/IoTkit/IconStarter.png</FileLocation>
 				</Image>
 			</Images>
 		</BlockGenus>
