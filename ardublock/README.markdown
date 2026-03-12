@@ -1,16 +1,16 @@
-IoT-Werkstatt ArduBlock 
+IoT²-Werkstatt ArduBlock 
 ======
 
-ArduBlock ist eine grafische Programmiersprache für das Arduino Ökosystem. Im Rahmen der Aktivitäten der IoT-Werkstatt wurde die Plattform um Super-Blöcke mit IoT-Funktion für die ESP Toolchain erweitert. Damit erschließt sich das Internet der Dinge in einer spielerischen Weise.
-Nähere Informationen zur IoT-Werkstatt: www.iot-werkstatt.de
+ArduBlock ist eine grafische Programmiersprache für das Arduino Ökosystem. Im Rahmen der Aktivitäten der IoT²-Werkstatt wurde die Plattform um Super-Blöcke mit IoT²-Funktion für die ESP Toolchain erweitert. Damit erschließt sich das Internet der Dinge und des Denkens (Internet of Things and Thinking) in einer spielerischen Weise.
+Nähere Informationen zur IoT²-Werkstatt: www.iot-werkstatt.de
 
 
 **English Version:**
 
 *ArduBlock is a graphical programming language for the Arduino ecosystem.
-As part of the IoT-Werkstatt activities, the platform has been extended with “super blocks” that add IoT functionality for the ESP toolchain.
+As part of the IoT²-Werkstatt activities, the platform has been extended with “super blocks” that add IoT² (Internet of Things and Thinking) functionality for the ESP toolchain.
 This enables learners to explore the Internet of Things in an intuitive and playful way.
-For more information about the IoT-Werkstatt, visit: www.iot-werkstatt.de
+For more information about the IoT²-Werkstatt, visit: www.iot-werkstatt.de
 
 
 Credits
