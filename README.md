@@ -10,6 +10,9 @@ Ziel ist es, kreative, experimentelle und alltagsnahe Zugänge zu **Elektronik**
 Weitere Informationen, Unterrichtsmaterialien und Projekte auf der Homepage am Umwelt-Campus Birkenfeld der Hochschule Trier
 👉 https://www.iot-werkstatt.de
 
+Installations Bundle mit Arduino-IDE "ready to play" (Windows und Linux)
+👉 https://github.com/klausgollmer/IoT-Werkstatt-IoTW-Bundle
+
 ---
 
 ## 📦 Komponenten & Lizenzen
