@@ -1,6 +1,15 @@
 <p align="center">
   <img src="Logo.png" alt="IoT-Werkstatt Logo" width="350">
 </p>
+<div align="center">
+
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+[![Arduino](https://img.shields.io/badge/platform-Arduino-blue.svg)](https://www.arduino.cc)
+[![ESP32](https://img.shields.io/badge/ESP32-3.3.2-orange.svg)](https://github.com/espressif/arduino-esp32)
+[![ESP8266](https://img.shields.io/badge/ESP8266-3.1.2-teal.svg)](https://github.com/esp8266/Arduino)
+[![Education](https://img.shields.io/badge/education-maker-blueviolet.svg)](https://www.umwelt-campus.de/forschung/projekte/iot-werkstatt)
+
+</div>
 
 # IoT²-Werkstatt – Ardublock
 
