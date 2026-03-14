@@ -374,44 +374,64 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
      * A timer responsible for rolling out the canvasPane.
      */
     private class EnlargerTimer implements ActionListener {
-
         private javax.swing.Timer timer;
         private boolean expand;
-
+        
         public EnlargerTimer() {
             this.expand = true;
             timer = new Timer(50, this);
         }
-
         /**
          * Responsible for expanding or shrinking the canvasPane until
          * it has reached the appropriate size.
          */
         public void actionPerformed(ActionEvent e) {
+        	// no animation für pi-systems  
+            boolean isPi = System.getProperty("os.arch").toLowerCase().contains("aarch64");
+            
             if (expand) {
-                if (canvasPane.getWidth() < canvasPane.getFinalWidth()) {
-                    canvasPane.setSize(canvasPane.getWidth() + (canvasPane.getFinalWidth() - canvasPane.getWidth()) / 3 + 1, canvasHeight);
-                    canvasPane.revalidate();
-                    canvasPane.repaint();
-                } else {
-                    timer.stop();
-                    GlassExplorer.this.notifyListeners(GlassExplorerEvent.SLIDING_CONTAINER_FINISHED_OPEN);
+                if (isPi) {
+                    // 🔥 DIRECT JUMP NUR PI – blitzschnell!
                     canvasPane.setSize(canvasPane.getFinalWidth(), canvasHeight);
                     canvasPane.revalidate();
                     canvasPane.repaint();
+                    timer.stop();
+                    GlassExplorer.this.notifyListeners(GlassExplorerEvent.SLIDING_CONTAINER_FINISHED_OPEN);
+                } else {
+                    // 🎨 Smooth Animation Desktop (Original-Logik)
+                    if (canvasPane.getWidth() < canvasPane.getFinalWidth()) {
+                        canvasPane.setSize(canvasPane.getWidth() + (canvasPane.getFinalWidth() - canvasPane.getWidth()) / 3 + 1, canvasHeight);
+                        canvasPane.revalidate();
+                        canvasPane.repaint();
+                    } else {
+                        timer.stop();
+                        GlassExplorer.this.notifyListeners(GlassExplorerEvent.SLIDING_CONTAINER_FINISHED_OPEN);
+                        canvasPane.setSize(canvasPane.getFinalWidth(), canvasHeight);
+                        canvasPane.revalidate();
+                        canvasPane.repaint();
+                    }
                 }
             } else {
-                if (canvasPane.getWidth() > 3) {
-                    canvasPane.setSize(canvasPane.getWidth() / 3, canvasHeight);
-                    canvasPane.revalidate();
-                    canvasPane.repaint();
-                } else {
-                    timer.stop();
-                    GlassExplorer.this.notifyListeners(GlassExplorerEvent.SLIDING_CONTAINER_FINISHED_CLOSED);
-                    //buttonPane.add(canvasPane);
+                if (isPi) {
+                    // 🔥 DIRECT SHRINK PI
                     canvasPane.setSize(0, canvasHeight);
                     canvasPane.revalidate();
                     canvasPane.repaint();
+                    timer.stop();
+                    GlassExplorer.this.notifyListeners(GlassExplorerEvent.SLIDING_CONTAINER_FINISHED_CLOSED);
+                } else {
+                    // 🎨 Smooth Shrink Desktop
+                    if (canvasPane.getWidth() > 3) {
+                        canvasPane.setSize(canvasPane.getWidth() / 3, canvasHeight);
+                        canvasPane.revalidate();
+                        canvasPane.repaint();
+                    } else {
+                        timer.stop();
+                        GlassExplorer.this.notifyListeners(GlassExplorerEvent.SLIDING_CONTAINER_FINISHED_CLOSED);
+                        canvasPane.setSize(0, canvasHeight);
+                        canvasPane.revalidate();
+                        canvasPane.repaint();
+                    }
                 }
             }
         }
@@ -421,7 +441,7 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
          */
         public void expand() {
             this.expand = true;
-            this.timer.start();
+            timer.start();
         }
 
         /**
@@ -432,4 +452,5 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
             timer.start();
         }
     }
+
 }

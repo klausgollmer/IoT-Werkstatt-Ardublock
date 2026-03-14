@@ -245,13 +245,7 @@ public class OpenblocksFrame extends JFrame
 			
 			String[] tutorList      = new String[0];
 			String[] tutorList_trim = new String[0];
-
-//			if (tutorComboBox != null) {
-//			    tutorComboBox.setModel(new DefaultComboBoxModel<>(tutorList));
-//			} else {
-//			    System.err.println("vorher tutorComboBox ist null!");
-//			}
-			
+		
 			this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		    context.writeVersion();
 			context.resetWorksapce();
@@ -594,19 +588,23 @@ public class OpenblocksFrame extends JFrame
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 		JButton newButton = new JButton(uiMessageBundle.getString("ardublock.ui.new"));
+		newButton.setToolTipText("New Ardublock Programm");
 		newButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		newButton.addActionListener(new NewButtonListener(this));
 
 		JButton saveButton = new JButton(uiMessageBundle.getString("ardublock.ui.save"));
+		saveButton.setToolTipText("Save Ardublock Programm");
 		saveButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		saveButton.addActionListener(new SaveButtonListener(this));
 
 		JButton saveAsButton = new JButton(uiMessageBundle.getString("ardublock.ui.saveAs"));
+		saveAsButton.setToolTipText("Save Ardublock Programm as");
 		saveAsButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		saveAsButton.addActionListener(new SaveAsButtonListener(this));
 
 		
 		JButton openButton = new JButton(uiMessageBundle.getString("ardublock.ui.load"));
+		openButton.setToolTipText("Open Ardublock Programm");
 		openButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		openButton.addActionListener(new OpenButtonListener(this));
 		String mess;
@@ -623,6 +621,8 @@ public class OpenblocksFrame extends JFrame
 		}
 			
 		JButton generateButton = new JButton(mess);
+		generateButton.setToolTipText("Upload C-Program to Arduino IDE");
+
 		generateButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		generateButton.addActionListener(new GenerateCodeButtonListener(this, context));
 
@@ -636,6 +636,7 @@ public class OpenblocksFrame extends JFrame
 		
 		
 		JButton saveImageButton = new JButton(uiMessageBundle.getString("ardublock.ui.saveImage"));
+	    saveImageButton.setToolTipText("Screenshot");
 		saveImageButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		saveImageButton.addActionListener(new ActionListener () {
 
@@ -685,33 +686,7 @@ public class OpenblocksFrame extends JFrame
 			}
 			
 			
-			/*
-			public void actionPerformed(ActionEvent e) {
-				Dimension size = workspace.getCanvasSize();
-				System.out.println("size: " + size);
-				BufferedImage bi = new BufferedImage(7000,7000, BufferedImage.TYPE_INT_RGB); //#kgo 2560 2560
-				Graphics2D g = (Graphics2D)bi.createGraphics();
-		
-				g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-				double theScaleFactor = (300d/72d);  //#kgo memory problem in ide
-				g.scale(theScaleFactor,theScaleFactor);
-				workspace.getBlockCanvas().getPageAt(0).getJComponent().paint(g);
-		
-				try{
-					final JFileChooser fc = new JFileChooser();
-					fc.setSelectedFile(new File("ardublock.png"));
-					int returnVal = fc.showSaveDialog(workspace.getBlockCanvas().getJComponent());
-			        if (returnVal == JFileChooser.APPROVE_OPTION) {
-			            File file = fc.getSelectedFile();
-						ImageIO.write(bi,"png",file);
-			        }
-				} catch (Exception e1) {
-					
-				} finally {
-					g.dispose();
-				}
-			}
-			*/
+			
 			
 		});
 
@@ -732,7 +707,8 @@ public class OpenblocksFrame extends JFrame
 		//String[] programList = {"Starter","Makey","Octopus","Lab"};
 		boardComboBox = new JComboBox<String>(programList);
 		//boardComboBox.setFont(new Font("Arial", Font.BOLD, 18)); // Schriftgröße 18
-		
+	    boardComboBox.setToolTipText("Select Board");
+
 		boardComboBox.setSelectedItem((String)context.ArdublockVersion);
 		
 		boardComboBox.addActionListener(new ActionListener() {
@@ -766,6 +742,7 @@ public class OpenblocksFrame extends JFrame
 	//	JLabel debugLabel = new JLabel("        "+uiMessageBundle.getString("ardublock.ui.debug"));
 		String[] debugList = {uiMessageBundle.getString("ardublock.ui.debug0"),uiMessageBundle.getString("ardublock.ui.debug1"),uiMessageBundle.getString("ardublock.ui.debug2")};
         JComboBox<String> debugComboBox = new JComboBox<>(debugList);
+	    debugComboBox.setToolTipText("Debug Output");
 
         // Set initial selection
         int currentDebugLevel = Translator.isDebugProgram();
@@ -830,7 +807,8 @@ public class OpenblocksFrame extends JFrame
 		
        // JComboBox<String> tutorComboBox = new JComboBox<>(tutorList);
 		tutorComboBox.setModel(new DefaultComboBoxModel<String>(tutorList_trim));
-		
+	    tutorComboBox.setToolTipText("View Examples");
+
         // Set initial selection
         tutorComboBox.setSelectedIndex(0); // Default to "None"
         if (tutorList.length <= 1) {
@@ -886,6 +864,7 @@ public class OpenblocksFrame extends JFrame
         });
 		JLabel zoomLabel = new JLabel("Zoom: ");
 		JButton zoomIn = new JButton("+");
+	    zoomIn.setToolTipText("Zoom in");
 		zoomIn.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		zoomIn.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
@@ -900,6 +879,7 @@ public class OpenblocksFrame extends JFrame
 		});
 		
 		JButton zoomOut = new JButton("- ");
+	    zoomOut.setToolTipText("Zoom out");
 		zoomOut.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		zoomOut.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
@@ -942,19 +922,7 @@ public class OpenblocksFrame extends JFrame
 
 
 		JPanel bottomPanel = new JPanel();
-
-		// Angenommen, die URL steht in Deinem uiMessageBundle unter dem Schlüssel "ardublock.ui.website"
-		//String websiteURL = uiMessageBundle.getString("ardublock.ui.website");
-/*
-		String websiteURL = "www.umwelt-campus.de";
-		JLabel websiteLabel = new JLabel(
-		    "<html>         " +
-		    "<a href=\"" + websiteURL + "\" style=\"text-decoration: underline; color: blue;\">" + websiteURL + "</a>" +
-		    ", Hochschule Trier" +
-		    "</html>         "
-		);
-	*/	
-		
+	
 		String websiteURL = "www.iot-werkstatt.de";
 		JLabel websiteLabel = new JLabel(
 		    "<html>" +
@@ -970,6 +938,7 @@ public class OpenblocksFrame extends JFrame
 
 		// Setze den Cursor auf den Hand-Cursor, damit der Benutzer erkennt, dass es klickbar ist
 		websiteLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		websiteLabel.setToolTipText("Author: Klaus-Uwe Gollmer, https://github.com/klausgollmer/IoT-Werkstatt-Ardublock");
 
 		// Füge einen MouseListener hinzu, der beim Klick die URL im Standardbrowser öffnet
 		websiteLabel.addMouseListener(new MouseAdapter() {
@@ -991,24 +960,7 @@ public class OpenblocksFrame extends JFrame
 		});
 		
 		
-		/*
-		JButton websiteButton = new JButton(uiMessageBundle.getString("ardublock.ui.website"));
-		websiteButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
-		websiteButton.addActionListener(new ActionListener () {
-			public void actionPerformed(ActionEvent e) {
-			    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-			    URL url;
-			    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
-			        try {
-						url = new URL("https://www.umwelt-campus.de/iot-werkstatt/tutorials/");
-			            desktop.browse(url.toURI());
-			        } catch (Exception e1) {
-			            e1.printStackTrace();
-			        }
-			    }
-			}
-		});
-		*/
+	
 		JLabel homeLabel = new JLabel("        Umwelt-Campus Birkenfeld, Hochschule Trier       ");
 		JLabel versionLabel = new JLabel(uiMessageBundle.getString("ardublock.ui.version"));
 		//JLabel inoLabel = new JLabel("Code: ");
@@ -1171,12 +1123,7 @@ public class OpenblocksFrame extends JFrame
 	
 	public void doSaveArduBlockFile()
 	{
-//		if (!context.isWorkspaceChanged())
-//		{
-//		System.out.println("no change");
-//			return ;
-//		}
-		
+	
 		String saveString = getArduBlockString();
 		//System.out.println("doSave"+saveString);
 		if (context.getSaveFilePath() == null)

@@ -86,13 +86,7 @@ public class Translator
 	public String genreateHeaderCommand()
 	{
 		
-		//String Disclaimer = "/* Disclaimer IoT-Werkstatt CC 4.0 BY NC SA \n"+
-		//		"       This program is distributed in the hope that it will be useful,\n" + 
-		//		"       but WITHOUT ANY WARRANTY; without even the implied warranty of\n" + 
-		//		"       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For Ardublock see the\n" + 
-		//		"       GNU General Public License for more details. */\n\n";
-		//
-		
+
 		String ver = uiMessageBundle.getString("ardublock.ui.version");
 		LocalDateTime jetzt = LocalDateTime.now();
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss", Locale.GERMAN); //    Tag.Monat.Jahr Stunde:Minute:Sekunde
@@ -114,10 +108,10 @@ public class Translator
 				+ "  Copyright (c) 2026 IoT²-Werkstatt / Klaus-Uwe Gollmer\n"
 				+ "\n"
 				+ "  SPDX-License-Identifier für das generierte Codegerüst: MIT\n"
-				+ "  Dieser Code ruft Funktionen externer Bibliotheken auf (s. #include Zeilen).\n"
+				+ "  Dieser Code ruft eventuell Funktionen externer Bibliotheken auf (s. #include Zeilen).\n"
 				+ "  Diese Bibliotheken selbst sind separat lizenziert – siehe jeweiligen Disclaimer.\n"
 				+ "  Der Einsatz dieser Bibliotheken kann zusätzliche Lizenzpflichten auslösen. \n"
-				+ "  Nutzung nur in Compliance mit den im Kommentar vermerkten Link angegebenen Lizenzbedingungen. \n"
+				+ "  Nutzung nur in Compliance mit den individuellen Lizenzbedingungen. \n"
 				+ "*/\n"
 				+ "\n";
 	
@@ -130,21 +124,6 @@ public class Translator
 			headerCommand.append("#define IOTW_GREEN_CODE_LEVEL "+ isGreenProgram() + "\n");
 		
 		headerCommand.append("#include <IoTW_config.h>\n");	
-		
-	/*	
-		if (!isWiFiProgram()) {
-			System.out.println("N1");
-		//  addHeaderFile("ESP8266WiFi.h");
-			addDefinitionCommand ("#if defined(ESP8266)\n #include <ESP8266WiFi.h> \n#elif defined(ESP32) \n #include <WiFi.h>\n#endif\n");
-		}  else {
-			System.out.println("N2");
-		}
-		*/
-		//addHeaderFile("IoTBoards_Generic.h");
-		//addHeaderFile("Wire.h");
-		//addDefinitionCommand("extern void initOLED(int);");
-	
-    
 		
 		
 		if (!headerFileSet.isEmpty())
