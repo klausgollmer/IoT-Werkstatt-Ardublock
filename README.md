@@ -100,6 +100,6 @@ Klaus-Uwe Gollmer
 - Code generator and IoT² functions for ESP8266 and ESP32
 ---
 <p align="center">
-  <img src="ExamplePicture.png" alt="IoT-Werkstatt Example" width="700">
+  <img src="ExamplePicture.png" alt="IoT-Werkstatt Example" width="1000">
 </p>
 <div align="center">
