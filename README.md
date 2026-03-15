@@ -99,3 +99,7 @@ Klaus-Uwe Gollmer
 - Adaption GUI
 - Code generator and IoT² functions for ESP8266 and ESP32
 ---
+<p align="center">
+  <img src="ExamplePicture.png" alt="IoT-Werkstatt Example" width="350">
+</p>
+<div align="center">
