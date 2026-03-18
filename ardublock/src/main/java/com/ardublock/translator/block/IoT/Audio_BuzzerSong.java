@@ -24,11 +24,11 @@ public class Audio_BuzzerSong extends TranslatorBlock
 	  String Dis ="void PlaySong(int song, int dur) {\r\n"
 	  		+ "  switch (song) {\r\n"
 	  		+ "    case 0:HappyBirthday(dur);break;\r\n"
-	  		+ "    case 1:HarryPotter(dur);break;\r\n"
-	  		+ "    case 2:Pirate(dur);break;\r\n"
-	  		+ "    case 3:StarWars2(dur);break;\r\n"
-	  		+ "    case 4:Entertainement(dur);break;\r\n"
-	  		+ "    case 5:BarbieGirl(dur);break;\r\n"
+	  		+ "    case 1:Song1(dur);break;\r\n"
+	  		+ "    case 2:Song2(dur);break;\r\n"
+	  		+ "    case 3:Song3(dur);break;\r\n"
+	  		+ "    case 4:Song4(dur);break;\r\n"
+	  		+ "    case 5:Song5(dur);break;\r\n"
 	  		+ "  }\r\n"
 	  		+ "}";
       translator.addDefinitionCommand(Dis);
