@@ -59,6 +59,10 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
     /** The workspace in use */
     private final Workspace workspace;
 
+    /** Race condition raspberry */
+    private long suppressExpandUntil = 0L;
+
+    
     /**
      * Constructor
      */
@@ -81,7 +85,7 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
 
         // Erstelle das Panel mit Bild
         retardedPane = new ImagePanel("IconTrash.png", fixedWidth, fixedHeight);
-
+        retardedPane.setToolTipText("Trash (delete blocks)");
         // Falls nötig, die Positionierung anpassen
         retardedPane.setPreferredSize(new Dimension(fixedWidth, fixedHeight));
         retardedPane.setBackground(myColor);
@@ -135,21 +139,6 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
             }
         }
     }
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     /**
      * Returns the default width of the selected sliding container
@@ -208,6 +197,10 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
      * @param index
      */
     public void selectCanvas(int index) {
+    	
+   	    if (System.currentTimeMillis() < suppressExpandUntil) {
+   	        return;
+   	    }
         if ((!timer.timer.isRunning()) || (this.selectedCanvasIndex != index)) {
             if (index >= 0 && index < drawers.size()) {
                 this.selectedCanvasIndex = index;
@@ -250,6 +243,7 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
      * Rolls the canvasPane back underneath when focus is lost
      */
     public void focusLost(FocusEvent e) {
+   	    suppressExpandUntil = System.currentTimeMillis() + 150;
         timer.shrink();
     }
 
@@ -392,11 +386,12 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
             if (expand) {
                 if (isPi) {
                     // 🔥 DIRECT JUMP NUR PI – blitzschnell!
+                    timer.stop();
                     canvasPane.setSize(canvasPane.getFinalWidth(), canvasHeight);
                     canvasPane.revalidate();
                     canvasPane.repaint();
-                    timer.stop();
                     GlassExplorer.this.notifyListeners(GlassExplorerEvent.SLIDING_CONTAINER_FINISHED_OPEN);
+                 
                 } else {
                     // 🎨 Smooth Animation Desktop (Original-Logik)
                     if (canvasPane.getWidth() < canvasPane.getFinalWidth()) {
@@ -411,14 +406,16 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
                         canvasPane.repaint();
                     }
                 }
+               
             } else {
                 if (isPi) {
                     // 🔥 DIRECT SHRINK PI
+                    timer.stop();
+                    GlassExplorer.this.notifyListeners(GlassExplorerEvent.SLIDING_CONTAINER_FINISHED_CLOSED);
                     canvasPane.setSize(0, canvasHeight);
                     canvasPane.revalidate();
                     canvasPane.repaint();
-                    timer.stop();
-                    GlassExplorer.this.notifyListeners(GlassExplorerEvent.SLIDING_CONTAINER_FINISHED_CLOSED);
+              
                 } else {
                     // 🎨 Smooth Shrink Desktop
                     if (canvasPane.getWidth() > 3) {
@@ -433,14 +430,19 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
                         canvasPane.repaint();
                     }
                 }
+                
             }
+            
         }
 
         /**
          * Expands the canvasPane
          */
         public void expand() {
-            this.expand = true;
+//        	System.out.println("EXPAND");
+        	this.expand = true;
+//   	    Thread.dumpStack();
+            timer.stop();
             timer.start();
         }
 
@@ -448,7 +450,10 @@ public class GlassExplorer extends JPanel implements Explorer, FocusListener {
          * Shrinks the canvasPane
          */
         public void shrink() {
+//       	System.out.println("SHRINK");
+//       	    Thread.dumpStack();
             this.expand = false;
+            timer.stop();
             timer.start();
         }
     }

@@ -48,9 +48,9 @@ public class ExtDisp_OLED_Print3  extends TranslatorBlock {
  	    translator.addSetupCommand(Setup);
  	    
  	    
-		String s1 = "\"\"";
-		String s2 = "\"\"";
-		String s3 = "\"\"";
+		String s1 = "\"\\u0020\"";
+		String s2 = "\"\\u0020\"";
+		String s3 = "\"\\u0020\"";
 	
 	    String s ="";
 		
@@ -61,7 +61,7 @@ public class ExtDisp_OLED_Print3  extends TranslatorBlock {
 		translatorBlock = this.getTranslatorBlockAtSocket(1);
 		if (translatorBlock!=null) {
 		  s2 = translatorBlock.toCode();
-	    }	    	
+	    }  	    	
 		translatorBlock = this.getTranslatorBlockAtSocket(2);
 		if (translatorBlock!=null) {
 		  s3 = translatorBlock.toCode();

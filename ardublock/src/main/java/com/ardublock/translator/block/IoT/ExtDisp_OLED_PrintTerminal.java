@@ -48,9 +48,13 @@ public class ExtDisp_OLED_PrintTerminal  extends TranslatorBlock {
 		translator.addDefinitionCommand(Def);
 		
 	
+		String t = "\"\\u0020\""; // Löschen
 		
-		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
-		String t = translatorBlock.toCode();
+		TranslatorBlock translatorBlock = this.getTranslatorBlockAtSocket(0);
+		if (translatorBlock!=null) {
+			  t = translatorBlock.toCode();
+	    }	    	
+		
 		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 		String LF = translatorBlock.toCode();
 		

@@ -53,8 +53,11 @@ public class ExtDisp_OLED_Print  extends TranslatorBlock {
 		String y = "";
 	
 		
-		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
-		String t = translatorBlock.toCode();
+		TranslatorBlock translatorBlock = this.getTranslatorBlockAtSocket(0);
+		String t = "\" \""; // Löschen
+		if (translatorBlock!=null) {
+			  t = translatorBlock.toCode();
+	    }	    	
 		
 		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 		if (translatorBlock!=null) {
