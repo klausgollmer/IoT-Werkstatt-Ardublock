@@ -108,10 +108,11 @@ public class Translator
 				+ "  Copyright (c) 2026 IoT²-Werkstatt / Klaus-Uwe Gollmer\n"
 				+ "\n"
 				+ "  SPDX-License-Identifier für das generierte Codegerüst: MIT\n"
-				+ "  Dieser Code ruft eventuell Funktionen externer Bibliotheken auf (s. #include Zeilen).\n"
-				+ "  Diese Bibliotheken selbst sind separat lizenziert – siehe jeweiligen Disclaimer.\n"
-				+ "  Der Einsatz dieser Bibliotheken kann zusätzliche Lizenzpflichten auslösen. \n"
-				+ "  Nutzung nur in Compliance mit den individuellen Lizenzbedingungen. \n"
+				+ "  Das ESP8266-Package ist LGPL-2.1 lizensiert, https://github.com/esp8266/Arduino\n"
+				+ "  Das ESP32-Package ist LGPL-2.1 lizensiert, https://github.com/espressif/arduino-esp32\n"
+				+ "  Außerdem ruft der Code ggf. Funktionen externer Bibliotheken auf.\n"
+				+ "  Diese Bibliotheken selbst sind separat lizenziert, siehe #include Zeilen und THIRD-PARTY-NOTICES.MD am Textende.\n"
+				+ "  Der Einsatz kann zusätzliche Lizenzpflichten auslösen, Nutzung nur in Compliance mit den individuellen Lizenzbedingungen. \n"
 				+ "*/\n"
 				+ "\n";
 	

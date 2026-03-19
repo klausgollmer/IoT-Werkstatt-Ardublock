@@ -112,7 +112,9 @@ public class ProgramBlock extends TranslatorBlock
 				+ "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n"
 				+ "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n"
 				+ "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n"
-				+ "SOFTWARE.*/\n";
+				+ "SOFTWARE.\n" 
+		        + "\n"
+				+ "Other Third-Party Licences here: https://github.com/klausgollmer/IoT-Werkstatt-IoTW-Bundle/blob/main/THIRD-PARTY-NOTICES.MD */\n";
 		
 		
 		return ret+Dis;
