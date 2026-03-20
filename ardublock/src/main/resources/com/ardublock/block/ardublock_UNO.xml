@@ -1708,7 +1708,31 @@
                 
      		</BlockConnectors>
 		 </BlockGenus>
-		
+
+<!--  AHT20 Daten -->
+		<BlockGenus name="GetAHT" kind="data" color="44 165 226"
+			initlabel="bg.GetAHT" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+				<BlockConnector connector-type="number"	connector-kind="plug" position-type="single" />
+				<BlockConnector label=" " connector-type="number" connector-kind="socket" position-type="single">
+                    <DefaultArg genus-name="AHTVectorTemp" label="Temperatur"/>
+                </BlockConnector>
+     		</BlockConnectors>
+		</BlockGenus>
+
+       <BlockGenus name="AHTVectorTemp" kind="data" color="255 0 0" initlabel="bg.AHTVectorTemp" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
+
+        <BlockGenus name="AHTVectorHum" kind="data" color="255 0 0" initlabel="bg.AHTVectorHum" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>		
 
 <!--  BME280 Daten -->
 		<BlockGenus name="GetBME" kind="data" color="44 165 226"
@@ -7122,7 +7146,10 @@
 			<FamilyMember>OLED_FontSize24</FamilyMember>
 		</BlockFamily>
 
-
+        <BlockFamily>
+			<FamilyMember>AHTVectorTemp</FamilyMember>
+			<FamilyMember>AHTVectorHum</FamilyMember>
+		</BlockFamily>
 		
 		<BlockFamily>
 			<FamilyMember>BMEVectorTemp</FamilyMember>
@@ -7623,6 +7650,8 @@
  				
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBME_Adr</BlockGenusMember>
+				<BlockGenusMember>GetAHT</BlockGenusMember>
+				
 				<BlockGenusMember>GetMGas</BlockGenusMember>
 				<BlockGenusMember>GetDustHoney</BlockGenusMember>
 				<BlockGenusMember>GetDustHM330</BlockGenusMember>
