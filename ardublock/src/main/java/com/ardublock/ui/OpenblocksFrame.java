@@ -155,8 +155,20 @@ public class OpenblocksFrame extends JFrame
 	        }
 		
 		//
-		
-		this.setSize(new Dimension(1024, 760));
+
+		  boolean isLinux =  System.getProperty("os.name").toLowerCase().contains("linux");
+		  if (isLinux) {
+			  boolean isPi = System.getProperty("os.arch").toLowerCase().contains("aarch64");
+			  if (!isPi) {
+			    this.setSize(new Dimension(1200, 760));  // größer für Linux x64
+		  	  } else {
+			    this.setSize(new Dimension(1024, 760));  // Standard
+		  	  }
+		    } else {
+			    this.setSize(new Dimension(1024, 760));  // Standard
+		   }
+		  
+	//	this.setSize(new Dimension(1024, 760));
 		
 		this.setLayout(new BorderLayout());
 		//put the frame to the center of screen
@@ -611,7 +623,8 @@ public class OpenblocksFrame extends JFrame
 		openButton.addActionListener(new OpenButtonListener(this));
 		String mess;
 		
-		if (context.getArduinoCodeFileString()=="") {
+	//	if (context.getArduinoCodeFileString()=="") {
+		if (context.getArduinoCodeFileString().equals("")) {
 			//System.out.println("in");
 			mess = uiMessageBundle.getString("ardublock.ui.upload");
 		} else {
