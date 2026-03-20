@@ -473,6 +473,8 @@ public class OpenblocksFrame extends JFrame
                 namesList.add(subDir.getName());
             }
         }
+        
+        namesList.sort(String.CASE_INSENSITIVE_ORDER);
         return namesList.toArray(new String[0]);
     }
 
@@ -794,6 +796,7 @@ public class OpenblocksFrame extends JFrame
 		//System.out.println(context.ArdublockVersion);
 		
 		String[] tutorList = getSubDirectoryNames(Dir);
+		
 		 // Neues Array mit gefilterten Strings erstellen
         String[] tutorList_trim = Arrays.stream(tutorList)
                 .map(s -> s.replaceFirst("^\\d+_", ""))  // Entfernt NUR die Zahl + "_"
