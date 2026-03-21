@@ -135,7 +135,19 @@ public abstract class LabelWidget extends JComponent {
             labelBeforeEdit = textLabel.getText();
             this.removeAll();
             this.add(textField);
+
+            boolean isLinux =  System.getProperty("os.name").toLowerCase().contains("linux");
+  		    if (isLinux) { //GTK-Bug white on white
+				textField.setSelectedTextColor(Color.BLACK);
+				textField.setCaretColor(Color.BLACK);
+				textField.setForeground(Color.BLACK);
+				textField.setBackground(Color.WHITE);
+				textField.setSelectionColor(Color.WHITE);
+				textField.setOpaque(true);
+  		    }
             textField.grabFocus();
+            
+
         } else {
             //update to current textfield.text
             //if text entered was not empty and if it was editing before
