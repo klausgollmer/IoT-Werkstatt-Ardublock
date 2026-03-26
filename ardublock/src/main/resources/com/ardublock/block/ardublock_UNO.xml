@@ -6760,6 +6760,15 @@
 		
 		
 		
+		<BlockGenus name="easteregg32" kind="command" color="50 50 50"
+			initlabel="bg.easteregg32">
+			<description>
+				<text></text>
+			</description>
+			<BlockConnectors>
+			</BlockConnectors>
+		</BlockGenus>
+		
 		<BlockGenus name="sleep32" kind="command" color="50 50 50"
 			initlabel="bg.sleep32">
 			

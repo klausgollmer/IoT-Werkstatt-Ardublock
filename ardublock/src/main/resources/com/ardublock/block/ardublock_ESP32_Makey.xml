@@ -6779,7 +6779,19 @@
         </BlockGenus>
 
 		
-		
+		<BlockGenus name="easteregg32" kind="command" color="255 255 255"
+			initlabel="bg.easteregg32">
+			<description>
+				<text></text>
+			</description>
+			<BlockConnectors>
+			</BlockConnectors>
+			<Images>
+			   <Image block-location="east" image-editable="no" width="50" height = "50">
+					<FileLocation>com/ardublock/block/IoTkit/EasterEgg.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
 		
 		
 		<BlockGenus name="sleep32" kind="command" color="50 50 50"
@@ -6794,6 +6806,7 @@
 					<DefaultArg genus-name="number" label="60000" />
 				</BlockConnector>
 			</BlockConnectors>
+			
 		</BlockGenus>
 		
 		
@@ -8042,6 +8055,7 @@
  		      <BlockGenusMember>freeRTOS_vTaskDelay</BlockGenusMember>
  		      <BlockGenusMember>freeRTOS_semaGive</BlockGenusMember>
  		      <BlockGenusMember>freeRTOS_semaTake</BlockGenusMember>
+  			  <BlockGenusMember>easteregg32</BlockGenusMember>
  		         
 				<!-- 
 			  <BlockGenusMember>LightSleep</BlockGenusMember>
