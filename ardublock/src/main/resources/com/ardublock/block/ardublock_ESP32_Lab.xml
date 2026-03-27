@@ -169,6 +169,7 @@
         <BlockGenus name="Divider_Signal" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_SMTP" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_Messenger" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
+        <BlockGenus name="Divider_ESP_NOW" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
 
         <BlockGenus name="Divider_ChatGPT" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
         <BlockGenus name="Divider_KNN" kind="command" is-starter="yes" is-terminator="yes" initlabel="bg.Divider" color="150 150 150" />
@@ -7717,6 +7718,12 @@
 				<BlockGenusMember>buildWLANAP</BlockGenusMember>
 				<BlockGenusMember>Divider_DNS</BlockGenusMember>
 				<BlockGenusMember>mDNS</BlockGenusMember>
+				<BlockGenusMember>Divider_ESP_NOW</BlockGenusMember>
+				<BlockGenusMember>NOWShowMAC</BlockGenusMember>
+  			    <BlockGenusMember>NOWSendPeer</BlockGenusMember>
+			    <BlockGenusMember>NOWReceive</BlockGenusMember>
+			    <BlockGenusMember>NOWPayloadStr</BlockGenusMember>
+				
 				<!--BlockGenusMember>connectGPRS</BlockGenusMember-->
 				
 			</BlockDrawer>
@@ -7813,7 +7820,7 @@
 			</BlockDrawer>
 
 
-		<!-- IoT. ESP-NOW -->
+		<!-- IoT. ESP-NOW 
 			<BlockDrawer button-color="37 79 140" name="bd.ESPNow"
 				type="factory">
   			    <BlockGenusMember>NOWShowMAC</BlockGenusMember>
@@ -7821,7 +7828,7 @@
 			    <BlockGenusMember>NOWReceive</BlockGenusMember>
 			    <BlockGenusMember>NOWPayloadStr</BlockGenusMember>
 			</BlockDrawer>
-
+         -->
 
 	<!-- IoT.communication -->
 			<BlockDrawer button-color="37 79 140" name="bd.WLAN_NTP"
@@ -7835,6 +7842,7 @@
 				<BlockGenusMember>NTP</BlockGenusMember>
 				<BlockGenusMember>NTPctime</BlockGenusMember>
 				<BlockGenusMember>NTPunix</BlockGenusMember>
+  			   
 			  <!-- -  <BlockGenusMember>scanSSIDWLAN</BlockGenusMember> -->
 			</BlockDrawer>
 
@@ -7863,6 +7871,20 @@
 			  <BlockGenusMember>WebRadioStreamTitle</BlockGenusMember>
 			</BlockDrawer>			
 
+<!-- bd.signal -->
+			<BlockDrawer button-color="122 150 200" name="bd.signal"
+				type="factory">
+				<BlockGenusMember>Divider_Signal</BlockGenusMember>
+	    		<BlockGenusMember>MEANsmooth</BlockGenusMember>
+				<BlockGenusMember>EMAsmooth</BlockGenusMember>
+ 		        <BlockGenusMember>DosisIntegral</BlockGenusMember>
+ 		        <BlockGenusMember>medianfilter</BlockGenusMember>
+ 		        <BlockGenusMember>absHum</BlockGenusMember>
+ 		        <BlockGenusMember>MapC</BlockGenusMember>
+	        	<BlockGenusMember>SignalGen</BlockGenusMember>
+ 		        
+ 		        
+			</BlockDrawer>
 
 
 
@@ -7974,20 +7996,6 @@
 								
 			</BlockDrawer>
 
-<!-- bd.signal -->
-			<BlockDrawer button-color="122 150 200" name="bd.signal"
-				type="factory">
-				<BlockGenusMember>Divider_Signal</BlockGenusMember>
-	    		<BlockGenusMember>MEANsmooth</BlockGenusMember>
-				<BlockGenusMember>EMAsmooth</BlockGenusMember>
- 		        <BlockGenusMember>DosisIntegral</BlockGenusMember>
- 		        <BlockGenusMember>medianfilter</BlockGenusMember>
- 		        <BlockGenusMember>absHum</BlockGenusMember>
- 		        <BlockGenusMember>MapC</BlockGenusMember>
-	        	<BlockGenusMember>SignalGen</BlockGenusMember>
- 		        
- 		        
-			</BlockDrawer>
 
 			<!-- MINT -->
 			<BlockDrawer button-color="165 42 42" name="bd.MINT"

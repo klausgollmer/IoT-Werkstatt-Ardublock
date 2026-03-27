@@ -7742,7 +7742,7 @@
   			    <BlockGenusMember>payloadStrBlynk</BlockGenusMember>
 			</BlockDrawer>
 
-	<!-- IoT. ESP-NOW -->
+	<!-- IoT. ESP-NOW 
 			<BlockDrawer button-color="37 79 140" name="bd.ESPNow"
 				type="factory">
   			    <BlockGenusMember>NOWShowMAC</BlockGenusMember>
@@ -7750,7 +7750,7 @@
 			    <BlockGenusMember>NOWReceive</BlockGenusMember>
 			    <BlockGenusMember>NOWPayloadStr</BlockGenusMember>
 			</BlockDrawer>
-
+-->
 			<!-- IoT.communication -->
 			<BlockDrawer button-color="37 79 140" name="bd.database"
 				type="factory">
@@ -7797,6 +7797,19 @@
 				<BlockGenusMember>snifferWLAN</BlockGenusMember>
 				<BlockGenusMember>packetsWLAN</BlockGenusMember>
 			  <!-- -  <BlockGenusMember>scanSSIDWLAN</BlockGenusMember> -->
+			</BlockDrawer>
+
+<!-- bd.signal -->
+			<BlockDrawer button-color="122 150 200" name="bd.signal"
+				type="factory">
+				<BlockGenusMember>Divider_Signal</BlockGenusMember>
+	    		<BlockGenusMember>MEANsmooth</BlockGenusMember>
+				<BlockGenusMember>EMAsmooth</BlockGenusMember>
+ 		        <BlockGenusMember>DosisIntegral</BlockGenusMember>
+                <BlockGenusMember>medianfilter</BlockGenusMember>
+ 		        <BlockGenusMember>absHum</BlockGenusMember>
+	            <BlockGenusMember>MapC</BlockGenusMember>
+ 		        
 			</BlockDrawer>
 
           <!-- bd.input, external -->
@@ -7903,18 +7916,7 @@
 								
 			</BlockDrawer>
 
-<!-- bd.signal -->
-			<BlockDrawer button-color="122 150 200" name="bd.signal"
-				type="factory">
-				<BlockGenusMember>Divider_Signal</BlockGenusMember>
-	    		<BlockGenusMember>MEANsmooth</BlockGenusMember>
-				<BlockGenusMember>EMAsmooth</BlockGenusMember>
- 		        <BlockGenusMember>DosisIntegral</BlockGenusMember>
-                <BlockGenusMember>medianfilter</BlockGenusMember>
- 		        <BlockGenusMember>absHum</BlockGenusMember>
-	            <BlockGenusMember>MapC</BlockGenusMember>
- 		        
-			</BlockDrawer>
+
 
 		<!-- MINT -->
 			<BlockDrawer button-color="165 42 42" name="bd.MINT"
