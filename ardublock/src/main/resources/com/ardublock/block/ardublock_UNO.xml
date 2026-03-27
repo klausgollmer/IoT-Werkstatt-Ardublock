@@ -316,7 +316,18 @@
 			</BlockConnectors>
 		</BlockGenus>
 
-
+        <BlockGenus name="delay_micro" kind="command" color="255 221 0"
+			initlabel="bg.delay_micro">
+			<description>
+				<text></text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="s">
+					<DefaultArg genus-name="number" label="1" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>	
 
 
 	<BlockGenus name="delay" kind="command" color="255 221 0"
@@ -3882,6 +3893,24 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+        <BlockGenus name="DACwrite" kind="command" color="74 108 212"
+			initlabel="bg.DACwrite">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.pin_number">
+					<DefaultArg genus-name="number" label="25" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.value">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+			</BlockConnectors>
+	    </BlockGenus>
+
+
+
+
 		<BlockGenus name="pin-write-analog" kind="command" color="74 108 212"
 			initlabel="bg.pin-write-analog">
 			<description>
@@ -6385,6 +6414,29 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+		<BlockGenus name="SignalGen" kind="command" color="74 108 212"
+			initlabel="bg.SignalGen" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="dac (1/2)">
+					<DefaultArg genus-name="number" label="1" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="frequency (Hz)">
+					<DefaultArg genus-name="number" label="500" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="volume (%)">
+					<DefaultArg genus-name="number" label="100" />
+				</BlockConnector>
+				
+			</BlockConnectors>
+		</BlockGenus>
+		
+		
+		
 		 <BlockGenus name="BuzzerTone" kind="command" color="74 108 212"
 			initlabel="bg.BuzzerTone" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -7454,7 +7506,7 @@
 			    <BlockGenusMember>Divider_Wait</BlockGenusMember>
 		    	<BlockGenusMember>delay_s</BlockGenusMember>
 				<BlockGenusMember>delay</BlockGenusMember>
-			
+					
   			    <BlockGenusMember>Divider_Loop</BlockGenusMember>
   			    <!-- BlockGenusMember>repeat_times</BlockGenusMember-->
   			    <BlockGenusMember>repeat2</BlockGenusMember>

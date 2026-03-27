@@ -353,7 +353,18 @@
 			</BlockConnectors>
 		</BlockGenus>
 	
-			
+		<BlockGenus name="delay_micro" kind="command" color="255 221 0"
+			initlabel="bg.delay_micro">
+			<description>
+				<text></text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="s">
+					<DefaultArg genus-name="number" label="100" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>	
 		
 		
 		
@@ -3873,6 +3884,24 @@
 			</BlockConnectors>
 		</BlockGenus>
 
+
+	<BlockGenus name="DACwrite" kind="command" color="74 108 212"
+			initlabel="bg.DACwrite">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.pin_number">
+					<DefaultArg genus-name="number" label="25" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="bc.value">
+					<DefaultArg genus-name="number" label="0" />
+				</BlockConnector>
+			</BlockConnectors>
+	</BlockGenus>
+
+
+
 		<BlockGenus name="pin-write-analog" kind="command" color="74 108 212"
 			initlabel="bg.pin-write-analog">
 			<description>
@@ -6402,6 +6431,30 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+			
+	    <BlockGenus name="SignalGen" kind="command" color="74 108 212"
+			initlabel="bg.SignalGen" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="dac (1/2)">
+					<DefaultArg genus-name="number" label="1" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="frequency (Hz)">
+					<DefaultArg genus-name="number" label="500" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="volume (%)">
+					<DefaultArg genus-name="number" label="100" />
+				</BlockConnector>
+				
+			</BlockConnectors>
+		</BlockGenus>
+		
+		
+		
 	    <BlockGenus name="BuzzerTone" kind="command" color="74 108 212"
 			initlabel="bg.BuzzerTone" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -7486,6 +7539,7 @@
 			    <BlockGenusMember>Divider_Wait</BlockGenusMember>
 		    	<BlockGenusMember>delay_s</BlockGenusMember>
 				<BlockGenusMember>delay</BlockGenusMember>
+  				<BlockGenusMember>delay_micro</BlockGenusMember>
   			    <BlockGenusMember>Divider_Loop</BlockGenusMember>
   			    <!-- BlockGenusMember>repeat_times</BlockGenusMember-->
   			    <BlockGenusMember>repeat2</BlockGenusMember>
@@ -7645,6 +7699,7 @@
 	  	
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>
+				<BlockGenusMember>DACwrite</BlockGenusMember>
 				<BlockGenusMember>pin-write-digital</BlockGenusMember>
 			    <BlockGenusMember>iot_neowing</BlockGenusMember>
 	<!-- 			<BlockGenusMember>IoTmessage</BlockGenusMember> -->
@@ -7798,6 +7853,8 @@
 				<BlockGenusMember>Divider_BLE</BlockGenusMember>
 			    <BlockGenusMember>sendPhyphox</BlockGenusMember>
 				<BlockGenusMember>Divider_Audio</BlockGenusMember>
+				<BlockGenusMember>DACwrite</BlockGenusMember>
+				<BlockGenusMember>SignalGen</BlockGenusMember>	
 			  <BlockGenusMember>BuzzerSong</BlockGenusMember>
 			  <BlockGenusMember>BuzzerTone</BlockGenusMember>
 			  <BlockGenusMember>SAM_Conf</BlockGenusMember>
@@ -7927,6 +7984,7 @@
  		        <BlockGenusMember>medianfilter</BlockGenusMember>
  		        <BlockGenusMember>absHum</BlockGenusMember>
  		        <BlockGenusMember>MapC</BlockGenusMember>
+	        	<BlockGenusMember>SignalGen</BlockGenusMember>
  		        
  		        
 			</BlockDrawer>
@@ -7934,28 +7992,17 @@
 			<!-- MINT -->
 			<BlockDrawer button-color="165 42 42" name="bd.MINT"
 				type="factory">
+							<!-- MINT -->
+			
 				<BlockGenusMember>Divider_Spektro</BlockGenusMember>
 				<BlockGenusMember>DIYSpectro</BlockGenusMember>
-				<BlockGenusMember>GetLightTSL</BlockGenusMember>
 				<BlockGenusMember>DIYSpectroBH</BlockGenusMember>
-				<BlockGenusMember>GetLightBH</BlockGenusMember>
-				
-				<BlockGenusMember>Divider_CO2</BlockGenusMember>
-				<BlockGenusMember>GetSCD40</BlockGenusMember>
-			    <BlockGenusMember>CalSCD40</BlockGenusMember>
-			    <BlockGenusMember>GetSCD30</BlockGenusMember>
-			    <BlockGenusMember>CalSCD30</BlockGenusMember>
-			    <BlockGenusMember>ToffsetSCD30</BlockGenusMember>
-		        <BlockGenusMember>GetMHZ19</BlockGenusMember>
-		        <BlockGenusMember>CalMHZ19</BlockGenusMember>
-		        <BlockGenusMember>absHum</BlockGenusMember>
-			 	<BlockGenusMember>iot_WS2812Ring_c</BlockGenusMember>
-			 	<BlockGenusMember>ownMessageServer_CO2</BlockGenusMember>
-
 				<BlockGenusMember>Divider_Balkon</BlockGenusMember>
 				<BlockGenusMember>initHM</BlockGenusMember>
 				<BlockGenusMember>getHM</BlockGenusMember>
 			</BlockDrawer>
+				
+			
 
 			<!-- vent -->
 

@@ -14,11 +14,14 @@ public class SubtractionBlock extends TranslatorBlock
 	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
+	//	System.out.println("subs");
 		String ret = "( ";
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 		ret = ret + translatorBlock.toCode();
+	//	System.out.println(translatorBlock.toCode());
 		ret = ret + " - ";
 		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
+	//	System.out.println(translatorBlock.toCode());
 		ret = ret + translatorBlock.toCode();
 		ret = ret + " )";
 		return codePrefix + ret + codeSuffix;

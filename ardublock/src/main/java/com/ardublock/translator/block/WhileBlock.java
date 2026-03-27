@@ -19,7 +19,8 @@ public class WhileBlock extends TranslatorBlock
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 		ret = ret + translatorBlock.toCode();
 		ret = ret + " )\n\t{\n";
-		ret = ret + "yield(); // Aufruf Scheduler, bedient WLAN-Stack\n";
+		ret = ret + "// Aufruf Scheduler, bedient WLAN-Stack\n";
+		ret = ret + "#ifdef ESP8266 \n yield();\n #endif \n}\n";
 		translatorBlock = getTranslatorBlockAtSocket(1);
 		while (translatorBlock != null)
 		{

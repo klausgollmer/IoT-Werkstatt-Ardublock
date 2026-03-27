@@ -22,7 +22,7 @@ public class Audio_BuzzerTone extends TranslatorBlock
 	  String dur = translatorBlock.toCode();
 	  if (dur == null) dur = "100000000";
 	  translator.addHeaderFile("IoTW_Tone.h");
-	  ret = "BuzzerTone("+f+","+dur+");\n";
+	  ret = "IoTW_Tone_BuzzerTone("+f+","+dur+");\n";
 	  return codePrefix + ret + codeSuffix;
   }
 }
