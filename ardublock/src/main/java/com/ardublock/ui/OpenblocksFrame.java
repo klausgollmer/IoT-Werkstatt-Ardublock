@@ -7,6 +7,7 @@ import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -45,6 +46,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JWindow;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
@@ -85,6 +88,7 @@ public class OpenblocksFrame extends JFrame
 	 * 
 	 */
 	private static final long serialVersionUID = 2841155965906223806L;
+	private static boolean splashShown = false;
 
 	private Context context;
 	private JFileChooser fileChooser;
@@ -122,8 +126,145 @@ public class OpenblocksFrame extends JFrame
 	        setAlwaysOnTop(false); 
 	}
 	
+	
+	public static double getUiScale() {
+	    String uiScaleStr = System.getProperty("sun.java2d.uiScale");
+	    if (uiScaleStr != null) {
+	        try {
+	            return Double.parseDouble(uiScaleStr);
+	        } catch (NumberFormatException e) {
+	            // Fallback, z.B. 1.0
+	            return 1.0;
+	        }
+	    }
+	    // Wenn die Property nicht gesetzt ist, Standardwert 1.0 annehmen
+	    return 1.0;
+	}
+	
+	
+	// 1. Separate Klasse (kein final‑Problem mehr)
+	class SplashPanel extends JPanel {
+	    private final URL imgURL;
+	    double uiscale =getUiScale();
+	    public SplashPanel(URL imgURL) {
+	        this.imgURL = imgURL;
+	        
+	        
+	     // Raspberry Pi Wayland Fix: Größe explizit setzen
+	      setMinimumSize(new Dimension((int) (475/uiscale), (int)(330/uiscale)));
+	      setMaximumSize(new Dimension((int) (475/uiscale), (int)(330/uiscale)));
+	      setPreferredSize(new Dimension((int) (475/uiscale), (int)(330/uiscale)));
+	    }
+
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+	        Graphics2D g2d = (Graphics2D) g;
+	        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, 
+	            RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+	        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, 
+	            RenderingHints.VALUE_RENDER_SPEED);
+	        g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, 
+	                RenderingHints.VALUE_FRACTIONALMETRICS_OFF);
+	        if (imgURL != null) {
+	            ImageIcon icon = new ImageIcon(imgURL);
+	        	
+	            g2d.drawImage(icon.getImage(), 0, 0, (int) (475/uiscale), (int)(330/uiscale), null);
+	        }
+	    }
+	}
+
+	
+	// 2. Splash anzeigen UND sofort weiterlaufen
+	private void showSplashAsync() {
+	
+		if (splashShown) {
+	        return;
+	    }
+	    splashShown = true;
+		
+	    String relativePath = "/com/ardublock/block/IoTkit/splash4.png";
+	    URL imgURL = getClass().getResource(relativePath);
+
+	    JWindow splash = new JWindow();
+	  
+	    splash.setAlwaysOnTop(true);
+
+	    if (imgURL != null) {
+	        SplashPanel panel = new SplashPanel(imgURL);
+	        splash.add(panel);
+	        splash.pack();
+	    } else {
+	        JLabel fallback = new JLabel("IoT² Werkstatt");
+	        fallback.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 24));
+	        splash.add(fallback);
+	        //splash.setSize((int) (475/uiscale), (int)(330/uiscale));
+	    }
+
+	    splash.setLocationRelativeTo(null);
+	    splash.setVisible(true);
+
+	    // 3. Timer: Nach ein paar s schließen – NON-BLOCKING!
+	    Timer timer = new Timer(2500, e -> {
+	        splash.dispose();  // Splash nach s weg
+	        ((Timer)e.getSource()).stop();  // Timer stoppen
+	    });
+	    timer.setRepeats(false);  // nur einmal
+	    timer.start();
+	}
+	
+	
 	public OpenblocksFrame()
 	{
+		/*
+		// new splash window
+		double uiscale = getUiScale();
+		String relativePath = "/com/ardublock/block/IoTkit/splash3.png";
+		final URL imgURL = getClass().getResource(relativePath);
+
+		JWindow splash = new JWindow();
+
+		if (imgURL != null) {
+		    JPanel panel = new JPanel() {
+		        @Override
+		        protected void paintComponent(Graphics g) {
+		            super.paintComponent(g);
+		            Graphics2D g2d = (Graphics2D) g;
+		            g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, 
+		                RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+		            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, 
+		                RenderingHints.VALUE_RENDER_SPEED);
+		            
+		            ImageIcon icon = new ImageIcon(imgURL);  
+		            g2d.drawImage(icon.getImage(), 0, 0, (int) (475/uiscale), (int)(330/uiscale), null);
+		        }
+		    };
+		    panel.setPreferredSize(new Dimension((int) (475/uiscale), (int)(330/uiscale)));
+		    splash.add(panel);
+		    splash.pack();
+		} else {
+		    JLabel fallback = new JLabel("IoT² Werkstatt");
+		    fallback.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 24));
+		    splash.add(fallback);
+		    splash.setSize((int) (475/uiscale), (int)(330/uiscale));
+		}
+
+		splash.setLocationRelativeTo(null);
+		splash.setAlwaysOnTop(true);
+		splash.setVisible(true);
+
+		try {
+		    Thread.sleep(2200);
+		} catch (InterruptedException e) {
+		    Thread.currentThread().interrupt();
+		}
+		splash.dispose();
+		*/
+
+		showSplashAsync();  // Splash startet sofort
+		
+		
+		// Run ardublock
 		context = Context.getContext();
 		this.setTitle(makeFrameTitle());
 		//
@@ -132,9 +273,9 @@ public class OpenblocksFrame extends JFrame
 	        String relativePath = "/com/ardublock/block/IoTkit/IconMakeyLab.png";  // Der Pfad innerhalb des Ressourcenverzeichnisses
 	      
 	        try {
-	            URL imgURL = getClass().getResource(relativePath);
-	            if (imgURL != null) {
-	                BufferedImage originalImage = ImageIO.read(imgURL);
+	           URL nimgURL = getClass().getResource(relativePath);
+	            if (nimgURL != null) {
+	                BufferedImage originalImage = ImageIO.read(nimgURL);
 	                // Skaliere das Bild in hoher Qualität
 	                img = originalImage.getScaledInstance(32, 32, Image.SCALE_SMOOTH);
 	            } else {

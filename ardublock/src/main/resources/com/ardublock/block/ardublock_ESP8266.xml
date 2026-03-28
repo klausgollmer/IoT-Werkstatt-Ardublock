@@ -6349,6 +6349,22 @@
 	  </BlockGenus>
 	
 		
+		 <BlockGenus name="TTS_Say" kind="command" color="74 108 212"
+			initlabel="bg.TTS_Say" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+	
+			<BlockConnectors>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="text">
+					<DefaultArg genus-name="message" label="Hallo, lass uns gemeinsam bauen!" />
+				</BlockConnector>
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="language">
+					<DefaultArg genus-name="message" label="de" />
+				</BlockConnector>
+				
+			</BlockConnectors>
+		</BlockGenus>
 		
 		
 		

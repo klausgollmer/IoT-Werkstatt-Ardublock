@@ -33,7 +33,9 @@ public class Audio_SAM_Say  extends TranslatorBlock {
 		translator.addDefinitionCommand(Def);
 
 	   	String Setup ="DAC_out = new AudioOutputI2S(0,AudioOutputI2S::INTERNAL_DAC);\r\n"
-	   		    	+ "DAC_out->begin();\r\n";
+	   		    	+ "DAC_out->begin();\r\n"
+    	            + "DAC_out->SetGain(3.9); // Volume 0 ... 3.9 \r\n";
+	   	
 	    translator.addSetupCommand(Setup);
 		
  	   	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
