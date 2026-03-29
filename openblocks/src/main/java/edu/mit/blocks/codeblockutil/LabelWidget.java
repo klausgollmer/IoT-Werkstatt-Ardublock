@@ -280,6 +280,19 @@ public abstract class LabelWidget extends JComponent {
             text = "     ";
         }
 
+        // Ersetze Umlaute  
+        text = text.replace("ä", "ae");
+        text = text.replace("Ä", "Ae");
+        
+        text = text.replace("ü", "ue");
+        text = text.replace("Ü", "Ue");
+        
+        text = text.replace("ö", "oe");
+        text = text.replace("Ö", "Oe");
+
+        text = text.replace("ß", "ss");
+        
+        
         //update the text everywhere
         textLabel.setText(text);
         textField.setText(text);
@@ -400,6 +413,7 @@ public abstract class LabelWidget extends JComponent {
         /** These Key inputs are processed by this text field */
         private final char[] validNumbers = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'};
         /** These Key inputs are processed by this text field if NOT a number block*/
+        /*
         private final char[] validChar = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
             'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j',
             'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm',
@@ -408,6 +422,20 @@ public abstract class LabelWidget extends JComponent {
             '\'', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+',
             '-', '=', '{', '}', '|', '[', ']', '\\', ' ',
             ':', '"', ';', '\'', '<', '>', '?', ',', '.', '/', '`', '~'};
+       */ 
+        
+        // add german Umlaute
+        private final char[] validChar = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+                'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j',
+                'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm',
+                'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F',
+                'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M',
+                '\'', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+',
+                '-', '=', '{', '}', '|', '[', ']', '\\', ' ',
+                ':', '"', ';', '\'', '<', '>', '?', ',', '.', '/', '`', '~',
+                'ä','Ä','ü','Ü','ö','Ö','ß'};
+        
+        
         /** These Key inputs are processed by all this text field */
         private final int[] validMasks = {KeyEvent.VK_BACK_SPACE,
             KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT,
