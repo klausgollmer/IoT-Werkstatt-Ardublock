@@ -61,6 +61,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.FontUIResource;
 
+import com.ardublock.ArduBlockTool;
 import com.ardublock.ArduBlockTool.IoTWGlobalCrossGuard;
 import com.ardublock.core.Context;
 import com.ardublock.translator.Translator;
@@ -76,6 +77,9 @@ import edu.mit.blocks.controller.WorkspaceController;
 import edu.mit.blocks.workspace.Page;
 import edu.mit.blocks.workspace.PageChangeEventManager;
 import edu.mit.blocks.workspace.Workspace;
+import processing.app.Sketch;
+import processing.app.SketchFile;
+
 import javax.swing.BorderFactory;
 
 import javax.sound.sampled.*;
@@ -88,7 +92,6 @@ public class OpenblocksFrame extends JFrame
 	 * 
 	 */
 	private static final long serialVersionUID = 2841155965906223806L;
-	private static boolean splashShown = false;
 
 	private Context context;
 	private JFileChooser fileChooser;
@@ -177,11 +180,6 @@ public class OpenblocksFrame extends JFrame
 	
 	// 2. Splash anzeigen UND sofort weiterlaufen
 	private void showSplashAsync() {
-	
-		if (splashShown) {
-	        return;
-	    }
-	    splashShown = true;
 		
 	    String relativePath = "/com/ardublock/block/IoTkit/splash4.png";
 	    URL imgURL = getClass().getResource(relativePath);
@@ -204,8 +202,12 @@ public class OpenblocksFrame extends JFrame
 	    splash.setLocationRelativeTo(null);
 	    splash.setVisible(true);
 
+	    boolean isPi   = System.getProperty("os.arch").toLowerCase().contains("aarch64");
+	    int SplashTime = 2000; 
+	    if (isPi) SplashTime = 3500;
+	    
 	    // 3. Timer: Nach ein paar s schließen – NON-BLOCKING!
-	    Timer timer = new Timer(2500, e -> {
+	    Timer timer = new Timer(SplashTime, e -> {
 	        splash.dispose();  // Splash nach s weg
 	        ((Timer)e.getSource()).stop();  // Timer stoppen
 	    });
@@ -216,56 +218,12 @@ public class OpenblocksFrame extends JFrame
 	
 	public OpenblocksFrame()
 	{
-		/*
-		// new splash window
-		double uiscale = getUiScale();
-		String relativePath = "/com/ardublock/block/IoTkit/splash3.png";
-		final URL imgURL = getClass().getResource(relativePath);
-
-		JWindow splash = new JWindow();
-
-		if (imgURL != null) {
-		    JPanel panel = new JPanel() {
-		        @Override
-		        protected void paintComponent(Graphics g) {
-		            super.paintComponent(g);
-		            Graphics2D g2d = (Graphics2D) g;
-		            g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, 
-		                RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
-		            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, 
-		                RenderingHints.VALUE_RENDER_SPEED);
-		            
-		            ImageIcon icon = new ImageIcon(imgURL);  
-		            g2d.drawImage(icon.getImage(), 0, 0, (int) (475/uiscale), (int)(330/uiscale), null);
-		        }
-		    };
-		    panel.setPreferredSize(new Dimension((int) (475/uiscale), (int)(330/uiscale)));
-		    splash.add(panel);
-		    splash.pack();
-		} else {
-		    JLabel fallback = new JLabel("IoT² Werkstatt");
-		    fallback.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 24));
-		    splash.add(fallback);
-		    splash.setSize((int) (475/uiscale), (int)(330/uiscale));
-		}
-
-		splash.setLocationRelativeTo(null);
-		splash.setAlwaysOnTop(true);
-		splash.setVisible(true);
-
-		try {
-		    Thread.sleep(2200);
-		} catch (InterruptedException e) {
-		    Thread.currentThread().interrupt();
-		}
-		splash.dispose();
-		*/
-
 		showSplashAsync();  // Splash startet sofort
 		
 		
 		// Run ardublock
 		context = Context.getContext();
+		
 		this.setTitle(makeFrameTitle());
 		//
 		 Image img = null;
@@ -764,6 +722,7 @@ public class OpenblocksFrame extends JFrame
 		openButton.addActionListener(new OpenButtonListener(this));
 		String mess;
 		
+		
 	//	if (context.getArduinoCodeFileString()=="") {
 		if (context.getArduinoCodeFileString().equals("")) {
 			//System.out.println("in");
@@ -777,11 +736,11 @@ public class OpenblocksFrame extends JFrame
 		}
 			
 		JButton generateButton = new JButton(mess);
-		generateButton.setToolTipText("Upload C-Program to Arduino IDE");
-
+		generateButton.setToolTipText(context.getArduinoCodeFileString());
 		generateButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		generateButton.addActionListener(new GenerateCodeButtonListener(this, context));
 
+		
 		JButton serialMonitorButton = new JButton(uiMessageBundle.getString("ardublock.ui.serialMonitor"));
 		serialMonitorButton.setMargin(new Insets(mymargin_ul, mymargin_lr, mymargin_ul, mymargin_lr)); // Innenabstände: Oben, Links, Unten, Rechts
 		serialMonitorButton.addActionListener(new ActionListener () {

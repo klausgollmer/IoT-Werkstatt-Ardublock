@@ -69,9 +69,10 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 			ArduBlockTool.editor = editor;
 			ArduBlockTool.openblocksFrame = new ArduBlockToolFrame();
 			ArduBlockTool.openblocksFrame.addListener(this);
-		
-		
 			
+		} else {
+		  Context context = Context.getContext();
+		  context.setArduinoCodeFileString(ArduBlockTool.getCurrentSketchFile());
 		}
 	}
 
@@ -80,6 +81,7 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 			ArduBlockTool.editor.toFront();
 			ArduBlockTool.openblocksFrame.setVisible(true);
 			ArduBlockTool.openblocksFrame.toFront();
+			
 		} catch (Exception e) {
 			
 		}
@@ -211,6 +213,8 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 
 	        Toolkit.getDefaultToolkit().getSystemEventQueue().push(proxy);
 	        installed = true;
+	      
+	        
 	    }
 
 	    public static synchronized void uninstall() {
@@ -300,7 +304,31 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	    }
 	}
 
-	                
+	public static String getCurrentSketchFile() {
+	    Editor ed = ArduBlockTool.editor;
+	    if (ed == null) {
+	        return "";
+	    }
+
+	    Sketch sketch = ed.getSketch();   // PDE-Sketch-Objekt
+	    if (sketch == null) {
+	        return "";
+	    }
+
+	    SketchFile primary = sketch.getPrimaryFile();   // z.B. HelloWorld.ino
+
+	    if (primary == null) {
+	        return "";
+	    }
+
+	    // 1. Vollständiger Pfad:
+	    String path = primary.getFile().getAbsolutePath();
+	    
+	    //System.out.println("Pfad: " + path);
+	    return path;
+	}
+	
+	
 	public static boolean switchToTargetAndWrite(Path desiredPath, String source) {
 	    boolean ok = true;
 

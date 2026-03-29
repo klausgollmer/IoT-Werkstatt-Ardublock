@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -270,6 +271,11 @@ public class GenerateCodeButtonListener implements ActionListener
 			    //System.out.println(myVersion);
 			    if (myVersion.startsWith("1.")) { // Arduino IDE 1
 				  context.didGenerate(codeOut);
+				  context.setArduinoCodeFileString(ArduBlockTool.getCurrentSketchFile());
+			      JButton button = (JButton) e.getSource();
+			      button.setToolTipText(context.getArduinoCodeFileString());
+				  
+				  
 			    } else { // Arduino IDE 2
 				  String codeFile = context.getArduinoCodeFileString();
 			      ArduinoIDE2.writeFile(codeFile, codeOut);
