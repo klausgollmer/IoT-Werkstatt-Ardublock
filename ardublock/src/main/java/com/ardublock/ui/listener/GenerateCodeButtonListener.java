@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.ardublock.ArduBlockTool;
 import com.ardublock.core.Context;
 import com.ardublock.translator.AutoFormat;
 import com.ardublock.translator.Translator;
