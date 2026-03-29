@@ -18,9 +18,13 @@ public class Audio_BuzzerSong extends TranslatorBlock
 	  String song = translatorBlock.toCode();
 	  translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
 	  String dur = translatorBlock.toCode();
+//	  translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
+//	  String vol = translatorBlock.toCode();
 	  
 	  translator.addHeaderFile("IoTW_Tone.h");
-	  String ret = "IoTW_Tone_PlaySong("+song+","+dur+");\n";
+	  String ret = ""
+			  +    "IoTW_Tone_PlaySong("+song+","+dur+",100);\n";
+	  
  	  return codePrefix + ret + codeSuffix;
   }
 }

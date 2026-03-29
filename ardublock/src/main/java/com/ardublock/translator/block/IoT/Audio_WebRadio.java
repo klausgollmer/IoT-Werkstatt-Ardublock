@@ -81,8 +81,7 @@ public class Audio_WebRadio  extends TranslatorBlock {
 		
 	   	String Setup ="DAC_out = new AudioOutputI2S(0,AudioOutputI2S::INTERNAL_DAC);\r\n"
 	   		    	+ "DAC_out->begin();\r\n"
-	   		    	+ "float volume = 1.;             // 100 % der Originalamplitude\r\n"
-	   		    	+ "DAC_out->SetGain(volume);        // (1.0 = 100 %)\n";
+	   		    	+ "DAC_out->SetGain(1.0);        // (1.0 = 100 %)\n";
 	    translator.addSetupCommand(Setup);
 		
 	    
@@ -116,7 +115,7 @@ public class Audio_WebRadio  extends TranslatorBlock {
 				+ "  }\r\n"
 				
 				+ "  if (mp3->isRunning()) {\r\n"
-				+ "    if (DAC_out) DAC_out->SetGain(3.9*"+gain+"/10.);\n"
+				+ "    if (DAC_out) DAC_out->SetGain(0.039*"+gain+");\n"
 				+ "    // if (millis()-lastms > 1000) {\r\n"
 				+ "    //  lastms = millis();\r\n"
 				+ "    //  Serial.printf(\"Running for %d ms...\\n\", lastms);\r\n"

@@ -26,6 +26,13 @@ public class Audio_TTS_Say  extends TranslatorBlock {
 		translator.addHeaderFile("SPIFFS.h");
 		translator.addHeaderFile("AudioFileSourceSPIFFS.h");
 		
+		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
+		String text = translatorBlock.toCode();
+ 	   	translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
+		String lang = translatorBlock.toCode();
+	 	translatorBlock = this.getTranslatorBlockAtSocket(2);
+		String vol = translatorBlock.toCode();
+		if (vol == null) vol = "50.";
 	    	   	
 		String Dis="/* ESP8266Audio "
 				 + "   GPL-3.0 Licence https://github.com/earlephilhower/ESP8266Audio/?tab=GPL-3.0-1-ov-file#readme \n"
@@ -41,6 +48,35 @@ public class Audio_TTS_Say  extends TranslatorBlock {
 		
 	 	String Def="// Sprachausgabe Text to Speech\r\n"
 	 			+ "// Google TTS: load MP3 to file and play \r\n"
+	            + "\n" 			
+	 			+ "void playTTSFromSPIFFS() {\r\n"
+	 			+ "  tts_file = new AudioFileSourceSPIFFS();\r\n"
+	 			+ "  if (!tts_file->open(ttsFileName.c_str())) {\r\n"
+	 			+ "    IOTW_PRINTLN(F(\"❌ File error\"));\r\n"
+	 			+ "    delete tts_file;\r\n"
+	 			+ "    return;\r\n"
+	 			+ "  }\r\n"
+	 			+ "\r\n"
+	 			+ "  tts_mp3 = new AudioGeneratorMP3();\r\n"
+	 			+ "  if (tts_mp3->begin(tts_file, out)) {\r\n"
+	 			+ "    ttsActive = true;\r\n"
+	 			+ "  }\r\n"
+	 			+ "\r\n"
+	 			+ "  while (ttsActive && tts_mp3 && tts_mp3->isRunning()) {\r\n"
+	 			+ "    if (!tts_mp3->loop()) {\r\n"
+	 			+ "      IOTW_PRINTLN(\" ✓\");\r\n"
+	 			+ "      tts_mp3->stop();\r\n"
+	 			+ "      delete tts_mp3;\r\n"
+	 			+ "      delete tts_file;\r\n"
+	 			+ "      tts_mp3 = nullptr;\r\n"
+	 			+ "      tts_file = nullptr;\r\n"
+	 			+ "      ttsActive = false;\r\n"
+	 			+ "     // SPIFFS.remove(ttsFileName);\r\n"
+	 			+ "    }\r\n"
+	 			+ "    out->SetGain(0.039*"+vol+");\n"
+	 			+ "  } "
+	 			+ "} "	
+	 			+ "\n"
 	 			+ "void downloadAndPlayTTS(String text, String lang) {\r\n"
 	 			+ "  String encoded = urlEncode(text);\r\n"
 	 			+ "  if (ttsLast_text != text) {\r\n"
@@ -78,34 +114,8 @@ public class Audio_TTS_Say  extends TranslatorBlock {
 	 			+ "     playTTSFromSPIFFS();\r\n"
 	 			+ "   }\r\n"
 	 			+ "}\r\n"
-	 			+ "\r\n"
-	 			+ "void playTTSFromSPIFFS() {\r\n"
-	 			+ "  tts_file = new AudioFileSourceSPIFFS();\r\n"
-	 			+ "  if (!tts_file->open(ttsFileName.c_str())) {\r\n"
-	 			+ "    IOTW_PRINTLN(F(\"❌ File error\"));\r\n"
-	 			+ "    delete tts_file;\r\n"
-	 			+ "    return;\r\n"
-	 			+ "  }\r\n"
-	 			+ "\r\n"
-	 			+ "  tts_mp3 = new AudioGeneratorMP3();\r\n"
-	 			+ "  if (tts_mp3->begin(tts_file, out)) {\r\n"
-	 			+ "    ttsActive = true;\r\n"
-	 			+ "  }\r\n"
-	 			+ "\r\n"
-	 			+ "  while (ttsActive && tts_mp3 && tts_mp3->isRunning()) {\r\n"
-	 			+ "    if (!tts_mp3->loop()) {\r\n"
-	 			+ "      IOTW_PRINTLN(\" ✓\");\r\n"
-	 			+ "      tts_mp3->stop();\r\n"
-	 			+ "      delete tts_mp3;\r\n"
-	 			+ "      delete tts_file;\r\n"
-	 			+ "      tts_mp3 = nullptr;\r\n"
-	 			+ "      tts_file = nullptr;\r\n"
-	 			+ "      ttsActive = false;\r\n"
-	 			+ "     // SPIFFS.remove(ttsFileName);\r\n"
-	 			+ "    }\r\n"
-	 			+ "  } "
-	 			+ "} ";
-	 			translator.addDefinitionCommand(Def);
+	 			+ "\r\n";
+	 	translator.addDefinitionCommand(Def);
 
 	   	String Setup ="Serial.setDebugOutput(false);        // ESP Internas nicht auf Serial\r\n"
 	   			+ "  if (!SPIFFS.begin(false)) {   // false = kein Format!\r\n"
@@ -119,11 +129,6 @@ public class Audio_TTS_Say  extends TranslatorBlock {
 	   			+ "  out->SetGain(3.9);\n";
 	   	
 	    translator.addSetupCommand(Setup);
-		
- 	   	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
-		String text = translatorBlock.toCode();
- 	   	translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
-		String lang = translatorBlock.toCode();
 		
 		String ret = "downloadAndPlayTTS("+text+","+lang+");\n";
 		return codePrefix + ret + codeSuffix;

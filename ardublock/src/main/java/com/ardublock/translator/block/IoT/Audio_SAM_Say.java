@@ -16,6 +16,12 @@ public class Audio_SAM_Say  extends TranslatorBlock {
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 
+ 	   	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
+		String text = translatorBlock.toCode();
+		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
+		String vol = translatorBlock.toCode();
+		if (vol == null) vol = "50.";
+
 		//translator.addHeaderFile("Adafruit_GFX.h");
 		translator.addHeaderFile("ESP8266SAM.h");
 		translator.addHeaderFile("AudioOutputI2S.h");
@@ -34,13 +40,13 @@ public class Audio_SAM_Say  extends TranslatorBlock {
 
 	   	String Setup ="DAC_out = new AudioOutputI2S(0,AudioOutputI2S::INTERNAL_DAC);\r\n"
 	   		    	+ "DAC_out->begin();\r\n"
-    	            + "DAC_out->SetGain(3.9); // Volume 0 ... 3.9 \r\n";
+    	            + "DAC_out->SetGain(2); // Volume 0 ... 3.9 \r\n";
 	   	
 	    translator.addSetupCommand(Setup);
-		
- 	   	TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
-		String text = translatorBlock.toCode();
-		String ret = "sam_speech->Say(DAC_out,"+text+");";
+        
+	    String ret = "DAC_out->SetGain(0.039*"+vol+");\n"
+  	    	   	+    "String Helper="+text+";\n"
+	    		+    "sam_speech->Say(DAC_out,Helper.c_str());";
 		return codePrefix + ret + codeSuffix;
 		
 	}

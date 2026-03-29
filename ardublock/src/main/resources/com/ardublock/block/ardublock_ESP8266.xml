@@ -6322,7 +6322,7 @@
 		
 		
 		<!-- Audio, BT -->		
-	      <BlockGenus name="WebRadio" kind="command" color="74 108 212"
+	       <BlockGenus name="WebRadio" kind="command" color="74 108 212"
 			initlabel="bg.WebRadio" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -6333,8 +6333,8 @@
 				</BlockConnector>
 			
 			<BlockConnector connector-type="number"
-				connector-kind="socket" label="gain">
-				<DefaultArg genus-name="number" label="50" />
+				connector-kind="socket" label="gain [%]">
+				<DefaultArg genus-name="number" label="40" />
 			</BlockConnector>
 	
 			</BlockConnectors>		
@@ -6347,27 +6347,31 @@
 			   <BlockConnector connector-type="string" connector-kind="plug" />
 			</BlockConnectors>
 	  </BlockGenus>
-	
-		
-		 <BlockGenus name="TTS_Say" kind="command" color="74 108 212"
+
+
+        <BlockGenus name="TTS_Say" kind="command" color="74 108 212"
 			initlabel="bg.TTS_Say" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="text">
-					<DefaultArg genus-name="message" label="Hallo, lass uns gemeinsam bauen!" />
+					<DefaultArg genus-name="message" label="Hallo, lass uns gemeinsam etwas cooles bauen !" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="language">
 					<DefaultArg genus-name="message" label="de" />
 				</BlockConnector>
-				
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="gain [%]">
+					<DefaultArg genus-name="number" label="40" />
+				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
-		
-		
-		
+
+
+
+
         <BlockGenus name="SAM_Say" kind="command" color="74 108 212"
 			initlabel="bg.SAM_Say" editable-label="no" is-label-value="no">
 			<description><text></text></description>
@@ -6375,7 +6379,11 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="text">
-					<DefaultArg genus-name="message" label="Hello Makey" />
+					<DefaultArg genus-name="message" label="Hello Makey, lets play toogether!     " />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="gain [%]">
+					<DefaultArg genus-name="number" label="40" />
 				</BlockConnector>
 			</BlockConnectors>
 		</BlockGenus>
@@ -6430,8 +6438,7 @@
 		</BlockGenus>
 		
 		
-		
-		 <BlockGenus name="BuzzerTone" kind="command" color="74 108 212"
+			 <BlockGenus name="BuzzerTone" kind="command" color="74 108 212"
 			initlabel="bg.BuzzerTone" editable-label="no" is-label-value="no">
 			<description><text></text></description>
 	
@@ -6462,9 +6469,9 @@
 					connector-kind="socket" label="duration (s)">
 					<DefaultArg genus-name="number" label="10" />
 				</BlockConnector>
-				
 			</BlockConnectors>
 		</BlockGenus>
+		
 		
 		<BlockGenus name="Buzzer0" kind="data" color="255 0 0" initlabel="bg.Buzzer0" editable-label="no" is-label-value="no" >
           <BlockConnectors>

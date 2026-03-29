@@ -21,8 +21,11 @@ public class Audio_BuzzerTone extends TranslatorBlock
 	  translatorBlock = this.getTranslatorBlockAtSocket(1);
 	  String dur = translatorBlock.toCode();
 	  if (dur == null) dur = "100000000";
+//	  translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
+//	  String vol = translatorBlock.toCode();
+	  
 	  translator.addHeaderFile("IoTW_Tone.h");
-	  ret = "IoTW_Tone_BuzzerTone("+f+","+dur+");\n";
+	  ret = "IoTW_Tone_BuzzerTone("+f+","+dur+",100);\n";
 	  return codePrefix + ret + codeSuffix;
   }
 }
