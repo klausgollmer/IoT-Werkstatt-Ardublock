@@ -6397,7 +6397,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="text">
-					<DefaultArg genus-name="message" label="Hallo, lass uns gemeinsam etwas cooles bauen !" />
+					<DefaultArg genus-name="message" label="Hallo, lass uns gemeinsam etwas Cooles bauen !" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="language">

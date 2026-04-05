@@ -97,12 +97,15 @@ public class OpenblocksFrame extends JFrame
 	private JFileChooser fileChooser;
 	private FileFilter ffilter;
 	
+	private JWindow splash;
+	
 	private static ResourceBundle uiMessageBundle;
 	
 	public JComboBox boardComboBox;
 	public JComboBox debugComboBox;
 	public JCheckBox greenCheckBox;
 	
+//	private JWindow splash;
 
 	public JComboBox<String> tutorComboBox = new JComboBox<String>();
 	 
@@ -177,14 +180,14 @@ public class OpenblocksFrame extends JFrame
 	    }
 	}
 
-	
+	/*
 	// 2. Splash anzeigen UND sofort weiterlaufen
 	private void showSplashAsync() {
 		
 	    String relativePath = "/com/ardublock/block/IoTkit/splash4.png";
 	    URL imgURL = getClass().getResource(relativePath);
 
-	    JWindow splash = new JWindow();
+	 //   JWindow splash = new JWindow();
 	  
 	    splash.setAlwaysOnTop(true);
 
@@ -202,6 +205,7 @@ public class OpenblocksFrame extends JFrame
 	    splash.setLocationRelativeTo(null);
 	    splash.setVisible(true);
 
+	    /*
 	    boolean isPi   = System.getProperty("os.arch").toLowerCase().contains("aarch64");
 	    int SplashTime = 2000; 
 	    if (isPi) SplashTime = 3500;
@@ -215,10 +219,43 @@ public class OpenblocksFrame extends JFrame
 	    timer.start();
 	}
 	
+	public void closeSplash() {
+	   // if (splash != null) {
+	        splash.dispose();
+	        splash = null;
+	   // }
+	}
+	*/
 	
 	public OpenblocksFrame()
 	{
-		showSplashAsync();  // Splash startet sofort
+		
+	 // Splash anzeigen	
+      splash = new JWindow();
+      
+      String relativePath = "/com/ardublock/block/IoTkit/splash4.png";
+	    URL imgURL = getClass().getResource(relativePath);
+
+	 //   JWindow splash = new JWindow();
+	  
+	    splash.setAlwaysOnTop(true);
+
+	    if (imgURL != null) {
+	        SplashPanel panel = new SplashPanel(imgURL);
+	        splash.add(panel);
+	        splash.pack();
+	    } else {
+	        JLabel fallback = new JLabel("IoT² Werkstatt");
+	        fallback.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 24));
+	        splash.add(fallback);
+	        //splash.setSize((int) (475/uiscale), (int)(330/uiscale));
+	    }
+
+	    splash.setLocationRelativeTo(null);
+	    splash.setVisible(true);
+
+      
+	//  showSplashAsync();  // Splash startet sofort
 		
 		
 		// Run ardublock
@@ -228,7 +265,7 @@ public class OpenblocksFrame extends JFrame
 		//
 		 Image img = null;
 		  // Lade das Bild von einem relativen Pfad
-	        String relativePath = "/com/ardublock/block/IoTkit/IconMakeyLab.png";  // Der Pfad innerhalb des Ressourcenverzeichnisses
+	        relativePath = "/com/ardublock/block/IoTkit/IconMakeyLab.png";  // Der Pfad innerhalb des Ressourcenverzeichnisses
 	      
 	        try {
 	           URL nimgURL = getClass().getResource(relativePath);
@@ -297,8 +334,16 @@ public class OpenblocksFrame extends JFrame
 		 
 		
 		initOpenBlocks();
-		
-
+/*
+		try {
+		    Thread.sleep(1000);   // 1000 ms = 1 Sekunden
+		  } catch (InterruptedException e) {
+		    // kann ggf. ignoriert werden, da du Ohnehin fertig bist
+		}
+		// Splash schließen
+        splash.dispose();
+	    splash = null;
+*/		
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	        // WindowListener to add a close confirmation dialog
 		this.addWindowListener(new WindowAdapter() {
@@ -327,12 +372,146 @@ public class OpenblocksFrame extends JFrame
 	            	}
 	            }
 	        });
-
+	
+		
 	}
 	
-	 
+	public void closeSplash() {
+	    if (splash != null) {
+	        splash.dispose();
+	        splash = null;
+	    }
+	}
+/*
+	public void finishStartup() {
+	    this.setVisible(true);
+	    this.toFront();
+	    this.requestFocus();
+
+	    new javax.swing.Timer(700, e -> {
+	        closeSplash();
+	        ((javax.swing.Timer) e.getSource()).stop();
+	    }).start();
+	}
+*/	
 	
 	
+	public void finishStartup() {
+	    final OpenblocksFrame frame = this;
+
+	    frame.setVisible(true);
+	    frame.setAlwaysOnTop(true);
+	    frame.toFront();
+	    frame.requestFocus();
+	    frame.requestFocusInWindow();
+
+	    if (splash != null) {
+	        splash.setAlwaysOnTop(true);
+	        splash.toFront();
+	        splash.requestFocus();
+
+	        javax.swing.Timer splashTimer = new javax.swing.Timer(1000, null);
+	        splashTimer.addActionListener(new java.awt.event.ActionListener() {
+	            @Override
+	            public void actionPerformed(java.awt.event.ActionEvent e) {
+	                ((javax.swing.Timer) e.getSource()).stop();
+
+	                try {
+	                    if (splash != null) {
+	                        splash.setAlwaysOnTop(false);
+	                        splash.setVisible(false);
+	                        splash.dispose();
+	                        splash = null;
+	                    }
+	                } catch (Exception ex) {
+	                }
+
+	                frame.setAlwaysOnTop(true);
+	                frame.toFront();
+	                frame.requestFocus();
+	                frame.requestFocusInWindow();
+
+	                javax.swing.Timer bringFrontTimer = new javax.swing.Timer(150, null);
+	                bringFrontTimer.addActionListener(new java.awt.event.ActionListener() {
+	                    int count = 0;
+
+	                    @Override
+	                    public void actionPerformed(java.awt.event.ActionEvent e2) {
+	                        frame.toFront();
+	                        frame.requestFocus();
+	                        frame.requestFocusInWindow();
+
+	                        count++;
+	                        if (count >= 10) {
+	                            frame.setAlwaysOnTop(false);
+	                            ((javax.swing.Timer) e2.getSource()).stop();
+	                        }
+	                    }
+	                });
+	                bringFrontTimer.setInitialDelay(0);
+	                bringFrontTimer.start();
+	            }
+	        });
+	        splashTimer.setRepeats(false);
+	        splashTimer.start();
+	    } else {
+	        javax.swing.Timer bringFrontTimer = new javax.swing.Timer(150, null);
+	        bringFrontTimer.addActionListener(new java.awt.event.ActionListener() {
+	            int count = 0;
+
+	            @Override
+	            public void actionPerformed(java.awt.event.ActionEvent e) {
+	                frame.toFront();
+	                frame.requestFocus();
+	                frame.requestFocusInWindow();
+
+	                count++;
+	                if (count >= 10) {
+	                    frame.setAlwaysOnTop(false);
+	                    ((javax.swing.Timer) e.getSource()).stop();
+	                }
+	            }
+	        });
+	        bringFrontTimer.setInitialDelay(0);
+	        bringFrontTimer.start();
+	    }
+	}
+	
+/*
+	public void finishStartup() {
+	    // 1. ArduBlock sichtbar und vorne
+	    this.setVisible(true);
+	    this.toFront();
+	    this.requestFocus();
+	 //   this.setAlwaysOnTop(true);
+	    // 2. Splash noch etwas über ArduBlock halten
+	    if (splash != null) {
+	        // Splash ganz kurz bevorzugen
+	        splash.setAlwaysOnTop(true);
+	        splash.toFront();
+	        splash.requestFocus();
+
+	        new javax.swing.Timer(800, e -> {
+	            // Drücke ArduBlock noch einmal nach vorn (optional, wenn getestet)
+	            this.toFront();
+	            this.requestFocus();
+	  //
+	            splash.setAlwaysOnTop(false);
+	            splash.dispose();
+	            splash = null;
+
+	            // Drücke ArduBlock noch einmal nach vorn (optional, wenn getestet)
+	            this.toFront();
+	            this.requestFocus();
+	  //  	    this.setAlwaysOnTop(false);
+
+	            ((javax.swing.Timer) e.getSource()).stop();
+	        }).start();
+	    }
+	}
+	
+*/	
+
 
 	public void changeBoardVersion()
 	{
@@ -1128,7 +1307,7 @@ public class OpenblocksFrame extends JFrame
 		this.add(buttons, BorderLayout.NORTH);
 		this.add(bottomPanel, BorderLayout.SOUTH);
 		this.add(workspace, BorderLayout.CENTER);
-	}
+		}
 	
 	public void doOpenArduBlockFile()
 	{

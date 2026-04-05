@@ -49,15 +49,23 @@ public class Audio_TTS_Say  extends TranslatorBlock {
 	 	String Def="// Sprachausgabe Text to Speech\r\n"
 	 			+ "// Google TTS: load MP3 to file and play \r\n"
 	            + "\n" 			
-	 			+ "void playTTSFromSPIFFS() {\r\n"
-	 			+ "  tts_file = new AudioFileSourceSPIFFS();\r\n"
+	 			+"void playTTSFromSPIFFS() {\r\n"
+	 			+ "  if (!tts_file) {\r\n"
+	 			+ "    tts_file = new AudioFileSourceSPIFFS();\r\n"
+	 			+ "  } else {\r\n"
+	 			+ "    // Close vorherige Datei, falls nötig\r\n"
+	 			+ "    tts_file->close();\r\n"
+	 			+ "  }\r\n"
+	 			+ "\r\n"
 	 			+ "  if (!tts_file->open(ttsFileName.c_str())) {\r\n"
 	 			+ "    IOTW_PRINTLN(F(\"❌ File error\"));\r\n"
-	 			+ "    delete tts_file;\r\n"
 	 			+ "    return;\r\n"
 	 			+ "  }\r\n"
 	 			+ "\r\n"
-	 			+ "  tts_mp3 = new AudioGeneratorMP3();\r\n"
+	 			+ "  if (!tts_mp3) {\r\n"
+	 			+ "    tts_mp3 = new AudioGeneratorMP3();\r\n"
+	 			+ "  }\r\n"
+	 			+ "\r\n"
 	 			+ "  if (tts_mp3->begin(tts_file, out)) {\r\n"
 	 			+ "    ttsActive = true;\r\n"
 	 			+ "  }\r\n"
@@ -66,23 +74,19 @@ public class Audio_TTS_Say  extends TranslatorBlock {
 	 			+ "    if (!tts_mp3->loop()) {\r\n"
 	 			+ "      IOTW_PRINTLN(\" ✓\");\r\n"
 	 			+ "      tts_mp3->stop();\r\n"
-	 			+ "      delete tts_mp3;\r\n"
-	 			+ "      delete tts_file;\r\n"
-	 			+ "      tts_mp3 = nullptr;\r\n"
-	 			+ "      tts_file = nullptr;\r\n"
 	 			+ "      ttsActive = false;\r\n"
-	 			+ "     // SPIFFS.remove(ttsFileName);\r\n"
+	 			+ "      // Hier nichts löschen, nur stoppen\r\n"
 	 			+ "    }\r\n"
-	 			+ "    out->SetGain(0.039*"+vol+");\n"
-	 			+ "  } "
-	 			+ "} "	
-	 			+ "\n"
-	 			+ "void downloadAndPlayTTS(String text, String lang) {\r\n"
+	 			+ "  }\r\n"
+	 			+ "}\r\n"
+	 			+ "void downloadAndPlayTTS(String text, String lang, float vol) {\r\n"
 	 			+ "  String encoded = urlEncode(text);\r\n"
+	 			+ "  out->SetGain(0.039*vol);\r\n"
+	 			+ "  \r\n"
 	 			+ "  if (ttsLast_text != text) {\r\n"
 	 			+ "    IOTW_PRINT(F(\"▶ Google 📥 say: \")); \r\n"
 	 			+ "    IOTW_PRINT(text);\r\n"
-	 			+ "  \r\n"
+	 			+ "\r\n"
 	 			+ "    String url = \"http://translate.google.com/translate_tts?\"\r\n"
 	 			+ "      \"ie=UTF-8&\"\r\n"
 	 			+ "      \"q=\" + encoded +\r\n"
@@ -108,13 +112,13 @@ public class Audio_TTS_Say  extends TranslatorBlock {
 	 			+ "      IOTW_PRINTLN(\" ❌ HTTP: \" + String(code));\r\n"
 	 			+ "    }\r\n"
 	 			+ "    http.end();\r\n"
-	 			+ "   } else {\r\n"
-	 			+ "     IOTW_PRINT(F(\"📥 say: \")); \r\n"
-	 			+ "     IOTW_PRINT(text);\r\n"
-	 			+ "     playTTSFromSPIFFS();\r\n"
-	 			+ "   }\r\n"
-	 			+ "}\r\n"
-	 			+ "\r\n";
+	 			+ "  } \r\n"
+	 			+ "  else {\r\n"
+	 			+ "    IOTW_PRINT(F(\"📥 say: \")); \r\n"
+	 			+ "    IOTW_PRINT(text);\r\n"
+	 			+ "    playTTSFromSPIFFS();\r\n"
+	 			+ "  }\r\n"
+	 			+ "}";
 	 	translator.addDefinitionCommand(Def);
 
 	   	String Setup ="Serial.setDebugOutput(false);        // ESP Internas nicht auf Serial\r\n"
@@ -126,11 +130,11 @@ public class Audio_TTS_Say  extends TranslatorBlock {
 	   			+ "\r\n"
 	   			+ "  out = new AudioOutputI2S(0, AudioOutputI2S::INTERNAL_DAC);\r\n"
 	   			+ "  out->begin();\r\n"
-	   			+ "  out->SetGain(3.9);\n";
+	   			+ "  out->SetGain(0);\n";
 	   	
 	    translator.addSetupCommand(Setup);
 		
-		String ret = "downloadAndPlayTTS("+text+","+lang+");\n";
+		String ret = "downloadAndPlayTTS("+text+","+lang+","+vol+");\n";
 		return codePrefix + ret + codeSuffix;
 		
 	}

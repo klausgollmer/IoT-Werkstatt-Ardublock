@@ -27,8 +27,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.util.Comparator;
-
-
+import java.util.Enumeration;
 import java.util.stream.Stream;
 
 import javax.swing.JOptionPane;
@@ -46,9 +45,11 @@ import com.ardublock.ui.ArduBlockToolFrame;
 import com.ardublock.ui.listener.OpenblocksFrameListener;
 
 
+
 public class ArduBlockTool implements Tool, OpenblocksFrameListener
 {
-	
+
+	private static boolean autoStarted = false;
 	static Editor editor;
 	static ArduBlockToolFrame openblocksFrame;
 	
@@ -74,11 +75,72 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 		  Context context = Context.getContext();
 		  context.setArduinoCodeFileString(ArduBlockTool.getCurrentSketchFile());
 		}
+		
+		
+		if (!autoStarted) {
+		    autoStarted = true;
+
+		    javax.swing.Timer waitForEditor = new javax.swing.Timer(200, e -> {
+		        if (ArduBlockTool.editor != null && ArduBlockTool.editor.isShowing()) {
+		            ((javax.swing.Timer) e.getSource()).stop();
+
+		            new javax.swing.Timer(300, ev -> {
+		                if (ArduBlockTool.openblocksFrame != null) {
+		                    if (shouldAutoStart()) {
+		                        ArduBlockTool.openblocksFrame.finishStartup();
+		                    } else {
+		                        ArduBlockTool.openblocksFrame.closeSplash();
+		                    }
+		                }
+		                ((javax.swing.Timer) ev.getSource()).stop();
+		            }).start();
+		        }
+		    });
+
+		    waitForEditor.setInitialDelay(1000);
+		    waitForEditor.start();
+		}
+        
 	}
 
+	
+
+	private boolean shouldAutoStart() {
+	    // 1. Port prüfen: muss gesetzt und existent sein
+	    String portId = processing.app.PreferencesData.get("serial.port");
+	    if (portId == null || portId.trim().isEmpty()) {
+	        return false;
+	    }
+
+	    // 2. Board prüfen: muss Makey oder Octopus enthalten
+	    String boardId = processing.app.PreferencesData.get("board");
+	    if (boardId == null || boardId.isEmpty()) {
+	        return false;
+	    }
+
+	    String boardLower = boardId.toLowerCase();
+	    return boardLower.contains("makey") || boardLower.contains("octopus");
+	}
+	
+	public void run() {
+	    try {
+	        if (ArduBlockTool.openblocksFrame == null) return;
+
+	        final ArduBlockToolFrame frame = ArduBlockTool.openblocksFrame;
+
+	        frame.setVisible(true);
+	        frame.toFront();
+	        frame.requestFocus();
+
+	    } catch (Exception e) {
+	    }
+	}
+	
+	
+	/*
 	public void run() {
 		try {
-			ArduBlockTool.editor.toFront();
+		//	ArduBlockTool.editor.toFront();
 			ArduBlockTool.openblocksFrame.setVisible(true);
 			ArduBlockTool.openblocksFrame.toFront();
 			
@@ -86,7 +148,14 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 			
 		}
 	}
-
+*/
+	
+	
+	
+	
+	
+	
+	
 	public String getMenuTitle() {
 		return Context.APP_NAME;
 	}
