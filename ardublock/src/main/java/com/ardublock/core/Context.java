@@ -71,6 +71,7 @@ public class Context
 	
 	private boolean workspaceChanged;
 	private boolean workspaceEmpty;
+
 	
 	private Set<RenderableBlock> highlightBlockSet;
 	private Set<OpenblocksFrameListener> ofls;

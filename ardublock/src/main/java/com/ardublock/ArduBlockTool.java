@@ -48,8 +48,40 @@ import com.ardublock.ui.listener.OpenblocksFrameListener;
 
 public class ArduBlockTool implements Tool, OpenblocksFrameListener
 {
+	
+	private File getArduBlockToolDirectory() {
+	    try {
+	        File jarFile = new File(
+	            ArduBlockTool.class
+	                .getProtectionDomain()
+	                .getCodeSource()
+	                .getLocation()
+	                .toURI()
+	        );
+	        return jarFile.getParentFile();
+	    } catch (Exception e) {
+	        return new File(".");
+	    }
+	}
 
-	private static boolean autoStarted = false;
+	private File getSessionFlagFile() {
+	    return new File(getArduBlockToolDirectory(), "ardublock_autostart_session.flag");
+	}
+	private boolean hasAutostartedThisSession() {
+	    return getSessionFlagFile().exists();
+	}
+
+	private void markAutostartedThisSession() {
+	    try {
+	        File f = getSessionFlagFile();
+	        if (!f.exists()) {
+	            f.createNewFile();
+	        }
+	        f.deleteOnExit();
+	    } catch (Exception e) {
+	    }
+	}
+	
 	static Editor editor;
 	static ArduBlockToolFrame openblocksFrame;
 	
@@ -76,15 +108,15 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 		  context.setArduinoCodeFileString(ArduBlockTool.getCurrentSketchFile());
 		}
 		
-		
-		if (!autoStarted) {
-		    autoStarted = true;
-
-		    javax.swing.Timer waitForEditor = new javax.swing.Timer(200, e -> {
+		if (!hasAutostartedThisSession()) {
+			markAutostartedThisSession();
+			
+		    javax.swing.Timer waitForEditor = new javax.swing.Timer(200, null);
+		    waitForEditor.addActionListener(e -> {
 		        if (ArduBlockTool.editor != null && ArduBlockTool.editor.isShowing()) {
 		            ((javax.swing.Timer) e.getSource()).stop();
 
-		            new javax.swing.Timer(300, ev -> {
+		            javax.swing.Timer delayedStart = new javax.swing.Timer(300, ev -> {
 		                if (ArduBlockTool.openblocksFrame != null) {
 		                    if (shouldAutoStart()) {
 		                        ArduBlockTool.openblocksFrame.finishStartup();
@@ -93,14 +125,16 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 		                    }
 		                }
 		                ((javax.swing.Timer) ev.getSource()).stop();
-		            }).start();
+		            });
+		            delayedStart.setRepeats(false);
+		            delayedStart.start();
 		        }
 		    });
 
 		    waitForEditor.setInitialDelay(1000);
 		    waitForEditor.start();
-		}
-        
+		} else ArduBlockTool.openblocksFrame.closeSplash();
+		        
 	}
 
 	

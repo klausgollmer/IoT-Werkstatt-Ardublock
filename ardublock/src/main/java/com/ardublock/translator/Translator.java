@@ -175,14 +175,14 @@ public class Translator
 	//	setupFunction.append("void setup()\n{ //Einmalige Initialisierung \n");
 		setupFunction.append("void setup(){ //Einmalige Initialisierung \n");
 		setupFunction.append("   Serial.begin(115200);");
-		setupFunction.append("   IoT_WerkstattInit(); // init Werkstatt \n");
+		setupFunction.append("   IoTW_init(); // init Werkstatt \n");
 		
 		if (!isWiFiProgram()) {
 			//System.out.println("N3");
-			//setupFunction.append("   IoT_WerkstattInit(false); // Wifi not used \n");
+			//setupFunction.append("   IoTW_Init(false); // Wifi not used \n");
 		} else {
 			//System.out.println("N4");
-			//setupFunction.append("   IoT_WerkstattInit(true);  // Wifi is used \n");
+			//setupFunction.append("   IoTW_Init(true);  // Wifi is used \n");
 			
 			//   setupFunction.append("#if defined(ESP8266) \n WiFi.forceSleepBegin(); \n #endif \n");
 			//   setupFunction.append("#if defined(ESP32) \n  WiFi.mode(WIFI_OFF); \n #endif \n");

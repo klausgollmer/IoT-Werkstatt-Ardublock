@@ -35,7 +35,7 @@ public class ExtDisp_OLED_Display  extends TranslatorBlock {
    		  		+ "  IOTW_PRINTLN(F(\"\\nno OLED detected\"));\r\n"
    		  		+ "} else delay(10);\r\n";
   	    translator.addSetupCommand(Setup);
-  	    Setup = "#if defined(ESP32)\n IoT_WerkstattPreventDisplayClear();\n #endif\n // disable Einbrennschutz für Logo \n";
+  	    Setup = "#if defined(ESP32)\n IoTW_preventDisplayClear();\n #endif\n // disable Einbrennschutz für Logo \n";
         translator.addSetupCommand(Setup);
 	
 		// I2C-initialisieren

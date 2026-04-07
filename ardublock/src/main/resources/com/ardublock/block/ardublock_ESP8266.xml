@@ -2089,7 +2089,16 @@
 			</BlockConnectors>
 		</BlockGenus>
     
-    
+    <BlockGenus name="OLED_Sleep" kind="command" color="74 108 212"
+			initlabel="bg.OLED_Sleep" editable-label="no" is-label-value="no">
+			<description><text></text></description>
+			<BlockConnectors>
+	  	        <BlockConnector connector-type="boolean"
+					connector-kind="socket" label="sleep">
+					<DefaultArg genus-name="true" label="true" />
+				</BlockConnector>
+			</BlockConnectors>
+	</BlockGenus>
     
 			
     <BlockGenus name="OLED_Clear" kind="command" color="74 108 212"
@@ -7854,8 +7863,8 @@
 				<BlockGenusMember>OLED_DispArray</BlockGenusMember>
 				<BlockGenusMember>OLED_ClearArray</BlockGenusMember>
 				<BlockGenusMember>OLED_AddArray</BlockGenusMember>
-				
 				<BlockGenusMember>OLED_Print3</BlockGenusMember>
+				<BlockGenusMember>OLED_Sleep</BlockGenusMember>
 			
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBME_Adr</BlockGenusMember>
