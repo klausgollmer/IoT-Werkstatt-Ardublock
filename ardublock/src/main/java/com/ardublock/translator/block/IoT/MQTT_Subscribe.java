@@ -48,7 +48,7 @@ public class MQTT_Subscribe  extends TranslatorBlock {
                   + "  MQTT_Rx_Payload=payload.substring(0,len);    // mit Länge von len Zeichen\n"
               	  + "  #if (IOTW_DEBUG_LEVEL >1) \r\n"
  			      + "      IOTW_PRINTLN(String(\"📡 callback on topic: \")+ String("+topic+"));\n" 	
- 			      + "      IOTW_PRINTLN(String(\"   payloadc: \")+ MQTT_RxPayload);\n" 	
+ 			      + "      IOTW_PRINTLN(String(\"   payload: \")+ MQTT_Rx_Payload);\n" 	
 		          + "  #endif\r\n";
 		while (translatorBlock != null)
 		{

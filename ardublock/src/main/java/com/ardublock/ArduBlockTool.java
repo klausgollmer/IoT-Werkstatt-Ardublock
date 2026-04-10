@@ -48,7 +48,7 @@ import com.ardublock.ui.listener.OpenblocksFrameListener;
 
 public class ArduBlockTool implements Tool, OpenblocksFrameListener
 {
-	
+  
 	private File getArduBlockToolDirectory() {
 	    try {
 	        File jarFile = new File(
@@ -86,8 +86,6 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	static ArduBlockToolFrame openblocksFrame;
 	
 	public void init(Editor editor) {
-		
-			
 		if (ArduBlockTool.editor == null )
 		{
 			//System.out.println("Start aus Arduino");
@@ -100,8 +98,16 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 			//System.out.println("Arduino Version: " + arduinoVersion);
 			
 			ArduBlockTool.editor = editor;
-			ArduBlockTool.openblocksFrame = new ArduBlockToolFrame();
-			ArduBlockTool.openblocksFrame.addListener(this);
+		
+			if (hasAutostartedThisSession()) {
+			 if (askRestart()) {
+			  ArduBlockTool.openblocksFrame = new ArduBlockToolFrame();
+			  ArduBlockTool.openblocksFrame.addListener(this);
+	 		 } 
+			} else {
+  			  ArduBlockTool.openblocksFrame = new ArduBlockToolFrame();
+			  ArduBlockTool.openblocksFrame.addListener(this);
+			}
 			
 		} else {
 		  Context context = Context.getContext();
@@ -137,7 +143,25 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 		        
 	}
 
-	
+
+	private boolean askRestart() {
+	    Object[] options = { "Yes", "No" };
+//   		String Text = uiMessageBundle.getString("ardublock.ui.startAgain");	
+   	 
+	    int result = JOptionPane.showOptionDialog(
+	    		
+	        null,
+	        "IoT²-Werkstatt is running!\nStart again?",
+	        "Start Tool",
+	        JOptionPane.YES_NO_OPTION,
+	        JOptionPane.QUESTION_MESSAGE,
+	        null,
+	        options,
+	        options[1]   // "Nein" ist Default
+	    );
+
+	    return result == 0;
+	}
 
 	private boolean shouldAutoStart() {
 	    // 1. Port prüfen: muss gesetzt und existent sein
@@ -159,7 +183,7 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	public void run() {
 	    try {
 	        if (ArduBlockTool.openblocksFrame == null) return;
-
+	        
 	        final ArduBlockToolFrame frame = ArduBlockTool.openblocksFrame;
 
 	        frame.setVisible(true);
