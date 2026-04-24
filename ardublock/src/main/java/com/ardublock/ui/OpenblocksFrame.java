@@ -344,6 +344,8 @@ public class OpenblocksFrame extends JFrame
         splash.dispose();
 	    splash = null;
 */		
+		
+		//closeSplash();
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	        // WindowListener to add a close confirmation dialog
 		this.addWindowListener(new WindowAdapter() {

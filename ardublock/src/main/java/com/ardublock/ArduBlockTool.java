@@ -95,7 +95,7 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 			//System.out.println("Setze setInArduino in .ini"+arduinoVersion);
 			context.setArduinoVersionString(arduinoVersion);
 			context.setEditor(editor);
-			//System.out.println("Arduino Version: " + arduinoVersion);
+			System.out.println("Arduino Version: " + arduinoVersion);
 			
 			ArduBlockTool.editor = editor;
 		
@@ -139,8 +139,11 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 
 		    waitForEditor.setInitialDelay(1000);
 		    waitForEditor.start();
-		} else ArduBlockTool.openblocksFrame.closeSplash();
-		        
+		} else {
+			if (ArduBlockTool.openblocksFrame != null) {
+			    ArduBlockTool.openblocksFrame.closeSplash();
+			}
+		}
 	}
 
 

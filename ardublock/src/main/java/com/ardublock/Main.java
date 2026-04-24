@@ -82,6 +82,8 @@ public class Main
 		//Context context = Context.getContext();
 		//context.setInArduino(false);
 		openblocksFrame.setVisible(true);
+		openblocksFrame.closeSplash();
+		
 	}
 
 	public void shutdown()

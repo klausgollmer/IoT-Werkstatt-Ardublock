@@ -323,7 +323,7 @@
 			</description>
 			<BlockConnectors>
 				<BlockConnector connector-type="number"
-					connector-kind="socket" label="s">
+					connector-kind="socket" label="µs">
 					<DefaultArg genus-name="number" label="1" />
 				</BlockConnector>
 			</BlockConnectors>
