@@ -748,8 +748,7 @@ public class OpenblocksFrame extends JFrame
         List<String> namesList = new ArrayList<String>();
 
         // Füge den festen Eintrag hinzu
-        
-        namesList.add(uiMessageBundle.getString("ardublock.ui.aiHelp"));
+//        namesList.add(uiMessageBundle.getString("ardublock.ui.aiHelp"));
 
         
         // Prüfen, ob der Pfad existiert und ein Verzeichnis ist
@@ -767,6 +766,10 @@ public class OpenblocksFrame extends JFrame
         }
         
         namesList.sort(String.CASE_INSENSITIVE_ORDER);
+        
+        namesList.add(0, uiMessageBundle.getString("ardublock.ui.aiHelp"));
+
+        
         return namesList.toArray(new String[0]);
     }
 

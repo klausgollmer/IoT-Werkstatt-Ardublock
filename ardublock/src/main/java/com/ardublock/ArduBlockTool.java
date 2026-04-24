@@ -103,7 +103,12 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 			 if (askRestart()) {
 			  ArduBlockTool.openblocksFrame = new ArduBlockToolFrame();
 			  ArduBlockTool.openblocksFrame.addListener(this);
-	 		 } 
+			  markAutostartedThisSession();
+			  System.out.println("starte");
+	 		 } else {
+			  System.out.println("starte nicht");
+	 		 }
+			 
 			} else {
   			  ArduBlockTool.openblocksFrame = new ArduBlockToolFrame();
 			  ArduBlockTool.openblocksFrame.addListener(this);
@@ -162,7 +167,6 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	        options,
 	        options[1]   // "Nein" ist Default
 	    );
-
 	    return result == 0;
 	}
 
@@ -185,7 +189,10 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	
 	public void run() {
 	    try {
-	        if (ArduBlockTool.openblocksFrame == null) return;
+	        if (ArduBlockTool.openblocksFrame == null) {
+	        	  System.out.println("run nicht");
+	        	return;
+	        }
 	        
 	        final ArduBlockToolFrame frame = ArduBlockTool.openblocksFrame;
 
@@ -211,14 +218,10 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	}
 */
 	
-	
-	
-	
-	
-	
-	
 	public String getMenuTitle() {
-		return Context.APP_NAME;
+		String name=Context.APP_NAME;
+	    if (ArduBlockTool.openblocksFrame == null) name = "("+name+")";
+	    return name;
 	}
 
 	public void didSave() {
