@@ -4,9 +4,9 @@ import com.ardublock.translator.Translator;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class PinModeIoT extends TranslatorBlock
+public class PinModeIoT_out extends TranslatorBlock
 {
-	public PinModeIoT(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+	public PinModeIoT_out(Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
@@ -17,14 +17,7 @@ public class PinModeIoT extends TranslatorBlock
 		String ret="", pin;
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 	    pin = translatorBlock.toCode();
-		
-		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
-		String test=translatorBlock.toCode();
-		if(test.equals("false")){
-			ret = "pinMode( "+pin+" , INPUT);";
-		} else {
-			ret = "pinMode( "+pin+" , INPUT_PULLUP);";
-		}
+		ret = "pinMode( "+pin+" , OUTPUT);";
 		return ret;
 	}
 }

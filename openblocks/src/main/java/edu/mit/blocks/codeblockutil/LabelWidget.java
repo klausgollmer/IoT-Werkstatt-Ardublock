@@ -131,7 +131,8 @@ public abstract class LabelWidget extends JComponent {
     public void setEditingState(boolean editing) {
         if (editing) {
             editingText = true;
-            textField.setText(textLabel.getText().trim());
+//          #kgo trim   textField.setText(textLabel.getText().trim());
+            textField.setText(textLabel.getText());
             labelBeforeEdit = textLabel.getText();
             this.removeAll();
             this.add(textField);
@@ -154,7 +155,8 @@ public abstract class LabelWidget extends JComponent {
             if (editingText) {
                 //make sure to remove leading and trailing spaces before testing if text is valid
                 //TODO if allow labels to have leading and trailing spaces, will need to modify this if statement
-                if (isTextValid(textField.getText().trim())) {
+            	// #kgo trim  if (isTextValid(textField.getText().trim())) {
+                if (isTextValid(textField.getText())) {
                     setText(textField.getText());
                 } else {
                    setText(labelBeforeEdit);
@@ -232,7 +234,8 @@ public abstract class LabelWidget extends JComponent {
      * @return String of the current BlockLabel
      */
     public String getText() {
-        return textLabel.getText().trim();
+    	//#kgo textLabel.getText().trim();
+        return textLabel.getText();
     }
 
     /**
@@ -256,8 +259,9 @@ public abstract class LabelWidget extends JComponent {
      */
     public void setText(String string) {
         if (string != null) {
-         updateLabelText(string.trim());
- 
+         //#kgo trim updateLabelText(string.trim());
+         updateLabelText(string);
+         
         }
     }
 

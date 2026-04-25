@@ -1557,6 +1557,19 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+		<BlockGenus name="pin-mode-out" kind="command" color="74 108 212"
+			initlabel="bg.pin-mode-out">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="Pin">
+					<DefaultArg genus-name="number" label="15" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
+		
+		
 		 <BlockGenus name="wait_button_press" kind="command"
 			color="44 165 226" initlabel="bg.wait_button_press">
 			<BlockConnectors>
@@ -7513,7 +7526,7 @@
 				<BlockGenusMember>delay_micro</BlockGenusMember>
 					
   			    <BlockGenusMember>Divider_Loop</BlockGenusMember>
-  			    <!-- BlockGenusMember>repeat_times</BlockGenusMember-->
+  			    <BlockGenusMember>repeat_times</BlockGenusMember>
   			    <BlockGenusMember>repeat2</BlockGenusMember>
   			    <BlockGenusMember>while</BlockGenusMember>
   			    <BlockGenusMember>Divider_Case</BlockGenusMember>
@@ -7651,6 +7664,7 @@
 				<BlockGenusMember>pin-read-analog</BlockGenusMember>
 				<BlockGenusMember>pin-read-digital</BlockGenusMember>
 				<BlockGenusMember>pin-mode-pullup</BlockGenusMember>
+				
 				<BlockGenusMember>Divider_Environment</BlockGenusMember>
 				<BlockGenusMember>GetBSEC</BlockGenusMember>
 			
@@ -7683,6 +7697,7 @@
 				<BlockGenusMember>Divider_Expand</BlockGenusMember>
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>
 				<BlockGenusMember>pin-write-digital</BlockGenusMember>
+				<BlockGenusMember>pin-mode-out</BlockGenusMember>
 				
 				
 			    

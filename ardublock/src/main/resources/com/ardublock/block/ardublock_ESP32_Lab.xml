@@ -1565,7 +1565,17 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
-
+        <BlockGenus name="pin-mode-out" kind="command" color="74 108 212"
+			initlabel="bg.pin-mode-out">
+			<description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="Pin">
+					<DefaultArg genus-name="number" label="14" />
+				</BlockConnector>
+			</BlockConnectors>
+		</BlockGenus>
+		
 
 		
 
@@ -7578,7 +7588,7 @@
 				<BlockGenusMember>delay</BlockGenusMember>
   				<BlockGenusMember>delay_micro</BlockGenusMember>
   			    <BlockGenusMember>Divider_Loop</BlockGenusMember>
-  			    <!-- BlockGenusMember>repeat_times</BlockGenusMember-->
+  			    <BlockGenusMember>repeat_times</BlockGenusMember>
   			    <BlockGenusMember>repeat2</BlockGenusMember>
   			    <BlockGenusMember>while</BlockGenusMember>
   			    <BlockGenusMember>Divider_Case</BlockGenusMember>
@@ -7738,6 +7748,8 @@
 				<BlockGenusMember>pin-write-analog</BlockGenusMember>
 				<BlockGenusMember>DACwrite</BlockGenusMember>
 				<BlockGenusMember>pin-write-digital</BlockGenusMember>
+				<BlockGenusMember>pin-mode-out</BlockGenusMember>
+				
 			    <BlockGenusMember>iot_neowing</BlockGenusMember>
 	<!-- 			<BlockGenusMember>IoTmessage</BlockGenusMember> -->
 				
