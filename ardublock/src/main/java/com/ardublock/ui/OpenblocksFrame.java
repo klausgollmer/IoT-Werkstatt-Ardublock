@@ -148,7 +148,7 @@ public class OpenblocksFrame extends JFrame
 	}
 	
 	
-	// 1. Separate Klasse (kein final‑Problem mehr)
+	
 	class SplashPanel extends JPanel {
 	    private final URL imgURL;
 	    double uiscale =getUiScale();
@@ -180,57 +180,15 @@ public class OpenblocksFrame extends JFrame
 	    }
 	}
 
-	/*
-	// 2. Splash anzeigen UND sofort weiterlaufen
-	private void showSplashAsync() {
-		
-	    String relativePath = "/com/ardublock/block/IoTkit/splash4.png";
-	    URL imgURL = getClass().getResource(relativePath);
-
-	 //   JWindow splash = new JWindow();
-	  
-	    splash.setAlwaysOnTop(true);
-
-	    if (imgURL != null) {
-	        SplashPanel panel = new SplashPanel(imgURL);
-	        splash.add(panel);
-	        splash.pack();
-	    } else {
-	        JLabel fallback = new JLabel("IoT² Werkstatt");
-	        fallback.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 24));
-	        splash.add(fallback);
-	        //splash.setSize((int) (475/uiscale), (int)(330/uiscale));
-	    }
-
-	    splash.setLocationRelativeTo(null);
-	    splash.setVisible(true);
-
-	    /*
-	    boolean isPi   = System.getProperty("os.arch").toLowerCase().contains("aarch64");
-	    int SplashTime = 2000; 
-	    if (isPi) SplashTime = 3500;
-	    
-	    // 3. Timer: Nach ein paar s schließen – NON-BLOCKING!
-	    Timer timer = new Timer(SplashTime, e -> {
-	        splash.dispose();  // Splash nach s weg
-	        ((Timer)e.getSource()).stop();  // Timer stoppen
-	    });
-	    timer.setRepeats(false);  // nur einmal
-	    timer.start();
-	}
 	
-	public void closeSplash() {
-	   // if (splash != null) {
-	        splash.dispose();
-	        splash = null;
-	   // }
-	}
-	*/
 	
 	public OpenblocksFrame()
 	{
 		
-	 // Splash anzeigen	
+	  boolean isLinux =  System.getProperty("os.name").toLowerCase().contains("linux");
+	  boolean isPi = System.getProperty("os.arch").toLowerCase().contains("aarch64");
+	
+	  // Splash anzeigen	
       splash = new JWindow();
       
       String relativePath = "/com/ardublock/block/IoTkit/splash4.png";
@@ -242,8 +200,25 @@ public class OpenblocksFrame extends JFrame
 
 	    if (imgURL != null) {
 	        SplashPanel panel = new SplashPanel(imgURL);
-	        splash.add(panel);
-	        splash.pack();
+	        if (isLinux && isPi) {
+		        // Raspi problem first show  
+		        splash.setContentPane(panel);
+		        splash.setSize(475, 330);
+		        splash.setLocationRelativeTo(null);
+		        splash.setVisible(true);
+
+		        SwingUtilities.invokeLater(() -> {
+		            splash.setSize(475, 330);
+		            splash.validate();
+		            splash.repaint();
+		        });
+		        // Raspi
+	        } else {
+	         splash.add(panel);
+	         splash.pack();
+	        }	        
+	        
+	        
 	    } else {
 	        JLabel fallback = new JLabel("IoT² Werkstatt");
 	        fallback.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 24));
@@ -292,9 +267,7 @@ public class OpenblocksFrame extends JFrame
 		
 		//
 
-		  boolean isLinux =  System.getProperty("os.name").toLowerCase().contains("linux");
 		  if (isLinux) {
-			  boolean isPi = System.getProperty("os.arch").toLowerCase().contains("aarch64");
 			  if (!isPi) {
 			    this.setSize(new Dimension(1200, 760));  // größer für Linux x64
 		  	  } else {
