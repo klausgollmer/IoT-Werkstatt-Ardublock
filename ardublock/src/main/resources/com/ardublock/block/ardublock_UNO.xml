@@ -1372,7 +1372,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.message">
-					<DefaultArg genus-name="message" label="Hello IoT\u0020" />
+					<DefaultArg genus-name="message" label="Hello IoT" />
 				</BlockConnector>
 				<BlockConnector connector-type="boolean"
 					connector-kind="socket" label="bc.ln">
@@ -1389,7 +1389,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="bc.message">
-					<DefaultArg genus-name="message" label="Debug \u0020" />
+					<DefaultArg genus-name="message" label="Debug" />
 				</BlockConnector>
 				<BlockConnector connector-type="boolean"
 					connector-kind="socket" label="bc.ln">
@@ -2019,7 +2019,7 @@
 			<BlockConnectors>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="text">
-					<DefaultArg genus-name="message" label="text\u0020" />
+					<DefaultArg genus-name="message" label="text" />
 				</BlockConnector>
 				<BlockConnector connector-type="string"
 					connector-kind="socket" label="text">

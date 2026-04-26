@@ -55,7 +55,7 @@ public class RepeatBlock extends TranslatorBlock
 			translatorBlock = translatorBlock.nextTranslatorBlock();
 		}
 		
-		ret = ret + "#ifdef ESP8266 \n yield();\n #endif \n}\n";
+		ret = ret + "yield();\n}\n";
 		return ret;
 	}
 

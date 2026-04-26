@@ -754,6 +754,7 @@ public class OpenblocksFrame extends JFrame
         // Prüfen, ob der Pfad existiert und ein Verzeichnis ist
         if (!directory.exists() || !directory.isDirectory()) {
             //System.err.println("Der angegebene Pfad ist kein gültiges Verzeichnis: " + directoryPath);
+       	    namesList.add(0, uiMessageBundle.getString("ardublock.ui.aiHelp"));
             return namesList.toArray(new String[0]);
         }
 
