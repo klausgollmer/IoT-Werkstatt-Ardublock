@@ -234,7 +234,7 @@ public abstract class LabelWidget extends JComponent {
      * @return String of the current BlockLabel
      */
     public String getText() {
-    	//#kgo textLabel.getText().trim();
+    	//#kgo textLabel.getText().trim() ;
         return textLabel.getText();
     }
 
