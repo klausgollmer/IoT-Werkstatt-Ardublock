@@ -64,6 +64,7 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	    }
 	}
 
+	/*
 	private File getSessionFlagFile() {
 	    return new File(getArduBlockToolDirectory(), "ardublock_autostart_session.flag");
 	}
@@ -81,13 +82,32 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	    } catch (Exception e) {
 	    }
 	}
+	*/
 	
 	static Editor editor;
 	static ArduBlockToolFrame openblocksFrame;
 	
+	private static final String COUNTER_KEY = "ardublock.globalEditorCount";
+	
+	 private int getAndIncrementGlobalCount() {
+	        synchronized (ArduBlockTool.class) {
+	            String value = System.getProperty(COUNTER_KEY);
+	            int count = (value == null) ? 0 : Integer.parseInt(value);
+	            count++;
+	            System.setProperty(COUNTER_KEY, Integer.toString(count));
+	            return count;
+	        }
+	    }
+	
 	public void init(Editor editor) {
+		int RestartCount = 0;
 		if (ArduBlockTool.editor == null )
 		{
+			
+	  	   RestartCount = getAndIncrementGlobalCount();
+		   //System.out.println("Globaler Ardublock-Aufruf in dieser IDE: " + RestartCount);
+
+			
 			//System.out.println("Start aus Arduino");
 			Context context = Context.getContext();
 			String arduinoVersion = this.getArduinoVersion();
@@ -99,14 +119,14 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 			
 			ArduBlockTool.editor = editor;
 		
-			if (hasAutostartedThisSession()) {
+			if (RestartCount > 1) { // Ardublock still running 
 			 if (askRestart()) {
 			  ArduBlockTool.openblocksFrame = new ArduBlockToolFrame();
 			  ArduBlockTool.openblocksFrame.addListener(this);
-			  markAutostartedThisSession();
-			  System.out.println("starte");
+			  //markAutostartedThisSession();
+			  //System.out.println("starte");
 	 		 } else {
-			  System.out.println("starte nicht");
+			  //System.out.println("starte nicht");
 	 		 }
 			 
 			} else {
@@ -119,8 +139,9 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 		  context.setArduinoCodeFileString(ArduBlockTool.getCurrentSketchFile());
 		}
 		
-		if (!hasAutostartedThisSession()) {
-			markAutostartedThisSession();
+//		if (!hasAutostartedThisSession()) {
+		if (RestartCount == 1) {
+		//	markAutostartedThisSession();
 			
 		    javax.swing.Timer waitForEditor = new javax.swing.Timer(200, null);
 		    waitForEditor.addActionListener(e -> {
@@ -159,7 +180,7 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 	    int result = JOptionPane.showOptionDialog(
 	    		
 	        null,
-	        "IoT²-Werkstatt is running!\nStart again?",
+	        "IoT²-Werkstatt running\nStart again?",
 	        "Start Tool",
 	        JOptionPane.YES_NO_OPTION,
 	        JOptionPane.QUESTION_MESSAGE,
