@@ -122,7 +122,7 @@ public class Audio_TTS_Say  extends TranslatorBlock {
 	 	translator.addDefinitionCommand(Def);
 
 	   	String Setup ="Serial.setDebugOutput(false);        // ESP Internas nicht auf Serial\r\n"
-	   			+ "  if (!SPIFFS.begin(false)) {   // false = kein Format!\r\n"
+	   			+ "  if (!SPIFFS.begin(true)) {   // true = Mounten, bei Fehlschlag einmalig formatieren, dann neu mounten \r\n"
 	   			+ "    IOTW_PRINTLN(F(\"❌ SPIFFS failed\"));\r\n"
 	   			+ "    while(1);\r\n"
 	   			+ "  }\r\n"

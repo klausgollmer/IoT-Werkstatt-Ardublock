@@ -1696,6 +1696,19 @@
 			</BlockConnectors>
 		</BlockGenus>
 		
+		<BlockGenus name="analogReadGPIO" kind="data" color="44 165 226"
+			initlabel="bg.analogReadGPIO">
+		    <description><text></text></description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number"
+					connector-kind="socket" label="GPIO">
+					<DefaultArg genus-name="number" label="4" />
+				</BlockConnector>
+				<BlockConnector connector-type="number"
+					connector-kind="plug" />
+			</BlockConnectors>
+		</BlockGenus>
+		
 		<BlockGenus name="analogReadmV_32" kind="data" color="44 165 226"
 			initlabel="bg.analogReadmV_32">
 		    <description><text></text></description>
