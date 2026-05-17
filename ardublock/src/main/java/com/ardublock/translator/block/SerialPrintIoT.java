@@ -22,6 +22,7 @@ public class SerialPrintIoT extends TranslatorBlock
 		if (translatorBlock != null)
 		{
 			text = translatorBlock.toCode();
+			text = text.replace("\\\\n", "\\n");
 		}
 		
 		translatorBlock = this.getRequiredTranslatorBlockAtSocket(1);
