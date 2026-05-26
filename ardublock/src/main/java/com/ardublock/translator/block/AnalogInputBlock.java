@@ -17,7 +17,8 @@ public class AnalogInputBlock extends TranslatorBlock
 		String ret = "analogRead(A";
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 		ret = ret + translatorBlock.toCode();
-		ret = ret + ")*IOTW_AI_SCALE";
+//		ret = ret + ")*IOTW_AI_SCALE";
+		ret = ret + ")";
 		return codePrefix + ret + codeSuffix;
 	}
 

@@ -17,7 +17,8 @@ public class AnalogInputBlock_GPIO extends TranslatorBlock
 		String ret = "analogRead(";
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 		ret = ret + translatorBlock.toCode();
-		ret = ret + ")*IOTW_AI_SCALE";
+		ret = ret + ")";
+//		ret = ret + ")*IOTW_AI_SCALE";
 		return codePrefix + ret + codeSuffix;
 	}
 
