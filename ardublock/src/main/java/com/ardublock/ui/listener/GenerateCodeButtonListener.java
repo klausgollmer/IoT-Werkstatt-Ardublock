@@ -2,6 +2,7 @@ package com.ardublock.ui.listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -280,6 +281,13 @@ public class GenerateCodeButtonListener implements ActionListener
 			    } else { // Arduino IDE 2
 				  String codeFile = context.getArduinoCodeFileString();
 			      ArduinoIDE2.writeFile(codeFile, codeOut);
+			      try {
+					ArduinoIDE2.runArduinoCLIScript();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			      
 			    }		
 			// context.didGenerate(codeOut);
 			}

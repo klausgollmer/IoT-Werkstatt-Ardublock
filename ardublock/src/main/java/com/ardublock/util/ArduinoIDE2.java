@@ -1,5 +1,6 @@
 package com.ardublock.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,4 +32,13 @@ public class ArduinoIDE2 {
             System.err.println("An error occurred while writing the file: " + e.getMessage());
         }
     }
+	
+	public static void runArduinoCLIScript() throws IOException {
+	    File workDir = new File(System.getProperty("user.dir"));
+	    ProcessBuilder pb = new ProcessBuilder("/bin/bash", "./ArduinoCLIScript");
+	    pb.directory(workDir);
+	    pb.start();
+	}
+	
+	
 }

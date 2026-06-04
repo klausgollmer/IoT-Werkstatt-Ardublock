@@ -976,8 +976,8 @@ public class OpenblocksFrame extends JFrame
         });
 		
 		
-		String[] programList = {"Starter","Makey","Octopus"};
-		//String[] programList = {"Starter","Makey","Octopus","Lab"};
+		//String[] programList = {"Starter","Makey","Octopus"};
+		String[] programList = {"Starter","Makey","Octopus","Lab"};
 		boardComboBox = new JComboBox<String>(programList);
 		//boardComboBox.setFont(new Font("Arial", Font.BOLD, 18)); // Schriftgröße 18
 	    boardComboBox.setToolTipText("Select Board");
