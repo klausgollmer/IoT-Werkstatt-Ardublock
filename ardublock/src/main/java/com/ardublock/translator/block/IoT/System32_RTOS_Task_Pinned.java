@@ -6,8 +6,8 @@ import com.ardublock.translator.block.TranslatorBlock;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class System32_RTOS_Task  extends TranslatorBlock {
-	public System32_RTOS_Task (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+public class System32_RTOS_Task_Pinned  extends TranslatorBlock {
+	public System32_RTOS_Task_Pinned (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
 	{
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
@@ -25,17 +25,22 @@ public class System32_RTOS_Task  extends TranslatorBlock {
   	translatorBlock = this.getRequiredTranslatorBlockAtSocket(2);
   	String Stack = translatorBlock.toCode();
   	
+  	String core ="";
+  	translatorBlock = getTranslatorBlockAtSocket(3);
+  	if (translatorBlock != null)
+  		core = translatorBlock.toCode();
+  	
   	
   	String Setup ="", Loop="";
   	
-	translatorBlock = getTranslatorBlockAtSocket(3);
+	translatorBlock = getTranslatorBlockAtSocket(4);
 	while (translatorBlock != null)
 	{
 		Setup = Setup + "   "+ translatorBlock.toCode();
 		translatorBlock = translatorBlock.nextTranslatorBlock();
 	}
   	
-	translatorBlock = getTranslatorBlockAtSocket(4);
+	translatorBlock = getTranslatorBlockAtSocket(5);
 	while (translatorBlock != null)
 	{
 		Loop = Loop + "   " + translatorBlock.toCode();
@@ -59,16 +64,23 @@ public class System32_RTOS_Task  extends TranslatorBlock {
 			+ "  // Loop\n"
 			+ "  for (;;) {\n"
 			+ Loop
-			+ " \n"
+			+ "   \n"
 			+ "  }\n"
 			+ " }"
 			+ "#endif\n";
 	
 	translator.addDefinitionCommand(Task);
+
+	String Create ="";
+	if (Integer.parseInt(core) > 1)
+		Create = "   xTaskCreate("+Taskfunction+", "+Taskname+", "+Stack+", NULL, "+Prio+", NULL);\n";
+	else
+		Create = "   xTaskCreatePinnedToCore("+Taskfunction+", "+Taskname+", "+Stack+", NULL, "+Prio+", NULL,"+core+");\n";
+		
 	
   	String SetupCMD = "   //------- Create FreeRTOS Task ---------------------------- \n"
   			+"#if defined(ESP32)\n"
-  			+"   xTaskCreate("+Taskfunction+", "+Taskname+", "+Stack+", NULL, "+Prio+", NULL);\n"
+  			+ Create
   			+"#else\n"
   			+"   Serial.println(F(\"sorry, FreeRTOS not available (ESP32 only)\"));\n"
   			+"#endif\n";

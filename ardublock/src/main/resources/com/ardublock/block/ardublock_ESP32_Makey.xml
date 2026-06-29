@@ -106,8 +106,59 @@
 			</Images>
 		</BlockGenus>
 
+        <BlockGenus name="freeRTOS_task_pinned" kind="command" color="0 0 0" 
+			initlabel="bg.freeRTOS_task_pinned" is-starter="yes" is-terminator="yes"
+			label-unique="no">
+			<description>
+			<text>freeRTOS Task</text>
+			</description>
+			<BlockConnectors>
+			
+				<BlockConnector connector-type="string"
+					connector-kind="socket" label="Taskname">
+					<DefaultArg genus-name="text" label="Task1" />
+				</BlockConnector>
+  			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="prio">
+					<DefaultArg genus-name="number" label="5" />
+				</BlockConnector>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="stack">
+					<DefaultArg genus-name="number" label="2048" />
+				</BlockConnector>
+			    <BlockConnector connector-type="number"
+					connector-kind="socket" label="core">
+				    <DefaultArg genus-name="freeRTOS_task_core_free" label=" core free"/>
+				</BlockConnector>
+				<BlockConnector connector-type="cmd" connector-kind="socket"
+					label="bc.setup" />
+				<BlockConnector connector-type="cmd" connector-kind="socket"
+					label="bc.loop" />
+		 		</BlockConnectors>
+		
+			<Images>
+			   <Image block-location="northwest" image-editable="no" width="65" height = "80">
+					<FileLocation>com/ardublock/block/IoTkit/IconMakeyLab.png</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
 
+        <BlockGenus name="freeRTOS_task_core0" kind="data" color="255 0 0" initlabel="bg.freeRTOS_task_core0" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
 
+      <BlockGenus name="freeRTOS_task_core1" kind="data" color="255 0 0" initlabel="bg.freeRTOS_task_core1" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+      </BlockGenus>
+      <BlockGenus name="freeRTOS_task_core_free" kind="data" color="255 0 0" initlabel="bg.freeRTOS_task_core_free" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
 
 
 		
@@ -2899,6 +2950,11 @@
           </BlockConnectors>
         </BlockGenus>
 
+        <BlockGenus name="MAXSonar_EZ" kind="data" color="255 0 0" initlabel="bg.MAXSonar_EZ" editable-label="no" is-label-value="no" >
+          <BlockConnectors>
+            <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
+          </BlockConnectors>
+        </BlockGenus>
 
 		
   	   <BlockGenus name="UART_SW" kind="data" color="255 0 0" initlabel="bg.UART_SW" editable-label="no" is-label-value="no" >
@@ -7196,10 +7252,13 @@
 
 		<!-- BlockFamilies andere -->
 		
-		
-	   
-
 		<BlockFamily>
+			<FamilyMember>freeRTOS_task_core_free</FamilyMember>
+			<FamilyMember>freeRTOS_task_core1</FamilyMember>
+			<FamilyMember>freeRTOS_task_core0</FamilyMember>
+		</BlockFamily>
+		
+	   <BlockFamily>
 			<FamilyMember>digital-high</FamilyMember>
 			<FamilyMember>digital-low</FamilyMember>
 		</BlockFamily>
@@ -7222,6 +7281,7 @@
 		<BlockFamily>
 			<FamilyMember>MAX7368</FamilyMember>
 			<FamilyMember>MAX7369</FamilyMember>
+			<FamilyMember>MAXSonar_EZ</FamilyMember>
 		</BlockFamily>
 		
 		<BlockFamily>
@@ -8168,7 +8228,7 @@
 			  <BlockGenusMember>timerAttach</BlockGenusMember>
 			  <BlockGenusMember>timerDetach</BlockGenusMember>
 			  <BlockGenusMember>Divider_RTOS</BlockGenusMember>
- 		      <BlockGenusMember>freeRTOS_task</BlockGenusMember>
+ 		      <BlockGenusMember>freeRTOS_task_pinned</BlockGenusMember>
  		      <BlockGenusMember>freeRTOS_vTaskDelay</BlockGenusMember>
  		      <BlockGenusMember>freeRTOS_semaGive</BlockGenusMember>
  		      <BlockGenusMember>freeRTOS_semaTake</BlockGenusMember>

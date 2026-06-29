@@ -19,7 +19,7 @@ public class RandomBlock extends TranslatorBlock
 		TranslatorBlock translatorBlock = getRequiredTranslatorBlockAtSocket(0);
 		ret = ret + translatorBlock.toCode();
 		ret = ret + " )";
-		translator.addSetupCommand("\trandomSeed(analogRead(IOTW_GPIO_A0) + analogRead(IOTW_GPIO_A0) + analogRead(IOTW_GPIO_A0));");
+//		translator.addSetupCommand("\trandomSeed(analogRead(IOTW_GPIO_A0) + analogRead(IOTW_GPIO_A0) + analogRead(IOTW_GPIO_A0));");
 		return codePrefix + ret + codeSuffix;
 	}
 

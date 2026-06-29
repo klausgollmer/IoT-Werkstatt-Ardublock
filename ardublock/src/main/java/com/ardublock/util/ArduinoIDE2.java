@@ -35,7 +35,7 @@ public class ArduinoIDE2 {
 	
 	public static void runArduinoCLIScript() throws IOException {
 	    File workDir = new File(System.getProperty("user.dir"));
-	    ProcessBuilder pb = new ProcessBuilder("/bin/bash", "./ArduinoCLIScript");
+	    ProcessBuilder pb = new ProcessBuilder("/bin/bash", "./iotw-upload-gui.sh");
 	    pb.directory(workDir);
 	    pb.start();
 	}

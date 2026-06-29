@@ -59,6 +59,7 @@ public class WLAN_ConnectTimeout  extends TranslatorBlock {
 	     	         +"   myOwnIP = WiFi.localIP();\n"
 	         +" } else {\n"
 	     	 +"    IOTW_PRINT(F(\"⚠ no WiFi connection\"));\n"
+	     	 +"    WiFi.disconnect(true);\n"
 	         +" }\n"
 //	         +" matrixausgabe_text = \" Meine IP:\" + WiFi.localIP().toString();\n"
 //   		     +" matrixausgabe_index=0;\n"

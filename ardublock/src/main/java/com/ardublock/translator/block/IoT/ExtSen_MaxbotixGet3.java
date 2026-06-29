@@ -64,7 +64,7 @@ public class ExtSen_MaxbotixGet3 extends TranslatorBlock
 	translator.addDefinitionCommand(Def);   		   	
     
     String read = "// ----------------------- Maxbotix Driver for 7368/69 \n "
-    		+ "float readMaxbotUS_"+rxpin+"(long lower, long upper) {\r\n"
+    		+ "float readMaxbotUS_"+rxpin+"(long lower, long upper, float unit) {\r\n"
     		+ "  const int      MAX_TRIES        = 10;\r\n"
     		+ "  const uint32_t TIMEOUT_R_MS     = 250; // Suche nach 'R'\r\n"
     		+ "  const uint32_t TIMEOUT_LINE_MS  = 50;  // nach 'R' für die Ziffern\r\n"
@@ -144,12 +144,12 @@ public class ExtSen_MaxbotixGet3 extends TranslatorBlock
     		+ "\r\n"
     		+ "    long dist = payload.toInt();\r\n"
     		+ "\r\n"
-    		+ "    if (dist > lower && dist < upper) return (float)dist; // gültig\r\n"
+    		+ "    if (dist > lower && dist < upper) return (float)dist*unit; // gültig\r\n"
     		+ "    if (dist == lower)      lastBoundary = (float)lower;   // Grenze merken\r\n"
     		+ "    else if (dist == upper) lastBoundary = (float)upper;\r\n"
     		+ "  }\r\n"
     		+ "\r\n"
-    		+ "  return lastBoundary; // kann NaN bleiben, wenn keine Grenze gesehen\r\n"
+    		+ "  return lastBoundary*unit; // kann NaN bleiben, wenn keine Grenze gesehen\r\n"
     		+ "}\r\n"
     		+ "";
     translator.addDefinitionCommand(read);		

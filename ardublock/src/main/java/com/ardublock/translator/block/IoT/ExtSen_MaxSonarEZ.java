@@ -4,10 +4,10 @@ import com.ardublock.translator.block.TranslatorBlock;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
-public class ExtSen_Max7369 extends TranslatorBlock
+public class ExtSen_MaxSonarEZ extends TranslatorBlock
 {
 
-  public ExtSen_Max7369 (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
+  public ExtSen_MaxSonarEZ (Long blockId, Translator translator, String codePrefix, String codeSuffix, String label)
   {
     super(blockId, translator, codePrefix, codeSuffix, label);
   }
@@ -16,7 +16,7 @@ public class ExtSen_Max7369 extends TranslatorBlock
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 
-		String ret = "300,5000,1.0";
+		String ret = "6,254,25.4";
 		return codePrefix + ret + codeSuffix;
 	}
 }

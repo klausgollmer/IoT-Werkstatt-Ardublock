@@ -83,7 +83,7 @@ public class GenerateCodeButtonListener implements ActionListener
 				{
 					loopBlockSet.add(renderableBlock);
 				}
-				if(block.getGenusName().equals("freeRTOS_task"))
+				if(block.getGenusName().equals("freeRTOS_task") || block.getGenusName().equals("freeRTOS_task_pinned"))
 				{
 					loopBlockSet.add(renderableBlock);
 					CountTask++;
