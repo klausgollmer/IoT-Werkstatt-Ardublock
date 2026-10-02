@@ -7745,8 +7745,6 @@
 				<BlockGenusMember>digital-high</BlockGenusMember>
 				<BlockGenusMember>digital-low</BlockGenusMember>
 	
-		<BlockGenusMember>UART_SW</BlockGenusMember>
-	
 				<BlockGenusMember>Divider_Num</BlockGenusMember>
 				<BlockGenusMember>setter_variable_number</BlockGenusMember>				
 				<BlockGenusMember>variable_number</BlockGenusMember>	

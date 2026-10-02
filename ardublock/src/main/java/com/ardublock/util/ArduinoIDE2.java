@@ -34,8 +34,12 @@ public class ArduinoIDE2 {
     }
 	
 	public static void runArduinoCLIScript() throws IOException {
+		
+		Context context = Context.getContext();
+		String BoardVersion = context.ArdublockVersion;		
+		
 	    File workDir = new File(System.getProperty("user.dir"));
-	    ProcessBuilder pb = new ProcessBuilder("/bin/bash", "./iotw-upload-gui.sh");
+	    ProcessBuilder pb = new ProcessBuilder("/bin/bash", "./iotw-upload-gui.sh",BoardVersion);
 	    pb.directory(workDir);
 	    pb.start();
 	}

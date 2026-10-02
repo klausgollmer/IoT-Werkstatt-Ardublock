@@ -103,7 +103,7 @@ public class HTTP_SenseboxSend  extends TranslatorBlock {
 				+ "\n"
 				+ "  if (httpCode > 0) {\n"
 				+ "    if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_CREATED) {\n"
-				+ "      errorString += \"✅ success\");\n"
+				+ "      errorString += \"✅ success\";\n"
 				+ "    } \n"
 				+ "    else {\n"
 				+ "      errorString += \"❌ Unexpected HTTP-Code: \" + String(httpCode);\n"

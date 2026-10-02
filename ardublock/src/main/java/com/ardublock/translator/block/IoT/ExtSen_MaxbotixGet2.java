@@ -60,7 +60,8 @@ public class ExtSen_MaxbotixGet2 extends TranslatorBlock
     translator.addSetupCommand(Setup);
 	translator.addDefinitionCommand(Def);   		   	
     
-    String read = "float readMaxbotUS_16() {\r\n"
+//    String read = "float readMaxbotUS_16() {\r\n"
+    String read = "float readMaxbotUS_"+ rxpin +"() {\r\n"
     		+ "  const int    MAX_TRIES   = 4;\r\n"
     		+ "  const auto   TIMEOUT_MS  = 250UL;   // maximal 250 ms pro Versuch\r\n"
     		+ "  String       payload;\r\n"
