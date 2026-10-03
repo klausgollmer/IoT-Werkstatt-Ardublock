@@ -3759,7 +3759,7 @@
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
         </BlockGenus>
-      <BlockGenus name="SmartServoVectorFeetechSCSCL" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorFeetechSCS" editable-label="no" is-label-value="no" >
+      <BlockGenus name="SmartServoVectorFeetechSTS" kind="data" color="255 0 0" initlabel="bg.SmartServoVectorFeetechSCS" editable-label="no" is-label-value="no" >
           <BlockConnectors>
             <BlockConnector connector-type="number" connector-kind="plug" position-type="single"/>
           </BlockConnectors>
@@ -7598,7 +7598,7 @@
 		<BlockFamily>
             <FamilyMember>SmartServoVectorRobotis</FamilyMember>
             <FamilyMember>SmartServoVectorFeetechSCS</FamilyMember>
-<!--             <FamilyMember>SmartServoVectorFeetechSCSCL</FamilyMember> -->
+            <FamilyMember>SmartServoVectorFeetechSTS</FamilyMember> 
         </BlockFamily>
 		
 		

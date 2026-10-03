@@ -23,7 +23,7 @@ public class ExtOut_SmartServoScan extends TranslatorBlock
     
     int type = -1;
     String Setup ="#ifdef ESP32\r\n"
-    		+ "#ifndef SmartServo_START\"   \r\n"
+    		+ "#ifndef SmartServo_START   \r\n"
     		+ "  SmartServo_start(1,2,16,17,1000000);// default: feetech serial 2\r\n"
     		+ "#endif\r\n"
     		+ "#else\r\n"

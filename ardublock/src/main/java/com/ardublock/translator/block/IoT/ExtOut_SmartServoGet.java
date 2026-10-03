@@ -21,7 +21,7 @@ public class ExtOut_SmartServoGet extends TranslatorBlock
     translator.addHeaderFile("IoTW_SmartServo.h");
     translator.addDefinitionCommand("int IOTW_debug_level = IOTW_DEBUG_LEVEL; // Debug print auch in den IOTW_ Libs nutzen\n");     
     String Setup ="#ifdef ESP32\r\n"
-    		+ "#ifndef SmartServo_START\"   \r\n"
+    		+ "#ifndef SmartServo_START   \r\n"
     		+ "  SmartServo_start(1,2,16,17,1000000);// default: feetech serial 2\r\n"
     		+ "#endif\r\n"
     		+ "#else\r\n"
